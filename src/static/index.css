@@ -1,0 +1,71 @@
+@font-face {
+    font-family: 'Inter';
+    src: local('FiraSans'), url(./fonts/INTER-REGULAR.TTF) format('truetype');
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: local('FiraSans'), url(./fonts/INTER-MEDIUM.TTF) format('truetype');
+    font-style: normal;
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: local('FiraSans'), url(./fonts/INTER-SEMIBOLD.TTF) format('truetype');
+    font-style: normal;
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: local('FiraSans'), url(./fonts/INTER-BOLD.TTF) format('truetype');
+    font-style: normal;
+    font-weight: 700;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+
+}
+
+body,
+html {
+    font-family: "Inter";
+    height: 100%;
+    width: 100%;
+    position: fixed;
+
+
+
+}
+
+@media screen and (max-width: 768px) {
+
+    body,
+    html {
+        overflow-y: scroll;
+    }
+}
+
+* ::selection {
+    background: #30B9D6;
+    color: white;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+span.link {
+    color: #30B9D6;
+}
+
+span.link :hover {
+    text-decoration: underline;
+}

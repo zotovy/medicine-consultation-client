@@ -1,0 +1,63 @@
+.phone-input {
+    width: calc(100% - 26px);
+    outline: none;
+    border: solid 1px #ccc;
+    border-radius: 5px;
+    padding: 12px;
+    color: #282828;
+    font-size: 0.85;
+    transition: 0.25s ease-in-out;
+}
+
+.phone-input::placeholder {
+    color: #707070;
+}
+
+.phone-input:focus {
+    outline: none !important;
+    border: 1px solid #30B9D6;
+    color: #282828;
+}
+
+.field-name {
+    font-size: 0.8rem;
+    color: #565656;
+    margin-bottom: 3px;
+}
+
+@media screen and (max-width: 375px) {
+    .field-name {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) and (min-width: 375px) {
+    .field-name {
+        font-size: 20px;
+    }
+}
+
+.login_error_container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.login_error_text {
+    color: #ff3b30;
+    text-align: center;
+    font-size: 12px;
+}
+
+.disable {
+    transition: 1s;
+    transform: translateX(500px);
+}
+
+
+.alert-icon {
+    border-radius: 50%;
+    font-size: 25px;
+    color: white;
+    margin-right: 10px;
+}
