@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
+import { reaction } from "mobx";
 import { observer } from "mobx-react";
 import classnames from "classnames";
 
@@ -142,6 +143,14 @@ const DoctorSignUpLinkComponentContainer = styled.div`
 
 
 const UserSignUp: React.FC = observer(() => {
+
+
+  // ANCHOR: hooks
+  let history = useHistory();
+
+  // ANCHOR: Reactions
+  // Navigate to home page after login
+  reaction(() => authStore.goToHomeTrigger, () => history.push("/"));
 
 
   // ANCHOR: Mobile styles

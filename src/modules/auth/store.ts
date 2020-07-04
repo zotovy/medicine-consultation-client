@@ -1,5 +1,4 @@
 import { observable, action } from "mobx";
-import { useHistory } from "react-router-dom";
 import moment from "moment";
 import axios from "axios";
 
@@ -20,7 +19,6 @@ class AuthStore {
 
         // Tokens
         tokenServices.checkAndUpdateToken().then(async (isRefreshTokenOk) => {
-            console.log(`isRefreshTokenOk=${isRefreshTokenOk}`);
             if (!isRefreshTokenOk) {
                 this.isLogin = false;
                 return null;
@@ -42,13 +40,12 @@ class AuthStore {
     @observable user: UserType = {};
     @observable uid?: string;
     @observable isLogin: boolean = false;
+    @observable goToHomeTrigger = false; // Use to trigger reaction inside login/signup component to go to home page
 
     // Action
     @action login = async () => {
         // Remove all past errors
         loginUIStore.setError();
-
-        console.log(123);
 
         // Get email & password from ui
         const email = loginUIStore.email;
@@ -63,8 +60,8 @@ class AuthStore {
             return;
         }
 
-        // send data to server
         try {
+            // Send data to server
             const responce = await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/api/login-user`,
                 {
@@ -73,20 +70,26 @@ class AuthStore {
                 }
             );
 
+            // if !success --> show error
             if (!responce.data.success) {
                 loginUIStore.setError("Неверный email или пароль");
-                console.log("Неверный email или пароль");
                 return;
             }
 
+            // Set all data to localstorage & authStore
             this.isLogin = true;
             const id = responce.data.id;
             this.uid = id;
             localStorage.setItem("uid", id);
 
+            // Generate & save new tokens
             await tokenServices.generateNewTokens(id);
 
+            // Fetch user based on id
             this.user = (await fetchUser(id)) ?? {};
+
+            // Trigger home trigger to go to home page
+            this.goToHomeTrigger = !this.goToHomeTrigger;
         } catch (e) {
             console.log("Some error...");
             console.log(e);
@@ -131,8 +134,8 @@ class AuthStore {
             lastActiveAt: moment(),
         };
 
-        // send user to db
         try {
+            // send user to db
             const responce = await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/api/user`,
                 {
@@ -142,6 +145,7 @@ class AuthStore {
                 }
             );
 
+            // if !success --> show error
             if (!responce.data.success) {
                 const hasInvalidError: boolean = validateServerError(
                     responce.data.error
@@ -162,6 +166,7 @@ class AuthStore {
             const accessToken = responce.data.tokens.access;
             const refreshToken = responce.data.tokens.refresh;
 
+            // save given tokens
             tokenServices.saveAccessToken(accessToken);
             tokenServices.saveRefreshToken(refreshToken);
 
@@ -173,6 +178,7 @@ class AuthStore {
         } catch (e) {
             console.log(e);
 
+            // show error and hide it after 5s
             signupUIStore.setErrorMessage(
                 "Произошла непредвиденная ошибка. Повторите попытку позже"
             );

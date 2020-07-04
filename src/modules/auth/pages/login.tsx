@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import MediaQuery from 'react-responsive';
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { reaction } from "mobx";
 import { observer } from "mobx-react";
 
 // Store
@@ -19,6 +20,9 @@ import LinkComponent from "../components/link";
 
 // Assets
 import bgImage from "../../../static/images/login-bg.png";
+
+
+
 
 const Container = styled.div`
   width: 550px;
@@ -68,7 +72,15 @@ const CheckboxContainer = styled.div`
     `;
 
 
+
 const Login: React.FC = observer(() => {
+
+    // ANCHOR: hooks
+    let history = useHistory();
+
+    // ANCHOR: Reactions
+    // Navigate to home page after login
+    reaction(() => authStore.goToHomeTrigger, () => history.push("/"));
 
     const mobileStyles = {
         subtitle: {
