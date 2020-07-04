@@ -7,21 +7,37 @@ type Props = {
 };
 
 const Title = styled.h1`
-display: flex;
-flex-direction: row;
-justify-content: center;
-font-size: 40px;
-
-p {
-  display: inline;
-  color: #30b9d6;
-
-  &::selection {
-    background-color: rgba(0, 0, 0, 0);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
+  p {
+    display: inline;
     color: #30b9d6;
+
+    &::selection {
+      background-color: rgba(0, 0, 0, 0);
+      color: #30b9d6;
+    }
   }
-}
+
+   /* Phone */
+   @media screen and (max-width: 424px) {
+    font-size: 36px;
+  }
+
+  /* Tablet */
+  @media screen and (min-width: 424px) and (max-width: 1025px) {
+    font-size: 64px;
+  }
+
+  /* Desktop */
+  @media screen and (min-width: 1025px) {
+    font-size: 40px;
+  }
 `;
+
+
 
 const TitleComponent: React.FC<Props> = (props: Props) => {
 

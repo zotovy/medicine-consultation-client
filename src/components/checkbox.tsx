@@ -16,12 +16,14 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+
+  
   
 `;
 
 const Text = styled.p`
   margin-left: 10px;
-  font-size: 14px;
+  font-size: 16px;
   color: #282828;
 
   a {
@@ -33,6 +35,20 @@ const Text = styled.p`
     cursor: pointer;
     text-decoration: underline;
   }
+
+  /* Phone */
+  @media screen and (max-width: 424px) {
+  }
+
+  /* Tablet */
+  @media screen and (min-width: 424px) and (max-width: 1025px) {
+  }
+
+  /* Desktop */
+  @media screen and (min-width: 1025px) {
+  }
+
+  
 `;
 
 const Checkbox: React.FC<Props> = (props: Props) => {

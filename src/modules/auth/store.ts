@@ -179,12 +179,16 @@ class AuthStore {
             console.log(e);
 
             // show error and hide it after 5s
+            signupUIStore.setShowError(true);
             signupUIStore.setErrorMessage(
                 "Произошла непредвиденная ошибка. Повторите попытку позже"
             );
 
             setTimeout(() => {
-                signupUIStore.setErrorMessage();
+                signupUIStore.setShowError(false);
+                setTimeout(() => {
+                    signupUIStore.setErrorMessage();
+                }, 1000);
             }, 5000);
             return null;
         }

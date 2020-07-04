@@ -1,5 +1,9 @@
-import login from "./pages/login";
-import signup from "./pages/user-signup";
+import Login from "./pages/login";
+import Signup from "./pages/user-signup";
+import DoctorSignUp from "./pages/doctor-signup";
 
-export const Login = login;
-export const Signup = signup;
+export {
+    Login,
+    Signup,
+    DoctorSignUp,
+}

@@ -30,12 +30,29 @@ const Container = styled.div`
     align-items: start;
     justify-content: start;
     width: 100%;
+
+      
   `;
 
 const Field = styled.p`
   font-size: 0.8rem;
   color: ${darkGrey};
   margin-bottom: 3px;
+
+  /* Phone */
+  @media screen and (max-width: 424px) {
+    font-size: 16px;
+  }
+
+  /* Tablet */
+  @media screen and (max-width: 1025px) and (min-width: 768px) {
+      font-size: 16px;      
+  }
+
+  /* Desktop */
+  @media screen and (min-width: 1025px) {
+    font-size: 14px;
+  }
 `;
 
 const ErrorText = styled.span`
@@ -46,14 +63,13 @@ const ErrorText = styled.span`
 `;
 
 const Input = styled.input`
-  
-    width: calc(100% - 26.3px);
+    width: 100%;
     outline: none;
     border: solid 1.15px ${disable};
     border-radius: 5px;
     padding: 12px;
     color: ${dark};
-    font-size: 0.85rem;
+    font-size: 14px;
     transition: border 0.25s ease-in-out;
     
 
@@ -70,7 +86,26 @@ const Input = styled.input`
     i {
       font-size: 14px;
     }
+
+    /* Phone */
+    @media screen and (max-width: 424px) {
+      font-size: 16px;
+    }
+
+
+    /* Tablet */
+    @media screen and (max-width: 1025px) and (min-width: 768px) {
+      font-size: 16px;
+      padding: 15px;
+      width: 100%;
+    }
+
+    /* Desktop */
+    @media screen and (min-width: 1025px) {
+      font-size: 14px;
+    }
   `;
+
 
 const Row = styled.div`
   width: calc(100% + 14px);
@@ -81,18 +116,12 @@ const Row = styled.div`
 
 const ShowPassword = styled.div`
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 14px;
   position: relative;
-  height: 25px;
-  right: 35px;
-  color: #ccc;
-  font-size: 12px;
-  transition: 0.25s  easy-in-out;
+  z-index: 2;
+  right: 29px;
   cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0,0,0,0);
-  
+
   &:hover {
     color: #b2b2b2;
   }
@@ -104,7 +133,7 @@ const ShowPassword = styled.div`
 const TextField: React.FC<Props> = (props: Props) => {
 
 
-  const styles = props.field === "Пароль" && !props.showPassword ? { letterSpacing: "5px", width: "100%" } : {};
+  const styles = props.field === "Пароль" && !props.showPassword ? { letterSpacing: "5px", width: "calc(100% + 14px)" } : {};
 
   let inputStyles = props.styles?.input || {};
   inputStyles = {
@@ -127,6 +156,7 @@ const TextField: React.FC<Props> = (props: Props) => {
   }
 
 
+
   return (
     // @ts-ignore
     <Container style={props.styles?.container || {}} >
@@ -135,7 +165,7 @@ const TextField: React.FC<Props> = (props: Props) => {
       <Field style={props.styles?.field || {}}>{props.field}</Field>
       {/*
           // @ts-ignore */}
-      {props.field === "Пароль" ? <Row styles={inputStyles}>
+      {props.field === "Пароль" ? <Row >
         <Input
           onFocus={props.onFocus}
           onBlur={props.onBlur}

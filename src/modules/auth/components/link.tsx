@@ -2,19 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 type Props = {
-  centered: boolean;
+  centered?: boolean;
   children?: any;
   styles?: object;
 };
 
 const Link = styled.p`
     text-align: center;
-    font-size: 16px;
     color: #282828;
     text-decoration: none;
-
-   
-
 
     a {
       color: #30b9d6;
@@ -24,6 +20,21 @@ const Link = styled.p`
     a:hover {
       cursor: pointer;
       text-decoration: underline;
+    }
+
+    /* Phone */
+    @media screen and (max-width: 424px) {
+      font-size: 16px;
+    }
+
+    /* Tablet */
+    @media screen and (min-width: 424px) and (max-width: 1025px) {
+      font-size: 20px;
+    }
+
+    /* Desktop */
+    @media screen and (min-width: 1025px) {
+      font-size: 18px;
     }
   `;
 

@@ -13,7 +13,7 @@ type Props = {
 const Button = styled.div`
     transition: 0.3s ease-in-out;
     cursor: pointer;
-    width: calc(100% - 30px);
+    width: 100%;
     background-color: #30b9d6;
     padding: 15px;
     border-radius: 10px;
@@ -31,13 +31,25 @@ const Button = styled.div`
   `;
 
 const Text = styled.p`
-color: white;
-user-select: none;
--moz-user-select: none;
--khtml-user-select: none;
--webkit-user-select: none;
--o-user-select: none;
+  color: white;
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+  
+  /* Phone */
+  @media screen and (max-width: 768px) {
+     
+  }  
+    
+  /* Tablet */
+  @media screen and (max-width: 1024px) and (min-width: 768px) {
+      font-size: 18px;
+  }
 `;
+
+
 
 const ConfirmButton: React.FC<Props> = (props: Props) => {
   return (

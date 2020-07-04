@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import "./static/index.css";
-import { Signup, Login } from "./modules/auth";
+import { Signup, Login, DoctorSignUp } from "./modules/auth";
 import { MainPage } from "./modules/main/index";
 require('dotenv').config()
 
@@ -17,9 +17,13 @@ const App = () => {
       <Route path="/signup" exact>
         <Signup />
       </Route>
+      <Route path="/doctor-signup" exact>
+        <DoctorSignUp />
+      </Route>
       <Route path="/" exact>
         <MainPage />
       </Route>
+
     </Switch >
   );
 }

@@ -7,9 +7,25 @@ type Props = {
 };
 
 const Subtitle = styled.p`
-    font-size: 16px;
     color: #565656;
+    
+    /* Phone */
+    @media screen and (max-width: 424px) {
+      font-size: 16px;
+      text-align: center;
+    }
+
+    /* Tablet */
+    @media screen and (min-width: 424px) and (max-width: 1025px) {
+      font-size: 20px;
+    }
+
+    /* Desktop */
+    @media screen and (min-width: 1025px) {
+      font-size: 20px;
+    }
   `;
+
 
 const SubTitleComponent: React.FC<Props> = (props: Props) => {
 

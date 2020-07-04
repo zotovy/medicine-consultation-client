@@ -3,6 +3,7 @@
     src: local('FiraSans'), url(./fonts/INTER-REGULAR.TTF) format('truetype');
     font-style: normal;
     font-weight: 400;
+    font-display: swap;
 }
 
 @font-face {
@@ -10,6 +11,7 @@
     src: local('FiraSans'), url(./fonts/INTER-MEDIUM.TTF) format('truetype');
     font-style: normal;
     font-weight: 500;
+    font-display: swap;
 }
 
 @font-face {
@@ -17,6 +19,7 @@
     src: local('FiraSans'), url(./fonts/INTER-SEMIBOLD.TTF) format('truetype');
     font-style: normal;
     font-weight: 600;
+    font-display: swap;
 }
 
 @font-face {
@@ -24,24 +27,22 @@
     src: local('FiraSans'), url(./fonts/INTER-BOLD.TTF) format('truetype');
     font-style: normal;
     font-weight: 700;
+    font-display: swap;
 }
 
 
 * {
     margin: 0;
     padding: 0;
-
+    box-sizing: border-box;
 }
 
 body,
 html {
-    font-family: "Inter";
+    font-family: "Inter", sans-serif;
     height: 100%;
     width: 100%;
     position: fixed;
-
-
-
 }
 
 @media screen and (max-width: 768px) {
