@@ -207,3 +207,11 @@ const TextField: React.FC<Props> = (props: Props) => {
 };
 
 export default TextField;
+
+export {
+  Input,
+  ErrorText,
+  Row,
+  Field,
+  Container,
+}

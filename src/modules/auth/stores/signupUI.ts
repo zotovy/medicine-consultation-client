@@ -1,4 +1,5 @@
 import { observable, action } from "mobx";
+import moment from "moment";
 
 class SingupUIStore {
     //
@@ -14,6 +15,24 @@ class SingupUIStore {
     @observable agreeWithTerms: boolean = true;
     @observable needMailing: boolean = true;
 
+    @observable institute: string = "";
+    @observable speciality: string = "";
+    @observable studyYears: string = "";
+    @observable blankSeries: string = "";
+    @observable blankNumber: string = "";
+    @observable issueDate: string = "";
+    @observable experience: string = "";
+    @observable workPlace: string = "";
+
+    @observable instituteError?: string = "";
+    @observable specialityError?: string = "";
+    @observable studyYearsError?: string = "";
+    @observable blankSeriesError?: string = "";
+    @observable blankNumberError?: string = "";
+    @observable issueDateError?: string = "";
+    @observable experienceError?: string = "";
+    @observable workPlaceError?: string = "";
+
     @observable nameError?: string;
     @observable surnameError?: string;
     @observable phoneError?: string;
@@ -22,6 +41,12 @@ class SingupUIStore {
     @observable confirmPasswordError?: string;
     @observable errorMessage?: string;
     @observable showErrorMessage: boolean = false;
+
+    // Calendar component
+    @observable isCalendarOpen: boolean = false;
+    @observable isCalendarExist: boolean = false;
+
+    @observable pageIndex = 1;
 
     // Setters & Toggless
     @action setName = (val: string) => (this.name = val);
@@ -39,6 +64,31 @@ class SingupUIStore {
     @action toggleShowPassword = () =>
         (this.showPassword = this.password === "" ? false : !this.showPassword);
 
+    @action setInstitute = (value: string) => (this.institute = value);
+    @action setSpeciality = (value: string) => (this.speciality = value);
+    @action setStudyYears = (value: string) => (this.studyYears = value);
+    @action setBlankSeries = (value: string) => (this.blankSeries = value);
+    @action setBlankNumber = (value: string) => (this.blankNumber = value);
+    @action setIssueDate = (value: string) => (this.issueDate = value);
+    @action setExperience = (value: string) => (this.experience = value);
+    @action setWorkPlace = (value: string) => (this.workPlace = value);
+
+    @action setInstituteError = (value?: string) =>
+        (this.instituteError = value);
+    @action setSpecialityError = (value?: string) =>
+        (this.specialityError = value);
+    @action setStudyYearsError = (val?: string) => (this.studyYearsError = val);
+    @action setBlankSeriesError = (value?: string) =>
+        (this.blankSeriesError = value);
+    @action setBlankNumberError = (value?: string) =>
+        (this.blankNumberError = value);
+    @action setIssueDateError = (value?: string) =>
+        (this.issueDateError = value);
+    @action setExperienceError = (value?: string) =>
+        (this.experienceError = value);
+    @action setWorkPlaceError = (value?: string) =>
+        (this.workPlaceError = value);
+
     @action setNameError = (value?: string) => (this.nameError = value);
     @action setSurnameError = (value?: string) => (this.surnameError = value);
     @action setPhoneError = (value?: string) => (this.phoneError = value);
@@ -48,6 +98,37 @@ class SingupUIStore {
         (this.confirmPasswordError = value);
     @action setErrorMessage = (value?: string) => (this.errorMessage = value);
     @action setShowError = (value: boolean) => (this.showErrorMessage = value);
+    @action setPageIndex = (value: number) => (this.pageIndex = value);
+
+    @action onCalendarOpen = () => {
+        this.isCalendarOpen = true;
+        this.isCalendarExist = true;
+    };
+    @action onCalendarClose = () => {
+        this.isCalendarOpen = false;
+        setTimeout(() => (this.isCalendarExist = false), 500);
+    };
+    @action onCalendarDateSelected = (date: Date) => {
+        this.isCalendarOpen = false;
+        setTimeout(() => (this.isCalendarExist = false), 500);
+
+        if (date.getFullYear() === 1000) {
+            date = new Date();
+        }
+
+        let day = date.getDate().toString();
+        let month = (date.getMonth() + 1).toString();
+
+        if (day.length == 1) {
+            day = "0" + day;
+        }
+
+        if (month.length == 1) {
+            month = "0" + month;
+        }
+
+        this.issueDate = `${day} / ${month} / ${date.getFullYear()}`;
+    };
 
     // Actions
     @action onPhoneFocus = () => {

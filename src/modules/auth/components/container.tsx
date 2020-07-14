@@ -37,9 +37,12 @@ const ContainerComponent = styled.div`
 
 type Props = {
   children?: any;
+  scrollable?: boolean;
 }
 
 const Container: React.FC<Props> = (props: Props) => {
+
+
   return <ContainerComponent>{props.children}</ContainerComponent>
 }
 

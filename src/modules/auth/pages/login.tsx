@@ -34,6 +34,12 @@ const Bg = styled.div`
   align-items: center;
 `;
 
+const Row = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`;
+
 const Container = styled.div`
     background: white;
     display: flex;
@@ -56,7 +62,7 @@ const Container = styled.div`
 
     /* Desktop */
     @media screen and (min-width: 1025px) {
-        max-width: 45vw;
+        max-width: 50vw;
         border-radius: 20px;
         padding: 30px;
 
@@ -110,17 +116,25 @@ const Login: React.FC = observer(() => {
             hint={"••••••••••••"}
             type={"password"}
         />
-        <Checkbox checked={loginUIStore.rememberMe} label="Запомнить меня" onChange={loginUIStore.toggleRememberMe} />
-        <SizedBox height="15px" />
+        <SizedBox height="5px" />
         <ConfirmButton content="Войти" onConfirm={authStore.login} />
-        {
-            loginUIStore.error
-                ? <React.Fragment>
-                    <SizedBox height="10px" />
-                    <ErrorMessage>{loginUIStore.error}</ErrorMessage>
-                </React.Fragment>
-                : ""
-        }
+        <SizedBox height="10px" />
+        <Row>
+            {
+                loginUIStore.error
+                    ? <React.Fragment>
+                        <ErrorMessage>{loginUIStore.error}</ErrorMessage>
+                        <SizedBox height="5px" />
+                    </React.Fragment>
+                    : null
+            }
+            <Linker to="/">
+                <Link>
+                    <a>Забыли пароль?</a>
+                </Link>
+            </Linker>
+
+        </Row>
     </Container>
 
     return <React.Fragment>

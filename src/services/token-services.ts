@@ -65,6 +65,13 @@ class TokenServices {
         this.saveRefreshToken(refreshToken);
     };
 
+    removeTokens = () => {
+        localStorage.removeItem("refreshToken");
+        localStorage.removeItem("refreshTokenSetDate");
+        localStorage.removeItem("accessToken");
+        localStorage.removeItem("accessTokenSetDate");
+    };
+
     // Core
     private _needRefreshAccessToken(): boolean | null {
         const leftToLive = this._secondsToUpdate("accessToken");

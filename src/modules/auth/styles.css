@@ -61,3 +61,35 @@
     color: white;
     margin-right: 10px;
 }
+
+.minus100 {
+    transform: translateX(-100%);
+}
+
+.minus55 {
+    transform: translateX(-55vw);
+}
+
+
+@media screen and (max-width: 1024px) {
+    .minus55 {
+        transform: translateX(-100vw);
+    }
+}
+
+.date-picker-input {
+    width: 100%;
+    outline: none;
+
+    border: solid 1.15px #ccc;
+
+
+    border-radius: 5px;
+    padding: 12px;
+
+    color: #282828;
+
+
+    font-size: 14px;
+    transition: border 0.25s ease-in-out;
+}

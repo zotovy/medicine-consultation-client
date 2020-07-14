@@ -24,8 +24,8 @@ const FormColumn = styled.div`
     justify-content: start;
 
     /* Tablet */
-    @media screen and (min-width: 424px) and (max-width: 768px) {
-        width: calc(90vw / 2 - 50px);
+    @media screen and (min-width: 424px) and (max-width: 1025px) {
+        width: 50vw;
         align-items: start;
     }
 `;
