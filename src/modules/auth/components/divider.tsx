@@ -23,6 +23,7 @@ const Text = styled.div`
     padding-right: 10px;
     color: #282828;
     font-size: 16px;
+    white-space: nowrap; 
 `;
 
 const Divider: React.FC<Props> = (props: Props) => {

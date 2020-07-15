@@ -27,7 +27,7 @@ class AuthStore {
             if (this.isLogin) {
                 this.uid = localStorage.getItem("uid") ?? "";
 
-                if (this.uid != "") {
+                if (this.uid !== "") {
                     const responce = await fetchUser(this.uid);
 
                     this.user = responce ?? {};
@@ -209,7 +209,7 @@ const fetchUser = async (uid: string): Promise<UserType | null> => {
 };
 
 const validateEmail = (email: string): boolean => {
-    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
 };
 

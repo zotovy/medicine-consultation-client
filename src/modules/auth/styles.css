@@ -15,7 +15,7 @@
 
 .phone-input:focus {
     outline: none !important;
-    border: 1px solid #30B9D6;
+    border: 1px solid #30b9d6;
     color: #282828;
 }
 
@@ -54,7 +54,6 @@
     transform: translateX(500px);
 }
 
-
 .alert-icon {
     border-radius: 50%;
     font-size: 25px;
@@ -70,10 +69,17 @@
     transform: translateX(-55vw);
 }
 
+.minus110 {
+    transform: translateX(-110vw);
+}
 
 @media screen and (max-width: 1024px) {
     .minus55 {
         transform: translateX(-100vw);
+    }
+
+    .minus110 {
+        transform: translateX(-200vw);
     }
 }
 
@@ -83,12 +89,10 @@
 
     border: solid 1.15px #ccc;
 
-
     border-radius: 5px;
     padding: 12px;
 
     color: #282828;
-
 
     font-size: 14px;
     transition: border 0.25s ease-in-out;

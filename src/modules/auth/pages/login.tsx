@@ -13,14 +13,12 @@ import authStore from "../store";
 import TextField from "../../../components/text-field";
 import SizedBox from "../../../components/sized-box";
 import ConfirmButton from "../../../components/confirm-button";
-import Checkbox from "../../../components/checkbox";
 import Title from "../components/title";
 import SubTitle from "../components/subtitle";
 import Link from "../components/link";
 
 // Assets
 import bgImage from "../../../static/images/login-bg.png";
-import loginUI from "../stores/loginUI";
 
 const Bg = styled.div`
   background: url(${bgImage});
@@ -97,7 +95,7 @@ const Login: React.FC = observer(() => {
         <SizedBox height="10px" />
         <Link>
             Нет аккаунта? &nbsp;
-        <Linker to={"/signup"}><a>Зарегистрироваться!</a></Linker>
+        <Linker to={"/signup"}><span>Зарегистрироваться!</span></Linker>
         </Link>
         <SizedBox height="10px" />
         <TextField
@@ -130,7 +128,7 @@ const Login: React.FC = observer(() => {
             }
             <Linker to="/">
                 <Link>
-                    <a>Забыли пароль?</a>
+                    <span>Забыли пароль?</span>
                 </Link>
             </Linker>
 

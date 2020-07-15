@@ -11,13 +11,14 @@ const LinkContainer = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  white-space: nowrap; 
 
-  a {
+  span {
     color: #30b9d6;
     text-decoration: none;
   }
 
-  a:hover {
+  span:hover {
     cursor: pointer;
     text-decoration: underline;
   }

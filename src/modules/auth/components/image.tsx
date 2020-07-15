@@ -6,13 +6,14 @@ import bgImage from "../../../static/images/signup-bg.png";
 
 const Image = styled.div`
   background-color: #dbecf4;
+  z-index: 2;
   width: 45vw;
   height: 100vh;
 
   .image {
     width: 100%;
     height: 100%;
-    background: url(${bgImage});
+    /* background: url(${bgImage}); */
     background-repeat: no-repeat;
     background-size: contain;
     background-position-x: center;
@@ -22,9 +23,9 @@ const Image = styled.div`
 
 
 const ImageComponent: React.FC = () => {
-    return <Image>
-        <div className="image"></div>
-    </Image>
+  return <Image>
+    <div className="image"></div>
+  </Image>
 }
 
 export default ImageComponent;

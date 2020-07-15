@@ -4,7 +4,6 @@ import MediaQuery from 'react-responsive';
 import styled from "styled-components";
 import { reaction } from "mobx";
 import { observer } from "mobx-react";
-import classnames from "classnames";
 
 // Stores
 import signupUIStore from "../stores/signupUI";
@@ -24,10 +23,8 @@ import SexCheckbox from "../components/sex-checkbox";
 import SignupLink from "../components/signup-link";
 import ErrorAlert from "../components/error-alert";
 
-
 // Static
 import "../styles.css";
-
 
 const Wrapper = styled.div`
     display: flex;
@@ -85,7 +82,7 @@ const UserSignUp: React.FC = observer(() => {
         <ConfirmButton content="Зарегистрироваться" onConfirm={authStore.signup} />
         <SizedBox height="10px" />
         <Linker to="/doctor-signup">
-          <SignupLink><a href="#">Регистрация для врачей</a></SignupLink>
+          <SignupLink><span>Регистрация для врачей</span></SignupLink>
         </Linker>
       </MediaQuery>
       <MediaQuery minDeviceWidth="436px">
@@ -94,7 +91,7 @@ const UserSignUp: React.FC = observer(() => {
             <ConfirmButton content="Зарегистрироваться" onConfirm={authStore.signup} />
           </HalfOfWidth>
           <Linker to="/doctor-signup">
-            <SignupLink><a href="#">Регистрация для врачей</a></SignupLink>
+            <SignupLink><span>Регистрация для врачей</span></SignupLink>
           </Linker>
         </Row>
       </MediaQuery>

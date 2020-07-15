@@ -71,7 +71,7 @@ const Calendar: React.FC<Props> = (props: Props) => {
 
         // After
         const lastDay = dates[dates.length - 1].date;
-        if (lastDay.getDay() != 6) {
+        if (lastDay.getDay() !== 6) {
             const need2 = 6 - lastDay.getDay();
             for (let i = 1; i <= need2; i++) {
                 const date = new Date(year, month + 1, i);
@@ -109,11 +109,11 @@ const Calendar: React.FC<Props> = (props: Props) => {
         let day = date.getDate().toString();
         let month = (date.getMonth() + 1).toString();
 
-        if (day.length == 1) {
+        if (day.length === 1) {
             day = "0" + day;
         }
 
-        if (month.length == 1) {
+        if (month.length === 1) {
             month = "0" + month;
         }
 
@@ -236,7 +236,7 @@ const Calendar: React.FC<Props> = (props: Props) => {
     const [monthIndex, setMonthIndex] = useState(new Date().getMonth());
     const [year, setYear] = useState(new Date().getFullYear());
     const [selectedDate, setSelectedDate] = useState(new Date(1000, 11, 21));
-    const [dates, setDates] = useState(startedFromSun ? getDates(year, monthIndex) : getDatesFromMon(year, monthIndex));
+    const [dates] = useState(startedFromSun ? getDates(year, monthIndex) : getDatesFromMon(year, monthIndex));
     const [weeks, setWeeks] = useState(groupByWeek(dates));
 
     const styles = {
@@ -279,8 +279,8 @@ const Calendar: React.FC<Props> = (props: Props) => {
                 </div>
                 <div className="days">
                     {
-                        weeks.map(week => {
-                            return <div className="week">
+                        weeks.map((week, i) => {
+                            return <div className="week" key={i}>
                                 {
                                     week.map(day => {
                                         const classes = classnames(
@@ -290,6 +290,7 @@ const Calendar: React.FC<Props> = (props: Props) => {
                                             compareDates(day.date, selectedDate) ? "selected" : '',
                                         );
                                         return <span
+                                            key={day.date.toString()}
                                             onClick={() => setSelectedDate(day.date)}
                                             className={classes}
                                             id={day.date.getDate().toString()}>

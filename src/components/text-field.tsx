@@ -63,6 +63,7 @@ const ErrorText = styled.span`
 `;
 
 const Input = styled.input`
+    text-overflow: ellipsis;
     width: 100%;
     outline: none;
     border: solid 1.15px ${disable};
@@ -167,6 +168,7 @@ const TextField: React.FC<Props> = (props: Props) => {
           // @ts-ignore */}
       {props.field === "Пароль" ? <Row >
         <Input
+
           onFocus={props.onFocus}
           onBlur={props.onBlur}
           ref={props.inputRef}

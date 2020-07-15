@@ -1,9 +1,8 @@
 import { observable, action } from "mobx";
-import moment from "moment";
 
 class SingupUIStore {
     //
-    // Fields
+    //* Fields
     @observable name: string = "";
     @observable surname: string = "";
     @observable phone: string = "";
@@ -15,24 +14,6 @@ class SingupUIStore {
     @observable agreeWithTerms: boolean = true;
     @observable needMailing: boolean = true;
 
-    @observable institute: string = "";
-    @observable speciality: string = "";
-    @observable studyYears: string = "";
-    @observable blankSeries: string = "";
-    @observable blankNumber: string = "";
-    @observable issueDate: string = "";
-    @observable experience: string = "";
-    @observable workPlace: string = "";
-
-    @observable instituteError?: string = "";
-    @observable specialityError?: string = "";
-    @observable studyYearsError?: string = "";
-    @observable blankSeriesError?: string = "";
-    @observable blankNumberError?: string = "";
-    @observable issueDateError?: string = "";
-    @observable experienceError?: string = "";
-    @observable workPlaceError?: string = "";
-
     @observable nameError?: string;
     @observable surnameError?: string;
     @observable phoneError?: string;
@@ -42,52 +23,52 @@ class SingupUIStore {
     @observable errorMessage?: string;
     @observable showErrorMessage: boolean = false;
 
-    // Calendar component
+    //* Doctor-signup page 2
+    @observable institute: string = "";
+    @observable speciality: string = "";
+    @observable studyYears: string = "";
+    @observable blankSeries: string = "";
+    @observable blankNumber: string = "";
+    @observable issueDate: string = "";
+
+    @observable instituteError?: string = "";
+    @observable specialityError?: string = "";
+    @observable studyYearsError?: string = "";
+    @observable blankSeriesError?: string = "";
+    @observable blankNumberError?: string = "";
+    @observable issueDateError?: string = "";
+
+    //* Calendar component
     @observable isCalendarOpen: boolean = false;
     @observable isCalendarExist: boolean = false;
 
-    @observable pageIndex = 1;
+    //* Doctor-signup page 3
+    @observable passportIssuedByWhom: string = "";
+    @observable passportSeries: string = "";
+    @observable passportIssueDate: string = "";
+    @observable workExperience: string = "";
+    @observable workPlaces: string = "";
 
-    // Setters & Toggless
+    @observable passportIssuedByWhomError: string = "";
+    @observable passportSeriesError: string = "";
+    @observable passportIssueDateError: string = "";
+    @observable workExperienceError: string = "";
+    @observable workPlacesError: string = "";
+
+    @observable pageIndex = 2;
+
+    //* Setters & Toggless
     @action setName = (val: string) => (this.name = val);
     @action setSurname = (val: string) => (this.surname = val);
     @action setPhone = (val: string) => (this.phone = this._formatPhone(val));
     @action setEmail = (val: string) => (this.email = val);
     @action setPassword = (val: string) => (this.password = val);
     @action setConfirmPassword = (val: string) => (this.confirmPassword = val);
-    @action toggleIsMale = () => {
-        this.isMale = !this.isMale;
-        console.log(123);
-    };
+    @action toggleIsMale = () => (this.isMale = !this.isMale);
     @action toggleAgreeWT = () => (this.agreeWithTerms = !this.agreeWithTerms);
     @action toggleNeedMailing = () => (this.needMailing = !this.needMailing);
     @action toggleShowPassword = () =>
         (this.showPassword = this.password === "" ? false : !this.showPassword);
-
-    @action setInstitute = (value: string) => (this.institute = value);
-    @action setSpeciality = (value: string) => (this.speciality = value);
-    @action setStudyYears = (value: string) => (this.studyYears = value);
-    @action setBlankSeries = (value: string) => (this.blankSeries = value);
-    @action setBlankNumber = (value: string) => (this.blankNumber = value);
-    @action setIssueDate = (value: string) => (this.issueDate = value);
-    @action setExperience = (value: string) => (this.experience = value);
-    @action setWorkPlace = (value: string) => (this.workPlace = value);
-
-    @action setInstituteError = (value?: string) =>
-        (this.instituteError = value);
-    @action setSpecialityError = (value?: string) =>
-        (this.specialityError = value);
-    @action setStudyYearsError = (val?: string) => (this.studyYearsError = val);
-    @action setBlankSeriesError = (value?: string) =>
-        (this.blankSeriesError = value);
-    @action setBlankNumberError = (value?: string) =>
-        (this.blankNumberError = value);
-    @action setIssueDateError = (value?: string) =>
-        (this.issueDateError = value);
-    @action setExperienceError = (value?: string) =>
-        (this.experienceError = value);
-    @action setWorkPlaceError = (value?: string) =>
-        (this.workPlaceError = value);
 
     @action setNameError = (value?: string) => (this.nameError = value);
     @action setSurnameError = (value?: string) => (this.surnameError = value);
@@ -100,6 +81,27 @@ class SingupUIStore {
     @action setShowError = (value: boolean) => (this.showErrorMessage = value);
     @action setPageIndex = (value: number) => (this.pageIndex = value);
 
+    //* Doctor-signup page 2
+    @action setInstitute = (value: string) => (this.institute = value);
+    @action setSpeciality = (value: string) => (this.speciality = value);
+    @action setStudyYears = (value: string) => (this.studyYears = value);
+    @action setBlankSeries = (value: string) => (this.blankSeries = value);
+    @action setBlankNumber = (value: string) => (this.blankNumber = value);
+    @action setIssueDate = (value: string) => (this.issueDate = value);
+
+    @action setInstituteError = (value?: string) =>
+        (this.instituteError = value);
+    @action setSpecialityError = (value?: string) =>
+        (this.specialityError = value);
+    @action setStudyYearsError = (val?: string) => (this.studyYearsError = val);
+    @action setBlankSeriesError = (value?: string) =>
+        (this.blankSeriesError = value);
+    @action setBlankNumberError = (value?: string) =>
+        (this.blankNumberError = value);
+    @action setIssueDateError = (value?: string) =>
+        (this.issueDateError = value);
+
+    //* Calendar
     @action onCalendarOpen = () => {
         this.isCalendarOpen = true;
         this.isCalendarExist = true;
@@ -119,18 +121,40 @@ class SingupUIStore {
         let day = date.getDate().toString();
         let month = (date.getMonth() + 1).toString();
 
-        if (day.length == 1) {
+        if (day.length === 1) {
             day = "0" + day;
         }
 
-        if (month.length == 1) {
+        if (month.length === 1) {
             month = "0" + month;
         }
 
         this.issueDate = `${day} / ${month} / ${date.getFullYear()}`;
     };
 
-    // Actions
+    //* Doctor-signup page 3
+    @action setPassportIssuedByWhom = (value: string) =>
+        (this.passportIssuedByWhom = value);
+    @action setPassportSeries = (value: string) =>
+        (this.passportSeries = value);
+    @action setPassportIssueDate = (value: string) =>
+        (this.passportIssueDate = value);
+    @action setWorkExperience = (value: string) =>
+        (this.workExperience = value);
+    @action setWorkPlaces = (value: string) => (this.workPlaces = value);
+
+    @action setPassportIssuedByWhomError = (value: string) =>
+        (this.passportIssuedByWhomError = value);
+    @action setPassportSeriesError = (value: string) =>
+        (this.passportSeriesError = value);
+    @action setPassportIssueDateError = (value: string) =>
+        (this.passportIssueDateError = value);
+    @action setWorkExperienceError = (value: string) =>
+        (this.workExperienceError = value);
+    @action setWorkPlacesError = (value: string) =>
+        (this.workPlacesError = value);
+
+    //* Actions
     @action onPhoneFocus = () => {
         if (this.phone === "") {
             this.phone = "+7 ";

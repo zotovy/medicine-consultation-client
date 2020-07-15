@@ -22,12 +22,12 @@ const Title = styled.h1`
   }
 
    /* Phone */
-   @media screen and (max-width: 424px) {
+   @media screen and (max-width: 530px) {
     font-size: 36px;
   }
 
   /* Tablet */
-  @media screen and (min-width: 424px) and (max-width: 1025px) {
+  @media screen and (min-width: 530px) and (max-width: 1025px) {
     font-size: 64px;
   }
 

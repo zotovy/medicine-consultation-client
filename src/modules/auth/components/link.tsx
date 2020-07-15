@@ -12,12 +12,12 @@ const Link = styled.p`
     color: #282828;
     text-decoration: none;
 
-    a {
+    span {
       color: #30b9d6;
       text-decoration: none;
     }
 
-    a:hover {
+    span:hover {
       cursor: pointer;
       text-decoration: underline;
     }
