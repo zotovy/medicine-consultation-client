@@ -19,8 +19,10 @@
     "noEmit": true,
     "jsx": "react",
     "experimentalDecorators": true,
+    "types": ["node", "jest", "webdriverio", "@wdio/sync", "expect-webdriverio", "wdio-wiremock-service"],
   },
   "include": [
-    "src"
+    "src",
+    "*.ts",
   ]
 }

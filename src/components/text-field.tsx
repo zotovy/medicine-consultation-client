@@ -7,6 +7,7 @@ type Props = {
   validator?: any;
   onFocus?: () => void;
   onBlur?: () => void;
+  inputId?: string; // user for testing
   onChange: (value: string) => void;
   value?: string;
   field?: string;
@@ -168,7 +169,7 @@ const TextField: React.FC<Props> = (props: Props) => {
           // @ts-ignore */}
       {props.field === "Пароль" ? <Row >
         <Input
-
+          id={props.inputId}
           onFocus={props.onFocus}
           onBlur={props.onBlur}
           ref={props.inputRef}
@@ -181,13 +182,14 @@ const TextField: React.FC<Props> = (props: Props) => {
           value={props.value}
         />
 
-        <ShowPassword style={{ color: props.showPassword ? "#282828" : "#ccc" }} onClick={props.onShowPasswordChanged}>
+        <ShowPassword id="show-password-button" style={{ color: props.showPassword ? "#282828" : "#ccc" }} onClick={props.onShowPasswordChanged}>
           {
             props.showPassword && props.value !== "" ? <i className="fa fa-eye-slash" ></i> : <i className="fa fa-eye"></i>
 
           }
         </ShowPassword>
       </Row> : <Input
+          id={props.inputId}
           onFocus={props.onFocus}
           onBlur={props.onBlur}
           ref={props.inputRef}

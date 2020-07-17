@@ -30,7 +30,7 @@ const App = () => {
           <DoctorSignUp />
         </Suspense>
       </Route>
-      <Route path="/" exact>
+      <Route path="/" exact>f
         <Suspense fallback={<React.Fragment />}>
           <MainPage />
         </Suspense>

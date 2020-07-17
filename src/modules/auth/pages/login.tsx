@@ -19,6 +19,7 @@ import Link from "../components/link";
 
 // Assets
 import bgImage from "../../../static/images/login-bg.png";
+import loginUI from "../stores/loginUI";
 
 const Bg = styled.div`
   background: url(${bgImage});
@@ -99,15 +100,19 @@ const Login: React.FC = observer(() => {
         </Link>
         <SizedBox height="10px" />
         <TextField
-            onChange={(val: string) => loginUIStore.setEmail(val)}
+            inputId="email"
+            onChange={loginUIStore.setEmail}
             value={loginUIStore.email}
             validator={() => { }}
             field={"Email"}
             hint={"someemail@mail.com"}
-            type={"text"}
+            type={"email"}
         />
         <TextField
-            onChange={(val: string) => loginUIStore.setPassword(val)}
+            inputId="password"
+            onChange={loginUIStore.setPassword}
+            onShowPasswordChanged={loginUIStore.toggleShowPassword}
+            showPassword={loginUIStore.showPassword}
             value={loginUIStore.password}
             validator={() => { }}
             field={"Пароль"}

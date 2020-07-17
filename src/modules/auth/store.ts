@@ -63,12 +63,14 @@ class AuthStore {
         try {
             // Send data to server
             const responce = await axios.post(
-                `${process.env.REACT_APP_SERVER_URL}/api/login-user`,
+                `http://localhost:5000/api/login-user`,
                 {
                     email,
                     password,
                 }
             );
+
+            //${process.env.REACT_APP_SERVER_URL}
 
             // if !success --> show error
             if (!responce.data.success) {
@@ -83,7 +85,8 @@ class AuthStore {
             localStorage.setItem("uid", id);
 
             // Generate & save new tokens
-            await tokenServices.generateNewTokens(id);
+            await tokenServices.saveAccessToken(responce.data.tokens.access);
+            await tokenServices.saveRefreshToken(responce.data.tokens.refresh);
 
             // Fetch user based on id
             this.user = (await fetchUser(id)) ?? {};
@@ -130,8 +133,8 @@ class AuthStore {
             notificationEmail: email,
             sendNotificationToEmail: needMailing,
             sendMailingsToEmail: needMailing,
-            createdAt: moment(),
-            lastActiveAt: moment(),
+            createdAt: new Date(),
+            lastActiveAt: new Date(),
         };
 
         try {
