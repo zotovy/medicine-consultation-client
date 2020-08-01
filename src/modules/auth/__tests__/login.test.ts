@@ -1,9 +1,6 @@
-import { Selector, ClientFunction } from "testcafe";
-import axios from "axios";
-import MockAdapter from "axios-mock-adapter";
-
-// Types
-import UserObject from "../../../types/user";
+import { Selector, ClientFunction, RequestMock } from "testcafe";
+// import fetch from "node-fetch";
+// import axios from "axios";
 
 /**
  *  ? This test module testing Login Page (Integration tests)
@@ -22,8 +19,7 @@ import UserObject from "../../../types/user";
  */
 
 // Sample User will use or modify for some cases
-const sampleUser: UserObject = {
-    id: undefined,
+const sampleUser: UserType = {
     name: "Иван",
     surname: "Иванов",
     photoUrl: "",
@@ -42,8 +38,6 @@ const sampleUser: UserObject = {
     lastActiveAt: new Date(),
 };
 
-let mock: MockAdapter = new MockAdapter(axios);
-
 fixture("Login page tests")
     .page("http://localhost:3000/login")
     .afterEach(async (t) => {
@@ -54,9 +48,36 @@ const getLocalStorageItem = ClientFunction((prop) => {
     return localStorage.getItem(prop);
 });
 
+let mock = RequestMock()
+    .onRequestTo("http://localhost:5000/api/login-user")
+    .respond(
+        {
+            success: true,
+            id: "123456789101",
+            tokens: {
+                access: "encoded-access-token",
+                refresh: "encoded-refresh-token",
+            },
+        },
+        200,
+        { "Access-Control-Allow-Origin": "*" }
+    );
+
+const getUserMock = RequestMock()
+    .onRequestTo("http://localhost:5000/api/user/.*")
+    .respond(
+        {
+            success: true,
+            user: { ...sampleUser, id: "123456789101" },
+        },
+        200,
+        { "Access-Control-Allow-Origin": "*" }
+    );
 // ANCHOR: should login user
 /**  Should find & successfully interact with email & password fileds */
-test("should login user", async (browser) => {
+test.requestHooks([mock, getUserMock])("should login user", async (browser) => {
+    //* Arrange
+
     //* Act
     const ErrorText = await Selector(".hGpYGG");
 
@@ -78,11 +99,6 @@ test("should login user", async (browser) => {
 
     const access = await getLocalStorageItem("accessToken");
     await browser.expect(access).eql("encoded-access-token");
-
-    const UserInfo = await Selector(".auth span");
-    await browser
-        .expect(await UserInfo.textContent)
-        .eql("Account: Иван Иванов");
 });
 
 // ANCHOR: shouldn't login user on incorrect email
@@ -141,32 +157,45 @@ test("shouldn't login user on incorrect password", async (browser) => {
     await browser.expect(access).eql(null);
 });
 
+mock = RequestMock()
+    .onRequestTo("http://localhost:5000/api/login-user")
+    .respond(
+        {
+            success: false,
+            error: "invalid_email",
+        },
+        200,
+        { "Access-Control-Allow-Origin": "*" }
+    );
 // ANCHOR: shouldn't login on incorrect data provides API
 /** Pass incorrect. Client shouldn't login */
-test("shouldn't login on incorrect data provides API", async (browser) => {
-    const ErrorText = await Selector(".hGpYGG");
+test.requestHooks(mock)(
+    "shouldn't login on incorrect data provides API",
+    async (browser) => {
+        const ErrorText = await Selector(".hGpYGG");
 
-    await browser
-        .typeText("#email", "wrong@mail.com")
-        .typeText("#password", "wrongpassword123")
-        .click(".dYHvuX");
+        await browser
+            .typeText("#email", "wrong@mail.com")
+            .typeText("#password", "wrongpassword123")
+            .click(".dYHvuX");
 
-    //* Checking
-    await browser
-        .expect(ErrorText.textContent)
-        .eql("Неверный email или пароль");
-    const url = await ClientFunction(() => window.location.href)();
-    await browser.expect(url).eql("http://localhost:3000/login");
+        //* Checking
+        await browser
+            .expect(ErrorText.textContent)
+            .eql("Неверный email или пароль");
+        const url = await ClientFunction(() => window.location.href)();
+        await browser.expect(url).eql("http://localhost:3000/login");
 
-    const uid = await getLocalStorageItem("uid");
-    await browser.expect(uid).eql(null);
+        const uid = await getLocalStorageItem("uid");
+        await browser.expect(uid).eql(null);
 
-    const refresh = await getLocalStorageItem("refreshToken");
-    await browser.expect(refresh).eql(null);
+        const refresh = await getLocalStorageItem("refreshToken");
+        await browser.expect(refresh).eql(null);
 
-    const access = await getLocalStorageItem("accessToken");
-    await browser.expect(access).eql(null);
-});
+        const access = await getLocalStorageItem("accessToken");
+        await browser.expect(access).eql(null);
+    }
+);
 
 // ANCHOR: should showPasswordIcon work
 /** First time type of input should be "password". After that click on show password button. Now type of input should be "text" */

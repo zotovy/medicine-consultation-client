@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 // Store
 import signupUIStore from "../../stores/signupUI";
+import store from "../../store";
 
 // Components
 import Container from "../../components/container";
@@ -157,10 +158,10 @@ const DSPage3: React.FC = () => {
 
             <Row>
                 <HalfOfWidth>
-                    <ConfirmButton content="Зарегистрироваться" onConfirm={() => signupUIStore.setPageIndex(2)} />
+                    <ConfirmButton content="Зарегистрироваться" onConfirm={store.doctorSignup} />
                 </HalfOfWidth>
                 <SignupLink>
-                    <span onClick={() => signupUIStore.setPageIndex(1)}>Вернуться назад</span>
+                    <span onClick={signupUIStore.goBeforePage}>Вернуться назад</span>
                 </SignupLink>
             </Row>
         </Container>

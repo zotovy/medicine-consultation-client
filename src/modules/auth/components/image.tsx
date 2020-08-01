@@ -13,7 +13,7 @@ const Image = styled.div`
   .image {
     width: 100%;
     height: 100%;
-    /* background: url(${bgImage}); */
+    background: url(${bgImage});
     background-repeat: no-repeat;
     background-size: contain;
     background-position-x: center;

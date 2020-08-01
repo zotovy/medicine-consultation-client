@@ -1,4 +1,5 @@
 import { observable, action } from "mobx";
+import { validateDoctorDataCreation } from "../store";
 
 class SingupUIStore {
     //
@@ -49,13 +50,13 @@ class SingupUIStore {
     @observable workExperience: string = "";
     @observable workPlaces: string = "";
 
-    @observable passportIssuedByWhomError: string = "";
-    @observable passportSeriesError: string = "";
-    @observable passportIssueDateError: string = "";
-    @observable workExperienceError: string = "";
-    @observable workPlacesError: string = "";
+    @observable passportIssuedByWhomError?: string = "";
+    @observable passportSeriesError?: string = "";
+    @observable passportIssueDateError?: string = "";
+    @observable workExperienceError?: string = "";
+    @observable workPlacesError?: string = "";
 
-    @observable pageIndex = 2;
+    @observable pageIndex = 0;
 
     //* Setters & Toggless
     @action setName = (val: string) => (this.name = val);
@@ -79,7 +80,13 @@ class SingupUIStore {
         (this.confirmPasswordError = value);
     @action setErrorMessage = (value?: string) => (this.errorMessage = value);
     @action setShowError = (value: boolean) => (this.showErrorMessage = value);
-    @action setPageIndex = (value: number) => (this.pageIndex = value);
+
+    @action goNextPage = () => {
+        if (!validateDoctorDataCreation(this.pageIndex + 1)) {
+            this.pageIndex += 1;
+        }
+    };
+    @action goBeforePage = () => (this.pageIndex -= 1);
 
     //* Doctor-signup page 2
     @action setInstitute = (value: string) => (this.institute = value);
@@ -143,15 +150,15 @@ class SingupUIStore {
         (this.workExperience = value);
     @action setWorkPlaces = (value: string) => (this.workPlaces = value);
 
-    @action setPassportIssuedByWhomError = (value: string) =>
+    @action setPassportIssuedByWhomError = (value?: string) =>
         (this.passportIssuedByWhomError = value);
-    @action setPassportSeriesError = (value: string) =>
+    @action setPassportSeriesError = (value?: string) =>
         (this.passportSeriesError = value);
-    @action setPassportIssueDateError = (value: string) =>
+    @action setPassportIssueDateError = (value?: string) =>
         (this.passportIssueDateError = value);
-    @action setWorkExperienceError = (value: string) =>
+    @action setWorkExperienceError = (value?: string) =>
         (this.workExperienceError = value);
-    @action setWorkPlacesError = (value: string) =>
+    @action setWorkPlacesError = (value?: string) =>
         (this.workPlacesError = value);
 
     //* Actions

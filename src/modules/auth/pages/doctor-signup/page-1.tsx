@@ -66,7 +66,7 @@ const DSPage1: React.FC = () => {
             <SizedBox height="15px" />
 
             <Row>
-                <ConfirmButton content="Продолжить" onConfirm={() => signupUIStore.setPageIndex(1)} />
+                <ConfirmButton content="Продолжить" onConfirm={signupUIStore.goNextPage} />
                 <MediaQuery maxDeviceWidth="435px"><SizedBox height="10px" /></MediaQuery>
                 <Linker to="/signup">
                     <SignupLink><span>Регистрация для пользователей</span></SignupLink>

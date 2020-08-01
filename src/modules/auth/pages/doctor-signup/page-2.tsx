@@ -180,7 +180,7 @@ const DSPage2: React.FC = () => {
                 <FormColumn>
                     <TextField
                         error={signupUIStore.blankNumberError}
-                        onChange={signupUIStore.setSpeciality}
+                        onChange={signupUIStore.setBlankNumber}
                         value={signupUIStore.blankNumber}
                         validator={() => { }}
                         field={"Номер бланка"}
@@ -201,10 +201,10 @@ const DSPage2: React.FC = () => {
 
             <Row>
                 <HalfOfWidth>
-                    <ConfirmButton content="Продолжить" onConfirm={() => signupUIStore.setPageIndex(2)} />
+                    <ConfirmButton content="Продолжить" onConfirm={signupUIStore.goNextPage} />
                 </HalfOfWidth>
                 <SignupLink>
-                    <span onClick={() => signupUIStore.setPageIndex(0)}>Вернуться назад</span>
+                    <span onClick={signupUIStore.goBeforePage}>Вернуться назад</span>
                 </SignupLink>
             </Row>
         </Container>

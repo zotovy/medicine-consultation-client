@@ -1,10 +1,5 @@
 import { observable, action } from "mobx";
-import moment from "moment";
 import axios from "axios";
-
-// Types
-import UserType from "../../types/user";
-import ServerErrorType from "./types/server-errors";
 
 // Another stores & services
 import loginUIStore from "./stores/loginUI";
@@ -28,9 +23,9 @@ class AuthStore {
                 this.uid = localStorage.getItem("uid") ?? "";
 
                 if (this.uid !== "") {
-                    const responce = await fetchUser(this.uid);
+                    const response = await fetchUser(this.uid);
 
-                    this.user = responce ?? {};
+                    this.user = response ?? {};
                 }
             }
         });
@@ -62,7 +57,7 @@ class AuthStore {
 
         try {
             // Send data to server
-            const responce = await axios.post(
+            const response = await axios.post(
                 `http://localhost:5000/api/login-user`,
                 {
                     email,
@@ -73,20 +68,20 @@ class AuthStore {
             //${process.env.REACT_APP_SERVER_URL}
 
             // if !success --> show error
-            if (!responce.data.success) {
+            if (!response.data.success) {
                 loginUIStore.setError("Неверный email или пароль");
                 return;
             }
 
             // Set all data to localstorage & authStore
             this.isLogin = true;
-            const id = responce.data.id;
+            const id = response.data.id;
             this.uid = id;
             localStorage.setItem("uid", id);
 
             // Generate & save new tokens
-            await tokenServices.saveAccessToken(responce.data.tokens.access);
-            await tokenServices.saveRefreshToken(responce.data.tokens.refresh);
+            tokenServices.saveAccessToken(response.data.tokens.access);
+            tokenServices.saveRefreshToken(response.data.tokens.refresh);
 
             // Fetch user based on id
             this.user = (await fetchUser(id)) ?? {};
@@ -139,19 +134,16 @@ class AuthStore {
 
         try {
             // send user to db
-            const responce = await axios.post(
-                `${process.env.REACT_APP_SERVER_URL}/api/user`,
-                {
-                    ...user,
-                    createdAt: moment().toISOString(),
-                    lastActiveAt: moment().toISOString(),
-                }
-            );
+            const response = await axios
+                .post(`${process.env.REACT_APP_SERVER_URL}/api/user`, user)
+                .catch((e) => {
+                    return e.response;
+                });
 
             // if !success --> show error
-            if (!responce.data.success) {
+            if (!response.data.success) {
                 const hasInvalidError: boolean = validateServerError(
-                    responce.data.error
+                    response.data.errors
                 );
                 if (hasInvalidError) {
                     signupUIStore.setErrorMessage(
@@ -163,23 +155,96 @@ class AuthStore {
                     }, 5000);
                     return null;
                 }
+
+                return;
             }
 
             // Tokens
-            const accessToken = responce.data.tokens.access;
-            const refreshToken = responce.data.tokens.refresh;
+            const accessToken = response.data.tokens.access;
+            const refreshToken = response.data.tokens.refresh;
 
             // save given tokens
             tokenServices.saveAccessToken(accessToken);
             tokenServices.saveRefreshToken(refreshToken);
 
             // Save user id
-            const id = responce.data.user._id;
+            const id = response.data.user.id;
             localStorage.setItem("uid", id);
 
+            // Set user
+            this.user = user;
+
             console.log(`Create user with id ${id}`);
+
+            // Trigger home trigger to go to home page
+            this.goToHomeTrigger = !this.goToHomeTrigger;
         } catch (e) {
-            console.log(e);
+            console.error(e);
+
+            // show error and hide it after 5s
+            signupUIStore.setShowError(true);
+            signupUIStore.setErrorMessage(
+                "Произошла непредвиденная ошибка. Повторите попытку позже"
+            );
+
+            setTimeout(() => {
+                signupUIStore.setShowError(false);
+                setTimeout(() => {
+                    signupUIStore.setErrorMessage();
+                }, 1000);
+            }, 5000);
+            return null;
+        }
+    };
+
+    @action doctorSignup = async () => {
+        try {
+            // validate data from ui
+            if (validateDoctorDataCreation(3)) return;
+
+            const doctor: IBecomeDoctor = {
+                name: signupUIStore.name,
+                surname: signupUIStore.surname,
+                phone: formatStringPhoneToNumberString(signupUIStore.phone),
+                email: signupUIStore.email,
+                sex: signupUIStore.isMale,
+                education: signupUIStore.institute,
+                speciality: signupUIStore.speciality,
+                yearEducation: signupUIStore.studyYears,
+                blankSeries: signupUIStore.blankSeries,
+                blankNumber: signupUIStore.blankNumber,
+                issueDate: signupUIStore.issueDate,
+                workPlaces: signupUIStore.workPlaces,
+                passportIssuedByWhom: signupUIStore.passportIssuedByWhom,
+                passportIssueDate: signupUIStore.passportIssueDate,
+                passportSeries: signupUIStore.passportSeries,
+                password: signupUIStore.password,
+                workExperience: signupUIStore.workExperience,
+            };
+
+            // send doctor to db
+            const response = await axios
+                .post(
+                    `${process.env.REACT_APP_SERVER_URL}/api/doctor-request/send`,
+                    doctor
+                ) // todo
+                .catch((e) => {
+                    return e.response;
+                });
+
+            // Tokens
+            const accessToken = response.data.tokens.access;
+            const refreshToken = response.data.tokens.refresh;
+
+            // save given tokens
+            tokenServices.saveAccessToken(accessToken);
+            tokenServices.saveRefreshToken(refreshToken);
+
+            // Save user id
+            const id = response.data.user.id;
+            localStorage.setItem("uid", id);
+        } catch (e) {
+            console.error(e);
 
             // show error and hide it after 5s
             signupUIStore.setShowError(true);
@@ -273,6 +338,122 @@ const validateUserDataCreation = (): boolean => {
     return hasError;
 };
 
+export const validateDoctorDataCreation = (stage: number): boolean => {
+    // Doctor Model is extends from user model
+    signupUIStore.setErrorMessage();
+    let hasError = false;
+
+    if (stage === 1) {
+        return validateUserDataCreation();
+    } else if (stage === 2) {
+        // education
+        if (signupUIStore.institute.trim().length === 0) {
+            hasError = true;
+            signupUIStore.setInstituteError(
+                "Необходимо указать ваше образование"
+            );
+        } else {
+            signupUIStore.setInstituteError();
+        }
+
+        // speciality
+        if (signupUIStore.speciality.trim().length === 0) {
+            hasError = true;
+            signupUIStore.setSpecialityError(
+                "Необходимо указать вашу специальность"
+            );
+        } else {
+            signupUIStore.setSpecialityError();
+        }
+
+        // year education
+        if (signupUIStore.studyYears.trim().length === 0) {
+            hasError = true;
+            signupUIStore.setStudyYearsError(
+                "Необходимо указать годы обучения"
+            );
+        } else {
+            signupUIStore.setStudyYearsError();
+        }
+
+        // blankSeries
+        if (signupUIStore.blankSeries.trim().length === 0) {
+            hasError = true;
+            signupUIStore.setBlankSeriesError(
+                "Необходимо указать серию бланка"
+            );
+        } else {
+            signupUIStore.setBlankSeriesError();
+        }
+
+        // blankSeries
+        if (signupUIStore.blankNumber.trim().length === 0) {
+            hasError = true;
+            signupUIStore.setBlankNumberError(
+                "Необходимо указать номер бланка"
+            );
+        } else {
+            signupUIStore.setBlankNumberError();
+        }
+
+        // issueDate
+        if (signupUIStore.issueDate.trim().length === 0) {
+            hasError = true;
+            signupUIStore.setIssueDateError("Необходимо указать дату выдачи");
+        } else {
+            signupUIStore.setIssueDateError();
+        }
+    } else if (stage === 3) {
+        // passportIssuedByWhom
+        if (signupUIStore.passportIssuedByWhom.trim().length === 0) {
+            hasError = true;
+            signupUIStore.setPassportIssuedByWhomError(
+                "Необходимо указать кем был выдан ваш паспорт"
+            );
+        } else {
+            signupUIStore.setPassportIssuedByWhomError();
+        }
+
+        // passportSeries
+        if (signupUIStore.passportSeries.trim().length === 0) {
+            hasError = true;
+            signupUIStore.setPassportSeriesError("Необходимо указать серию");
+        } else {
+            signupUIStore.setPassportSeriesError();
+        }
+
+        // passportIssueDate
+        if (signupUIStore.passportIssueDate.trim().length === 0) {
+            hasError = true;
+            signupUIStore.setPassportIssueDateError(
+                "Необходимо указать дату выдачи"
+            );
+        } else {
+            signupUIStore.setPassportIssueDateError();
+        }
+
+        // workExperience
+        if (signupUIStore.workExperience.trim().length === 0) {
+            hasError = true;
+            signupUIStore.setWorkExperienceError("Необходимо указать ваш опыт");
+        } else {
+            signupUIStore.setWorkExperienceError();
+        }
+
+        // workPlaces
+        if (signupUIStore.workPlaces.trim().length === 0) {
+            hasError = true;
+            signupUIStore.setWorkPlacesError(
+                "Необходимо указать ваши места работы"
+            );
+        } else {
+            signupUIStore.setWorkPlacesError();
+        }
+    }
+
+    return hasError;
+};
+
 const validateServerError = (errors: any): boolean => {
     const getFormatError = (type: ServerErrorType) => {
         switch (type) {
@@ -286,6 +467,8 @@ const validateServerError = (errors: any): boolean => {
                 return "Это поле обязательно";
         }
     };
+
+    console.log(errors);
 
     const keys = Object.keys(errors);
 

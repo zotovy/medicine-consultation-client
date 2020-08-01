@@ -1,7 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./static/index.css";
-// import { Signup, Login, DoctorSignUp } from "./modules/auth";
 import { MainPage } from "./modules/main/index";
 require('dotenv').config()
 
@@ -9,10 +8,11 @@ const Signup = lazy(() => import("./modules/auth").then(module => ({ default: mo
 const Login = lazy(() => import("./modules/auth").then(module => ({ default: module.Login })));
 const DoctorSignUp = lazy(() => import("./modules/auth").then(module => ({ default: module.DoctorSignUp })));
 
+const Admin = lazy(() => import("./modules/admin"));
+const AdminLogin = lazy(() => import("./modules/admin").then(module => ({ default: module.Login })));
+
 
 const App = () => {
-
-
   return (
     <Switch>
       <Route path="/login" exact>
@@ -30,11 +30,21 @@ const App = () => {
           <DoctorSignUp />
         </Suspense>
       </Route>
-      <Route path="/" exact>f
+      <Route path="/" exact>
         <Suspense fallback={<React.Fragment />}>
           <MainPage />
         </Suspense>
       </Route>
+
+      <Route path="/admin-login" exact>
+        <Suspense fallback={<React.Fragment />}>
+          <AdminLogin />
+        </Suspense>
+      </Route>;
+
+      <Suspense fallback={<React.Fragment />}>
+        <Admin />
+      </Suspense>
 
     </Switch >
   );
