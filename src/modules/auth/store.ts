@@ -225,14 +225,14 @@ class AuthStore {
             };
 
             // send doctor to db
-            // const response = await axios
-            //     .post(
-            //         `${process.env.REACT_APP_SERVER_URL}/api/doctor-request/send`,
-            //         doctor
-            //     ) // todo
-            //     .catch((e) => {
-            //         return e.response;
-            //     });
+            const response = await axios
+                .post(
+                    `${process.env.REACT_APP_SERVER_URL}/api/doctor-request/send`,
+                    doctor
+                ) // todo
+                .catch((e) => {
+                    return e.response;
+                });
 
             // Show badge
             signupUIStore.isBadgeOpen = true;
@@ -255,7 +255,7 @@ class AuthStore {
                 signupUIStore.setShowError(false);
                 setTimeout(() => {
                     signupUIStore.setErrorMessage();
-                }, 1000);
+                }, 1250);
             }, 5000);
             return null;
         }

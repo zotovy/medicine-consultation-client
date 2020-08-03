@@ -1,10 +1,10 @@
 declare interface IBecomeDoctor {
+    id?: string;
     name?: string;
     surname?: string;
     phone?: string;
     email?: string;
     sex?: boolean;
-
     password?: string;
     education?: string;
     speciality?: string;

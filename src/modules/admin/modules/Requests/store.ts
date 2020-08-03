@@ -12,6 +12,10 @@ class Requests {
     @observable requests: IBecomeDoctor[] = [];
     @observable isListView: boolean = false;
 
+    @observable isCloseModalWindowOpen: boolean = false;
+    @observable userDataOnModalWindow: { name?: string; id?: string } = {};
+    @observable requestOperationError: string | null = null;
+
     @action triggerRequestOpenOrClose = (i: number) => {
         this.isRequestOpen[i] = !this.isRequestOpen[i];
     };
@@ -87,6 +91,34 @@ class Requests {
         } else {
             this.requests = response.requests;
         }
+    };
+
+    @action openModalWndow = (data: { name: string; id: string }) => {
+        this.isCloseModalWindowOpen = true;
+        this.userDataOnModalWindow = { ...data };
+    };
+
+    @action undoModalWindow = () => (this.isCloseModalWindowOpen = false);
+    @action removeRequest = () => {
+        this.isCloseModalWindowOpen = false;
+        this.requests = this.requests.filter(
+            (e) => e.id != this.userDataOnModalWindow.id
+        );
+
+        const errorText = "Произошла какая-то ошибка. Повторите позднее";
+
+        axios
+            .delete(
+                process.env.REACT_APP_SERVER_URL +
+                    "/api/admin/become-doctor-request/remove/" +
+                    this.userDataOnModalWindow.id
+            )
+            .then((data) =>
+                data.status !== 202
+                    ? (this.requestOperationError = errorText)
+                    : undefined
+            )
+            .catch(() => (this.requestOperationError = errorText));
     };
 }
 

@@ -116,8 +116,8 @@ const Item: React.FC<Props> = (props) => {
                     <button id="bookmark" className="square" onClick={() => store.triggerBookRequest(props.i)}>
                         <BookmarkIcon booked={store.isRequestBookes[props.i]} />
                     </button>
-                    <button id="remove">{requests.remove}</button>
-                    <button id="submit">{requests.submit}</button>
+                    <button id="remove" onClick={() => store.isCloseModalWindowOpen = true}>{requests.remove}</button>
+                    <button id="submit" >{requests.submit}</button>
                 </div>
             </div>
 

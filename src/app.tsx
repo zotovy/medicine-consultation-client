@@ -1,11 +1,11 @@
 import React, { Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./static/index.css";
-import { MainPage } from "./modules/main/index";
 // import SandBox from "./sandbox/sandbox";
 require('dotenv').config()
 
 
+const MainPage = lazy(() => import("./modules/main"));
 const Signup = lazy(() => import("./modules/auth").then(module => ({ default: module.Signup })));
 const Login = lazy(() => import("./modules/auth").then(module => ({ default: module.Login })));
 const DoctorSignUp = lazy(() => import("./modules/auth").then(module => ({ default: module.DoctorSignUp })));
@@ -17,6 +17,9 @@ const AdminLogin = lazy(() => import("./modules/admin").then(module => ({ defaul
 const App = () => {
   return (
     <Switch>
+
+      {/* <Route to='/sandbox'><SandBox /></Route> */}
+
       <Route path="/login" exact>
         <Suspense fallback={<React.Fragment />}>
           <Login />
@@ -44,13 +47,11 @@ const App = () => {
         </Suspense>
       </Route>;
 
-      {/* <Suspense fallback={<React.Fragment />}>
+      <Suspense fallback={<React.Fragment />}>
         <Admin />
-      </Suspense> */}
+      </Suspense>
 
-      {/* <Route to='/sandbox'>
-        <SandBox />
-      </Route> */}
+
 
     </Switch >
   );
