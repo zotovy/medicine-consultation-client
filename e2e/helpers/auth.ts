@@ -22,3 +22,12 @@ export const clearFakeServerTokensStorage = async () => {
         .then((data) => data.data)
         .catch((e) => console.log(e.response));
 };
+
+export const getUsers = async (i: number = 0) => {
+    return (
+        await axios
+            .get(process.env.TEST_SERVER_URL + `/api/users`)
+            .then((data) => data.data)
+            .catch((e) => console.log(e.response))
+    )[i];
+};

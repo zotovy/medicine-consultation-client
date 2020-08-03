@@ -72,7 +72,7 @@ test("should login user", async (browser) => {
         .typeText("#password", sampleUser.password ?? "")
         .click(".dYHvuX");
 
-    //* Checking
+    //* Assert
     await browser.expect(ErrorText.exists).notOk();
     const url = await ClientFunction(() => window.location.href)();
     await browser.expect(url).eql("http://localhost:3000/");
@@ -98,7 +98,7 @@ test("shouldn't login user on incorrect email", async (browser) => {
         .typeText("#password", sampleUser.password ?? "")
         .click(".dYHvuX");
 
-    //* Checking
+    //* Assert
     await browser
         .expect(ErrorText.textContent)
         .eql("Неверный email или пароль");
@@ -126,7 +126,7 @@ test("shouldn't login user on incorrect password", async (browser) => {
         .typeText("#password", "123")
         .click(".dYHvuX");
 
-    //* Checking
+    //* Assert
     await browser
         .expect(ErrorText.textContent)
         .eql("Неверный email или пароль");
@@ -153,7 +153,7 @@ test("shouldn't login on incorrect data provides API", async (browser) => {
         .typeText("#password", "wrongpassword123")
         .click(".dYHvuX");
 
-    //* Checking
+    //* Assert
     await browser
         .expect(ErrorText.textContent)
         .eql("Неверный email или пароль");
@@ -181,7 +181,7 @@ test("should showPasswordIcon work", async (browser) => {
     await browser.click("#show-password-button");
     const after = await input.getAttribute("type");
 
-    //* Checking
+    //* Assert
     await browser.expect(before).eql("password");
     await browser.expect(after).eql("text");
 });

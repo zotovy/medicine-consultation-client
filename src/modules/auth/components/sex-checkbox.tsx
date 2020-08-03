@@ -47,9 +47,9 @@ const SexCheckbox: React.FC<Props> = (props: Props) => {
     return <Column>
         <Field>Пол</Field>
         <Row>
-            <Checkbox checked={props.isMale} label="Мужской" onChange={() => !props.isMale ? props.onChange() : null} />
+            <Checkbox dataTest="male-checkbox" checked={props.isMale} label="Мужской" onChange={() => !props.isMale ? props.onChange() : null} />
             <SizedBox width="50px" />
-            <Checkbox checked={!props.isMale} label="Женский" onChange={() => props.isMale ? props.onChange() : null} />
+            <Checkbox dataTest="female-checkbox" checked={!props.isMale} label="Женский" onChange={() => props.isMale ? props.onChange() : null} />
         </Row>
     </Column>
 }

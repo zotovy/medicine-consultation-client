@@ -10,6 +10,7 @@ type Props = {
   linkPath?: string;
   styles?: object;
   href?: string;
+  dataTest?: string;
 };
 
 const Container = styled.div`
@@ -64,7 +65,7 @@ const Checkbox: React.FC<Props> = (props: Props) => {
               checked={props.checked}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange()}
             />
-            <span className="checkbox-material">
+            <span data-test={props.dataTest} className="checkbox-material">
               <span className="check"></span>
             </span>
 

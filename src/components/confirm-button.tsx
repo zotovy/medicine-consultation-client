@@ -8,6 +8,7 @@ type Props = {
   fullSize?: boolean;
   size?: string;
   styles?: object;
+  dataTest?: string;
 };
 
 const Button = styled.div`
@@ -54,6 +55,7 @@ const Text = styled.p`
 const ConfirmButton: React.FC<Props> = (props: Props) => {
   return (
     <Button
+      data-test={props.dataTest}
       {/*
        // @ts-ignore */  ...{}}
       style={{ ...props.styles?.button, borderRadius: `${props.borderRadius ?? "10px"}` }}

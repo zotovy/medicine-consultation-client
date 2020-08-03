@@ -23,6 +23,7 @@ type Props = {
     field?: object;
     input?: object;
   };
+  inputDataTest?: string;
 };
 
 const Container = styled.div`
@@ -180,6 +181,7 @@ const TextField: React.FC<Props> = (props: Props) => {
           onChange={(e) => props.onChange(e.target.value)}
           type={props.showPassword && props.value !== "" ? "text" : "password"}
           value={props.value}
+          data-test={props.inputDataTest}
         />
 
         <ShowPassword id="show-password-button" style={{ color: props.showPassword ? "#282828" : "#ccc" }} onClick={props.onShowPasswordChanged}>
@@ -200,10 +202,11 @@ const TextField: React.FC<Props> = (props: Props) => {
           onChange={(e) => props.onChange(e.target.value)}
           type={props.type ?? "text"}
           value={props.value}
+          data-test={props.inputDataTest}
         />}
 
       {
-        !props.needErrorHandle ? props.error ? <ErrorText>{props.error}</ErrorText> : <p style={{ fontSize: "12px" }}>⠀</p> : ""
+        !props.needErrorHandle ? props.error ? <ErrorText>{props.error}</ErrorText> : <p style={{ fontSize: "12px" }} className="textfield-error">⠀</p> : ""
       }
 
     </Container>
