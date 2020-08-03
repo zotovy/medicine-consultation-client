@@ -88,7 +88,7 @@ const UserSignUp: React.FC = observer(() => {
       <MediaQuery minDeviceWidth="436px">
         <Row>
           <HalfOfWidth>
-            <ConfirmButton content="Зарегистрироваться" onConfirm={authStore.signup} />
+            <ConfirmButton dataTest="confirm" content="Зарегистрироваться" onConfirm={authStore.signup} />
           </HalfOfWidth>
           <Linker to="/doctor-signup">
             <SignupLink><span>Регистрация для врачей</span></SignupLink>

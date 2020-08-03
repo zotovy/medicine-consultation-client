@@ -130,6 +130,8 @@ class AuthStore {
             sendMailingsToEmail: needMailing,
             createdAt: new Date(),
             lastActiveAt: new Date(),
+            favourites: [],
+            photoUrl: "",
         };
 
         try {
@@ -223,26 +225,23 @@ class AuthStore {
             };
 
             // send doctor to db
-            const response = await axios
-                .post(
-                    `${process.env.REACT_APP_SERVER_URL}/api/doctor-request/send`,
-                    doctor
-                ) // todo
-                .catch((e) => {
-                    return e.response;
-                });
+            // const response = await axios
+            //     .post(
+            //         `${process.env.REACT_APP_SERVER_URL}/api/doctor-request/send`,
+            //         doctor
+            //     ) // todo
+            //     .catch((e) => {
+            //         return e.response;
+            //     });
 
-            // Tokens
-            const accessToken = response.data.tokens.access;
-            const refreshToken = response.data.tokens.refresh;
-
-            // save given tokens
-            tokenServices.saveAccessToken(accessToken);
-            tokenServices.saveRefreshToken(refreshToken);
-
-            // Save user id
-            const id = response.data.user.id;
-            localStorage.setItem("uid", id);
+            // Show badge
+            signupUIStore.isBadgeOpen = true;
+            setTimeout(() => {
+                signupUIStore.isBadgeOpen = false;
+                setTimeout(() => {
+                    signupUIStore.redirectToHomeTrigger = !signupUIStore.redirectToHomeTrigger;
+                }, 300);
+            }, 3300);
         } catch (e) {
             console.error(e);
 

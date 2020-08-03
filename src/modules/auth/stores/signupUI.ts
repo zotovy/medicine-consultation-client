@@ -57,6 +57,8 @@ class SingupUIStore {
     @observable workPlacesError?: string = "";
 
     @observable pageIndex = 0;
+    @observable isBadgeOpen: boolean = false;
+    @observable redirectToHomeTrigger = false;
 
     //* Setters & Toggless
     @action setName = (val: string) => (this.name = val);

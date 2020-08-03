@@ -1,9 +1,15 @@
 import React, { Suspense, lazy } from "react";
+import { reaction } from "mobx";
+import { observer } from "mobx-react";
+import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 import MediaQuery from 'react-responsive';
+import Badge from "../components/badge";
+import signupUiStore from "../stores/signupUI";
 
 // Component
 import Image from '../components/image';
+import tick from "../../../static/images/tick.png";
 
 // Static
 import "../../../static/index.css";
@@ -29,22 +35,37 @@ const Swapper = styled.div`
     }
 `;
 
-
-const DoctorSignUp: React.FC = () => {
-    return <Wrapper>
-        <MediaQuery minDeviceWidth="1025px">
-            <Image />
-        </MediaQuery>
-        <Swapper>
-            <Page1 />
-            <Suspense fallback={<React.Fragment />} >
-                <Page2 />
-            </Suspense>
-            <Suspense fallback={<React.Fragment />} >
-                <Page3 />
-            </Suspense>
-        </Swapper>
-    </Wrapper >
+const BadgeIcon: React.FC = () => {
+    return <img src={tick} alt="icon" />
 }
 
-export default DoctorSignUp;
+
+const DoctorSignUp: React.FC = () => {
+
+    const history = useHistory();
+
+    reaction(() => signupUiStore.redirectToHomeTrigger, () => {
+        history.push("/");
+    });
+
+    return <React.Fragment>
+        <Badge icon={BadgeIcon} title="Спасибо за регистрацию!" isOpen={signupUiStore.isBadgeOpen}>
+            Ваши данные отправлены на проверку. Подробнее о том, как работает сервис вы можете почитать <a>здесь</a>.</Badge>
+        <Wrapper>
+            <MediaQuery minDeviceWidth="1025px">
+                <Image />
+            </MediaQuery>
+            <Swapper>
+                <Page1 />
+                <Suspense fallback={<React.Fragment />} >
+                    <Page2 />
+                </Suspense>
+                <Suspense fallback={<React.Fragment />} >
+                    <Page3 />
+                </Suspense>
+            </Swapper>
+        </Wrapper >
+    </React.Fragment>
+}
+
+export default observer(DoctorSignUp);
