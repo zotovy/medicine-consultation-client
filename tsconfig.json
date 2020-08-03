@@ -23,6 +23,6 @@
   },
   "include": [
     "src",
-    "*.ts",
+    "*.ts", "e2e/auth/login.test.e2e.ts",
   ]
 }

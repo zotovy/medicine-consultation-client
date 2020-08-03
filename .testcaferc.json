@@ -1,6 +1,6 @@
 {
-    "browsers": ["chrome", "firefox"],
+    "browsers": ["chrome"],
     "src": [
-        "./src/**/__tests__/*.test.ts"
+        "./e2e/**/*.test.ts"
     ]
 }

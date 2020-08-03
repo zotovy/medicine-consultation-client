@@ -16,4 +16,5 @@ declare interface UserType {
     sendMailingsToEmail?: boolean;
     createdAt?: Date;
     lastActiveAt?: Date;
+    favourites: any;
 }
