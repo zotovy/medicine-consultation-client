@@ -468,6 +468,17 @@ button#bookmark {
                     }
                 }
 
+                &#submit {
+                    background: none;
+                    border: 1.5px solid $primary;
+                    color: $primary;
+                    transition: 250ms box-shadow;
+
+
+                    &:hover {
+                        box-shadow: 0px 0px 15px rgba($color: $primary, $alpha: 0.10);
+                    }
+                }
 
 
             }

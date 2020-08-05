@@ -59,6 +59,22 @@ const Item: React.FC<Props> = (props) => {
     //     }
     // }
 
+    const onRemove = () => {
+        store.isCloseModalWindowOpen = true;
+        store.userDataOnModalWindow = {
+            id: store.requests[props.i].id,
+            name: store.requests[props.i].name
+        }
+    }
+
+    const onSubmit = () => {
+        store.isSubmitModalWindowOpen = true;
+        store.userDataOnModalWindow = {
+            id: store.requests[props.i].id,
+            name: store.requests[props.i].name
+        }
+    }
+
 
 
     return <div className="item">
@@ -116,8 +132,8 @@ const Item: React.FC<Props> = (props) => {
                     <button id="bookmark" className="square" onClick={() => store.triggerBookRequest(props.i)}>
                         <BookmarkIcon booked={store.isRequestBookes[props.i]} />
                     </button>
-                    <button id="remove" onClick={() => store.isCloseModalWindowOpen = true}>{requests.remove}</button>
-                    <button id="submit" >{requests.submit}</button>
+                    <button id="remove" onClick={onRemove}>{requests.remove}</button>
+                    <button id="submit" onClick={onSubmit}>{requests.submit}</button>
                 </div>
             </div>
 

@@ -19,6 +19,14 @@ const GridElement: React.FC<Props> = ({ i }: Props) => {
         }
     }
 
+    const onSubmit = () => {
+        store.isSubmitModalWindowOpen = true;
+        store.userDataOnModalWindow = {
+            id: store.requests[i].id,
+            name: store.requests[i].name
+        }
+    }
+
     return <div className="card">
         <div className="uprow">
             <div className="left">
@@ -48,7 +56,7 @@ const GridElement: React.FC<Props> = ({ i }: Props) => {
         </div>
         <div className="buttons">
             <button id="remove" onClick={onRemove}>{requests.remove}</button>
-            <button id="submit">{requests.submit}</button>
+            <button id="submit" onClick={onSubmit}>{requests.submit}</button>
         </div>
     </div>
 }
