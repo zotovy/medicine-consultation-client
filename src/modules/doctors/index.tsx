@@ -1,4 +1,4 @@
-import ChooseDoctor from "./pages/choose-doctor";
+import ChooseDoctor from "./pages/find-doctor";
 
 export {
     ChooseDoctor,

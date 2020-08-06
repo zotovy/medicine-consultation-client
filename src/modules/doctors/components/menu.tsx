@@ -25,24 +25,32 @@ const Menu: React.FC = (props: any) => {
             </div>
         </Link>
         <div className="tabs">
-            <Link to="/consulations">
-                <div className={"tab " + (selected === "/consultation" ? "selected" : "")}>
-                    <span className="link">Консультации</span>
-                    <div className="circle"></div>
-                </div>
-            </Link>
-            <Link to="/sympthoms">
-                <div className={"tab " + (selected === "/sympthoms" ? "selected" : "")}>
-                    <span className="link">Симптомы</span>
-                    <div className="circle"></div>
-                </div>
-            </Link>
-            <Link to="/find-doctor">
-                <div className={"tab " + (selected === "/find-doctor" ? "selected" : "")}>
-                    <span className="link ">Врачи</span>
-                    <div className="circle"></div>
-                </div>
-            </Link>
+            <input id="menu__toggle" type="checkbox" />
+            <label className="menu__btn" >
+                <span></span>
+            </label>
+            {/* <div className="menu"> */}
+            {/* </div> */}
+            <div className="links">
+                <Link to="/consulations">
+                    <div className={"tab " + (selected === "/consultation" ? "selected" : "")}>
+                        <span className="link">Консультации</span>
+                        <div className="circle"></div>
+                    </div>
+                </Link>
+                <Link to="/sympthoms">
+                    <div className={"tab " + (selected === "/sympthoms" ? "selected" : "")}>
+                        <span className="link">Симптомы</span>
+                        <div className="circle"></div>
+                    </div>
+                </Link>
+                <Link to="/find-doctor">
+                    <div className={"tab " + (selected === "/find-doctor" ? "selected" : "")}>
+                        <span className="link ">Врачи</span>
+                        <div className="circle"></div>
+                    </div>
+                </Link>
+            </div>
         </div>
         <div className="profile">
 

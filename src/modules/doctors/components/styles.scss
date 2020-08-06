@@ -22,51 +22,172 @@ menu {
         }
     }
 
-    .tabs {
+    #menu__toggle:checked~.links {
+        visibility: visible;
+        right: 0;
+    }
+
+    /* скрываем чекбокс */
+    #menu__toggle {
+        width: 25px;
+        height: 25px;
+        z-index: 3;
+        opacity: 0;
+        position: fixed;
+        top: 22.5px;
+        right: 20px;
+        z-index: 4;
+    }
+
+
+
+    /* стилизуем кнопку */
+    .menu__btn {
         display: flex;
-        justify-content: center;
+        /* используем flex для центрирования содержимого */
+        align-items: center;
+        /* центрируем содержимое кнопки */
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 26px;
+        height: 26px;
+        cursor: pointer;
+        z-index: 4;
+        pointer-events: none;
+    }
 
-        .tab {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 0px 12.5px;
-            margin-top: 10px;
+    /* добавляем "гамбургер" */
+    .menu__btn>span,
+    .menu__btn>span::before,
+    .menu__btn>span::after {
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: #616161;
+    }
 
+    .menu__btn>span::before {
+        content: '';
+        top: -8px;
+    }
+
+    .menu__btn>span::after {
+        content: '';
+        top: 8px;
+    }
+
+    #menu__toggle:checked~.menu__btn>span {
+        transform: rotate(45deg);
+    }
+
+    #menu__toggle:checked~.menu__btn>span::before {
+        top: 0;
+        transform: rotate(0);
+    }
+
+    #menu__toggle:checked~.menu__btn>span::after {
+        top: 0;
+        transform: rotate(90deg);
+    }
+
+    #menu__toggle:checked~.menu__box {
+        visibility: visible;
+        left: 0;
+    }
+
+    .menu__btn>span,
+    .menu__btn>span::before,
+    .menu__btn>span::after {
+        transition-duration: .25s;
+    }
+
+
+
+
+
+    @media screen and (min-width: 425px) {
+
+        #menu__toggle,
+        .menu__btn {
+            display: none;
+        }
+    }
+
+}
+
+
+
+.links {
+    display: flex;
+    justify-content: center;
+
+    .tab {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0px 12.5px;
+        margin-top: 10px;
+
+        span.link {
+            color: #565656;
+
+            &:hover {
+                color: #282828;
+            }
+        }
+
+        .circle {
+            transition: 300ms;
+            opacity: 0;
+            margin-top: 5px;
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #30B9D6;
+
+
+        }
+
+        &.selected {
             span.link {
-                color: #565656;
-
-                &:hover {
-                    color: #282828;
-                }
+                color: #282828;
+                font-weight: 500;
             }
 
             .circle {
-                transition: 300ms;
-                opacity: 0;
-                margin-top: 5px;
-                width: 5px;
-                height: 5px;
-                border-radius: 50%;
-                background-color: #30B9D6;
-
-
-            }
-
-            &.selected {
-                span.link {
-                    color: #282828;
-                    font-weight: 500;
-                }
-
-                .circle {
-                    opacity: 1;
-                }
+                opacity: 1;
             }
         }
     }
 
-    .profile {
-        width: 200px;
+
+
+    @media screen and (max-width: 425px) {
+        z-index: 3;
+        position: fixed;
+        top: 0;
+        right: -100vw;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        background: white;
+        transition: 500ms;
+
+
+
+        .selected .circle {
+            width: 10px;
+            height: 1px;
+            border-radius: 0;
+        }
     }
+}
+
+
+
+.profile {
+    width: 200px;
 }

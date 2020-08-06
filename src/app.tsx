@@ -10,7 +10,7 @@ const MainPage = lazy(() => import("./modules/main"));
 const Signup = lazy(() => import("./modules/auth").then(module => ({ default: module.Signup })));
 const Login = lazy(() => import("./modules/auth").then(module => ({ default: module.Login })));
 const DoctorSignUp = lazy(() => import("./modules/auth").then(module => ({ default: module.DoctorSignUp })));
-const ChooseDoctor = lazy(() => import("./modules/doctors").then(module => ({ default: module.ChooseDoctor })));
+const FindDoctor = lazy(() => import("./modules/doctors").then(module => ({ default: module.ChooseDoctor })));
 
 
 const Admin = lazy(() => import("./modules/admin"));
@@ -23,9 +23,6 @@ const App = () => {
 
       {/* <Route path='/sandbox'><SandBox /></Route> */}
 
-      <Route path={["/", "/find-doctor"]} exact>
-        <Menu />
-      </Route>
 
       <Route path="/login" exact>
         <Suspense fallback={<React.Fragment />}>
@@ -42,16 +39,19 @@ const App = () => {
           <DoctorSignUp />
         </Suspense>
       </Route>
+      <Route path="/find-doctor">
+        <Menu />
+        <Suspense fallback={<React.Fragment />}>
+          <FindDoctor />
+        </Suspense>
+      </Route>
       <Route path="/" exact>
+        <Menu />
         <Suspense fallback={<React.Fragment />}>
           <MainPage />
         </Suspense>
       </Route>
-      <Route path="/find-doctor" exact>
-        <Suspense fallback={<React.Fragment />}>
-          <ChooseDoctor />
-        </Suspense>
-      </Route>
+
 
       <Route path="/admin-login" exact>
         <Suspense fallback={<React.Fragment />}>
