@@ -119,84 +119,78 @@ menu {
         }
     }
 
-}
-
-
-
-.links {
-    display: flex;
-    justify-content: center;
-
-    .tab {
+    .links {
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 0px 12.5px;
-        margin-top: 10px;
+        justify-content: center;
 
-        span.link {
-            color: #565656;
+        .tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0px 12.5px;
+            margin-top: 10px;
 
-            &:hover {
-                color: #282828;
-            }
-        }
-
-        .circle {
-            transition: 300ms;
-            opacity: 0;
-            margin-top: 5px;
-            width: 5px;
-            height: 5px;
-            border-radius: 50%;
-            background-color: #30B9D6;
-
-
-        }
-
-        &.selected {
             span.link {
-                color: #282828;
-                font-weight: 500;
+                color: #565656;
+
+                &:hover {
+                    color: #282828;
+                }
             }
 
             .circle {
-                opacity: 1;
+                transition: 300ms;
+                opacity: 0;
+                margin-top: 5px;
+                width: 5px;
+                height: 5px;
+                border-radius: 50%;
+                background-color: #30B9D6;
+
+
+            }
+
+            &.selected {
+                span.link {
+                    color: #282828;
+                    font-weight: 500;
+                }
+
+                .circle {
+                    opacity: 1;
+                }
             }
         }
-    }
 
 
 
-    @media screen and (max-width: 425px) {
-        z-index: 3;
-        position: fixed;
-        top: 0;
-        right: -100vw;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        background: white;
-        transition: 500ms;
+        @media screen and (max-width: 425px) {
+            z-index: 3;
+            position: fixed;
+            top: 0;
+            right: -100vw;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background: white;
+            transition: 500ms;
 
 
 
-        .selected .circle {
-            width: 10px;
-            height: 1px;
-            border-radius: 0;
+            .selected .circle {
+                width: 10px;
+                height: 1px;
+                border-radius: 0;
+            }
         }
+
     }
 
     .profile {
         width: 200px;
     }
 }
-
-
-
-
 
 .title {
     margin-left: 28px;
@@ -314,18 +308,103 @@ menu {
 .filter {
     margin-top: 10px;
     width: 25%;
-    height: calc(100vh - 128px);
+    height: 100%;
     margin-left: 28px;
     border-radius: 5px;
     border: 1px solid #CCCCCC;
     background-color: white;
     overflow-y: auto;
     box-shadow: 0 3px 25px rgba(0, 0, 0, 0.03);
+    transition: 500ms;
 
     @media screen and (max-width: 768px) {
         width: calc(100vw - 32px);
         height: 50px;
         margin: 0 16px;
         margin-top: 15px;
+    }
+
+    .main {
+        padding: 10px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+            color: #282828;
+            font-weight: 500;
+        }
+
+        svg {
+            cursor: pointer;
+            width: 17.5px;
+            height: 17.5px;
+            transition: transform 300ms;
+
+            &.open {
+                transform: rotate(90deg);
+            }
+        }
+    }
+
+    .collapsed {
+        box-shadow: 0 -0.5px 0 #ccc;
+        overflow-y: hidden;
+        width: 100%;
+        height: 0;
+        transition: 400ms;
+
+        &.open {
+            height: 300px;
+        }
+
+        .collapsed-item {
+            height: 100%;
+            max-height: 36px;
+            overflow: hidden;
+            transition: 300ms;
+            cursor: pointer;
+            padding: 10px 10px 0 10px;
+
+            &.open {
+                // max-height: 100%;
+                padding: 10px;
+            }
+
+            &#speciality.open {
+                max-height: 237px;
+            }
+
+            &#work-exprerience.open {
+                max-height: 165px;
+            }
+
+
+            .title {
+                margin: 3px 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                h3 {
+                    font-weight: 400;
+                    font-size: 16px;
+                }
+
+                svg {
+                    width: 17.5px;
+                    height: 17.5px;
+                    transition: transform 300ms;
+                    stroke: #565656 !important;
+
+                    &.open {
+                        transform: rotate(90deg);
+                    }
+                }
+            }
+
+
+        }
     }
 }

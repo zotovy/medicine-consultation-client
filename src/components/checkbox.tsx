@@ -63,7 +63,7 @@ const Checkbox: React.FC<Props> = (props: Props) => {
             <input
               type="checkbox"
               checked={props.checked}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => props.onChange()}
+              onChange={() => props.onChange()}
             />
             <span data-test={props.dataTest} className="checkbox-material">
               <span className="check"></span>
