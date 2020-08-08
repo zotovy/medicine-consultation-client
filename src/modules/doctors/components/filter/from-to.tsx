@@ -4,6 +4,7 @@ import { observer } from "mobx-react";
 
 interface availableKeys {
     rating: string;
+    age: string;
 }
 
 type Props = {

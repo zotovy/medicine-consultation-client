@@ -7,6 +7,7 @@ import Checkbox from "../../../components/checkbox";
 import FromToFilterItem from "../components/filter/from-to";
 import { ESpeciality, workExperience } from "../enums";
 import RatingListItem from "./filter/rating-list-item";
+import CheckboxBase from "../../../components/checkbox-base";
 
 
 const Filter: React.FC = () => {
@@ -53,6 +54,25 @@ const Filter: React.FC = () => {
                 <RatingListItem amount={3} />
                 <RatingListItem amount={4} />
                 <RatingListItem amount={5} />
+            </FilterItemBase>
+            <FilterItemBase
+                id="sex"
+                title="Пол"
+            >
+                <Checkbox
+                    checked={controller.sexs.includes('male')}
+                    label="Мужской"
+                    onChange={() => controller.clickOnSex("male")} />
+                <Checkbox
+                    checked={controller.sexs.includes('female')}
+                    label="Женский"
+                    onChange={() => controller.clickOnSex("female")} />
+            </FilterItemBase>
+            <FilterItemBase
+                id="age"
+                title="Возраст"
+            >
+                <FromToFilterItem controllerKey="age" fromPlaceholder="От" toPlaceholder="До" />
             </FilterItemBase>
         </div>
 
