@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import "./styles/checkbox.css";
+import CheckboxBase from "./checkbox-base";
 
 type Props = {
   label: string;
@@ -58,27 +58,8 @@ const Checkbox: React.FC<Props> = (props: Props) => {
       {/*
       // @ts-ignore */}
       < Container style={props.styles?.container} >
-        <div className="checkbox">
-          <label>
-            <input
-              type="checkbox"
-              checked={props.checked}
-              onChange={() => props.onChange()}
-            />
-            <span data-test={props.dataTest} className="checkbox-material">
-              <span className="check"></span>
-            </span>
+        <CheckboxBase checked={props.checked} onChange={props.onChange} dataTest={props.dataTest} />
 
-          </label>
-        </div>
-        {/* 
-        <label className="cbx">
-          <span>
-            <svg width="12px" height="10px">
-
-            </svg>
-          </span>
-        </label> */}
 
         {/*
        // @ts-ignore */}

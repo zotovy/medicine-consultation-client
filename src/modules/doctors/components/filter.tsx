@@ -4,7 +4,9 @@ import { Chevron } from "../icons";
 import controller from "../controllers/find-doctor-controller";
 import FilterItemBase from "./filter/item-base";
 import Checkbox from "../../../components/checkbox";
+import FromToFilterItem from "../components/filter/from-to";
 import { ESpeciality, workExperience } from "../enums";
+import RatingListItem from "./filter/rating-list-item";
 
 
 const Filter: React.FC = () => {
@@ -43,12 +45,14 @@ const Filter: React.FC = () => {
 
             </FilterItemBase>
             <FilterItemBase
-                title={"3"}>
-                <Checkbox
-                    label="Терапевт"
-                    checked={controller.specialities.includes("Терапевт")}
-                    onChange={() => controller.clickOnSpecialityFilter("Терапевт")}
-                />
+                id="rating"
+                title="Рейтинг">
+                <RatingListItem amount={0} />
+                <RatingListItem amount={1} />
+                <RatingListItem amount={2} />
+                <RatingListItem amount={3} />
+                <RatingListItem amount={4} />
+                <RatingListItem amount={5} />
             </FilterItemBase>
         </div>
 

@@ -3,13 +3,13 @@ import { observable, action } from "mobx";
 class FindDoctorController {
     // Filters
     @observable isFilterOpen: boolean = true;
-    @observable openedFilters: string[] = ["Стаж работы"];
+    @observable openedFilters: string[] = ["Рейтинг"];
 
     @observable specialities: string[] = [];
     @observable workExperience: string[] = [];
-    @observable rating: number[] = [];
+    @observable rating: number[] = [0, 1, 2, 3, 4, 5];
 
-    private addOrRemoveItem = (array: any[], value: string): Array<any> => {
+    private addOrRemoveItem = (array: any[], value: any): Array<any> => {
         const index = array.indexOf(value);
         if (index !== -1) {
             array.splice(index, 1);
@@ -30,6 +30,10 @@ class FindDoctorController {
 
     @action clickOnWorkExperienceFilter = (value: string): void => {
         this.workExperience = this.addOrRemoveItem(this.workExperience, value);
+    };
+
+    @action clickOnRating = (value: number): void => {
+        this.rating = this.addOrRemoveItem(this.rating, value);
     };
 }
 
