@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./static/index.css";
 import Menu from "./modules/doctors/components/menu";
-// import SandBox from "./sandbox/sandbox";
+import SandBox from "./sandbox/sandbox";
 require('dotenv').config()
 
 
@@ -11,6 +11,7 @@ const Signup = lazy(() => import("./modules/auth").then(module => ({ default: mo
 const Login = lazy(() => import("./modules/auth").then(module => ({ default: module.Login })));
 const DoctorSignUp = lazy(() => import("./modules/auth").then(module => ({ default: module.DoctorSignUp })));
 const FindDoctor = lazy(() => import("./modules/doctors").then(module => ({ default: module.ChooseDoctor })));
+const FilterCityModal = lazy(() => import("./modules/doctors").then(module => ({ default: module.FilterCityModal })));
 
 
 const Admin = lazy(() => import("./modules/admin"));
@@ -21,7 +22,7 @@ const App = () => {
   return (
     <Switch>
 
-      {/* <Route path='/sandbox'><SandBox /></Route> */}
+      <Route path='/sandbox'><SandBox /></Route>
 
 
       <Route path="/login" exact>
@@ -40,6 +41,9 @@ const App = () => {
         </Suspense>
       </Route>
       <Route path="/find-doctor">
+        <Suspense fallback={<React.Fragment />}>
+          <FilterCityModal />
+        </Suspense>
         <Menu />
         <Suspense fallback={<React.Fragment />}>
           <FindDoctor />

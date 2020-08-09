@@ -19,3 +19,18 @@ export const Chevron = ({ fill, open, onClick }: { fill?: string, open: boolean,
         <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M0,9,9,0l9,9" transform="translate(11.121 2.121) rotate(90)" fill="none" stroke={fill ?? "#282828"} strokeLinecap="round" stroke-linejoin="round" strokeWidth="3" />
     </svg>
 }
+
+export const CloseIcon = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="13.426" height="13.423" viewBox="0 0 13.426 13.423">
+        <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M19.589,18l4.8-4.8A1.124,1.124,0,0,0,22.8,11.616l-4.8,4.8-4.8-4.8A1.124,1.124,0,1,0,11.616,13.2l4.8,4.8-4.8,4.8A1.124,1.124,0,0,0,13.2,24.384l4.8-4.8,4.8,4.8A1.124,1.124,0,1,0,24.384,22.8Z" transform="translate(-11.285 -11.289)" fill="#fff" />
+    </svg>
+}
+
+export const SearchIcon = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="30.621" height="30.621" viewBox="0 0 30.621 30.621">
+        <g id="Icon_feather-search" data-name="Icon feather-search" transform="translate(-3 -3)">
+            <path id="Контур_102" data-name="Контур 102" d="M28.5,16.5a12,12,0,1,1-12-12A12,12,0,0,1,28.5,16.5Z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
+            <path id="Контур_103" data-name="Контур 103" d="M31.5,31.5l-6.525-6.525" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" />
+        </g>
+    </svg>;
+}

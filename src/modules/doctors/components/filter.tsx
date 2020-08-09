@@ -11,7 +11,7 @@ import CheckboxBase from "../../../components/checkbox-base";
 
 
 const Filter: React.FC = () => {
-    return <div className="filter">
+    return <div className={`filter ${controller.isFilterOpen ? "open" : ""}`}>
         <div className="main">
             <h3>Фильтр</h3>
             <Chevron
@@ -73,6 +73,51 @@ const Filter: React.FC = () => {
                 title="Возраст"
             >
                 <FromToFilterItem controllerKey="age" fromPlaceholder="От" toPlaceholder="До" />
+            </FilterItemBase>
+            <FilterItemBase
+                id="city"
+                title="Город"
+            >
+
+            </FilterItemBase>
+            <FilterItemBase
+                id="work-plan"
+                title="График работы"
+            >
+                <Checkbox
+                    checked={controller.workPlan.includes('single')}
+                    label="Основное место работы"
+                    onChange={() => controller.clickOnWorkPlan("single")} />
+                <Checkbox
+                    checked={controller.workPlan.includes('multiple')}
+                    label="Не единственное место работы"
+                    onChange={() => controller.clickOnWorkPlan("multiple")} />
+            </FilterItemBase>
+            <FilterItemBase
+                id="child"
+                title="Детский"
+            >
+                <Checkbox
+                    checked={controller.workPlan.includes('child')}
+                    label="Детский врач"
+                    onChange={() => controller.clickOnWorkPlan("child")} />
+                <Checkbox
+                    checked={controller.workPlan.includes('adult')}
+                    label="Взрослый врач"
+                    onChange={() => controller.clickOnWorkPlan("adult")} />
+            </FilterItemBase>
+            <FilterItemBase
+                id="service-experience"
+                title="Стаж на сервисе"
+            >
+                {
+                    workExperience.map(experience => <Checkbox
+                        key={experience}
+                        label={experience}
+                        checked={controller.workExperience.includes(experience)}
+                        onChange={() => controller.clickOnWorkExperienceFilter(experience)}
+                    />)
+                }
             </FilterItemBase>
         </div>
 
