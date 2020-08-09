@@ -1,42 +1,45 @@
 @font-face {
-    font-family: 'Inter';
-    src: local('FiraSans'), url(./fonts/INTER-REGULAR.TTF) format('truetype');
+    font-family: "Inter";
+    src: local("FiraSans"), url(./fonts/INTER-REGULAR.TTF) format("truetype");
     font-style: normal;
     font-weight: 400;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Inter';
-    src: local('FiraSans'), url(./fonts/INTER-MEDIUM.TTF) format('truetype');
+    font-family: "Inter";
+    src: local("FiraSans"), url(./fonts/INTER-MEDIUM.TTF) format("truetype");
     font-style: normal;
     font-weight: 500;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Inter';
-    src: local('FiraSans'), url(./fonts/INTER-SEMIBOLD.TTF) format('truetype');
+    font-family: "Inter";
+    src: local("FiraSans"), url(./fonts/INTER-SEMIBOLD.TTF) format("truetype");
     font-style: normal;
     font-weight: 600;
     font-display: swap;
 }
 
 @font-face {
-    font-family: 'Inter';
-    src: local('FiraSans'), url(./fonts/INTER-BOLD.TTF) format('truetype');
+    font-family: "Inter";
+    src: local("FiraSans"), url(./fonts/INTER-BOLD.TTF) format("truetype");
     font-style: normal;
     font-weight: 700;
     font-display: swap;
 }
-
+/* 
+#root {
+    margin: 0 calc(50% - 1920px / 2);
+    max-width: 1920px;
+} */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 
 body,
 html {
@@ -47,7 +50,6 @@ html {
 }
 
 @media screen and (max-width: 768px) {
-
     body,
     html {
         overflow-y: scroll;
@@ -55,17 +57,16 @@ html {
 }
 
 * ::selection {
-    background: #30B9D6;
+    background: #30b9d6;
     color: white;
 }
-
 
 a {
     text-decoration: none;
 }
 
 span.link {
-    color: #30B9D6;
+    color: #30b9d6;
 }
 
 span.link :hover {

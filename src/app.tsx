@@ -44,10 +44,12 @@ const App = () => {
         <Suspense fallback={<React.Fragment />}>
           <FilterCityModal />
         </Suspense>
-        <Menu />
-        <Suspense fallback={<React.Fragment />}>
-          <FindDoctor />
-        </Suspense>
+        <div className="doctor-module">
+          <Menu />
+          <Suspense fallback={<React.Fragment />}>
+            <FindDoctor />
+          </Suspense>
+        </div>
       </Route>
       <Route path="/" exact>
         <Menu />
