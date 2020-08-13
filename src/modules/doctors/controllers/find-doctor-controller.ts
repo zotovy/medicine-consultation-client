@@ -11,6 +11,7 @@ class FindDoctorController {
 
     // Filters
     @observable isFilterOpen: boolean = true;
+    @observable isErrorBadgeOpen: boolean = false;
     @observable openedFilters: string[] = [];
     @observable specialities: string[] = [];
     @observable workExperience: string[] = [];
@@ -47,7 +48,7 @@ class FindDoctorController {
             });
 
         if (!data.success) {
-            // todo: error handling
+            this.openBadge();
         }
 
         return data.doctors ?? [];
@@ -129,6 +130,13 @@ class FindDoctorController {
         this.selectedCitiesModal = [];
         this.workPlan = [];
         this.child = [];
+    };
+
+    private openBadge = () => {
+        this.isErrorBadgeOpen = true;
+        setTimeout(() => {
+            this.isErrorBadgeOpen = false;
+        }, 5000);
     };
 }
 
