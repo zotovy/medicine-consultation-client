@@ -65,7 +65,7 @@ menu {
         }
     }
 
-    #menu__toggle:checked~.links {
+    #menu__toggle:checked ~ .links {
         visibility: visible;
         right: 0;
     }
@@ -81,8 +81,6 @@ menu {
         right: 20px;
         z-index: 4;
     }
-
-
 
     /* стилизуем кнопку */
     .menu__btn {
@@ -101,9 +99,9 @@ menu {
     }
 
     /* добавляем "гамбургер" */
-    .menu__btn>span,
-    .menu__btn>span::before,
-    .menu__btn>span::after {
+    .menu__btn > span,
+    .menu__btn > span::before,
+    .menu__btn > span::after {
         display: block;
         position: absolute;
         width: 100%;
@@ -111,47 +109,42 @@ menu {
         background-color: #616161;
     }
 
-    .menu__btn>span::before {
-        content: '';
+    .menu__btn > span::before {
+        content: "";
         top: -8px;
     }
 
-    .menu__btn>span::after {
-        content: '';
+    .menu__btn > span::after {
+        content: "";
         top: 8px;
     }
 
-    #menu__toggle:checked~.menu__btn>span {
+    #menu__toggle:checked ~ .menu__btn > span {
         transform: rotate(45deg);
     }
 
-    #menu__toggle:checked~.menu__btn>span::before {
+    #menu__toggle:checked ~ .menu__btn > span::before {
         top: 0;
         transform: rotate(0);
     }
 
-    #menu__toggle:checked~.menu__btn>span::after {
+    #menu__toggle:checked ~ .menu__btn > span::after {
         top: 0;
         transform: rotate(90deg);
     }
 
-    #menu__toggle:checked~.menu__box {
+    #menu__toggle:checked ~ .menu__box {
         visibility: visible;
         left: 0;
     }
 
-    .menu__btn>span,
-    .menu__btn>span::before,
-    .menu__btn>span::after {
-        transition-duration: .25s;
+    .menu__btn > span,
+    .menu__btn > span::before,
+    .menu__btn > span::after {
+        transition-duration: 0.25s;
     }
 
-
-
-
-
     @media screen and (min-width: 425px) {
-
         #menu__toggle,
         .menu__btn {
             display: none;
@@ -184,9 +177,7 @@ menu {
                 width: 5px;
                 height: 5px;
                 border-radius: 50%;
-                background-color: #30B9D6;
-
-
+                background-color: #30b9d6;
             }
 
             &.selected {
@@ -201,8 +192,6 @@ menu {
             }
         }
 
-
-
         @media screen and (max-width: 425px) {
             z-index: 3;
             position: fixed;
@@ -215,15 +204,12 @@ menu {
             background: white;
             transition: 500ms;
 
-
-
             .selected .circle {
                 width: 10px;
                 height: 1px;
                 border-radius: 0;
             }
         }
-
     }
 
     .profile {
@@ -238,7 +224,6 @@ menu {
         margin-left: 16px;
     }
 }
-
 
 //========================================================================================
 /*                                                                                      *
@@ -266,13 +251,11 @@ menu {
     height: 100%;
 
     border-radius: 5px;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #cccccc;
     background-color: white;
     overflow-y: auto;
     box-shadow: 0 3px 25px rgba(0, 0, 0, 0.03);
     padding: 10px;
-
-
 
     @media screen and (max-width: 768px) {
         width: 100%;
@@ -296,10 +279,7 @@ menu {
         grid-template-columns: repeat(4, 1fr);
     }
 
-
-
     @include scroll();
-
 
     .doctor {
         cursor: pointer;
@@ -339,14 +319,14 @@ menu {
     height: 43px;
     margin-left: 28px;
     border-radius: 5px;
-    border: 1px solid #CCCCCC;
+    border: 1px solid #cccccc;
     background-color: white;
     overflow-y: hidden;
     box-shadow: 0 3px 25px rgba(0, 0, 0, 0.03);
     transition: 500ms;
 
     &.open {
-        height: 380px;
+        height: 430px;
     }
 
     @media screen and (max-width: 768px) {
@@ -356,7 +336,17 @@ menu {
         margin-top: 15px;
     }
 
-    background-color: transparent;
+    button#clear {
+        cursor: pointer;
+        margin-left: 10px;
+        margin-top: 10px;
+        padding: 7.5px 20px;
+        color: #30b9d6;
+        background: none;
+        border: 1.2px solid #30b9d6;
+        border-radius: 8px;
+        outline: none;
+    }
 }
 
 .main {
@@ -393,7 +383,7 @@ menu {
     @include scroll();
 
     &.open {
-        height: 325px;
+        height: 375px;
     }
 
     .collapsed-item {
@@ -407,6 +397,34 @@ menu {
         &.open {
             // max-height: 100%;
             padding: 10px;
+        }
+
+        .selected {
+            margin-top: 10px;
+            width: 100%;
+            justify-content: start;
+            display: flex;
+            padding-bottom: 5px;
+
+            .tile {
+                display: flex;
+                align-items: center;
+                padding: 5px 10px;
+                border-radius: 100px;
+                background: #30b9d6;
+                margin-right: 10px;
+                margin-bottom: 5px;
+                color: white;
+                font-size: 14px;
+            }
+        }
+
+        button {
+            outline: none;
+            background: none;
+            border: none;
+            color: #30b9d6;
+            cursor: pointer;
         }
 
         &#speciality.open {
@@ -430,7 +448,7 @@ menu {
         }
 
         &#city.open {
-            max-height: 72.5px;
+            max-height: 108px;
         }
 
         &#work-plan.open {
@@ -484,7 +502,7 @@ menu {
                 border-radius: 3px;
 
                 &:focus {
-                    border: 1.2px solid #30B9D6;
+                    border: 1.2px solid #30b9d6;
                 }
             }
 
@@ -509,14 +527,9 @@ menu {
             span.amount {
                 margin-left: 15px;
             }
-
         }
-
-
     }
 }
-
-
 
 //──── ADD CITY MODAL ────────────────────────────────────────────────────────────────────
 .city-add-modal-container {
@@ -528,11 +541,10 @@ menu {
     justify-content: center;
     align-items: center;
     z-index: 100;
-    transition: 500ms;
-    opacity: 1;
+    transition: 300ms;
 
     &.close {
-        z-index: -100;
+        pointer-events: none;
         opacity: 0;
     }
 
@@ -550,7 +562,7 @@ menu {
         box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
 
         &.close {
-            transform: scale(0.25, 0.25);
+            transform: scale(0, 0);
             opacity: 0;
         }
 
@@ -575,7 +587,7 @@ menu {
                 align-items: center;
                 padding: 5px 10px;
                 border-radius: 100px;
-                background: #30B9D6;
+                background: #30b9d6;
                 margin-right: 10px;
                 margin-bottom: 5px;
 
@@ -607,12 +619,12 @@ menu {
                 transition: 300ms;
 
                 &:focus {
-                    border: 1.2px solid #30B9D6;
+                    border: 1.2px solid #30b9d6;
                 }
             }
 
-            input:focus~.icon svg path {
-                stroke: #30B9D6;
+            input:focus ~ .icon svg path {
+                stroke: #30b9d6;
             }
 
             .icon {
@@ -641,8 +653,6 @@ menu {
             padding: 0;
             overflow-y: auto;
 
-
-
             .tile {
                 cursor: pointer;
                 width: 100%;
@@ -650,7 +660,39 @@ menu {
 
                 &:hover {
                     color: white;
-                    background-color: #30B9D6;
+                    background-color: #30b9d6;
+                }
+            }
+        }
+
+        .buttons {
+            width: 100%;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+
+            button {
+                padding: 10px 25px;
+                border-radius: 7px;
+                border: none;
+                cursor: pointer;
+                outline: none;
+
+                &#cancel {
+                    border: 1.2px solid #30b9d6;
+                    color: #30b9d6;
+                    background: none;
+                }
+
+                &#submit {
+                    transition: 300ms;
+                    background-color: #30b9d6;
+                    color: white;
+                    box-shadow: 0 3px 3px rgba($color: #30b9d6, $alpha: 0.2);
+
+                    &:active {
+                        box-shadow: none;
+                    }
                 }
             }
         }

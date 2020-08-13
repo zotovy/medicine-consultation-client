@@ -78,7 +78,15 @@ const Filter: React.FC = () => {
                 id="city"
                 title="Город"
             >
-
+                <div className="selected">
+                    {
+                        controller.selectedCities.slice(0, 3).map((e: any) => <div className="tile">{e}</div>)
+                    }
+                    {
+                        controller.selectedCities.length > 3 ? <span>...</span> : <React.Fragment />
+                    }
+                </div>
+                <button onClick={() => { controller.isSelectCityModalOpen = true; controller.selectedCitiesModal = [...controller.selectedCities]; }} >Открыть</button>
             </FilterItemBase>
             <FilterItemBase
                 id="work-plan"
@@ -119,6 +127,7 @@ const Filter: React.FC = () => {
                     />)
                 }
             </FilterItemBase>
+            <button id="clear" onClick={controller.clearFilter}>Очистить Фильтр</button>
         </div>
 
     </div>

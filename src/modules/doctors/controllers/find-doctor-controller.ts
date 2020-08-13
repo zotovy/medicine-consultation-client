@@ -1,30 +1,25 @@
 import { observable, action } from "mobx";
-import kladrApi from "kladrapi-for-node";
-import axios from "axios";
+import jsonp from "jsonp";
 
 class FindDoctorController {
-    Kladr: any;
-
-    constructor() {
-        // @ts-ignore
-        this.Kladr = new kladrApi({
-            token: "YksBbydBEY5y9G8daK4aEzhT5aTB8ZT4",
-        });
-    }
+    @observable doctors: DoctorType[] = [];
 
     // Filters
     @observable isFilterOpen: boolean = true;
-    @observable openedFilters: string[] = ["Пол"];
-
+    @observable openedFilters: string[] = [];
     @observable specialities: string[] = [];
     @observable workExperience: string[] = [];
     @observable rating: number[] = [0, 1, 2, 3, 4, 5];
     @observable sexs: string[] = ["male", "female"];
     @observable age: number[] = [];
+    @observable isSelectCityModalOpen: boolean = false;
     @observable selectedCities: string[] = [];
+    @observable selectedCitiesModal: string[] = [];
     @observable queryCities: string[] = [];
     @observable workPlan: string[] = ["single", "multiple"];
     @observable child: string[] = ["child", "adult"];
+
+    private fecthDoctors = (from: number = 0, amount: number = 50) => {};
 
     private addOrRemoveItem = (array: any[], value: any): Array<any> => {
         const index = array.indexOf(value);
@@ -58,22 +53,31 @@ class FindDoctorController {
     };
 
     @action typeCity = (value: string): void => {
-        axios
-            .get(
-                `https://kladr-api.com/api.php?token=YksBbydBEY5y9G8daK4aEzhT5aTB8ZT4&query=${value}&contentType=city&limit=11`
-            )
-            .then((data) => {
-                console.log(data.data);
-                this.queryCities = data.data.result
-                    .splice(1, 11)
-                    .map((e: any) => e.name);
-            });
+        jsonp(
+            `https://kladr-api.ru/api.php?query=${value}&contentType=city&limit=11`,
+            undefined,
+            (err: any, data: any) => {
+                if (!err) {
+                    const cities = data.result.splice(1, 10);
+                    this.queryCities = cities.map((e: any) => e.name);
+                }
+            }
+        );
+    };
 
-        // let q = { query: value, contentType: "city" };
-        // this.Kladr.getData(q, (err: any, result: any) => {
-        //     console.log(err, result);
-        //     this.queryCities = result.splice(1, 11).map((e: any) => e.name);
-        // });
+    @action addCity = (i: number): void => {
+        if (!this.selectedCitiesModal.includes(this.queryCities[i])) {
+            this.selectedCitiesModal.push(this.queryCities[i]);
+        }
+    };
+
+    @action removeCity = (i: number): void => {
+        this.selectedCitiesModal.splice(i, 1);
+    };
+
+    @action onModalSubmit = (): void => {
+        this.selectedCities = this.selectedCitiesModal;
+        this.isSelectCityModalOpen = false;
     };
 
     @action clickOnWorkPlan = (value: string): void => {
@@ -81,6 +85,18 @@ class FindDoctorController {
     };
     @action clickOnChild = (value: string): void => {
         this.child = this.addOrRemoveItem(this.child, value);
+    };
+
+    @action clearFilter = (): void => {
+        this.specialities = [];
+        this.workExperience = [];
+        this.rating = [];
+        this.sexs = [];
+        this.age = [];
+        this.selectedCities = [];
+        this.selectedCitiesModal = [];
+        this.workPlan = [];
+        this.child = [];
     };
 }
 

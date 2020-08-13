@@ -26,9 +26,9 @@ export const workExperience = [
 ];
 
 export const MWorkExperience = {
-    "Меньше 1 года": 364,
-    "1 год": 365,
-    "3 года": 1095,
-    "5 лет": 1825,
-    "больше лет": 2190,
+    LessYear: [0, 364],
+    OneYear: [365, 1094],
+    ThreeYears: [1095, 1824],
+    FiveYears: [1825, 2190],
+    MoreFiveYears: [2190, Infinity],
 };

@@ -5,14 +5,14 @@ import { CloseIcon, SearchIcon } from "../../icons";
 
 const CityAddModal: React.FC = () => {
 
-    return <div className="city-add-modal-container close">
-        <div className="city-add-modal">
+    return <div className={`city-add-modal-container ${controller.isSelectCityModalOpen ? "" : "close"}`}>
+        <div className={`city-add-modal ${controller.isSelectCityModalOpen ? "" : "close"}`}>
             <h1>Выберите города</h1>
             <div className="selected">
                 {
-                    controller.selectedCities.map((e) => <div className="tile">
+                    controller.selectedCitiesModal.map((e: any, i: number) => <div className="tile">
                         <span className="city">{e}</span>
-                        <CloseIcon />
+                        <span onClick={() => controller.removeCity(i)} ><CloseIcon /></span>
                     </div>)
                 }
             </div>
@@ -22,8 +22,12 @@ const CityAddModal: React.FC = () => {
             </div>
             <div className="autocomplete">
                 {
-                    controller.queryCities.map(e => <div className="tile">{e}</div>)
+                    controller.queryCities.map((e: any, i: number) => <div className="tile" onClick={() => controller.addCity(i)}>{e}</div>)
                 }
+            </div>
+            <div className="buttons">
+                <button id="cancel" onClick={() => controller.isSelectCityModalOpen = false}>Отменить</button>
+                <button id="submit" onClick={controller.onModalSubmit}>Подтвердить</button>
             </div>
         </div>
     </div>
