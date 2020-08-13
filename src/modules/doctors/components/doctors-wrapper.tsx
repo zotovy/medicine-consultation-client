@@ -1,14 +1,15 @@
 import React from "react";
+import { observer } from "mobx-react";
 import Doctor from "./doctor";
+import controller from "../controllers/find-doctor-controller";
 
 const DoctorsWrapper: React.FC = () => {
 
-    const a: number[] = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     return <div className="doctors-container">
         {
-            a.map(() => <Doctor name="Иван" surname="Иванов" imgUrl="" rating={0.5} age="35 лет" speciality="Терапевт" />)
+            controller.doctors.map((e) => <Doctor name={e.name ?? ""} surname={e.surname ?? ""} imgUrl={e.photoUrl ?? ""} rating={e.rating} age={e.age + " лет"} speciality={e.speciality[0]} />)
         }
     </div>
 }
 
-export default DoctorsWrapper;
+export default observer(DoctorsWrapper);

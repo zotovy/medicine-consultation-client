@@ -1,8 +1,13 @@
 import { observable, action } from "mobx";
 import jsonp from "jsonp";
+import axios from "axios";
 
 class FindDoctorController {
     @observable doctors: DoctorType[] = [];
+
+    constructor() {
+        this.fecthDoctors().then((docs) => (this.doctors = docs));
+    }
 
     // Filters
     @observable isFilterOpen: boolean = true;
@@ -19,7 +24,34 @@ class FindDoctorController {
     @observable workPlan: string[] = ["single", "multiple"];
     @observable child: string[] = ["child", "adult"];
 
-    private fecthDoctors = (from: number = 0, amount: number = 50) => {};
+    private fecthDoctors = async (
+        from: number = 0,
+        amount: number = 50,
+        needFilter: boolean = false
+    ): Promise<DoctorType[]> => {
+        // const filters = needFilter ? {} : undefined;
+
+        const data = await axios
+            .get(
+                process.env.REACT_APP_SERVER_URL +
+                    `/api/doctors?from=${from}&amount=${amount}`,
+                {
+                    data: {
+                        filter: {},
+                    },
+                }
+            )
+            .then((data) => data.data)
+            .catch((e) => {
+                console.log(e);
+            });
+
+        if (!data.success) {
+            // todo: error handling
+        }
+
+        return data.doctors ?? [];
+    };
 
     private addOrRemoveItem = (array: any[], value: any): Array<any> => {
         const index = array.indexOf(value);

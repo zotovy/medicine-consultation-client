@@ -4,6 +4,7 @@ declare interface UserType {
     surname?: string;
     photoUrl?: string;
     phone?: number;
+    age?: number;
     email?: string;
     password?: string;
     sex?: boolean;

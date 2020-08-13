@@ -12,19 +12,21 @@ type Props = {
 
 const Doctor: React.FC<Props> = (props: Props) => {
 
-    const img = "https://static.ngs.ru/news/99/preview/14bc5f1903d062713ea68eb4e6bedcd70b0dcac5_824.jpg";
+    const img = "https://www.epos-ural.ru/wp-content/uploads/2019/03/user-placeholder.jpg" ?? props.imgUrl;
 
     const full: number = Math.floor(props.rating);
     const half: boolean = props.rating - Math.floor(props.rating) >= 0.5;
     const inactive: number = half ? 4 - full : 5 - full;
 
-    console.log(full, half, inactive);
-
     return <div className="doctor">
         <div className="image" style={{ backgroundImage: `url(${img})` }}></div>
         <div className="info">
             <h3>{props.name}&nbsp;{props.surname}</h3>
-            <span>{props.speciality}, {props.age}</span>
+            {
+                //todo: bugfix -  21 лет
+                props.age && props.speciality ? <span>{props.speciality ? props.speciality + ", " : ""} {props.age ? props.age + " лет" : ""}</span> : <React.Fragment />
+            }
+
             <div className="rating">
 
                 {
