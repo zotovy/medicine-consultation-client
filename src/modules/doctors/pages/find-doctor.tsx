@@ -9,7 +9,10 @@ import controller from "../controllers/find-doctor-controller";
 
 const FindDoctor: React.FC = () => {
     return <React.Fragment>
-        <ErrorBadge isOpen={controller.isErrorBadgeOpen} message="Произошла непридвиденная ошибка. Мы уже работаем над этим!" />
+        <ErrorBadge
+            isOpen={controller.isErrorBadgeOpen}
+            message="Произошла непридвиденная ошибка. Мы уже работаем над этим!"
+        />
         <Title title="Врачи" />
         <div className="row">
             <DoctorWrapper />

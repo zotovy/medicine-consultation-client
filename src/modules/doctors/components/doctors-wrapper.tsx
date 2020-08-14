@@ -2,7 +2,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import Doctor from "./doctor";
 import controller from "../controllers/find-doctor-controller";
-import LoadingIndicator from "../../../components/loading-indicator";
+import LoadingIndicator, { InlineLoadingIndicator } from "../../../components/loading-indicator";
 
 const DoctorsWrapper: React.FC = () => {
 
@@ -14,6 +14,9 @@ const DoctorsWrapper: React.FC = () => {
             {
                 controller.doctors.map((e) => <Doctor name={e.name ?? ""} surname={e.surname ?? ""} imgUrl={e.photoUrl ?? ""} rating={e.rating} age={e.age + " лет"} speciality={e.speciality[0]} />)
             }
+        </div>
+        <div className={`infinity-scroll-loading-indicator ${controller.isInfinyLoading ? "" : "close"}`}>
+            <InlineLoadingIndicator />
         </div>
     </div>
 }

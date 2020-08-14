@@ -267,6 +267,20 @@ menu {
         max-height: none;
     }
 
+    .infinity-scroll-loading-indicator {
+        width: 100%;
+
+        &.close {
+            display: none;
+        }
+
+        #circleG {
+            display: flex;
+            justify-content: center;
+
+        }
+    }
+
 
 
     @include scroll();

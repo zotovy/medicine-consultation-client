@@ -4,6 +4,7 @@ import axios from "axios";
 
 class FindDoctorController {
     @observable doctors: DoctorType[] = [];
+    @observable isInfinyLoading: boolean = false;
 
     constructor() {
         this.fecthDoctors().then((docs) => (this.doctors = docs));
@@ -43,8 +44,10 @@ class FindDoctorController {
                 }
             )
             .then((data) => data.data)
-            .catch((e) => {
-                console.log(e);
+            .catch(() => {
+                return {
+                    success: false,
+                };
             });
 
         if (!data.success) {
