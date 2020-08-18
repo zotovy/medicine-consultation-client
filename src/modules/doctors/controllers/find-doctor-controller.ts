@@ -5,6 +5,8 @@ import axios from "axios";
 class FindDoctorController {
     @observable doctors: DoctorType[] = [];
     @observable isInfinyLoading: boolean = false;
+    @observable currentPage = 0;
+    private amountDoctorsOnOnePage = 50;
 
     constructor() {
         this.fecthDoctors().then((docs) => (this.doctors = docs));
@@ -26,9 +28,30 @@ class FindDoctorController {
     @observable workPlan: string[] = ["single", "multiple"];
     @observable child: string[] = ["child", "adult"];
 
+    loadNextPage = async () => {
+        if (this.isInfinyLoading) {
+            return;
+        }
+
+        this.isInfinyLoading = true;
+
+        // todo: filter
+
+        const doctors = await this.fecthDoctors(
+            this.currentPage * this.amountDoctorsOnOnePage
+        );
+        this.setDoctorAndOffLoading(doctors);
+    };
+
+    @action private setDoctorAndOffLoading = (doctors: DoctorType[]) => {
+        this.doctors = this.doctors.concat(this.doctors, doctors);
+        this.isInfinyLoading = false;
+        this.currentPage += 1;
+    };
+
     private fecthDoctors = async (
         from: number = 0,
-        amount: number = 50,
+        amount: number = this.amountDoctorsOnOnePage,
         needFilter: boolean = false
     ): Promise<DoctorType[]> => {
         // const filters = needFilter ? {} : undefined;

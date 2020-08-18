@@ -35,6 +35,12 @@ export const SearchIcon = () => {
     </svg>;
 }
 
+export const CaretteDown = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="12.5" height="7.091" viewBox="0 0 12.5 7.091">
+        <path id="Icon_awesome-caret-down" data-name="Icon awesome-caret-down" d="M1.635,13.5H12.453a.839.839,0,0,1,.593,1.434L7.639,20.345a.842.842,0,0,1-1.19,0L1.042,14.934A.839.839,0,0,1,1.635,13.5Z" transform="translate(-0.794 -13.5)" fill="#fff" />
+    </svg>
+}
+
 export const WarningIcon = () => {
     return <svg version="1.1" id="Capa_1" x="0px" y="0px"
         viewBox="0 0 512.001 512.001"  >

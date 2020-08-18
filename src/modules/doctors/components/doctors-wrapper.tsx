@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import Doctor from "./doctor";
 import controller from "../controllers/find-doctor-controller";
 import LoadingIndicator, { InlineLoadingIndicator } from "../../../components/loading-indicator";
 
+
+
 const DoctorsWrapper: React.FC = () => {
+
+
 
     return <div className="doctors-container">
         <div className="loading-badge">

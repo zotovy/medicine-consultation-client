@@ -1,0 +1,31 @@
+@import "./theme.scss";
+
+@mixin primaryBoxShadow($x: 0, $y: 4, $blur: 7, $opacity: 0.15) {
+    box-shadow: $x + px $y + px $blur + px rgba($color: $primary, $alpha: $opacity);
+}
+
+@mixin scroll {
+    &::-webkit-scrollbar {
+        position: absolute;
+        width: 20px;
+        height: 18px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        height: 6px;
+        border: 7px solid rgba(0, 0, 0, 0);
+        background-clip: padding-box;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    &::-webkit-scrollbar-button {
+        width: 0;
+        height: 0;
+        display: none;
+    }
+
+    &::-webkit-scrollbar-corner {
+        background-color: transparent;
+    }
+}
