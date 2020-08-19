@@ -13,9 +13,9 @@ class FindDoctorController {
     }
 
     // Filters
-    @observable isFilterOpen: boolean = true;
     @observable isErrorBadgeOpen: boolean = false;
-    @observable openedFilters: string[] = [];
+    @observable openedFilter: string = "";
+    @observable activeFilters: string[] = [];
     @observable specialities: string[] = [];
     @observable workExperience: string[] = [];
     @observable rating: number[] = [0, 1, 2, 3, 4, 5];
@@ -92,7 +92,7 @@ class FindDoctorController {
     };
 
     @action clickOnFilter = (value: string): void => {
-        this.openedFilters = this.addOrRemoveItem(this.openedFilters, value);
+        this.openedFilter = value === this.openedFilter ? "" : value;
     };
 
     @action clickOnSpecialityFilter = (value: string): void => {

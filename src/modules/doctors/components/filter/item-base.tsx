@@ -11,17 +11,21 @@ type Props = {
 }
 
 const FilterItemBase: React.FC<Props> = ({ id, title, children }) => {
-    return <div id={id} className={`collapsed-item ${controller.openedFilters.includes(title) ? "open" : ""}`}>
-        <div className="title" onClick={() => controller.clickOnFilter(title)}>
-            <h3>{title}</h3>
+
+
+    return <div className={`item ${controller.activeFilters.includes(title) ? "active" : ""}`}>
+        <div id={id} className="title" onClick={() => controller.clickOnFilter(title)}>
+            <h5>{title}</h5>
             <Chevron
                 fill="#727272"
-                open={controller.openedFilters.includes(title)}
+                open={controller.openedFilter === title}
             />
         </div>
-        {
-            children
-        }
+        <div className={`collapsed ${controller.openedFilter === title ? "active" : ""}`}>
+            {
+                children
+            }
+        </div>
     </div>;
 }
 

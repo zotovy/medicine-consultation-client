@@ -1,7 +1,13 @@
 // This file includes search input & all existing filters =)
-
 import React, { useState } from "react";
+import { observer } from "mobx-react";
 import { SearchIcon, CaretteDown } from "../icons";
+import FilterItemBase from "./filter/item-base";
+import { ESpeciality, workExperience } from "../enums";
+import Checkbox from "../../../components/checkbox";
+import RatingListItem from "./filter/rating-list-item";
+
+import controller from "../controllers/find-doctor-controller";
 
 const Filter: React.FC = () => {
 
@@ -33,9 +39,80 @@ const Filter: React.FC = () => {
 
 
             {/* Other filters */}
-            <div className="row"></div>
+            <div className="other">
+                <FilterItemBase title="Специальность">
+                    {
+                        Object.keys(ESpeciality).map(speciality => <Checkbox
+                            key={speciality}
+                            label={speciality}
+                            checked={controller.specialities.includes(speciality)}
+                            onChange={() => controller.clickOnSpecialityFilter(speciality)}
+                        />)
+                    }
+                </FilterItemBase>
+                <FilterItemBase title="Возраст пациента">
+                    <Checkbox
+                        checked={controller.workPlan.includes('child')}
+                        label="Детский врач"
+                        onChange={() => controller.clickOnWorkPlan("child")} />
+                    <Checkbox
+                        checked={controller.workPlan.includes('adult')}
+                        label="Взрослый врач"
+                        onChange={() => controller.clickOnWorkPlan("adult")} />
+                </FilterItemBase>
+                <FilterItemBase
+                    id="experience"
+                    title="Опыт работы">
+                    {
+                        workExperience.map(experience => <Checkbox
+                            key={experience}
+                            label={experience}
+                            checked={controller.workExperience.includes(experience)}
+                            onChange={() => controller.clickOnWorkExperienceFilter(experience)}
+                        />)
+                    }
+
+                </FilterItemBase>
+                <FilterItemBase
+                    id="work-plan"
+                    title="Место работы"
+                >
+                    <Checkbox
+                        checked={controller.workPlan.includes('single')}
+                        label="Единственное"
+                        onChange={() => controller.clickOnWorkPlan("single")} />
+                    <Checkbox
+                        checked={controller.workPlan.includes('multiple')}
+                        label="Не единственное"
+                        onChange={() => controller.clickOnWorkPlan("multiple")} />
+                </FilterItemBase>
+                <FilterItemBase
+                    id="city"
+                    title="Город"
+                >
+                    <div className="selected">
+                        {
+                            controller.selectedCities.slice(0, 3).map((e: any) => <div className="tile">{e}</div>)
+                        }
+                        {
+                            controller.selectedCities.length > 3 ? <span>...</span> : <React.Fragment />
+                        }
+                    </div>
+                    <button onClick={() => { controller.isSelectCityModalOpen = true; controller.selectedCitiesModal = [...controller.selectedCities]; }} >Открыть</button>
+                </FilterItemBase>
+                <FilterItemBase
+                    id="rating"
+                    title="Рейтинг">
+                    <RatingListItem amount={0} />
+                    <RatingListItem amount={1} />
+                    <RatingListItem amount={2} />
+                    <RatingListItem amount={3} />
+                    <RatingListItem amount={4} />
+                    <RatingListItem amount={5} />
+                </FilterItemBase>
+            </div>
         </div>
     </div>
 }
 
-export default Filter;
+export default observer(Filter);
