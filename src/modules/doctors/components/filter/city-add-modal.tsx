@@ -10,7 +10,7 @@ const CityAddModal: React.FC = () => {
             <h1>Выберите города</h1>
             <div className="selected">
                 {
-                    controller.selectedCitiesModal.map((e: any, i: number) => <div className="tile">
+                    controller.selectedCities.map((e: any, i: number) => <div className="tile">
                         <span className="city">{e}</span>
                         <span onClick={() => controller.removeCity(i)} ><CloseIcon /></span>
                     </div>)

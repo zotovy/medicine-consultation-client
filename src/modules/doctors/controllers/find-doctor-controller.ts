@@ -22,8 +22,7 @@ class FindDoctorController {
     @observable sexs: string[] = ["male", "female"];
     @observable age: number[] = [];
     @observable isSelectCityModalOpen: boolean = false;
-    @observable selectedCities: string[] = [];
-    @observable selectedCitiesModal: string[] = [];
+    @observable selectedCities: string[] = ["Москва", "Санкт-Петербург"];
     @observable queryCities: string[] = [];
     @observable workPlan: string[] = ["single", "multiple"];
     @observable child: string[] = ["child", "adult"];
@@ -132,17 +131,16 @@ class FindDoctorController {
     };
 
     @action addCity = (i: number): void => {
-        if (!this.selectedCitiesModal.includes(this.queryCities[i])) {
-            this.selectedCitiesModal.push(this.queryCities[i]);
+        if (!this.selectedCities.includes(this.queryCities[i])) {
+            this.selectedCities.push(this.queryCities[i]);
         }
     };
 
     @action removeCity = (i: number): void => {
-        this.selectedCitiesModal.splice(i, 1);
+        this.selectedCities.splice(i, 1);
     };
 
     @action onModalSubmit = (): void => {
-        this.selectedCities = this.selectedCitiesModal;
         this.isSelectCityModalOpen = false;
     };
 
@@ -160,7 +158,6 @@ class FindDoctorController {
         this.sexs = [];
         this.age = [];
         this.selectedCities = [];
-        this.selectedCitiesModal = [];
         this.workPlan = [];
         this.child = [];
     };

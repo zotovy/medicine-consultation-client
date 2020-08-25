@@ -1,7 +1,7 @@
 // This file includes search input & all existing filters =)
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import { SearchIcon, CaretteDown } from "../icons";
+import { SearchIcon, CaretteDown, CloseIcon } from "../icons";
 import FilterItemBase from "./filter/item-base";
 import { ESpeciality, workExperience } from "../enums";
 import Checkbox from "../../../components/checkbox";
@@ -85,20 +85,12 @@ const Filter: React.FC = () => {
                         label="Не единственное"
                         onChange={() => controller.clickOnWorkPlan("multiple")} />
                 </FilterItemBase>
-                <FilterItemBase
-                    id="city"
-                    title="Город"
-                >
-                    <div className="selected">
-                        {
-                            controller.selectedCities.slice(0, 3).map((e: any) => <div className="tile">{e}</div>)
-                        }
-                        {
-                            controller.selectedCities.length > 3 ? <span>...</span> : <React.Fragment />
-                        }
+                <div className={`item ${controller.activeFilters.includes("Город") ? "active" : ""}`}>
+                    <div id={"city"} className="title" onClick={() => { controller.isSelectCityModalOpen = true; }}>
+                        <h5>Город</h5>
                     </div>
-                    <button onClick={() => { controller.isSelectCityModalOpen = true; controller.selectedCitiesModal = [...controller.selectedCities]; }} >Открыть</button>
-                </FilterItemBase>
+                </div>
+
                 <FilterItemBase
                     id="rating"
                     title="Рейтинг">
