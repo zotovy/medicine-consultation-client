@@ -5,7 +5,7 @@ type Props = {
     name: string;
     surname: string;
     speciality: string;
-    age: string;
+    age?: number;
     imgUrl: string;
     rating: number;
 };
@@ -22,9 +22,10 @@ const Doctor: React.FC<Props> = (props: Props) => {
         <div className="image" style={{ backgroundImage: `url(${img})` }}></div>
         <div className="info">
             <h3>{props.name}&nbsp;{props.surname}</h3>
+
             {
                 //todo: bugfix -  21 лет
-                props.age && props.speciality ? <span>{props.speciality ? props.speciality + ", " : ""} {props.age ? props.age + " лет" : ""}</span> : <React.Fragment />
+                props.age || props.speciality ? <span className="speciality-and-age">{props.speciality ? props.speciality + ", " : ""}{props.age ? props.age + " лет" : ""}</span> : <React.Fragment />
             }
 
             <div className="rating">

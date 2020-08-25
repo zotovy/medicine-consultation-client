@@ -54,6 +54,7 @@ class FindDoctorController {
         amount: number = this.amountDoctorsOnOnePage,
         needFilter: boolean = false
     ): Promise<DoctorType[]> => {
+        // todo
         // const filters = needFilter ? {} : undefined;
 
         const data = await axios
@@ -76,6 +77,12 @@ class FindDoctorController {
         if (!data.success) {
             this.openBadge();
         }
+
+        for (let i = 0; i < 45; i++) {
+            data.doctors.push(data.doctors[0]);
+        }
+
+        console.log(data.doctors[0]);
 
         return data.doctors ?? [];
     };

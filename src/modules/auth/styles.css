@@ -1,3 +1,11 @@
+.signup-module {
+    position: fixed;
+}
+
+.doctor-signup-module {
+    position: fixed;
+}
+
 .phone-input {
     width: calc(100% - 26px);
     outline: none;

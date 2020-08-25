@@ -30,7 +30,6 @@ const FindDoctor: React.FC = () => {
             message="Произошла непридвиденная ошибка. Мы уже работаем над этим!"
         /> */}
         <Filter />
-        123
         <DoctorWrapper />
     </React.Fragment>
 };

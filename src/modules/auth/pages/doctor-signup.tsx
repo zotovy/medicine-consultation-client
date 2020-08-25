@@ -48,7 +48,7 @@ const DoctorSignUp: React.FC = () => {
         history.push("/");
     });
 
-    return <React.Fragment>
+    return <div className="doctor-signup-module">
         <Badge icon={BadgeIcon} title="Спасибо за регистрацию!" isOpen={signupUiStore.isBadgeOpen}>
             Ваши данные отправлены на проверку. Подробнее о том, как работает сервис вы можете почитать <a>здесь</a>.</Badge>
         <Wrapper>
@@ -65,7 +65,7 @@ const DoctorSignUp: React.FC = () => {
                 </Suspense>
             </Swapper>
         </Wrapper >
-    </React.Fragment>
+    </div>
 }
 
 export default observer(DoctorSignUp);

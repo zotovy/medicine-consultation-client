@@ -6,7 +6,6 @@ import FilterItemBase from "./filter/item-base";
 import { ESpeciality, workExperience } from "../enums";
 import Checkbox from "../../../components/checkbox";
 import RatingListItem from "./filter/rating-list-item";
-
 import controller from "../controllers/find-doctor-controller";
 
 const Filter: React.FC = () => {
