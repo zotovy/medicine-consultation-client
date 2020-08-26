@@ -11,7 +11,11 @@ class FindDoctorController {
     private amountDoctorsOnOnePage = 50;
 
     constructor() {
-        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+        this.isLoading = true;
+        this.fecthDoctors(0, 50, true).then((docs) => {
+            this.doctors = docs;
+            this.isLoading = false;
+        });
     }
 
     // Filters
@@ -116,8 +120,6 @@ class FindDoctorController {
         amount: number = this.amountDoctorsOnOnePage,
         needFilter: boolean = false
     ): Promise<DoctorType[]> => {
-        this.isLoading = true;
-
         const filter: string | undefined = needFilter
             ? this.getFilter(from, amount)
             : undefined;
@@ -130,8 +132,6 @@ class FindDoctorController {
                     success: false,
                 };
             });
-
-        this.isLoading = false;
 
         if (!data.success) {
             this.openBadge();
