@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { observer } from "mobx-react";
 import Doctor from "./doctor";
 import controller from "../controllers/find-doctor-controller";

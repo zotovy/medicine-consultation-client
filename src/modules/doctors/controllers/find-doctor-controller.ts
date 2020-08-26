@@ -62,7 +62,6 @@ class FindDoctorController {
             amount,
             fullName: this.name,
             isDownward: this.isDownward,
-            speciality: this.specialities,
             qualification: this.qualification,
             rating: this.rating,
             city: this.selectedCities,
@@ -84,6 +83,29 @@ class FindDoctorController {
                 filter += `${key}=${JSON.stringify(value)}`;
             }
         });
+
+        //* Speciality
+        if (this.specialities.length > 0) {
+            const mapSpeciality = {
+                Педиатр: "Pediatrician",
+                Терапевт: "Therapist",
+                Дерматолог: "Dermatologist",
+                Психолог: "Psychologist",
+                Дефектолог: "Defectologis",
+                Логопед: "Logopedist",
+                Диетолог: "Nutritionist",
+                Аллерголог: "Allergist",
+            };
+
+            const speciality: string[] = [];
+            this.specialities.forEach((key) => {
+                // @ts-ignore
+                speciality.push(mapSpeciality[key]);
+            });
+
+            filter += filter ? "&" : "?";
+            filter += `speciality=${JSON.stringify(speciality)}`;
+        }
 
         //* Experience
         if (this.workExperience.length > 0) {
