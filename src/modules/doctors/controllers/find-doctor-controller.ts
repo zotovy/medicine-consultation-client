@@ -229,6 +229,11 @@ class FindDoctorController {
         this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
+    @action clickOnQualification = (value: string): void => {
+        this.qualification = this.addOrRemoveItem(this.child, value);
+        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+    };
+
     @action clearFilter = (): void => {
         this.specialities = [];
         this.workExperience = [];

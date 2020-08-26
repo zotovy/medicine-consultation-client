@@ -76,6 +76,23 @@ const Filter: React.FC = () => {
 
                 </FilterItemBase>
                 <FilterItemBase
+                    id="qualification"
+                    title="Квалификация"
+                >
+                    <Checkbox
+                        checked={controller.qualification.includes('second')}
+                        label="Вторая"
+                        onChange={() => controller.clickOnQualification("second")} />
+                    <Checkbox
+                        checked={controller.qualification.includes('first')}
+                        label="Первая"
+                        onChange={() => controller.clickOnQualification("first")} />
+                    <Checkbox
+                        checked={controller.qualification.includes('highest')}
+                        label="Высшая"
+                        onChange={() => controller.clickOnQualification("highest")} />
+                </FilterItemBase>
+                <FilterItemBase
                     id="work-plan"
                     title="Место работы"
                 >
