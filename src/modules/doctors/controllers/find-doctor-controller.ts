@@ -6,26 +6,27 @@ class FindDoctorController {
     @observable doctors: DoctorType[] = [];
     @observable isInfinyLoading: boolean = false;
     @observable currentPage = 0;
+    @observable isErrorBadgeOpen: boolean = false;
     private amountDoctorsOnOnePage = 50;
 
     constructor() {
-        this.fecthDoctors().then((docs) => (this.doctors = docs));
+        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     }
 
     // Filters
-    @observable isErrorBadgeOpen: boolean = false;
+    @observable name: string = "";
+    @observable isDownward: boolean = false;
     @observable openedFilter: string = "";
     @observable activeFilters: string[] = [];
     @observable specialities: string[] = [];
+    @observable qualification: string[] = [];
     @observable workExperience: string[] = [];
-    @observable rating: number[] = [0, 1, 2, 3, 4, 5];
-    @observable sexs: string[] = ["male", "female"];
-    @observable age: number[] = [];
+    @observable rating: number[] = [];
     @observable isSelectCityModalOpen: boolean = false;
-    @observable selectedCities: string[] = ["Москва", "Санкт-Петербург"];
+    @observable selectedCities: string[] = [];
     @observable queryCities: string[] = [];
-    @observable workPlan: string[] = ["single", "multiple"];
-    @observable child: string[] = ["child", "adult"];
+    @observable workPlan: string[] = [];
+    @observable child: string[] = [];
 
     loadNextPage = async () => {
         if (this.isInfinyLoading) {
@@ -48,24 +49,79 @@ class FindDoctorController {
         this.currentPage += 1;
     };
 
+    private getFilter = (from: number, amount: number): string => {
+        let filter = "";
+
+        const mapFilter = {
+            from,
+            amount,
+            fullName: this.name,
+            isDownward: this.isDownward,
+            speciality: this.specialities,
+            qualification: this.qualification,
+            rating: this.rating,
+            city: this.selectedCities,
+            workPlan: this.workPlan,
+        };
+
+        Object.keys(mapFilter).forEach((key) => {
+            // @ts-ignore
+            const value = mapFilter[key];
+
+            const defined = Array.isArray(value)
+                ? value.length > 0
+                : value
+                ? true
+                : false;
+
+            if (defined) {
+                filter += filter ? "&" : "?";
+                filter += `${key}=${JSON.stringify(value)}`;
+            }
+        });
+
+        //* Experience
+        if (this.workExperience.length > 0) {
+            const mapExperience = {
+                "Меньше 1 года": "Less Year",
+                "1 год": "OneYear",
+                "3 года": "ThreeYears",
+                "5 лет": "FiveYears",
+                "Больше 5 лет": "MoreFiveYears",
+            };
+
+            const experience: string[] = [];
+            this.workExperience.forEach((key) => {
+                // @ts-ignore
+                experience.push(mapExperience[key]);
+                console.log(key);
+            });
+
+            filter += filter ? "&" : "?";
+            filter += `experience=${JSON.stringify(experience)}`;
+        }
+
+        //* Child
+        if (this.child.length !== 0) {
+            filter += `&isChild=${this.child.includes("child")}`;
+            filter += `&isAdult=${this.child.includes("adult")}`;
+        }
+
+        return filter;
+    };
+
     private fecthDoctors = async (
         from: number = 0,
         amount: number = this.amountDoctorsOnOnePage,
         needFilter: boolean = false
     ): Promise<DoctorType[]> => {
         // todo
-        // const filters = needFilter ? {} : undefined;
+        const filter: string | undefined = needFilter
+            ? this.getFilter(from, amount)
+            : undefined;
 
         const data = await axios
-            .get(
-                process.env.REACT_APP_SERVER_URL +
-                    `/api/doctors?from=${from}&amount=${amount}`,
-                {
-                    data: {
-                        filter: {},
-                    },
-                }
-            )
+            .get(process.env.REACT_APP_SERVER_URL + `/api/doctors${filter}`)
             .then((data) => data.data)
             .catch(() => {
                 return {
@@ -75,10 +131,6 @@ class FindDoctorController {
 
         if (!data.success) {
             this.openBadge();
-        }
-
-        for (let i = 0; i < 45; i++) {
-            data.doctors.push(data.doctors[0]);
         }
 
         console.log(data.doctors[0]);
@@ -103,18 +155,17 @@ class FindDoctorController {
 
     @action clickOnSpecialityFilter = (value: string): void => {
         this.specialities = this.addOrRemoveItem(this.specialities, value);
+        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     @action clickOnWorkExperienceFilter = (value: string): void => {
         this.workExperience = this.addOrRemoveItem(this.workExperience, value);
+        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     @action clickOnRating = (value: number): void => {
         this.rating = this.addOrRemoveItem(this.rating, value);
-    };
-
-    @action clickOnSex = (value: string): void => {
-        this.sexs = this.addOrRemoveItem(this.sexs, value);
+        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     @action typeCity = (value: string): void => {
@@ -142,24 +193,30 @@ class FindDoctorController {
 
     @action onModalSubmit = (): void => {
         this.isSelectCityModalOpen = false;
+        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     @action clickOnWorkPlan = (value: string): void => {
         this.workPlan = this.addOrRemoveItem(this.workPlan, value);
+        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
     @action clickOnChild = (value: string): void => {
         this.child = this.addOrRemoveItem(this.child, value);
+        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     @action clearFilter = (): void => {
         this.specialities = [];
         this.workExperience = [];
         this.rating = [];
-        this.sexs = [];
-        this.age = [];
         this.selectedCities = [];
         this.workPlan = [];
         this.child = [];
+    };
+
+    @action clickOnDownward = (): void => {
+        this.isDownward = !this.isDownward;
+        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     private openBadge = () => {

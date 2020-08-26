@@ -1,7 +1,7 @@
 // This file includes search input & all existing filters =)
-import React, { useState } from "react";
+import React from "react";
 import { observer } from "mobx-react";
-import { SearchIcon, CaretteDown, CloseIcon } from "../icons";
+import { SearchIcon, CaretteDown } from "../icons";
 import FilterItemBase from "./filter/item-base";
 import { ESpeciality, workExperience } from "../enums";
 import Checkbox from "../../../components/checkbox";
@@ -10,14 +10,17 @@ import controller from "../controllers/find-doctor-controller";
 
 const Filter: React.FC = () => {
 
-    const [down, setDown] = useState(false)
 
     return <div className="filter">
         <div className="column">
             {/* Search input, sort by & downward */}
             <div className="row">
                 <div className="search">
-                    <input type="text" placeholder="Введите имя доктора" />
+                    <input
+                        type="text"
+                        placeholder="Введите имя доктора"
+                        onChange={(e) => controller.name = e.target.value}
+                        value={controller.name} />
                     <SearchIcon />
                 </div>
 
@@ -29,7 +32,7 @@ const Filter: React.FC = () => {
                     </div>
                 </div>
 
-                <div onClick={() => setDown(!down)} className={`downward-upward ${down ? "" : "upward"}`}>
+                <div onClick={controller.clickOnDownward} className={`downward-upward ${controller.isDownward ? "" : "upward"}`}>
                     <p className="stick" id="stick-top"></p>
                     <p className="stick" id="stick-centre"></p>
                     <p className="stick" id="stick-bottom"></p>
@@ -51,13 +54,13 @@ const Filter: React.FC = () => {
                 </FilterItemBase>
                 <FilterItemBase title="Возраст пациента">
                     <Checkbox
-                        checked={controller.workPlan.includes('child')}
+                        checked={controller.child.includes('child')}
                         label="Детский врач"
-                        onChange={() => controller.clickOnWorkPlan("child")} />
+                        onChange={() => controller.clickOnChild("child")} />
                     <Checkbox
-                        checked={controller.workPlan.includes('adult')}
+                        checked={controller.child.includes('adult')}
                         label="Взрослый врач"
-                        onChange={() => controller.clickOnWorkPlan("adult")} />
+                        onChange={() => controller.clickOnChild("adult")} />
                 </FilterItemBase>
                 <FilterItemBase
                     id="experience"
@@ -77,13 +80,13 @@ const Filter: React.FC = () => {
                     title="Место работы"
                 >
                     <Checkbox
-                        checked={controller.workPlan.includes('single')}
+                        checked={controller.workPlan.includes('Single')}
                         label="Единственное"
-                        onChange={() => controller.clickOnWorkPlan("single")} />
+                        onChange={() => controller.clickOnWorkPlan("Single")} />
                     <Checkbox
-                        checked={controller.workPlan.includes('multiple')}
+                        checked={controller.workPlan.includes('Multiple')}
                         label="Не единственное"
-                        onChange={() => controller.clickOnWorkPlan("multiple")} />
+                        onChange={() => controller.clickOnWorkPlan("Multiple")} />
                 </FilterItemBase>
                 <div className={`item ${controller.activeFilters.includes("Город") ? "active" : ""}`}>
                     <div id={"city"} className="title" onClick={() => { controller.isSelectCityModalOpen = true; }}>

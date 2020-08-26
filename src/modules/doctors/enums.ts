@@ -22,7 +22,7 @@ export const workExperience = [
     "1 год",
     "3 года",
     "5 лет",
-    "больше 5 лет",
+    "Больше 5 лет",
 ];
 
 export const MWorkExperience = {
