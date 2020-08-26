@@ -19,7 +19,7 @@ const Filter: React.FC = () => {
                     <input
                         type="text"
                         placeholder="Введите имя доктора"
-                        onChange={(e) => controller.name = e.target.value}
+                        onChange={(e) => controller.onNameChange(e.target.value)}
                         value={controller.name} />
                     <SearchIcon />
                 </div>

@@ -4,6 +4,7 @@ import axios from "axios";
 
 class FindDoctorController {
     @observable doctors: DoctorType[] = [];
+    @observable isLoading: boolean = false;
     @observable isInfinyLoading: boolean = false;
     @observable currentPage = 0;
     @observable isErrorBadgeOpen: boolean = false;
@@ -115,7 +116,8 @@ class FindDoctorController {
         amount: number = this.amountDoctorsOnOnePage,
         needFilter: boolean = false
     ): Promise<DoctorType[]> => {
-        // todo
+        this.isLoading = true;
+
         const filter: string | undefined = needFilter
             ? this.getFilter(from, amount)
             : undefined;
@@ -129,11 +131,11 @@ class FindDoctorController {
                 };
             });
 
+        this.isLoading = false;
+
         if (!data.success) {
             this.openBadge();
         }
-
-        console.log(data.doctors[0]);
 
         return data.doctors ?? [];
     };
@@ -216,6 +218,11 @@ class FindDoctorController {
 
     @action clickOnDownward = (): void => {
         this.isDownward = !this.isDownward;
+        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+    };
+
+    @action onNameChange = (value: string): void => {
+        this.name = value;
         this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 

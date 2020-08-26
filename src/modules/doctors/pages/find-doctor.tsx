@@ -4,6 +4,7 @@ import DoctorWrapper from '../components/doctors-wrapper';
 import Filter from '../components/filter';
 import ErrorBadge from '../../../components/error-badge';
 import controller from "../controllers/find-doctor-controller";
+import LoadingIndicator from "../../../components/loading-indicator";
 
 
 const FindDoctor: React.FC = () => {
@@ -22,15 +23,16 @@ const FindDoctor: React.FC = () => {
         }
     }
 
-    // todo: turn on error badge
-
     return <React.Fragment>
-        {/* <ErrorBadge
+        <ErrorBadge
             isOpen={controller.isErrorBadgeOpen}
             message="Произошла непридвиденная ошибка. Мы уже работаем над этим!"
-        /> */}
+        />
         <Filter />
         <DoctorWrapper />
+        <div className={`loading-badge ${controller.isLoading ? "" : "close"}`}>
+            <LoadingIndicator />
+        </div>
     </React.Fragment>
 };
 
