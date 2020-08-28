@@ -4,6 +4,8 @@ import controller from "../stores/reset-password";
 import TextField from "../../../components/text-field";
 import ConfirmButton from "../../../components/confirm-button";
 import { LockIcon } from '../icons';
+import PasswordError from "../components/password-error";
+
 
 const ResetPasswordFromEmailPage: React.FC = () => {
     return <section className="reset-password-module">
@@ -24,10 +26,7 @@ const ResetPasswordFromEmailPage: React.FC = () => {
                     needErrorHandle={true}
                 />
 
-                <div className={`error ${controller.emailError ? "" : "close"}`}>
-                    <div className="icon">!</div>
-                    <span>{controller.emailError}</span>
-                </div>
+                <PasswordError error={controller.emailError} />
 
                 <ConfirmButton
                     content="Подтвердить"

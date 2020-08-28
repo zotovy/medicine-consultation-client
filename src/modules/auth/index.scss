@@ -3,7 +3,6 @@
 
 
 //──── BADGE ─────────────────────────────────────────────────────────────────────────────
-
 .badge-container {
     position: absolute;
     top: 15px;
@@ -131,6 +130,36 @@
 
 }
 
+//──── PASSWORD ERROR ────────────────────────────────────────────────────────────────────
+.password-error {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+
+    &.close {
+        display: none;
+    }
+
+    .icon {
+        width: 25px;
+        height: 25px;
+        border-radius: 50%;
+        background-color: #FABCC2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #EB3540;
+        font-weight: bolder;
+    }
+
+    span {
+        font-size: 14px;
+        margin-left: 10px;
+        color: #EB3540;
+    }
+}
+
 
 
 //========================================================================================
@@ -199,34 +228,8 @@ section.reset-password-module {
             }
         }
 
-        .error {
+        .password-error {
             margin-top: 10px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: start;
-
-            &.close {
-                display: none;
-            }
-
-            .icon {
-                width: 25px;
-                height: 25px;
-                border-radius: 50%;
-                background-color: #FABCC2;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                color: #EB3540;
-                font-weight: bolder;
-            }
-
-            span {
-                font-size: 14px;
-                margin-left: 10px;
-                color: #EB3540;
-            }
         }
 
         .text-field {

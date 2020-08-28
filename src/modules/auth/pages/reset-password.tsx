@@ -3,6 +3,7 @@ import { observer } from "mobx-react";
 import TextField from "../../../components/text-field";
 import { LockIcon } from "../icons";
 import ConfirmButton from "../../../components/confirm-button";
+import PasswordError from "../components/password-error";
 import controller from "../stores/reset-password";
 
 
@@ -30,10 +31,7 @@ const ResetPasswordPage: React.FC = () => {
                     needErrorHandle={true}
                 />
 
-                <div className={`error ${controller.emailError ? "" : "close"}`}>
-                    <div className="icon">!</div>
-                    <span>{controller.emailError}</span>
-                </div>
+                <PasswordError error={controller.passwordError} />
 
                 <ConfirmButton
                     content="Сменить пароль"

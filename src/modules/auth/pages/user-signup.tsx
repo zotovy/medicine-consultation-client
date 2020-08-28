@@ -22,6 +22,8 @@ import Container from "../components/container";
 import SexCheckbox from "../components/sex-checkbox";
 import SignupLink from "../components/signup-link";
 import ErrorAlert from "../components/error-alert";
+import PasswordError from "../components/password-error";
+
 
 // Static
 import "../styles.css";
