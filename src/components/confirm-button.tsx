@@ -16,7 +16,7 @@ const Button = styled.div`
     cursor: pointer;
     width: 100%;
     background-color: #30b9d6;
-    padding: 15px;
+    padding: 12px;
     border-radius: 10px;
     display: flex;
     justify-content: center;
@@ -55,6 +55,7 @@ const Text = styled.p`
 const ConfirmButton: React.FC<Props> = (props: Props) => {
   return (
     <Button
+      className="confirm-button"
       data-test={props.dataTest}
       {/*
        // @ts-ignore */  ...{}}
