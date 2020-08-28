@@ -1,12 +1,12 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import controller from "../stores/reset-password-from-email";
+import controller from "../stores/reset-password";
 import TextField from "../../../components/text-field";
 import ConfirmButton from "../../../components/confirm-button";
 import { LockIcon } from '../icons';
 
 const ResetPasswordFromEmailPage: React.FC = () => {
-    return <section className="reset-password-from-email-module">
+    return <section className="reset-password-module">
         <main>
             <div className="container">
                 <div className="illustration">

@@ -140,7 +140,7 @@
 //========================================================================================
 
 
-section.reset-password-from-email-module {
+section.reset-password-module {
 
 
     main {
@@ -179,6 +179,11 @@ section.reset-password-from-email-module {
             font-weight: 600;
             color: #282828;
             margin-bottom: 10px;
+            text-align: center;
+
+            &#password {
+                margin-bottom: 0px;
+            }
         }
 
         p.subtitle {
@@ -189,7 +194,9 @@ section.reset-password-from-email-module {
             text-align: center;
             max-width: 500px;
 
-
+            &#password {
+                margin-bottom: 15px;
+            }
         }
 
         .error {
@@ -220,6 +227,10 @@ section.reset-password-from-email-module {
                 margin-left: 10px;
                 color: #EB3540;
             }
+        }
+
+        .text-field {
+            margin: 5px 0;
         }
 
         .confirm-button {

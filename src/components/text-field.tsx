@@ -162,7 +162,7 @@ const TextField: React.FC<Props> = (props: Props) => {
 
   return (
     // @ts-ignore
-    <Container style={props.styles?.container || {}} >
+    <Container style={props.styles?.container || {}} className="text-field" >
       {/*
        // @ts-ignore */}
       <Field style={props.styles?.field || {}}>{props.field}</Field>

@@ -11,6 +11,7 @@ const Signup = lazy(() => import("./modules/auth").then(module => ({ default: mo
 const Login = lazy(() => import("./modules/auth").then(module => ({ default: module.Login })));
 const DoctorSignUp = lazy(() => import("./modules/auth").then(module => ({ default: module.DoctorSignUp })));
 const ResetPasswordFromEmail = lazy(() => import("./modules/auth").then(module => ({ default: module.ResetPasswordFromEmail })));
+const ResetPassword = lazy(() => import("./modules/auth").then(module => ({ default: module.ResetPassword })));
 const FindDoctor = lazy(() => import("./modules/doctors").then(module => ({ default: module.ChooseDoctor })));
 const FilterCityModal = lazy(() => import("./modules/doctors").then(module => ({ default: module.FilterCityModal })));
 
@@ -44,6 +45,11 @@ const App = () => {
       <Route path="/reset-password-from-email" exact>
         <Suspense fallback={<React.Fragment />}>
           <ResetPasswordFromEmail />
+        </Suspense>
+      </Route>
+      <Route path="/reset-password" exact>
+        <Suspense fallback={<React.Fragment />}>
+          <ResetPassword />
         </Suspense>
       </Route>
       <Route path="/find-doctor">
