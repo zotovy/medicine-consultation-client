@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import controller from "../stores/reset-password-from-email";
 import TextField from "../../../components/text-field";
 import ConfirmButton from "../../../components/confirm-button";
 import { LockIcon } from '../icons';
@@ -17,11 +18,16 @@ const ResetPasswordFromEmailPage: React.FC = () => {
                     письмо с инструкцией по восстановлению пароля.
             </p>
                 <TextField
-                    onChange={() => { }}
+                    onChange={(value) => controller.email = value}
                     hint="Введите ваш Email"
+                    value={controller.email}
                     needErrorHandle={true}
-                    value={"123"}
                 />
+
+                <div className={`error ${controller.emailError ? "" : "close"}`}>
+                    <div className="icon">!</div>
+                    <span>{controller.emailError}</span>
+                </div>
 
                 <ConfirmButton
                     content="Подтвердить"
