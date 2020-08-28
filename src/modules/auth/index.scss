@@ -155,6 +155,10 @@ section.reset-password-from-email-module {
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            @media screen and (max-width: 420px) {
+                margin: 0 20px;
+            }
         }
 
         .illustration {
@@ -184,6 +188,8 @@ section.reset-password-from-email-module {
             color: #707070;
             text-align: center;
             max-width: 500px;
+
+
         }
 
         .confirm-button {
