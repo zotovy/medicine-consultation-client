@@ -131,7 +131,7 @@ const Login: React.FC = observer(() => {
                     </React.Fragment>
                     : null
             }
-            <Linker to="/">
+            <Linker to="/reset-password-from-email">
                 <Link>
                     <span>Забыли пароль?</span>
                 </Link>

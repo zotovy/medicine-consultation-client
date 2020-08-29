@@ -47,7 +47,7 @@ const App = () => {
           <ResetPasswordFromEmail />
         </Suspense>
       </Route>
-      <Route path="/reset-password" exact>
+      <Route path="/reset-password/:id" exact>
         <Suspense fallback={<React.Fragment />}>
           <ResetPassword />
         </Suspense>

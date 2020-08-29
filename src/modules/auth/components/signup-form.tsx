@@ -119,6 +119,7 @@ const SignupForm: React.FC = observer(() => {
                 hint={"••••••••••"}
                 type={"password"}
                 inputDataTest="confirm-password"
+                styles={{ input: { width: "100% !important" } }}
             />
         </FormColumn>
     </Form>

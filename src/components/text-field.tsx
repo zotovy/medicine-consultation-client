@@ -24,6 +24,8 @@ type Props = {
     input?: object;
   };
   inputDataTest?: string;
+  useTextHint?: boolean;
+  removePassswordIcon?: boolean;
 };
 
 const Container = styled.div`
@@ -135,19 +137,43 @@ const ShowPassword = styled.div`
 
 const TextField: React.FC<Props> = (props: Props) => {
 
+  // let styles = {};
 
-  const styles = props.field === "Пароль" && !props.showPassword ? { letterSpacing: "5px", width: "calc(100% + 14px)" } : {};
+  // if (props.useTextHint && props.type === "password") {
+  //   styles = props.value.trim() === "" ? {} : { letterSpacing: "5px", width: "calc(100% + 14px)" };
+  // } else {
+
+  // }
+
+  const styles = props.type === "password" && !props.showPassword ? { letterSpacing: "5px", width: "calc(100% + 14px)" } : {};
 
   let inputStyles = props.styles?.input || {};
   inputStyles = {
     ...inputStyles,
     ...styles,
+    ...props.styles?.input
   }
 
-  if (props.type === "password" && !props.showPassword) {
+  if (props.type === "password" && !props.showPassword && !props.useTextHint) {
     inputStyles = {
       ...inputStyles,
       letterSpacing: "5px",
+    }
+  }
+
+  if (props.type === "password" && props.useTextHint) {
+    if (props.value?.trim() === "") {
+      inputStyles = {
+        ...inputStyles,
+        letterSpacing: "0px",
+        width: "100%"
+      }
+    } else {
+      inputStyles = {
+        ...inputStyles,
+        letterSpacing: "5px",
+        width: "100%"
+      }
     }
   }
 

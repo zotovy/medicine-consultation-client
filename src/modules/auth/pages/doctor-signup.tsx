@@ -49,7 +49,7 @@ const DoctorSignUp: React.FC = () => {
     });
 
     return <div className="doctor-signup-module">
-        <Badge icon={BadgeIcon} title="Спасибо за регистрацию!" isOpen={signupUiStore.isBadgeOpen}>
+        <Badge icon={BadgeIcon} title="Спасибо за регистрацию!" isOpen={true}>
             Ваши данные отправлены на проверку. Подробнее о том, как работает сервис вы можете почитать <a>здесь</a>.</Badge>
         <Wrapper>
             <MediaQuery minDeviceWidth="1025px">
