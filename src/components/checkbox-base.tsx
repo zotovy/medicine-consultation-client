@@ -12,6 +12,7 @@ const CheckboxBase: React.FC<Props> = (props: Props) => {
     return <div className="checkbox">
         <label>
             <input
+                id="checkbox"
                 type="checkbox"
                 checked={props.checked}
                 onChange={props.onChange}

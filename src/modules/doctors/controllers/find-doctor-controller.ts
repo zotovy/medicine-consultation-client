@@ -19,6 +19,7 @@ class FindDoctorController {
     }
 
     // Filters
+    @observable mobileFiltersOpen: boolean = false;
     @observable name: string = "";
     @observable isDownward: boolean = false;
     @observable openedFilter: string = "";

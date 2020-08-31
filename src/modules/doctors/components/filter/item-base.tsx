@@ -13,7 +13,7 @@ type Props = {
 const FilterItemBase: React.FC<Props> = ({ id, title, children }) => {
 
 
-    return <div className={`item ${controller.activeFilters.includes(title) ? "active" : ""}`}>
+    return <div className={`item ${controller.activeFilters.includes(title) ? "active" : ""} ${controller.openedFilter === title ? "open" : ""}`}>
         <div id={id} className="title" onClick={() => controller.clickOnFilter(title)}>
             <h5>{title}</h5>
             <Chevron

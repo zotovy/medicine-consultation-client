@@ -2,11 +2,10 @@
 .checkbox-material,
 .check {
     font-family: Apercu-Bold, Calibri, sans-serif;
-    color: #30B9D6;
+    color: #30b9d6;
     box-sizing: border-box;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
 
 .checkbox {
     display: inline-block;
@@ -18,10 +17,8 @@
     padding-left: 0;
 }
 
-
-
-.checkbox input[type=checkbox],
-input[type=radio] {
+.checkbox input[type="checkbox"]#checkbox,
+input[type="radio"] {
     opacity: 0;
     position: absolute;
     margin: 0;
@@ -44,7 +41,7 @@ input[type=radio] {
     left: 8px;
     top: 2px;
     content: "";
-    background-color: #30B9D6;
+    background-color: #30b9d6;
     height: 4px;
     width: 4px;
     border-radius: 100%;
@@ -73,44 +70,78 @@ input[type=radio] {
     margin-left: 6px;
     width: 0;
     height: 0;
-    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0 inset;
+    box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0,
+        0 0 0 0 inset;
     animation: checkbox-off 300ms forwards ease-out;
 }
 
-.checkbox input[type=checkbox],
-input[type=radio]:focus+.checkbox-material .check:after {
+.checkbox input[type="checkbox"],
+input[type="radio"]:focus + .checkbox-material .check:after {
     opacity: 0.2;
 }
 
-.checkbox input[type=checkbox]:checked+.checkbox-material .check:before,
-input[type=radio]:checked+.checkbox-material {
-    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+.checkbox input[type="checkbox"]:checked + .checkbox-material .check:before,
+input[type="radio"]:checked + .checkbox-material {
+    box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px,
+        -5px 5px 0 10px, 20px -12px 0 11px;
     animation: checkbox-on 300ms forwards ease-out;
 }
 
-.checkbox input[type=checkbox]:not(:checked)+.checkbox-material:before input[type=radio]:not(:checked)+.checkbox-material:before {
+.checkbox
+    input[type="checkbox"]:not(:checked)
+    + .checkbox-material:before
+    input[type="radio"]:not(:checked)
+    + .checkbox-material:before {
     animation: rippleOff 00ms forwards ease-out;
 }
 
-.checkbox input[type=checkbox]:checked+.checkbox-material:before input[type=radio]:checked+.checkbox-material:before {
+.checkbox
+    input[type="checkbox"]:checked
+    + .checkbox-material:before
+    input[type="radio"]:checked
+    + .checkbox-material:before {
     animation: rippleOn 00ms forwards ease-out;
 }
 
-.checkbox input[type=checkbox]:not(:checked)+.checkbox-material input[type=radio]:not(:checked)+.checkbox-material .check:after {
+.checkbox
+    input[type="checkbox"]:not(:checked)
+    + .checkbox-material
+    input[type="radio"]:not(:checked)
+    + .checkbox-material
+    .check:after {
     animation: rippleOff 00ms forwards ease-out;
 }
 
-.checkbox input[type=checkbox]:checked+.checkbox-material input[type=radio]:checked+.checkbox-material .check:after {
+.checkbox
+    input[type="checkbox"]:checked
+    + .checkbox-material
+    input[type="radio"]:checked
+    + .checkbox-material
+    .check:after {
     animation: rippleOn 00ms forwards ease-out;
 }
 
-.checkbox input[type=checkbox][disabled]:not(:checked)~.checkbox-material input[type=radio][disabled]:not(:checked)~.checkbox-material .check:before,
-.checkbox input[type=checkbox][disabled]+.circle input[type=radio][disabled]+.circle {
+.checkbox
+    input[type="checkbox"][disabled]:not(:checked)
+    ~ .checkbox-material
+    input[type="radio"][disabled]:not(:checked)
+    ~ .checkbox-material
+    .check:before,
+.checkbox
+    input[type="checkbox"][disabled]
+    + .circle
+    input[type="radio"][disabled]
+    + .circle {
     opacity: 0;
 }
 
-.checkbox input[type=checkbox][disabled]+.checkbox-material input[type=radio][disabled]+.checkbox-material .check:after {
-    background-color: #30B9D6;
+.checkbox
+    input[type="checkbox"][disabled]
+    + .checkbox-material
+    input[type="radio"][disabled]
+    + .checkbox-material
+    .check:after {
+    background-color: #30b9d6;
     transform: rotate(-45deg);
 }
 
@@ -122,31 +153,41 @@ input[type=radio]:checked+.checkbox-material {
     background-color: #2faef8;
 }
 
-.coloured input[type=checkbox]:checked+.checkbox-material input[type=radio]:checked+.checkbox-material .check {
+.coloured
+    input[type="checkbox"]:checked
+    + .checkbox-material
+    input[type="radio"]:checked
+    + .checkbox-material
+    .check {
     color: #2faef8;
 }
 
 @keyframes checkbox-on {
     0% {
-        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px,
+            0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px;
     }
 
     50% {
-        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px 2px 0 11px;
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px,
+            0px 32px 0 20px, -5px 5px 0 10px, 20px 2px 0 11px;
     }
 
     100% {
-        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px,
+            0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px;
     }
 }
 
 @keyframes checkbox-off {
     0% {
-        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px,
+            0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
     }
 
     25% {
-        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px,
+            0px 32px 0 20px, -5px 5px 0 10px, 20px -12px 0 11px, 0 0 0 0 inset;
     }
 
     50% {
@@ -155,7 +196,8 @@ input[type=radio]:checked+.checkbox-material {
         margin-left: 6px;
         width: 0px;
         height: 0px;
-        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px, 0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px, 0 0 0 0 inset;
+        box-shadow: 0 0 0 10px, 10px -10px 0 10px, 32px 0px 0 20px,
+            0px 32px 0 20px, -5px 5px 0 10px, 15px 2px 0 11px, 0 0 0 0 inset;
     }
 
     51% {
@@ -164,7 +206,8 @@ input[type=radio]:checked+.checkbox-material {
         margin-left: -2px;
         width: 20px;
         height: 20px;
-        box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 10px inset;
+        box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0,
+            0px 0px 0 10px inset;
     }
 
     100% {
@@ -173,7 +216,8 @@ input[type=radio]:checked+.checkbox-material {
         margin-left: -2px;
         width: 20px;
         height: 20px;
-        box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0px 0px 0 0px inset;
+        box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0, 0 0 0 0,
+            0px 0px 0 0px inset;
     }
 }
 

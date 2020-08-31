@@ -1,5 +1,5 @@
-@import "../../../static/mixins.scss";
-@import "../../../static/theme.scss";
+@import "../../static/mixins.scss";
+@import "../../static/theme.scss";
 
 
 //──── MENU ──────────────────────────────────────────────────────────────────────────────
@@ -44,12 +44,11 @@ menu {
     #menu__toggle {
         width: 25px;
         height: 25px;
-        z-index: 3;
+        z-index: 12;
         opacity: 0;
         position: fixed;
         top: 22.5px;
         right: 20px;
-        z-index: 4;
     }
 
     /* стилизуем кнопку */
@@ -64,7 +63,7 @@ menu {
         width: 26px;
         height: 26px;
         cursor: pointer;
-        z-index: 4;
+        z-index: 12;
         pointer-events: none;
     }
 
@@ -114,10 +113,29 @@ menu {
         transition: 0.25s;
     }
 
+    .menu__box {
+        transition: 300ms;
+        visibility: hidden;
+        position: fixed;
+        top: 0;
+        left: 100vw;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: white;
+        z-index: 11;
+
+
+    }
+
     @media screen and (min-width: 425px) {
 
         #menu__toggle,
-        .menu__btn {
+        .menu__btn,
+        .menu__box {
             display: none;
         }
     }
@@ -346,12 +364,19 @@ menu {
         .column {
             display: flex;
             flex-direction: column;
+            width: calc(100% - 16px);
         }
 
         .row {
             width: 100%;
             display: flex;
             align-items: center;
+
+            @media screen and (max-width: 1024px) {
+                flex-direction: row;
+                margin-left: 16px;
+                width: calc(100% - 16px);
+            }
         }
 
         .search {
@@ -359,6 +384,10 @@ menu {
             align-items: center;
             width: calc(100% - 410px);
             position: relative;
+
+            @media screen and (max-width: 1024px) {
+                width: calc(100% - 42px);
+            }
 
             input {
                 width: 100%;
@@ -397,6 +426,10 @@ menu {
             justify-content: center;
             margin-left: 30px;
 
+            @media screen and (max-width: 1024px) {
+                display: none;
+            }
+
             #sort-by__title {
                 color: #707070;
                 font-size: 16px;
@@ -413,7 +446,9 @@ menu {
                 border-radius: 10px;
                 cursor: pointer;
 
-                @include primaryBoxShadow();
+                @media screen and (min-width: 1024px) {
+                    @include primaryBoxShadow();
+                }
 
                 svg {
                     padding: 1px;
@@ -434,7 +469,14 @@ menu {
             cursor: pointer;
             margin-left: 20px;
 
-            @include primaryBoxShadow();
+            @media screen and (min-width: 1024px) {
+                @include primaryBoxShadow();
+            }
+
+
+            @media screen and (max-width: 1024px) {
+                margin-left: 10px;
+            }
 
             .stick {
                 transition: width 350ms;
@@ -472,6 +514,12 @@ menu {
             display: flex;
             margin: 10px 28px;
 
+
+
+            .mobile-collapsed {
+                display: none;
+            }
+
             .item {
                 margin-right: 20px;
                 z-index: 10;
@@ -495,9 +543,14 @@ menu {
                     }
 
                     svg {
+                        transition: transform 300ms;
                         display: inline;
                         padding: 3px;
                         transform: rotate(90deg);
+
+                        &.open {
+                            transform: rotate(0deg);
+                        }
                     }
 
                     &#city {
@@ -567,7 +620,86 @@ menu {
                 }
             }
 
+            @media screen and (max-width: 1024px) {
+                flex-direction: column;
+                margin: 0;
+                margin-left: 16px;
+                margin-top: 10px;
 
+
+                .item {
+                    width: 100%;
+                    margin-right: 0;
+
+                    &#mobile-filters {
+                        // padding: 2px;
+                        border-radius: 5px;
+                        border: 1.2px solid #E8E8E8;
+
+                        .title {
+                            border-left: none;
+                            border-right: none;
+                            border-top: none;
+                            border-bottom: none;
+
+                        }
+
+                        &.open>.title {
+                            border-bottom: 1.2px solid #E8E8E8 !important;
+                        }
+                    }
+
+                    &.open {
+                        .title {
+                            border-left: none;
+                            border-right: none;
+                            border-top: 1.2px solid #E8E8E8;
+                            border-bottom: 1.2px solid #E8E8E8;
+                        }
+                    }
+
+                    .title {
+                        justify-content: center;
+                        padding: 8px;
+                        border-radius: 0;
+
+                        &#rating~.collapsed {
+                            margin-left: 0;
+                        }
+
+                    }
+
+                    &:not(#mobile-filters) {
+
+                        .collapsed {
+                            padding: 10px 20px;
+                        }
+
+                        &.open {
+                            border-bottom: 1.2px solid #E8E8E8 !important;
+                        }
+
+                        &.open>.title {
+                            border-bottom: 1.2px solid #E8E8E8 !important;
+                        }
+                    }
+
+
+                    .collapsed {
+                        width: calc(100% - 32px);
+                        box-shadow: none;
+                        padding: 0;
+
+                        &.active {
+                            position: initial;
+                            width: 100%;
+                        }
+
+
+                    }
+
+                }
+            }
         }
     }
 
@@ -587,6 +719,9 @@ menu {
     z-index: 100;
     transition: 300ms;
 
+
+
+
     &.close {
         pointer-events: none;
         opacity: 0;
@@ -604,6 +739,13 @@ menu {
         opacity: 1;
         transition: 300ms;
         box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+
+        @media screen and (max-width: 425px) {
+            width: 100%;
+            max-width: 90%;
+min-width: 50%;
+            padding: 15px;
+        }
 
         &.close {
             transform: scale(0, 0);
