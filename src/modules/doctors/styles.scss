@@ -743,7 +743,7 @@ menu {
         @media screen and (max-width: 425px) {
             width: 100%;
             max-width: 90%;
-min-width: 50%;
+            min-width: 50%;
             padding: 15px;
         }
 
@@ -880,6 +880,93 @@ min-width: 50%;
                         box-shadow: none;
                     }
                 }
+            }
+        }
+    }
+}
+
+
+//========================================================================================
+/*                                                                                      *
+ *                                        DETAIL                                        *
+ *                                                                                      */
+//========================================================================================
+
+.detail-doctor-module {
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 28px;
+
+        .profile-image {
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            height: 200px;
+            width: 200px;
+            border-radius: 15px;
+            margin-right: 20px;
+        }
+
+        h1 {
+            display: flex;
+            align-items: center;
+            font-size: 28px;
+            color: #1E1E1E;
+            font-weight: 600;
+            margin-bottom: 3px;
+
+            svg {
+                cursor: pointer;
+                margin-left: 20px;
+            }
+        }
+
+        .information {
+            width: calc(100% - 361px);
+
+            ul {
+                margin-bottom: 5px;
+            }
+
+            li {
+                list-style-type: none;
+
+                span {
+                    color: #565656;
+                }
+
+                span.name {
+                    font-weight: 500;
+                    margin-right: 5px;
+                }
+            }
+        }
+
+        .rating {
+            svg {
+                width: 32px;
+                height: 32px;
+                margin-right: 10px;
+            }
+        }
+
+        button#consultation-signup {
+            height: 35px;
+            padding: 0 25px;
+            border-radius: 5px;
+            font-size: 16px;
+            border: none;
+            background: $primary;
+            color: white;
+            @include primaryBoxShadow();
+            cursor: pointer;
+            transition: 300ms box-shadow;
+            outline: none;
+
+            &:hover {
+                box-shadow: none;
             }
         }
     }

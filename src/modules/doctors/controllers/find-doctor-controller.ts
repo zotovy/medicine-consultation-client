@@ -80,8 +80,7 @@ class FindDoctorController {
                 : false;
 
             if (defined) {
-                filter += filter ? "&" : "?";
-                filter += `${key}=${JSON.stringify(value)}`;
+                filter += `&${key}=${JSON.stringify(value)}`;
             }
         });
 
@@ -104,8 +103,7 @@ class FindDoctorController {
                 speciality.push(mapSpeciality[key]);
             });
 
-            filter += filter ? "&" : "?";
-            filter += `speciality=${JSON.stringify(speciality)}`;
+            filter += `&speciality=${JSON.stringify(speciality)}`;
         }
 
         //* Experience
@@ -125,8 +123,7 @@ class FindDoctorController {
                 console.log(key);
             });
 
-            filter += filter ? "&" : "?";
-            filter += `experience=${JSON.stringify(experience)}`;
+            filter += `&experience=${JSON.stringify(experience)}`;
         }
 
         //* Child
@@ -148,7 +145,10 @@ class FindDoctorController {
             : undefined;
 
         const data = await axios
-            .get(process.env.REACT_APP_SERVER_URL + `/api/doctors${filter}`)
+            .get(
+                process.env.REACT_APP_SERVER_URL +
+                    `/api/doctors?type=tile${filter}`
+            )
             .then((data) => data.data)
             .catch(() => {
                 return {

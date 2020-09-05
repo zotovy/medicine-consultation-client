@@ -1,5 +1,4 @@
 import React from "react";
-import { PropTypes } from "mobx-react";
 
 export const FullStar: React.FC<{ fill: string }> = ({ fill }: { fill: string }) => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="25" height="23.214" viewBox="0 0 25 23.214">
@@ -96,5 +95,20 @@ export const WarningIcon = () => {
         <g>
         </g>
     </svg>
+
+}
+
+export const BookmarkIcon = (props: any) => {
+    if (props.booked) {
+        return <svg xmlns="http://www.w3.org/2000/svg" width="15.894" height="25.432" viewBox="0 0 15.894 25.432">
+            <path id="bookmark" d="M109.255,0h-10.6A2.649,2.649,0,0,0,96.01,2.649V24.9a.53.53,0,0,0,.9.375l7.042-7.043L111,25.275a.53.53,0,0,0,.9-.374V2.649A2.649,2.649,0,0,0,109.255,0Z" transform="translate(-96.01)" fill="#30B9D6" />
+        </svg>
+    } else {
+        return <svg xmlns="http://www.w3.org/2000/svg" width="17.394" height="27.009" viewBox="0 0 17.394 27.009">
+            <path id="bookmark" d="M109.255,0h-10.6A2.649,2.649,0,0,0,96.01,2.649V24.9a.53.53,0,0,0,.9.375l7.042-7.043L111,25.275a.53.53,0,0,0,.9-.374V2.649A2.649,2.649,0,0,0,109.255,0Z" transform="translate(-95.26 0.75)" fill="none" stroke="#30B9D6" strokeWidth="1.5" />
+        </svg>
+
+    }
+
 
 }
