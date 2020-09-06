@@ -26,7 +26,7 @@ const App = () => {
     <Switch>
 
       {/* <Route path='/sandbox'><SandBox /></Route> */}
-      <Route path="/symptoms" exact>
+      <Route path="/Symptoms" exact>
         <Menu />
         <Suspense fallback={<React.Fragment />}>
           <SymptomsPage />
