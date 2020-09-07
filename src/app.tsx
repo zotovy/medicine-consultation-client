@@ -15,7 +15,7 @@ const ResetPassword = lazy(() => import("./modules/auth").then(module => ({ defa
 const FindDoctor = lazy(() => import("./modules/doctors").then(module => ({ default: module.ChooseDoctor })));
 const FilterCityModal = lazy(() => import("./modules/doctors").then(module => ({ default: module.FilterCityModal })));
 const DetailDoctorPage = lazy(() => import("./modules/doctors").then(module => ({ default: module.DetailDoctorPage })));
-
+const SymptomsPage = lazy(() => import("./modules/doctors").then(module => ({ default: module.SymptomsPage })));
 
 const Admin = lazy(() => import("./modules/admin"));
 const AdminLogin = lazy(() => import("./modules/admin").then(module => ({ default: module.Login })));
@@ -26,8 +26,12 @@ const App = () => {
     <Switch>
 
       {/* <Route path='/sandbox'><SandBox /></Route> */}
-
-
+      <Route path="/Symptoms" exact>
+        <Menu />
+        <Suspense fallback={<React.Fragment />}>
+          <SymptomsPage />
+        </Suspense>
+      </Route>
       <Route path="/login" exact>
         <Suspense fallback={<React.Fragment />}>
           <Login />
