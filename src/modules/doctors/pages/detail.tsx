@@ -1,6 +1,8 @@
 import React from "react";
 import { BookmarkIcon } from "../icons";
 import RatingComponent from "../components/rating";
+import Title from "../../../components/title";
+import ConsultationSelector from "../components/consulation-selector";
 
 const DetailPage: React.FC = () => {
 
@@ -45,8 +47,9 @@ const DetailPage: React.FC = () => {
                 <RatingComponent amount={4} />
             </div>
             <button id="consultation-signup">Записаться</button>
-
         </header>
+        <Title title="Консультация" />
+        <ConsultationSelector />
     </div>
 }
 

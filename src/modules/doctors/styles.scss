@@ -897,6 +897,7 @@ menu {
     header {
         display: flex;
         justify-content: space-between;
+        align-items: flex-start;
         margin: 10px 28px;
 
         .profile-image {
@@ -969,5 +970,53 @@ menu {
                 box-shadow: none;
             }
         }
+    }
+
+    .title {
+        margin-left: 28px;
+    }
+
+    .selector {
+        margin: 0 28px;
+        margin-top: 10px;
+
+
+        .week-selector {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            background: #F2F2F2;
+            width: 160px;
+            border-radius: 5px;
+
+            svg {
+                padding: 3px;
+                cursor: pointer;
+
+                &:hover {
+                    path {
+                        stroke: #1e1e1e;
+                    }
+                }
+
+                path {
+                    stroke: #565656;
+                }
+
+                &#left {
+                    transform: rotate(180deg);
+                }
+            }
+
+            span#data {
+                display: flex;
+                justify-content: center;
+                width: 105px;
+                margin: 0 5px;
+                user-select: none;
+            }
+        }
+
     }
 }
