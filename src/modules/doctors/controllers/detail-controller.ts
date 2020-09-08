@@ -1,4 +1,5 @@
 import { observable } from "mobx";
+import settingDoctorController from "../../settings/controllers/doctor-controller";
 
 class DetailController {
     constructor() {
@@ -63,12 +64,51 @@ class DetailController {
         this.toDate = this.addDays(this.toDate, -7);
     };
 
-    // getUIDayMarker = (occupied: number[]): Day[] => {};
+    getUIDayMarker = (occupied: number[]): Time[] => {
+        // build all consultation time
+        const consultationTimeTitle: string[] = [];
+
+        let now = settingDoctorController.startConsultationAt;
+        const end = settingDoctorController.endConsultationAt;
+
+        while (end.biggerOrEqualThan(now)) {
+            consultationTimeTitle.push(now.format());
+            now = now.add(settingDoctorController.consultationTime.minutes);
+        }
+
+        const consultationTime: Time[] = [];
+        let last: Time;
+        let occupiedInARow: number = 0;
+        consultationTimeTitle.forEach((e, i) => {
+            const isOccupied = occupied.includes(i);
+
+            if (last && last.isOccupied && isOccupied && occupiedInARow <= 12) {
+                occupiedInARow += 1;
+                last = {
+                    title: last.title.split(" - ")[0] + " - " + e,
+                    isOccupied,
+                    x: occupiedInARow,
+                };
+                consultationTime[consultationTime.length - 1] = last;
+            } else {
+                last = {
+                    title: e,
+                    isOccupied,
+                    x: 0,
+                };
+                consultationTime.push(last);
+                occupiedInARow = 0;
+            }
+        });
+
+        return consultationTime;
+    };
 }
 
-type Day = {
+type Time = {
     title: string;
     isOccupied?: boolean;
+    x: number;
 };
 
 export default new DetailController();

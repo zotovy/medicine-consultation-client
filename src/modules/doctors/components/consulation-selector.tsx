@@ -13,7 +13,7 @@ const ConsultationSelector: React.FC = () => {
             <Chevron open={false} id="right" onClick={controller.nextWeek} />
         </div>
         <DayRow day="Пн" occupied={[1, 2, 3]} isWeekend={false} />
-        <DayRow day="Пн" occupied={[1, 2, 3]} isWeekend={false} />
+        <DayRow day="Пн" occupied={[]} isWeekend={true} />
     </div>
 }
 

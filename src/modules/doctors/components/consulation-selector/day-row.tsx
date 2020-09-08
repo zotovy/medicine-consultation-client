@@ -1,4 +1,5 @@
 import React from "react";
+import controller from "../../controllers/detail-controller";
 
 type Props = {
     day: string;
@@ -8,7 +9,8 @@ type Props = {
 
 const DayRow: React.FC<Props> = (props: Props) => {
 
-    console.log(window.innerWidth);
+    // console.log(window.innerWidth);
+    // console.log(controller.getUIDayMarker([1, 2, 3, 4, 6, 7, 8]));
 
     return <div className="day-row" id={props.day}>
         <div className="day-name">{props.day}</div>
@@ -17,11 +19,15 @@ const DayRow: React.FC<Props> = (props: Props) => {
             props.isWeekend
                 ? <div className="weekend">Выходной</div>
                 : <div className="times">
-                    <div className="time">9:00</div>
-                    <div className="time occupied">10:00</div>
-                    <div className="time occupied x12">11:00 - 12:00</div>
-                    {/* <div className="time occupied x6">11:00</div>
-                    <div className="time occupied">12:00</div> */}
+                    {
+                        controller.getUIDayMarker([1, 2, 3, 4, 6, 7, 8]).map((e, i) => {
+                            let className = "time x" + e.x;
+                            if (e.isOccupied) className += " occupied ";
+
+                            return <div className={className} key={`time-${i}`}>{e.title}</div>
+                        })
+                    }
+
                 </div>
         }
 
