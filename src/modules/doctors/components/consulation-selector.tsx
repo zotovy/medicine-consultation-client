@@ -2,6 +2,8 @@ import React from "react";
 import { observer } from "mobx-react";
 import { Chevron } from "../icons";
 import controller from "../controllers/detail-controller";
+import DayRow from "./consulation-selector/day-row";
+
 
 const ConsultationSelector: React.FC = () => {
     return <div className="selector">
@@ -10,6 +12,8 @@ const ConsultationSelector: React.FC = () => {
             <span id="data">{controller.getFormattedFromDate()} - {controller.getFormattedToDate()}</span>
             <Chevron open={false} id="right" onClick={controller.nextWeek} />
         </div>
+        <DayRow day="Пн" occupied={[1, 2, 3]} isWeekend={false} />
+        <DayRow day="Пн" occupied={[1, 2, 3]} isWeekend={false} />
     </div>
 }
 

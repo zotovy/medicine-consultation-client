@@ -26,12 +26,7 @@ const App = () => {
     <Switch>
 
       {/* <Route path='/sandbox'><SandBox /></Route> */}
-      <Route path="/Symptoms" exact>
-        <Menu />
-        <Suspense fallback={<React.Fragment />}>
-          <SymptomsPage />
-        </Suspense>
-      </Route>
+
       <Route path="/login" exact>
         <Suspense fallback={<React.Fragment />}>
           <Login />
@@ -57,7 +52,7 @@ const App = () => {
           <ResetPassword />
         </Suspense>
       </Route>
-      <Route path="/find-doctor">
+      <Route path="/find-doctor" exact>
         <Suspense fallback={<React.Fragment />}>
           <FilterCityModal />
         </Suspense>
@@ -72,6 +67,12 @@ const App = () => {
         <Menu />
         <Suspense fallback={<React.Fragment />}>
           <DetailDoctorPage />
+        </Suspense>
+      </Route>
+      <Route path="/symptoms" exact>
+        <Menu />
+        <Suspense fallback={<React.Fragment />}>
+          <SymptomsPage />
         </Suspense>
       </Route>
       <Route path="/" exact>

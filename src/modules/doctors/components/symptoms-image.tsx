@@ -3,12 +3,13 @@
 import React from "react";
 
 const SymptomsImage: React.FC = () => {
+	return <h1>123</h1>
 	// return(
 	// 	const TabContent = ({ title, sourseSvg}) => (
 	// 			<div className="tabcontent">
 	// 				<h3>{title}</h3>
 	// 				<div>
-						
+
 	// 				</div>	
 	// 			</div>
 	// 		);
@@ -38,7 +39,7 @@ const SymptomsImage: React.FC = () => {
 	// 				  { title: 'Ж', sourseSvg: '/' ,active: false},
 	// 				];
 	// )
-	
+
 }
 
 export default SymptomsImage;

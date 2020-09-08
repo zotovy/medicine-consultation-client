@@ -993,6 +993,7 @@ menu {
             background: #F2F2F2;
             width: 160px;
             border-radius: 5px;
+            margin-bottom: 10px;
 
             svg {
                 padding: 3px;
@@ -1022,5 +1023,101 @@ menu {
             }
         }
 
+        .day-row {
+            display: flex;
+            align-items: start;
+            margin-top: 5px;
+
+            .day-name {
+                display: flex;
+                align-items: center;
+                height: 28px;
+                font-size: 18px;
+                font-weight: 500;
+                margin-right: 15px;
+            }
+
+            .weekend {
+                display: flex;
+                align-items: center;
+                height: 28px;
+                font-size: 18px;
+                color: #565656;
+                font-style: italic;
+            }
+
+            .times {
+                display: flex;
+                flex-wrap: wrap;
+
+                .time {
+                    margin-bottom: 7px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 28px;
+                    width: 70px;
+                    background: #E8E8E8;
+                    color: #707070;
+                    margin-right: 10px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    max-width: calc(100vw - 99px);
+
+                    &:hover {
+                        background: #e0e0e0;
+                    }
+
+                    &.occupied {
+                        color: white;
+                        background: $primary;
+                        cursor: initial;
+                    }
+
+                    &.x2 {
+                        width: 150px;
+                    }
+
+                    &.x3 {
+                        width: 230px;
+                    }
+
+                    &.x4 {
+                        width: 310px;
+                    }
+
+                    &.x5 {
+                        width: 390px;
+                    }
+
+                    &.x6 {
+                        width: 470px;
+                    }
+
+                    &.x7 {
+                        width: 550px;
+                    }
+
+                    &.x8 {
+                        width: 630px;
+                    }
+
+                    &.x10 {
+                        width: 710px;
+                    }
+
+                    &.x11 {
+                        width: 790px;
+                    }
+
+                    &.x12 {
+                        width: 870px;
+                    }
+                }
+
+
+            }
+
+        }
     }
 }

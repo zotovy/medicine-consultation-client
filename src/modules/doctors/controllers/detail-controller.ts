@@ -63,9 +63,7 @@ class DetailController {
         this.toDate = this.addDays(this.toDate, -7);
     };
 
-    // getUIDayMarker = (occupied: number[]): Day[] => {
-    //     const time: string[] = ["9:00", ""];
-    // };
+    // getUIDayMarker = (occupied: number[]): Day[] => {};
 }
 
 type Day = {
