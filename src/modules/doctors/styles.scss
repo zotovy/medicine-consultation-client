@@ -1220,3 +1220,30 @@ menu {
         }
     }
 }
+
+ //========================================================================================
+    /*                                                                                      *
+ *                                    Symptoms                                               *
+ *                                                                                          */
+    //========================================================================================
+
+.symptoms-title-wrap{
+    margin-top: 26px;
+    text-align: center;
+    h1{
+        font-size: 48px;
+        color: #1E1E1E;
+        font-weight: 600;
+
+        i{
+            color: $primary;
+        }
+    }
+    h3{
+        font-weight: 400;
+        margin-top: 3px;
+        font-size: 18px;
+        line-height: 24px;
+        color: #CCC;
+    }
+}
