@@ -109,6 +109,15 @@ export const BookmarkIcon = (props: any) => {
         </svg>
 
     }
-
-
 }
+
+export const ArrowRight = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="22" height="14.941" viewBox="0 0 22 14.941">
+        <g id="Icon_feather-arrow-right" data-name="Icon feather-arrow-right" transform="translate(-7 -10.593)">
+            <path id="Контур_16" data-name="Контур 16" d="M7.5,18h21" fill="none" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" />
+            <path id="Контур_17" data-name="Контур 17" d="M20.237,11.3,28.5,18l-8.263,6.83" fill="none" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" />
+        </g>
+    </svg>
+}
+
+

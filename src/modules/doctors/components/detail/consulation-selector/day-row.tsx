@@ -1,5 +1,5 @@
 import React from "react";
-import controller from "../../controllers/detail-controller";
+import controller from "../../../controllers/detail-controller";
 
 type Props = {
     day: string;

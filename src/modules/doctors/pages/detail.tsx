@@ -1,8 +1,8 @@
 import React from "react";
 import { BookmarkIcon } from "../icons";
 import RatingComponent from "../components/rating";
-import Title from "../../../components/title";
-import ConsultationSelector from "../components/consulation-selector";
+import ConsultationSelector from "../components/detail/consulation-selector";
+import Reviews from "../components/detail/reviews";
 
 const DetailPage: React.FC = () => {
 
@@ -48,8 +48,8 @@ const DetailPage: React.FC = () => {
             </div>
             <button id="consultation-signup">Записаться</button>
         </header>
-        <Title title="Консультация" />
         <ConsultationSelector />
+        <Reviews />
     </div>
 }
 
