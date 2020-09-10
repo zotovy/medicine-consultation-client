@@ -30,7 +30,7 @@ const DetailPage: React.FC = () => {
                                 !controller.loading
                                     ? <React.Fragment>
                                         {controller.doctor?.name + " " + controller.doctor?.surname + " " + controller.doctor?.patronymic}
-                                        <BookmarkIcon booked={false} />
+                                        <BookmarkIcon booked={false} className="bookmark" />
                                     </React.Fragment>
                                     : <Skeleton width={500} height={30} />
                             }

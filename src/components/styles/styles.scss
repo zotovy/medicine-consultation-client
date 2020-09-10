@@ -8,14 +8,13 @@
     .stick {
         width: 4px;
         height: 24px;
-        background-color: #30B9D6;
+        background-color: #30b9d6;
     }
 
     h1 {
         margin-left: 5px;
         font-size: 24px;
     }
-
 }
 
 //──── ERROR BADGE ───────────────────────────────────────────────────────────────────────
@@ -63,8 +62,6 @@
             border-radius: 0;
             transition: 0.75s ease-out;
         }
-
-
 
         .icon {
             width: 50px;
@@ -145,54 +142,62 @@
     -moz-animation-delay: 1.35s;
 }
 
-
-
 @keyframes bounce_circleG {
-    0% {}
-
-    50% {
-        background-color: #30B9D6;
+    0% {
     }
 
-    100% {}
+    50% {
+        background-color: #30b9d6;
+    }
+
+    100% {
+    }
 }
 
 @-o-keyframes bounce_circleG {
-    0% {}
-
-    50% {
-        background-color: #30B9D6;
+    0% {
     }
 
-    100% {}
+    50% {
+        background-color: #30b9d6;
+    }
+
+    100% {
+    }
 }
 
 @-ms-keyframes bounce_circleG {
-    0% {}
-
-    50% {
-        background-color: #30B9D6;
+    0% {
     }
 
-    100% {}
+    50% {
+        background-color: #30b9d6;
+    }
+
+    100% {
+    }
 }
 
 @-webkit-keyframes bounce_circleG {
-    0% {}
-
-    50% {
-        background-color: #30B9D6;
+    0% {
     }
 
-    100% {}
+    50% {
+        background-color: #30b9d6;
+    }
+
+    100% {
+    }
 }
 
 @-moz-keyframes bounce_circleG {
-    0% {}
-
-    50% {
-        background-color: #30B9D6;
+    0% {
     }
 
-    100% {}
+    50% {
+        background-color: #30b9d6;
+    }
+
+    100% {
+    }
 }

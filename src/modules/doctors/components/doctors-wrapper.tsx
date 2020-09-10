@@ -5,9 +5,6 @@ import controller from "../controllers/find-doctor-controller";
 import { InlineLoadingIndicator } from "../../../components/loading-indicator";
 
 const DoctorsWrapper: React.FC = () => {
-
-
-
     return <div className="doctors-container">
         <div className="doctors-grid">
             {
