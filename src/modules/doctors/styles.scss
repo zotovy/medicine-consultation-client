@@ -1228,25 +1228,16 @@ menu {
  *                                                                                          */
 //========================================================================================
 
-<<<<<<< Updated upstream
-.symptoms-title-wrap{
-=======
 .symptoms-title-wrap {
-    margin-top: 26px;
->>>>>>> Stashed changes
     text-align: center;
 
     h1 {
         font-size: 48px;
         color: #1E1E1E;
         font-weight: 600;
-<<<<<<< Updated upstream
         line-height: 64px;
-        i{
-=======
 
         i {
->>>>>>> Stashed changes
             color: $primary;
         }
     }
@@ -1258,51 +1249,59 @@ menu {
         color: #CCC;
     }
 
-    @media screen and (max-height: 940px){
-        h1{
-        font-size: 42px;
-        color: #1E1E1E;
-        font-weight: 600;
-        line-height: 56px;
-            i{
+    @media screen and (max-height: 940px) {
+        h1 {
+            font-size: 42px;
+            color: #1E1E1E;
+            font-weight: 600;
+            line-height: 56px;
+
+            i {
                 color: $primary;
             }
         }
-        h3{
+
+        h3 {
             font-weight: 400;
             font-size: 16px;
             line-height: 21px;
             color: #CCC;
         }
     }
-    margin-bottom: 26px;   
+
+    margin-bottom: 26px;
 }
 
-.symptoms-main-container{
+.symptoms-main-container {
     width: 1158px;
     height: 690px;
     margin: 0 auto;
     background-color: green;
-    @media screen and (max-height: 940px){
+
+    @media screen and (max-height: 940px) {
         width: 1075px;
         height: 582px;
     }
 }
-.symptoms-but-wrapper{
+
+.symptoms-but-wrapper {
     display: flex;
     justify-content: center;
 }
-.symptoms-but{
+
+.symptoms-but {
     margin: 52px auto;
     width: 300px;
     height: 60px;
-    div{
+
+    div {
         width: 300px;
-        height: 60px;   
+        height: 60px;
         display: flex;
         align-items: center;
     }
-    p{
+
+    p {
         height: auto;
 
     }
