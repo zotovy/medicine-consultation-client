@@ -1347,8 +1347,7 @@ menu {
     width: 1158px;
     height: 690px;
     margin: 0 auto;
-    background-color: green;
-
+    border: 3px solid green; // Не забыть убрать данное св-во!!
     @media screen and (max-height: 940px) {
         width: 1075px;
         height: 582px;
@@ -1376,3 +1375,57 @@ menu {
         height: auto;
     }
 }
+.tabs-wrapper{
+    width: 531px;
+    height: 690px;
+    background-color: #fff;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+    @media screen and (max-height: 940px) {
+        width: 448px;
+        height: 582px;
+    }
+}
+.tabs-ui-container{
+    margin: 24px 31px 22px 27px;
+    position: relative;
+    color: yellow;
+    height: -webkit-fill-available;
+    @media screen and (max-height: 940px) {
+        margin: 20px 27px 18px 23px;
+    } 
+}
+.symptoms-tab{
+    position: absolute;
+    bottom: 0;
+}
+.tab-links{
+    width: 39px;
+    height: 39px;
+    background-color: #ccc;
+    color:#fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+    font-size: 18px;
+    @media screen and (max-height: 940px) {
+        font-size: 13px;
+        width: 32px;
+        height: 32px;
+    }
+}
+.tab-1{
+    margin-left: 13px !important;
+    @media screen and (max-height: 940px) {
+        margin-left: 11px !important;
+    }
+}
+.tab-active{
+    background-color: $primary;
+}
+

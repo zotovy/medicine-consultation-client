@@ -1,45 +1,47 @@
-"use strict";
-
 import React from "react";
 
-// const SymptomsTabs: React.FC = () => {
-// 	const items: {title: string, sourseSvg: string, active: boolean}[] = [
-// 		{ title: 'М', sourseSvg: '/' ,active: true},
-// 		{ title: 'Ж', sourseSvg: '/' ,active: false},
-// 	];
+const SymptomsTabs: React.FC = () => {
+	type eType = object|string|number|any;
+	type TabsType = {
+		items:any
+	}
+	let items: {title: string, sourseSvg: string, active: boolean, id: number}[] = [
+		{ title: 'М', sourseSvg: '/' ,active: true, id: 0},
+		{ title: 'Ж', sourseSvg: '/' ,active: false, id: 1},
+	];
 
-// 	const Tabs:React.FC = ({ items }:any ) => {
-// 		const TabContent:React.FC = ({title, sourseSvg}:any) => {
-// 			return(
-// 				<div className="tabcontent">
-// 					<h3>{title}</h3>
-// 					<div>
+	const Tabs:React.FC<TabsType> = ({ items }:any ) => {
+		const TabContent:React.FC = ({title, sourseSvg}:any) => {
+			return(
+				<div className="tabcontent">
+					<div>
 
-// 					</div>	
-// 				</div>
-// 			)
-// 		};
-// 		const [ active, setActive ] = React.useState(null);
+					</div>	
+				</div>
+			)
+		};
+		const [ active, setActive ] = React.useState(items);
 
-// 		const openTab:any = e => setActive(e.toNumber.target.dataset.index);
-// 		return (
-// 			<div>
-// 				<div className="tab">
-// 					{items.map((n:any, i:any) => (
-// 					<button
-// 					className={`tablinks ${i === active ? 'active' : ''}`}
-// 					onClick={openTab}
-// 					data-index={i}
-// 					>{n.title}</button>
-// 					))}
-// 				</div>
-// 				{items[active] && <TabContent {...items[active]} />}
-// 			</div>
-// 		);
-// 	}
+		const openTab = (e:eType) => setActive(e.toNumber.target.dataset.index);
+		return (
+			<div className='tabs-wrapper'>
+				<div className='tabs-ui-container'>	
+					<div className="symptoms-tab">
+						{items.map((n:any, i:any) => (
+							
+							<button
+							className={`tab-links tab-${n.id} ${n.active === true ? 'tab-active' : ''}`}
+							onClick={openTab}
+							data-index={i}
+							>{n.title}</button>
+						))}
+					</div>
+					{items[active] && <TabContent {...items[active]} />}
+				</div>
+			</div>
+		);
+	}
+	return <Tabs items={items}/>;
 
-// 	return <Tabs />;
-
-// }
-
-// export default SymptomsTabs;
+}
+export default SymptomsTabs;
