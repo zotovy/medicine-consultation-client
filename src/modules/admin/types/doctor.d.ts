@@ -9,7 +9,7 @@ declare interface DoctorType extends UserType {
     experience: number;
     rating: number;
     whosFavourite: string[];
-    clientsReviews: string[];
+    clientsReviews: Review[];
     clientsConsultations: string[];
     sheldure: string[];
 }

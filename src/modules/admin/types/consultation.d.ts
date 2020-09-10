@@ -1,4 +1,4 @@
-declare type Consultation = {
+export default interface Consultation {
     id?: string;
     patientId?: string;
     patientName?: string;
@@ -8,4 +8,4 @@ declare type Consultation = {
     doctorSpecialty?: string;
     date?: Date;
     note?: string;
-};
+}

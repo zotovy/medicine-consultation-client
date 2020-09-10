@@ -2,6 +2,7 @@ declare interface UserType {
     id?: string;
     name?: string;
     surname?: string;
+    patronymic?: string;
     photoUrl?: string;
     phone?: number;
     age?: number;

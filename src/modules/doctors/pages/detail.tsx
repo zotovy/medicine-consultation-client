@@ -1,4 +1,6 @@
 import React from "react";
+import { observer } from "mobx-react";
+import controller from "../controllers/detail-controller";
 import { BookmarkIcon } from "../icons";
 import RatingComponent from "../components/rating";
 import ConsultationSelector from "../components/detail/consulation-selector";
@@ -11,46 +13,57 @@ const DetailPage: React.FC = () => {
     };
 
     return <div className="detail-doctor-module">
-        <header>
-            <div className="profile-image" style={profileStyles} />
-            <div className="information">
-                <h1>
-                    Иванов Иван Владимирович
-                    <BookmarkIcon booked={false} />
-                </h1>
-                <ul className="information-list">
-                    <li>
-                        <span className="name">Специальность:</span>
-                        <span className="data">Терапевт</span>
-                    </li>
-                    <li>
-                        <span className="name">Стаж работы:</span>
-                        <span className="data">5 лет</span>
-                    </li>
-                    <li>
-                        <span className="name">Пол:</span>
-                        <span className="data">Мужской</span>
-                    </li>
-                    <li>
-                        <span className="name">Возраст:</span>
-                        <span className="data">31 год</span>
-                    </li>
-                    <li>
-                        <span className="name">Город:</span>
-                        <span className="data">Саратов</span>
-                    </li>
-                    <li>
-                        <span className="name">Стаж на сервисе:</span>
-                        <span className="data">1 год</span>
-                    </li>
-                </ul>
-                <RatingComponent amount={4} />
-            </div>
-            <button id="consultation-signup">Записаться</button>
-        </header>
-        <ConsultationSelector />
-        <Reviews />
+        {
+            // todo 
+            controller.loading
+                ? <span>loading...</span>
+                : <React.Fragment>
+                    <header>
+                        <div className="profile-image" style={profileStyles} />
+                        <div className="information">
+                            <h1>
+                                {controller.doctor?.name + " " + controller.doctor?.surname + " " + controller.doctor?.patronymic}
+                                <BookmarkIcon booked={false} />
+                            </h1>
+                            <ul className="information-list">
+                                <li>
+                                    <span className="name">Специальность:</span>
+                                    <span className="data">{controller.doctor?.speciality}</span>
+                                </li>
+                                <li>
+                                    <span className="name">Стаж работы:</span>
+                                    <span className="data">{controller.formatExperience(controller.doctor?.experience ?? 0)}</span>
+                                </li>
+                                <li>
+                                    <span className="name">Пол:</span>
+                                    <span className="data">{controller.doctor?.sex ? "Мужской" : "Женский"}</span>
+                                </li>
+                                <li>
+                                    <span className="name">Возраст:</span>
+                                    <span className="data">{controller.doctor?.age + " " + controller.declOfNum(controller.doctor?.age ?? 0, ['год', 'года', 'лет'])}</span>
+                                </li>
+                                {controller.doctor?.city
+                                    ? <li>
+                                        <span className="name">Город:</span>
+                                        <span className="data">{controller.doctor?.city}</span>
+                                    </li>
+                                    : <React.Fragment />
+                                }
+
+                            </ul>
+                            <RatingComponent amount={controller.doctor?.rating ?? 0} />
+                        </div>
+                        <button id="consultation-signup">Записаться</button>
+                    </header>
+                    <ConsultationSelector />
+                    {
+                        controller.doctor?.clientsReviews?.length ?? 0 > 0
+                            ? <Reviews />
+                            : <React.Fragment />
+                    }
+                </React.Fragment>
+        }
     </div>
 }
 
-export default DetailPage;
+export default observer(DetailPage);

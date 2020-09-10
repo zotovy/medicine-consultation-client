@@ -11,8 +11,11 @@ type Props = {
 }
 
 const Review: React.FC<Props> = (props: Props) => {
+    let photoUrl = userPlaceholder;
+    if (props.photoUrl && props.photoUrl.length > 0) {
+        photoUrl = props.photoUrl;
+    }
 
-    const photoUrl = props.photoUrl ?? userPlaceholder;
     const photoStyles = {
         backgroundImage: `url(${photoUrl})`,
     }

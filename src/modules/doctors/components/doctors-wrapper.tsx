@@ -5,10 +5,13 @@ import controller from "../controllers/find-doctor-controller";
 import { InlineLoadingIndicator } from "../../../components/loading-indicator";
 
 const DoctorsWrapper: React.FC = () => {
+
+
+
     return <div className="doctors-container">
         <div className="doctors-grid">
             {
-                controller.doctors.map((e) => <Doctor name={e.name ?? ""} surname={e.surname ?? ""} imgUrl={e.photoUrl ?? ""} rating={e.rating} age={e.age} speciality={e.speciality[0]} />)
+                controller.doctors.map((e) => <Doctor id={e.id ?? ""} name={e.name ?? ""} surname={e.surname ?? ""} imgUrl={e.photoUrl ?? ""} rating={e.rating} age={e.age} speciality={e.speciality[0]} />)
             }
         </div>
         <div className={`infinity-scroll-loading-indicator ${controller.isInfinyLoading ? "" : "close"}`}>

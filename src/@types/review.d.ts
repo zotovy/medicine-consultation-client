@@ -1,3 +1,12 @@
-declare type Review = {
-    id: string;
-};
+declare interface Review {
+    patientId: {
+        _id: string;
+        name: string;
+        surname: string;
+        photoUrl: string;
+    };
+    doctorId: string;
+    content: string;
+    point: number;
+    timestamp: Date;
+}

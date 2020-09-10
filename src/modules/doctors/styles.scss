@@ -922,8 +922,8 @@ menu {
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-            height: 200px;
-            width: 200px;
+            height: 175px;
+            width: 175px;
             border-radius: 15px;
             margin-right: 20px;
         }
@@ -950,6 +950,7 @@ menu {
             }
 
             li {
+                margin: 3px 0;
                 list-style-type: none;
 
                 span {
@@ -1140,7 +1141,7 @@ menu {
         padding-bottom: 100px;
         width: calc(100%);
         padding: 0 28px;
-        padding-bottom: 100px;
+        padding-bottom: 25px;
 
 
         .title {
@@ -1221,24 +1222,36 @@ menu {
     }
 }
 
- //========================================================================================
-    /*                                                                                      *
+//========================================================================================
+/*                                                                                      *
  *                                    Symptoms                                               *
  *                                                                                          */
-    //========================================================================================
+//========================================================================================
 
+<<<<<<< Updated upstream
 .symptoms-title-wrap{
+=======
+.symptoms-title-wrap {
+    margin-top: 26px;
+>>>>>>> Stashed changes
     text-align: center;
-    h1{
+
+    h1 {
         font-size: 48px;
         color: #1E1E1E;
         font-weight: 600;
+<<<<<<< Updated upstream
         line-height: 64px;
         i{
+=======
+
+        i {
+>>>>>>> Stashed changes
             color: $primary;
         }
     }
-    h3{
+
+    h3 {
         font-weight: 400;
         font-size: 18px;
         line-height: 24px;
