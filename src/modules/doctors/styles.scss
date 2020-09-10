@@ -288,7 +288,9 @@ menu {
         .doctors-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            width: 100%;
+            width: calc(100% - 56px);
+            row-gap: 15px;
+            column-gap: 10px;
             // height: 100%;
             margin: 0 28px;
 
@@ -315,7 +317,7 @@ menu {
                 align-items: center;
                 width: 100%;
                 max-height: 100px;
-                margin-bottom: 30px;
+                // margin-bottom: 30px;
 
                 .image {
                     border-radius: 20px;

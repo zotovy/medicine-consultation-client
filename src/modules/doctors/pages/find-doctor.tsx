@@ -30,9 +30,9 @@ const FindDoctor: React.FC = () => {
         />
         <Filter />
         <DoctorWrapper />
-        <div className={`loading-badge ${controller.isLoading ? "" : "close"}`}>
+        {/* <div className={`loading-badge ${controller.isLoading ? "" : "close"}`}>
             <LoadingIndicator />
-        </div>
+        </div> */}
     </React.Fragment>
 };
 
