@@ -1,7 +1,6 @@
 @import "../../static/mixins.scss";
 @import "../../static/theme.scss";
 
-
 //========================================================================================
 /*                                                                                      *
  *                                    Menu                                                    *
@@ -39,7 +38,7 @@ menu {
         }
     }
 
-    #menu__toggle:checked~.links {
+    #menu__toggle:checked ~ .links {
         visibility: visible;
         right: 0;
     }
@@ -72,9 +71,9 @@ menu {
     }
 
     /* добавляем "гамбургер" */
-    .menu__btn>span,
-    .menu__btn>span::before,
-    .menu__btn>span::after {
+    .menu__btn > span,
+    .menu__btn > span::before,
+    .menu__btn > span::after {
         display: block;
         position: absolute;
         width: 100%;
@@ -82,38 +81,38 @@ menu {
         background-color: #616161;
     }
 
-    .menu__btn>span::before {
+    .menu__btn > span::before {
         content: "";
         top: -8px;
     }
 
-    .menu__btn>span::after {
+    .menu__btn > span::after {
         content: "";
         top: 8px;
     }
 
-    #menu__toggle:checked~.menu__btn>span {
+    #menu__toggle:checked ~ .menu__btn > span {
         transform: rotate(45deg);
     }
 
-    #menu__toggle:checked~.menu__btn>span::before {
+    #menu__toggle:checked ~ .menu__btn > span::before {
         top: 0;
         transform: rotate(0);
     }
 
-    #menu__toggle:checked~.menu__btn>span::after {
+    #menu__toggle:checked ~ .menu__btn > span::after {
         top: 0;
         transform: rotate(90deg);
     }
 
-    #menu__toggle:checked~.menu__box {
+    #menu__toggle:checked ~ .menu__box {
         visibility: visible;
         left: 0;
     }
 
-    .menu__btn>span,
-    .menu__btn>span::before,
-    .menu__btn>span::after {
+    .menu__btn > span,
+    .menu__btn > span::before,
+    .menu__btn > span::after {
         transition: 0.25s;
     }
 
@@ -131,12 +130,9 @@ menu {
         align-items: center;
         background: white;
         z-index: 11;
-
-
     }
 
     @media screen and (min-width: 425px) {
-
         #menu__toggle,
         .menu__btn,
         .menu__box {
@@ -210,7 +206,6 @@ menu {
     }
 }
 
-
 .doctor-module {
     max-width: 1920px;
     overflow-y: auto;
@@ -221,10 +216,6 @@ menu {
     @media screen and (min-width: 1920px) {
         margin: 0 calc(50% - 1920px / 2);
     }
-
-
-
-
 
     //========================================================================================
     /*                                                                                      *
@@ -245,7 +236,6 @@ menu {
         border-radius: 15px;
         background-color: white;
         box-shadow: 0 3px 25px rgba(0, 0, 0, 0.03);
-
 
         &.close {
             display: none;
@@ -290,15 +280,10 @@ menu {
             #circleG {
                 display: flex;
                 justify-content: center;
-
             }
         }
 
-
-
         @include scroll();
-
-
 
         .doctors-grid {
             display: grid;
@@ -397,18 +382,18 @@ menu {
                 width: 100%;
                 height: 48px;
                 border-radius: 7.5px;
-                border: 1.2px solid #E8E8E8;
+                border: 1.2px solid #e8e8e8;
                 padding: 15px;
                 outline: none;
                 transition: border-color 225ms ease;
 
                 &:focus {
-                    border-color: #30B9D6;
+                    border-color: #30b9d6;
                 }
             }
 
-            input:focus~svg path {
-                stroke: #30B9D6;
+            input:focus ~ svg path {
+                stroke: #30b9d6;
             }
 
             svg {
@@ -477,7 +462,6 @@ menu {
                 @include primaryBoxShadow();
             }
 
-
             @media screen and (max-width: 1024px) {
                 margin-left: 10px;
             }
@@ -518,8 +502,6 @@ menu {
             display: flex;
             margin: 10px 28px;
 
-
-
             .mobile-collapsed {
                 display: none;
             }
@@ -533,10 +515,9 @@ menu {
                     align-items: center;
                     margin: 0;
                     padding: 8px 20px;
-                    border: 1.2px solid #E8E8E8;
+                    border: 1.2px solid #e8e8e8;
                     border-radius: 7.5px;
                     cursor: pointer;
-
 
                     h5 {
                         color: #707070;
@@ -561,7 +542,7 @@ menu {
                         height: 40.64px;
                     }
 
-                    &#rating~.collapsed {
+                    &#rating ~ .collapsed {
                         margin-left: -110px;
                     }
                 }
@@ -598,8 +579,6 @@ menu {
                         pointer-events: all;
                     }
 
-
-
                     //──── RATING COMPONENT ──────────────────────────────────────────────────────────────────
                     .rating-item {
                         margin: 3px 0;
@@ -619,8 +598,6 @@ menu {
                             margin-left: 15px;
                         }
                     }
-
-
                 }
             }
 
@@ -630,7 +607,6 @@ menu {
                 margin-left: 16px;
                 margin-top: 10px;
 
-
                 .item {
                     width: 100%;
                     margin-right: 0;
@@ -638,18 +614,17 @@ menu {
                     &#mobile-filters {
                         // padding: 2px;
                         border-radius: 5px;
-                        border: 1.2px solid #E8E8E8;
+                        border: 1.2px solid #e8e8e8;
 
                         .title {
                             border-left: none;
                             border-right: none;
                             border-top: none;
                             border-bottom: none;
-
                         }
 
-                        &.open>.title {
-                            border-bottom: 1.2px solid #E8E8E8 !important;
+                        &.open > .title {
+                            border-bottom: 1.2px solid #e8e8e8 !important;
                         }
                     }
 
@@ -657,8 +632,8 @@ menu {
                         .title {
                             border-left: none;
                             border-right: none;
-                            border-top: 1.2px solid #E8E8E8;
-                            border-bottom: 1.2px solid #E8E8E8;
+                            border-top: 1.2px solid #e8e8e8;
+                            border-bottom: 1.2px solid #e8e8e8;
                         }
                     }
 
@@ -667,27 +642,24 @@ menu {
                         padding: 8px;
                         border-radius: 0;
 
-                        &#rating~.collapsed {
+                        &#rating ~ .collapsed {
                             margin-left: 0;
                         }
-
                     }
 
                     &:not(#mobile-filters) {
-
                         .collapsed {
                             padding: 10px 20px;
                         }
 
                         &.open {
-                            border-bottom: 1.2px solid #E8E8E8 !important;
+                            border-bottom: 1.2px solid #e8e8e8 !important;
                         }
 
-                        &.open>.title {
-                            border-bottom: 1.2px solid #E8E8E8 !important;
+                        &.open > .title {
+                            border-bottom: 1.2px solid #e8e8e8 !important;
                         }
                     }
-
 
                     .collapsed {
                         width: calc(100% - 32px);
@@ -698,17 +670,11 @@ menu {
                             position: initial;
                             width: 100%;
                         }
-
-
                     }
-
                 }
             }
         }
     }
-
-
-
 }
 
 //──── ADD CITY MODAL ────────────────────────────────────────────────────────────────────
@@ -722,9 +688,6 @@ menu {
     align-items: center;
     z-index: 100;
     transition: 300ms;
-
-
-
 
     &.close {
         pointer-events: none;
@@ -813,7 +776,7 @@ menu {
                 }
             }
 
-            input:focus~.icon svg path {
+            input:focus ~ .icon svg path {
                 stroke: #30b9d6;
             }
 
@@ -889,7 +852,6 @@ menu {
     }
 }
 
-
 //========================================================================================
 /*                                                                                      *
  *                                        DETAIL                                        *
@@ -897,10 +859,10 @@ menu {
 //========================================================================================
 
 .detail-doctor-module {
-    background: #FEFEFE;
+    background: #fefefe;
+    margin-bottom: 20px;
 
     .title {
-
         .stick {
             height: 18px;
             width: 2.5px;
@@ -932,7 +894,7 @@ menu {
             display: flex;
             align-items: center;
             font-size: 28px;
-            color: #1E1E1E;
+            color: #1e1e1e;
             font-weight: 600;
             margin-bottom: 3px;
 
@@ -947,6 +909,8 @@ menu {
 
             ul {
                 margin-bottom: 5px;
+                display: flex;
+                flex-direction: column;
             }
 
             li {
@@ -999,13 +963,12 @@ menu {
         margin: 0 28px;
         margin-top: 10px;
 
-
         .week-selector {
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 5px;
-            background: #F2F2F2;
+            background: #f2f2f2;
             width: 160px;
             border-radius: 5px;
             margin-bottom: 15px;
@@ -1073,7 +1036,7 @@ menu {
                     align-items: center;
                     height: 28px;
                     width: 70px;
-                    background: #E8E8E8;
+                    background: #e8e8e8;
                     color: #707070;
                     margin-right: 10px;
                     border-radius: 5px;
@@ -1132,7 +1095,6 @@ menu {
                 }
             }
         }
-
     }
 
     .reviews-component {
@@ -1142,7 +1104,6 @@ menu {
         width: calc(100%);
         padding: 0 28px;
         padding-bottom: 25px;
-
 
         .title {
             margin-bottom: 15px;
@@ -1163,8 +1124,6 @@ menu {
             width: 100%;
             column-gap: 50px;
             row-gap: 50px;
-
-
 
             .review {
                 padding: 15px;
@@ -1215,7 +1174,6 @@ menu {
                     svg {
                         margin-right: 5px;
                     }
-
                 }
             }
         }
@@ -1233,7 +1191,7 @@ menu {
 
     h1 {
         font-size: 48px;
-        color: #1E1E1E;
+        color: #1e1e1e;
         font-weight: 600;
         line-height: 64px;
 
@@ -1246,13 +1204,13 @@ menu {
         font-weight: 400;
         font-size: 18px;
         line-height: 24px;
-        color: #CCC;
+        color: #ccc;
     }
 
     @media screen and (max-height: 940px) {
         h1 {
             font-size: 42px;
-            color: #1E1E1E;
+            color: #1e1e1e;
             font-weight: 600;
             line-height: 56px;
 
@@ -1265,7 +1223,7 @@ menu {
             font-weight: 400;
             font-size: 16px;
             line-height: 21px;
-            color: #CCC;
+            color: #ccc;
         }
     }
 
@@ -1303,6 +1261,5 @@ menu {
 
     p {
         height: auto;
-
     }
 }

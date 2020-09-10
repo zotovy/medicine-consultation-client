@@ -1,4 +1,5 @@
 import React from "react";
+import Skeleton from 'react-loading-skeleton';
 import { observer } from "mobx-react";
 import controller from "../controllers/detail-controller";
 import { BookmarkIcon } from "../icons";
@@ -15,53 +16,75 @@ const DetailPage: React.FC = () => {
     return <div className="detail-doctor-module">
         {
             // todo 
-            controller.loading
-                ? <span>loading...</span>
-                : <React.Fragment>
-                    <header>
-                        <div className="profile-image" style={profileStyles} />
-                        <div className="information">
-                            <h1>
-                                {controller.doctor?.name + " " + controller.doctor?.surname + " " + controller.doctor?.patronymic}
-                                <BookmarkIcon booked={false} />
-                            </h1>
-                            <ul className="information-list">
-                                <li>
-                                    <span className="name">Специальность:</span>
-                                    <span className="data">{controller.doctor?.speciality}</span>
-                                </li>
-                                <li>
-                                    <span className="name">Стаж работы:</span>
-                                    <span className="data">{controller.formatExperience(controller.doctor?.experience ?? 0)}</span>
-                                </li>
-                                <li>
-                                    <span className="name">Пол:</span>
-                                    <span className="data">{controller.doctor?.sex ? "Мужской" : "Женский"}</span>
-                                </li>
-                                <li>
-                                    <span className="name">Возраст:</span>
-                                    <span className="data">{controller.doctor?.age + " " + controller.declOfNum(controller.doctor?.age ?? 0, ['год', 'года', 'лет'])}</span>
-                                </li>
-                                {controller.doctor?.city
-                                    ? <li>
-                                        <span className="name">Город:</span>
-                                        <span className="data">{controller.doctor?.city}</span>
-                                    </li>
-                                    : <React.Fragment />
-                                }
+            <React.Fragment>
+                <header>
 
-                            </ul>
-                            <RatingComponent amount={controller.doctor?.rating ?? 0} />
-                        </div>
-                        <button id="consultation-signup">Записаться</button>
-                    </header>
-                    <ConsultationSelector />
                     {
-                        controller.doctor?.clientsReviews?.length ?? 0 > 0
-                            ? <Reviews />
-                            : <React.Fragment />
+                        controller.loading ? <Skeleton width={175} height={175} /> : <div className="profile-image" style={profileStyles} />
                     }
-                </React.Fragment>
+
+
+                    <div className="information">
+                        <h1>
+                            {
+                                !controller.loading
+                                    ? <React.Fragment>
+                                        {controller.doctor?.name + " " + controller.doctor?.surname + " " + controller.doctor?.patronymic}
+                                        <BookmarkIcon booked={false} />
+                                    </React.Fragment>
+                                    : <Skeleton width={500} height={30} />
+                            }
+
+
+                        </h1>
+
+                        <ul className="information-list">
+                            {
+                                controller.loading
+                                    ? <Skeleton style={{ display: "flex", flexDirection: "column", margin: "10px 0" }} count={3} width={300} />
+
+                                    : <React.Fragment>
+                                        <li>
+                                            <span className="name">Специальность:</span>
+                                            <span className="data">{controller.doctor?.speciality}</span>
+                                        </li>
+                                        <li>
+                                            <span className="name">Стаж работы:</span>
+                                            <span className="data">{controller.formatExperience(controller.doctor?.experience ?? 0)}</span>
+                                        </li>
+                                        <li>
+                                            <span className="name">Пол:</span>
+                                            <span className="data">{controller.doctor?.sex ? "Мужской" : "Женский"}</span>
+                                        </li>
+                                        <li>
+                                            <span className="name">Возраст:</span>
+                                            <span className="data">{controller.doctor?.age + " " + controller.declOfNum(controller.doctor?.age ?? 0, ['год', 'года', 'лет'])}</span>
+                                        </li>
+                                        {controller.doctor?.city
+                                            ? <li>
+                                                <span className="name">Город:</span>
+                                                <span className="data">{controller.doctor?.city}</span>
+                                            </li>
+                                            : <React.Fragment />
+                                        }
+                                    </React.Fragment>
+                            }
+                        </ul>
+
+                        <RatingComponent amount={controller.doctor?.rating ?? 0} />
+                    </div>
+                    {
+                        controller.loading ? <Skeleton width={135} height={35} /> : <button id="consultation-signup">Записаться</button>
+                    }
+                </header>
+                <ConsultationSelector />
+                {
+
+                    controller.doctor?.clientsReviews?.length ?? 0 > 0
+                        ? <Reviews />
+                        : <React.Fragment />
+                }
+            </React.Fragment>
         }
     </div>
 }

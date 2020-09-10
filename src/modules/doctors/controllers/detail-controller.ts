@@ -36,14 +36,12 @@ class DetailController {
         const response = await axios
             .get(process.env.REACT_APP_SERVER_URL + "/api/doctor/" + id)
             .then((data) => data.data)
-            .catch((e) => e.response.data);
+            .catch((e) => e.response);
 
-        if (!response.success) {
+        if (!response?.success) {
             // todo: error handling
             return;
         }
-
-        console.log(response);
 
         return await response.doctor;
     };
