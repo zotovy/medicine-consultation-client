@@ -1429,3 +1429,23 @@ menu {
     background-color: $primary;
 }
 
+.fake-img{
+    height: 644px;
+    background-color: #ccc;
+    @media screen and (max-height: 940px) {
+        height: 544px;
+    }
+}
+
+.img-1{
+    width: 254px;
+    @media screen and (max-height: 940px) {
+        width: 214;
+    }
+}
+.img-2{
+    width: 150;
+    @media screen and (max-height: 940px) {
+        width: 214;
+    }
+}

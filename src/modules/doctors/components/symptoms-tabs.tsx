@@ -13,9 +13,12 @@ const SymptomsTabs: React.FC = () => {
 	const Tabs:React.FC<TabsType> = ({ items }:any ) => {
 		const TabContent:React.FC = ({title, sourseSvg}:any) => {
 			return(
-				<div className="tabcontent">
-					<div>
-
+				<div className="tab-content">
+					<div className="tab-content-img-wrap">
+						<div className='fake-img img-1'>
+						</div>
+						<div className='fake-img img-2'>
+						</div>		
 					</div>	
 				</div>
 			)
