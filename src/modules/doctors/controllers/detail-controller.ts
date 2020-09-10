@@ -135,10 +135,17 @@ class DetailController {
         const consultationTime: Time[] = [];
         let last: Time;
         let occupiedInARow: number = 0;
+
         consultationTimeTitle.forEach((e, i) => {
             const isOccupied = occupied.includes(i);
 
-            if (last && last.isOccupied && isOccupied && occupiedInARow <= 12) {
+            if (
+                last &&
+                last.isOccupied &&
+                isOccupied &&
+                occupiedInARow <= 12 &&
+                window.screen.width > 425
+            ) {
                 occupiedInARow += 1;
                 last = {
                     title: last.title.split(" - ")[0] + " - " + e,

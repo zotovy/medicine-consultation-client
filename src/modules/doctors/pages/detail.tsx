@@ -6,11 +6,12 @@ import { BookmarkIcon } from "../icons";
 import RatingComponent from "../components/rating";
 import ConsultationSelector from "../components/detail/consulation-selector";
 import Reviews from "../components/detail/reviews";
+import DoctorPlaceholder from "../../../static/images/user-placeholder.jpg";
 
 const DetailPage: React.FC = () => {
 
     const profileStyles = {
-        backgroundImage: `url(https://i.pinimg.com/236x/21/64/3c/21643c7fe5560cb7c8f7808f36d3f0dc.jpg)`
+        backgroundImage: `url(${controller.doctor?.photoUrl || DoctorPlaceholder})`,
     };
 
     return <div className="detail-doctor-module">
@@ -30,7 +31,7 @@ const DetailPage: React.FC = () => {
                                 !controller.loading
                                     ? <React.Fragment>
                                         {controller.doctor?.name + " " + controller.doctor?.surname + " " + controller.doctor?.patronymic}
-                                        <BookmarkIcon booked={false} />
+                                        <BookmarkIcon booked={false} className="bookmark" />
                                     </React.Fragment>
                                     : <Skeleton width={500} height={30} />
                             }
