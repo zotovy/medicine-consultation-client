@@ -16,11 +16,11 @@ class DetailController {
             now.getDate() + (7 - this.getWeekDay(now) - 1)
         );
 
-        this.fetchDoctor("5f44c05f2c5c2939e09994a3");
+        // this.fetchDoctor("5f44c05f2c5c2939e09994a3");
     }
 
     @observable doctor: DoctorType | undefined;
-    @observable loading: boolean = false;
+    @observable loading: boolean = true;
 
     @action public fetchDoctor = (id: string): void => {
         this.loading = true;

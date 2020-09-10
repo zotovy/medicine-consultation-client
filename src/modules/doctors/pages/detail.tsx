@@ -1,4 +1,5 @@
 import React from "react";
+import CSS from 'csstype';
 import Skeleton from 'react-loading-skeleton';
 import { observer } from "mobx-react";
 import controller from "../controllers/detail-controller";
@@ -14,14 +15,19 @@ const DetailPage: React.FC = () => {
         backgroundImage: `url(${controller.doctor?.photoUrl || DoctorPlaceholder})`,
     };
 
+    // Skeleton
+    const profileImageSkeletonWidth: number = window.screen.width < 640 ? window.screen.width - 32 : 175;
+    const nameSkeletonWidth: number = window.screen.width < 640 ? window.screen.width - 32 : 350;
+    const buttonSkeletonWidth: number = window.screen.width < 640 ? window.screen.width - 32 : 135
+    const buttonSkeletonStyles: object = window.screen.width < 640 ? { marginTop: "10px" } : {}
+
     return <div className="detail-doctor-module">
         {
-            // todo 
             <React.Fragment>
                 <header>
 
                     {
-                        controller.loading ? <Skeleton width={175} height={175} /> : <div className="profile-image" style={profileStyles} />
+                        controller.loading ? <Skeleton width={profileImageSkeletonWidth} height={profileImageSkeletonWidth} /> : <div className="profile-image" style={profileStyles} />
                     }
 
 
@@ -33,7 +39,7 @@ const DetailPage: React.FC = () => {
                                         {controller.doctor?.name + " " + controller.doctor?.surname + " " + controller.doctor?.patronymic}
                                         <BookmarkIcon booked={false} className="bookmark" />
                                     </React.Fragment>
-                                    : <Skeleton width={500} height={30} />
+                                    : <Skeleton width={nameSkeletonWidth} height={30} />
                             }
 
 
@@ -75,7 +81,7 @@ const DetailPage: React.FC = () => {
                         <RatingComponent amount={controller.doctor?.rating ?? 0} />
                     </div>
                     {
-                        controller.loading ? <Skeleton width={135} height={35} /> : <button id="consultation-signup">Записаться</button>
+                        controller.loading ? <Skeleton style={buttonSkeletonStyles} width={buttonSkeletonWidth} height={35} /> : <button id="consultation-signup">Записаться</button>
                     }
                 </header>
                 <ConsultationSelector />

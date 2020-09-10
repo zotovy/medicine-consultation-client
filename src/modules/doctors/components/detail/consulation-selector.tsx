@@ -8,11 +8,16 @@ import Title from "../../../../components/title";
 
 
 const ConsultationSelector: React.FC = () => {
+
+    // Skeletons
+    const titleSkeletonStyles: object = window.screen.width < 640 ? { marginLeft: "calc((100vw - 162px) / 2)" } : {}
+    const weekSelectorSkeletonWidth: number = window.screen.width < 640 ? window.screen.width - 32 : 150;
+
     return <div className="selector">
-        {controller.loading ? <Skeleton width={130} height={24} className="title" /> : <Title title="Консультация" />}
+        {controller.loading ? <Skeleton width={130} style={titleSkeletonStyles} height={24} className="title" /> : <Title title="Консультация" />}
         {
             controller.loading
-                ? <Skeleton width={150} height={35} style={{ display: "block" }} className="week-selector" />
+                ? <Skeleton width={weekSelectorSkeletonWidth} height={35} className="week-selector" />
                 : <div className="week-selector">
                     <Chevron open={false} id="left" onClick={controller.previousWeek} />
                     <span id="data">{controller.getFormattedFromDate()} - {controller.getFormattedToDate()}</span>
