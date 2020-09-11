@@ -1402,6 +1402,7 @@ menu {
 .symptoms-tab{
     position: absolute;
     bottom: 0;
+    left: -6px;
 }
 .tab-links{
     width: 39px;
@@ -1428,10 +1429,21 @@ menu {
 .tab-active{
     background-color: $primary;
 }
-
+.tab-content{
+    height: 644px;
+    width: 473px;
+    @media screen and (max-height: 940px) {
+        width: 399px;
+        height: 544px;
+    }
+}
+.tab-content-img-wrap{
+    display: flex;
+    justify-content: space-between;
+}
 .fake-img{
     height: 644px;
-    background-color: #ccc;
+    background-color: red;
     @media screen and (max-height: 940px) {
         height: 544px;
     }
@@ -1440,12 +1452,12 @@ menu {
 .img-1{
     width: 254px;
     @media screen and (max-height: 940px) {
-        width: 214;
+        width: 214px;
     }
 }
 .img-2{
-    width: 150;
+    width: 177px;
     @media screen and (max-height: 940px) {
-        width: 214;
+        width: 150px;
     }
 }

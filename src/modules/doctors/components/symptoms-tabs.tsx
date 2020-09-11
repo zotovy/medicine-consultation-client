@@ -6,18 +6,20 @@ const SymptomsTabs: React.FC = () => {
 		items:any
 	}
 	let items: {title: string, sourseSvg: string, active: boolean, id: number}[] = [
-		{ title: 'М', sourseSvg: '/' ,active: true, id: 0},
-		{ title: 'Ж', sourseSvg: '/' ,active: false, id: 1},
+		{ title: 'М', sourseSvg: '/' , active: true, id: 0},
+		{ title: 'Ж', sourseSvg: '/' , active: false, id: 1},
 	];
-
+	// {items[active] && <TabContent {...items[active]} />}	
 	const Tabs:React.FC<TabsType> = ({ items }:any ) => {
 		const TabContent:React.FC = ({title, sourseSvg}:any) => {
 			return(
 				<div className="tab-content">
 					<div className="tab-content-img-wrap">
 						<div className='fake-img img-1'>
+
 						</div>
 						<div className='fake-img img-2'>
+
 						</div>		
 					</div>	
 				</div>
@@ -25,21 +27,28 @@ const SymptomsTabs: React.FC = () => {
 		};
 		const [ active, setActive ] = React.useState(items);
 
-		const openTab = (e:eType) => setActive(e.toNumber.target.dataset.index);
+		// function openTab(e:any){
+		// 	e.persist()
+		// 	let id = +e._targetInst.key;
+		// 	return items = items.map((item:{}) => {
+		// 		(item.id == id) ? !item.active : 
+		// 	})
+		// 	console.log(e)
+		// };
 		return (
 			<div className='tabs-wrapper'>
-				<div className='tabs-ui-container'>	
+				<div className='tabs-ui-container'>
+					{console.log(items[0].active)}
+					<TabContent />
 					<div className="symptoms-tab">
 						{items.map((n:any, i:any) => (
-							
-							<button
+							<button key={n.id}
 							className={`tab-links tab-${n.id} ${n.active === true ? 'tab-active' : ''}`}
 							onClick={openTab}
 							data-index={i}
 							>{n.title}</button>
 						))}
 					</div>
-					{items[active] && <TabContent {...items[active]} />}
 				</div>
 			</div>
 		);
