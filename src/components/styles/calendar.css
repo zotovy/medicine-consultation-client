@@ -1,5 +1,6 @@
 .calendar-container {
-
+    z-index: 100;
+    pointer-events: all;
     background: white;
     border-radius: 7px;
     padding: 15px;
@@ -73,8 +74,6 @@
     justify-content: center;
 }
 
-
-
 .calendar-container .calendar .days {
     display: flex;
     flex-direction: column;
@@ -105,7 +104,7 @@
 }
 
 .calendar-container .calendar .days .week span.today {
-    border: 1px #30B9D6 solid;
+    border: 1px #30b9d6 solid;
 }
 
 .calendar-container .calendar .days .week span.disable-day {
@@ -114,11 +113,11 @@
 
 .calendar-container .calendar .days .week span.selected {
     color: white;
-    background: #30B9D6;
+    background: #30b9d6;
 }
 
 .calendar-container .calendar .days .week span.selected:hover {
-    background: #30B9D6;
+    background: #30b9d6;
 }
 
 .calendar-container .calendar .button-container {
@@ -131,7 +130,7 @@
 .calendar-container .calendar .button-container button {
     transition: background 100ms;
     padding: 5px 15px;
-    background: #30B9D6;
+    background: #30b9d6;
     color: white;
     border: none;
     border-radius: 3px;
@@ -146,7 +145,7 @@
 }
 
 .calendar-container .calendar .button-container button:active {
-    background: #30B9D6;
+    background: #30b9d6;
 }
 
 .calendar-container .calendar .button-container button.clear:hover {

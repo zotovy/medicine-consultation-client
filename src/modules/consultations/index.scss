@@ -75,7 +75,8 @@
         .calendar-wrapper {
             position: absolute;
             bottom: calc(50vh - 150px);
-            right: 50px;
+            right: 53%;
+            pointer-events: none;
 
             /* Tablet */
             @media screen and (max-width: 424px) {

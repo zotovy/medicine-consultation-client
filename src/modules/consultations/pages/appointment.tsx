@@ -5,7 +5,6 @@ import Page1 from "./appointment/page-1";
 
 // Components
 import Image from "../../auth/components/image";
-import Title from "../../auth/components/title";
 
 // Static
 import "../index.scss";

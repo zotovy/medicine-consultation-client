@@ -168,7 +168,7 @@ const DSPage2: React.FC = () => {
 
                     <DateTextField
                         error={signupUIStore.issueDateError}
-                        onChange={(val: string) => { }}
+                        onChange={() => { }}
                         value={signupUIStore.issueDate}
                         field={"Дата выдачи"}
                         hint={"21 / 11 / 2019"}

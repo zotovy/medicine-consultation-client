@@ -1,4 +1,6 @@
 import React from "react";
+import { observer } from "mobx-react";
+import controller from "../../controller/appoint-controller";
 
 // Components
 import Title from "../../../auth/components/title";
@@ -10,12 +12,13 @@ import SexCheckbox from "../../../auth/components/sex-checkbox";
 import TextField from "../../../../components/text-field";
 import Calendar from "../../../../components/calendar";
 import ConfirmButton from "../../../../components/confirm-button";
+import formatServices from "../../../../services/format-services";
 
 const Page1: React.FC = () => {
 
     const styles = {
         calendarWrapper: {
-            zIndex: -100,
+            // zIndex: controller.calendarOpen ? "initial" as "initial" : -100,
         }
     }
 
@@ -28,34 +31,45 @@ const Page1: React.FC = () => {
             <div className="form">
                 <div className="form-column">
                     <TextField
-                        onChange={() => { }}
+                        onChange={(v) => controller.fullName = v}
+                        value={controller.fullName}
+                        error={controller.fullNameError}
                         hint="Введите Ваше ФИО"
                         field="Как к вам обращаться?" />
                     <TextField
-                        onChange={() => { }}
+                        onChange={(v) => controller.birthDay = v}
+                        value={controller.birthDay}
+                        error={controller.birthDayError}
                         hint="Введите Вашу дату рождения"
                         field="Дата рождения" />
-                    <SexCheckbox onChange={() => { }} isMale={true} />
+                    <SexCheckbox onChange={() => controller.isMale = !controller.isMale} isMale={controller.isMale} />
                 </div>
                 <div className="form-column">
                     <TextField
-                        onChange={() => { }}
+                        onChange={(v) => controller.phone = formatServices.formatPhone(v)}
+                        value={controller.phone}
+                        error={controller.phoneError}
                         hint="Введите Ваш телефон"
                         field="Телефон" />
                     <div style={styles.calendarWrapper} className="calendar-wrapper">
-                        <Calendar isOpen={false} />
+                        <Calendar
+                            isOpen={controller.calendarOpen}
+                            onSave={controller.onCalendarSave}
+                            onClose={() => controller.calendarOpen = false}
+                        />
                     </div>
                     <DateTextField
                         onChange={() => { }}
+                        onFocus={() => controller.calendarOpen = true}
                         hint="Выберите дату приема"
                         field="Дата приёма"
-                        value="" />
+                        value={controller.formattedAppointmentDate} />
                 </div>
             </div>
-            <SizedBox height="30px" />
+            <SizedBox height="40px" />
             <ConfirmButton content="Продолжить" onConfirm={() => { }} />
         </Container>
     </div>
 }
 
-export default Page1;
+export default observer(Page1);

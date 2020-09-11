@@ -1,6 +1,6 @@
 import axios from "axios";
 import { observable, action } from "mobx";
-import settingDoctorController from "../../settings/controllers/doctor-controller";
+import settingDoctorController from "../../settings/controller";
 
 class DetailController {
     constructor() {
