@@ -4,7 +4,6 @@ import "../styles.scss";
 
 import logo from "../../../static/logo.svg";
 import { Link, withRouter } from "react-router-dom";
-import BurgerMenu from "../../../components/burger";
 
 let lastLocation = '/';
 
@@ -15,8 +14,6 @@ const Menu: React.FC = (props: any) => {
     if (props.location !== lastLocation) {
         selected = props.location.pathname;
     }
-
-    console.log(selected);
 
     return <menu>
         <Link to="/">

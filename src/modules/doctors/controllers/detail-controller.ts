@@ -15,19 +15,20 @@ class DetailController {
             now.getMonth(),
             now.getDate() + (7 - this.getWeekDay(now) - 1)
         );
-
-        // this.fetchDoctor("5f44c05f2c5c2939e09994a3");
     }
 
+    @observable doctorId: string | undefined;
     @observable doctor: DoctorType | undefined;
     @observable loading: boolean = true;
 
     @action public fetchDoctor = (id: string): void => {
         this.loading = true;
-        this._fetchDoctor(id).then((doctor) => {
-            this.doctor = doctor;
-            this.loading = false;
-        });
+        this._fetchDoctor(id).then(
+            action((doctor) => {
+                this.doctor = doctor;
+                this.loading = false;
+            })
+        );
     };
 
     private _fetchDoctor = async (

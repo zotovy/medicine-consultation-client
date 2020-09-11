@@ -10,7 +10,7 @@ const ReviewsComponent: React.FC = () => {
 
             {
                 controller.doctor?.clientsReviews.map((e, i) => {
-                    return <Review fullName={`${e.patientId.name} ${e.patientId.surname}`} id={e.patientId._id} rating={e.point} text={e.content} photoUrl={e.patientId.photoUrl} />
+                    return <Review key={`${i}-review`} fullName={`${e.patientId.name} ${e.patientId.surname}`} id={e.patientId._id} rating={e.point} text={e.content} photoUrl={e.patientId.photoUrl} />
                 })
             }
 
