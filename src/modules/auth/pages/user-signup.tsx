@@ -27,6 +27,7 @@ import PasswordError from "../components/password-error";
 
 // Static
 import "../styles.css";
+import image from "../../../static/images/signup-bg.png"
 
 const Wrapper = styled.div`
     display: flex;
@@ -65,7 +66,7 @@ const UserSignUp: React.FC = observer(() => {
     <Wrapper>
 
       <ErrorAlert error={signupUIStore.errorMessage} showErrorMessage={signupUIStore.showErrorMessage} />
-      <MediaQuery minDeviceWidth="1025px"><Image /></MediaQuery>
+      <MediaQuery minDeviceWidth="1025px"><Image image={image} /></MediaQuery>
 
       <Container>
         <Title text="Регистрация" />

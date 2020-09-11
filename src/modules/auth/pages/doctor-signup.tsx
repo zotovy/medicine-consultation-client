@@ -13,6 +13,7 @@ import tick from "../../../static/images/tick.png";
 
 // Static
 import "../../../static/index.css";
+import image from "../../../static/images/signup-bg.png"
 
 // Pages
 import Page1 from "./doctor-signup/page-1";
@@ -53,7 +54,7 @@ const DoctorSignUp: React.FC = () => {
             Ваши данные отправлены на проверку. Подробнее о том, как работает сервис вы можете почитать <a>здесь</a>.</Badge>
         <Wrapper>
             <MediaQuery minDeviceWidth="1025px">
-                <Image />
+                <Image image={image} />
             </MediaQuery>
             <Swapper>
                 <Page1 />

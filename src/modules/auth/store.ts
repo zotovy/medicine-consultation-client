@@ -234,6 +234,8 @@ class AuthStore {
                     return e.response;
                 });
 
+            // todo
+
             // Show badge
             signupUIStore.isBadgeOpen = true;
             setTimeout(() => {

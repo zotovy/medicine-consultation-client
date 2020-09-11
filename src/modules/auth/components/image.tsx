@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-// Static
-import bgImage from "../../../static/images/signup-bg.png";
+
 
 const Image = styled.div`
   background-color: #dbecf4;
@@ -13,7 +12,6 @@ const Image = styled.div`
   .image {
     width: 100%;
     height: 100%;
-    background: url(${bgImage});
     background-repeat: no-repeat;
     background-size: contain;
     background-position-x: center;
@@ -21,10 +19,16 @@ const Image = styled.div`
   }
 `;
 
+type Props = {
+  image: string;
+}
 
-const ImageComponent: React.FC = () => {
-  return <Image>
-    <div className="image"></div>
+const ImageComponent: React.FC<Props> = ({ image }) => {
+
+  const styles = { backgroundImage: `url(${image})` }
+
+  return <Image >
+    <div className="image" style={styles}></div>
   </Image>
 }
 
