@@ -1,11 +1,11 @@
 language: node_js
 node_js:
-- node
+    - node
 branches:
-  only:
-  - master
+    only:
+        - master
 deploy:
-  provider: heroku
-  app: medicine-consultation-client
-  api_key:
-    secure: mYVSLSmT/NoMkIlwWjLeuUiMyUjXfeBAJ7hE5XUrVJuA9Um1Kuk9P2KhH7np0xNIGvj6OvxNdHjYtdhmm+oCcN9QeS2Ucz9HKevqCjUAFN6BSffEQA5iC69DXozvbREEILTWtESeMi6HbwzVBB/2waYnFa01nAa6ALi6Eok3EmYBEbPpi0tS4mqY/IMVjRRVoB7p4PysnQq2xhQrM+VghWBRdzgqr+sYVMa/XAp9Hk6eTCwMeHkeZA2p6xU2MIUdbNdiUW9E7Xm9Kl4dmHt8lk1/aEpAlVaAwq8s79C+Vvn+fYtEu4LFMVk+Mg5yMthPP5SiK/h9iZszZ16qFkLYjp7+2zT+KntKYHxFHgCq1LcmhNhm6jsgcXBkBsuL5IT0ReM9gnBBGEFHgfR/0ps4po+XMsA2Q/9Ze+6ZJKBA0WKzdqmNtXuv3hqU3h0yl4tCLL7Xg6UxfunjDDLpDMnz/hsuagxruvXy2neF2ogoHttCEnkP93mqtkFqEWk3A8nwrl4vtKK7Lq5iZxA0aAI5wbKYUO6fjuOONJpXYIt2mOmvzaek9thM5Ed/yCRKi2Nvwp2pLYkdrq/RFbJliwllQV9sGr2kvY/nTnDfEUGYcU4DCgbSlPO0vG3L1SpJz1ckqmvmmSDbJy5TmA9vTKrpImKHNgn+8DhmaYo+84weSoc=
+    provider: heroku
+    app: medicine-consultation-client
+    api_key:
+        secure: PBW+n1oKqAmaBy69mUGv++8/JXogMAyv5WzPhk6hCrQ3HpZRN9h93nPfSQXB7WT9q7eI/EDjammwxLbEBxvZ+R4Ecoo+HCZnCgiIZc+FsIW9db2nbHBRQfm2DFhr+TNfsR6geKWRXiPkKuOvUUfYnzE7q34gM4ZP7vFdh9N32mI0IsOD69H4QVvuCfIaVFqqlzg62MxZFfeHdWtXzbtfikMPCcKeXE2B9o1fQTc3pzxBfrDxYE3Wkj1i3psxi+1ow2KR4eak5mqMBU8/KOSjRKoIp9Nl6oC3dCEXLq32FGJZ1cvtcVJiG+ax1mD2W7Xhw6n8xTLoZppAuYKPyE1MqDxECUkbhBvPsvlaK2QiooThNkm+h3ukbqRBD/m5vcqjZ2K9ufbjvq3mcXrnnigwC1CmMERPg9tmM3dPmE2UXF6ILo/tD+x9/ij5sqrF9n61H3jJnmHsC8jp8qIjcb7qWXmdkhYl8VOI3nBkI4ebC7Q84dL/DsYj6btjkRVO1E3Q0LQh9dnMGvTDn1fw4A8/2XoXrkp4xgcFH5WYCpb+MrvZpnp4hudcsa58lQlu6S71oRpP47KioGNilQC4qQWgCwj6LHm1pIgUK7flLWZOujxlQr++r8rjgYhNGgEunnlE3nISYeAM6VQrroZvj/Wrq+WjTyJ2Xq19Xjj5ZFmOROc=
