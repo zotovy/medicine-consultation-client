@@ -4,6 +4,9 @@ import settingsController from "../../settings/controller";
 import formatServices from "../../../services/format-services";
 
 class AppointmentController {
+    @observable pageIndex: number = 1;
+
+    // Page 1
     @observable fullName: string = settingsController.fullName;
     @observable fullNameError: string = "";
     @observable birthDay: string = settingsController.birthdayString;
@@ -15,6 +18,21 @@ class AppointmentController {
     @observable calendarOpen: boolean = false;
     @observable appointmentDate: Date | undefined;
     @observable isMale: boolean = settingsController.isMale;
+
+    // Page 2
+    @observable chronicDisease: string = "";
+    @observable symptoms: string = "";
+    @observable documents: File[] = [];
+
+    setDocuments = (docs: FileList | null) => {
+        if (docs !== null) {
+            this.documents.push(docs[0]);
+        }
+    };
+
+    removeDocuments = (index: number) => {
+        this.documents = this.documents.filter((_, i) => i !== index);
+    };
 
     @action onCalendarSave = (date: Date): void => {
         this.appointmentDate = date;
