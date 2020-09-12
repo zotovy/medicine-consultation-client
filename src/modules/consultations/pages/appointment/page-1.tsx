@@ -14,7 +14,12 @@ import Calendar from "../../../../components/calendar";
 import ConfirmButton from "../../../../components/confirm-button";
 import formatServices from "../../../../services/format-services";
 
-const Page1: React.FC = () => {
+type Props = {
+    className?: string;
+}
+
+
+const Page1: React.FC<Props> = ({ className }) => {
 
     const styles = {
         calendarWrapper: {
@@ -22,7 +27,7 @@ const Page1: React.FC = () => {
         }
     }
 
-    return <div className="page page1">
+    return <div className={`page page-1 ${className}`}>
         <Container>
             <Title text="Запись" />
             <SizedBox height="10px" />
@@ -42,7 +47,6 @@ const Page1: React.FC = () => {
                         error={controller.birthDayError}
                         hint="Введите Вашу дату рождения"
                         field="Дата рождения" />
-                    <SexCheckbox onChange={() => controller.isMale = !controller.isMale} isMale={controller.isMale} />
                 </div>
                 <div className="form-column">
                     <TextField
@@ -65,9 +69,11 @@ const Page1: React.FC = () => {
                         field="Дата приёма"
                         value={controller.formattedAppointmentDate} />
                 </div>
+
             </div>
+            <SexCheckbox onChange={() => controller.isMale = !controller.isMale} isMale={controller.isMale} />
             <SizedBox height="40px" />
-            <ConfirmButton content="Продолжить" onConfirm={() => { }} />
+            <ConfirmButton content="Продолжить" onConfirm={() => controller.pageIndex = 1} />
         </Container>
     </div>
 }

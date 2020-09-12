@@ -8,8 +8,10 @@
     }
 
     .swapper {
+        position: relative;
         width: 55vw;
         height: 100%;
+        min-height: 100vh;
         overflow: hidden;
 
         @media screen and (max-width: 1024px) {
@@ -17,7 +19,28 @@
         }
     }
 
+
     .page {
+        top: 0;
+        width: 55vw;
+        position: absolute;
+        transition: 1s;
+
+        &.minus55 {
+            transform: translateX(-55vw);
+
+            @media screen and (max-width: 1024px) {
+                transform: translateX(-100vw);
+            }
+        }
+
+        &.minus110 {
+            transform: translateX(-100vw);
+
+            @media screen and (max-width: 1024px) {
+                transform: translateX(-200vw);
+            }
+        }
 
         .form {
             display: flex;
@@ -55,14 +78,102 @@
 
         .confirm-button {
             width: 50%;
+
+            @media screen and (max-width: 768px) {
+                width: 100%;
+            }
+        }
+
+        .documents {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+
+            .new-document-button {
+                position: relative;
+
+                button {
+                    width: 35px;
+                    height: 35px;
+                    border-radius: 5px;
+                    background: #F5F5F5;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: none;
+                    cursor: pointer;
+                    transition: background 300ms;
+
+                    svg {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+
+                input {
+                    cursor: pointer;
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 35px;
+                    height: 35px;
+                    opacity: 0;
+
+
+                }
+
+                input[type=file]::-webkit-file-upload-button {
+                    cursor: pointer;
+                }
+
+            }
+
+            .document-button {
+                margin: 5px 0;
+                padding: 7px;
+                border-radius: 5px;
+                background: #F5F5F5;
+                display: flex;
+                margin-right: 10px;
+
+                .info {
+                    margin-left: 10px;
+                    display: flex;
+                    flex-direction: column;
+
+                    span.title {
+                        font-weight: 500;
+                        color: #282828;
+                        font-size: 14px;
+                    }
+
+                    span.subtitle {
+                        color: #707070;
+                        font-size: 12px;
+                    }
+                }
+
+                .icon {
+                    cursor: pointer;
+                }
+
+                svg:last-child {
+                    margin-left: 15px;
+                    width: 10px;
+                    height: 10px;
+
+                    path {
+                        fill: #30B9D6;
+                    }
+
+                }
+            }
         }
 
     }
 
-    .page1 {
-        position: relative;
-        left: 0px;
-        transition: 1s;
+    .page-1 {
+        left: 0;
 
         @media screen and (min-width: 1024px) {
 
@@ -78,11 +189,27 @@
             right: 53%;
             pointer-events: none;
 
-            /* Tablet */
+            /* Tablets */
+            @media screen and (min-width: 424px) and (max-width: 1024px) {
+                top: calc(50% - 180px);
+                bottom: 0;
+                right: 0;
+                left: 0;
+            }
+
+            /* Phones */
             @media screen and (max-width: 424px) {
                 left: 15px;
                 right: 15px;
             }
+        }
+    }
+
+    .page-2 {
+        left: 55vw;
+
+        @media screen and (max-width: 1024px) {
+            left: 100vw;
         }
     }
 

@@ -26,6 +26,7 @@ type Props = {
   inputDataTest?: string;
   useTextHint?: boolean;
   removePassswordIcon?: boolean;
+  rows?: number;
 };
 
 const Container = styled.div`
@@ -217,6 +218,7 @@ const TextField: React.FC<Props> = (props: Props) => {
           }
         </ShowPassword>
       </Row> : <Input
+
           id={props.inputId}
           onFocus={props.onFocus}
           onBlur={props.onBlur}

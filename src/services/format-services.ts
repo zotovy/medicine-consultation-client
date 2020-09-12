@@ -72,6 +72,13 @@ class FormatServices {
             date.getMonth() + 1
         } / ${date.getFullYear()}`;
     };
+
+    formatSize = (bytes: number): string => {
+        if (bytes >= 1e9) return Math.floor(bytes / 1e9) + " Гб";
+        if (bytes >= 1000000) return Math.floor(bytes / 1000000) + " Мб";
+        if (bytes >= 1000) return Math.floor(bytes / 1000) + " Кб";
+        return Math.floor(bytes / 1000) + " Б";
+    };
 }
 
 export default new FormatServices();
