@@ -1,14 +1,14 @@
 language: node_js
 node_js:
-    - node
+- node
 branches:
-    only:
-        - master
+  only:
+  - master
 deploy:
-    provider: heroku
-    api_key:
-        secure: uc3Ill5QTNXUY8ftZM7MGvLDHsUlhg+wJMWzD4kuX0wOeULeH/AbPufECqG6sXTmhihh5LIZQwt1Aab4V/56VlhDhdMhvlgSln3wQjjN2s90SZgmU64HLEEg2YehTU/PpZt3NXeuOoUnt9yt6b8LEIySRMU0lDqbF6FpWresHgC1RkjFdY6EwAwqLlTg6RLtLYLsT/k010NoDsPzjaoFiHn7381L3Ip8QNzJHjtykkxfzJWOxrwykHZkMvP3z+DCvhhly8GFWqqsVCRXL8of8fgqLUs4lZQ56n4lkk+WiOJ8xmMVl3acdbk0rGJFSvTjG+Z2s1k3IiIoVdCes8hnxkhZQaMs3l47eTXLB1NvZibq5yhrliRgORz7tfri4iaa08xpGWKTjJU0tSTbVxDIm9SFdHVjabrgYq9qxgq6aAR7BJ6Zp34gwGiVXblUopU8JzQRQjaC6I00V7T57rw05aE1WPF2y7/dLrnBeiOIF0OMBBbuRa6M7XULSeXGuIiSO8XOkpWitEBzDli5gxcSC2HLLZcQO2ZS+pOSkcUC82T8y+bcKEqgmyJjxE2+b4aO5KnY1mt0QVlXJJvp/3pnMojC7C3oAbk0kbuROK69RvSGhbz1YG+BmQS0GDORFbKRXPkfnH4eLWXGFv0kprRrDXRLTgCBy4hjX+0imyT7WbE=
-    app: medicine-consultation-client
-    on:
-        repo: zotovY/medicine-consultation-client
-    skip_cleanup: "true"
+  provider: heroku
+  api_key:
+    secure: NQi6BBsnVoktGClw06dsyLP+btIZ+3iicS+El179qlKekvu/Z6hhWso68m6/bbs6Bk/ADcKllEFyMPkKIyod62MIApTz48sWk2poGFAixFSoz7cOnemzgRVDxyjnk2oLhsApbjwaYT4mlkPuHFEdGQjR7ajxzU1+n/hjCJGyY1VZ5fTMi190MWcCR7h6anhDnhrb8KwCBsr0Wx6NzhimqwrhCA+C21+dUFEP2qH0HLsBxscjlUVjyqrSvAN0a5JINW24J9BvxZSM9/sxq2/paNLnhQt2epCmvXDVT5eF74e/ajHIdCj9GMXF4n0VTIF3VSfT/qUMaaFfebPPdn5pR+MVoPC9DbpvthigDEBu11n87dxsgx4b3iyorM7ZM4nNnjZiCKXsFbdOvBbpCrfLSMFHSk2I9Kru0QaCSt87OY7cAyZbq0geOUbxjYqlF+Nyg0zUG5ZjEP/5/FDpYvCOWY8I9VjmF3eB4BauE6tRy58Ku6XpzO+L9PRTYiSZBu26d66hE2bzBU0Abq5bJZ3sXUxg5EPeVsVkN1MWoBY4aPSJ+095clzYDWO+pT4Y8Intam3VK72iAhBZOEKSy/iMQQi+CLfGcz0f7MuDvJIdhr5Y9ywe3jWw60o8jGMOE/m2IeMAMk7FUHyPflIQpTo/gDsFrLBD5tULmQOYieGANAo=
+  app: medicine-consultation-client
+  on:
+    repo: zotovY/medicine-consultation-client
+  skip_cleanup: 'true'
