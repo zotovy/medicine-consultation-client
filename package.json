@@ -93,7 +93,7 @@
     "scripts": {
         "start": "env-cmd -f .env node scripts/start.js",
         "build": "node scripts/build.js",
-        "test": "testcafe -s path=e2e/screenshots/need --skip-js-errors",
+        "test:integration": "testcafe -s path=e2e/screenshots/need --skip-js-errors",
         "analyze": "node analyze.js",
         "deploy": "gh-pages -d build",
         "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build "
