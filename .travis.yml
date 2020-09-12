@@ -6,3 +6,9 @@ node_js:
 branches:
     only:
         - testTravis
+
+deploy:
+    provider: heroku
+    app: medicine-consultation-client
+    api_key:
+        secure: "LUyZW077g2Wo2AOzu0Fim3Ck8zesuCotUzeIjW7FnGsP39TddpndLDkmt3HeDagR+V7uQHGDk4XYY6TT4p5uIpqCjSf31rJ5MQA+jhjnkICiIC2lIun+OakuehSmONxkTKTX7Nty3oSfh22ZJbaBJD61+lBWZKMjvFqlbMtL1fnEUDzfeqD827/vTC7MclmouPKtrgDoejoDGUJid0fRpgBcRrlH5x6LLxdjTJO8o80fyVve5yl/jJJER3xhMi+LdYBm0iuPp9XA48OjMpoNLUiO/AXOeEOiG6o5fPUHPA9KF/y9dLmDmbljlqoJdrL7tcUaHXOtmfiZShqQFdYAejBrCwEs6Arfb2qJEuoEjUywTTLu+ew1g20LkTd5Yf6/wEHhU/bWFxRF3SOQqHkp39o7a5RQkAfNsNAs00DRPPf5/zUPt3QdUJaV1ofYS2HQ3QzX3zX4fqhqsS2JUFbF0+e9LRb+U4qEyaKXIDEiSwqh7BOi28KcuiwmGCpEp3HNbz/F1xHszxmg2A3XCnupDWuR3C79V6bVOdiAaBPj1fMlrdOEdZanbqGYPZ4N0sa0EXdv9hMhsM0sVHlg9mgXuuUBBP8bX5mYBoDegQ4Gp/sbmNJo87suXMkOTTwZHVUXE4psRLjChLQTesruE4o/K0WO3kohYe+XaIRWcAHNCE8="
