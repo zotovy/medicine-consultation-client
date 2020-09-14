@@ -2,6 +2,13 @@
     position: fixed;
 }
 
+@media screen and (max-width: 425px) {
+    .signup-module {
+        position: absolute;
+        overflow: hidden;
+    }
+}
+
 .doctor-signup-module {
     position: fixed;
 }

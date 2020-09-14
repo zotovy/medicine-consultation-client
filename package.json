@@ -109,7 +109,7 @@
     },
     "scripts": {
         "start": "serve -s build",
-        "dev": "env-cmd -f .env node scripts/start.js",
+        "dev": "env-cmd -f .env.local node scripts/start.js",
         "build": "node scripts/build.js",
         "test:integration": "testcafe -s path=e2e/screenshots/need --skip-js-errors",
         "analyze": "node analyze.js",
