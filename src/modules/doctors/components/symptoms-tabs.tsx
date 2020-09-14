@@ -9,7 +9,8 @@ const SymptomsTabs: React.FC = () => {
 	type TabType = {
 		sourse: string
 	}
-	let {items, openTab} = controller;
+	
+	const {items, openTab} = controller;
 	
 	const Tabs: React.FC<TabsType> = ({ items }: any) => {
 		const TabContent: React.FC = ({ title, sourseSvg }: any) => {
