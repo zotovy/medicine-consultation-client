@@ -5,6 +5,7 @@ import axios from "axios";
 import loginUIStore from "./stores/loginUI";
 import signupUIStore from "./stores/signupUI";
 import tokenServices from "../../services/token-services";
+import validationServices from "../../services/validation-services";
 
 class AuthStore {
     constructor() {
@@ -47,7 +48,7 @@ class AuthStore {
         const password = loginUIStore.password;
 
         // validate
-        const isEmailOk = validateEmail(email);
+        const isEmailOk = validationServices.email(email);
         const isPasswordOk = validatePassword(password);
 
         if (!isEmailOk || !isPasswordOk) {
@@ -234,7 +235,24 @@ class AuthStore {
                     return e.response;
                 });
 
-            // todo
+            // if !success --> show error
+            if (!response?.data?.success) {
+                const hasInvalidError: boolean = validateServerError(
+                    response.data.errors
+                );
+                if (hasInvalidError) {
+                    signupUIStore.setErrorMessage(
+                        "Произошла непредвиденная ошибка. Повторите попытку позже"
+                    );
+
+                    setTimeout(() => {
+                        signupUIStore.setErrorMessage();
+                    }, 5000);
+                    return null;
+                }
+
+                return;
+            }
 
             // Show badge
             signupUIStore.isBadgeOpen = true;
@@ -277,11 +295,6 @@ const fetchUser = async (uid: string): Promise<UserType | null> => {
     }
 };
 
-const validateEmail = (email: string): boolean => {
-    const re = /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
-};
-
 const validatePassword = (password: string): boolean => password.length >= 8;
 
 const validateUserDataCreation = (): boolean => {
@@ -313,7 +326,7 @@ const validateUserDataCreation = (): boolean => {
     }
 
     // email
-    if (signupUIStore.email.trim().length === 0) {
+    if (!validationServices.email(signupUIStore.email)) {
         hasError = true;
         signupUIStore.setEmailError("Необходимо ввести вашу почту");
     } else {

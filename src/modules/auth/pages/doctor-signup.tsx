@@ -5,7 +5,8 @@ import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 import MediaQuery from 'react-responsive';
 import Badge from "../components/badge";
-import signupUiStore from "../stores/signupUI";
+import signupUIStore from "../stores/signupUI";
+import ErrorBadge from "../../../components/error-badge";
 
 // Component
 import Image from '../components/image';
@@ -45,12 +46,14 @@ const DoctorSignUp: React.FC = () => {
 
     const history = useHistory();
 
-    reaction(() => signupUiStore.redirectToHomeTrigger, () => {
+    reaction(() => signupUIStore.redirectToHomeTrigger, () => {
         history.push("/");
     });
 
     return <div className="doctor-signup-module">
-        <Badge icon={BadgeIcon} title="Спасибо за регистрацию!" isOpen={true}>
+        <ErrorBadge message={signupUIStore.errorMessage ?? ""} isOpen={signupUIStore.showErrorMessage} />
+
+        <Badge icon={BadgeIcon} title="Спасибо за регистрацию!" isOpen={signupUIStore.isBadgeOpen}>
             Ваши данные отправлены на проверку. Подробнее о том, как работает сервис вы можете почитать <a>здесь</a>.</Badge>
         <Wrapper>
             <MediaQuery minDeviceWidth="1025px">

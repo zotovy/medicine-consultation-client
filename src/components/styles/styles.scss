@@ -19,7 +19,8 @@
 
 //──── ERROR BADGE ───────────────────────────────────────────────────────────────────────
 .error-badge-container {
-    position: absolute;
+    pointer-events: none;
+    position: fixed;
     right: 0;
     bottom: 30px;
     max-width: 30%;
@@ -143,61 +144,51 @@
 }
 
 @keyframes bounce_circleG {
-    0% {
-    }
+    0% {}
 
     50% {
         background-color: #30b9d6;
     }
 
-    100% {
-    }
+    100% {}
 }
 
 @-o-keyframes bounce_circleG {
-    0% {
-    }
+    0% {}
 
     50% {
         background-color: #30b9d6;
     }
 
-    100% {
-    }
+    100% {}
 }
 
 @-ms-keyframes bounce_circleG {
-    0% {
-    }
+    0% {}
 
     50% {
         background-color: #30b9d6;
     }
 
-    100% {
-    }
+    100% {}
 }
 
 @-webkit-keyframes bounce_circleG {
-    0% {
-    }
+    0% {}
 
     50% {
         background-color: #30b9d6;
     }
 
-    100% {
-    }
+    100% {}
 }
 
 @-moz-keyframes bounce_circleG {
-    0% {
-    }
+    0% {}
 
     50% {
         background-color: #30b9d6;
     }
 
-    100% {
-    }
+    100% {}
 }

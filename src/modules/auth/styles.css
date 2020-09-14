@@ -2,15 +2,20 @@
     position: fixed;
 }
 
+.doctor-signup-module {
+    position: fixed;
+}
+
 @media screen and (max-width: 425px) {
     .signup-module {
         position: absolute;
         overflow: hidden;
     }
-}
 
-.doctor-signup-module {
-    position: fixed;
+    .doctor-signup-module {
+        position: absolute;
+        overflow: hidden;
+    }
 }
 
 .phone-input {

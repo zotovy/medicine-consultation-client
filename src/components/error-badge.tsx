@@ -1,5 +1,6 @@
 import React from "react";
 import { WarningIcon } from "../modules/doctors/icons";
+import "./styles/styles.scss";
 
 type Props = {
     isOpen: boolean;
