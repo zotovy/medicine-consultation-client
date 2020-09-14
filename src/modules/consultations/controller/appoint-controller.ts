@@ -4,7 +4,7 @@ import settingsController from "../../settings/controller";
 import formatServices from "../../../services/format-services";
 
 class AppointmentController {
-    @observable pageIndex: number = 1;
+    @observable pageIndex: number = 2;
 
     // Page 1
     @observable fullName: string = settingsController.fullName;

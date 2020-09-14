@@ -1,3 +1,5 @@
+@import "../../static/theme.scss";
+
 .appointment-module {
     width: 100vw;
     height: 100vh;
@@ -35,7 +37,7 @@
         }
 
         &.minus110 {
-            transform: translateX(-100vw);
+            transform: translateX(-110vw);
 
             @media screen and (max-width: 1024px) {
                 transform: translateX(-200vw);
@@ -211,6 +213,98 @@
         @media screen and (max-width: 1024px) {
             left: 100vw;
         }
+
+        .textarea-wrapper {
+            width: calc(50vw);
+            max-width: 600px;
+        }
+
+        textarea.symptoms {
+            resize: none;
+            text-overflow: ellipsis;
+            width: 100%;
+            outline: none;
+            border: solid 1.15px #ccc;
+            border-radius: 5px;
+            padding: 12px;
+
+            color: #565656;
+
+
+            font-size: 14px;
+            transition: border 0.25s ease-in-out;
+
+
+            &::placeholder {
+                color: #707070;
+            }
+
+            &:focus {
+                outline: none !important;
+
+                border: 1.15px solid $primary;
+
+                color: #282828;
+            }
+
+            i {
+                font-size: 14px;
+            }
+
+            /* Phone */
+            @media screen and (max-width: 424px) {
+                font-size: 16px;
+            }
+
+
+            /* Tablet */
+            @media screen and (max-width: 1025px) and (min-width: 768px) {
+                font-size: 16px;
+                padding: 15px;
+                width: 100%;
+            }
+
+            /* Desktop */
+            @media screen and (min-width: 1025px) {
+                font-size: 14px;
+            }
+        }
     }
 
+    .page-3 {
+        left: 110vw;
+
+        @media screen and (max-width: 1024px) {
+            left: 300vw;
+        }
+
+
+        .form {
+            width: 100%;
+            display: grid;
+            grid-template-rows: repeat(2, 1fr);
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 50px;
+            row-gap: 20px;
+        }
+
+        .card-text-field {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+
+            input {
+                width: 100%;
+            }
+
+            svg {
+                margin: 10px 0;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                right: 10px;
+            }
+        }
+    }
 }

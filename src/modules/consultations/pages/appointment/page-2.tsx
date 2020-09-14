@@ -32,15 +32,17 @@ const Page2: React.FC<Props> = (props) => {
             />
             <div className="sc-AxhCb cEIUzV text-field" style={{ marginBottom: "10px" }} >
                 <p className="sc-AxhUy jMzJqM">Симптомы</p>
-                <textarea
-                    className="sc-AxheI NtfYS"
-                    name="text1"
-                    rows={7}
-                    onChange={(e) => controller.symptoms = e.target.value}
-                    placeholder="Введите ваши симптомы"
-                >
+                <div className="textarea-wrapper">
+                    <textarea
+                        className="symptoms"
+                        name="text1"
+                        rows={7}
+                        onChange={(e) => controller.symptoms = e.target.value}
+                        placeholder="Введите ваши симптомы"
+                    >
 
-                </textarea>
+                    </textarea>
+                </div>
             </div>
             <SizedBox height="5px" />
             <Divider text="Документы" />
@@ -53,7 +55,7 @@ const Page2: React.FC<Props> = (props) => {
                 }
             </div>
             <SizedBox height="10px" />
-            <ConfirmButton content="Продолжить" onConfirm={() => controller.pageIndex = 0} />
+            <ConfirmButton content="Продолжить" onConfirm={() => controller.pageIndex = 2} />
         </Container>
     </div >
 }
