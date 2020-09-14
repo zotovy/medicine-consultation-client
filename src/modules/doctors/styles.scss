@@ -1461,3 +1461,12 @@ menu {
         width: 150px;
     }
 }
+.symptoms-tab{
+    list-style: none;
+    display: flex;
+    .tab-links{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

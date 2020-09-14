@@ -3,52 +3,68 @@ import React from "react";
 const SymptomsTabs: React.FC = () => {
 	type eType = object | string | number | any;
 	type TabsType = {
-		items: any
+		items: any,
+	}
+	type TabType = {
+		sourse: string
 	}
 	let items: { title: string, sourseSvg: string, active: boolean, id: number }[] = [
 		{ title: 'М', sourseSvg: '/', active: true, id: 0 },
 		{ title: 'Ж', sourseSvg: '/', active: false, id: 1 },
 	];
-	// {items[active] && <TabContent {...items[active]} />}	
+	
 	const Tabs: React.FC<TabsType> = ({ items }: any) => {
 		const TabContent: React.FC = ({ title, sourseSvg }: any) => {
 			return (
 				<div className="tab-content">
 					<div className="tab-content-img-wrap">
-						<div className='fake-img img-1'>
-
-						</div>
-						<div className='fake-img img-2'>
-
-						</div>
+						<Tab sourse={sourseSvg}/>
 					</div>
 				</div>
 			)
 		};
 		const [active, setActive] = React.useState(items);
 
+		const Tab: React.FC<TabType> = ({sourseSvg }:any) => {
+		  return (
+		    <>
+				<div className='fake-img img-1'>
+					{sourseSvg}
+				</div>
+				<div className='fake-img img-2'>
+					{sourseSvg}
+				</div>
+		    </>
+		  )
+		}
 		function openTab(e: any) {
-			// e.persist()
-			// let id = +e._targetInst.key;
-			// return items = items.map((item:{}) => {
-			// 	(item.id == id) ? !item.active : 
-			// })
-			// console.log(e)
+			e.persist();
+			console.log(e);
+			items.map((item:eType) => {
+				
+				if (item.id == +e._targetInst.key) {
+					item.active = true
+				}else{
+					item.active = false;
+				}
+				console.log(item.id+ " -> " +item.active)
+			})
+
+			return items = items;
 		};
 		return (
 			<div className='tabs-wrapper'>
 				<div className='tabs-ui-container'>
-					{console.log(items[0].active)}
 					<TabContent />
-					<div className="symptoms-tab">
+					<ul className="symptoms-tab">
 						{items.map((n: any, i: any) => (
-							<button key={n.id}
+							<li key={n.id}
 								className={`tab-links tab-${n.id} ${n.active === true ? 'tab-active' : ''}`}
 								onClick={openTab}
 								data-index={i}
-							>{n.title}</button>
+							>{n.title}</li>
 						))}
-					</div>
+					</ul>
 				</div>
 			</div>
 		);
