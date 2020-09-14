@@ -3,7 +3,7 @@ import SymptomsWrap from '../components/symptoms-title';
 import Title from "../components/symptoms-title";
 import SymptomsTabs from '../components/symptoms-tabs'
 import ConfirmButton from '../../../components/confirm-button';
-
+import SymptomsСhoice from '../components/symptoms-choice'
 
 const SymptomsPage: React.FC = () => {
     return (
@@ -12,6 +12,7 @@ const SymptomsPage: React.FC = () => {
                 <Title />
                 {<div className="symptoms-main-container">
                     <SymptomsTabs />
+                    <SymptomsСhoice />
                 </div> }
                 <div className='symptoms-but'>
                     <ConfirmButton content='Продолжить' onConfirm={() => { console.log(1) }} />
