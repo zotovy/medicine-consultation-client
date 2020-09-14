@@ -1347,7 +1347,6 @@ menu {
     width: 1158px;
     height: 690px;
     margin: 0 auto;
-    border: 3px solid green; // Не забыть убрать данное св-во!!
     @media screen and (max-height: 940px) {
         width: 1075px;
         height: 582px;
@@ -1468,5 +1467,18 @@ menu {
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+}
+.choice-wrapper,.tabs-wrapper{
+    display: inline-block;
+}
+.choice-wrapper{
+    width: 562px;
+    height: 100%;
+    background-color: red;
+    float: right;
+    @media screen and (max-height: 940px) {
+        width: 560px;
+        height: 100%;
     }
 }
