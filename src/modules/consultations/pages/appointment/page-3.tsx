@@ -3,7 +3,7 @@ import { observer } from "mobx-react";
 import controller from "../../controller/appoint-controller";
 
 // Components
-import Title from "../../../auth/components/title";
+import PayTitle from "../../components/appoint/pay-title";
 import Container from "../../../auth/components/container";
 import Subtitle from "../../../auth/components/subtitle";
 import SizedBox from "../../../../components/sized-box";
@@ -20,9 +20,9 @@ type Props = {
 const Page3: React.FC<Props> = (props) => {
     return <div className={`page page-3 ${props.className}`} >
         <Container>
-            <Title text="Оплата" />
+            <PayTitle summa={444} />
             <SizedBox height="10px" />
-            <Subtitle>Необходимо оплатить консультанцию. Мы вернем ваши деньги если консультация не состоится</Subtitle>
+            <Subtitle>Необходимо оплатить консультанцию. Сумма к оплате - 1500р Мы вернем ваши деньги если консультация не состоится</Subtitle>
             <SizedBox height="20px" />
 
             <div className="form">
@@ -30,27 +30,26 @@ const Page3: React.FC<Props> = (props) => {
 
                 />
                 <TextField
-                    onChange={(v) => controller.chronicDisease = v}
-                    value={controller.chronicDisease}
-                    field="Хронические заболевания"
-                    hint="Введите ваши хронические заболевания"
+                    onChange={(v) => controller.cardOwner = v}
+                    value={controller.cardOwner}
+                    field="Владелец карты"
+                    hint="IVAN IVANOV"
                 />
                 <TextField
-                    onChange={(v) => controller.chronicDisease = v}
-                    value={controller.chronicDisease}
-                    field="Хронические заболевания"
-                    hint="Введите ваши хронические заболевания"
+                    onChange={(v) => controller.setCardTime(v)}
+                    value={controller.cardTime}
+                    field="Срок действия"
+                    hint="XX/XX"
+                    type="number"
                 />
                 <TextField
-                    onChange={(v) => controller.chronicDisease = v}
-                    value={controller.chronicDisease}
-                    field="Хронические заболевания"
-                    hint="Введите ваши хронические заболевания"
+                    type="number"
+                    onChange={(v) => controller.setCVV(v)}
+                    value={controller.cvv}
+                    field="СVV"
+                    hint="XXX"
                 />
             </div>
-
-
-
             <SizedBox height="10px" />
             <ConfirmButton content="Продолжить" onConfirm={() => controller.pageIndex = 0} />
         </Container>

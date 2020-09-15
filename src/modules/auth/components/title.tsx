@@ -52,3 +52,5 @@ const TitleComponent: React.FC<Props> = (props: Props) => {
 };
 
 export default TitleComponent;
+
+export { Title };
