@@ -1477,6 +1477,7 @@ menu {
     height: 100%;
     background-color: red;
     float: right;
+    overflow: hidden;
     @media screen and (max-height: 940px) {
         width: 560px;
         height: 100%;
@@ -1520,3 +1521,9 @@ menu {
     }
 }
 
+.symptoms-checkbox-wrapper{
+    width: 100%;
+    height: 100%;
+    // overflow-x: hidden;
+    // overflow-y: scroll;
+}
