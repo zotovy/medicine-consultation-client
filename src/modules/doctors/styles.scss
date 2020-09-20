@@ -1526,4 +1526,74 @@ menu {
     height: 100%;
     // overflow-x: hidden;
     // overflow-y: scroll;
+    hr{
+        color: #CCCCCC;
+        border: none;
+        height: 1px;
+        background-color: #CCCCCC;
+    }
+    .option-symp{
+        height: 30px;
+        background-color: yellow;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 31px 0;
+        position: relative;
+        @media screen and (max-height: 940px) {
+            margin: 20px 0;
+        }
+        .option-symp-name {
+            font-size: 22px;
+            font-weight: 400;
+            font-weight: normal;
+            float: left;
+            margin-left: 35px;
+            @media screen and (max-height: 940px) {
+                font-size: 20px;
+            }
+        }
+        .css-checkbox {
+            display: none;
+        }
+        .container {
+            position: absolute;
+            right: 7px;
+        }
+        .css-checkbox:checked + .css-label .fa-minus {
+            display: inline;
+        }
+        .css-checkbox:checked + .css-label .fa-plus {
+            display: none;
+        }
+        .css-label {
+            cursor: pointer;
+        }
+        label{
+            display: inline-flex;
+            .fa {
+                color: white;
+                line-height: 16px;
+                border-radius: 4px;
+                font-size: 22px;
+                line-height: normal;
+            }
+            .fa-plus {
+                // padding-top: 2px;
+                // padding-right: 2px;
+                // padding-left: 2px;
+                color: $primary;
+            }
+            .fa-minus {
+                // padding-top: 1px;
+                // padding-right: 2px;
+                // padding-left: 2px;
+                background-color: $primary;
+                display: none;
+            }
+
+        }
+        
+    }
+
 }

@@ -1,16 +1,18 @@
 import React from "react";
-import Symptom from "./symptom"
 // import Skeleton from 'react-loading-skeleton';
+// import RatingComponent from "./rating";
+// import { useHistory } from "react-router-dom";
 // import detailController from "../controllers/detail-controller";
 // import controller from "../controllers/find-doctor-controller";
 
 type Props = {
-    title?: string;
-    active?: string;
-    id?: string;
+    title: string;
+    description?: string;
+    active: boolean;
+    id: string;
 };
 
-const Option: React.FC<Props> = (props: Props) => {
+const Symptom: React.FC<Props> = (props: Props) => {
 
     // const img = "https://www.epos-ural.ru/wp-content/uploads/2019/03/user-placeholder.jpg" ?? props.imgUrl;
     // const history = useHistory();
@@ -34,18 +36,17 @@ const Option: React.FC<Props> = (props: Props) => {
     // }
 
     return(
-        <div className="option">
-            <div className="activeOptions">
-                <Symptom title="Пример 1" active={true} id="1"/>
-            </div>
-            <hr/>
-            <div className="disableOptions">
-                <Symptom title="Пример 2" active={false} id="2"/>
+        <div className="option-symp">
+            <span className="option-symp-name">{props.title}</span>
+            <div className="container">
+                <input type="checkbox" name={props.id + "-checkbox"} id={props.id + "-checkbox"} className="css-checkbox" onClick={(e) => {console.log(e)}}/>
+                <label htmlFor={props.id+"-checkbox"} className="css-label">
+                    <span className="fa fa-plus"></span>
+                    <span className="fa fa-minus"></span>
+                </label>
             </div>
         </div>
     )
-
-        
 }
 
-export default Option;
+export default Symptom;
