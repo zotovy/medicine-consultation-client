@@ -19,7 +19,7 @@ type Props = {
 
 const Page2: React.FC<Props> = (props) => {
 
-    const textAreaStyles = { marginBottom: "10px", width: "100%" }
+    const textAreaStyles = { marginBottom: "10px", width: "100%" };
 
     return <div className={`page page-2 ${props.className}`} >
         <Container>
