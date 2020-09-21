@@ -8,7 +8,7 @@ const mastercardRegEx = /^(5[1-5]|(?:222[1-9]|22[3-9][0-9]|2[3-6][0-9]{2}|27[01]
 const mircardRegex = /^220[0-4]/;
 
 class AppointmentController {
-    @observable pageIndex: number = 2;
+    @observable pageIndex: number = 0;
 
     // Page 1
     @observable fullName: string = settingsController.fullName;

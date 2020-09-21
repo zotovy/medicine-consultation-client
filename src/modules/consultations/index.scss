@@ -36,14 +36,6 @@
             }
         }
 
-        &.minus110 {
-            transform: translateX(-110vw);
-
-            @media screen and (max-width: 1024px) {
-                transform: translateX(-200vw);
-            }
-        }
-
         .form {
             display: flex;
             flex-direction: row;
@@ -210,18 +202,27 @@
     .page-2 {
         left: 55vw;
 
+        .text-field p {
+            color: #565656;
+        }
+
         @media screen and (max-width: 1024px) {
             left: 100vw;
         }
 
         .textarea-wrapper {
-            width: calc(50vw);
+            width: 100%;
             max-width: 600px;
+
+            @media screen and (max-width: 1024px) {
+                width: 100%;
+                max-width: 100%;
+            }
         }
 
         textarea.symptoms {
             resize: none;
-            text-overflow: ellipsis;
+            overflow: ellipsis;
             width: 100%;
             outline: none;
             border: solid 1.15px #ccc;
@@ -271,44 +272,4 @@
         }
     }
 
-    .page-3 {
-        left: 110vw;
-
-        @media screen and (max-width: 1024px) {
-            left: 200vw;
-        }
-
-
-        .form {
-            width: 100%;
-            display: grid;
-            grid-template-rows: repeat(2, 1fr);
-            grid-template-columns: repeat(2, 1fr);
-            column-gap: 50px;
-            row-gap: 20px;
-
-            @media screen and (max-width: 1025px) {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-
-        .card-text-field {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            position: relative;
-
-            input {
-                width: 100%;
-            }
-
-            svg {
-                margin: 10px 0;
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                right: 10px;
-            }
-        }
-    }
 }
