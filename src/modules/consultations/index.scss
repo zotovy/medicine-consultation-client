@@ -331,6 +331,7 @@
             border-radius: 50%;
             background-color: #CCCCCC;
             cursor: pointer;
+            transition: background 150ms ease-in-out;
 
             &.active {
                 background-color: $primary;
@@ -342,6 +343,68 @@
             }
 
         }
+    }
+
+    .partner {
+        position: absolute;
+        left: 16px;
+        bottom: 16px;
+
+        &-wrapper {
+            position: relative;
+        }
+
+        video {
+            max-width: 30vw;
+            max-height: 30vh;
+            border-radius: 10px;
+        }
+
+        .close {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #FF3B30;
+            position: absolute;
+            right: -10px;
+            top: -10px;
+
+            svg {
+                cursor: pointer;
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        .micro {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+
+            svg {
+                width: 24px;
+                height: 24px;
+                fill: $primary;
+            }
+        }
+    }
+
+    .minimized {
+        width: 7vw;
+        height: 7vw;
+        border-radius: 10px;
+        background-color: #ccc;
+        background-image: url("https://www.epos-ural.ru/wp-content/uploads/2019/03/user-placeholder.jpg");
+        background-position: center;
+        background-size: cover;
+        cursor: pointer;
+    }
+
+    video.hidden {
+        display: none;
     }
 
 

@@ -1,41 +1,49 @@
 import React, { useState, useEffect, useRef } from "react";
+import { reaction } from "mobx";
+import controller from "../controller/consultation-controller";
+import { observer } from "mobx-react";
 import { CameraIcon, MicroIcon, ChatIcon } from "../icons";
+import { CloseIcon } from "../../doctors/icons";
+import Button from "../components/consultation/main-button";
+import PartnerVideo from "../components/consultation/partner-video";
+
+
 
 const ConsultationPage: React.FC = () => {
-    const [stream, setStream] = useState<MediaStream>();
     const userVideo = useRef<HTMLVideoElement>(null);
-
-    // const videoStyles = { height: window.innerHeight + "px" };
 
     useEffect(() => {
         navigator.mediaDevices
             .getUserMedia({ video: true, audio: true })
             .then(stream => {
-                setStream(stream);
                 if (userVideo.current) {
                     userVideo.current.srcObject = stream;
                 }
             })
-            .catch(e => null)
+            .catch(() => null)
     }, []);
 
     return <div className="consultation-module">
         <div className="video-container">
-            <video playsInline muted autoPlay ref={userVideo} />
+            {
+                userVideo ? <video playsInline muted autoPlay ref={userVideo} className={controller.isCameraOn ? "" : "hidden"} /> : <h1>123</h1>
+            }
         </div>
         <div className="buttons">
-            <div className="button active" id="camera">
+            <Button id="camera" ckey="isCameraOn">
                 <CameraIcon />
-            </div>
-            <div className="button" id="micro">
+            </Button>
+            <Button id="micro" ckey="isMicroOn">
                 <MicroIcon />
-            </div>
-            <div className="button" id="chat">
+            </Button>
+            <Button id="chat" ckey="isChatOn">
                 <ChatIcon />
-            </div>
+            </Button>
         </div>
+
+        <PartnerVideo />
     </div>
 
 };
 
-export default ConsultationPage;
+export default observer(ConsultationPage);
