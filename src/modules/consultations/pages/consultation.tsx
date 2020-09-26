@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import { reaction } from "mobx";
+import React, { useEffect, useRef } from "react";
 import controller from "../controller/consultation-controller";
 import { observer } from "mobx-react";
 import { CameraIcon, MicroIcon, ChatIcon } from "../icons";
-import { CloseIcon } from "../../doctors/icons";
 import Button from "../components/consultation/main-button";
 import PartnerVideo from "../components/consultation/partner-video";
+import Chat from "../components/consultation/chat";
 
 
 
@@ -24,10 +23,13 @@ const ConsultationPage: React.FC = () => {
     }, []);
 
     return <div className="consultation-module">
-        <div className="video-container">
-            {
-                userVideo ? <video playsInline muted autoPlay ref={userVideo} className={controller.isCameraOn ? "" : "hidden"} /> : <h1>123</h1>
-            }
+        <div className="wrapper">
+            <div className="video-container">
+                {
+                    userVideo ? <video playsInline muted autoPlay ref={userVideo} className={controller.isCameraOn ? "" : "hidden"} /> : <h1>123</h1>
+                }
+            </div>
+            <Chat />
         </div>
         <div className="buttons">
             <Button id="camera" ckey="isCameraOn">

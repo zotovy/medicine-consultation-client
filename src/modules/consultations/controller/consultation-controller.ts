@@ -1,18 +1,19 @@
 import { observable } from "mobx";
 
 class ConsultationController implements IConsultationController {
-    @observable isCameraOn: boolean = false;
+    @observable isCameraOn: boolean = true;
     @observable isMicroOn: boolean = false;
-    @observable isChatOn: boolean = false;
+    @observable isChatOn: boolean = true;
 
     // partner
     @observable isMinimized: boolean = false;
     @observable partnerImagePath?: string;
     @observable partnerMicroStatus: boolean = false;
+    @observable partnerName: string = "Иванова Елена";
+    @observable partnerSpeciality: string = "Педиатр";
 }
 
 export interface IConsultationController {
-    isMinimized: boolean;
     isCameraOn: boolean;
     isMicroOn: boolean;
     isChatOn: boolean;
