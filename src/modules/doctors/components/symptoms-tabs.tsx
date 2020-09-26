@@ -26,10 +26,10 @@ const SymptomsTabs: React.FC = () => {
 		  return (
 		    <>
 				<div className='fake-img img-1'>
-					{sourseSvg}
+					{sourseSvg[0]}
 				</div>
 				<div className='fake-img img-2'>
-					{sourseSvg}
+					{sourseSvg[1]}
 				</div>
 		    </>
 		  )
