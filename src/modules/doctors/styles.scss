@@ -1558,12 +1558,13 @@ menu {
         }
         .container {
             position: absolute;
-            right: 7px;
+            right: 0;
+            height: 30px;
         }
-        .css-checkbox:checked + .css-label .fa-minus {
+        .css-checkbox:checked + .css-label .fav-minus {
             display: inline;
         }
-        .css-checkbox:checked + .css-label .fa-plus {
+        .css-checkbox:checked + .css-label .fav-plus  {
             display: none;
         }
         .css-label {
@@ -1571,25 +1572,43 @@ menu {
         }
         label{
             display: inline-flex;
-            .fa {
-                color: white;
-                line-height: 16px;
-                border-radius: 4px;
-                font-size: 22px;
-                line-height: normal;
-            }
-            .fa-plus {
-                // padding-top: 2px;
-                // padding-right: 2px;
-                // padding-left: 2px;
-                color: $primary;
-            }
-            .fa-minus {
-                // padding-top: 1px;
-                // padding-right: 2px;
-                // padding-left: 2px;
+            width: 30px;
+            height: 30px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            .fav-plus {
+                border-radius: 2.5px;
+                height: 4px;
+                width: 17px;
                 background-color: $primary;
+                &:before{
+                    border-radius: 2.5px;
+                    content: " ";
+                    background-color: $primary;
+                    width: 4px;
+                    height: 17px;
+                    position: absolute;
+                    left: calc(50% - 2px);
+                    top: calc(50% - 8.5px);
+                }
+            }
+            .fav-minus {
                 display: none;
+                width: 30px;
+                height: 30px;
+                background-color: $primary;
+                border-radius: 5px;
+                &:before{
+                    border-radius: 2.5px;
+                    content: " ";
+                    background-color: white;
+                    width: 17px;
+                    height: 4px;
+                    position: absolute;
+                    left: calc(50% - 8.5px);
+                    top: calc(50% - 2px);
+                }
             }
 
         }

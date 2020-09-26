@@ -41,8 +41,8 @@ const Symptom: React.FC<Props> = (props: Props) => {
             <div className="container">
                 <input type="checkbox" name={props.id + "-checkbox"} id={props.id + "-checkbox"} className="css-checkbox" onClick={(e) => {console.log(e)}}/>
                 <label htmlFor={props.id+"-checkbox"} className="css-label">
-                    <span className="fa fa-plus"></span>
-                    <span className="fa fa-minus"></span>
+                    <span className="fav fav-plus"></span>
+                    <span className="fav fav-minus"></span>
                 </label>
             </div>
         </div>
