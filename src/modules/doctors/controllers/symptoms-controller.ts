@@ -1,14 +1,13 @@
 import { observable, action } from "mobx";
 import settingDoctorController from "../../settings/controller";
-import {MaleSide, MaleFront, FemaleSide, FemaleFront} from "../svg-symp";
 
 
 type Item = { title: string; sourseSvg: any[]; active: boolean; id: number };
 
 class SympController {
     @observable items: Item[] = [
-        { title: "М", sourseSvg: ['',''/*{<MaleFront/>}, {<MaleSide/>}*/], active: true, id: 0 },
-        { title: "Ж", sourseSvg: ['',''/*{<FemaleFront/>},{<FemaleSide/>}*/], active: false, id: 1 },
+        { title: "М", sourseSvg: [1,2], active: true, id: 0 },
+        { title: "Ж", sourseSvg: [3,4], active: false, id: 1 },
     ];
     @action openTab = (items: any, e: any): void => {
         // items = this.items;
@@ -19,7 +18,6 @@ class SympController {
             } else {
                 item.active = false;
             }
-
             return item;
         });
     };
