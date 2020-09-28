@@ -10,7 +10,6 @@ import Chat from "../components/consultation/chat";
 
 const ConsultationPage: React.FC = () => {
     const userVideo = useRef<HTMLVideoElement>(null);
-
     useEffect(() => {
         navigator.mediaDevices
             .getUserMedia({ video: true, audio: true })

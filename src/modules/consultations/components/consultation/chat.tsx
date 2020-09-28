@@ -6,6 +6,9 @@ import { SendIcon } from "../../icons";
 
 const Chat: React.FC = () => {
 
+    const _handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === 'Enter') controller.addMessage();
+    }
 
     return <div className={`chat ${controller.isChatOn ? "enable" : ""}`}>
         <header>
@@ -22,6 +25,7 @@ const Chat: React.FC = () => {
                 className="text"
                 placeholder="Введите сообщение"
                 onChange={e => controller.message = e.target.value}
+                onKeyDown={_handleKeyDown}
             />
             <button id="send" onClick={() => controller.addMessage()}>
                 <SendIcon />
