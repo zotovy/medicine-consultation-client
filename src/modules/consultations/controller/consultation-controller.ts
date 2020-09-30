@@ -1,6 +1,38 @@
 import { action, observable } from "mobx";
+import openSocket from "socket.io-client";
 
 class ConsultationController implements IConsultationController {
+    // Socket
+
+    setupSocket = async (
+        consultationId: string,
+        args: {
+            onSuccess: (data: any) => any;
+            onError: (data: string) => any;
+        }
+    ): Promise<string> => {
+        const userId = localStorage.getItem("uid");
+        const isUser = localStorage.getItem("isUser");
+        if (!userId || isUser === null) return "redirect";
+
+        const query = {
+            consultationId,
+            userId,
+            isUser,
+            accessToken: localStorage.getItem("accessToken"),
+        };
+
+        const socket: SocketIOClient.Socket = openSocket(
+            process.env.REACT_APP_SERVER_URL ?? "",
+            { query, transports: ["websocket"] }
+        );
+
+        socket.on("error", args.onError);
+        socket.on("success", args.onSuccess);
+
+        return "ok";
+    };
+
     @observable isCameraOn: boolean = true;
     @observable isMicroOn: boolean = false;
     @observable isChatOn: boolean = true;

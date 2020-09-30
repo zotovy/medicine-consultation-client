@@ -1,24 +1,55 @@
 import React, { useEffect, useRef } from "react";
-import controller from "../controller/consultation-controller";
 import { observer } from "mobx-react";
+import { withRouter, RouteComponentProps } from "react-router-dom";
+import controller from "../controller/consultation-controller";
 import { CameraIcon, MicroIcon, ChatIcon } from "../icons";
 import Button from "../components/consultation/main-button";
 import PartnerVideo from "../components/consultation/partner-video";
 import Chat from "../components/consultation/chat";
+import tokenServices from "../../../services/token-services";
 
+interface IParams extends RouteComponentProps<{ id: string }> {
+}
 
+const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
 
-const ConsultationPage: React.FC = () => {
     const userVideo = useRef<HTMLVideoElement>(null);
     useEffect(() => {
-        navigator.mediaDevices
-            .getUserMedia({ video: true, audio: true })
-            .then(stream => {
-                if (userVideo.current) {
-                    userVideo.current.srcObject = stream;
-                }
-            })
-            .catch(() => null)
+
+        const onSuccess = () => console.log("success");
+        const onError = (data: string) => {
+            console.log(data);
+            switch (data) {
+                case "invalid_token":
+                    tokenServices.getAndUpdateNewAccessToken().then(() => controller.setupSocket(match.params.id, { onSuccess, onError }));
+                    break;
+                default:
+                    history.push("/");
+            }
+        };
+
+
+        controller.setupSocket(match.params.id, { onSuccess, onError }).then(next => {
+            switch (next) {
+                case "redirect":
+                    history.push("/");
+                    break;
+                case "redirect-login":
+                    history.push("/login");
+                    break;
+                case "ok":
+                    navigator.mediaDevices
+                        .getUserMedia({ video: true, audio: true })
+                        .then(stream => {
+                            if (userVideo.current) {
+                                userVideo.current.srcObject = stream;
+                            }
+                        })
+                        .catch(() => null);
+                    break;
+            }
+        });
+
     }, []);
 
     return <div className="consultation-module">
@@ -47,4 +78,4 @@ const ConsultationPage: React.FC = () => {
 
 };
 
-export default observer(ConsultationPage);
+export default withRouter(observer(ConsultationPage));

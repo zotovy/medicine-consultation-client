@@ -38,6 +38,7 @@ class TokenServices {
         if (this._needRefreshAccessToken()) {
             const token = await this._getNewAccessToken();
 
+            console.log(token);
             if (token) {
                 this.saveAccessToken(token ?? "");
             }
@@ -74,7 +75,7 @@ class TokenServices {
 
     // Core
     private _needRefreshAccessToken(): boolean | null {
-        const leftToLive = this._secondsToUpdate("accessToken");
+        const leftToLive = this._secondsToUpdate("accessTokenSetDate");
         return leftToLive != null
             ? leftToLive >= this.accessTokenLifetime
             : null;
@@ -100,25 +101,43 @@ class TokenServices {
         const now = moment();
         const diff = moment.duration(now.diff(date));
 
-        return Math.abs(diff.asSeconds());
+        return diff.asSeconds();
     }
 
-    private _getNewAccessToken = async (): Promise<string | null> => {
+    private _getNewAccessToken = async (): Promise<any | null> => {
         if (this._needRefreshRefreshToken()) {
             return null;
         }
 
         const refreshToken = this._getRefreshToken();
+        const accessToken = this._getAccessToken();
+        const userId = localStorage.getItem("uid");
 
-        if (!refreshToken) return null;
+        if (!refreshToken || !accessToken || !userId) return null;
 
-        const responce = await axios.post("http://localhost:5000/api/token", {
-            token: refreshToken,
-        });
+        const responce = await axios
+            .post("http://localhost:5000/api/token", {
+                accessToken,
+                refreshToken,
+                userId,
+            })
+            .catch((e) => {
+                console.log(e.response);
+                return e.response;
+            });
 
-        if (!responce.data.success || !responce.data.token) return null;
+        if (!responce.data.success || !responce.data.tokens) return null;
 
-        return responce.data.token;
+        return responce.data.tokens;
+    };
+
+    getAndUpdateNewAccessToken = async (): Promise<void> => {
+        const tokens = await this._getNewAccessToken();
+        console.log(tokens);
+        if (tokens) {
+            this.saveAccessToken(tokens.access ?? "");
+            this.saveRefreshToken(tokens.refresh ?? "");
+        }
     };
 }
 
