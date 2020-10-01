@@ -1,8 +1,7 @@
 import React from "react";
-import Symptom from "./symptom"
-// import Skeleton from 'react-loading-skeleton';
-// import detailController from "../controllers/detail-controller";
-// import controller from "../controllers/find-doctor-controller";
+import Symptom from "./symptom";
+import { observer } from "mobx-react";
+import controller from "../controllers/symptoms-controller";
 
 type Props = {
     title?: string;
@@ -33,14 +32,21 @@ const Option: React.FC<Props> = (props: Props) => {
     //     </div>
     // }
 
+    const {symptoms} = controller;
     return(
         <div className="option">
             <div className="activeOptions">
-                <Symptom title="Пример 1" active={true} id="1"/>
+               {symptoms.map((n:any, i:any) => (
+                    n.active === true ? <Symptom title={n.title} active={n.active} id={i} key={i}/> : null
+                    )
+                )}
             </div>
             <hr/>
             <div className="disableOptions">
-                <Symptom title="Пример 2" active={false} id="2"/>
+                {symptoms.map((n:any, i:any) => (
+                    n.active === true ? null : <Symptom title={n.title} active={n.active} id={i} key={i}/>
+                    )
+                )}
             </div>
         </div>
     )

@@ -1563,12 +1563,6 @@ menu {
             right: 0;
             height: 30px;
         }
-        .css-checkbox:checked + .css-label .fav-minus {
-            display: inline;
-        }
-        .css-checkbox:checked + .css-label .fav-plus  {
-            display: none;
-        }
         .css-label {
             cursor: pointer;
         }
@@ -1596,7 +1590,6 @@ menu {
                 }
             }
             .fav-minus {
-                display: none;
                 width: 30px;
                 height: 30px;
                 background-color: $primary;
