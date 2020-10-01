@@ -3,6 +3,7 @@ import openSocket from "socket.io-client";
 
 class ConsultationController implements IConsultationController {
     // Socket
+    socket: SocketIOClient.Socket | null = null;
 
     setupSocket = async (
         consultationId: string,
@@ -22,23 +23,39 @@ class ConsultationController implements IConsultationController {
             accessToken: localStorage.getItem("accessToken"),
         };
 
-        const socket: SocketIOClient.Socket = openSocket(
-            process.env.REACT_APP_SERVER_URL ?? "",
-            { query, transports: ["websocket"] }
-        );
+        this.socket = openSocket(process.env.REACT_APP_SERVER_URL ?? "", {
+            query,
+            transports: ["websocket"],
+        });
 
-        socket.on("error", args.onError);
-        socket.on("success", args.onSuccess);
+        this.socket.on("error", args.onError);
+        this.socket.on("success", args.onSuccess);
+
+        this.socket.on("new_message", (message: string) => {
+            console.log("new message!", message);
+            this._messages.push({ content: message, isUser: false });
+        });
+
+        this.socket.on(
+            "messages",
+            (messages: { content: string; user: string }[]) => {
+                const uid = localStorage.getItem("uid");
+                this._messages = messages.map((e) => ({
+                    isUser: e.user === uid,
+                    content: e.content,
+                }));
+            }
+        );
 
         return "ok";
     };
 
-    @observable isCameraOn: boolean = true;
+    @observable isCameraOn: boolean = false;
     @observable isMicroOn: boolean = false;
     @observable isChatOn: boolean = true;
 
     // partner
-    @observable isMinimized: boolean = false;
+    @observable isMinimized: boolean = true;
     @observable partnerImagePath?: string;
     @observable partnerMicroStatus: boolean = false;
     @observable partnerName: string = "Иванова Елена";
@@ -46,36 +63,7 @@ class ConsultationController implements IConsultationController {
 
     // Chat
     public message: string = "";
-    @observable private _messages: TMessage[] = [
-        {
-            isUser: false,
-            content: "a123",
-        },
-        {
-            isUser: false,
-            content: "a456",
-        },
-        {
-            isUser: false,
-            content: "a789",
-        },
-        {
-            isUser: true,
-            content: "b456",
-        },
-        {
-            isUser: true,
-            content: "b789",
-        },
-        {
-            isUser: false,
-            content: "a111",
-        },
-        {
-            isUser: true,
-            content: "b111",
-        },
-    ];
+    @observable private _messages: TMessage[] = [];
 
     public getBlocks = (): TMessageBlock[] => {
         let blocks: TMessageBlock[] = [];
@@ -93,7 +81,11 @@ class ConsultationController implements IConsultationController {
 
     @action addMessage(): void {
         this._messages.push({ content: this.message, isUser: true });
-        console.log(this._messages);
+        this.socket?.emit(
+            "new_message",
+            this.message,
+            localStorage.getItem("uid")
+        );
     }
 }
 
