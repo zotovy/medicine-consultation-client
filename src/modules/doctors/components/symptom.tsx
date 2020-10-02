@@ -26,4 +26,4 @@ const Symptom: React.FC<Props> = (props: Props) => {
     )
 }
 
-export default Symptom;
+export default observer(Symptom);

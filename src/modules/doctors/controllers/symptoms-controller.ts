@@ -10,18 +10,18 @@ class SympController {
         { title: "Ж", sourseSvg: [3,4], active: false, id: 1 },
     ];
     @observable symptoms: Symp[] = [
-        {title: "Пример 13", active: true, id:0},
+        {title: "Пример 13", active: false, id:0},
         {title: "Пример 24", active: false, id:1},
+        {title: "Пример 35", active: false, id:2},
     ];
+
     @action choiseSymp = (e: any): void =>{
         e.persist();
+        console.log("click -> " + +e._targetInst.key);
         this.symptoms = this.symptoms.map((item: Symp) => {
-            console.log(item);
-            if (item.id == +e._targetInst.key && item.active != true) {
-                console.log(1);
+            if (item.id == +e._targetInst.key && item.active !== true) {
                 item.active = true;
-            } else {
-                console.log(2)
+            } else if(item.id == +e._targetInst.key && item.active == true){
                 item.active = false;
             }
             return item;
