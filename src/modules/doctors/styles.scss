@@ -1298,7 +1298,9 @@ menu {
  *                                    Symptoms                                               *
  *                                                                                          */
 //========================================================================================
-
+.symptoms-wrapper{
+    overflow: hidden;
+}
 .symptoms-title-wrap {
     text-align: center;
 
@@ -1320,7 +1322,7 @@ menu {
         color: #ccc;
     }
 
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         h1 {
             font-size: 42px;
             color: #1e1e1e;
@@ -1347,7 +1349,7 @@ menu {
     width: 1158px;
     height: 690px;
     margin: 0 auto;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         width: 1075px;
         height: 582px;
     }
@@ -1362,7 +1364,7 @@ menu {
     margin: 52px auto;
     width: 300px;
     height: 60px;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
        margin: 42px auto;
     }
     div {
@@ -1386,7 +1388,7 @@ menu {
     -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         width: 448px;
         height: 582px;
     }
@@ -1396,7 +1398,7 @@ menu {
     position: relative;
     color: yellow;
     height: -webkit-fill-available;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         margin: 20px 27px 18px 23px;
     } 
 }
@@ -1415,7 +1417,7 @@ menu {
     border-radius: 5px;
     outline: none;
     font-size: 18px;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         font-size: 13px;
         width: 32px;
         height: 32px;
@@ -1423,19 +1425,67 @@ menu {
 }
 .tab-1{
     margin-left: 13px !important;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         margin-left: 11px !important;
     }
 }
 .tab-active{
     background-color: $primary;
 }
+$hoverCol: #30B9D6;
 .tab-content{
     height: 644px;
     width: 473px;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         width: 399px;
         height: 544px;
+    }
+    svg{
+        width: 100%;
+        height: 100%;
+        background-color: #F3F7FA;
+        #male_kidneys:hover{
+            path{
+                fill: $hoverCol;   
+            }       
+        }
+        #male_lungs:hover{
+            path{
+                fill: $hoverCol;   
+            }  
+        }
+        #male_throat:hover{
+            path{
+                fill: $hoverCol;   
+            }  
+        }
+        #male_stomach:hover{
+            path{
+                fill: $hoverCol;   
+            }
+        }
+        #male_liver:hover{
+            path{
+                fill: $hoverCol;   
+            }
+        }
+        #male_heart:hover{
+            path{
+                fill: $hoverCol;   
+            }
+        }
+        #male_intestine_1:hover{
+            path{
+                fill: $hoverCol;   
+            }
+            stroke: $hoverCol;
+        }
+        #male_uthera:hover{
+            path{
+                fill: $hoverCol;   
+            }
+        }
+        // Доделать кишечник !!!
     }
 }
 .tab-content-img-wrap{
@@ -1444,21 +1494,20 @@ menu {
 }
 .fake-img{
     height: 644px;
-    background-color: red;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         height: 544px;
     }
 }
 
 .img-1{
     width: 254px;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         width: 214px;
     }
 }
 .img-2{
     width: 177px;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         width: 150px;
     }
 }
@@ -1477,10 +1526,9 @@ menu {
 .choice-wrapper{
     width: 562px;
     height: 100%;
-    background-color: red;
     float: right;
     overflow: hidden;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         width: 560px;
         height: 100%;
     }
@@ -1536,13 +1584,12 @@ menu {
     }
     .option-symp{
         height: 30px;
-        background-color: yellow;
         width: 100%;
         display: flex;
         align-items: center;
         margin: 31px 0;
         position: relative;
-        @media screen and (max-height: 940px) {
+        @media screen and (max-height: 970px) {
             margin: 20px 0;
         }
         .option-symp-name {
@@ -1551,7 +1598,7 @@ menu {
             font-weight: normal;
             float: left;
             margin-left: 35px;
-            @media screen and (max-height: 940px) {
+            @media screen and (max-height: 970px) {
                 font-size: 20px;
             }
         }
@@ -1611,3 +1658,6 @@ menu {
     }
 
 }
+
+.cls-1{fill:#ccd9e2;}.cls-2{fill:#abc2d7;}.cls-3{fill:none;stroke:#8da0b0;stroke-width:2px;}.cls-3,.cls-6{stroke-miterlimit:10;}.cls-4,.cls-6{fill:#a8bac4;}.cls-5{fill:#b6cae5;}.cls-6{stroke:#a8bac4;}
+.cls-1{fill:#ccd9e2;}.cls-2{fill:#a5b8d9;}.cls-3{fill:#9dbecf;}.cls-4{fill:#e3e7eb;}.cls-5{fill:#9bbdd6;}.cls-6{fill:#adc7de;}.cls-7{fill:#c7ddf0;}.cls-8{fill:#8895a6;}.cls-9{fill:#9caabd;}.cls-10{fill:#82a4c9;}.cls-11{fill:#9fbcd4;}.cls-12{fill:#b3caee;}.cls-13,.cls-14{fill:none;stroke-miterlimit:10;}.cls-13{stroke:#b3caee;}.cls-14{stroke:#abc7dd;stroke-width:5px;}
