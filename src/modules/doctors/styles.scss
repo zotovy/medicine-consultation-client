@@ -1444,64 +1444,135 @@ $hoverCol: #30B9D6;
         width: 100%;
         height: 100%;
         background-color: #F3F7FA;
-        #male_kidneys:hover{
-            path{
-                fill: $hoverCol;   
-            }
-            cursor: pointer;       
+        .fem{
+            .cls-1{fill:#ccd9e2;}.cls-2{fill:#a5b8d9;}.cls-3{fill:#9dbecf;}.cls-4{fill:#e3e7eb;}.cls-5{fill:#9caabd;}.cls-6{fill:#9bbdd6;}.cls-7{fill:#adc7de;}.cls-8{fill:#c7ddf0;}.cls-9{fill:#8895a6;}.cls-10{fill:#82a4c9;}.cls-11{fill:none;stroke:#abc7dd;stroke-miterlimit:10;stroke-width:5px;}.cls-12{fill:#b3c7d9;}.cls-13{fill:#6994b5;}.cls-14{fill:#abbcc9;}
         }
-        #male_lungs:hover{
-            path{
-                fill: $hoverCol;   
-            }
-            cursor: pointer;  
+        .fem-side{
+            .cls-1{fill:#ccd9e2;}.cls-2{fill:#abc2d7;}.cls-3,.cls-5{fill:#a8bac4;}.cls-4{fill:#b6cae5;}.cls-5{stroke:#a8bac4;}.cls-5,.cls-6{stroke-miterlimit:10;}.cls-6{fill:none;stroke:#8da0b0;stroke-width:2px;}
         }
-        #male_throat:hover{
-            path{
-                fill: $hoverCol;   
-            }
-            cursor: pointer;  
+        .male{
+            .cls-1{fill:#ccd9e2;}.cls-2{fill:#a5b8d9;}.cls-3{fill:#9dbecf;}.cls-4{fill:#e3e7eb;}.cls-5{fill:#9bbdd6;}.cls-6{fill:#adc7de;}.cls-7{fill:#c7ddf0;}.cls-8{fill:#8895a6;}.cls-9{fill:#9caabd;}.cls-10{fill:#82a4c9;}.cls-11{fill:#9fbcd4;}.cls-12{fill:#b3caee;}.cls-13,.cls-14{fill:none;stroke-miterlimit:10;}.cls-13{stroke:#b3caee;}.cls-14{stroke:#abc7dd;stroke-width:5px;}
         }
-        #male_stomach:hover{
-            path{
-                fill: $hoverCol;   
+        .male-side{
+            .cls-1{fill:#ccd9e2;}.cls-2{fill:#abc2d7;}.cls-3{fill:none;stroke:#8da0b0;stroke-width:2px;}.cls-3,.cls-6{stroke-miterlimit:10;}.cls-4,.cls-6{fill:#a8bac4;}.cls-5{fill:#b6cae5;}.cls-6{stroke:#a8bac4;}
+        }
+        #male_kidneys,#fem_kidneys{
+            &:hover{
+                path{
+                    fill: $hoverCol;   
+                }
+                cursor: pointer; 
+            } 
+        }
+        #male_lungs,#fem_lungs{
+            &:hover{
+                path{
+                    fill: $hoverCol;   
+                }
+                cursor: pointer; 
+            }
+        }
+        #male_throat,#fem_throat{
+            &:hover{
+                path, polyline{
+                    fill: $hoverCol;   
+                }
+                cursor: pointer;
+            }
+        }
+        #male_stomach{
+            &:hover{
+                path:not(.cls-7){
+                    fill: $hoverCol;   
+                }      
+                cursor: pointer;
+            }
+        }
+        #fem_stomach{
+            &:hover{
+                path:not(.cls-8){
+                    fill: $hoverCol;   
+                }      
+                cursor: pointer;
+            }
+        }
+        #male_liver,#fem_liver{
+            &:hover{
+                path{
+                    fill: $hoverCol;   
+                }
+                cursor: pointer;
+            }
+        }
+        #male_heart,#fem_heart{
+            &:hover{
+                path{
+                    fill: $hoverCol;   
+                }
+                cursor: pointer;
+            }
+        }
+        #male_intestine_1,#fem_intestine_1{
+            &:hover{
+                .cls-10{
+                    fill: $hoverCol;   
+                }
+                #male_intestine_2,#fem_intestine_2{
+                    stroke: $hoverCol;
+                }                
+                cursor: pointer;
+            }
+        }
+        #male_uthera,#fem_uthera{
+            &:hover{
+                .cls-13{
+                    stroke: $hoverCol;
+                } 
+                path:not(.cls-13){
+                    fill: $hoverCol;   
+                }
+                cursor: pointer;
+            }
+        }
+        #male_arm,#fem_arm{
+            &:hover{
+                path{
+                    fill: $hoverCol;   
+                } 
+            }
+        }
+        #male_arm,#fem_arm{
+            #male_arm_bones,#fem_arm_bones{
+                path{
+                    stroke: #a8bac4;
+                    fill: #a8bac4;
+                }  
             }
             cursor: pointer;
         }
-        #male_liver:hover{
-            path{
-                fill: $hoverCol;   
+        #male_brain,#fem_brain{
+            &:hover{
+                path{
+                    fill: $hoverCol;
+                }
+                cursor: pointer;
             }
-            cursor: pointer;
         }
-        #male_heart:hover{
-            path{
-                fill: $hoverCol;   
+        #male_spine,#fem_spine{
+            &:hover{
+                fill: $hoverCol;
+                cursor: pointer;
             }
-            cursor: pointer;
         }
-        #male_intestine_1:hover{
-            path{
-                fill: $hoverCol;   
+        #male_leg_bones,#fem_leg_bones{
+            &:hover{
+                path,circle{
+                    fill: $hoverCol;
+                }
+                cursor: pointer;
             }
-            stroke: $hoverCol;
-            cursor: pointer;
         }
-        #male_intestine_2:hover #male_intestine_1{
-            path{
-                fill: $hoverCol;   
-            }
-            stroke: $hoverCol;
-            cursor: pointer;
-        }
-        #male_uthera:hover{
-            stroke:$hoverCol;  
-            path{
-                fill: $hoverCol;   
-            }
-            cursor: pointer;
-        }
-        path{
+        path, circle, polyline{
             transition: 0.3s;
         }
         // Доделать кишечник !!!
@@ -1678,5 +1749,3 @@ $hoverCol: #30B9D6;
 
 }
 
-.cls-1{fill:#ccd9e2;}.cls-2{fill:#abc2d7;}.cls-3{fill:none;stroke:#8da0b0;stroke-width:2px;}.cls-3,.cls-6{stroke-miterlimit:10;}.cls-4,.cls-6{fill:#a8bac4;}.cls-5{fill:#b6cae5;}.cls-6{stroke:#a8bac4;}
-.cls-1{fill:#ccd9e2;}.cls-2{fill:#a5b8d9;}.cls-3{fill:#9dbecf;}.cls-4{fill:#e3e7eb;}.cls-5{fill:#9bbdd6;}.cls-6{fill:#adc7de;}.cls-7{fill:#c7ddf0;}.cls-8{fill:#8895a6;}.cls-9{fill:#9caabd;}.cls-10{fill:#82a4c9;}.cls-11{fill:#9fbcd4;}.cls-12{fill:#b3caee;}.cls-13,.cls-14{fill:none;stroke-miterlimit:10;}.cls-13{stroke:#b3caee;}.cls-14{stroke:#abc7dd;stroke-width:5px;}
