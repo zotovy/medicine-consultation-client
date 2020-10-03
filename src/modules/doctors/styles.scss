@@ -1447,43 +1447,62 @@ $hoverCol: #30B9D6;
         #male_kidneys:hover{
             path{
                 fill: $hoverCol;   
-            }       
+            }
+            cursor: pointer;       
         }
         #male_lungs:hover{
             path{
                 fill: $hoverCol;   
-            }  
+            }
+            cursor: pointer;  
         }
         #male_throat:hover{
             path{
                 fill: $hoverCol;   
-            }  
+            }
+            cursor: pointer;  
         }
         #male_stomach:hover{
             path{
                 fill: $hoverCol;   
             }
+            cursor: pointer;
         }
         #male_liver:hover{
             path{
                 fill: $hoverCol;   
             }
+            cursor: pointer;
         }
         #male_heart:hover{
             path{
                 fill: $hoverCol;   
             }
+            cursor: pointer;
         }
         #male_intestine_1:hover{
             path{
                 fill: $hoverCol;   
             }
             stroke: $hoverCol;
+            cursor: pointer;
         }
-        #male_uthera:hover{
+        #male_intestine_2:hover #male_intestine_1{
             path{
                 fill: $hoverCol;   
             }
+            stroke: $hoverCol;
+            cursor: pointer;
+        }
+        #male_uthera:hover{
+            stroke:$hoverCol;  
+            path{
+                fill: $hoverCol;   
+            }
+            cursor: pointer;
+        }
+        path{
+            transition: 0.3s;
         }
         // Доделать кишечник !!!
     }
