@@ -1295,7 +1295,7 @@ menu {
 
 //========================================================================================
 /*                                                                                      *
- *                                    Symptoms                                               *
+ !                                    Symptoms                                               *
  *                                                                                          */
 //========================================================================================
 .symptoms-wrapper{
@@ -1456,62 +1456,29 @@ $hoverCol: #30B9D6;
         .male-side{
             .cls-1{fill:#ccd9e2;}.cls-2{fill:#abc2d7;}.cls-3{fill:none;stroke:#8da0b0;stroke-width:2px;}.cls-3,.cls-6{stroke-miterlimit:10;}.cls-4,.cls-6{fill:#a8bac4;}.cls-5{fill:#b6cae5;}.cls-6{stroke:#a8bac4;}
         }
-        #male_kidneys,#fem_kidneys{
-            &:hover{
-                path{
-                    fill: $hoverCol;   
-                }
-                cursor: pointer; 
-            } 
-        }
+
         #male_lungs,#fem_lungs{
             &:hover{
                 path{
                     fill: $hoverCol;   
                 }
-                cursor: pointer; 
+                
+                #male_heart,#fem_heart{
+                        path{
+                            stroke: #e3e7eb;
+                            fill: $hoverCol;   
+                        }
+                    }
+                #male_throat,#fem_throat{
+                    path, polyline{
+                        fill: $hoverCol;   
+                    }
+                }               
             }
+            cursor: pointer;
         }
-        #male_throat,#fem_throat{
-            &:hover{
-                path, polyline{
-                    fill: $hoverCol;   
-                }
-                cursor: pointer;
-            }
-        }
-        #male_stomach{
-            &:hover{
-                path:not(.cls-7){
-                    fill: $hoverCol;   
-                }      
-                cursor: pointer;
-            }
-        }
-        #fem_stomach{
-            &:hover{
-                path:not(.cls-8){
-                    fill: $hoverCol;   
-                }      
-                cursor: pointer;
-            }
-        }
-        #male_liver,#fem_liver{
-            &:hover{
-                path{
-                    fill: $hoverCol;   
-                }
-                cursor: pointer;
-            }
-        }
-        #male_heart,#fem_heart{
-            &:hover{
-                path{
-                    fill: $hoverCol;   
-                }
-                cursor: pointer;
-            }
-        }
+
+
         #male_intestine_1,#fem_intestine_1{
             &:hover{
                 .cls-10{
@@ -1519,34 +1486,40 @@ $hoverCol: #30B9D6;
                 }
                 #male_intestine_2,#fem_intestine_2{
                     stroke: $hoverCol;
-                }                
+                }
+                #male_liver,#fem_liver{
+                    path{
+                        fill: $hoverCol;   
+                    }
+                }
+                #male_stomach, #fem_stomach{
+                    path{
+                        fill: $hoverCol;   
+                    }      
+
+                }              
                 cursor: pointer;
             }
         }
-        #male_uthera,#fem_uthera{
+        #male_uthera,#fem_uthera,#male_kidneys,#fem_kidneys{
             &:hover{
                 .cls-13{
                     stroke: $hoverCol;
                 } 
                 path:not(.cls-13){
                     fill: $hoverCol;   
-                }
+                }        
                 cursor: pointer;
             }
         }
         #male_arm,#fem_arm{
             &:hover{
-                path{
-                    fill: $hoverCol;   
-                } 
-            }
-        }
-        #male_arm,#fem_arm{
-            #male_arm_bones,#fem_arm_bones{
-                path{
-                    stroke: #a8bac4;
-                    fill: #a8bac4;
-                }  
+                #male_arm_bones,#fem_arm_bones{
+                    path,circle{
+                        stroke: $hoverCol;
+                        fill: $hoverCol;
+                    }  
+                }
             }
             cursor: pointer;
         }
@@ -1748,4 +1721,3 @@ $hoverCol: #30B9D6;
     }
 
 }
-
