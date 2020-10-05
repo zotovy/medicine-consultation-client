@@ -14,6 +14,8 @@ class SympController {
         {title: "Пример 24", active: false, id:1},
         {title: "Пример 35", active: false, id:2},
     ];
+    @observable loading: boolean = true;
+
 
     @action choiseSymp = (e: any): void =>{
         e.persist();
@@ -38,7 +40,9 @@ class SympController {
             return item;
         });
     };
-
+    @action public fetchSymptoms = (info: number):void => {
+        this.loading = true;
+    }
 }
 
 
