@@ -6,6 +6,7 @@ import loginUIStore from "./stores/loginUI";
 import signupUIStore from "./stores/signupUI";
 import tokenServices from "../../services/token-services";
 import validationServices from "../../services/validation-services";
+import { ServerErrorType } from "./@types/server-errors";
 
 class AuthStore {
     constructor() {
@@ -59,7 +60,7 @@ class AuthStore {
         try {
             // Send data to server
             const response = await axios.post(
-                `http://localhost:5000/api/login-user`,
+                `${process.env.REACT_APP_SERVER_URL}/api/login-user`,
                 {
                     email,
                     password,
@@ -479,6 +480,8 @@ const validateServerError = (errors: any): boolean => {
                 return "Неверный номер телефона";
             case ServerErrorType.required_error:
                 return "Это поле обязательно";
+            case ServerErrorType.unique_error:
+                return "Этот email уже занят";
         }
     };
 

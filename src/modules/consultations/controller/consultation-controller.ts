@@ -1,5 +1,7 @@
 import { action, observable } from "mobx";
-import openSocket from "socket.io-client";
+import { MutableRefObject, useRef } from "react";
+// import Peer from "simple-peer";
+import io from "socket.io-client";
 
 class ConsultationController implements IConsultationController {
     // Socket
@@ -23,7 +25,8 @@ class ConsultationController implements IConsultationController {
             accessToken: localStorage.getItem("accessToken"),
         };
 
-        this.socket = openSocket(process.env.REACT_APP_SERVER_URL ?? "", {
+        this.socket = io.connect("https://localhost:5000", {
+            secure: true,
             query,
             transports: ["websocket"],
         });
@@ -32,7 +35,6 @@ class ConsultationController implements IConsultationController {
         this.socket.on("success", args.onSuccess);
 
         this.socket.on("new_message", (message: string) => {
-            console.log("new message!", message);
             this._messages.push({ content: message, isUser: false });
         });
 
@@ -50,6 +52,43 @@ class ConsultationController implements IConsultationController {
         return "ok";
     };
 
+    // callPeer = async (id: string): Promise<void> => {
+    //     const peer = new Peer({
+    //         initiator: true,
+    //         trickle: false,
+    //         stream: this.stream,
+    //     });
+
+    //     peer.on("signal", (data) => {
+    //         if (this.socket) {
+    //             this.socket.emit("callUser", {
+    //                 userToCall: id,
+    //                 signalData: data,
+    //                 from: localStorage["uid"],
+    //             });
+    //         }
+    //     });
+
+    //     peer.on("stream", (stream) => {
+    //         if (this.partnerVideo.current) {
+    //             this.partnerVideo.current.srcObject = stream;
+    //         }
+    //     });
+
+    //     if (this.socket) {
+    //         this.socket.on(
+    //             "callAccepted",
+    //             (signal: string | Peer.SignalData) => {
+    //                 peer.signal(signal);
+    //             }
+    //         );
+    //     }
+    // };
+
+    // @observable partnerVideo: MutableRefObject<
+    //     HTMLVideoElement | undefined
+    // > = useRef<HTMLVideoElement>();
+    // @observable stream: MediaStream | undefined;
     @observable isCameraOn: boolean = false;
     @observable isMicroOn: boolean = false;
     @observable isChatOn: boolean = true;

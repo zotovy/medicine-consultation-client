@@ -12,16 +12,21 @@ interface IParams extends RouteComponentProps<{ id: string }> {
 }
 
 const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
-
     const userVideo = useRef<HTMLVideoElement>(null);
     useEffect(() => {
 
-        const onSuccess = () => console.log("success");
+        let invalidTokenCounter = 0;
+
+        const onSuccess = () => { invalidTokenCounter = 0; console.log("success"); };
         const onError = (data: string) => {
-            console.log(data);
+            console.log("error", data);
             switch (data) {
                 case "invalid_token":
-                    tokenServices.getAndUpdateNewAccessToken().then(() => controller.setupSocket(match.params.id, { onSuccess, onError }));
+
+                    invalidTokenCounter += 1;
+                    if (invalidTokenCounter == 1) {
+                        tokenServices.getAndUpdateNewAccessToken().then(() => controller.setupSocket(match.params.id, { onSuccess, onError }));
+                    }
                     break;
                 default:
                     history.push("/");

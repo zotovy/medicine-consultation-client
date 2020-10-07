@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./static/index.css";
 import Menu from "./modules/doctors/components/menu";
-// import SandBox from "./sandbox/sandbox";
+import SandBox from "./sandbox";
 require('dotenv').config()
 
 
@@ -19,6 +19,7 @@ const SymptomsPage = lazy(() => import("./modules/doctors").then(module => ({ de
 const AppointmentPage = lazy(() => import("./modules/consultations").then(module => ({ default: module.AppointmentPage })));
 const ConsultationPage = lazy(() => import("./modules/consultations").then(module => ({ default: module.ConsultationPage })));
 
+
 const Admin = lazy(() => import("./modules/admin"));
 const AdminLogin = lazy(() => import("./modules/admin").then(module => ({ default: module.Login })));
 
@@ -27,7 +28,7 @@ const App = () => {
   return (
     <Switch>
 
-      {/* <Route path='/sandbox'><SandBox /></Route> */}
+      <Route path='/sandbox'><SandBox /></Route>
 
       <Route path="/login" exact>
         <Suspense fallback={<React.Fragment />}>

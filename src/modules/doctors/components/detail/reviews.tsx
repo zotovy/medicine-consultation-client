@@ -4,13 +4,17 @@ import Review from "./reviews/review"
 import controller from "../../controllers/detail-controller";
 
 const ReviewsComponent: React.FC = () => {
+
+    console.log(controller.doctor?.clientsReviews);
+
     return <div className="reviews-component">
         <Title title="Отзывы" />
         <div className="reviews">
 
             {
                 controller.doctor?.clientsReviews.map((e, i) => {
-                    return <Review key={`${i}-review`} fullName={`${e.patientId.name} ${e.patientId.surname}`} id={e.patientId._id} rating={e.point} text={e.content} photoUrl={e.patientId.photoUrl} />
+                    console.log(e);
+                    return <Review key={`${i}-review`} fullName={`${e.patientId?.name} ${e.patientId.surname}`} id={e.patientId._id} rating={e.point} text={e.content} photoUrl={e.patientId.photoUrl} />
                 })
             }
 

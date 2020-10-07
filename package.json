@@ -91,6 +91,7 @@
         "sass-loader": "8.0.2",
         "semver": "6.3.0",
         "serve": "^11.3.2",
+        "simple-peer": "^9.7.2",
         "socket.io-client": "^2.3.0",
         "style-loader": "1.2.1",
         "styled-components": "^5.1.1",
@@ -115,7 +116,8 @@
         "test:integration": "testcafe -s path=e2e/screenshots/need --skip-js-errors",
         "analyze": "node analyze.js",
         "deploy": "gh-pages -d build",
-        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build "
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build ",
+        "prestart": "rm ./node_modules/webpack-dev-server/ssl/server.pem && cp -f ./cert/server.pem ./node_modules/webpack-dev-server/ssl"
     },
     "eslintConfig": {
         "extends": "react-app"
@@ -138,6 +140,7 @@
         "@types/enzyme": "^3.10.5",
         "@types/enzyme-adapter-react-16": "^1.0.6",
         "@types/node-fetch": "^2.5.7",
+        "@types/simple-peer": "^9.6.0",
         "@types/socket.io-client": "^1.4.34",
         "@wdio/cli": "^6.2.0",
         "@wdio/local-runner": "^6.2.0",

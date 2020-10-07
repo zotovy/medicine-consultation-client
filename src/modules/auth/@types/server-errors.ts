@@ -1,4 +1,4 @@
-declare enum ServerErrorType {
+export enum ServerErrorType {
     required_error = "required_error",
     length_error = "length_error",
     phone_format_number = "phone_format_number",

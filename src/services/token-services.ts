@@ -116,7 +116,7 @@ class TokenServices {
         if (!refreshToken || !accessToken || !userId) return null;
 
         const responce = await axios
-            .post("http://localhost:5000/api/token", {
+            .post("https://localhost:5000/api/token", {
                 accessToken,
                 refreshToken,
                 userId,
@@ -126,14 +126,13 @@ class TokenServices {
                 return e.response;
             });
 
-        if (!responce.data.success || !responce.data.tokens) return null;
+        if (!responce?.data.success || !responce?.data.tokens) return null;
 
-        return responce.data.tokens;
+        return responce?.data.tokens;
     };
 
     getAndUpdateNewAccessToken = async (): Promise<void> => {
         const tokens = await this._getNewAccessToken();
-        console.log(tokens);
         if (tokens) {
             this.saveAccessToken(tokens.access ?? "");
             this.saveRefreshToken(tokens.refresh ?? "");
