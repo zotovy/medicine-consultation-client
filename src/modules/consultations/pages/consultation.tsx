@@ -4,7 +4,7 @@ import { withRouter, RouteComponentProps } from "react-router-dom";
 import controller from "../controller/consultation-controller";
 import { CameraIcon, MicroIcon, ChatIcon } from "../icons";
 import Button from "../components/consultation/main-button";
-import PartnerVideo from "../components/consultation/partner-video";
+import UserVideo from "../components/consultation/user-video";
 import Chat from "../components/consultation/chat";
 import tokenServices from "../../../services/token-services";
 
@@ -43,14 +43,6 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
                     history.push("/login");
                     break;
                 case "ok":
-                    navigator.mediaDevices
-                        .getUserMedia({ video: true, audio: true })
-                        .then(stream => {
-                            if (userVideo.current) {
-                                userVideo.current.srcObject = stream;
-                            }
-                        })
-                        .catch(() => null);
                     break;
             }
         });
@@ -61,7 +53,7 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
         <div className="wrapper">
             <div className="video-container">
                 {
-                    userVideo ? <video playsInline muted autoPlay ref={userVideo} className={controller.isCameraOn ? "" : "hidden"} /> : <h1>123</h1>
+                    userVideo ? <video playsInline muted autoPlay id="partner-video" className={controller.isCameraOn ? "" : "hidden"} /> : <h1>123</h1>
                 }
             </div>
             <Chat />
@@ -78,7 +70,7 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
             </Button>
         </div>
 
-        <PartnerVideo />
+        <UserVideo />
     </div>
 
 };

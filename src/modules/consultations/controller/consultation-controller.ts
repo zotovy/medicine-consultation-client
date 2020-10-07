@@ -1,11 +1,11 @@
 import { action, observable } from "mobx";
-import { MutableRefObject, useRef } from "react";
-// import Peer from "simple-peer";
+import Peer from "peerjs";
 import io from "socket.io-client";
 
 class ConsultationController implements IConsultationController {
     // Socket
     socket: SocketIOClient.Socket | null = null;
+    peer: Peer | null = null;
 
     setupSocket = async (
         consultationId: string,
@@ -32,7 +32,43 @@ class ConsultationController implements IConsultationController {
         });
 
         this.socket.on("error", args.onError);
-        this.socket.on("success", args.onSuccess);
+        this.socket.on("success", async () => {
+            console.log("success!");
+
+            this.socket?.on("connect", () => {
+                console.log(this.socket?.id);
+            });
+
+            const stream = await navigator.mediaDevices.getUserMedia({
+                video: true,
+                audio: true,
+            });
+            this._setVideo("video#user-video", stream);
+
+            this.peer = new Peer({
+                host: "/",
+                port: 5001,
+                path: "/mc",
+            });
+            console.log("peer have been created");
+
+            this.peer.on("call", (call) => {
+                console.log("on call ");
+                call.answer(stream);
+                call.on("stream", (partnerStream) => {
+                    this._setVideo("video#partner-video", partnerStream);
+                });
+            });
+
+            this.peer.on("open", (id) => {
+                this.socket?.emit("user-connected", id);
+            });
+
+            this.socket?.on("user-connected", (userId: string) => {
+                console.log("user-connected", userId);
+                this._connectToNewUser(userId, stream);
+            });
+        });
 
         this.socket.on("new_message", (message: string) => {
             this._messages.push({ content: message, isUser: false });
@@ -52,43 +88,33 @@ class ConsultationController implements IConsultationController {
         return "ok";
     };
 
-    // callPeer = async (id: string): Promise<void> => {
-    //     const peer = new Peer({
-    //         initiator: true,
-    //         trickle: false,
-    //         stream: this.stream,
-    //     });
+    private _setVideo = (
+        id: string,
+        stream: MediaStream | MediaSource | Blob
+    ) => {
+        var video = document.querySelector<HTMLVideoElement>(id);
+        if (video?.src != null) {
+            if ("srcObject" in video) {
+                video.srcObject = stream;
+            } else {
+                //@ts-ignore
+                video.src = window.URL.createObjectURL(stream); // for older browsers
+            }
+        }
+    };
 
-    //     peer.on("signal", (data) => {
-    //         if (this.socket) {
-    //             this.socket.emit("callUser", {
-    //                 userToCall: id,
-    //                 signalData: data,
-    //                 from: localStorage["uid"],
-    //             });
-    //         }
-    //     });
-
-    //     peer.on("stream", (stream) => {
-    //         if (this.partnerVideo.current) {
-    //             this.partnerVideo.current.srcObject = stream;
-    //         }
-    //     });
-
-    //     if (this.socket) {
-    //         this.socket.on(
-    //             "callAccepted",
-    //             (signal: string | Peer.SignalData) => {
-    //                 peer.signal(signal);
-    //             }
-    //         );
-    //     }
-    // };
+    private _connectToNewUser(userId: string, stream: MediaStream) {
+        const call = this.peer?.call(userId, stream);
+        call?.on("stream", (partnerStream) => {
+            console.log("_connectToNewUser on stream", userId);
+            this._setVideo("video#partner-video", partnerStream);
+        });
+    }
 
     // @observable partnerVideo: MutableRefObject<
     //     HTMLVideoElement | undefined
     // > = useRef<HTMLVideoElement>();
-    // @observable stream: MediaStream | undefined;
+    @observable stream: MediaStream | undefined;
     @observable isCameraOn: boolean = false;
     @observable isMicroOn: boolean = false;
     @observable isChatOn: boolean = true;

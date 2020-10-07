@@ -4,7 +4,7 @@ import { CloseIcon } from '../../../doctors/icons';
 import controller from "../../controller/consultation-controller";
 import { MicroSlashIcon } from '../../icons';
 
-const PartnerVideo: React.FC = () => {
+const UserVideo: React.FC = () => {
 
     const partnerVideo = useRef<HTMLVideoElement>(null);
     const styles = controller.partnerImagePath ? { backgroundImage: `url(${controller.partnerImagePath})` } : {};
@@ -22,7 +22,7 @@ const PartnerVideo: React.FC = () => {
 
     return <div className="partner">
         <div className="partner-wrapper">
-            <video playsInline autoPlay muted={controller.partnerMicroStatus ? false : true} ref={partnerVideo} className={controller.isMinimized ? "hidden" : ""} />
+            <video playsInline autoPlay muted={controller.partnerMicroStatus ? false : true} id="user-video" className={controller.isMinimized ? "hidden" : ""} />
 
             {
                 !controller.isMinimized
@@ -44,4 +44,4 @@ const PartnerVideo: React.FC = () => {
     </div>
 }
 
-export default observer(PartnerVideo);
+export default observer(UserVideo);
