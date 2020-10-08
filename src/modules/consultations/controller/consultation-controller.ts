@@ -25,7 +25,7 @@ class ConsultationController implements IConsultationController {
             accessToken: localStorage.getItem("accessToken"),
         };
 
-        this.socket = io.connect("https://localhost:5000", {
+        this.socket = io.connect(process.env.REACT_APP_SERVER_URL ?? "", {
             secure: true,
             query,
             transports: ["websocket"],
@@ -46,7 +46,7 @@ class ConsultationController implements IConsultationController {
             this._setVideo("video#user-video", stream);
 
             this.peer = new Peer({
-                host: "/",
+                host: process.env.REACT_APP_PEER_SERVER_URL,
                 port: 5001,
                 path: "/mc",
             });
