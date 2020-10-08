@@ -116,8 +116,7 @@
         "test:integration": "testcafe -s path=e2e/screenshots/need --skip-js-errors",
         "analyze": "node analyze.js",
         "deploy": "gh-pages -d build",
-        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build ",
-        "prestart": "rm ./node_modules/webpack-dev-server/ssl/server.pem && cp -f ./cert/server.pem ./node_modules/webpack-dev-server/ssl"
+        "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build "
     },
     "eslintConfig": {
         "extends": "react-app"
