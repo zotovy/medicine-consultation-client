@@ -21,7 +21,7 @@ const OptionWp: React.FC= () => {
                         }
                     )}
                 </div>
-                <hr/>
+                {props.find((n:any)  => n.active) != undefined ? <hr/> : null}
                 <div className="disableOptions">
                     {props.map((n:any, i:any) => {
                             if (n.active === false) {
