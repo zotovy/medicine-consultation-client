@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 import settingDoctorController from "../../settings/controller";
-
+import axios from "axios";
 
 type Item = { title: string; sourseSvg: any[]; active: boolean; id: number };
 type Symp = { title: string; active: boolean; id: number;}
@@ -15,11 +15,10 @@ class SympController {
         {title: "Пример 35", active: false, id:2},
     ];
     @observable loading: boolean = true;
-
+    @observable arrSymps: Symp[] | undefined;
 
     @action choiseSymp = (e: any): void =>{
         e.persist();
-        console.log("click -> " + +e._targetInst.key);
         this.symptoms = this.symptoms.map((item: Symp) => {
             if (item.id == +e._targetInst.key && item.active !== true) {
                 item.active = true;
@@ -40,9 +39,30 @@ class SympController {
             return item;
         });
     };
-    @action public fetchSymptoms = (info: number):void => {
+    @action public clickHandlerSymp = (info: number):void => {
         this.loading = true;
+        console.log(info)
+        this._fetchDoctor(info).then(
+            action((arrSymps) => {
+                this.arrSymps = arrSymps;
+                this.loading = false;
+            })
+        );;
     }
+    private _fetchDoctor = async (
+        info: number
+    ): Promise<Symp[] | undefined> => {
+        const response = await axios
+            .get(process.env.REACT_APP_SERVER_URL + "/api/doctor/" + info)
+            .then((data:any) => data.data)
+            .catch((e:any) => e.response);
+
+        if (!response?.success) {
+            // todo: error handling
+            return;
+        }
+        return await response.arrSymps;
+    };
 }
 
 
