@@ -1,54 +1,56 @@
 import React from "react";
+import { observer } from "mobx-react";
+import controller from "../controllers/symptoms-controller";
+import {MaleSide, MaleFront, FemaleSide, FemaleFront} from "../svg-symp";
 
 const SymptomsTabs: React.FC = () => {
-	type eType = object | string | number | any;
 	type TabsType = {
-		items: any
+		items: any,
 	}
-	let items: { title: string, sourseSvg: string, active: boolean, id: number }[] = [
-		{ title: 'М', sourseSvg: '/', active: true, id: 0 },
-		{ title: 'Ж', sourseSvg: '/', active: false, id: 1 },
-	];
-	// {items[active] && <TabContent {...items[active]} />}	
+
+	const {items, openTab} = controller;
+	
 	const Tabs: React.FC<TabsType> = ({ items }: any) => {
-		const TabContent: React.FC = ({ title, sourseSvg }: any) => {
+		const TabContent: React.FC = () => {
 			return (
 				<div className="tab-content">
 					<div className="tab-content-img-wrap">
-						<div className='fake-img img-1'>
-
-						</div>
-						<div className='fake-img img-2'>
-
-						</div>
+						<Tab/>
 					</div>
 				</div>
 			)
 		};
-		const [active, setActive] = React.useState(items);
-
-		function openTab(e: any) {
-			// e.persist()
-			// let id = +e._targetInst.key;
-			// return items = items.map((item:{}) => {
-			// 	(item.id == id) ? !item.active : 
-			// })
-			// console.log(e)
-		};
+		const Tab: React.FC = () => {
+			let arrNum;
+			if (items[0].active == true) {
+				arrNum = items[0].sourseSvg;
+			}else{
+				arrNum = items[1].sourseSvg;
+			}
+		  return (
+		    <>
+				<div className='fake-img img-1'>
+					{arrNum[0] === 1 ? <MaleFront/> : <FemaleFront/>}
+				</div>
+				<div className='fake-img img-2'>
+					{arrNum[1] === 2 ? <MaleSide/> : <FemaleSide/>}
+				</div>
+		    </>
+		  )
+		}
 		return (
 			<div className='tabs-wrapper'>
 				<div className='tabs-ui-container'>
-					{console.log(items[0].active)}
-					<TabContent />
-					<div className="symptoms-tab">
+					<TabContent/>
+					<ul className="symptoms-tab">
 						{items.map((n: any, i: any) => (
-							<button key={n.id}
+							<li key={n.id}
 								className={`tab-links tab-${n.id} ${n.active === true ? 'tab-active' : ''}`}
-								onClick={openTab}
+								onClick={(e) => openTab(items, e)}
 								data-index={i}
-							>{n.title}</button>
+							>{n.title}</li>
 						))}
-					</div>
+					</ul>
 				</div>
 			</div>
 		);
@@ -56,4 +58,4 @@ const SymptomsTabs: React.FC = () => {
 	return <Tabs items={items} />;
 
 }
-export default SymptomsTabs;
+export default observer(SymptomsTabs);

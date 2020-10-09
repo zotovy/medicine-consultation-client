@@ -1295,10 +1295,12 @@ menu {
 
 //========================================================================================
 /*                                                                                      *
- *                                    Symptoms                                               *
+ !                                    Symptoms                                               *
  *                                                                                          */
 //========================================================================================
-
+.symptoms-wrapper{
+    overflow: hidden;
+}
 .symptoms-title-wrap {
     text-align: center;
 
@@ -1320,7 +1322,7 @@ menu {
         color: #ccc;
     }
 
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         h1 {
             font-size: 42px;
             color: #1e1e1e;
@@ -1347,8 +1349,7 @@ menu {
     width: 1158px;
     height: 690px;
     margin: 0 auto;
-    border: 3px solid green; // Не забыть убрать данное св-во!!
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         width: 1075px;
         height: 582px;
     }
@@ -1363,7 +1364,9 @@ menu {
     margin: 52px auto;
     width: 300px;
     height: 60px;
-
+    @media screen and (max-height: 970px) {
+       margin: 42px auto;
+    }
     div {
         width: 300px;
         height: 60px;
@@ -1385,7 +1388,7 @@ menu {
     -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
     -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
     box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         width: 448px;
         height: 582px;
     }
@@ -1395,7 +1398,7 @@ menu {
     position: relative;
     color: yellow;
     height: -webkit-fill-available;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         margin: 20px 27px 18px 23px;
     } 
 }
@@ -1414,7 +1417,7 @@ menu {
     border-radius: 5px;
     outline: none;
     font-size: 18px;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         font-size: 13px;
         width: 32px;
         height: 32px;
@@ -1422,19 +1425,129 @@ menu {
 }
 .tab-1{
     margin-left: 13px !important;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         margin-left: 11px !important;
     }
 }
 .tab-active{
     background-color: $primary;
 }
+$hoverCol: #30B9D6;
 .tab-content{
     height: 644px;
     width: 473px;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         width: 399px;
         height: 544px;
+    }
+    svg{
+        width: 100%;
+        height: 100%;
+        background-color: #F3F7FA;
+        .fem{
+            .cls-1{fill:#ccd9e2;}.cls-2{fill:#a5b8d9;}.cls-3{fill:#9dbecf;}.cls-4{fill:#e3e7eb;}.cls-5{fill:#9caabd;}.cls-6{fill:#9bbdd6;}.cls-7{fill:#adc7de;}.cls-8{fill:#c7ddf0;}.cls-9{fill:#8895a6;}.cls-10{fill:#82a4c9;}.cls-11{fill:none;stroke:#abc7dd;stroke-miterlimit:10;stroke-width:5px;}.cls-12{fill:#b3c7d9;}.cls-13{fill:#6994b5;}.cls-14{fill:#abbcc9;}
+        }
+        .fem-side{
+            .cls-1{fill:#ccd9e2;}.cls-2{fill:#abc2d7;}.cls-3,.cls-5{fill:#a8bac4;}.cls-4{fill:#b6cae5;}.cls-5{stroke:#a8bac4;}.cls-5,.cls-6{stroke-miterlimit:10;}.cls-6{fill:none;stroke:#8da0b0;stroke-width:2px;}
+        }
+        .male{
+            .cls-1{fill:#ccd9e2;}.cls-2{fill:#a5b8d9;}.cls-3{fill:#9dbecf;}.cls-4{fill:#e3e7eb;}.cls-5{fill:#9bbdd6;}.cls-6{fill:#adc7de;}.cls-7{fill:#c7ddf0;}.cls-8{fill:#8895a6;}.cls-9{fill:#9caabd;}.cls-10{fill:#82a4c9;}.cls-11{fill:#9fbcd4;}.cls-12{fill:#b3caee;}.cls-13,.cls-14{fill:none;stroke-miterlimit:10;}.cls-13{stroke:#b3caee;}.cls-14{stroke:#abc7dd;stroke-width:5px;}
+        }
+        .male-side{
+            .cls-1{fill:#ccd9e2;}.cls-2{fill:#abc2d7;}.cls-3{fill:none;stroke:#8da0b0;stroke-width:2px;}.cls-3,.cls-6{stroke-miterlimit:10;}.cls-4,.cls-6{fill:#a8bac4;}.cls-5{fill:#b6cae5;}.cls-6{stroke:#a8bac4;}
+        }
+
+        #male_lungs,#fem_lungs{
+            &:hover{
+                path{
+                    fill: $hoverCol;   
+                }
+                
+                #male_heart,#fem_heart{
+                        path{
+                            stroke: #e3e7eb;
+                            fill: $hoverCol;   
+                        }
+                    }
+                #male_throat,#fem_throat{
+                    path, polyline{
+                        fill: $hoverCol;   
+                    }
+                }               
+            }
+            cursor: pointer;
+        }
+
+
+        #male_intestine_1,#fem_intestine_1{
+            &:hover{
+                .cls-10{
+                    fill: $hoverCol;   
+                }
+                #male_intestine_2,#fem_intestine_2{
+                    stroke: $hoverCol;
+                }
+                #male_liver,#fem_liver{
+                    path{
+                        fill: $hoverCol;   
+                    }
+                }
+                #male_stomach, #fem_stomach{
+                    path{
+                        fill: $hoverCol;   
+                    }      
+
+                }              
+                cursor: pointer;
+            }
+        }
+        #male_uthera,#fem_uthera,#male_kidneys,#fem_kidneys{
+            &:hover{
+                .cls-13{
+                    stroke: $hoverCol;
+                } 
+                path:not(.cls-13){
+                    fill: $hoverCol;   
+                }        
+                cursor: pointer;
+            }
+        }
+        #male_arm,#fem_arm{
+            &:hover{
+                #male_arm_bones,#fem_arm_bones{
+                    path,circle{
+                        stroke: $hoverCol;
+                        fill: $hoverCol;
+                    }  
+                }
+            }
+            cursor: pointer;
+        }
+        #male_brain,#fem_brain{
+            &:hover{
+                path{
+                    fill: $hoverCol;
+                }
+                cursor: pointer;
+            }
+        }
+        #male_spine,#fem_spine{
+            &:hover{
+                fill: $hoverCol;
+                cursor: pointer;
+            }
+        }
+        #male_leg_bones,#fem_leg_bones{
+            &:hover{
+                path,circle{
+                    fill: $hoverCol;
+                }
+                cursor: pointer;
+            }
+        }
+        path, circle, polyline{
+            transition: 0.3s;
+        }
     }
 }
 .tab-content-img-wrap{
@@ -1443,21 +1556,167 @@ menu {
 }
 .fake-img{
     height: 644px;
-    background-color: red;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         height: 544px;
     }
 }
 
 .img-1{
     width: 254px;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         width: 214px;
     }
 }
 .img-2{
     width: 177px;
-    @media screen and (max-height: 940px) {
+    @media screen and (max-height: 970px) {
         width: 150px;
     }
+}
+.symptoms-tab{
+    list-style: none;
+    display: flex;
+    .tab-links{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.choice-wrapper,.tabs-wrapper{
+    display: inline-block;
+}
+.choice-wrapper{
+    width: 562px;
+    height: 100%;
+    float: right;
+    overflow: hidden;
+    @media screen and (max-height: 970px) {
+        width: 560px;
+        height: 100%;
+    }
+    .search {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        position: relative;
+        input {
+            width: 100%;
+            height: 58px;
+            border: none;
+            border-radius: 7.5px;
+            background-color: #F7F7F7;
+            color: #CCCCCC;
+            padding: 15px;
+            outline: none;
+            font-size: 16px;
+            transition: color 225ms ease;
+            &::placeholder{
+                color:#ccc;
+            }
+            ~svg {
+                padding: 5px;
+                position: absolute;
+                right: 10px;
+                cursor: pointer;
+                path{
+                    transition: stroke 225ms ease;
+                    stroke: #cccccc;
+                }
+            }
+            &:focus {
+                color: #282828;
+            }
+            &:focus~svg path {
+                stroke: #282828;
+            }
+        }
+    }
+}
+
+.symptoms-checkbox-wrapper{
+    width: 100%;
+    height: 100%;
+    // overflow-x: hidden;
+    // overflow-y: scroll;
+    hr{
+        color: #CCCCCC;
+        border: none;
+        height: 1px;
+        background-color: #CCCCCC;
+    }
+    .option-symp{
+        height: 30px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        margin: 31px 0;
+        position: relative;
+        @media screen and (max-height: 970px) {
+            margin: 20px 0;
+        }
+        .option-symp-name {
+            font-size: 22px;
+            font-weight: 400;
+            font-weight: normal;
+            float: left;
+            margin-left: 35px;
+            @media screen and (max-height: 970px) {
+                font-size: 20px;
+            }
+        }
+        .css-checkbox {
+            display: none;
+        }
+        .container {
+            position: absolute;
+            right: 0;
+            height: 30px;
+        }
+        .css-label {
+            cursor: pointer;
+        }
+        label{
+            display: inline-flex;
+            width: 30px;
+            height: 30px;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            .fav-plus {
+                border-radius: 2.5px;
+                height: 4px;
+                width: 17px;
+                background-color: $primary;
+                &:before{
+                    border-radius: 2.5px;
+                    content: " ";
+                    background-color: $primary;
+                    width: 4px;
+                    height: 17px;
+                    position: absolute;
+                    left: calc(50% - 2px);
+                    top: calc(50% - 8.5px);
+                }
+            }
+            .fav-minus {
+                width: 30px;
+                height: 30px;
+                background-color: $primary;
+                border-radius: 5px;
+                &:before{
+                    border-radius: 2.5px;
+                    content: " ";
+                    background-color: white;
+                    width: 17px;
+                    height: 4px;
+                    position: absolute;
+                    left: calc(50% - 8.5px);
+                    top: calc(50% - 2px);
+                }
+            }
+
+        }
+        
+    }
+
 }
