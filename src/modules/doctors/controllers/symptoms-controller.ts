@@ -42,18 +42,18 @@ class SympController {
     @action public clickHandlerSymp = (info: number):void => {
         this.loading = true;
         console.log(info)
-        this._fetchDoctor(info).then(
+        let bodyPart;
+        this._fetchSymptoms(bodyPart).then(
             action((arrSymps) => {
                 this.arrSymps = arrSymps;
                 this.loading = false;
             })
         );;
     }
-    private _fetchDoctor = async (
-        info: number
+    private _fetchSymptoms = async (bodyPart:string="Голова"
     ): Promise<Symp[] | undefined> => {
         const response = await axios
-            .get(process.env.REACT_APP_SERVER_URL + "/api/doctor/" + info)
+            .get(process.env.REACT_APP_SERVER_URL + `/api/symptoms?bodyPart=${bodyPart}`)
             .then((data:any) => data.data)
             .catch((e:any) => e.response);
 
