@@ -1675,7 +1675,7 @@ $hoverCol: #30B9D6;
     }
 
     .option-symp{
-        height: 30px;
+        min-height: 30px;
         width: 100%;
         display: flex;
         align-items: center;
@@ -1687,6 +1687,7 @@ $hoverCol: #30B9D6;
         .option-symp-name {
             font-size: 22px;
             font-weight: 400;
+            max-width: 450px;
             font-weight: normal;
             float: left;
             margin-left: 35px;
@@ -1699,7 +1700,7 @@ $hoverCol: #30B9D6;
         }
         .container {
             position: absolute;
-            right: 0;
+            right: 7px;
             height: 30px;
         }
         .css-label {

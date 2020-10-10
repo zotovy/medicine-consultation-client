@@ -17,7 +17,6 @@ class SympController {
     @action choiseSymp = (e: any): void =>{
         e.persist();
         this.symptoms = this.symptoms.map((item: Symp,i:number) => {
-            console.log(i)
             if (item.id == +e._targetInst.key && item.active !== true) {
                 item.active = true;
             } else if(item.id == +e._targetInst.key && item.active == true){
