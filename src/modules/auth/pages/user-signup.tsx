@@ -21,8 +21,8 @@ import Image from "../components/image";
 import Container from "../components/container";
 import SexCheckbox from "../components/sex-checkbox";
 import SignupLink from "../components/signup-link";
-import ErrorAlert from "../components/error-alert";
 import PasswordError from "../components/password-error";
+import ErrorBadge from "../../../components/error-badge";
 
 
 // Static
@@ -60,12 +60,10 @@ const UserSignUp: React.FC = observer(() => {
   // Navigate to home page after login
   reaction(() => authStore.goToHomeTrigger, () => history.push("/"));
 
-
-
   return <div className="signup-module">
     <Wrapper>
 
-      <ErrorAlert error={signupUIStore.errorMessage} showErrorMessage={signupUIStore.showErrorMessage} />
+      <ErrorBadge message={signupUIStore.errorMessage ?? ""} isOpen={signupUIStore.showErrorMessage} />
       <MediaQuery minDeviceWidth="1025px"><Image image={image} /></MediaQuery>
 
       <Container>

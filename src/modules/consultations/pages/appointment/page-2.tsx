@@ -18,6 +18,9 @@ type Props = {
 }
 
 const Page2: React.FC<Props> = (props) => {
+
+    const textAreaStyles = { marginBottom: "10px", width: "100%" };
+
     return <div className={`page page-2 ${props.className}`} >
         <Container>
             <Title text="Запись" />
@@ -30,17 +33,19 @@ const Page2: React.FC<Props> = (props) => {
                 field="Хронические заболевания"
                 hint="Введите ваши хронические заболевания"
             />
-            <div className="sc-AxhCb cEIUzV text-field" style={{ marginBottom: "10px" }} >
+            <div className="sc-AxhCb cEIUzV text-field" style={textAreaStyles} >
                 <p className="sc-AxhUy jMzJqM">Симптомы</p>
-                <textarea
-                    className="sc-AxheI NtfYS"
-                    name="text1"
-                    rows={7}
-                    onChange={(e) => controller.symptoms = e.target.value}
-                    placeholder="Введите ваши симптомы"
-                >
+                <div className="textarea-wrapper">
+                    <textarea
+                        className="symptoms"
+                        name="text1"
+                        rows={7}
+                        onChange={(e) => controller.symptoms = e.target.value}
+                        placeholder="Введите ваши симптомы"
+                    >
 
-                </textarea>
+                    </textarea>
+                </div>
             </div>
             <SizedBox height="5px" />
             <Divider text="Документы" />
@@ -53,7 +58,7 @@ const Page2: React.FC<Props> = (props) => {
                 }
             </div>
             <SizedBox height="10px" />
-            <ConfirmButton content="Продолжить" onConfirm={() => controller.pageIndex = 0} />
+            <ConfirmButton content="Оплатить" onConfirm={() => { }} />
         </Container>
     </div >
 }

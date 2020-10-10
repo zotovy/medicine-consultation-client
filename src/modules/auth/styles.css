@@ -6,6 +6,18 @@
     position: fixed;
 }
 
+@media screen and (max-width: 425px) {
+    .signup-module {
+        position: absolute;
+        overflow: hidden;
+    }
+
+    .doctor-signup-module {
+        position: absolute;
+        overflow: hidden;
+    }
+}
+
 .phone-input {
     width: calc(100% - 26px);
     outline: none;

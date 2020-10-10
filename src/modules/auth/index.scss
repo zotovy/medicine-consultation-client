@@ -105,6 +105,8 @@
             max-height: 100px;
             min-height: 40px;
             align-items: start;
+            width: calc(100vw - 32px);
+
 
             .icon {
                 width: 40px;
@@ -127,7 +129,11 @@
         }
     }
 
-
+    @media screen and (max-width: 420px) {
+        left: 16px;
+        right: 16px;
+        justify-content: start;
+    }
 }
 
 //──── PASSWORD ERROR ────────────────────────────────────────────────────────────────────

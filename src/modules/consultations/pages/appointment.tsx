@@ -1,10 +1,6 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { observer } from "mobx-react";
 import controller from "../controller/appoint-controller";
-
-// Pages
-import Page1 from "./appointment/page-1";
-import Page2 from "./appointment/page-2";
 
 // Components
 import Image from "../../auth/components/image";
@@ -14,9 +10,13 @@ import "../index.scss";
 import image from "../../../static/images/signup-bg.png"
 import MediaQuery from "react-responsive";
 
+// Pages
+import Page1 from "./appointment/page-1";
+const Page2 = lazy(() => import("./appointment/page-2"));
+
 const AppointmentToConsultation: React.FC = () => {
 
-    const translate = controller.pageIndex == 0 ? "" : controller.pageIndex == 1 ? "minus55" : "minus110";
+    const translate = controller.pageIndex == 0 ? "" : "minus55";
 
     return <div className="appointment-module">
         <div className="wrapper">
@@ -26,7 +26,9 @@ const AppointmentToConsultation: React.FC = () => {
 
             <div className="swapper">
                 <Page1 className={translate} />
-                <Page2 className={translate} />
+                <Suspense fallback={<React.Fragment />}>
+                    <Page2 className={translate} />
+                </Suspense>
             </div>
         </div>
     </div>

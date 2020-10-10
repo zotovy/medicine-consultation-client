@@ -1,3 +1,6 @@
+@import "../../static/theme.scss";
+@import "../../static/mixins.scss";
+
 .appointment-module {
     width: 100vw;
     height: 100vh;
@@ -31,14 +34,6 @@
 
             @media screen and (max-width: 1024px) {
                 transform: translateX(-100vw);
-            }
-        }
-
-        &.minus110 {
-            transform: translateX(-100vw);
-
-            @media screen and (max-width: 1024px) {
-                transform: translateX(-200vw);
             }
         }
 
@@ -208,8 +203,360 @@
     .page-2 {
         left: 55vw;
 
+        .text-field p {
+            color: #565656;
+        }
+
         @media screen and (max-width: 1024px) {
             left: 100vw;
+        }
+
+        .textarea-wrapper {
+            width: 100%;
+            max-width: 600px;
+
+            @media screen and (max-width: 1024px) {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        textarea.symptoms {
+            resize: none;
+            overflow: ellipsis;
+            width: 100%;
+            outline: none;
+            border: solid 1.15px #ccc;
+            border-radius: 5px;
+            padding: 12px;
+
+            color: #565656;
+
+
+            font-size: 14px;
+            transition: border 0.25s ease-in-out;
+
+
+            &::placeholder {
+                color: #707070;
+            }
+
+            &:focus {
+                outline: none !important;
+
+                border: 1.15px solid $primary;
+
+                color: #282828;
+            }
+
+            i {
+                font-size: 14px;
+            }
+
+            /* Phone */
+            @media screen and (max-width: 424px) {
+                font-size: 16px;
+            }
+
+
+            /* Tablet */
+            @media screen and (max-width: 1025px) and (min-width: 768px) {
+                font-size: 16px;
+                padding: 15px;
+                width: 100%;
+            }
+
+            /* Desktop */
+            @media screen and (min-width: 1025px) {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                     CONSULTATIONS                                    *
+ *                                                                                      */
+//========================================================================================
+
+.consultation-module {
+
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+
+    .wrapper {
+        display: flex;
+
+
+    }
+
+    .video-container {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        // overflow: hidden;
+
+        video {
+            /* Make video to at least 100% wide and tall */
+            min-width: 100%;
+            min-height: 100%;
+
+            /* Setting width & height to auto prevents the browser from stretching or squishing the video */
+            width: auto;
+            height: auto;
+
+            /* Center the video */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+
+    .buttons {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .button {
+            width: 52px;
+            height: 52px;
+            margin: 0 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: #CCCCCC;
+            cursor: pointer;
+            transition: background 150ms ease-in-out;
+
+            &.active {
+                background-color: $primary;
+            }
+
+            svg {
+                width: 28px;
+                height: 28px;
+            }
+
+        }
+    }
+
+    .partner {
+        position: absolute;
+        left: 16px;
+        bottom: 16px;
+
+        &-wrapper {
+            position: relative;
+        }
+
+        video {
+            max-width: 30vw;
+            max-height: 30vh;
+            border-radius: 10px;
+        }
+
+        .close {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #FF3B30;
+            position: absolute;
+            right: -10px;
+            top: -10px;
+
+            svg {
+                cursor: pointer;
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        .micro {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+
+            svg {
+                width: 24px;
+                height: 24px;
+                fill: $primary;
+            }
+        }
+    }
+
+    .minimized {
+        width: 7vw;
+        height: 7vw;
+        border-radius: 10px;
+        background-color: #ccc;
+        background-image: url("https://www.epos-ural.ru/wp-content/uploads/2019/03/user-placeholder.jpg");
+        background-position: center;
+        background-size: cover;
+        cursor: pointer;
+    }
+
+    video.hidden {
+        display: none;
+    }
+
+    .chat {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: -30vw;
+        z-index: 10;
+        background-color: white;
+        width: 30vw;
+        padding: 15px;
+        padding-right: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        transition: transform 750ms;
+
+        &.enable {
+            transform: translateX(-30vw);
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px #ccc solid;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            width: calc(100% - 20px);
+
+            .avatar {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: rgba($color: black, $alpha: 0.1);
+                margin-right: 10px;
+            }
+
+            span {
+                font-size: 16px;
+
+                &#name {
+                    color: #282828;
+                    margin-right: 10px;
+                }
+
+                &#speciality {
+                    color: #707070;
+                    font-style: italic;
+                }
+            }
+
+
+        }
+
+        .messages {
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            @include scroll();
+            flex-shrink: 0;
+
+            width: 100%;
+            height: calc(100% - 105px);
+
+            .block {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+
+                &.user-block {
+                    align-items: flex-end;
+                }
+
+                * {
+                    margin-bottom: 12px;
+                }
+
+                .avatar {
+                    width: 45px;
+                    height: 45px;
+                    border-radius: 50%;
+                    background-color: rgba($color: black, $alpha: 0.1);
+                }
+
+                .message {
+                    display: flex;
+                    margin-bottom: 3px;
+
+                    span {
+                        padding: 10px;
+                        background-color: #F7F7F7;
+                        border-radius: 7px;
+                        color: #282828;
+                        word-wrap: break-word;
+                    }
+                }
+            }
+
+        }
+
+        .textfield {
+            padding: 10px 0;
+            display: flex;
+            flex-shrink: 0;
+            align-items: center;
+            width: calc(100% - 20px);
+            border-top: solid 1px #cccccc;
+
+            .emoji {
+                width: 32px;
+                height: 32px;
+                cursor: pointer;
+                margin-right: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                svg {
+                    width: 24px;
+                    height: 24px;
+                }
+            }
+
+            input {
+                width: calc(100% - 48px);
+                border: none;
+                outline: none;
+                font-size: 16px;
+            }
+
+            button#send {
+                width: 38px;
+                height: 38px;
+                margin-left: 10px;
+                border-radius: 50%;
+                background-color: $primary;
+                border: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                @include primaryBoxShadow();
+                cursor: pointer;
+                outline: none;
+            }
+
         }
     }
 
