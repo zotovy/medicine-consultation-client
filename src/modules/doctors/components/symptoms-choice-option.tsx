@@ -16,7 +16,7 @@ const OptionWp: React.FC= () => {
                 <div className="activeOptions">
                    {props.map((n:any, i:any) => {
                             if (n.active === true) {
-                               return <Symptom title={n.title} active={n.active} id={i} key={i}/>
+                               return <Symptom title={n.name} active={n.active} id={i} key={i}/>
                             }
                         }
                     )}
@@ -25,7 +25,7 @@ const OptionWp: React.FC= () => {
                 <div className="disableOptions">
                     {props.map((n:any, i:any) => {
                             if (n.active === false) {
-                                return <Symptom title={n.title} active={n.active} id={i} key={i}/>
+                                return <Symptom title={n.name} active={n.active} id={i} key={i}/>
                             }
                         }
                     )}

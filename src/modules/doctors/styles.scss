@@ -1,6 +1,6 @@
 @import "../../static/mixins.scss";
 @import "../../static/theme.scss";
-
+$disable: rgba($primary, $alpha: 0.15);
 //========================================================================================
 /*                                                                                      *
  *                                    Menu                                                    *
@@ -1644,6 +1644,36 @@ $hoverCol: #30B9D6;
         height: 1px;
         background-color: #CCCCCC;
     }
+    .option{
+        max-height:632px;
+        @media screen and (max-height: 970px) {
+            max-height:521px;
+        }
+        overflow-y: auto;
+        /* width */
+        &::-webkit-scrollbar {
+            width: 4px;
+            margin-left: 5px;
+        }
+        
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            cursor: pointer;
+        }
+        
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: $disable;
+            border-radius: 2px;
+        }
+        
+        /* Handle on hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: $primary;
+        }
+    }
+
     .option-symp{
         height: 30px;
         width: 100%;
