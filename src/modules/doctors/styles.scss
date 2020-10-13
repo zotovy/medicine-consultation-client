@@ -1456,6 +1456,9 @@ $hoverCol: #30B9D6;
         .male-side{
             .cls-1{fill:#ccd9e2;}.cls-2{fill:#abc2d7;}.cls-3{fill:none;stroke:#8da0b0;stroke-width:2px;}.cls-3,.cls-6{stroke-miterlimit:10;}.cls-4,.cls-6{fill:#a8bac4;}.cls-5{fill:#b6cae5;}.cls-6{stroke:#a8bac4;}
         }
+        .active{
+            fill: $hoverCol !important; 
+        }
         #male_heart,#fem_heart{
             &:hover{
                 path{

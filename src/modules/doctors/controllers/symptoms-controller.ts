@@ -14,6 +14,10 @@ class SympController {
     @observable loading: boolean = true;
     @observable arrSymps: any | undefined;
 
+    @action handlerChange = (e: any): void =>{
+        e.persist();
+        console.log(e);
+    } 
     @action choiseSymp = (e: any): void =>{
         e.persist();
         this.symptoms = this.symptoms.map((item: Symp,i:number) => {
@@ -36,7 +40,8 @@ class SympController {
             return item;
         });
     };
-    @action public clickHandlerSymp = (bodyPart: string) => {
+    
+    @action public clickHandlerSymp = (bodyPart: string = "Голова") => {
         this.loading = true;
         this._fetchSymptoms(bodyPart).then(
             action((arrSymps=[]) => {
@@ -46,17 +51,11 @@ class SympController {
                     return item;
                 })
                 this.loading = false;
-                this.updateSymps()
-                return(this.arrSymps , this.loading)
+                this.updateSymps();
+                return(this.arrSymps , this.loading);
             })
         );       
         return(this.arrSymps, this.loading)
-    }
-    updateSymps = ():void => {
-        this.symptoms = [];
-        this.symptoms = this.arrSymps.map((item: Symp,i:number) => {
-            return item = this.arrSymps[i] 
-        });
     }
     private _fetchSymptoms = async (bodyPart:string="Голова"
     ): Promise<Symp[] | undefined> => {
@@ -71,6 +70,29 @@ class SympController {
         }
         return await response.symptoms;
     };
+    @action highlightBodyPart = (e: any): void => {
+        // todo: highlight body part
+        e.persist();
+        console.log(e)
+        console.log(this)
+        let list = document.querySelectorAll('.bodyPart');
+        list.forEach(item =>{
+            console.log(`Часть тела по клик: ${e.target.id}; Часть тела с данным классом ${item.id}`)
+            item.classList.remove('active')
+            if(e.target.id == item.id){
+                item.classList.add('active')
+            }
+            return item
+        })
+    }
+    updateSymps = ():void => {
+        // todo: update symp array after fetch request
+        this.symptoms = [];
+        this.symptoms = this.arrSymps.map((item: Symp,i:number) => {
+            return item = this.arrSymps[i] 
+        });
+    }
+
 }
 
 
