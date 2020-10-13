@@ -1464,8 +1464,7 @@ $hoverCol: #30B9D6;
                 path{
                     fill: $hoverCol;   
                 }
-            }
-            pointer-events: bounding-box;             
+            }            
             cursor: pointer;
         }
         #male_lungs,#fem_lungs{
@@ -1479,7 +1478,6 @@ $hoverCol: #30B9D6;
                     }
                 }               
             }
-            pointer-events: bounding-box;
             cursor: pointer;
         }
 
@@ -1504,7 +1502,6 @@ $hoverCol: #30B9D6;
 
                 }              
             }
-            pointer-events: bounding-box;
             cursor: pointer;
         }
         #male_uthera,#fem_uthera,#male_kidneys,#fem_kidneys{
@@ -1516,7 +1513,6 @@ $hoverCol: #30B9D6;
                     fill: $hoverCol;   
                 }        
             }
-            pointer-events: bounding-box;
             cursor: pointer;
         }
         #male_arm,#fem_arm{
@@ -1528,7 +1524,6 @@ $hoverCol: #30B9D6;
                     }  
                 }
             }
-            pointer-events: bounding-box;
             cursor: pointer;
         }
         #male_brain,#fem_brain{
@@ -1538,7 +1533,6 @@ $hoverCol: #30B9D6;
                 }
                 cursor: pointer;
             }
-            pointer-events: bounding-box;
         }
         #male_spine,#fem_spine{
             &:hover{
@@ -1553,7 +1547,6 @@ $hoverCol: #30B9D6;
                 }
                 cursor: pointer;
             }
-            pointer-events: bounding-box;
         }
         path, circle, polyline{
             transition: 0.3s;
