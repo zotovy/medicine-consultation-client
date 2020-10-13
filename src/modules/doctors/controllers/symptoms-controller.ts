@@ -55,7 +55,7 @@ class SympController {
                 return(this.arrSymps , this.loading);
             })
         );       
-        return(this.arrSymps, this.loading)
+        return(this.arrSymps)
     }
     private _fetchSymptoms = async (bodyPart:string="Голова"
     ): Promise<Symp[] | undefined> => {
@@ -72,12 +72,10 @@ class SympController {
     };
     @action highlightBodyPart = (e: any): void => {
         // todo: highlight body part
-        e.persist();
+        e.persist()
         console.log(e)
-        console.log(this)
         let list = document.querySelectorAll('.bodyPart');
         list.forEach(item =>{
-            console.log(`Часть тела по клик: ${e.target.id}; Часть тела с данным классом ${item.id}`)
             item.classList.remove('active')
             if(e.target.id == item.id){
                 item.classList.add('active')

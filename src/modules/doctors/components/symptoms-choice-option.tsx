@@ -1,7 +1,10 @@
 import React from "react";
 import Symptom from "./symptom";
 import { observer } from "mobx-react";
+import Loader from "../../../components/loading-indicator";
 import controller from "../controllers/symptoms-controller";
+
+console.log(Loader)
 
 const OptionWp: React.FC= () => {
     type Props = {
@@ -23,12 +26,17 @@ const OptionWp: React.FC= () => {
                 </div>
                 {props.find((n:any)  => n.active) !== undefined ? <hr/> : null}
                 <div className="disableOptions">
-                    {props.map((n:any, i:any) => {
-                            if (n.active === false) {
-                                return <Symptom title={n.name} active={n.active} id={i} key={i}/>
-                            }
-                        }
-                    )}
+                    {controller.loading
+                        ? <Loader/>
+                        
+                        :   props.map((n:any, i:any) => {
+                                if (n.active === false) {
+                                    return <Symptom title={n.name} active={n.active} id={i} key={i}/>
+                                }
+                            })
+                        
+                    }
+                
                 </div>
             </div>
         )    

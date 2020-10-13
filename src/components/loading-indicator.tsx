@@ -1,7 +1,8 @@
 import React from "react";
 import "./styles/styles.scss";
+import { observer } from "mobx-react";
 
-export default () => {
+export default observer(() => {
     return <div className="loader">
         <div className="sk-chase">
             <div className="sk-chase-dot"></div>
@@ -12,7 +13,7 @@ export default () => {
             <div className="sk-chase-dot"></div>
         </div>
     </div>
-}
+})
 
 export const InlineLoadingIndicator: React.FC = () => {
     return <div id="circleG">
