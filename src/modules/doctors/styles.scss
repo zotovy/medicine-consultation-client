@@ -1444,6 +1444,7 @@ $hoverCol: #30B9D6;
         width: 100%;
         height: 100%;
         background-color: #F3F7FA;
+
         .fem{
             .cls-1{fill:#ccd9e2;}.cls-2{fill:#a5b8d9;}.cls-3{fill:#9dbecf;}.cls-4{fill:#e3e7eb;}.cls-5{fill:#9caabd;}.cls-6{fill:#9bbdd6;}.cls-7{fill:#adc7de;}.cls-8{fill:#c7ddf0;}.cls-9{fill:#8895a6;}.cls-10{fill:#82a4c9;}.cls-11{fill:none;stroke:#abc7dd;stroke-miterlimit:10;stroke-width:5px;}.cls-12{fill:#b3c7d9;}.cls-13{fill:#6994b5;}.cls-14{fill:#abbcc9;}
         }
@@ -1456,9 +1457,41 @@ $hoverCol: #30B9D6;
         .male-side{
             .cls-1{fill:#ccd9e2;}.cls-2{fill:#abc2d7;}.cls-3{fill:none;stroke:#8da0b0;stroke-width:2px;}.cls-3,.cls-6{stroke-miterlimit:10;}.cls-4,.cls-6{fill:#a8bac4;}.cls-5{fill:#b6cae5;}.cls-6{stroke:#a8bac4;}
         }
-        .active{
-            fill: $hoverCol !important; 
+        // todo active styles for svg [start]
+        
+        .active{ 
+            path:not(#male_arm,#fem_arm,#male_leg_bones,#fem_leg_bones){
+                fill: $hoverCol !important;
+            }
+
+            #male_arm-2,#fem_arm-2{
+                fill: #b6cae5 !important;
+            }
+
+            #male_arm_bones,#fem_arm_bones{
+                path,circle{
+                    stroke: $hoverCol;
+                    fill: $hoverCol;
+                }  
+            }
         }
+        #male_arm_bones.active,#fem_arm_bones.active{
+            path,circle{
+                stroke: $hoverCol;
+                fill: $hoverCol;
+            }  
+        }
+        #male_leg_bones.active,#fem_leg_bones.active{
+            path,circle{
+                fill: $hoverCol !important;
+                stroke: $hoverCol;
+            }
+        }
+        path.active.male_spine{
+            fill: $hoverCol;
+        }
+
+        // todo active styles for svg [end]
         #male_heart,#fem_heart{
             &:hover{
                 path{

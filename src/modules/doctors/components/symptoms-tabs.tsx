@@ -34,7 +34,7 @@ const SymptomsTabs: React.FC = () => {
 				</div>
 				<div className='fake-img img-2'>
 					{arrNum[1] === 2 ? <MaleSide/> : <FemaleSide/>}
-				</div>
+				</div>	
 		    </>
 		  )
 		}

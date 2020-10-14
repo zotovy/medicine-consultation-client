@@ -72,13 +72,15 @@ class SympController {
     };
     @action highlightBodyPart = (e: any): void => {
         // todo: highlight body part
-        e.persist()
-        console.log(e)
-        let list = document.querySelectorAll('.bodyPart');
+        e.persist();
+        const el = e.target.closest("g"),
+              list = document.querySelectorAll('.bodyPart');
         list.forEach(item =>{
-            item.classList.remove('active')
-            if(e.target.id == item.id){
-                item.classList.add('active')
+            item.classList.remove('active');      
+        })
+        list.forEach(item =>{
+            if(e.target.id == item.id || el.id == item.id){
+                item.classList.add('active');
             }
             return item
         })
