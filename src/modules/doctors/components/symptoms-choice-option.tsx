@@ -25,10 +25,9 @@ const OptionWp: React.FC= () => {
                     )}
                 </div>
                 {props.find((n:any)  => n.active) !== undefined ? <hr/> : null}
-                <div className="disableOptions">
+                <div className={`disableOptions ${controller.loading ? "disLoading" : ''}`}>
                     {controller.loading
-                        ? <Loader/>
-                        
+                        ? <Loader/> 
                         :   props.map((n:any, i:any) => {
                                 if (n.active === false) {
                                     return <Symptom title={n.name} active={n.active} id={i} key={i}/>

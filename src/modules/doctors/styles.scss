@@ -1460,10 +1460,17 @@ $hoverCol: #30B9D6;
         // todo active styles for svg [start]
         
         .active{ 
-            path:not(#male_arm,#fem_arm,#male_leg_bones,#fem_leg_bones){
+            path:not(#male_arm,#fem_arm,#male_leg_bones,#fem_leg_bones,#fem_uthera){
                 fill: $hoverCol !important;
             }
-
+            g:not(#fem_uthera) .cls-13{
+                fill: none !important;
+                stroke: $hoverCol;
+            }
+            .cls-13{
+                fill: none !important;
+                stroke: $hoverCol;
+            }
             #male_arm-2,#fem_arm-2{
                 fill: #b6cae5 !important;
             }
@@ -1474,10 +1481,45 @@ $hoverCol: #30B9D6;
                     fill: $hoverCol;
                 }  
             }
+            #male_intestine_2,#fem_intestine_2{
+                stroke: $hoverCol !important;
+                fill: #ccd9e2 !important;
+            }
+            #male_kidneys{
+                .cls-13{
+                    fill: none !important;
+                    stroke: $hoverCol;
+                }
+            }
+            polyline{
+                fill: $hoverCol !important; 
+            } 
         }
+        #fem_uthera.active{
+            #fem_kidneys{
+                .cls-13{
+                    fill: none !important;
+                    stroke: $hoverCol;
+                }
+            }
+            .cls-13{
+                fill:  #6994b5 !important; 
+                stroke:  $hoverCol;
+            } 
+            path:not(.cls-13){
+                fill:  $hoverCol;  
+            }        
+        }
+        #male_uthera #male_kidneys.active{
+            fill: $hoverCol;
+            .cls-13{
+                fill: none !important;
+                stroke: $hoverCol;
+            }
+        } 
         #male_arm_bones.active,#fem_arm_bones.active{
             path,circle{
-                stroke: $hoverCol;
+                stroke: $hoverCol !important;
                 fill: $hoverCol;
             }  
         }
@@ -1487,6 +1529,7 @@ $hoverCol: #30B9D6;
                 stroke: $hoverCol;
             }
         }
+        
         path.active.male_spine{
             fill: $hoverCol;
         }
@@ -1495,7 +1538,7 @@ $hoverCol: #30B9D6;
         #male_heart,#fem_heart{
             &:hover{
                 path{
-                    fill: $hoverCol;   
+                    fill:  saturate($hoverCol, 20%);   
                 }
             }            
             cursor: pointer;
@@ -1503,11 +1546,11 @@ $hoverCol: #30B9D6;
         #male_lungs,#fem_lungs{
             &:hover{
                 path{
-                    fill: $hoverCol;   
+                    fill: saturate($hoverCol, 20%);  
                 }
                 #male_throat,#fem_throat{
                     path, polyline{
-                        fill: $hoverCol;   
+                        fill: saturate($hoverCol, 20%);   
                     }
                 }               
             }
@@ -1518,32 +1561,31 @@ $hoverCol: #30B9D6;
         #male_intestine_1,#fem_intestine_1{
             &:hover{
                 .cls-10{
-                    fill: $hoverCol;   
+                    fill:  saturate($hoverCol, 20%);   
                 }
                 #male_intestine_2,#fem_intestine_2{
-                    stroke: $hoverCol;
+                    stroke:  saturate($hoverCol, 20%);
                 }
                 #male_liver,#fem_liver{
                     path{
-                        fill: $hoverCol;   
+                        fill:  saturate($hoverCol, 20%);   
                     }
                 }
                 #male_stomach, #fem_stomach{
                     path{
-                        fill: $hoverCol;   
+                        fill:  saturate($hoverCol, 20%);   
                     }      
-
-                }              
+                }             
             }
             cursor: pointer;
         }
         #male_uthera,#fem_uthera,#male_kidneys,#fem_kidneys{
             &:hover{
                 .cls-13{
-                    stroke: $hoverCol;
+                    stroke:  saturate($hoverCol, 20%);
                 } 
                 path:not(.cls-13){
-                    fill: $hoverCol;   
+                    fill:  saturate($hoverCol, 20%);  
                 }        
             }
             cursor: pointer;
@@ -1552,8 +1594,8 @@ $hoverCol: #30B9D6;
             &:hover{
                 #male_arm_bones,#fem_arm_bones{
                     path,circle{
-                        stroke: $hoverCol;
-                        fill: $hoverCol;
+                        stroke:  saturate($hoverCol, 20%);
+                        fill:  saturate($hoverCol, 20%);
                     }  
                 }
             }
@@ -1562,21 +1604,23 @@ $hoverCol: #30B9D6;
         #male_brain,#fem_brain{
             &:hover{
                 path{
-                    fill: $hoverCol;
+                    fill:  saturate($hoverCol, 20%);
                 }
                 cursor: pointer;
             }
         }
         #male_spine,#fem_spine{
             &:hover{
-                fill: $hoverCol;
+                path{
+                    fill:  saturate($hoverCol, 20%);
+                }            
                 cursor: pointer;
             }
         }
         #male_leg_bones,#fem_leg_bones{
             &:hover{
                 path,circle{
-                    fill: $hoverCol;
+                    fill:  saturate($hoverCol, 20%);
                 }
                 cursor: pointer;
             }
@@ -1681,7 +1725,9 @@ $hoverCol: #30B9D6;
     //! Доделать нормальное отображение скролла в симптомах
     .disableOptions{
         overflow-y: hidden;
-        height: 521px;
+    }
+    .disLoading{
+        height: 512px;
         .loader{
             height: 100%;
             width: 100%;
