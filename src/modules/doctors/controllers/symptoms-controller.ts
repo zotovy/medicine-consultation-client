@@ -66,7 +66,6 @@ class SympController {
             .get("https://mc-test.ga" + `/api/symptoms?bodyPart=${bodyPart}`)
             .then((data:any) => data.data)
             .catch((e:any) =>{return{success: false}})
-        console.log(response)
         if (!response.success) {
             // todo: error handling
             this.openBadge();
