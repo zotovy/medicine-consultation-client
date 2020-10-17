@@ -1,4 +1,4 @@
-import { observable, action , toJS} from "mobx";
+import { observable, action } from "mobx";
 import axios from "axios";
 
 type Item = { title: string; sourseSvg: any[]; active: boolean; id: number };
@@ -11,6 +11,7 @@ class SympController {
     @observable symptoms: Symp[] = [];
     @observable loading: boolean = true;
     @observable arrSymps: any | undefined;
+    @observable isErrorBadgeOpen: boolean = false;
 
     @action handlerSearch = (e: any): void =>{
         e.persist();
@@ -53,9 +54,8 @@ class SympController {
                     item.id = i;
                     return item;
                 })
-                this.loading = false;
                 this.updateSymps();
-                return(this.arrSymps , this.loading);
+                return(this.arrSymps);
             })
         );    
         return(this.arrSymps)
@@ -65,11 +65,14 @@ class SympController {
         const response = await axios
             .get("https://mc-test.ga" + `/api/symptoms?bodyPart=${bodyPart}`)
             .then((data:any) => data.data)
-            .catch((e:any) => e.response)
-
-        if (!response?.success) {
+            .catch((e:any) =>{return{success: false}})
+        console.log(response)
+        if (!response.success) {
             // todo: error handling
-            return;
+            this.openBadge();
+        }
+        if (response.success){
+            this.loading = false;
         }
         return await response.symptoms;
     };
@@ -94,7 +97,12 @@ class SympController {
             }
         })
     }
-
+    private openBadge = () => {
+        this.isErrorBadgeOpen = true;
+        setTimeout(() => {
+            this.isErrorBadgeOpen = false;
+        }, 5000);
+    };
 }
 
 
