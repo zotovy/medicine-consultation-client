@@ -1,5 +1,4 @@
 import { observable, action , toJS} from "mobx";
-import settingDoctorController from "../../settings/controller";
 import axios from "axios";
 
 type Item = { title: string; sourseSvg: any[]; active: boolean; id: number };
@@ -9,15 +8,19 @@ class SympController {
         { title: "М", sourseSvg: [1,2], active: true, id: 0 },
         { title: "Ж", sourseSvg: [3,4], active: false, id: 1 },
     ];
-    @observable symptoms: Symp[] = [
-    ];
+    @observable symptoms: Symp[] = [];
     @observable loading: boolean = true;
     @observable arrSymps: any | undefined;
 
-    @action handlerChange = (e: any): void =>{
+    @action handlerSearch = (e: any): void =>{
         e.persist();
-        console.log(e);
-    } 
+        let searchQuery = e.target.value.toLowerCase();
+        const displayedContacts = this.arrSymps.filter((el:Symp) => {
+          const searchValue = el.name.toLowerCase();
+          return searchValue.indexOf(searchQuery) !== -1 || el.active == true;
+        });
+        this.symptoms = displayedContacts;
+    }
     @action choiseSymp = (e: any): void =>{
         e.persist();
         this.symptoms = this.symptoms.map((item: Symp,i:number) => {
@@ -54,7 +57,7 @@ class SympController {
                 this.updateSymps();
                 return(this.arrSymps , this.loading);
             })
-        );       
+        );    
         return(this.arrSymps)
     }
     private _fetchSymptoms = async (bodyPart:string="Голова"
@@ -70,6 +73,13 @@ class SympController {
         }
         return await response.symptoms;
     };
+    updateSymps = ():void => {
+        // todo: update symp array after fetch request
+        this.symptoms = [];
+        this.symptoms = this.arrSymps.map((item: Symp,i:number) => {
+            return item = this.arrSymps[i] 
+        });
+    }
     @action highlightBodyPart = (e: any): void => {
         // todo: highlight body part
         e.persist();
@@ -83,13 +93,6 @@ class SympController {
                 item.classList.add('active');
             }
         })
-    }
-    updateSymps = ():void => {
-        // todo: update symp array after fetch request
-        this.symptoms = [];
-        this.symptoms = this.arrSymps.map((item: Symp,i:number) => {
-            return item = this.arrSymps[i] 
-        });
     }
 
 }

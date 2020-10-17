@@ -5,14 +5,14 @@ import controller from "../controllers/symptoms-controller";
 
 
 const SymptomsTitle: React.FC = () => {
-	const { handlerChange } = controller; 
+	const { handlerSearch } = controller; 
     return(
         <div className="choice-wrapper"> 
 			<div className="search">
 				<input
 				type="text"
 				placeholder="Головная боль"
-				onChange={(e) => handlerChange(e)}/>
+				onChange={(e) => handlerSearch(e)}/>
 				<SearchIcon />
 			</div>
 			<SymptomsOptions/>
