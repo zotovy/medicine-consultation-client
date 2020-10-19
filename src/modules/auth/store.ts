@@ -80,6 +80,7 @@ class AuthStore {
             const id = response.data.id;
             this.uid = id;
             localStorage.setItem("uid", id);
+            localStorage.setItem("isUser", response.data.isUser.toString());
 
             // Generate & save new tokens
             tokenServices.saveAccessToken(response.data.tokens.access);
@@ -174,6 +175,7 @@ class AuthStore {
             // Save user id
             const id = response.data.user.id;
             localStorage.setItem("uid", id);
+            localStorage.setItem("isUser", "true");
 
             // Set user
             this.user = user;
@@ -254,6 +256,19 @@ class AuthStore {
 
                 return;
             }
+
+            // Tokens
+            const accessToken = response.data.tokens.access;
+            const refreshToken = response.data.tokens.refresh;
+
+            // save given tokens
+            tokenServices.saveAccessToken(accessToken);
+            tokenServices.saveRefreshToken(refreshToken);
+
+            // Save user id
+            const id = response.data.user.id;
+            localStorage.setItem("uid", id);
+            localStorage.setItem("isUser", "false");
 
             // Show badge
             signupUIStore.isBadgeOpen = true;
