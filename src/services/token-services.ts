@@ -116,7 +116,7 @@ class TokenServices {
         if (!refreshToken || !accessToken || !userId) return null;
 
         const responce = await axios
-            .post("https://localhost:5000/api/token", {
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/token`, {
                 accessToken,
                 refreshToken,
                 userId,
