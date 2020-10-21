@@ -31,13 +31,12 @@ class ConsultationController implements IConsultationController {
             transports: ["websocket"],
         });
 
-        this.socket.on("error", args.onError);
+        this.socket.on("error", (error: any) => {
+            console.log("error!", error);
+            args.onError(error);
+        });
         this.socket.on("success", async () => {
             console.log("success!");
-
-            this.socket?.on("connect", () => {
-                console.log(this.socket?.id);
-            });
 
             const stream = await navigator.mediaDevices.getUserMedia({
                 video: true,
@@ -47,7 +46,6 @@ class ConsultationController implements IConsultationController {
 
             this.peer = new Peer({
                 host: process.env.REACT_APP_PEER_SERVER_URL,
-                port: 5001,
                 path: "/mc",
             });
             console.log("peer have been created");
