@@ -113,6 +113,7 @@
         "start": "serve -s build",
         "dev": "env-cmd -f .env.local node scripts/start.js",
         "build": "node scripts/build.js",
+        "test": "echo 123",
         "test:integration": "testcafe -s path=e2e/screenshots/need --skip-js-errors",
         "analyze": "node analyze.js",
         "deploy": "gh-pages -d build",
