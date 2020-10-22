@@ -11,6 +11,11 @@ const MessagesComponent: React.FC = () => {
         }
     }
 
+    const def = "https://www.epos-ural.ru/wp-content/uploads/2019/03/user-placeholder.jpg";
+    const avatar = {
+        backgroundImage: `url("${controller.partnerImagePath?.trim() == "" ? def : controller.partnerImagePath}")`,
+    }
+
     const blocks: TMessageBlock[] = Array.from(controller.getBlocks());
 
     setTimeout(scrollToBottom, 0);
@@ -30,7 +35,7 @@ const MessagesComponent: React.FC = () => {
                     </div>;
                 } else {
                     return <div className="block partner-block" key={"partner-block-" + i}>
-                        <div className="avatar"></div>
+                        <div className="avatar" style={avatar}></div>
                         {
                             e.content.map((message, i) => <div className="message" key={"user" + message + i}>
                                 <span>{message}</span>

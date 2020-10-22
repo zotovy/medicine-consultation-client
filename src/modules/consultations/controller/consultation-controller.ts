@@ -1,6 +1,9 @@
 import { action, observable } from "mobx";
 import Peer from "peerjs";
 import io from "socket.io-client";
+import axios from "axios";
+import { authFetch, EAuthFetch } from "../../../services/fetch_services";
+import tokenServices from "../../../services/token-services";
 
 class ConsultationController implements IConsultationController {
     // Socket
@@ -69,7 +72,7 @@ class ConsultationController implements IConsultationController {
         });
 
         this.socket.on("new_message", (message: string) => {
-            this._messages.push({ content: message, isUser: false });
+            this._messages.push({ message, isUser: false });
         });
 
         this.socket.on(
@@ -78,7 +81,7 @@ class ConsultationController implements IConsultationController {
                 const uid = localStorage.getItem("uid");
                 this._messages = messages.map((e) => ({
                     isUser: e.user === uid,
-                    content: e.content,
+                    message: e.content,
                 }));
             }
         );
@@ -109,10 +112,62 @@ class ConsultationController implements IConsultationController {
         });
     }
 
-    // @observable partnerVideo: MutableRefObject<
-    //     HTMLVideoElement | undefined
-    // > = useRef<HTMLVideoElement>();
-    @observable stream: MediaStream | undefined;
+    public fetchConsultation = (id: string): void => {
+        this.loading = true;
+
+        action(async () => {
+            const cons = await this._fetchConsultation(id);
+            this.loading = false;
+
+            if (cons === "error") this.error = true;
+            else if (cons === "unauthorized") throw "redirect-login";
+            else {
+                this.consultation = cons;
+
+                const isUser = localStorage.getItem("isUser") === "true";
+                if (isUser && typeof cons?.doctorId !== "string") {
+                    this.partnerImagePath = cons.doctorId.photoUrl;
+                    this.partnerName = cons.doctorId.fullName;
+                    this.partnerSpeciality =
+                        cons.doctorId.speciality.length >= 1
+                            ? cons.doctorId.speciality[0]
+                            : "";
+                    const uid = localStorage.getItem("uid");
+                    this._messages =
+                        cons.messages?.map((e) => ({
+                            isUser: e.user === uid,
+                            message: e.message,
+                        })) ?? [];
+                }
+            }
+        })();
+    };
+
+    private _fetchConsultation = async (
+        id: string
+    ): Promise<TConsultation | "error" | "unauthorized"> => {
+        const response = await authFetch(() =>
+            axios.get(
+                process.env.REACT_APP_SERVER_URL + "/api/consultation/" + id,
+                {
+                    headers: {
+                        auth: tokenServices.header,
+                    },
+                }
+            )
+        );
+
+        if (response.status === EAuthFetch.Error) return "error";
+        if (response.status === EAuthFetch.Unauthorized) return "unauthorized";
+
+        console.log(response.data.consultation);
+        return response.data.consultation;
+    };
+
+    @observable error: boolean = false;
+    @observable loading: boolean = false;
+    @observable consultation?: TConsultation;
+
     @observable isCameraOn: boolean = false;
     @observable isMicroOn: boolean = false;
     @observable isChatOn: boolean = true;
@@ -133,9 +188,9 @@ class ConsultationController implements IConsultationController {
 
         this._messages.forEach((e, i) => {
             if (i > 0 && blocks[blocks.length - 1].isUser == e.isUser) {
-                blocks[blocks.length - 1].content.push(e.content);
+                blocks[blocks.length - 1].content.push(e.message);
             } else {
-                blocks.push({ isUser: e.isUser, content: [e.content] });
+                blocks.push({ isUser: e.isUser, content: [e.message] });
             }
         });
 
@@ -143,7 +198,7 @@ class ConsultationController implements IConsultationController {
     };
 
     @action addMessage(): void {
-        this._messages.push({ content: this.message, isUser: true });
+        this._messages.push({ message: this.message, isUser: true });
         this.socket?.emit(
             "new_message",
             this.message,
@@ -160,7 +215,7 @@ export interface IConsultationController {
 
 export type TMessage = {
     isUser: boolean;
-    content: string;
+    message: string;
 };
 
 export type TMessageBlock = {

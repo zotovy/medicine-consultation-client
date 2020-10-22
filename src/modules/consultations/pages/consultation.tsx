@@ -26,6 +26,8 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
                     invalidTokenCounter += 1;
                     if (invalidTokenCounter == 1) {
                         tokenServices.getAndUpdateNewAccessToken().then(() => controller.setupSocket(match.params.id, { onSuccess, onError }));
+                    } else {
+                        history.push("/");
                     }
                     break;
                 default:
@@ -48,6 +50,8 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
         });
 
     }, []);
+
+    controller.fetchConsultation(match.params.id);
 
     return <div className="consultation-module">
         <div className="wrapper">

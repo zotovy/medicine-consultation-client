@@ -10,6 +10,10 @@ class TokenServices {
     accessTokenLeftTime = () => this._secondsToUpdate("accessToken");
     refreshTokenLeftTime = () => this._secondsToUpdate("refreshToken");
 
+    get header(): string {
+        return `Bearer ${this._getAccessToken()}`;
+    }
+
     saveAccessToken(token: string) {
         localStorage.setItem("accessToken", token);
 
