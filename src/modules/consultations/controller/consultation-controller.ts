@@ -170,14 +170,15 @@ class ConsultationController implements IConsultationController {
 
     @observable isCameraOn: boolean = false;
     @observable isMicroOn: boolean = false;
-    @observable isChatOn: boolean = true;
+    @observable isChatOn: boolean = false;
 
     // partner
-    @observable isMinimized: boolean = true;
+    @observable isMinimized: boolean = false;
     @observable partnerImagePath?: string;
     @observable partnerMicroStatus: boolean = false;
-    @observable partnerName: string = "Иванова Елена";
-    @observable partnerSpeciality: string = "Педиатр";
+    @observable partnerName: string = "";
+    @observable partnerSpeciality: string = "";
+    @observable partnerConnected: boolean = false;
 
     // Chat
     public message: string = "";

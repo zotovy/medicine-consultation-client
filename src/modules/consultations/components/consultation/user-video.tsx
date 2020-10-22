@@ -20,8 +20,8 @@ const UserVideo: React.FC = () => {
             .catch(() => null)
     }, []);
 
-    return <div className="partner">
-        <div className="partner-wrapper">
+    return <div className="user">
+        <div className="user-wrapper">
             <video playsInline autoPlay muted={controller.partnerMicroStatus ? false : true} id="user-video" className={controller.isMinimized ? "hidden" : ""} />
 
             {

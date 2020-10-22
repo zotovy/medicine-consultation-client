@@ -57,8 +57,13 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
         <div className="wrapper">
             <div className="video-container">
                 {
-                    userVideo ? <video playsInline muted autoPlay id="partner-video" className={controller.isCameraOn ? "" : "hidden"} /> : <h1>123</h1>
+                    controller.partnerConnected
+                        ? <video playsInline muted autoPlay id="partner-video" className={controller.isCameraOn ? "" : "hidden"} />
+                        : <div className="not-connected">
+                            <h3>Ваш собеседник еще не подключился</h3>
+                        </div>
                 }
+
             </div>
             <Chat />
         </div>
