@@ -4,6 +4,7 @@ import io from "socket.io-client";
 import axios from "axios";
 import { authFetch, EAuthFetch } from "../../../services/fetch_services";
 import tokenServices from "../../../services/token-services";
+import validationServices from "../../../services/validation-services";
 
 class ConsultationController implements IConsultationController {
     // Socket
@@ -97,6 +98,33 @@ class ConsultationController implements IConsultationController {
         });
 
         return "ok";
+    };
+
+    private _extractLinks = (message: string): (TLink | string)[] => {
+        const splitted = message.split(" ");
+        const messages: (TLink | string)[] = [];
+
+        splitted.forEach((e) => {
+            if (validationServices.isUrl(e)) {
+                let splittedHttp = e.split("http://");
+
+                if (splittedHttp.length === 1)
+                    splittedHttp = e.split("https://");
+
+                const last = splittedHttp[splittedHttp.length - 1];
+                let content = last,
+                    href = e;
+                if (last.length > 35) content = last.substring(0, 35) + "...";
+
+                if (!e.includes("https://") && !e.includes("http://")) {
+                    href = "http://" + e;
+                }
+
+                messages.push({ content, href });
+            } else messages.push(e);
+        });
+
+        return messages;
     };
 
     private _setVideo = (
@@ -223,9 +251,6 @@ class ConsultationController implements IConsultationController {
 
     public getBlocks = (): TMessageBlock[] => {
         let blocks: TMessageBlock[] = [];
-
-        console.log(this._messages.length);
-
         this._messages.forEach((e, i) => {
             if (e.type === EMessageType.Message) {
                 if (
@@ -233,16 +258,18 @@ class ConsultationController implements IConsultationController {
                     blocks[blocks.length - 1].isUser === e.isUser &&
                     blocks[blocks.length - 1].type === e.type
                 ) {
-                    blocks[blocks.length - 1].content.push(e.message);
+                    blocks[blocks.length - 1].content.push(
+                        this._extractLinks(e.message)
+                    );
                 } else {
                     blocks.push({
                         isUser: e.isUser,
-                        content: [e.message],
+                        content: [this._extractLinks(e.message)],
                         type: EMessageType.Message,
                     });
                 }
             } else {
-                blocks.push({ ...e, content: [e.message] });
+                blocks.push({ ...e, content: [this._extractLinks(e.message)] });
             }
         });
 
@@ -269,6 +296,11 @@ export interface IConsultationController {
     isChatOn: boolean;
 }
 
+export type TLink = {
+    href: string;
+    content: string;
+};
+
 export type TMessage = {
     isUser: boolean;
     message: string;
@@ -281,9 +313,11 @@ export enum EMessageType {
     DisconnectMessage,
 }
 
+export type TMessageContent = (TLink | string)[];
+
 export type TMessageBlock = {
     isUser: boolean;
-    content: string[];
+    content: TMessageContent[];
     type: EMessageType;
 };
 
