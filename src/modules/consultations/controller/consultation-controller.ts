@@ -130,13 +130,11 @@ class ConsultationController implements IConsultationController {
 
     public fetchConsultation = (id: string) => {
         console.log("fetch consultation with id", id);
-
         this.loading = true;
 
         action(async () => {
             const cons = await this._fetchConsultation(id).catch(() => null);
             this.loading = false;
-            console.log(cons);
 
             if (cons == null) return;
 
@@ -218,27 +216,25 @@ class ConsultationController implements IConsultationController {
     public getBlocks = (): TMessageBlock[] => {
         let blocks: TMessageBlock[] = [];
 
+        console.log(this._messages.length);
+
         this._messages.forEach((e, i) => {
-            switch (e.type) {
-                case EMessageType.ConnectMessage:
-                    blocks.push({ ...e, content: [e.message] });
-                    break;
-
-                case EMessageType.DisconnectMessage:
-                    blocks.push({ ...e, content: [e.message] });
-                    break;
-
-                case EMessageType.Message:
-                    if (i > 0 && blocks[blocks.length - 1].isUser == e.isUser) {
-                        blocks[blocks.length - 1].content.push(e.message);
-                    } else {
-                        blocks.push({
-                            isUser: e.isUser,
-                            content: [e.message],
-                            type: EMessageType.Message,
-                        });
-                    }
-                    break;
+            if (e.type === EMessageType.Message) {
+                if (
+                    i > 0 &&
+                    blocks[blocks.length - 1].isUser === e.isUser &&
+                    blocks[blocks.length - 1].type === e.type
+                ) {
+                    blocks[blocks.length - 1].content.push(e.message);
+                } else {
+                    blocks.push({
+                        isUser: e.isUser,
+                        content: [e.message],
+                        type: EMessageType.Message,
+                    });
+                }
+            } else {
+                blocks.push({ ...e, content: [e.message] });
             }
         });
 
@@ -272,9 +268,9 @@ export type TMessage = {
 };
 
 export enum EMessageType {
-    Message,
-    ConnectMessage,
-    DisconnectMessage,
+    Message = "Message",
+    ConnectMessage = "ConnectMessage",
+    DisconnectMessage = "DisconnectMessage",
 }
 
 export type TMessageBlock = {

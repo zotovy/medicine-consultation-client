@@ -24,7 +24,6 @@ const MessagesComponent: React.FC = () => {
     return <div className="messages" >
         {
             blocks.map((e, i) => {
-
                 switch (e.type) {
                     case EMessageType.Message:
                         if (e.isUser) {

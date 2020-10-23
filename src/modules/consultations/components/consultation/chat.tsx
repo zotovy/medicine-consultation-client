@@ -26,23 +26,15 @@ const Chat: React.FC = () => {
                         ? <span id="speciality">({controller.partnerSpeciality})</span>
                         : <React.Fragment />
                 }
-
             </div>
         </header>
         <Messages />
-        <div className="textfield">
-            <Input />
-            <button id="send" onClick={() => {
-                controller.addMessage();
-            }}>
-                <SendIcon />
-            </button>
-        </div>
+        <TextField />
     </div>;
 };
 
 
-const Input = observer(() => {
+const TextField = observer(() => {
 
     const [input, setInput] = useState("");
 
@@ -54,17 +46,25 @@ const Input = observer(() => {
 
     }
 
-    return <input
-        type="text"
-        className="text"
-        placeholder="Введите сообщение"
-        onChange={e => {
-            controller.message = e.target.value;
-            setInput(e.target.value);
-        }}
-        onKeyDown={_handleKeyDown}
-        value={input}
-    />;
+    return <div className="textfield">
+        <input
+            type="text"
+            className="text"
+            placeholder="Введите сообщение"
+            onChange={e => {
+                controller.message = e.target.value;
+                setInput(e.target.value);
+            }}
+            onKeyDown={_handleKeyDown}
+            value={input}
+        />
+        <button id="send" onClick={() => {
+            setInput("");
+            controller.addMessage();
+        }}>
+            <SendIcon />
+        </button>
+    </div>
 });
 
 export default observer(Chat);
