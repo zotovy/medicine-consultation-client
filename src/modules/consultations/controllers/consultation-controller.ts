@@ -9,6 +9,7 @@ class ConsultationController implements IConsultationController {
     // Socket
     socket: SocketIOClient.Socket | null = null;
     peer: Peer | null = null;
+    onErrorCb = () => {};
 
     setupSocket = async (
         consultationId: string,
@@ -62,14 +63,19 @@ class ConsultationController implements IConsultationController {
             this.peer.on("call", (call) => {
                 this.partnerConnected = true;
                 call.answer(stream);
+
                 call.on("stream", (partnerStream) => {
                     this._setVideo("video#partner-video", partnerStream);
                 });
+
+                call.on("error", this.onErrorCb);
             });
 
             this.peer.on("open", (id) => {
                 this.socket?.emit("user-connected", id);
             });
+
+            this.peer.on("error", this.onErrorCb);
 
             this.socket?.on("user-connected", (userId: string) => {
                 console.log("user-connected", userId);
@@ -126,6 +132,8 @@ class ConsultationController implements IConsultationController {
                 });
             });
         });
+
+        call?.on("error", this.onErrorCb);
     }
 
     public fetchConsultation = (id: string) => {
@@ -268,9 +276,9 @@ export type TMessage = {
 };
 
 export enum EMessageType {
-    Message = "Message",
-    ConnectMessage = "ConnectMessage",
-    DisconnectMessage = "DisconnectMessage",
+    Message,
+    ConnectMessage,
+    DisconnectMessage,
 }
 
 export type TMessageBlock = {

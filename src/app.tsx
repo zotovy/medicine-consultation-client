@@ -18,7 +18,7 @@ const DetailDoctorPage = lazy(() => import("./modules/doctors").then(module => (
 const SymptomsPage = lazy(() => import("./modules/doctors").then(module => ({ default: module.SymptomsPage })));
 const AppointmentPage = lazy(() => import("./modules/consultations").then(module => ({ default: module.AppointmentPage })));
 const ConsultationPage = lazy(() => import("./modules/consultations").then(module => ({ default: module.ConsultationPage })));
-
+const ErrorPage = lazy(() => import("./modules/other/pages/error"));
 
 const Admin = lazy(() => import("./modules/admin"));
 const AdminLogin = lazy(() => import("./modules/admin").then(module => ({ default: module.Login })));
@@ -101,6 +101,12 @@ const App = () => {
           <AdminLogin />
         </Suspense>
       </Route>;
+
+      <Route path="/error">
+        <Suspense fallback={<React.Fragment />}>
+          <ErrorPage />
+        </Suspense>
+      </Route>
 
       <Suspense fallback={<React.Fragment />}>
         <Admin />

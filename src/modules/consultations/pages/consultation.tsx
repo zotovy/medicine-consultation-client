@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import controller from "../controllers/consultation-controller";
@@ -51,6 +51,7 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
 
         controller.fetchConsultation(match.params.id);
 
+        controller.onErrorCb = () => history.push("/error");
     }, []);
 
 
