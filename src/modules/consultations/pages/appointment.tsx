@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { observer } from "mobx-react";
-import controller from "../controller/appoint-controller";
+import controller from "../controllers/appoint-controller";
 
 // Components
 import Image from "../../auth/components/image";

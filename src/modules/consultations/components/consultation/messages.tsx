@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { observer } from "mobx-react";
-import controller, { EMessageType, TMessageBlock } from "../../controller/consultation-controller";
+import controller, { EMessageType, TMessageBlock } from "../../controllers/consultation-controller";
 import ConnectionMessage from "./connection";
 
 const MessagesComponent: React.FC = () => {

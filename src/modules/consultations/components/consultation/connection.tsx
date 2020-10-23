@@ -1,6 +1,6 @@
 import React from "react";
-import { EMessageType } from "../../controller/consultation-controller";
-import controller from "../../controller/consultation-controller";
+import { EMessageType } from "../../controllers/consultation-controller";
+import controller from "../../controllers/consultation-controller";
 
 type Props = {
     isUser: boolean;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react";
-import controller from "../../controller/consultation-controller";
+import controller from "../../controllers/consultation-controller";
 import Messages from "./messages";
 import { SendIcon } from "../../icons";
 

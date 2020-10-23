@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { observer } from "mobx-react";
 import { CloseIcon } from '../../../doctors/icons';
-import controller from "../../controller/consultation-controller";
+import controller from "../../controllers/consultation-controller";
 import { MicroSlashIcon } from '../../icons';
 
 const UserVideo: React.FC = () => {

@@ -1,5 +1,5 @@
 import React from "react";
-import controller, { IConsultationController } from "../../controller/consultation-controller";
+import controller, { IConsultationController } from "../../controllers/consultation-controller";
 import { observer } from "mobx-react";
 
 type Props = {

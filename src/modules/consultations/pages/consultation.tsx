@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { observer } from "mobx-react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import controller from "../controller/consultation-controller";
+import controller from "../controllers/consultation-controller";
 import { CameraIcon, MicroIcon, ChatIcon } from "../icons";
 import Button from "../components/consultation/main-button";
 import UserVideo from "../components/consultation/user-video";
