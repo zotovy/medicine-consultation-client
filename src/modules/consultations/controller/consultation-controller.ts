@@ -73,24 +73,22 @@ class ConsultationController implements IConsultationController {
 
             this.socket?.on("user-connected", (userId: string) => {
                 console.log("user-connected", userId);
+                this._messages.push({
+                    isUser: userId === localStorage.getItem("uid"),
+                    type: EMessageType.ConnectMessage,
+                    message: "",
+                });
                 this._connectToNewUser(userId, stream);
             });
         });
 
         this.socket.on("new_message", (message: string) => {
-            this._messages.push({ message, isUser: false });
+            this._messages.push({
+                message,
+                isUser: false,
+                type: EMessageType.Message,
+            });
         });
-
-        this.socket.on(
-            "messages",
-            (messages: { content: string; user: string }[]) => {
-                const uid = localStorage.getItem("uid");
-                this._messages = messages.map((e) => ({
-                    isUser: e.user === uid,
-                    message: e.content,
-                }));
-            }
-        );
 
         return "ok";
     };
@@ -118,9 +116,14 @@ class ConsultationController implements IConsultationController {
             console.log("_connectToNewUser on stream", userId);
             this._setVideo("video#partner-video", partnerStream);
 
-            this.socket?.on("disconnected", (uid: string) => {
+            this.socket?.on("disconnected", () => {
                 call.close();
                 this.partnerConnected = false;
+                this._messages.push({
+                    isUser: userId === localStorage.getItem("uid"),
+                    type: EMessageType.DisconnectMessage,
+                    message: "",
+                });
             });
         });
     }
@@ -147,6 +150,7 @@ class ConsultationController implements IConsultationController {
                     cons.messages?.map((e) => ({
                         isUser: e.user === uid,
                         message: e.message,
+                        type: EMessageType.Message,
                     })) ?? [];
 
                 const isUser = localStorage.getItem("isUser") === "true";
@@ -161,6 +165,12 @@ class ConsultationController implements IConsultationController {
                     this.partnerImagePath = cons.patientId.photoUrl;
                     this.partnerName = cons.patientId.fullName;
                 }
+
+                this._messages.push({
+                    isUser: true,
+                    type: EMessageType.ConnectMessage,
+                    message: "",
+                });
             }
         })();
     };
@@ -182,7 +192,6 @@ class ConsultationController implements IConsultationController {
         if (response.status === EAuthFetch.Error) return "error";
         if (response.status === EAuthFetch.Unauthorized) return "unauthorized";
 
-        console.log(response.data.consultation);
         return response.data.consultation;
     };
 
@@ -210,10 +219,26 @@ class ConsultationController implements IConsultationController {
         let blocks: TMessageBlock[] = [];
 
         this._messages.forEach((e, i) => {
-            if (i > 0 && blocks[blocks.length - 1].isUser == e.isUser) {
-                blocks[blocks.length - 1].content.push(e.message);
-            } else {
-                blocks.push({ isUser: e.isUser, content: [e.message] });
+            switch (e.type) {
+                case EMessageType.ConnectMessage:
+                    blocks.push({ ...e, content: [e.message] });
+                    break;
+
+                case EMessageType.DisconnectMessage:
+                    blocks.push({ ...e, content: [e.message] });
+                    break;
+
+                case EMessageType.Message:
+                    if (i > 0 && blocks[blocks.length - 1].isUser == e.isUser) {
+                        blocks[blocks.length - 1].content.push(e.message);
+                    } else {
+                        blocks.push({
+                            isUser: e.isUser,
+                            content: [e.message],
+                            type: EMessageType.Message,
+                        });
+                    }
+                    break;
             }
         });
 
@@ -221,7 +246,11 @@ class ConsultationController implements IConsultationController {
     };
 
     @action addMessage(): void {
-        this._messages.push({ message: this.message, isUser: true });
+        this._messages.push({
+            message: this.message,
+            isUser: true,
+            type: EMessageType.Message,
+        });
         this.socket?.emit(
             "new_message",
             this.message,
@@ -239,11 +268,19 @@ export interface IConsultationController {
 export type TMessage = {
     isUser: boolean;
     message: string;
+    type: EMessageType;
 };
+
+export enum EMessageType {
+    Message,
+    ConnectMessage,
+    DisconnectMessage,
+}
 
 export type TMessageBlock = {
     isUser: boolean;
     content: string[];
+    type: EMessageType;
 };
 
 export default new ConsultationController();

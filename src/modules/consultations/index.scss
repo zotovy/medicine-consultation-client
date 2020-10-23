@@ -530,6 +530,18 @@
                 }
             }
 
+            .connection-message {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 7px;
+
+                span {
+                    font-size: 14px;
+                    color: #727272;
+                }
+            }
+
         }
 
         .textfield {

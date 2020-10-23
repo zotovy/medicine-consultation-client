@@ -49,9 +49,11 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
             }
         });
 
+        controller.fetchConsultation(match.params.id);
+
     }, []);
 
-    controller.fetchConsultation(match.params.id)
+
 
     return <div className="consultation-module">
         <div className="wrapper">

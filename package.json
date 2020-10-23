@@ -120,7 +120,10 @@
         "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install && npm run build "
     },
     "eslintConfig": {
-        "extends": "react-app"
+        "extends": "react-app",
+        "rules": {
+            "jsx-a11y/anchor-is-valid": "off"
+        }
     },
     "browserslist": {
         "production": [
