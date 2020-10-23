@@ -54,14 +54,16 @@ class ConsultationController implements IConsultationController {
             console.log("peer have been created");
 
             this.peer.on("call", (call) => {
-                console.log("on call ");
                 call.answer(stream);
                 call.on("stream", (partnerStream) => {
+                    console.log("partner stream");
+                    this.partnerConnected = true;
                     this._setVideo("video#partner-video", partnerStream);
                 });
             });
 
             this.peer.on("open", (id) => {
+                console.log("peer have been opened");
                 this.socket?.emit("user-connected", id);
             });
 
@@ -93,6 +95,10 @@ class ConsultationController implements IConsultationController {
         id: string,
         stream: MediaStream | MediaSource | Blob
     ) => {
+        if (id === "video#partner-video") {
+            this.partnerConnected = true;
+        }
+
         var video = document.querySelector<HTMLVideoElement>(id);
         if (video?.src != null) {
             if ("srcObject" in video) {
@@ -106,23 +112,36 @@ class ConsultationController implements IConsultationController {
 
     private _connectToNewUser(userId: string, stream: MediaStream) {
         const call = this.peer?.call(userId, stream);
+
         call?.on("stream", (partnerStream) => {
             console.log("_connectToNewUser on stream", userId);
             this._setVideo("video#partner-video", partnerStream);
         });
     }
 
-    public fetchConsultation = (id: string): void => {
+    public fetchConsultation = (id: string) => {
+        console.log("fetch consultation with id", id);
+
         this.loading = true;
 
         action(async () => {
-            const cons = await this._fetchConsultation(id);
+            const cons = await this._fetchConsultation(id).catch(() => null);
             this.loading = false;
+            console.log(cons);
+
+            if (cons == null) return;
 
             if (cons === "error") this.error = true;
             else if (cons === "unauthorized") throw "redirect-login";
             else {
                 this.consultation = cons;
+
+                const uid = localStorage.getItem("uid");
+                this._messages =
+                    cons.messages?.map((e) => ({
+                        isUser: e.user === uid,
+                        message: e.message,
+                    })) ?? [];
 
                 const isUser = localStorage.getItem("isUser") === "true";
                 if (isUser && typeof cons?.doctorId !== "string") {
@@ -132,12 +151,9 @@ class ConsultationController implements IConsultationController {
                         cons.doctorId.speciality.length >= 1
                             ? cons.doctorId.speciality[0]
                             : "";
-                    const uid = localStorage.getItem("uid");
-                    this._messages =
-                        cons.messages?.map((e) => ({
-                            isUser: e.user === uid,
-                            message: e.message,
-                        })) ?? [];
+                } else if (typeof cons?.patientId !== "string") {
+                    this.partnerImagePath = cons.patientId.photoUrl;
+                    this.partnerName = cons.patientId.fullName;
                 }
             }
         })();

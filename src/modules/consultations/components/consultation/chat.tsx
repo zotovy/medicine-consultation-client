@@ -21,7 +21,12 @@ const Chat: React.FC = () => {
             <div className="avatar" style={avatar}></div>
             <div className="info">
                 <span id="name">{controller.partnerName}</span>
-                <span id="speciality">({controller.partnerSpeciality})</span>
+                {
+                    controller.partnerSpeciality !== ""
+                        ? <span id="speciality">({controller.partnerSpeciality})</span>
+                        : <React.Fragment />
+                }
+
             </div>
         </header>
         <Messages />

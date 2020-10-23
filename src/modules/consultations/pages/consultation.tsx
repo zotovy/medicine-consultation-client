@@ -12,9 +12,10 @@ interface IParams extends RouteComponentProps<{ id: string }> {
 }
 
 const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
-    const userVideo = useRef<HTMLVideoElement>(null);
-    useEffect(() => {
 
+    console.log(match);
+
+    useEffect(() => {
         let invalidTokenCounter = 0;
 
         const onSuccess = () => { invalidTokenCounter = 0; console.log("success"); };
@@ -51,14 +52,14 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
 
     }, []);
 
-    controller.fetchConsultation(match.params.id);
+    controller.fetchConsultation(match.params.id)
 
     return <div className="consultation-module">
         <div className="wrapper">
             <div className="video-container">
                 {
                     controller.partnerConnected
-                        ? <video playsInline muted autoPlay id="partner-video" className={controller.isCameraOn ? "" : "hidden"} />
+                        ? <video playsInline muted autoPlay id="partner-video" />
                         : <div className="not-connected">
                             <h3>Ваш собеседник еще не подключился</h3>
                         </div>
