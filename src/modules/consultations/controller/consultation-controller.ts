@@ -52,8 +52,6 @@ class ConsultationController implements IConsultationController {
                 port = parseInt(process.env.REACT_APP_PEER_SERVER_PORT ?? "");
             }
 
-            console.log(port);
-
             this.peer = new Peer({
                 host: process.env.REACT_APP_PEER_SERVER_URL,
                 port: port,
@@ -62,6 +60,7 @@ class ConsultationController implements IConsultationController {
             console.log("peer have been created");
 
             this.peer.on("call", (call) => {
+                this.partnerConnected = true;
                 call.answer(stream);
                 call.on("stream", (partnerStream) => {
                     this._setVideo("video#partner-video", partnerStream);
@@ -69,7 +68,6 @@ class ConsultationController implements IConsultationController {
             });
 
             this.peer.on("open", (id) => {
-                this.partnerConnected = true;
                 this.socket?.emit("user-connected", id);
             });
 
@@ -116,8 +114,14 @@ class ConsultationController implements IConsultationController {
         const call = this.peer?.call(userId, stream);
 
         call?.on("stream", (partnerStream) => {
+            this.partnerConnected = true;
             console.log("_connectToNewUser on stream", userId);
             this._setVideo("video#partner-video", partnerStream);
+
+            this.socket?.on("disconnected", (uid: string) => {
+                call.close();
+                this.partnerConnected = false;
+            });
         });
     }
 

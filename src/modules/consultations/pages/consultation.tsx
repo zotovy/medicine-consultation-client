@@ -13,7 +13,6 @@ interface IParams extends RouteComponentProps<{ id: string }> {
 
 const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
 
-    console.log(match);
 
     useEffect(() => {
         let invalidTokenCounter = 0;
