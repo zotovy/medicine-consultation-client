@@ -47,8 +47,16 @@ class ConsultationController implements IConsultationController {
             });
             this._setVideo("video#user-video", stream);
 
+            let port;
+            if (process.env.REACT_APP_PEER_SERVER_PORT != "default") {
+                port = parseInt(process.env.REACT_APP_PEER_SERVER_PORT ?? "");
+            }
+
+            console.log(port);
+
             this.peer = new Peer({
                 host: process.env.REACT_APP_PEER_SERVER_URL,
+                port: port,
                 path: "/mc",
             });
             console.log("peer have been created");
@@ -56,14 +64,12 @@ class ConsultationController implements IConsultationController {
             this.peer.on("call", (call) => {
                 call.answer(stream);
                 call.on("stream", (partnerStream) => {
-                    console.log("partner stream");
-                    this.partnerConnected = true;
                     this._setVideo("video#partner-video", partnerStream);
                 });
             });
 
             this.peer.on("open", (id) => {
-                console.log("peer have been opened");
+                this.partnerConnected = true;
                 this.socket?.emit("user-connected", id);
             });
 
@@ -95,10 +101,6 @@ class ConsultationController implements IConsultationController {
         id: string,
         stream: MediaStream | MediaSource | Blob
     ) => {
-        if (id === "video#partner-video") {
-            this.partnerConnected = true;
-        }
-
         var video = document.querySelector<HTMLVideoElement>(id);
         if (video?.src != null) {
             if ("srcObject" in video) {
