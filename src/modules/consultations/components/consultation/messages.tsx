@@ -25,15 +25,8 @@ const MessagesComponent: React.FC = () => {
     return <div className="messages" >
         {
             blocks.map((e, i) => {
-
-
-
                 switch (e.type) {
                     case EMessageType.Message:
-
-                        console.log(e.content);
-
-
                         if (e.isUser) {
                             return <div className="block user-block" key={"user-block-" + i}>
                                 {
@@ -69,11 +62,7 @@ const MessagesComponent: React.FC = () => {
 
                     case EMessageType.DisconnectMessage:
                         return <ConnectionMessage isUser={e.isUser} type={e.type} />;
-
-
                 }
-
-
             })
         }
         <div className="message-end-helper" ref={messagesEndRef}></div>

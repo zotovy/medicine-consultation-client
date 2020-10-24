@@ -5,16 +5,17 @@ import { observer } from "mobx-react";
 type Props = {
     id: string;
     ckey: keyof IConsultationController;
+    onClick?: () => void;
 }
 
-const ConsultationMainButton: React.FC<Props> = ({ id, children, ckey }) => {
+const ConsultationMainButton: React.FC<Props> = ({ id, children, ckey, onClick }) => {
     return <div
         className={`button ${controller[ckey] ? "active" : ""}`}
         id={id}
-        onClick={() => controller[ckey] = !controller[ckey]}
+        onClick={onClick ? onClick : () => controller[ckey] = !controller[ckey]}
     >
         {children}
-    </div>
+    </div >
 }
 
 export default observer(ConsultationMainButton);

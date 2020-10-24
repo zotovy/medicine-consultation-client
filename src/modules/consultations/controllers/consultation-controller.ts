@@ -97,6 +97,8 @@ class ConsultationController implements IConsultationController {
             });
         });
 
+        this.socket.on("mute", (on: boolean) => (this.partnerMicroStatus = on));
+
         return "ok";
     };
 

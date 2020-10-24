@@ -61,7 +61,7 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
             <div className="video-container">
                 {
                     controller.partnerConnected
-                        ? <video playsInline muted autoPlay id="partner-video" />
+                        ? <video playsInline muted={controller.isMicroOn} autoPlay id="partner-video" />
                         : <div className="not-connected">
                             <h3>Ваш собеседник еще не подключился</h3>
                         </div>
@@ -74,7 +74,10 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
             <Button id="camera" ckey="isCameraOn">
                 <CameraIcon />
             </Button>
-            <Button id="micro" ckey="isMicroOn">
+            <Button id="micro" ckey="isMicroOn" onClick={() => {
+                controller.isMicroOn = !controller.isMicroOn;
+                controller.socket?.emit("mute", controller.isMicroOn);
+            }}>
                 <MicroIcon />
             </Button>
             <Button id="chat" ckey="isChatOn">
