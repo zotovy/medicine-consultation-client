@@ -110,7 +110,7 @@
         "workbox-webpack-plugin": "4.3.1"
     },
     "scripts": {
-        "start": "serve -s build",
+        "start:production": "serve -s build -l 443",
         "dev": "env-cmd -f .env.local node scripts/start.js",
         "build": "node scripts/build.js",
         "test": "echo 123",

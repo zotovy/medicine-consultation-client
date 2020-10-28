@@ -56,7 +56,7 @@ class ConsultationController implements IConsultationController {
 
             this.peer = new Peer({
                 host: process.env.REACT_APP_PEER_SERVER_URL,
-                port: port,
+                // port: port,
                 path: "/mc",
             });
             console.log("peer have been created");
@@ -76,7 +76,9 @@ class ConsultationController implements IConsultationController {
                 this.socket?.emit("user-connected", id);
             });
 
-            this.peer.on("error", this.onErrorCb);
+            this.peer.on("error", (err) => {
+                console.log(err);
+            });
 
             this.socket?.on("user-connected", (userId: string) => {
                 console.log("user-connected", userId);
