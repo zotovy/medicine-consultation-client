@@ -9,7 +9,7 @@ RUN rm -r node_modules || true
 RUN rm package-lock.json || true
 
 # install dependencies
-RUN npm ci
+RUN npm install --production=true
 
 # fix node_sass/vendor
 RUN npm rebuild node-sass
