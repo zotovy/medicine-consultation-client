@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 
-RUN npm install
+RUN npm ci
 
 EXPOSE 3000
 
