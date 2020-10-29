@@ -63,10 +63,22 @@ class SympController {
     private _fetchSymptoms = async (bodyPart:string="Голова"
     ): Promise<Symp[] | undefined> => {
         const response = await axios
+<<<<<<< Updated upstream
             .get("https://mc-test.ga" + `/api/symptoms?bodyPart=${bodyPart}`)
             .then((data:any) => data.data)
             .catch((e:any) =>{return{success: false}})
         console.log(response)
+=======
+            .get(
+                process.env.REACT_APP_SERVER_URL +
+                    `api/symptoms?bodyPart=${bodyPart}`
+            )
+            .then((data: any) => data.data)
+            .catch((e: any) => {
+                return { success: false };
+            });
+
+>>>>>>> Stashed changes
         if (!response.success) {
             // todo: error handling
             this.openBadge();
