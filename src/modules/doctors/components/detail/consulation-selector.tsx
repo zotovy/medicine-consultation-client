@@ -14,7 +14,7 @@ const ConsultationSelector: React.FC = () => {
     const weekSelectorSkeletonWidth: number = window.screen.width < 640 ? window.screen.width - 32 : 150;
 
     return <div className="selector">
-        {controller.loading ? <Skeleton width={130} style={titleSkeletonStyles} height={24} className="title" /> : <Title title="Консультация" />}
+        {controller.loading ? <Skeleton width={130} style={titleSkeletonStyles} height={24} className="title" /> : /*<Title title="Консультация" start/>*/ null}
         {
             controller.loading
                 ? <Skeleton width={weekSelectorSkeletonWidth} height={35} className="week-selector" />

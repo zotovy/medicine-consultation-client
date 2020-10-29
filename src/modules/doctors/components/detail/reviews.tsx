@@ -8,7 +8,7 @@ const ReviewsComponent: React.FC = () => {
     console.log(controller.doctor?.clientsReviews);
 
     return <div className="reviews-component">
-        <Title title="Отзывы" />
+        {/* <Title title="Отзывы" /> */}
         <div className="reviews">
 
             {

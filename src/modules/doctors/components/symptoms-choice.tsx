@@ -1,5 +1,5 @@
 import React from "react";
-import { SearchIcon, CaretteDown, Chevron } from "../icons";
+import { SearchIcon } from "../icons";
 import SymptomsOptions from "./symptoms-choice-options-wrapper";
 import controller from "../controllers/symptoms-controller";
 

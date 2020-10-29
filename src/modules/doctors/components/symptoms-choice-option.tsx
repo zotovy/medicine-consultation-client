@@ -4,8 +4,6 @@ import { observer } from "mobx-react";
 import Loader from "../../../components/loading-indicator";
 import controller from "../controllers/symptoms-controller";
 
-console.log(Loader)
-
 const OptionWp: React.FC= () => {
     type Props = {
         props: any;

@@ -22,7 +22,7 @@ const SymptomsTabs: React.FC = () => {
 		};
 		const Tab: React.FC = () => {
 			let arrNum;
-			if (items[0].active == true) {
+			if (items[0].active === true) {
 				arrNum = items[0].sourseSvg;
 			}else{
 				arrNum = items[1].sourseSvg;

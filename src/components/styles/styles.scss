@@ -1,22 +1,43 @@
 //──── TITLE ─────────────────────────────────────────────────────────────────────────────
-.title {
-    margin-top: 20px;
+// .title {
+//     margin-top: 20px;
 
-    display: flex;
-    align-items: center;
+//     display: flex;
+//     align-items: center;
 
-    .stick {
-        width: 4px;
-        height: 24px;
-        background-color: #30b9d6;
-    }
+//     .stick {
+//         width: 4px;
+//         height: 24px;
+//         background-color: #30b9d6;
+//     }
+
+//     h1 {
+//         margin-left: 5px;
+//         font-size: 24px;
+//     }
+// }
+.title-wrap {
+    text-align: center;
 
     h1 {
-        margin-left: 5px;
-        font-size: 24px;
+        font-size: 48px;
+        color: #1e1e1e;
+        font-weight: 600;
+        line-height: 64px;
+
+        span {
+            color: #30b9d6;;
+        }
+    }
+    @media screen and (max-height: 970px) {
+        h1 {
+            font-size: 42px;
+            color: #1e1e1e;
+            font-weight: 600;
+            line-height: 56px;
+        }
     }
 }
-
 //──── ERROR BADGE ───────────────────────────────────────────────────────────────────────
 .error-badge-container {
     pointer-events: none;

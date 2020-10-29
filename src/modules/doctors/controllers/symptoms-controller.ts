@@ -12,22 +12,32 @@ class SympController {
     @observable loading: boolean = true;
     @observable arrSymps: any | undefined;
     @observable isErrorBadgeOpen: boolean = false;
+    @observable isErrorBadgeOpenCh: boolean = false;
+    @observable canFindDoctors: boolean = false;
+
+    @action handlerClick = () => {
+        if(this.symptoms.find((n:any)  => n.active) !== undefined){
+            this.canFindDoctors = true;
+        }else{
+            this.openBadgeCh()
+        }
+    }
 
     @action handlerSearch = (e: any): void =>{
         e.persist();
         let searchQuery = e.target.value.toLowerCase();
         const displayedContacts = this.arrSymps.filter((el:Symp) => {
           const searchValue = el.name.toLowerCase();
-          return searchValue.indexOf(searchQuery) !== -1 || el.active == true;
+          return searchValue.indexOf(searchQuery) !== -1 || el.active === true;
         });
         this.symptoms = displayedContacts;
     }
     @action choiseSymp = (e: any): void =>{
         e.persist();
-        this.symptoms = this.symptoms.map((item: Symp,i:number) => {
-            if (item.id == +e._targetInst.key && item.active !== true) {
+        this.symptoms = this.symptoms.map((item: Symp) => {
+            if (item.id === +e._targetInst.key && item.active !== true) {
                 item.active = true;
-            } else if(item.id == +e._targetInst.key && item.active == true){
+            } else if(item.id === +e._targetInst.key && item.active === true){
                 item.active = false;
             }
             return item;
@@ -36,7 +46,7 @@ class SympController {
     @action openTab = (items: any, e: any): void => {
         e.persist();
         this.items = this.items.map((item: Item) => {
-            if (item.id == +e._targetInst.key) {
+            if (item.id === +e._targetInst.key) {
                 item.active = true;
             } else {
                 item.active = false;
@@ -63,12 +73,6 @@ class SympController {
     private _fetchSymptoms = async (bodyPart:string="Голова"
     ): Promise<Symp[] | undefined> => {
         const response = await axios
-<<<<<<< Updated upstream
-            .get("https://mc-test.ga" + `/api/symptoms?bodyPart=${bodyPart}`)
-            .then((data:any) => data.data)
-            .catch((e:any) =>{return{success: false}})
-        console.log(response)
-=======
             .get(
                 process.env.REACT_APP_SERVER_URL +
                     `api/symptoms?bodyPart=${bodyPart}`
@@ -78,7 +82,6 @@ class SympController {
                 return { success: false };
             });
 
->>>>>>> Stashed changes
         if (!response.success) {
             // todo: error handling
             this.openBadge();
@@ -104,7 +107,7 @@ class SympController {
             item.classList.remove('active');      
         })
         list.forEach(item =>{
-            if(e.target.id == item.id || el.id == item.id){
+            if(e.target.id === item.id || el.id === item.id){
                 item.classList.add('active');
             }
         })
@@ -113,6 +116,12 @@ class SympController {
         this.isErrorBadgeOpen = true;
         setTimeout(() => {
             this.isErrorBadgeOpen = false;
+        }, 5000);
+    };
+    private openBadgeCh = () => {
+        this.isErrorBadgeOpenCh = true;
+        setTimeout(() => {
+            this.isErrorBadgeOpenCh = false;
         }, 5000);
     };
 }
