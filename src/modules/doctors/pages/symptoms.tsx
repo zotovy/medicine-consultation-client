@@ -20,7 +20,7 @@ const SymptomsPage: React.FC = () => {
                 isOpen={controller.isErrorBadgeOpenCh}
                 message="Выберите симптомы, которые Вас беспокоят."
             />
-            {controller.canFindDoctors === true 
+            {/* {controller.canFindDoctors === true 
                 ? 
                     <SymptomsFindDoctor/> 
             
@@ -37,7 +37,8 @@ const SymptomsPage: React.FC = () => {
                             <ConfirmButton content='Продолжить' onConfirm={() => {handlerClick(); return true}} />
                         </div>
                     </div>
-            }
+            } */}
+            <SymptomsFindDoctor/> 
         </>
     )
 }
