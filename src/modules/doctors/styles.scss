@@ -1930,7 +1930,6 @@ $hoverCol: #30B9D6;
         background-color: #CCCCCC;
     }
 
-    //! Доделать нормальное отображение скролла в симптомах
     .disableOptions {
         overflow-y: hidden;
     }
@@ -2074,11 +2073,11 @@ $hoverCol: #30B9D6;
 .slider-container {
     width: 1056px;
     margin: 0 auto;
+    overflow: hidden;
 }
 
 .slider-wrapper {
     height: 350px;
-    overflow: hidden;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -2128,6 +2127,9 @@ $hoverCol: #30B9D6;
                 }
             }
         }
+        .show-more-pic{
+            background-color: white;
+        }
     }
 
     .rating {
@@ -2149,7 +2151,12 @@ $hoverCol: #30B9D6;
     background-size: cover;
     margin-right: 15px;
 }
-
+.show-more-pic{
+    background-color: #E9F7FA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .info {
     .name-and-surname {
         margin-top: 10px;
@@ -2164,6 +2171,15 @@ $hoverCol: #30B9D6;
         margin-top: 0;
         margin-bottom: 5px;
         line-height: 21px;
+    }
+}
+.info--show-more-but{
+    margin-left: 43px;
+    .name-and-surname--show-more-but{
+        height: 100%;
+        margin: 0 !important;
+        display: flex;
+        align-items: center;
     }
 }
 
@@ -2190,6 +2206,18 @@ $hoverCol: #30B9D6;
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: 0.3s;
+            &:hover:not(.disactive){
+                background-color: $primary;
+                svg {
+                    path {
+                        stroke: white
+                    }
+                }
+            }
+            *{
+                transition: 0.2s;
+            }
         }
 
         .disactive {

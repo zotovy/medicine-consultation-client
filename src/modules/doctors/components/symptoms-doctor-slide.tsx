@@ -8,6 +8,7 @@ type Props = {
     imgUrl: string;
     rating: number;
     id: string;
+    onClick: () => void;
 };
 
 const Slide: React.FC<Props> = (props: Props) => {
