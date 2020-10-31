@@ -1,5 +1,6 @@
 @import "../../static/mixins.scss";
 @import "../../static/theme.scss";
+
 $disable: rgba($primary, $alpha: 0.15);
 //========================================================================================
 /*                                                                                      *
@@ -38,7 +39,7 @@ menu {
         }
     }
 
-    #menu__toggle:checked~.links {
+    #menu__toggle:checked ~ .links {
         visibility: visible;
         right: 0;
     }
@@ -71,9 +72,9 @@ menu {
     }
 
     /* добавляем "гамбургер" */
-    .menu__btn>span,
-    .menu__btn>span::before,
-    .menu__btn>span::after {
+    .menu__btn > span,
+    .menu__btn > span::before,
+    .menu__btn > span::after {
         display: block;
         position: absolute;
         width: 100%;
@@ -81,38 +82,38 @@ menu {
         background-color: #616161;
     }
 
-    .menu__btn>span::before {
+    .menu__btn > span::before {
         content: "";
         top: -8px;
     }
 
-    .menu__btn>span::after {
+    .menu__btn > span::after {
         content: "";
         top: 8px;
     }
 
-    #menu__toggle:checked~.menu__btn>span {
+    #menu__toggle:checked ~ .menu__btn > span {
         transform: rotate(45deg);
     }
 
-    #menu__toggle:checked~.menu__btn>span::before {
+    #menu__toggle:checked ~ .menu__btn > span::before {
         top: 0;
         transform: rotate(0);
     }
 
-    #menu__toggle:checked~.menu__btn>span::after {
+    #menu__toggle:checked ~ .menu__btn > span::after {
         top: 0;
         transform: rotate(90deg);
     }
 
-    #menu__toggle:checked~.menu__box {
+    #menu__toggle:checked ~ .menu__box {
         visibility: visible;
         left: 0;
     }
 
-    .menu__btn>span,
-    .menu__btn>span::before,
-    .menu__btn>span::after {
+    .menu__btn > span,
+    .menu__btn > span::before,
+    .menu__btn > span::after {
         transition: 0.25s;
     }
 
@@ -395,7 +396,7 @@ menu {
                 }
             }
 
-            input:focus~svg path {
+            input:focus ~ svg path {
                 stroke: #30b9d6;
             }
 
@@ -545,7 +546,7 @@ menu {
                         height: 40.64px;
                     }
 
-                    &#rating~.collapsed {
+                    &#rating ~ .collapsed {
                         margin-left: -110px;
                     }
                 }
@@ -626,7 +627,7 @@ menu {
                             border-bottom: none;
                         }
 
-                        &.open>.title {
+                        &.open > .title {
                             border-bottom: 1.2px solid #e8e8e8 !important;
                         }
                     }
@@ -645,7 +646,7 @@ menu {
                         padding: 8px;
                         border-radius: 0;
 
-                        &#rating~.collapsed {
+                        &#rating ~ .collapsed {
                             margin-left: 0;
                         }
                     }
@@ -659,7 +660,7 @@ menu {
                             border-bottom: 1.2px solid #e8e8e8 !important;
                         }
 
-                        &.open>.title {
+                        &.open > .title {
                             border-bottom: 1.2px solid #e8e8e8 !important;
                         }
                     }
@@ -779,7 +780,7 @@ menu {
                 }
             }
 
-            input:focus~.icon svg path {
+            input:focus ~ .icon svg path {
                 stroke: #30b9d6;
             }
 
@@ -906,7 +907,6 @@ menu {
         justify-content: space-between;
         align-items: flex-start;
         padding: 10px 28px;
-
 
 
         .profile-image {
@@ -1298,10 +1298,11 @@ menu {
  !                                    Symptoms                                               *
  *                                                                                          */
 //========================================================================================
-.symptoms-wrapper{
+.symptoms-wrapper {
     overflow: hidden;
 }
-.symptoms-subtitle{
+
+.symptoms-subtitle {
     text-align: center;
     font-weight: 400;
     font-size: 18px;
@@ -1337,8 +1338,9 @@ menu {
     width: 300px;
     height: 60px;
     @media screen and (max-height: 970px) {
-       margin: 42px auto;
+        margin: 42px auto;
     }
+
     div {
         width: 300px;
         height: 60px;
@@ -1350,40 +1352,44 @@ menu {
         height: auto;
     }
 }
-.tabs-wrapper{
+
+.tabs-wrapper {
     width: 531px;
     height: 690px;
     background-color: #fff;
     border-radius: 10px;
     position: relative;
     overflow: hidden;
-    -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
-    -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
-    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
     @media screen and (max-height: 970px) {
         width: 448px;
         height: 582px;
     }
 }
-.tabs-ui-container{
+
+.tabs-ui-container {
     margin: 24px 31px 22px 27px;
     position: relative;
     color: yellow;
     height: -webkit-fill-available;
     @media screen and (max-height: 970px) {
         margin: 20px 27px 18px 23px;
-    } 
+    }
 }
-.symptoms-tab{
+
+.symptoms-tab {
     position: absolute;
     bottom: 0;
     left: -6px;
 }
-.tab-links{
+
+.tab-links {
     width: 39px;
     height: 39px;
     background-color: #ccc;
-    color:#fff;
+    color: #fff;
     border: none;
     cursor: pointer;
     border-radius: 5px;
@@ -1395,249 +1401,470 @@ menu {
         height: 32px;
     }
 }
-.tab-1{
+
+.tab-1 {
     margin-left: 13px !important;
     @media screen and (max-height: 970px) {
         margin-left: 11px !important;
     }
 }
-.tab-active{
+
+.tab-active {
     background-color: $primary;
 }
+
 $hoverCol: #30B9D6;
-.tab-content{
+.tab-content {
     height: 644px;
     width: 473px;
     @media screen and (max-height: 970px) {
         width: 399px;
         height: 544px;
     }
-    svg{
+
+    svg {
         width: 100%;
         height: 100%;
         background-color: #F3F7FA;
 
-        .fem{
-            .cls-1{fill:#ccd9e2;}.cls-2{fill:#a5b8d9;}.cls-3{fill:#9dbecf;}.cls-4{fill:#e3e7eb;}.cls-5{fill:#9caabd;}.cls-6{fill:#9bbdd6;}.cls-7{fill:#adc7de;}.cls-8{fill:#c7ddf0;}.cls-9{fill:#8895a6;}.cls-10{fill:#82a4c9;}.cls-11{fill:none;stroke:#abc7dd;stroke-miterlimit:10;stroke-width:5px;}.cls-12{fill:#b3c7d9;}.cls-13{fill:#6994b5;}.cls-14{fill:#abbcc9;}
+        .fem {
+            .cls-1 {
+                fill: #ccd9e2;
+            }
+
+            .cls-2 {
+                fill: #a5b8d9;
+            }
+
+            .cls-3 {
+                fill: #9dbecf;
+            }
+
+            .cls-4 {
+                fill: #e3e7eb;
+            }
+
+            .cls-5 {
+                fill: #9caabd;
+            }
+
+            .cls-6 {
+                fill: #9bbdd6;
+            }
+
+            .cls-7 {
+                fill: #adc7de;
+            }
+
+            .cls-8 {
+                fill: #c7ddf0;
+            }
+
+            .cls-9 {
+                fill: #8895a6;
+            }
+
+            .cls-10 {
+                fill: #82a4c9;
+            }
+
+            .cls-11 {
+                fill: none;
+                stroke: #abc7dd;
+                stroke-miterlimit: 10;
+                stroke-width: 5px;
+            }
+
+            .cls-12 {
+                fill: #b3c7d9;
+            }
+
+            .cls-13 {
+                fill: #6994b5;
+            }
+
+            .cls-14 {
+                fill: #abbcc9;
+            }
         }
-        .fem-side{
-            .cls-1{fill:#ccd9e2;}.cls-2{fill:#abc2d7;}.cls-3,.cls-5{fill:#a8bac4;}.cls-4{fill:#b6cae5;}.cls-5{stroke:#a8bac4;}.cls-5,.cls-6{stroke-miterlimit:10;}.cls-6{fill:none;stroke:#8da0b0;stroke-width:2px;}
+
+        .fem-side {
+            .cls-1 {
+                fill: #ccd9e2;
+            }
+
+            .cls-2 {
+                fill: #abc2d7;
+            }
+
+            .cls-3, .cls-5 {
+                fill: #a8bac4;
+            }
+
+            .cls-4 {
+                fill: #b6cae5;
+            }
+
+            .cls-5 {
+                stroke: #a8bac4;
+            }
+
+            .cls-5, .cls-6 {
+                stroke-miterlimit: 10;
+            }
+
+            .cls-6 {
+                fill: none;
+                stroke: #8da0b0;
+                stroke-width: 2px;
+            }
         }
-        .male{
-            .cls-1{fill:#ccd9e2;}.cls-2{fill:#a5b8d9;}.cls-3{fill:#9dbecf;}.cls-4{fill:#e3e7eb;}.cls-5{fill:#9bbdd6;}.cls-6{fill:#adc7de;}.cls-7{fill:#c7ddf0;}.cls-8{fill:#8895a6;}.cls-9{fill:#9caabd;}.cls-10{fill:#82a4c9;}.cls-11{fill:#9fbcd4;}.cls-12{fill:#b3caee;}.cls-13,.cls-14{fill:none;stroke-miterlimit:10;}.cls-13{stroke:#b3caee;}.cls-14{stroke:#abc7dd;stroke-width:5px;}
+
+        .male {
+            .cls-1 {
+                fill: #ccd9e2;
+            }
+
+            .cls-2 {
+                fill: #a5b8d9;
+            }
+
+            .cls-3 {
+                fill: #9dbecf;
+            }
+
+            .cls-4 {
+                fill: #e3e7eb;
+            }
+
+            .cls-5 {
+                fill: #9bbdd6;
+            }
+
+            .cls-6 {
+                fill: #adc7de;
+            }
+
+            .cls-7 {
+                fill: #c7ddf0;
+            }
+
+            .cls-8 {
+                fill: #8895a6;
+            }
+
+            .cls-9 {
+                fill: #9caabd;
+            }
+
+            .cls-10 {
+                fill: #82a4c9;
+            }
+
+            .cls-11 {
+                fill: #9fbcd4;
+            }
+
+            .cls-12 {
+                fill: #b3caee;
+            }
+
+            .cls-13, .cls-14 {
+                fill: none;
+                stroke-miterlimit: 10;
+            }
+
+            .cls-13 {
+                stroke: #b3caee;
+            }
+
+            .cls-14 {
+                stroke: #abc7dd;
+                stroke-width: 5px;
+            }
         }
-        .male-side{
-            .cls-1{fill:#ccd9e2;}.cls-2{fill:#abc2d7;}.cls-3{fill:none;stroke:#8da0b0;stroke-width:2px;}.cls-3,.cls-6{stroke-miterlimit:10;}.cls-4,.cls-6{fill:#a8bac4;}.cls-5{fill:#b6cae5;}.cls-6{stroke:#a8bac4;}
+
+        .male-side {
+            .cls-1 {
+                fill: #ccd9e2;
+            }
+
+            .cls-2 {
+                fill: #abc2d7;
+            }
+
+            .cls-3 {
+                fill: none;
+                stroke: #8da0b0;
+                stroke-width: 2px;
+            }
+
+            .cls-3, .cls-6 {
+                stroke-miterlimit: 10;
+            }
+
+            .cls-4, .cls-6 {
+                fill: #a8bac4;
+            }
+
+            .cls-5 {
+                fill: #b6cae5;
+            }
+
+            .cls-6 {
+                stroke: #a8bac4;
+            }
         }
+
         // todo active styles for svg [start]
-        
-        .active{ 
-            path:not(#male_arm,#fem_arm,#male_leg_bones,#fem_leg_bones,#fem_uthera){
+
+        .active {
+            path:not(#male_arm,#fem_arm,#male_leg_bones,#fem_leg_bones,#fem_uthera) {
                 fill: $hoverCol !important;
             }
-            g:not(#fem_uthera) .cls-13{
+
+            g:not(#fem_uthera) .cls-13 {
                 fill: none !important;
                 stroke: $hoverCol;
             }
-            .cls-13{
+
+            .cls-13 {
                 fill: none !important;
                 stroke: $hoverCol;
             }
-            #male_arm-2,#fem_arm-2{
+
+            #male_arm-2, #fem_arm-2 {
                 fill: #b6cae5 !important;
             }
 
-            #male_arm_bones,#fem_arm_bones{
-                path,circle{
+            #male_arm_bones, #fem_arm_bones {
+                path, circle {
                     stroke: $hoverCol;
                     fill: $hoverCol;
-                }  
+                }
             }
-            #male_intestine_2,#fem_intestine_2{
+
+            #male_intestine_2, #fem_intestine_2 {
                 stroke: $hoverCol !important;
                 fill: #ccd9e2 !important;
             }
-            #male_kidneys{
-                .cls-13{
+
+            #male_kidneys {
+                .cls-13 {
                     fill: none !important;
                     stroke: $hoverCol;
                 }
             }
-            polyline{
-                fill: $hoverCol !important; 
-            } 
+
+            polyline {
+                fill: $hoverCol !important;
+            }
         }
-        #fem_uthera.active{
-            #fem_kidneys{
-                .cls-13{
+
+        #fem_uthera.active {
+            #fem_kidneys {
+                .cls-13 {
                     fill: none !important;
                     stroke: $hoverCol;
                 }
             }
-            .cls-13{
-                fill:  #6994b5 !important; 
-                stroke:  $hoverCol;
-            } 
-            path:not(.cls-13){
-                fill:  $hoverCol;  
-            }        
+
+            .cls-13 {
+                fill: #6994b5 !important;
+                stroke: $hoverCol;
+            }
+
+            path:not(.cls-13) {
+                fill: $hoverCol;
+            }
         }
-        #male_uthera #male_kidneys.active{
+
+        #male_uthera #male_kidneys.active {
             fill: $hoverCol;
-            .cls-13{
+
+            .cls-13 {
                 fill: none !important;
                 stroke: $hoverCol;
             }
-        } 
-        #male_arm_bones.active,#fem_arm_bones.active{
-            path,circle{
+        }
+
+        #male_arm_bones.active, #fem_arm_bones.active {
+            path, circle {
                 stroke: $hoverCol !important;
                 fill: $hoverCol;
-            }  
+            }
         }
-        #male_leg_bones.active,#fem_leg_bones.active{
-            path,circle{
+
+        #male_leg_bones.active, #fem_leg_bones.active {
+            path, circle {
                 fill: $hoverCol !important;
                 stroke: $hoverCol;
             }
         }
-        
-        path.active.male_spine{
+
+        path.active.male_spine {
             fill: $hoverCol;
         }
 
         // todo active styles for svg [end]
-        #male_heart,#fem_heart{
-            &:hover{
-                path{
-                    fill:  saturate($hoverCol, 20%);   
+        #male_heart, #fem_heart {
+            &:hover {
+                path {
+                    fill: saturate($hoverCol, 20%);
                 }
-            }            
+            }
+
             cursor: pointer;
         }
-        #male_lungs,#fem_lungs{
-            &:hover{
-                path{
-                    fill: saturate($hoverCol, 20%);  
+
+        #male_lungs, #fem_lungs {
+            &:hover {
+                path {
+                    fill: saturate($hoverCol, 20%);
                 }
-                #male_throat,#fem_throat{
-                    path, polyline{
-                        fill: saturate($hoverCol, 20%);   
+
+                #male_throat, #fem_throat {
+                    path, polyline {
+                        fill: saturate($hoverCol, 20%);
                     }
-                }               
+                }
             }
+
             cursor: pointer;
         }
 
 
-        #male_intestine_1,#fem_intestine_1{
-            &:hover{
-                .cls-10{
-                    fill:  saturate($hoverCol, 20%);   
+        #male_intestine_1, #fem_intestine_1 {
+            &:hover {
+                .cls-10 {
+                    fill: saturate($hoverCol, 20%);
                 }
-                #male_intestine_2,#fem_intestine_2{
-                    stroke:  saturate($hoverCol, 20%);
+
+                #male_intestine_2, #fem_intestine_2 {
+                    stroke: saturate($hoverCol, 20%);
                 }
-                #male_liver,#fem_liver{
-                    path{
-                        fill:  saturate($hoverCol, 20%);   
+
+                #male_liver, #fem_liver {
+                    path {
+                        fill: saturate($hoverCol, 20%);
                     }
                 }
-                #male_stomach, #fem_stomach{
-                    path{
-                        fill:  saturate($hoverCol, 20%);   
-                    }      
-                }             
-            }
-            cursor: pointer;
-        }
-        #male_uthera,#fem_uthera,#male_kidneys,#fem_kidneys{
-            &:hover{
-                .cls-13{
-                    stroke:  saturate($hoverCol, 20%);
-                } 
-                path:not(.cls-13){
-                    fill:  saturate($hoverCol, 20%);  
-                }        
-            }
-            cursor: pointer;
-        }
-        #male_arm,#fem_arm{
-            &:hover{
-                #male_arm_bones,#fem_arm_bones{
-                    path,circle{
-                        stroke:  saturate($hoverCol, 20%);
-                        fill:  saturate($hoverCol, 20%);
-                    }  
+
+                #male_stomach, #fem_stomach {
+                    path {
+                        fill: saturate($hoverCol, 20%);
+                    }
                 }
             }
+
             cursor: pointer;
         }
-        #male_brain,#fem_brain{
-            &:hover{
-                path{
-                    fill:  saturate($hoverCol, 20%);
+
+        #male_uthera, #fem_uthera, #male_kidneys, #fem_kidneys {
+            &:hover {
+                .cls-13 {
+                    stroke: saturate($hoverCol, 20%);
                 }
+
+                path:not(.cls-13) {
+                    fill: saturate($hoverCol, 20%);
+                }
+            }
+
+            cursor: pointer;
+        }
+
+        #male_arm, #fem_arm {
+            &:hover {
+                #male_arm_bones, #fem_arm_bones {
+                    path, circle {
+                        stroke: saturate($hoverCol, 20%);
+                        fill: saturate($hoverCol, 20%);
+                    }
+                }
+            }
+
+            cursor: pointer;
+        }
+
+        #male_brain, #fem_brain {
+            &:hover {
+                path {
+                    fill: saturate($hoverCol, 20%);
+                }
+
                 cursor: pointer;
             }
         }
-        #male_spine,#fem_spine{
-            &:hover{
-                path{
-                    fill:  saturate($hoverCol, 20%);
-                }            
-                cursor: pointer;
-            }
-        }
-        #male_leg_bones,#fem_leg_bones{
-            &:hover{
-                path,circle{
-                    fill:  saturate($hoverCol, 20%);
+
+        #male_spine, #fem_spine {
+            &:hover {
+                path {
+                    fill: saturate($hoverCol, 20%);
                 }
+
                 cursor: pointer;
             }
         }
-        path, circle, polyline{
+
+        #male_leg_bones, #fem_leg_bones {
+            &:hover {
+                path, circle {
+                    fill: saturate($hoverCol, 20%);
+                }
+
+                cursor: pointer;
+            }
+        }
+
+        path, circle, polyline {
             transition: 0.3s;
         }
     }
 }
-.tab-content-img-wrap{
+
+.tab-content-img-wrap {
     display: flex;
     justify-content: space-between;
 }
-.fake-img{
+
+.fake-img {
     height: 644px;
     @media screen and (max-height: 970px) {
         height: 544px;
     }
 }
 
-.img-1{
+.img-1 {
     width: 254px;
     @media screen and (max-height: 970px) {
         width: 214px;
     }
 }
-.img-2{
+
+.img-2 {
     width: 177px;
     @media screen and (max-height: 970px) {
         width: 150px;
     }
 }
-.symptoms-tab{
+
+.symptoms-tab {
     list-style: none;
     display: flex;
-    .tab-links{
+
+    .tab-links {
         display: flex;
         justify-content: center;
         align-items: center;
     }
 }
-.choice-wrapper,.tabs-wrapper{
+
+.choice-wrapper, .tabs-wrapper {
     display: inline-block;
 }
-.choice-wrapper{
+
+.choice-wrapper {
     width: 562px;
     height: 100%;
     float: right;
@@ -1646,11 +1873,13 @@ $hoverCol: #30B9D6;
         width: 560px;
         height: 100%;
     }
+
     .search {
         display: flex;
         align-items: center;
         width: 100%;
         position: relative;
+
         input {
             width: 100%;
             height: 58px;
@@ -1662,53 +1891,63 @@ $hoverCol: #30B9D6;
             outline: none;
             font-size: 16px;
             transition: color 225ms ease;
-            &::placeholder{
-                color:#ccc;
+
+            &::placeholder {
+                color: #ccc;
             }
-            ~svg {
+
+            ~ svg {
                 padding: 5px;
                 position: absolute;
                 right: 10px;
                 cursor: pointer;
-                path{
+
+                path {
                     transition: stroke 225ms ease;
                     stroke: #cccccc;
                 }
             }
+
             &:focus {
                 color: #282828;
             }
-            &:focus~svg path {
+
+            &:focus ~ svg path {
                 stroke: #282828;
             }
         }
     }
 }
 
-.symptoms-checkbox-wrapper{
+.symptoms-checkbox-wrapper {
     width: 100%;
     height: 100%;
-    hr{
+
+    hr {
         color: #CCCCCC;
         border: none;
         height: 1px;
         background-color: #CCCCCC;
     }
+
     //! Доделать нормальное отображение скролла в симптомах
-    .disableOptions{
+    .disableOptions {
         overflow-y: hidden;
     }
-    .disLoading{
+
+    .disLoading {
         height: 512px;
-        .loader{
+
+        .loader {
             height: 100%;
             width: 100%;
         }
     }
-    .option{
-        max-height:632px;
+
+    .option {
+        max-height: 632px;
         @media screen and (max-height: 970px) {
-            max-height:521px;
+            max-height: 521px;
         }
         overflow-y: auto;
         /* width */
@@ -1716,26 +1955,26 @@ $hoverCol: #30B9D6;
             width: 4px;
             margin-left: 5px;
         }
-        
+
         /* Track */
         &::-webkit-scrollbar-track {
             background: #f1f1f1;
             cursor: pointer;
         }
-        
+
         /* Handle */
         &::-webkit-scrollbar-thumb {
             background: $disable;
             border-radius: 2px;
         }
-        
+
         /* Handle on hover */
         &::-webkit-scrollbar-thumb:hover {
             background: $primary;
         }
     }
 
-    .option-symp{
+    .option-symp {
         min-height: 30px;
         width: 100%;
         display: flex;
@@ -1745,6 +1984,7 @@ $hoverCol: #30B9D6;
         @media screen and (max-height: 970px) {
             margin: 20px 0;
         }
+
         .option-symp-name {
             font-size: 22px;
             font-weight: 400;
@@ -1756,30 +1996,36 @@ $hoverCol: #30B9D6;
                 font-size: 20px;
             }
         }
+
         .css-checkbox {
             display: none;
         }
+
         .container {
             position: absolute;
             right: 7px;
             height: 30px;
         }
+
         .css-label {
             cursor: pointer;
         }
-        label{
+
+        label {
             display: inline-flex;
             width: 30px;
             height: 30px;
             justify-content: center;
             align-items: center;
             position: relative;
+
             .fav-plus {
                 border-radius: 2.5px;
                 height: 4px;
                 width: 17px;
                 background-color: $primary;
-                &:before{
+
+                &:before {
                     border-radius: 2.5px;
                     content: " ";
                     background-color: $primary;
@@ -1790,12 +2036,14 @@ $hoverCol: #30B9D6;
                     top: calc(50% - 8.5px);
                 }
             }
+
             .fav-minus {
                 width: 30px;
                 height: 30px;
                 background-color: $primary;
                 border-radius: 5px;
-                &:before{
+
+                &:before {
                     border-radius: 2.5px;
                     content: " ";
                     background-color: white;
@@ -1808,35 +2056,40 @@ $hoverCol: #30B9D6;
             }
 
         }
-        
+
     }
 
 }
-.symptoms-wrapper--slider{
+
+.symptoms-wrapper--slider {
     margin-top: 73px;
 }
+
 //========================================================================================
 /*                                                                                      *
  !                                    Slider                                               *
  *                                                                                          */
 //========================================================================================
 
-.slider-container{
+.slider-container {
     width: 1056px;
     margin: 0 auto;
 }
-.slider-wrapper{
+
+.slider-wrapper {
     height: 350px;
     overflow: hidden;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
     padding: 10px;
-    div:nth-child(even):not(.info){
+
+    div:nth-child(even):not(.info) {
         margin-top: 40px;
     }
 }
-.slider-slide{
+
+.slider-slide {
     width: 488px;
     height: 145px;
     border-radius: 15px;
@@ -1844,50 +2097,67 @@ $hoverCol: #30B9D6;
     margin-right: 60px;
     display: flex;
     padding: 13px 15px 14px 15px;
-    -webkit-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.25);
-    -moz-box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.25);
-    box-shadow: 0px 0px 11px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
     transition: 0.3s;
-    &:hover{
+
+    &:hover {
         background-color: $primary;
         color: #fff;
         cursor: pointer;
-        .speciality{
+
+        .speciality {
             color: #fff;
         }
-        .rating{
-            .rating{
-                svg{
-                    #Icon_ionic-ios-star,#Icon_ionic-ios-star-half{
-                        fill: #fff;
+
+        .rating {
+            .rating {
+
+                svg {
+                    path {
+                        fill: white;
+                    }
+
+
+                    &.disable-star-icon {
+                        path {
+                            fill: rgba(255, 255, 255, 0.5);
+                        }
                     }
                 }
-            }  
+            }
         }
     }
-    .rating{
-        .rating{
-            svg{
-                path{transition: 0.2s}
+
+    .rating {
+        .rating {
+            svg {
+                path {
+                    transition: 0.2s
+                }
             }
-        }  
+        }
     }
 }
-.doctor_profile_pic{
+
+.doctor_profile_pic {
     width: 118px;
     height: 118px;
     border-radius: 20px;
     background-position: center;
     background-size: cover;
-    margin-right: 15px;   
+    margin-right: 15px;
 }
-.info{
-    .name-and-surname{
+
+.info {
+    .name-and-surname {
         margin-top: 10px;
         font-size: 24px;
         font-weight: 500;
     }
-    .speciality{
+
+    .speciality {
         color: #ccc;
         font-size: 16px;
         font-weight: 400;
@@ -1896,18 +2166,22 @@ $hoverCol: #30B9D6;
         line-height: 21px;
     }
 }
-.slider-control{
+
+.slider-control {
     width: 100%;
     height: 60px;
     margin-top: 55px;
     display: flex;
     justify-content: space-between;
-    .slider-control-wrapper{
+
+    .slider-control-wrapper {
         width: calc(50% - 30px);
-        .slider-button-prev{
+
+        .slider-button-prev {
             float: right;
         }
-        .slider-button{
+
+        .slider-button {
             height: 60px;
             width: 60px;
             border-radius: 15px;
@@ -1917,12 +2191,14 @@ $hoverCol: #30B9D6;
             align-items: center;
             justify-content: center;
         }
-        .disactive{
+
+        .disactive {
             cursor: default;
             border: 2.5px solid #ccc;
-            svg{
-                path{
-                    stroke:#ccc
+
+            svg {
+                path {
+                    stroke: #ccc
                 }
             }
         }

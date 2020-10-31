@@ -1,7 +1,7 @@
 import React from "react";
 
-export const FullStar: React.FC<{ fill: string }> = ({ fill }: { fill: string }) => {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="25" height="23.214" viewBox="0 0 25 23.214">
+export const FullStar: React.FC<{ fill: string, className?: string }> = ({ fill, className }: { fill: string, className?: string }) => {
+    return <svg xmlns="http://www.w3.org/2000/svg" className={className} width="25" height="23.214" viewBox="0 0 25 23.214">
         <path id="Icon_ionic-ios-star" data-name="Icon ionic-ios-star" d="M26.3,11.411H18.093L15.6,3.967a.9.9,0,0,0-1.7,0l-2.494,7.444H3.143a.9.9,0,0,0-.893.893.656.656,0,0,0,.017.151.858.858,0,0,0,.374.631l6.747,4.754L6.8,25.367a.9.9,0,0,0,.307,1,.864.864,0,0,0,.5.218,1.094,1.094,0,0,0,.558-.2L14.75,21.7l6.585,4.693a1.046,1.046,0,0,0,.558.2.8.8,0,0,0,.5-.218.884.884,0,0,0,.307-1l-2.589-7.528,6.691-4.8.162-.14a.936.936,0,0,0,.29-.6A.945.945,0,0,0,26.3,11.411Z" transform="translate(-2.25 -3.375)" fill={fill} />
     </svg>
 
