@@ -1360,9 +1360,9 @@ menu {
     border-radius: 10px;
     position: relative;
     overflow: hidden;
-    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
-    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
-    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.05);
     @media screen and (max-height: 970px) {
         width: 448px;
         height: 582px;
@@ -1425,7 +1425,6 @@ $hoverCol: #30B9D6;
     svg {
         width: 100%;
         height: 100%;
-        background-color: #F3F7FA;
 
         .fem {
             .cls-1 {
@@ -1990,7 +1989,6 @@ $hoverCol: #30B9D6;
             max-width: 450px;
             font-weight: normal;
             float: left;
-            margin-left: 35px;
             @media screen and (max-height: 970px) {
                 font-size: 20px;
             }

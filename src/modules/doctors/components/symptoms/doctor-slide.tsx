@@ -1,7 +1,7 @@
 import React from "react";
-import controller from "../controllers/symptoms-slider-controller";
+import controller from "../../controllers/symptoms-slider-controller";
 import { observer } from "mobx-react";
-import RatingComponent from "./rating";
+import RatingComponent from "../rating";
 
 type Props = {
     name: string;

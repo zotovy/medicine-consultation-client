@@ -3,6 +3,7 @@ import axios from "axios";
 
 type Item = { title: string; sourseSvg: any[]; active: boolean; id: number };
 type Symp = { name: string; active: boolean; id: number };
+
 class SympController {
     @observable items: Item[] = [
         { title: "М", sourseSvg: [1, 2], active: true, id: 0 },
@@ -12,6 +13,16 @@ class SympController {
     @observable loading: boolean = true;
     @observable arrSymps: any | undefined;
     @observable isErrorBadgeOpen: boolean = false;
+    @observable isErrorBadgeOpenCh: boolean = false;
+    @observable canFindDoctors: boolean = false;
+
+    @action handlerClick = () => {
+        if(this.symptoms.find((n:any)  => n.active) !== undefined){
+            this.canFindDoctors = true;
+        }else{
+            this.openBadgeCh()
+        }
+    }
 
     @action handlerSearch = (e: React.ChangeEvent<HTMLInputElement>): void => {
         e.persist();
@@ -116,6 +127,13 @@ class SympController {
         this.isErrorBadgeOpen = true;
         setTimeout(() => {
             this.isErrorBadgeOpen = false;
+        }, 5000);
+    };
+
+    private openBadgeCh = () => {
+        this.isErrorBadgeOpenCh = true;
+        setTimeout(() => {
+            this.isErrorBadgeOpenCh = false;
         }, 5000);
     };
 }

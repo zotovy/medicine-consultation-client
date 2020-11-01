@@ -1,6 +1,6 @@
 import React from "react";
-import Title from "../../../components/title";
-import Slider from "./symptoms-doctor-slider";
+import Title from "../../../../components/title";
+import Slider from "./doctor-slider";
 
 const SymptomsFindDoctor: React.FC = () => {
     return(

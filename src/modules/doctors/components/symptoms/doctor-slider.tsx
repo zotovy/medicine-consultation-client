@@ -1,8 +1,8 @@
 import React from "react";
-import Slide from "./symptoms-doctor-slide";
+import Slide from "./doctor-slide";
 import { observer } from "mobx-react";
-import controller from "../controllers/symptoms-slider-controller";
-import ConfirmButton from '../../../components/confirm-button';
+import controller from "../../controllers/symptoms-slider-controller";
+import ConfirmButton from '../../../../components/confirm-button';
 
 const Slider: React.FC = () => {
     const { prevNextButsController, slideShift, currentSlide } = controller;
