@@ -3,6 +3,7 @@ import { observable, action } from "mobx";
 class SliderController {
     @observable currentSlide = 1;
     @observable slideShift: number = 0;
+    @observable highlightSlideId: string = '';
 
     @action prevNextButsController = (act: string): void => {
         const sliderWrap:any = document.querySelector(".slider-wrapper");
@@ -16,17 +17,7 @@ class SliderController {
         }
     }
     @action slideHandlerClick = (id:string): void => {
-        // todo: highlight body part
-        const list = document.querySelectorAll('.slider-slide');
-        console.log(1)
-        list.forEach(item =>{
-            item.classList.remove('active');      
-        })
-        list.forEach(item =>{
-            if(id === item.id){
-                item.classList.add('active');
-            }
-        })
+        this.highlightSlideId = id;
     }
 }
 

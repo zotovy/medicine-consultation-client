@@ -5,22 +5,22 @@ import controller from "../controllers/symptoms-slider-controller";
 import ConfirmButton from '../../../components/confirm-button';
 
 const Slider: React.FC = () => {
-    const { slideHandlerClick, prevNextButsController, slideShift, currentSlide} = controller;
+    const { prevNextButsController, slideShift, currentSlide } = controller;
 
     return(
         <div className="slider-container">
             <div className="slider-wrapper" style={{ transform: `translate3d(-${slideShift}px, 0px, 0px)`, transition: `all 300ms ease 0s`}}>
-                <Slide id="slide-1" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор" onClick={()=>{slideHandlerClick("slide-1")}}/>
-                <Slide id="slide-2" name="Никита" surname="Лебедев" imgUrl="" rating={3.5} speciality="Доктор" onClick={()=>{slideHandlerClick("slide-2")}}/>
-                <Slide id="slide-3" name="Никита" surname="Лебедев" imgUrl="" rating={2.5} speciality="Доктор" onClick={()=>{slideHandlerClick("slide-3")}}/>
-                <Slide id="slide-4" name="Никита" surname="Лебедев" imgUrl="" rating={1.5} speciality="Доктор" onClick={()=>{slideHandlerClick("slide-4")}}/>
-                <Slide id="slide-5" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор" onClick={()=>{slideHandlerClick("slide-5")}}/>
-                <Slide id="slide-6" name="Никита" surname="Лебедев" imgUrl="" rating={3.5} speciality="Доктор" onClick={()=>{slideHandlerClick("slide-6")}}/>
-                <Slide id="slide-7" name="Никита" surname="Лебедев" imgUrl="" rating={2.5} speciality="Доктор" onClick={()=>{slideHandlerClick("slide-7")}}/>
-                <Slide id="slide-8" name="Никита" surname="Лебедев" imgUrl="" rating={1.5} speciality="Доктор" onClick={()=>{slideHandlerClick("slide-8")}}/>
-                <Slide id="slide-9" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор" onClick={()=>{slideHandlerClick("slide-9")}}/>
-                <Slide id="slide-10" name="Никита" surname="Лебедев" imgUrl="" rating={3.5} speciality="Доктор" onClick={()=>{slideHandlerClick("slide-10")}}/>
-                <Slide id="slide-11" name="Никита" surname="Лебедев" imgUrl="" rating={2.5} speciality="Доктор" onClick={()=>{slideHandlerClick("slide-11")}}/>
+                <Slide id="slide-1" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор"/>
+                <Slide id="slide-2" name="Никита" surname="Лебедев" imgUrl="" rating={3.5} speciality="Доктор"/>
+                <Slide id="slide-3" name="Никита" surname="Лебедев" imgUrl="" rating={2.5} speciality="Доктор"/>
+                <Slide id="slide-4" name="Никита" surname="Лебедев" imgUrl="" rating={1.5} speciality="Доктор"/>
+                <Slide id="slide-5" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор"/>
+                <Slide id="slide-6" name="Никита" surname="Лебедев" imgUrl="" rating={3.5} speciality="Доктор"/>
+                <Slide id="slide-7" name="Никита" surname="Лебедев" imgUrl="" rating={2.5} speciality="Доктор"/>
+                <Slide id="slide-8" name="Никита" surname="Лебедев" imgUrl="" rating={1.5} speciality="Доктор"/>
+                <Slide id="slide-9" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор"/>
+                <Slide id="slide-10" name="Никита" surname="Лебедев" imgUrl="" rating={3.5} speciality="Доктор"/>
+                <Slide id="slide-11" name="Никита" surname="Лебедев" imgUrl="" rating={2.5} speciality="Доктор"/>
                 <div className="slider-slide slider-show-more-but">
                     <div className="doctor_profile_pic show-more-pic">
                         <svg xmlns="http://www.w3.org/2000/svg" width="74.731" height="74.731" viewBox="0 0 74.731 74.731">

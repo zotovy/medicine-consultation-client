@@ -15,10 +15,10 @@ const Symptom: React.FC<Props> = (props: Props) => {
         <div className="option-symp">
             <span className="option-symp-name">{props.title}</span>
             <div className="container">
-                <input key={props.id}type="checkbox" name={props.id + "-checkbox"} id={props.id + "-checkbox"} className="css-checkbox" onClick={(e) => choiseSymp(e)}/>
+                <input key={props.id}type="checkbox" name={props.id + "-checkbox"} id={props.id + "-checkbox"} className="css-checkbox" onClick={(e) => choiseSymp(e, props.id)}/>
                 <label htmlFor={props.id+"-checkbox"} className="css-label">
                     {
-                        props.active == true ? <span className="fav fav-minus"></span> : <span className="fav fav-plus"></span>  
+                        props.active === true ? <span className="fav fav-minus"></span> : <span className="fav fav-plus"></span>  
                     }
                 </label>
             </div>

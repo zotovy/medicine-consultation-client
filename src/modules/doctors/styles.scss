@@ -2142,7 +2142,36 @@ $hoverCol: #30B9D6;
         }
     }
 }
+.slider-slide.active{
+    background-color: $primary;
+    color: #fff;
+    cursor: pointer;
 
+    .speciality {
+        color: #fff;
+    }
+
+    .rating {
+        .rating {
+
+            svg {
+                path {
+                    fill: white;
+                }
+
+
+                &.disable-star-icon {
+                    path {
+                        fill: rgba(255, 255, 255, 0.5);
+                    }
+                }
+            }
+        }
+    }
+    .show-more-pic{
+        background-color: white;
+    }    
+}
 .doctor_profile_pic {
     width: 118px;
     height: 118px;
