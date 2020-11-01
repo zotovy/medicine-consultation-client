@@ -1,6 +1,6 @@
 import React from "react";
 import { observer } from "mobx-react";
-import controller from "../../controller/appoint-controller";
+import controller from "../../controllers/appoint-controller";
 
 // Components
 import Title from "../../../auth/components/title";

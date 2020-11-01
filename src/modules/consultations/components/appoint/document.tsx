@@ -1,5 +1,5 @@
 import React from "react";
-import controller from "../../controller/appoint-controller";
+import controller from "../../controllers/appoint-controller";
 import { observer } from "mobx-react";
 import { PdfIcon, FileIcon, ImageIcon } from "../../icons";
 import { CloseIcon } from "../../../doctors/icons";

@@ -10,6 +10,10 @@ class TokenServices {
     accessTokenLeftTime = () => this._secondsToUpdate("accessToken");
     refreshTokenLeftTime = () => this._secondsToUpdate("refreshToken");
 
+    get header(): string {
+        return `Bearer ${this._getAccessToken()}`;
+    }
+
     saveAccessToken(token: string) {
         localStorage.setItem("accessToken", token);
 
@@ -116,7 +120,7 @@ class TokenServices {
         if (!refreshToken || !accessToken || !userId) return null;
 
         const responce = await axios
-            .post("https://localhost:5000/api/token", {
+            .post(`${process.env.REACT_APP_SERVER_URL}/api/token`, {
                 accessToken,
                 refreshToken,
                 userId,

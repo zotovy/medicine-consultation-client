@@ -27,14 +27,14 @@ class AuthStore {
                 if (this.uid !== "") {
                     const response = await fetchUser(this.uid);
 
-                    this.user = response ?? {};
+                    this.user = response;
                 }
             }
         });
     }
 
     // Observables
-    @observable user: UserType = {};
+    @observable user: UserType | null = null;
     @observable uid?: string;
     @observable isLogin: boolean = false;
     @observable goToHomeTrigger = false; // Use to trigger reaction inside login/signup component to go to home page
@@ -80,13 +80,14 @@ class AuthStore {
             const id = response.data.id;
             this.uid = id;
             localStorage.setItem("uid", id);
+            localStorage.setItem("isUser", response.data.isUser.toString());
 
             // Generate & save new tokens
             tokenServices.saveAccessToken(response.data.tokens.access);
             tokenServices.saveRefreshToken(response.data.tokens.refresh);
 
             // Fetch user based on id
-            this.user = (await fetchUser(id)) ?? {};
+            this.user = await fetchUser(id);
 
             // Trigger home trigger to go to home page
             this.goToHomeTrigger = !this.goToHomeTrigger;
@@ -121,6 +122,7 @@ class AuthStore {
             surname,
             phone,
             email,
+            fullName: `${name} ${surname}`,
             password,
             sex: isMale,
             city: "",
@@ -174,6 +176,7 @@ class AuthStore {
             // Save user id
             const id = response.data.user.id;
             localStorage.setItem("uid", id);
+            localStorage.setItem("isUser", "true");
 
             // Set user
             this.user = user;
@@ -254,6 +257,19 @@ class AuthStore {
 
                 return;
             }
+
+            // Tokens
+            const accessToken = response.data.tokens.access;
+            const refreshToken = response.data.tokens.refresh;
+
+            // save given tokens
+            tokenServices.saveAccessToken(accessToken);
+            tokenServices.saveRefreshToken(refreshToken);
+
+            // Save user id
+            const id = response.data.user.id;
+            localStorage.setItem("uid", id);
+            localStorage.setItem("isUser", "false");
 
             // Show badge
             signupUIStore.isBadgeOpen = true;

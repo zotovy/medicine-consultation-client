@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { AddIcon } from "../../icons";
-import controller from "../../controller/appoint-controller";
+import controller from "../../controllers/appoint-controller";
 
 
 const NewDocument: React.FC = () => {
