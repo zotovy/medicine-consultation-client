@@ -3,14 +3,21 @@ import Slide from "./doctor-slide";
 import { observer } from "mobx-react";
 import controller from "../../controllers/symptoms-slider-controller";
 import ConfirmButton from '../../../../components/confirm-button';
+import detailController from "../../controllers/detail-controller";
+import { useHistory } from "react-router-dom";
 
 const Slider: React.FC = () => {
     const {highlightSlideId ,prevNextButsController, slideShift, currentSlide } = controller;
+    const goToDoctorPage = (): void => {
+        detailController.fetchDoctor(highlightSlideId);
+        history.push(`/doctor/${highlightSlideId}`);
+    }
+    const history = useHistory();
 
     return(
         <div className="slider-container">
             <div className="slider-wrapper" style={{ transform: `translate3d(-${slideShift}px, 0px, 0px)`, transition: `all 300ms ease 0s`}}>
-                <Slide id="slide-1" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор"/>
+                <Slide id="5f8210d7f1901f7b23f1f398" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор"/>
                 <Slide id="slide-2" name="Никита" surname="Лебедев" imgUrl="" rating={3.5} speciality="Доктор"/>
                 <Slide id="slide-3" name="Никита" surname="Лебедев" imgUrl="" rating={2.5} speciality="Доктор"/>
                 <Slide id="slide-4" name="Никита" surname="Лебедев" imgUrl="" rating={1.5} speciality="Доктор"/>
@@ -48,7 +55,7 @@ const Slider: React.FC = () => {
                     </div>
                 </div>
                 <div  className={`slider-control-wrapper slider-control-wrapper-spb`}>
-                    <div className={`slider-show-profile-but`} onClick={()=>{}}>
+                    <div className={`slider-show-profile-but`} onClick={()=>{goToDoctorPage()}}>
                         <h3>Просмотреть Профиль</h3>
                     </div>
                 </div>

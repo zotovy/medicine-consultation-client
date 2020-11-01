@@ -2294,6 +2294,12 @@ $hoverCol: #30B9D6;
         color: $primary;
         font-weight: 400;
     }
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover{
+        background-color: $primary;
+        h3{color: #fff;}
+    }
 }
 .slider-control-wrapper-cBut{
     z-index: 1;
@@ -2304,5 +2310,8 @@ $hoverCol: #30B9D6;
         display: flex;
         justify-content: center;
         align-items: center;
+        &:hover{
+            background-color: lighten($primary,10%);
+        }
     }
 }
