@@ -11,9 +11,11 @@ class SliderController {
         if(act === "next" && this.currentSlide !== 3){
             this.currentSlide++
             this.slideShift = this.slideShift + sliderWrap.offsetWidth + 40;
+            this.highlightSlideId = "";
         }else if(act === "prev" && this.currentSlide !== 1){
             this.currentSlide--
             this.slideShift = this.slideShift - sliderWrap.offsetWidth - 40;
+            this.highlightSlideId = "";
         }
     }
     @action slideHandlerClick = (id:string): void => {
