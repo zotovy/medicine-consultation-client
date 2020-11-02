@@ -905,27 +905,35 @@ menu {
     header {
         margin: 30px 28px;
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        height: 180px;
+
+        @media screen and (min-width: 1920px) {
+            height: 260px;
+        }
 
         .profileImage {
             width: 180px;
-            height: 180px;
+            height: 100%;
             border-radius: 15px;
             background-color: lightgray;
             background-size: cover;
             background-position: center;
 
             @media screen and (min-width: 1920px) {
-                width: 180px;
-                height: 180px;
+                width: 260px;
             }
         }
 
         .info-main {
+            margin-left: 35px;
             display: flex;
             flex-direction: column;
             justify-content: center;
+
+            @media screen and (min-width: 1920px) {
+                margin-left: 35px;
+            }
 
             h2 {
                 font-size: 32px;
@@ -935,6 +943,9 @@ menu {
                 @media screen and (min-width: 1920px) {
                     font-size: 48px;
                 }
+            }
+            svg {
+                margin-right: 10px;
             }
 
             span#speciality {
@@ -983,6 +994,73 @@ menu {
                     border: none;
                     background: none;
                     margin-left: 20px;
+                }
+            }
+        }
+
+        .divider {
+            width: 2px;
+            height: 100%;
+            margin: 0 75px;
+            background: #EFEFEF;
+            border-radius: 1px;
+
+            @media screen and (min-width: 1920px) {
+                margin: 0 100px;
+            }
+        }
+
+        .info-detail {
+
+            .info {
+                display: flex;
+                font-size: 16px;
+                margin-bottom: 5px;
+
+                @media screen and (min-width: 1920px) {
+                    font-size: 24px;
+                }
+
+                .keys {
+                    margin-right: 75px;
+
+                    @media screen and (min-width: 1920px) {
+                        margin-right: 100px;
+                    }
+
+                    .key {
+                        margin-bottom: 7px;
+                        color: rgba(#111111, 0.8);
+                        font-weight: 500;
+
+                        @media screen and (min-width: 1920px) {
+                            margin-bottom: 10px;
+                        }
+                    }
+                }
+
+                .value {
+                    margin-bottom: 7px;
+                    color: rgba(#111111, 0.8);
+
+                    @media screen and (min-width: 1920px) {
+                        margin-bottom: 10px;
+                    }
+                }
+            }
+
+            .social-medias {
+                display: flex;
+                align-items: center;
+
+                svg {
+                    cursor: pointer;
+                    width: 25px;
+                    margin-right: 20px;
+
+                    @media screen and (min-width: 1920px) {
+                        width: 35px;
+                    }
                 }
             }
         }

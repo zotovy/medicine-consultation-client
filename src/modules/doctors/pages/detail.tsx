@@ -3,7 +3,7 @@ import { withRouter, RouteComponentProps } from "react-router-dom";
 import Skeleton from 'react-loading-skeleton';
 import { observer } from "mobx-react";
 import controller from "../controllers/detail-controller";
-import { BookmarkIcon } from "../icons";
+import {BookmarkIcon, InstagramIcon, MailIcon, TelegramIcon, ViberIcon, VkIcon, WhatsAppIcon} from "../icons";
 import RatingComponent from "../components/rating";
 import ConsultationSelector from "../components/detail/consulation-selector";
 import Reviews from "../components/detail/reviews";
@@ -54,6 +54,33 @@ const DetailPage: React.FC<Props> = (props) => {
                             </div>
                         </div>
 
+                        <div className="divider"/>
+
+                        <div className="info-detail">
+                            <div className="info">
+                                <div className="keys">
+                                    <div className="key">Специальность:</div>
+                                    <div className="key">Опыт работы:</div>
+                                    <div className="key">Возраст:</div>
+                                    <div className="key">Город:</div>
+                                </div>
+                                <div className="values">
+                                    <div className="value">Терапевт</div>
+                                    <div className="value">2 года</div>
+                                    <div className="value">31 год</div>
+                                    <div className="value">Красноярск</div>
+                                </div>
+                            </div>
+
+                            <div className="social-medias">
+                                <VkIcon/>
+                                <InstagramIcon/>
+                                <TelegramIcon/>
+                                <WhatsAppIcon/>
+                                <ViberIcon/>
+                                <MailIcon/>
+                            </div>
+                        </div>
                     </header>
 
 
