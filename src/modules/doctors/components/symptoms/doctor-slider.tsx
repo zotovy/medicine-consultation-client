@@ -3,14 +3,21 @@ import Slide from "./doctor-slide";
 import { observer } from "mobx-react";
 import controller from "../../controllers/symptoms-slider-controller";
 import ConfirmButton from '../../../../components/confirm-button';
+import detailController from "../../controllers/detail-controller";
+import { useHistory } from "react-router-dom";
 
 const Slider: React.FC = () => {
-    const { prevNextButsController, slideShift, currentSlide } = controller;
+    const {highlightSlideId ,prevNextButsController, slideShift, currentSlide } = controller;
+    const goToDoctorPage = (): void => {
+        detailController.fetchDoctor(highlightSlideId);
+        history.push(`/doctor/${highlightSlideId}`);
+    }
+    const history = useHistory();
 
     return(
         <div className="slider-container">
             <div className="slider-wrapper" style={{ transform: `translate3d(-${slideShift}px, 0px, 0px)`, transition: `all 300ms ease 0s`}}>
-                <Slide id="slide-1" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор"/>
+                <Slide id="5f8210d7f1901f7b23f1f398" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор"/>
                 <Slide id="slide-2" name="Никита" surname="Лебедев" imgUrl="" rating={3.5} speciality="Доктор"/>
                 <Slide id="slide-3" name="Никита" surname="Лебедев" imgUrl="" rating={2.5} speciality="Доктор"/>
                 <Slide id="slide-4" name="Никита" surname="Лебедев" imgUrl="" rating={1.5} speciality="Доктор"/>
@@ -40,14 +47,22 @@ const Slider: React.FC = () => {
                 </div>
             </div>
             <div className="slider-control">
-                <div  className="slider-control-wrapper slider-control-wrapper-left">
+                <div  className={`slider-control-wrapper slider-control-wrapper-left ${highlightSlideId !== "" ? "control-left" : ''}`}>
                     <div className={`${currentSlide !== 1 ? "" : "disactive"} slider-button slider-button-prev`} onClick={()=>{prevNextButsController("prev")}}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.828" height="35.657" viewBox="0 0 19.828 35.657">
                             <path id="Icon_feather-chevron-right" data-name="Icon feather-chevron-right" d="M28.5,39l-15-15,8.125-8.125L28.5,9" transform="translate(-11.5 -6.172)" fill="none" stroke="#30b9d6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
                         </svg>
                     </div>
                 </div>
-                <div className="slider-control-wrapper slider-control-wrapper-right">
+                <div  className={`slider-control-wrapper slider-control-wrapper-spb`}>
+                    <div className={`slider-show-profile-but`} onClick={()=>{goToDoctorPage()}}>
+                        <h3>Просмотреть Профиль</h3>
+                    </div>
+                </div>
+                <div  className={`slider-control-wrapper slider-control-wrapper-cBut`}>
+                    <ConfirmButton content='Продолжить' onConfirm={() => {}} />
+                </div>
+                <div className={`slider-control-wrapper slider-control-wrapper-right ${highlightSlideId !== "" ? "control-right" : ''}`}>
                     <div className={`${currentSlide !== 3 ? "" : "disactive"} slider-button slider-button-next`} onClick={()=>{prevNextButsController("next",)}}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.828" height="35.657" viewBox="0 0 19.828 35.657">
                             <path id="Icon_feather-chevron-right" data-name="Icon feather-chevron-right" d="M13.5,39l15-15L13.5,9" transform="translate(-10.672 -6.172)" fill="none" stroke="#30b9d6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
