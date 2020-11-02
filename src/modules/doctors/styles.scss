@@ -903,118 +903,87 @@ menu {
     }
 
     header {
+        margin: 30px 28px;
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
-        padding: 10px 28px;
+        align-items: center;
 
-
-        .profile-image {
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: cover;
-            height: 175px;
-            width: 175px;
+        .profileImage {
+            width: 180px;
+            height: 180px;
             border-radius: 15px;
-            margin-right: 20px;
+            background-color: lightgray;
+            background-size: cover;
+            background-position: center;
 
+            @media screen and (min-width: 1920px) {
+                width: 180px;
+                height: 180px;
+            }
         }
 
-        h1 {
+        .info-main {
             display: flex;
-            align-items: center;
-            font-size: 28px;
-            color: #1e1e1e;
-            font-weight: 600;
-            margin-bottom: 3px;
-
-            svg {
-                cursor: pointer;
-                margin-left: 20px;
-            }
-        }
-
-        .information {
-            width: calc(100% - 361px);
-
-            ul {
-                margin-bottom: 5px;
-                display: flex;
-                flex-direction: column;
-            }
-
-            li {
-                margin: 3px 0;
-                list-style-type: none;
-
-                span {
-                    color: #565656;
-                }
-
-                span.name {
-                    font-weight: 500;
-                    margin-right: 5px;
-                }
-            }
-        }
-
-        .rating {
-            svg {
-                width: 32px;
-                height: 32px;
-                margin-right: 10px;
-            }
-        }
-
-        button#consultation-signup {
-            height: 35px;
-            padding: 0 25px;
-            border-radius: 5px;
-            font-size: 16px;
-            border: none;
-            background: $primary;
-            color: white;
-            @include primaryBoxShadow();
-            cursor: pointer;
-            transition: 300ms box-shadow;
-            outline: none;
-
-            &:hover {
-                box-shadow: none;
-            }
-        }
-
-        @media screen and (max-width: 640px) {
-            margin: 0;
-            padding: 10px 16px;
             flex-direction: column;
-            align-items: center;
+            justify-content: center;
 
-            .profile-image {
-                margin: 0;
-                width: calc(100vw - 32px);
-                height: calc(100vw - 32px);
+            h2 {
+                font-size: 32px;
+                color: #111111;
+                font-weight: 500;
+
+                @media screen and (min-width: 1920px) {
+                    font-size: 48px;
+                }
             }
 
-            .information {
+            span#speciality {
+                margin: 7px 0;
+                font-size: 16px;
+                color: rgba(#111111, 0.8);
+
+                @media screen and (min-width: 1920px) {
+                    font-size: 24px;
+                    margin: 10px 0;
+                }
+            }
+
+            .buttons {
                 display: flex;
-                flex-direction: column;
-                width: 100%;
+                align-items: center;
+                margin-top: 7px;
 
-
-                h1 {
-                    width: 100%;
-                    display: flex;
-                    justify-content: space-between;
+                @media screen and (min-width: 1920px) {
                     margin-top: 10px;
-                    font-size: 32px;
                 }
 
-            }
+                button.appoint {
+                    padding: 11px 28px;
+                    border-radius: 10px;
+                    background: $primary;
+                    outline: none;
+                    border: none;
+                    font-size: 16px;
+                    color: white;
+                    cursor: pointer;
+                    transition: box-shadow 200ms;
+                    box-shadow: 0 3px 6px rgba(#30B9D6, 0.1);
 
-            button {
-                margin-top: 10px;
-                width: 100%;
+
+                    @media screen and (min-width: 1920px) {
+                        margin-top: 10px;
+                        padding: 16px 40px;
+                        font-size: 24px;
+                    }
+                }
+
+                button.save {
+                    cursor: pointer;
+                    outline: none;
+                    border: none;
+                    background: none;
+                    margin-left: 20px;
+                }
             }
         }
     }
