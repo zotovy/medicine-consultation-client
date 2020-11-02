@@ -909,9 +909,9 @@ menu {
         align-items: center;
         height: 240px;
 
-        @media screen and (min-width: 1920px) {
-            height: 290px;
-        }
+        //@media screen and (min-width: 1920px) {
+        //    height: 290px;
+        //}
 
         .profileImage {
             width: 180px;
@@ -921,9 +921,9 @@ menu {
             background-size: cover;
             background-position: center;
 
-            @media screen and (min-width: 1920px) {
-                width: 230px;
-            }
+            //@media screen and (min-width: 1920px) {
+            //    width: 230px;
+            //}
         }
 
         .info-main {
@@ -932,18 +932,18 @@ menu {
             flex-direction: column;
             justify-content: center;
 
-            @media screen and (min-width: 1920px) {
-                margin-left: 30px;
-            }
+            //@media screen and (min-width: 1920px) {
+            //    margin-left: 30px;
+            //}
 
             h2 {
                 font-size: 32px;
                 color: #111111;
                 font-weight: 500;
 
-                @media screen and (min-width: 1920px) {
-                    font-size: 36px;
-                }
+                //@media screen and (min-width: 1920px) {
+                //    font-size: 36px;
+                //}
             }
             svg {
                 margin-right: 10px;
@@ -954,10 +954,10 @@ menu {
                 font-size: 16px;
                 color: rgba(#111111, 0.8);
 
-                @media screen and (min-width: 1920px) {
-                    font-size: 21px;
-                    margin: 9px 0;
-                }
+                //@media screen and (min-width: 1920px) {
+                //    font-size: 21px;
+                //    margin: 9px 0;
+                //}
             }
 
             .buttons {
@@ -965,9 +965,9 @@ menu {
                 align-items: center;
                 margin-top: 7px;
 
-                @media screen and (min-width: 1920px) {
-                    margin-top: 9px;
-                }
+                //@media screen and (min-width: 1920px) {
+                //    margin-top: 9px;
+                //}
 
                 button.appoint {
                     padding: 11px 28px;
@@ -982,10 +982,10 @@ menu {
                     box-shadow: 0 3px 6px rgba(#30B9D6, 0.1);
 
 
-                    @media screen and (min-width: 1920px) {
-                        padding: 10px 35px;
-                        font-size: 21px;
-                    }
+                    //@media screen and (min-width: 1920px) {
+                    //    padding: 10px 35px;
+                    //    font-size: 21px;
+                    //}
                 }
 
                 button.save {
@@ -1005,9 +1005,9 @@ menu {
             background: #EFEFEF;
             border-radius: 1px;
 
-            @media screen and (min-width: 1920px) {
-                margin: 0 100px;
-            }
+            //@media screen and (min-width: 1920px) {
+            //    margin: 0 100px;
+            //}
         }
 
         .info-detail {
@@ -1017,25 +1017,25 @@ menu {
                 font-size: 16px;
                 margin-bottom: 5px;
 
-                @media screen and (min-width: 1920px) {
-                    font-size: 21px;
-                }
+                //@media screen and (min-width: 1920px) {
+                //    font-size: 21px;
+                //}
 
                 .keys {
                     margin-right: 75px;
 
-                    @media screen and (min-width: 1920px) {
-                        margin-right: 100px;
-                    }
+                    //@media screen and (min-width: 1920px) {
+                    //    margin-right: 100px;
+                    //}
 
                     .key {
                         margin-bottom: 7px;
                         color: rgba(#111111, 0.8);
                         font-weight: 500;
 
-                        @media screen and (min-width: 1920px) {
-                            margin-bottom: 10px;
-                        }
+                        //@media screen and (min-width: 1920px) {
+                        //    margin-bottom: 10px;
+                        //}
                     }
                 }
 
@@ -1043,9 +1043,9 @@ menu {
                     margin-bottom: 7px;
                     color: rgba(#111111, 0.8);
 
-                    @media screen and (min-width: 1920px) {
-                        margin-bottom: 10px;
-                    }
+                    //@media screen and (min-width: 1920px) {
+                    //    margin-bottom: 10px;
+                    //}
                 }
             }
 
@@ -1058,9 +1058,9 @@ menu {
                     width: 25px;
                     margin-right: 20px;
 
-                    @media screen and (min-width: 1920px) {
-                        width: 30px;
-                    }
+                    //@media screen and (min-width: 1920px) {
+                    //    width: 30px;
+                    //}
                 }
             }
         }
