@@ -903,13 +903,14 @@ menu {
     }
 
     header {
-        margin: 30px 28px;
+        padding: 30px 0;
+        margin: 0 28px;
         display: flex;
         align-items: center;
-        height: 180px;
+        height: 240px;
 
         @media screen and (min-width: 1920px) {
-            height: 260px;
+            height: 290px;
         }
 
         .profileImage {
@@ -921,7 +922,7 @@ menu {
             background-position: center;
 
             @media screen and (min-width: 1920px) {
-                width: 260px;
+                width: 230px;
             }
         }
 
@@ -932,7 +933,7 @@ menu {
             justify-content: center;
 
             @media screen and (min-width: 1920px) {
-                margin-left: 35px;
+                margin-left: 30px;
             }
 
             h2 {
@@ -941,7 +942,7 @@ menu {
                 font-weight: 500;
 
                 @media screen and (min-width: 1920px) {
-                    font-size: 48px;
+                    font-size: 36px;
                 }
             }
             svg {
@@ -954,8 +955,8 @@ menu {
                 color: rgba(#111111, 0.8);
 
                 @media screen and (min-width: 1920px) {
-                    font-size: 24px;
-                    margin: 10px 0;
+                    font-size: 21px;
+                    margin: 9px 0;
                 }
             }
 
@@ -965,7 +966,7 @@ menu {
                 margin-top: 7px;
 
                 @media screen and (min-width: 1920px) {
-                    margin-top: 10px;
+                    margin-top: 9px;
                 }
 
                 button.appoint {
@@ -982,9 +983,8 @@ menu {
 
 
                     @media screen and (min-width: 1920px) {
-                        margin-top: 10px;
-                        padding: 16px 40px;
-                        font-size: 24px;
+                        padding: 10px 35px;
+                        font-size: 21px;
                     }
                 }
 
@@ -1018,7 +1018,7 @@ menu {
                 margin-bottom: 5px;
 
                 @media screen and (min-width: 1920px) {
-                    font-size: 24px;
+                    font-size: 21px;
                 }
 
                 .keys {
@@ -1059,7 +1059,7 @@ menu {
                     margin-right: 20px;
 
                     @media screen and (min-width: 1920px) {
-                        width: 35px;
+                        width: 30px;
                     }
                 }
             }
