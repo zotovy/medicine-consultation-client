@@ -18,7 +18,7 @@ deploy:
     - ssh-keyscan -H 'gitlab.com' >> ~/.ssh/known_hosts
 
   script:
-    - ssh -o StrictHostKeyChecking=no "${MASTER_SSH_USER}@${MASTER_HOST}" "cd /var/www/mc-client"
+    - ssh -o StrictHostKeyChecking=no "${MASTER_SSH_USER}@${MASTER_HOST}" "cd /var/www/mc-client" "sudo git pull"
     - ssh -o StrictHostKeyChecking=no "${MASTER_SSH_USER}@${MASTER_HOST}" "sudo git pull"
     - ssh -o StrictHostKeyChecking=no "${MASTER_SSH_USER}@${MASTER_HOST}" "export REACT_APP_SERVER_URL=$REACT_APP_SERVER_URL"
     - ssh -o StrictHostKeyChecking=no "${MASTER_SSH_USER}@${MASTER_HOST}" "export REACT_APP_PEER_SERVER_URL=$REACT_APP_PEER_SERVER_URL"
