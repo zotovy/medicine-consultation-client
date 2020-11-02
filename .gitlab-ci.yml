@@ -5,6 +5,9 @@ deploy:
   stage: deploy
   image: kroniak/ssh-client
 
+  only:
+    - master
+
   before_script:
     - mkdir -p ~/.ssh
     - echo "$MASTER_SSH_KEY" | tr -d '\r' > ~/.ssh/id_rsa
@@ -15,4 +18,4 @@ deploy:
     - ssh-keyscan -H 'gitlab.com' >> ~/.ssh/known_hosts
 
   script:
-    - ssh -o StrictHostKeyChecking=no "${MASTER_SSH_USER}@${MASTER_HOST}" "cd /var/www/mc-client && sudo docker-compose stop && sudo git pull && sudo npm run build  && sudo docker-compose build && sudo docker-compose up -d"
+    - ssh -o StrictHostKeyChecking=no "${MASTER_SSH_USER}@${MASTER_HOST}" "cd /var/www/mc-client && sudo git pull && sudo npm run build && sudo service nginx restart"
