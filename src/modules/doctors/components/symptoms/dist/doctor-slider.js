@@ -7,6 +7,7 @@ var symptoms_slider_controller_1 = require("../../controllers/symptoms-slider-co
 var confirm_button_1 = require("../../../../components/confirm-button");
 var detail_controller_1 = require("../../controllers/detail-controller");
 var react_router_dom_1 = require("react-router-dom");
+var react_router_dom_2 = require("react-router-dom");
 var Slider = function () {
     var highlightSlideId = symptoms_slider_controller_1["default"].highlightSlideId, prevNextButsController = symptoms_slider_controller_1["default"].prevNextButsController, slideShift = symptoms_slider_controller_1["default"].slideShift, currentSlide = symptoms_slider_controller_1["default"].currentSlide;
     var goToDoctorPage = function () {
@@ -46,8 +47,9 @@ var Slider = function () {
             react_1["default"].createElement("div", { className: "slider-control-wrapper slider-control-wrapper-spb" },
                 react_1["default"].createElement("div", { className: "slider-show-profile-but", onClick: function () { goToDoctorPage(); } },
                     react_1["default"].createElement("h3", null, "\u041F\u0440\u043E\u0441\u043C\u043E\u0442\u0440\u0435\u0442\u044C \u041F\u0440\u043E\u0444\u0438\u043B\u044C"))),
-            react_1["default"].createElement("div", { className: "slider-control-wrapper slider-control-wrapper-cBut" },
-                react_1["default"].createElement(confirm_button_1["default"], { content: '\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C', onConfirm: function () { } })),
+            react_1["default"].createElement(react_router_dom_2.Link, { to: "/appoint/" + highlightSlideId },
+                react_1["default"].createElement("div", { className: "slider-control-wrapper slider-control-wrapper-cBut" },
+                    react_1["default"].createElement(confirm_button_1["default"], { content: '\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C', onConfirm: function () { } }))),
             react_1["default"].createElement("div", { className: "slider-control-wrapper slider-control-wrapper-right " + (highlightSlideId !== "" ? "control-right" : '') },
                 react_1["default"].createElement("div", { className: (currentSlide !== 3 ? "" : "disactive") + " slider-button slider-button-next", onClick: function () { prevNextButsController("next"); } },
                     react_1["default"].createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "19.828", height: "35.657", viewBox: "0 0 19.828 35.657" },

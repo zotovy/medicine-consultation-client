@@ -5,6 +5,7 @@ import controller from "../../controllers/symptoms-slider-controller";
 import ConfirmButton from '../../../../components/confirm-button';
 import detailController from "../../controllers/detail-controller";
 import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Slider: React.FC = () => {
     const {highlightSlideId ,prevNextButsController, slideShift, currentSlide } = controller;
@@ -59,9 +60,11 @@ const Slider: React.FC = () => {
                         <h3>Просмотреть Профиль</h3>
                     </div>
                 </div>
-                <div  className={`slider-control-wrapper slider-control-wrapper-cBut`}>
-                    <ConfirmButton content='Продолжить' onConfirm={() => {}} />
-                </div>
+                    <Link to={`/appoint/${highlightSlideId}`}>
+                        <div  className={`slider-control-wrapper slider-control-wrapper-cBut`}>
+                            <ConfirmButton content='Продолжить' onConfirm={() => {}} />
+                        </div>
+                    </Link>
                 <div className={`slider-control-wrapper slider-control-wrapper-right ${highlightSlideId !== "" ? "control-right" : ''}`}>
                     <div className={`${currentSlide !== 3 ? "" : "disactive"} slider-button slider-button-next`} onClick={()=>{prevNextButsController("next",)}}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.828" height="35.657" viewBox="0 0 19.828 35.657">

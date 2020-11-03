@@ -18,7 +18,7 @@ class SympController {
 
     @action handlerClick = () => {
         if(this.symptoms.find((n:any)  => n.active) !== undefined){
-            this.canFindDoctors = true;
+            // this._fetchDoctors(...this.symptoms.filter((item:Symp) =>item.active === true).map((item:Symp) => item.name))
         }else{
             this.openBadgeCh()
         }
@@ -84,7 +84,7 @@ class SympController {
         const response = await axios
             .get(
                 process.env.REACT_APP_SERVER_URL +
-                    `/api/symptoms?bodyPart=${bodyPart}`
+                `/api/symptoms?bodyPart=${bodyPart}`
             )
             .then((data: any) => data.data)
             .catch((e: any) => {
@@ -136,6 +136,29 @@ class SympController {
             this.isErrorBadgeOpenCh = false;
         }, 5000);
     };
-}
 
+    private _fetchDoctors = async (
+        bodyParts: Symp[]
+    ): Promise<Symp[] | undefined> => {
+        const response = await axios
+            .get(
+                process.env.REACT_APP_SERVER_URL +
+                    `/api/symptoms?bodyPart=${...bodyParts.map((item:Symp) => item.name)}`
+            )
+            .then((data: any) => {this.canFindDoctors = true; return data.data})
+            .catch((e: any) => {
+                return { success: false };
+            });
+
+        if (!response.success) {
+            // todo: error handling
+            this._openBadge();
+            return [];
+        } else {
+            this.loading = false;
+        }
+
+        return await response.symptoms;
+    };
+}
 export default new SympController();

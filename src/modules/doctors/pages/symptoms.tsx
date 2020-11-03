@@ -18,31 +18,28 @@ const SymptomsPage: React.FC = () => {
                 message="Произошла непридвиденная ошибка. Мы уже работаем над этим!"
             />
             <ErrorBadge
-                isOpen={controller.isErrorBadgeOpen}
+                isOpen={controller.isErrorBadgeOpenCh}
                 message="Выберите симптомы, которые Вас беспокоят."
             />
-            {/* {*/}
-            {/*     controller.canFindDoctors*/}
-            {/*    ?*/}
-            {/*        <SymptomsFindDoctor/>*/}
+         {controller.canFindDoctors === true 
+                ? 
+                    <SymptomsFindDoctor/> 
             
-            {/*    :*/}
+                :
 
-            {/*        <div className="symptoms-wrapper">*/}
-            {/*            <Title title="Симптомы" mark="."/>*/}
-            {/*            <h3 className="symptoms-subtitle">Выберите симптомы, которые Вас беспокоят.<br/> Мы поможем легко Вам подобрать нужного врача!</h3>*/}
-            {/*            {<div className="symptoms-main-container">*/}
-            {/*                <SymptomsTabs />*/}
-            {/*                <SymptomsСhoice />*/}
-            {/*            </div> }*/}
-            {/*            <div className='symptoms-but'>*/}
-            {/*                <ConfirmButton content='Продолжить' onConfirm={() => {handlerClick(); return true}} />*/}
-            {/*            </div>*/}
-            {/*        </div>*/}
-            {/*}*/}
-            <SymptomsFindDoctor/> 
+                    <div className="symptoms-wrapper">
+                        <Title title="Симптомы" mark="."/>
+                        <h3 className="symptoms-subtitle">Выберите симптомы, которые Вас беспокоят.<br/> Мы поможем легко Вам подобрать нужного врача!</h3>
+                        <div className="symptoms-main-container">
+                            <SymptomsTabs />
+                            <SymptomsСhoice />
+                        </div>
+                        <div className='symptoms-but'>
+                            <ConfirmButton content='Продолжить' onConfirm={() => {handlerClick()}} />
+                        </div>
+                    </div>
+            }
         </>
-    )
-}
+    )}
 
 export default observer(SymptomsPage);
