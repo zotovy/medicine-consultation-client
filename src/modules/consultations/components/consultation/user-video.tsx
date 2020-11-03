@@ -23,7 +23,7 @@ const UserVideo: React.FC = () => {
 
     return <div className="user">
         <div className="user-wrapper">
-            <video playsInline autoPlay muted={true} id="user-video" className={controller.isMinimized ? "hidden" : ""} />
+            <video playsInline autoPlay muted id="user-video" />
 
             {
                 !controller.isMinimized
@@ -39,7 +39,7 @@ const UserVideo: React.FC = () => {
                                 : <React.Fragment />
                         }
                     </React.Fragment>
-                    : <div className="minimized" style={styles} onClick={() => controller.isMinimized = false}></div>
+                    : <div className="minimized" style={styles} onClick={() => controller.isMinimized = false}/>
             }
         </div>
     </div>

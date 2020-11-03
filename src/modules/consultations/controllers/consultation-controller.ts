@@ -56,7 +56,7 @@ class ConsultationController implements IConsultationController {
 
             this.peer = new Peer({
                 host: process.env.REACT_APP_PEER_SERVER_URL,
-                // port: port,
+                port: port,
                 path: "/mc",
             });
             console.log("peer have been created");
@@ -99,7 +99,11 @@ class ConsultationController implements IConsultationController {
             });
         });
 
-        this.socket.on("mute", (on: boolean) => (this.partnerMicroStatus = on));
+        this.socket.on("mute", (on: boolean) => {
+            console.log("partner", on);
+            console.log("user", this.isMicroOn);
+            return (this.partnerMicroStatus = on);
+        });
 
         return "ok";
     };

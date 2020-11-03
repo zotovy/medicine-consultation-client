@@ -55,13 +55,13 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
     }, []);
 
 
-
     return <div className="consultation-module">
         <div className="wrapper">
             <div className="video-container">
                 {
                     controller.partnerConnected
-                        ? <video playsInline muted={controller.isMicroOn} autoPlay id="partner-video" />
+
+                ?           <video playsInline muted={!controller.partnerMicroStatus} autoPlay id="partner-video" />
                         : <div className="not-connected">
                             <h3>Ваш собеседник еще не подключился</h3>
                         </div>
