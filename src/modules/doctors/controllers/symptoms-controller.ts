@@ -18,7 +18,7 @@ class SympController {
 
     @action handlerClick = () => {
         if(this.symptoms.find((n:any)  => n.active) !== undefined){
-            // this._fetchDoctors(...this.symptoms.filter((item:Symp) =>item.active === true).map((item:Symp) => item.name))
+            this._fetchDoctors(this.symptoms.filter((item:Symp) => item.active === true))
         }else{
             this.openBadgeCh()
         }
@@ -142,8 +142,7 @@ class SympController {
     ): Promise<Symp[] | undefined> => {
         const response = await axios
             .get(
-                process.env.REACT_APP_SERVER_URL ?? ""
-                    // `/api/symptoms?bodyPart=${...bodyParts.map((item:Symp) => item.name)}`
+                process.env.REACT_APP_SERVER_URL + `/api/symptoms?bodyPart=${bodyParts.map((item:Symp) => item.name)}`
             )
             .then((data: any) => {this.canFindDoctors = true; return data.data})
             .catch((e: any) => {
