@@ -344,6 +344,7 @@
         align-items: center;
 
         .button {
+            position: relative;
             width: 52px;
             height: 52px;
             margin: 0 16px;
@@ -354,6 +355,22 @@
             background-color: #CCCCCC;
             cursor: pointer;
             transition: background 150ms ease-in-out;
+
+            .unread-messages {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 18px;
+                height: 18px;
+                border-radius: 50%;
+                background: #30B9D6;
+                font-size: 12px;
+
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: white;
+            }
 
             &.active {
                 background-color: $primary;

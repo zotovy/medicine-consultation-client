@@ -80,9 +80,19 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
             }}>
                 <MicroIcon />
             </Button>
-            <Button id="chat" ckey="isChatOn">
+            <div
+                id="chat"
+                className={`button ${controller.isChatOn ? "active" : ""}`}
+                onClick={() => { controller.isChatOn = !controller.isChatOn; controller.unreadMessages = 0; }}
+            >
                 <ChatIcon />
-            </Button>
+                {
+                    controller.unreadMessages !== 0 && !controller.isChatOn
+                    && <div className="unread-messages">
+                        <span>{ controller.unreadMessages > 9 ? "9" : controller.unreadMessages }</span>
+                    </div>
+                }
+            </div>
         </div>
 
         <UserVideo />

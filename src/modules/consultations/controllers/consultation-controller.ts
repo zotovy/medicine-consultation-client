@@ -92,11 +92,18 @@ class ConsultationController implements IConsultationController {
         });
 
         this.socket.on("new_message", (message: string) => {
-            this._messages.push({
-                message,
-                isUser: false,
-                type: EMessageType.Message,
-            });
+            action(() => {
+                this._messages.push({
+                    message,
+                    isUser: false,
+                    type: EMessageType.Message,
+                });
+
+                console.log(!this.isChatOn);
+                if (!this.isChatOn) {
+                    this.unreadMessages += 1;
+                }
+            })();
         });
 
         this.socket.on("mute", (on: boolean) => {
@@ -252,6 +259,7 @@ class ConsultationController implements IConsultationController {
     @observable partnerName: string = "";
     @observable partnerSpeciality: string = "";
     @observable partnerConnected: boolean = false;
+    @observable unreadMessages : number = 0;
 
     // Chat
     public message: string = "";
