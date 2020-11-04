@@ -20,11 +20,7 @@ class SympController {
 
     @action handlerClick = () => {
         if(this.symptoms.find((n:any)  => n.active) !== undefined){
-<<<<<<< Updated upstream
-            this.canFindDoctors = true;
-=======
             this._fetchDoctors(this.bodyPart).then(response => this.doctors = response);
->>>>>>> Stashed changes
         }else{
             this.openBadgeCh()
         }
@@ -91,11 +87,7 @@ class SympController {
         const response = await axios
             .get(
                 process.env.REACT_APP_SERVER_URL +
-<<<<<<< Updated upstream
-                    `/api/symptoms?bodyPart=${bodyPart}`
-=======
                 `api/symptoms?bodyPart=${bodyPart}`
->>>>>>> Stashed changes
             )
             .then((data: any) => data.data)
             .catch((e: any) => {
@@ -147,8 +139,6 @@ class SympController {
             this.isErrorBadgeOpenCh = false;
         }, 5000);
     };
-<<<<<<< Updated upstream
-=======
 
     private _fetchDoctors = async (
         bodyPart: string
@@ -171,7 +161,6 @@ class SympController {
         }
         return await response.doctors;
     };
->>>>>>> Stashed changes
 }
 
 export default new SympController();
