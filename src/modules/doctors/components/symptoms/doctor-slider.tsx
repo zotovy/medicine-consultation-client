@@ -1,33 +1,29 @@
 import React from "react";
 import Slide from "./doctor-slide";
 import { observer } from "mobx-react";
-import controller from "../../controllers/symptoms-slider-controller";
+import sliderController from "../../controllers/symptoms-slider-controller";
 import ConfirmButton from '../../../../components/confirm-button';
 import detailController from "../../controllers/detail-controller";
 import { useHistory } from "react-router-dom";
+<<<<<<< Updated upstream
+=======
+import { Link } from "react-router-dom";
+import controller from "../../controllers/symptoms-controller";
+>>>>>>> Stashed changes
 
 const Slider: React.FC = () => {
-    const {highlightSlideId ,prevNextButsController, slideShift, currentSlide } = controller;
+    const {highlightSlideId ,prevNextButsController, slideShift, currentSlide } = sliderController;
+    const {doctors} = controller;
     const goToDoctorPage = (): void => {
         detailController.fetchDoctor(highlightSlideId);
         history.push(`/doctor/${highlightSlideId}`);
     }
     const history = useHistory();
-
+    console.log(doctors.length)
     return(
         <div className="slider-container">
             <div className="slider-wrapper" style={{ transform: `translate3d(-${slideShift}px, 0px, 0px)`, transition: `all 300ms ease 0s`}}>
-                <Slide id="5f8210d7f1901f7b23f1f398" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор"/>
-                <Slide id="slide-2" name="Никита" surname="Лебедев" imgUrl="" rating={3.5} speciality="Доктор"/>
-                <Slide id="slide-3" name="Никита" surname="Лебедев" imgUrl="" rating={2.5} speciality="Доктор"/>
-                <Slide id="slide-4" name="Никита" surname="Лебедев" imgUrl="" rating={1.5} speciality="Доктор"/>
-                <Slide id="slide-5" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор"/>
-                <Slide id="slide-6" name="Никита" surname="Лебедев" imgUrl="" rating={3.5} speciality="Доктор"/>
-                <Slide id="slide-7" name="Никита" surname="Лебедев" imgUrl="" rating={2.5} speciality="Доктор"/>
-                <Slide id="slide-8" name="Никита" surname="Лебедев" imgUrl="" rating={1.5} speciality="Доктор"/>
-                <Slide id="slide-9" name="Никита" surname="Лебедев" imgUrl="" rating={4.5} speciality="Доктор"/>
-                <Slide id="slide-10" name="Никита" surname="Лебедев" imgUrl="" rating={3.5} speciality="Доктор"/>
-                <Slide id="slide-11" name="Никита" surname="Лебедев" imgUrl="" rating={2.5} speciality="Доктор"/>
+                {doctors.map((e) => <Slide id={e.id ?? ""} name={e.name ?? ""} surname={e.surname ?? ""} imgUrl={e.photoUrl ?? ""} rating={e.rating} speciality={e.speciality[0]} />)}
                 <div className="slider-slide slider-show-more-but">
                     <div className="doctor_profile_pic show-more-pic">
                         <svg xmlns="http://www.w3.org/2000/svg" width="74.731" height="74.731" viewBox="0 0 74.731 74.731">
@@ -63,7 +59,7 @@ const Slider: React.FC = () => {
                     <ConfirmButton content='Продолжить' onConfirm={() => {}} />
                 </div>
                 <div className={`slider-control-wrapper slider-control-wrapper-right ${highlightSlideId !== "" ? "control-right" : ''}`}>
-                    <div className={`${currentSlide !== 3 ? "" : "disactive"} slider-button slider-button-next`} onClick={()=>{prevNextButsController("next",)}}>
+                    <div className={`${currentSlide !== Math.round(doctors.length / 4) ? "" : "disactive"} slider-button slider-button-next`} onClick={()=>{prevNextButsController("next",)}}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.828" height="35.657" viewBox="0 0 19.828 35.657">
                             <path id="Icon_feather-chevron-right" data-name="Icon feather-chevron-right" d="M13.5,39l15-15L13.5,9" transform="translate(-10.672 -6.172)" fill="none" stroke="#30b9d6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
                         </svg>
