@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import controller from "../controllers/consultation-controller";
-import { CameraIcon, MicroIcon, ChatIcon } from "../icons";
+import {CameraIcon, MicroIcon, LeaveCallIcon} from "../icons";
 import Button from "../components/consultation/main-button";
 import UserVideo from "../components/consultation/user-video";
 import Chat from "../components/consultation/chat";
@@ -67,34 +67,27 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
                             <h3>Ваш собеседник еще не подключился</h3>
                         </div>
                 }
-
             </div>
-            <Chat />
-        </div>
-        <div className="buttons">
-            <Button id="camera" ckey="isCameraOn">
-                <CameraIcon />
-            </Button>
-            <Button id="micro" ckey="isMicroOn" onClick={() => {
-                controller.isMicroOn = !controller.isMicroOn;
-                controller.socket?.emit("mute", controller.isMicroOn);
-            }}>
-                <MicroIcon />
-            </Button>
-            <div
-                id="chat"
-                className={`button ${controller.isChatOn ? "active" : ""}`}
-                onClick={() => { controller.isChatOn = !controller.isChatOn; controller.unreadMessages = 0; }}
-            >
-                <ChatIcon />
-                {
-                    controller.unreadMessages !== 0 && !controller.isChatOn
-                    && <div className="unread-messages">
-                        <span>{ controller.unreadMessages > 9 ? "9" : controller.unreadMessages }</span>
-                    </div>
-                }
+            <div className="buttons">
+                <Button id="camera" ckey="isCameraOn">
+                    <CameraIcon />
+                </Button>
+                <Button id="micro" ckey="isMicroOn" onClick={() => {
+                    controller.isMicroOn = !controller.isMicroOn;
+                    controller.socket?.emit("mute", controller.isMicroOn);
+                }}>
+                    <MicroIcon />
+                </Button>
+                <div
+                    id="leave"
+                    className={`button leave`}
+                    onClick={() => { /* todo */ }}
+                >
+                    <LeaveCallIcon/>
+                </div>
             </div>
         </div>
+        <Chat />
 
         <UserVideo />
     </div>

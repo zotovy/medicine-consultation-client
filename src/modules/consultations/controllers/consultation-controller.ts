@@ -99,11 +99,6 @@ class ConsultationController implements IConsultationController {
                     isUser: false,
                     type: EMessageType.Message,
                 });
-
-                console.log(!this.isChatOn);
-                if (!this.isChatOn) {
-                    this.unreadMessages += 1;
-                }
             })();
         });
 
@@ -251,7 +246,6 @@ class ConsultationController implements IConsultationController {
 
     @observable isCameraOn: boolean = false;
     @observable isMicroOn: boolean = false;
-    @observable isChatOn: boolean = false;
     aspectRation = {w: 1, h: 1};
 
     // partner
@@ -311,7 +305,6 @@ class ConsultationController implements IConsultationController {
 export interface IConsultationController {
     isCameraOn: boolean;
     isMicroOn: boolean;
-    isChatOn: boolean;
 }
 
 export type TLink = {
