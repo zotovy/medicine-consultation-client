@@ -3,27 +3,15 @@ import { observer } from "mobx-react";
 import { CloseIcon } from '../../../doctors/icons';
 import controller from "../../controllers/consultation-controller";
 import { MicroSlashIcon } from '../../icons';
+import userPlaceholder from "../../../../static/images/user-placeholder.jpg";
 
 const UserVideo: React.FC = () => {
-
-
-    const partnerVideo = useRef<HTMLVideoElement>(null);
     const styles = controller.partnerImagePath ? { backgroundImage: `url(${controller.partnerImagePath})` } : {};
+    const videoStyles = {display: controller.isCameraOn ? "block" : "none"};
 
-    useEffect(() => {
-        navigator.mediaDevices
-            .getUserMedia({ video: true, audio: true })
-            .then(stream => {
-                if (partnerVideo.current) {
-                    partnerVideo.current.srcObject = stream;
-                }
-            })
-            .catch(() => null)
-    }, []);
-
-    return <div className="user">
+    return <div className="user" style={videoStyles}>
         <div className="user-wrapper">
-            <video playsInline autoPlay muted id="user-video" />
+            <video playsInline autoPlay muted id="user-video"  />
 
             {
                 !controller.isMinimized

@@ -47,6 +47,7 @@ class ConsultationController implements IConsultationController {
                 video: true,
                 audio: true,
             });
+
             this._setVideo("video#user-video", stream);
 
             let port;
@@ -251,6 +252,7 @@ class ConsultationController implements IConsultationController {
     @observable isCameraOn: boolean = false;
     @observable isMicroOn: boolean = false;
     @observable isChatOn: boolean = false;
+    aspectRation = {w: 1, h: 1};
 
     // partner
     @observable isMinimized: boolean = false;
