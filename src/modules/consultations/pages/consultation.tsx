@@ -25,7 +25,10 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
 
                     invalidTokenCounter += 1;
                     if (invalidTokenCounter == 1) {
-                        tokenServices.getAndUpdateNewAccessToken().then(() => controller.setupSocket(match.params.id, { onSuccess, onError }));
+                        tokenServices.getAndUpdateNewAccessToken().then(() => {
+                            controller.socket?.close();
+                            controller.setupSocket(match.params.id, { onSuccess, onError });
+                        });
                     } else {
                         history.push("/");
                     }
@@ -49,7 +52,10 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
             }
         });
 
-        controller.fetchConsultation(match.params.id);
+        controller.fetchConsultation(match.params.id).catch(e => {
+            console.log(e);
+            if (e === "not_authorize") history.goBack();
+        });
 
         controller.onErrorCb = () => history.push("/error");
     }, []);
@@ -81,7 +87,10 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
                 <div
                     id="leave"
                     className={`button leave`}
-                    onClick={() => { /* todo */ }}
+                    onClick={() => {
+                        controller.endCall();
+                        history.goBack();
+                    }}
                 >
                     <LeaveCallIcon/>
                 </div>
