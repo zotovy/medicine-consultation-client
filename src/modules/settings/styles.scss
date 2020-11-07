@@ -1,0 +1,71 @@
+@import '../../static/theme';
+
+main.settings {
+    background: #fefefe;
+
+
+    .navigation {
+        position: absolute;
+        left: 25px;
+        width: 190px;
+        display: flex;
+        flex-direction: column;
+        top: 130px;
+
+        @media screen and (min-width: 1100px) {
+            left: calc((100vw - 1100px) / 2)
+        }
+
+
+        .item {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+
+            .icon {
+                margin-right: 17px;
+                width: 27px;
+                display: inline;
+
+                svg {
+                    width: 27px;
+                    height: 27px;
+                    margin-right: 25px;
+                }
+            }
+
+            span.tab-name {
+                font-size: 18px;
+                color: rgba(#282828, 0.9);
+            }
+
+            &.active {
+                path {
+                    fill: $primary !important;
+                }
+
+                span.tab-name {
+                    color: #282828;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+
+    .content {
+        margin-left: 325px;
+        margin-top: 25px;
+        @media screen and (min-width: 1100px) {
+            margin-left: calc((100vw - 1100px) / 2 + 325px)
+        }
+    }
+
+}
+
+
+main.account-page {
+    section.account {
+
+    }
+}
