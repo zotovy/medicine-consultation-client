@@ -256,7 +256,6 @@ class ConsultationController implements IConsultationController {
 
     @observable isCameraOn: boolean = false;
     @observable isMicroOn: boolean = false;
-    aspectRation = {w: 1, h: 1};
 
     // partner
     @observable isMinimized: boolean = false;

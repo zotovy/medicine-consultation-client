@@ -22,7 +22,6 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
             console.log("error", data);
             switch (data) {
                 case "invalid_token":
-
                     invalidTokenCounter += 1;
                     if (invalidTokenCounter == 1) {
                         tokenServices.getAndUpdateNewAccessToken().then(() => {
@@ -54,7 +53,7 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
 
         controller.fetchConsultation(match.params.id).catch(e => {
             console.log(e);
-            if (e === "not_authorize") history.goBack();
+            // if (e === "not_authorize") history.goBack();
         });
 
         controller.onErrorCb = () => history.push("/error");
