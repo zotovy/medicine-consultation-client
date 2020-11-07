@@ -6,19 +6,14 @@ import { SendIcon } from "../../icons";
 
 const Chat: React.FC = () => {
 
-
-
-
     const def = "https://www.epos-ural.ru/wp-content/uploads/2019/03/user-placeholder.jpg";
     const avatar = {
         backgroundImage: `url("${controller.partnerImagePath?.trim() == "" ? def : controller.partnerImagePath}")`,
     }
 
-    console.log("rerendered!");
-
-    return <div className={`chat ${controller.isChatOn ? "enable" : ""}`}>
+    return <div className="chat">
         <header>
-            <div className="avatar" style={avatar}></div>
+            <div className="avatar" style={avatar}/>
             <div className="info">
                 <span id="name">{controller.partnerName}</span>
                 {

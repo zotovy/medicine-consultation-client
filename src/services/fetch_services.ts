@@ -7,7 +7,7 @@ const authFetch = async (
     try {
         let data = await f().catch((e) => e?.response);
 
-        if (data.status === 403) {
+        if (data.status === 403 || data.status === 412) {
             const uid = localStorage.getItem("uid");
 
             if (!uid)
@@ -16,10 +16,10 @@ const authFetch = async (
                     data: {},
                 };
 
-            await tokenServices.generateNewTokens(uid);
-            data = await f();
+            await tokenServices.getAndUpdateNewAccessToken();
+            data = await f().catch((e) => e?.response);
 
-            if (data.status === 403)
+            if (data.status === 403 || data.status === 412)
                 return {
                     status: EAuthFetch.Unauthorized,
                     data: {},
@@ -39,7 +39,7 @@ const authFetch = async (
 };
 
 export enum EAuthFetch {
-    Success,
+    Success ,
     Unauthorized,
     Error,
 }

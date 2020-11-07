@@ -11,6 +11,7 @@ class ConsultationController implements IConsultationController {
     socket: SocketIOClient.Socket | null = null;
     peer: Peer | null = null;
     onErrorCb = () => {};
+    endCall = () => {};
 
     setupSocket = async (
         consultationId: string,
@@ -19,6 +20,7 @@ class ConsultationController implements IConsultationController {
             onError: (data: string) => any;
         }
     ): Promise<string> => {
+
         const userId = localStorage.getItem("uid");
         const isUser = localStorage.getItem("isUser");
         if (!userId || isUser === null) return "redirect";
@@ -41,12 +43,14 @@ class ConsultationController implements IConsultationController {
             args.onError(error);
         });
         this.socket.on("success", async () => {
-            console.log("success!");
+
+            console.log("success");
 
             const stream = await navigator.mediaDevices.getUserMedia({
                 video: true,
                 audio: true,
             });
+
             this._setVideo("video#user-video", stream);
 
             let port;
@@ -59,7 +63,6 @@ class ConsultationController implements IConsultationController {
                 port: port,
                 path: "/mc",
             });
-            console.log("peer have been created");
 
             this.peer.on("call", (call) => {
                 this.partnerConnected = true;
@@ -92,11 +95,13 @@ class ConsultationController implements IConsultationController {
         });
 
         this.socket.on("new_message", (message: string) => {
-            this._messages.push({
-                message,
-                isUser: false,
-                type: EMessageType.Message,
-            });
+            action(() => {
+                this._messages.push({
+                    message,
+                    isUser: false,
+                    type: EMessageType.Message,
+                });
+            })();
         });
 
         this.socket.on("mute", (on: boolean) => {
@@ -155,8 +160,14 @@ class ConsultationController implements IConsultationController {
 
         call?.on("stream", (partnerStream) => {
             this.partnerConnected = true;
-            console.log("_connectToNewUser on stream", userId);
             this._setVideo("video#partner-video", partnerStream);
+
+            this.endCall = () => {
+                call.close();
+                this.socket = null;
+                this.peer = null;
+                this.partnerConnected = false;
+            }
 
             this.socket?.on("disconnected", () => {
                 call.close();
@@ -172,18 +183,20 @@ class ConsultationController implements IConsultationController {
         call?.on("error", this.onErrorCb);
     }
 
-    public fetchConsultation = (id: string) => {
+    public fetchConsultation = async (id: string) : Promise<void> => {
         console.log("fetch consultation with id", id);
         this.loading = true;
 
-        action(async () => {
+        await action(async () => {
             const cons = await this._fetchConsultation(id).catch(() => null);
             this.loading = false;
 
-            if (cons == null) return;
+            console.log(cons);
+
+            if (cons == null) throw "not_authorize";
 
             if (cons === "error") this.error = true;
-            else if (cons === "unauthorized") throw "redirect-login";
+            else if (cons === "unauthorized") throw "not_authorize";
             else {
                 this.consultation = cons;
 
@@ -243,7 +256,6 @@ class ConsultationController implements IConsultationController {
 
     @observable isCameraOn: boolean = false;
     @observable isMicroOn: boolean = false;
-    @observable isChatOn: boolean = false;
 
     // partner
     @observable isMinimized: boolean = false;
@@ -252,6 +264,7 @@ class ConsultationController implements IConsultationController {
     @observable partnerName: string = "";
     @observable partnerSpeciality: string = "";
     @observable partnerConnected: boolean = false;
+    @observable unreadMessages : number = 0;
 
     // Chat
     public message: string = "";
@@ -301,7 +314,6 @@ class ConsultationController implements IConsultationController {
 export interface IConsultationController {
     isCameraOn: boolean;
     isMicroOn: boolean;
-    isChatOn: boolean;
 }
 
 export type TLink = {
