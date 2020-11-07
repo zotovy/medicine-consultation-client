@@ -20,8 +20,8 @@ class SympController {
 
     @action handlerClick = () => {
         if(this.symptoms.find((n:any)  => n.active) !== undefined){
-            this._fetchDoctors(this.bodyPart).then(response => this.doctors = response);
-        }else{
+            this._fetchDoctors(this.bodyPart).then(response => {this.doctors = response});
+        }else if(this.symptoms.length == 0){
             this.openBadgeCh()
         }
     }
@@ -41,7 +41,7 @@ class SympController {
         id: number
     ): void => {
         e.persist();
-        this.symptoms = this.symptoms.map((item: Symp, i: number) => {
+        this.symptoms = this.symptoms.map((item: Symp) => {
             if (item.id === id && item.active !== true) {
                 item.active = true;
             } else if (item.id === +id && item.active === true) {
@@ -52,7 +52,6 @@ class SympController {
     };
 
     @action openTab = (
-        e: React.MouseEvent<HTMLLIElement, MouseEvent>,
         id: number
     ): void => {
         this.items = this.items.map((item: Item) => {

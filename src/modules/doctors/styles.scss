@@ -2084,8 +2084,14 @@ $hoverCol: #30B9D6;
     div:nth-child(even):not(.info) {
         margin-top: 40px;
     }
+    a{
+        text-decoration: none;
+        color: #000;
+    }
 }
-
+.slider-wrapper-row{
+    flex-direction: row;
+}
 .slider-slide {
     width: 488px;
     height: 145px;

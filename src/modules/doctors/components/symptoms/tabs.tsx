@@ -46,7 +46,7 @@ const SymptomsTabs: React.FC = () => {
 						{items.map((n: any, i: any) => (
 							<li key={n.id}
 								className={`tab-links tab-${n.id} ${n.active === true ? 'tab-active' : ''}`}
-								onClick={(e) => openTab(items, n.id)}
+								onClick={(e) => openTab(n.id)}
 								data-index={i}
 							>{n.title}</li>
 						))}

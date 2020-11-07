@@ -1779,6 +1779,14 @@ menu .profile {
 .slider-wrapper div:nth-child(even):not(.info) {
   margin-top: 40px;
 }
+.slider-wrapper a {
+  text-decoration: none;
+  color: #000;
+}
+
+.slider-wrapper-row {
+  flex-direction: row;
+}
 
 .slider-slide {
   width: 488px;

@@ -60,9 +60,9 @@ var SympController = /** @class */ (function () {
         this.canFindDoctors = false;
         this.handlerClick = function () {
             if (_this.symptoms.find(function (n) { return n.active; }) !== undefined) {
-                _this._fetchDoctors(_this.bodyPart).then(function (response) { return _this.doctors = response; });
+                _this._fetchDoctors(_this.bodyPart).then(function (response) { _this.doctors = response; });
             }
-            else {
+            else if (_this.symptoms.length == 0) {
                 _this.openBadgeCh();
             }
         };
@@ -77,7 +77,7 @@ var SympController = /** @class */ (function () {
         };
         this.choiseSymp = function (e, id) {
             e.persist();
-            _this.symptoms = _this.symptoms.map(function (item, i) {
+            _this.symptoms = _this.symptoms.map(function (item) {
                 if (item.id === id && item.active !== true) {
                     item.active = true;
                 }
@@ -87,7 +87,7 @@ var SympController = /** @class */ (function () {
                 return item;
             });
         };
-        this.openTab = function (e, id) {
+        this.openTab = function (id) {
             _this.items = _this.items.map(function (item) {
                 if (item.id === id) {
                     item.active = true;
