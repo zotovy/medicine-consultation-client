@@ -44,7 +44,7 @@ export enum EAuthFetch {
     Error,
 }
 
-type AFRes = {
+export type AFRes = {
     status: EAuthFetch;
     data: any | {};
 };

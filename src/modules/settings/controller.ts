@@ -1,11 +1,15 @@
-import { observable } from "mobx";
+import { action, observable } from "mobx";
 import Time from "../../utils/time";
 import Duration from "../../utils/duration";
 import formatServices from "../../services/format-services";
+import { AFRes, authFetch, EAuthFetch } from "../../services/fetch_services";
+import axios from "axios";
+import token_services from "../../services/token-services";
 
-class DoctorSettingsController implements ISettingsController{
+class SettingsController implements ISettingsController{
     // General
     @observable status: "user" | "doctor" = "doctor";
+    @observable isLoading : boolean = true;
 
     // Account
     @observable name: string = "Ярослав";
@@ -23,6 +27,52 @@ class DoctorSettingsController implements ISettingsController{
     @observable startConsultationAt: Time = new Time(9, 0);
     @observable endConsultationAt: Time = new Time(22, 0);
     @observable consultationTime: Duration = new Duration(50);
+
+    fetchUser = async () : Promise<void> => {
+        const uid = localStorage.getItem("uid");
+        const isUser = localStorage.getItem("isUser");
+        if (!uid || isUser == null) throw "logout";
+
+        let result : AFRes | undefined;
+        this.isLoading = true;
+        if (isUser) result =  await this._fetchUser(uid);
+        this.isLoading = false;
+
+        console.log(result);
+
+        if (!result || result.status === EAuthFetch.Error) throw "error";
+        else if (result.status === EAuthFetch.Unauthorized) throw "logout";
+        else {
+            action(() => {
+                if (!result) throw "error";
+
+                let user;
+                if (isUser) user = result.data.user;
+
+                this.name = user.name;
+                this.startConsultationAt = user.surname;
+                this.patronymic = user.patronymic;
+                this.phone = formatServices.formatNumericPhone(user.phone ?? 0);
+                this.birthday = user.birthday;
+                this.email = user.email;
+                this.country = user.country;
+                this.city = user.city;
+                this.isMale = user.sex;
+
+                // todo: add another fields
+            })();
+        }
+    }
+
+    private _fetchUser = async (id : string) : Promise<AFRes> =>
+        await authFetch(() => axios.get(
+            process.env.REACT_APP_SERVER_URL + `/api/user/${id}`,
+            {
+                headers: {
+                    auth: token_services.header
+                }
+            }
+            ));
 
     get fullName(): string {
         return `${this.surname} ${this.name} ${this.patronymic}`;
@@ -45,4 +95,4 @@ export interface ISettingsController {
     isMale: boolean;
 }
 
-export default new DoctorSettingsController();
+export default new SettingsController();
