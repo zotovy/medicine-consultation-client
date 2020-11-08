@@ -3,7 +3,7 @@ import Time from "../../utils/time";
 import Duration from "../../utils/duration";
 import formatServices from "../../services/format-services";
 
-class DoctorSettingsController {
+class DoctorSettingsController implements ISettingsController{
     // General
     @observable status: "user" | "doctor" = "doctor";
 
@@ -11,7 +11,7 @@ class DoctorSettingsController {
     @observable name: string = "Ярослав";
     @observable surname: string = "Зотов";
     @observable patronymic: string = "Сергеевич";
-    @observable phone: number = 79323327340;
+    @observable phone: string = "+7 9323327340";
     @observable birthday: Date = new Date(2005, 10, 21);
     @observable email: string = "the1ime@yandex.ru";
     @observable country: string = "Россия";
@@ -30,6 +30,18 @@ class DoctorSettingsController {
     get birthdayString(): string {
         return formatServices.formatDate(this.birthday);
     }
+}
+
+export interface ISettingsController {
+    name: string;
+    surname: string;
+    patronymic: string;
+    phone: string;
+    email: string;
+    birthday: Date;
+    country: string;
+    city: string
+    isMale: boolean;
 }
 
 export default new DoctorSettingsController();

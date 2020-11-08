@@ -19,7 +19,7 @@ import ConfirmButton from "../../../components/confirm-button";
 import SignUpForm from "../components/signup-form";
 import Image from "../components/image";
 import Container from "../components/container";
-import SexCheckbox from "../components/sex-checkbox";
+import SexCheckbox from "../../../components/sex-checkbox";
 import SignupLink from "../components/signup-link";
 import PasswordError from "../components/password-error";
 import ErrorBadge from "../../../components/error-badge";

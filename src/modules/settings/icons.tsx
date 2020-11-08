@@ -51,3 +51,9 @@ export const LogoutIcon : React.FC<IconProps> = ({className}) => {
         </g>
     </svg>;
 }
+
+export const IconClass : React.FC<IconProps> = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="26.413" height="23.111" viewBox="0 0 26.413 23.111">
+        <path id="Icon_awesome-camera" data-name="Icon awesome-camera" d="M26.413,8.028V22.885a2.477,2.477,0,0,1-2.476,2.476H2.476A2.477,2.477,0,0,1,0,22.885V8.028A2.477,2.477,0,0,1,2.476,5.552h4.54l.635-1.7a2.473,2.473,0,0,1,2.316-1.6h6.474a2.473,2.473,0,0,1,2.316,1.6l.64,1.7h4.54A2.477,2.477,0,0,1,26.413,8.028ZM19.4,15.456a6.19,6.19,0,1,0-6.19,6.19A6.2,6.2,0,0,0,19.4,15.456Zm-1.651,0a4.54,4.54,0,1,1-4.54-4.54A4.546,4.546,0,0,1,17.746,15.456Z" transform="translate(0 -2.25)" fill="#fff"/>
+    </svg>
+}

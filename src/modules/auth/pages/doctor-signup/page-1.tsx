@@ -14,7 +14,7 @@ import SizedBox from "../../../../components/sized-box";
 import SubTitle from "../../components/subtitle";
 import Link from "../../components/link";
 import SignUpForm from "../../components/signup-form";
-import SexCheckbox from "../../components/sex-checkbox";
+import SexCheckbox from "../../../../components/sex-checkbox";
 import ConfirmButton from "../../../../components/confirm-button";
 import SignupLink from "../../components/signup-link";
 

@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 // Components
-import Checkbox from "../../../components/checkbox";
-import SizedBox from "../../../components/sized-box";
+import Checkbox from "./checkbox";
+import SizedBox from "./sized-box";
 
 type Props = {
     isMale: boolean;
