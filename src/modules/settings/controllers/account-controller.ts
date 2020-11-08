@@ -1,13 +1,14 @@
 import { action, observable } from "mobx";
-import Time from "../../utils/time";
-import Duration from "../../utils/duration";
-import formatServices from "../../services/format-services";
-import { AFRes, authFetch, EAuthFetch } from "../../services/fetch_services";
+import Time from "../../../utils/time";
+import Duration from "../../../utils/duration";
+import formatServices from "../../../services/format-services";
+import { AFRes, authFetch, EAuthFetch } from "../../../services/fetch_services";
 import axios from "axios";
-import token_services from "../../services/token-services";
-import validate_services from "../../services/validation-services";
+import token_services from "../../../services/token-services";
+import validate_services from "../../../services/validation-services";
+import UserStore from "./userStore";
 
-class SettingsController implements ISettingsController {
+class AccountController {
     // General
     @observable status: "user" | "doctor" = "doctor";
     @observable isLoading: boolean = true;
@@ -19,7 +20,7 @@ class SettingsController implements ISettingsController {
     @observable surname: string = "Зотов";
     @observable patronymic: string = "Сергеевич";
     @observable phone: string = "+7 9323327340";
-    @observable birthday: Date = new Date(2005, 10, 21);
+    @observable birthday: Date | null = null;
     @observable email: string = "the1ime@yandex.ru";
     @observable country: string = "Россия";
     @observable city: string = "Пермь";
@@ -43,6 +44,11 @@ class SettingsController implements ISettingsController {
         const isUser = localStorage.getItem("isUser");
         if (!uid || isUser == null) throw "logout";
 
+        if (UserStore.user !== null) {
+            this._mapUserToClass(UserStore.user);
+            return;
+        }
+
         let result: AFRes | undefined;
         this.isLoading = true;
         if (isUser) result = await this._fetchUser(uid);
@@ -56,20 +62,9 @@ class SettingsController implements ISettingsController {
 
                 let user;
                 if (isUser) user = result.data.user;
-                console.log(user);
 
-                this.name = user.name;
-                this.surname = user.surname;
-                this.profileImage = user.photoUrl;
-                this.surname = user.surname;
-                this.patronymic = user.patronymic;
-                this.phone = formatServices.formatNumericPhone(user.phone ?? 0);
-                this.birthday = new Date(user.birthday);
-                this.email = user.email;
-                this.country = user.country;
-                this.city = user.city;
-                this.isMale = user.sex;
-                this.fullName = `${user.name} ${user.surname}`;
+                UserStore.user = user;
+                this._mapUserToClass(user);
 
                 if (this.city && this.country) this.location = `${this.city}, ${this.country}`;
                 else if (this.city) this.location = this.city;
@@ -127,7 +122,7 @@ class SettingsController implements ISettingsController {
                 patronymic: this.patronymic,
                 phone: formatServices.toNumericPhone(this.phone),
                 email: this.email,
-                birthday: this.birthday.toISOString(),
+                birthday: (this.birthday as Date).toISOString(),
                 country: this.country,
                 city: this.city,
                 sex: this.isMale,
@@ -173,24 +168,26 @@ class SettingsController implements ISettingsController {
                 this.profileImage = res.data.photoUrlPath;
             }
         })();
+    }
 
+    private _mapUserToClass = (user : UserType) : void => {
+        this.name = user.name;
+        this.surname = user.surname;
+        this.profileImage = user.photoUrl;
+        this.surname = user.surname;
+        this.patronymic = user.patronymic ?? "";
+        this.phone = formatServices.formatNumericPhone(user.phone ?? 0);
+        this.birthday = user.birthday ? new Date(user.birthday) : null;
+        this.email = user.email;
+        this.country = user.country ?? "";
+        this.city = user.city ?? "";
+        this.isMale = user.sex;
+        this.fullName = `${user.name} ${user.surname}`;
     }
 
     get birthdayString(): string {
-        return formatServices.formatDate(this.birthday);
+        return formatServices.formatDate(this.birthday as Date);
     }
 }
 
-export interface ISettingsController {
-    name: string;
-    surname: string;
-    patronymic: string;
-    phone: string;
-    email: string;
-    birthday: Date;
-    country: string;
-    city: string
-    isMale: boolean;
-}
-
-export default new SettingsController();
+export default new AccountController();

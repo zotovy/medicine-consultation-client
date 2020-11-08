@@ -1,6 +1,6 @@
 @import '../../static/theme';
 
-main.settings {
+main.settings-page {
     background: #fefefe;
 
 
@@ -161,6 +161,78 @@ main.account-page section.account {
 
         .text-field {
             margin-bottom: 10px;
+        }
+    }
+}
+
+
+main.consultations-page section.consultations {
+    max-width: 600px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 75px;
+    grid-row-gap: 75px;
+
+    @media screen and (max-width: 1336px) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .consultation-tile {
+        min-width: 300px;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 3px 15px rgba(#000000, 0.03);
+
+        display: flex;
+        flex-direction: column;
+
+        .header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3px;
+
+            .profile-pic {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                margin-right: 15px;
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+            }
+
+            .info {
+                display: flex;
+                flex-direction: column;
+
+                .title {
+                    font-size: 18px;
+                    color: #282828;
+                    font-weight: 500;
+                }
+
+                .subtitle {
+                    font-size: 16px;
+                    color: #707070;
+                }
+            }
+        }
+
+        .tab {
+            cursor: pointer;
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                font-size: 16px;
+                color: #565656;
+            }
+
+            svg {
+                width: 5px;
+                path { stroke: #707070; }
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ import SizedBox from "../../../../components/sized-box";
 import ConfirmButton from "../../../../components/confirm-button";
 import TextField from "../../../../components/text-field";
 import Divider from "../../../auth/components/divider";
-import Document from "../../components/appoint/document";
+import Document from "../../../../components/document";
 import NewDocument from "../../components/appoint/new-document";
 
 type Props = {
@@ -51,7 +51,10 @@ const Page2: React.FC<Props> = (props) => {
             <Divider text="Документы" />
             <div className="documents">
                 {
-                    Array.from(controller.documents).map((_, i) => <Document index={i} />)
+                    Array.from(controller.documents).map((_, i) => <Document
+                        file={controller.documents[i]}
+                        onClose={() => controller.removeDocuments(i)}
+                    />)
                 }
                 {
                     controller.documents.length >= 10 ? <React.Fragment /> : <NewDocument />

@@ -8,7 +8,7 @@ type Props = {
 
 const icons: React.FC[] = [AccountIcon, ConsultationIcon, ReviewsIcon, NotificationIcon, PasswordIcon];
 const titles: string[] = ["Аккаунт", "Консультация", "Отзывы", "Уведомления", "Пароль"];
-const paths : string[] = ['/account', "/consultation", "/reviews", "/notifications", "/password"]
+const paths : string[] = ['/account', "/consultations", "/reviews", "/notifications", "/password"]
 
 const NavigationComponent: React.FC<Props> = ({ active }) => {
     return <div className="navigation">

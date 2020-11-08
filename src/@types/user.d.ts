@@ -20,4 +20,5 @@ declare interface UserType {
     createdAt: Date;
     lastActiveAt: Date;
     favourites: any;
+    birthday: Date;
 }

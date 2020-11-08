@@ -63,3 +63,9 @@ export const DoneIcon: React.FC = () => {
         <path id="Icon_material-done" data-name="Icon material-done" d="M40.156,74.757,13.864,48.465,5.1,57.229,40.156,92.285l75.121-75.121L106.513,8.4Z" transform="translate(-5.1 -8.4)" fill="#fff" />
     </svg>;
 }
+
+export const ChevronIcon: React.FC = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="12.621" height="22.243" viewBox="0 0 12.621 22.243">
+        <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M0,9,9,0l9,9" transform="translate(11.121 2.121) rotate(90)" fill="none" stroke="#000" strokeLinecap="round" stroke-linejoin="round" strokeWidth="3" />
+    </svg>
+}

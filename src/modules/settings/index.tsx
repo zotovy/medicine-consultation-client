@@ -1,8 +1,8 @@
 import SettingsAccountPage  from "./pages/account";
-import SettingsNavigation  from "./components/navigation";
+import SettingsConsultationPage  from "./pages/consultations";
 
 export {
     SettingsAccountPage,
-    SettingsNavigation
+    SettingsConsultationPage
 }
 

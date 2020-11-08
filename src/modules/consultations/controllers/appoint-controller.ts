@@ -1,6 +1,6 @@
 import { observable, action } from "mobx";
 
-import settingsController from "../../settings/controller";
+import settingsController from "../../settings/controllers/account-controller";
 import formatServices from "../../../services/format-services";
 
 const visaRegEx = /^4/;

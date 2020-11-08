@@ -10,7 +10,7 @@ import ConfirmButton from "../../../components/confirm-button";
 import DateTextField from "../../../components/year-date-textfield";
 import Calendar from "../../../components/calendar";
 import LoadingLine from "../../../components/loading-line";
-import controller from "../controller";
+import controller from "../controllers/account-controller";
 import formatServices from "../../../services/format-services";
 import UserPlaceholder from "../../../static/images/user-placeholder.jpg"
 import token_services from "../../../services/token-services";
@@ -39,7 +39,7 @@ const SettingsAccountPage = () => {
             ? `url(${controller.profileImage})`
             : `url(${UserPlaceholder})`};
 
-    return <main className="account-page settings">
+    return <main className="account-page settings-page">
         {
             controller.isLoadingSave ? <LoadingLine/> : <React.Fragment/>
         }
@@ -112,7 +112,7 @@ const SettingsAccountPage = () => {
                     <DateTextField
                         field="День рождения"
                         onChange={() => null}
-                        value={formatServices.formatDate(controller.birthday)}
+                        value={formatServices.formatDate(controller.birthday as Date)}
                         onFocus={() => controller.isCalendarOpen = true}
                     />
                     <TextField onChange={(v) => controller.city = v} field="Город" value={controller.city}/>

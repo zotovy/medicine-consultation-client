@@ -1,13 +1,15 @@
 import React from "react";
-import controller from "../../controllers/appoint-controller";
+import controller from "../modules/consultations/controllers/appoint-controller";
 import { observer } from "mobx-react";
-import { PdfIcon, FileIcon, ImageIcon } from "../../icons";
-import { CloseIcon } from "../../../doctors/icons";
-import formatServices from "../../../../services/format-services";
+import { PdfIcon, FileIcon, ImageIcon } from "../modules/consultations/icons";
+import { CloseIcon } from "../modules/doctors/icons";
+import formatServices from "../services/format-services";
 
 type Props = {
-    index: number,
+    file: File,
+    onClose: () => any,
 }
+
 
 const Icon: React.FC<{ type: string }> = ({ type }) => {
 
@@ -21,9 +23,9 @@ const Icon: React.FC<{ type: string }> = ({ type }) => {
 
 }
 
-const Document: React.FC<Props> = ({ index }) => {
+const Document: React.FC<Props> = ({ file  }) => {
 
-    const file: File = controller.documents[index];
+    // const file: File = controller.documents[index];
     const splitted = file.type.split("/");
     const type = splitted[splitted.length - 1].toUpperCase();
 
@@ -33,7 +35,7 @@ const Document: React.FC<Props> = ({ index }) => {
             <span className="title">{file.name.substring(0, 15) + (file.name.length > 15 ? "..." : "")}</span>
             <span className="subtitle">{formatServices.formatSize(file.size)} {type}</span>
         </div>
-        <div className="icon" onClick={() => controller.removeDocuments(index)}>
+        <div className="icon" onClick={}>
             <CloseIcon />
         </div>
     </div>
