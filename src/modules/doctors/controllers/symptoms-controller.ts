@@ -20,7 +20,7 @@ class SympController {
 
     @action handlerClick = () => {
         if(this.symptoms.find((n:any)  => n.active) !== undefined){
-            this._fetchDoctors(this.bodyPart).then(response => {this.doctors = response});
+            this._fetchDoctors(this.bodyPart).then(response => {console.log(response); this.doctors = response});
         }else if(this.symptoms.length == 0){
             this.openBadgeCh()
         }

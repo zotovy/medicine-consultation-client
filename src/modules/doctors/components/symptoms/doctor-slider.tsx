@@ -1,6 +1,7 @@
 import React from "react";
 import Slide from "./doctor-slide";
 import { observer } from "mobx-react";
+import { toJS } from "mobx"; 
 import sliderController from "../../controllers/symptoms-slider-controller";
 import ConfirmButton from '../../../../components/confirm-button';
 import detailController from "../../controllers/detail-controller";
@@ -10,12 +11,13 @@ import controller from "../../controllers/symptoms-controller";
 
 const Slider: React.FC = () => {
     const {highlightSlideId ,prevNextButsController, slideShift, currentSlide } = sliderController;
-    const {doctors} = controller;
+    const { doctors } = controller;
     const goToDoctorPage = (): void => {
         detailController.fetchDoctor(highlightSlideId);
         history.push(`/doctor/${highlightSlideId}`);
     }
-    console.log(doctors)
+    const cloneDoctors = toJS(doctors);
+    console.log(cloneDoctors[0].speciality[0])
     const history = useHistory();
     return(
         <div className="slider-container">

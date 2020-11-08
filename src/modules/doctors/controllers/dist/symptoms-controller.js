@@ -60,7 +60,7 @@ var SympController = /** @class */ (function () {
         this.canFindDoctors = false;
         this.handlerClick = function () {
             if (_this.symptoms.find(function (n) { return n.active; }) !== undefined) {
-                _this._fetchDoctors(_this.bodyPart).then(function (response) { _this.doctors = response; });
+                _this._fetchDoctors(_this.bodyPart).then(function (response) { console.log(response); _this.doctors = response; });
             }
             else if (_this.symptoms.length == 0) {
                 _this.openBadgeCh();

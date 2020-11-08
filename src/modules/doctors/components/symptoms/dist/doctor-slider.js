@@ -3,6 +3,7 @@ exports.__esModule = true;
 var react_1 = require("react");
 var doctor_slide_1 = require("./doctor-slide");
 var mobx_react_1 = require("mobx-react");
+var mobx_1 = require("mobx");
 var symptoms_slider_controller_1 = require("../../controllers/symptoms-slider-controller");
 var confirm_button_1 = require("../../../../components/confirm-button");
 var detail_controller_1 = require("../../controllers/detail-controller");
@@ -16,7 +17,8 @@ var Slider = function () {
         detail_controller_1["default"].fetchDoctor(highlightSlideId);
         history.push("/doctor/" + highlightSlideId);
     };
-    console.log(doctors);
+    var cloneDoctors = mobx_1.toJS(doctors);
+    console.log(cloneDoctors[0].speciality[0]);
     var history = react_router_dom_1.useHistory();
     return (react_1["default"].createElement("div", { className: "slider-container" },
         react_1["default"].createElement("div", { className: "slider-wrapper " + (doctors.length == 1 ? "slider-wrapper-row" : ""), style: { transform: "translate3d(-" + slideShift + "px, 0px, 0px)", transition: "all 300ms ease 0s" } },
