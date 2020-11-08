@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 
 // Components
-import { Input, ErrorText, Row, Field } from "../../../components/text-field";
+import { Input, ErrorText, Row, Field } from "./text-field";
 
 type Props = {
     styles?: {

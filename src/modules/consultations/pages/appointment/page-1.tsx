@@ -7,7 +7,7 @@ import Title from "../../../auth/components/title";
 import Container from "../../../auth/components/container";
 import Subtitle from "../../../auth/components/subtitle";
 import SizedBox from "../../../../components/sized-box";
-import DateTextField from "../../../auth/components/year-date-textfield";
+import DateTextField from "../../../../components/year-date-textfield";
 import SexCheckbox from "../../../../components/sex-checkbox";
 import TextField from "../../../../components/text-field";
 import Calendar from "../../../../components/calendar";

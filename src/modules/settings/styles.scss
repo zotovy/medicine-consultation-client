@@ -141,5 +141,21 @@ main.account-page section.account {
             margin-bottom: 20px;
             width: 260px;
         }
+
+        .calendar-wrapper {
+            position: fixed;
+            bottom: calc((100vh - 406px) / 2);
+            left: calc((100vw - 310px) / 2);
+
+            .calendar-container-disable {
+                z-index: -100;
+            }
+
+            /* Tablet */
+            @media screen and (max-width: 424px) {
+                left: 15px;
+                right: 15px;
+            }
+        }
     }
 }

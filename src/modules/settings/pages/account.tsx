@@ -6,6 +6,8 @@ import { IconClass } from "../icons";
 import TextField from "../../../components/text-field";
 import SexCheckbox from "../../../components/sex-checkbox";
 import ConfirmButton from "../../../components/confirm-button";
+import DateTextField from "../../../components/year-date-textfield";
+import Calendar from "../../../components/calendar";
 import controller from "../controller";
 import formatServices from "../../../services/format-services";
 
@@ -41,7 +43,18 @@ const SettingsAccountPage = () => {
                 <div className="column">
                     <TextField onChange={(v) => controller.surname = v} field="Фамилия" value={controller.surname}/>
                     <TextField onChange={(v) => controller.phone = v} field="Телефон" value={formatServices.formatPhone(controller.phone)}/>
-                    <TextField onChange={() => {}} field="Телефон" value={formatServices.formatDate(controller.birthday)}/>
+
+                    <div className="calendar-wrapper" style={{ zIndex: controller.isCalendarOpen ? 1 : -100 }}>
+                        <Calendar
+                            isOpen={controller.isCalendarOpen}
+                            onClose={() => controller.isCalendarOpen = false}
+                            onSave={(d) => {
+                                controller.birthday = d
+                                controller.isCalendarOpen = false;
+                            }}
+                        />
+                    </div>
+                    <DateTextField field="День рождения" onChange={(d) => {}} value={formatServices.formatDate(controller.birthday)} onFocus={() => controller.isCalendarOpen = true} />
                     <TextField onChange={(v) => controller.city = v} field="Город" value={controller.city}/>
                 </div>
             </div>

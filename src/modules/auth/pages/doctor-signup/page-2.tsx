@@ -15,7 +15,7 @@ import TextField from "../../../../components/text-field";
 import ConfirmButton from "../../../../components/confirm-button";
 import SignupLink from "../../components/signup-link";
 import Divider from "../../components/divider";
-import DateTextField from "../../components/year-date-textfield";
+import DateTextField from "../../../../components/year-date-textfield";
 import Calendar from "../../../../components/calendar";
 
 

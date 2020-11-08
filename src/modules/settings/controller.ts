@@ -17,6 +17,7 @@ class DoctorSettingsController implements ISettingsController{
     @observable country: string = "Россия";
     @observable city: string = "Пермь";
     @observable isMale: boolean = true;
+    @observable isCalendarOpen: boolean = false;
 
     // Doctor
     @observable startConsultationAt: Time = new Time(9, 0);
