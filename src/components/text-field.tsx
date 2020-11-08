@@ -61,10 +61,10 @@ const Field = styled.p`
 `;
 
 const ErrorText = styled.span`
+  margin-top: 2px;
   font-size: 12px;
   color: #ff3b30;
   transition: 300ms ease-in-out;
-
 `;
 
 const Input = styled.input`

@@ -5,13 +5,13 @@ import formatServices from "../../services/format-services";
 import { AFRes, authFetch, EAuthFetch } from "../../services/fetch_services";
 import axios from "axios";
 import token_services from "../../services/token-services";
+import validate_services from "../../services/validation-services";
 
 class SettingsController implements ISettingsController {
     // General
     @observable status: "user" | "doctor" = "doctor";
     @observable isLoading: boolean = true;
     @observable isLoadingSave: boolean = false;
-
 
     // Account
     @observable profileImage: string = "";
@@ -27,6 +27,11 @@ class SettingsController implements ISettingsController {
     @observable isCalendarOpen: boolean = false;
     @observable fullName: string = "";
     @observable location: string = "";
+
+    @observable nameError?: string = "";
+    @observable surnameError?: string = "";
+    @observable phoneError?: string = "";
+    @observable emailError?: string = "";
 
     // Doctor
     @observable startConsultationAt: Time = new Time(9, 0);
@@ -86,10 +91,31 @@ class SettingsController implements ISettingsController {
         ));
 
     saveAccountSettings = async (): Promise<void> => {
-        this.isLoadingSave = true;
         const uid = localStorage.getItem("uid");
         const isUser = localStorage.getItem("isUser");
         if (!uid || isUser == null) throw "logout";
+
+        // Validate
+        let errorsLength = 0;
+        if (this.name.length === 0 || this.name.length > 256) {
+            this.nameError = "Необходимо ввести имя"
+            errorsLength += 1;
+        }
+        if (this.surname.length === 0 || this.surname.length > 256) {
+            this.surnameError = "Необходимо ввести фамилию"
+            errorsLength += 1;
+        }
+        if (formatServices.toNumericPhone(this.phone).toString().length !== 11) {
+            this.phoneError = "Неправильный телефон"
+            errorsLength += 1;
+        }
+        if (!validate_services.email(this.email)) {
+            this.emailError = "Неверный email";
+            errorsLength += 1;
+        }
+
+        if (errorsLength > 0) return;
+        this.isLoadingSave = true;
 
         const route = isUser ? `/api/user/${uid}` : `/api/doctor/${uid}`
         const res = await authFetch(() => axios.put(
@@ -115,7 +141,10 @@ class SettingsController implements ISettingsController {
         this.isLoadingSave = false;
         if (res.status === EAuthFetch.Error) throw "error";
         else if (res.status === EAuthFetch.Unauthorized) throw "login";
-
+        else if (res.data.error && res.data.error === "not_validated_error") {
+            const errs = res.data.errors;
+            if (errs.email === "unique_error") this.emailError = "Этот email уже используется";
+        }
     }
 
     changeProfilePic = async (files: FileList | null) : Promise<void> => {

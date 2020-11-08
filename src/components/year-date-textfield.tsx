@@ -41,7 +41,7 @@ const DateTextField: React.FC<Props> = (props: Props) => {
 
     const styles = { width: "calc(100% + 14px)" }
 
-    return <Column>
+    return <Column className="text-field">
         <Field>{props.field}</Field>
         <Row>
             <Input

@@ -62,12 +62,23 @@ const SettingsAccountPage = () => {
 
             <div className="edit">
                 <div className="column">
-                    <TextField onChange={(v) => controller.name = v} field="Имя" value={controller.name}/>
+                    <TextField
+                        onChange={(v) => controller.name = v}
+                        field="Имя"
+                        value={controller.name}
+                        error={controller.nameError}
+                    />
                     <TextField
                         onChange={(v) => controller.patronymic = v}
                         field="Отчество"
-                        value={controller.patronymic}/>
-                    <TextField onChange={(v) => controller.email = v} field="Email" value={controller.email}/>
+                        value={controller.patronymic}
+                    />
+                    <TextField
+                        onChange={(v) => controller.email = v}
+                        field="Email"
+                        value={controller.email}
+                        error={controller.emailError}
+                    />
                     <TextField onChange={(v) => controller.country = v} field="Страна" value={controller.country}/>
                     <SexCheckbox onChange={() => controller.isMale = !controller.isMale} isMale={controller.isMale}/>
                     <ConfirmButton content="Cохранить" onConfirm={() => controller.saveAccountSettings().catch(handleErrors)}/>
@@ -76,11 +87,18 @@ const SettingsAccountPage = () => {
                 <div className="gap"/>
 
                 <div className="column">
-                    <TextField onChange={(v) => controller.surname = v} field="Фамилия" value={controller.surname}/>
+                    <TextField
+                        onChange={(v) => controller.surname = v}
+                        field="Фамилия"
+                        value={controller.surname}
+                        error={controller.surnameError}
+                    />
                     <TextField
                         onChange={(v) => controller.phone = v}
                         field="Телефон"
-                        value={formatServices.formatPhone(controller.phone)}/>
+                        value={formatServices.formatPhone(controller.phone)}
+                        error={controller.phoneError}
+                    />
                     <div className="calendar-wrapper" style={{ zIndex: controller.isCalendarOpen ? 1 : -100 }}>
                         <Calendar
                             isOpen={controller.isCalendarOpen}
@@ -95,7 +113,8 @@ const SettingsAccountPage = () => {
                         field="День рождения"
                         onChange={() => null}
                         value={formatServices.formatDate(controller.birthday)}
-                        onFocus={() => controller.isCalendarOpen = true}/>
+                        onFocus={() => controller.isCalendarOpen = true}
+                    />
                     <TextField onChange={(v) => controller.city = v} field="Город" value={controller.city}/>
                 </div>
             </div>
