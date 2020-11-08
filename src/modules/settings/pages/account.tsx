@@ -10,6 +10,7 @@ import DateTextField from "../../../components/year-date-textfield";
 import Calendar from "../../../components/calendar";
 import controller from "../controller";
 import formatServices from "../../../services/format-services";
+import UserPlaceholder from "../../../static/images/user-placeholder.jpg"
 
 
 const SettingsAccountPage = () => {
@@ -20,17 +21,21 @@ const SettingsAccountPage = () => {
 
     if (controller.isLoading) return <h1>Loading...</h1>
 
+    const imgStyles = {backgroundImage: controller.profileImage
+            ? `url(${controller.profileImage})`
+            : `url(${UserPlaceholder})`};
+
     return <main className="account-page settings">
         <NavigationComponent active={0}/>
         <section className="content account">
             <header>
-                <div className="profile-image">
+                <div className="profile-image" style={imgStyles}>
                     <div className="icon-pick"><IconClass/></div>
                     <input type="file" accept="image/x-png,image/gif,image/jpeg"/>
                 </div>
                 <div className="info">
-                    <h2 className="name">Сергей Сергеев</h2>
-                    <span className="location">Новосибирск, Россия</span>
+                    <h2 className="name">{ controller.fullName }</h2>
+                    <span className="location">{ controller.location }</span>
                 </div>
             </header>
 

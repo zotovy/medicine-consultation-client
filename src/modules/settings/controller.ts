@@ -12,6 +12,7 @@ class SettingsController implements ISettingsController{
     @observable isLoading : boolean = true;
 
     // Account
+    @observable profileImage: string = "";
     @observable name: string = "Ярослав";
     @observable surname: string = "Зотов";
     @observable patronymic: string = "Сергеевич";
@@ -75,7 +76,15 @@ class SettingsController implements ISettingsController{
             ));
 
     get fullName(): string {
-        return `${this.surname} ${this.name} ${this.patronymic}`;
+        return `${this.surname ?? ""} ${this.name ?? ""} ${this.patronymic ?? ""}`;
+    }
+
+    get location(): string {
+        let location = "";
+        if (this.city) location = this.city;
+        else if (this.city && this.country) location = `${this.city}, ${this.country}`;
+        else if (this.country) location = this.country;
+        return location;
     }
 
     get birthdayString(): string {
