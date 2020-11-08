@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { observer } from "mobx-react";
+import { useHistory } from "react-router-dom";
 import "../styles.scss"
 import NavigationComponent from "../components/navigation";
 import { IconClass } from "../icons";
@@ -8,15 +9,28 @@ import SexCheckbox from "../../../components/sex-checkbox";
 import ConfirmButton from "../../../components/confirm-button";
 import DateTextField from "../../../components/year-date-textfield";
 import Calendar from "../../../components/calendar";
+import LoadingLine from "../../../components/loading-line";
 import controller from "../controller";
 import formatServices from "../../../services/format-services";
 import UserPlaceholder from "../../../static/images/user-placeholder.jpg"
+import token_services from "../../../services/token-services";
+
 
 
 const SettingsAccountPage = () => {
 
+    const history = useHistory();
+
+    const handleErrors = (e : any) => {
+        if (e === "logout") {
+            token_services.removeTokens();
+            history.push('/');
+        }
+        else if (e === "error") history.push('/error');
+    }
+
     useEffect(() => {
-        controller.fetchUser();
+        controller.fetchUser().catch(handleErrors);
     }, []);
 
     if (controller.isLoading) return <h1>Loading...</h1>
@@ -26,6 +40,9 @@ const SettingsAccountPage = () => {
             : `url(${UserPlaceholder})`};
 
     return <main className="account-page settings">
+        {
+            controller.isLoadingSave ? <LoadingLine/> : <React.Fragment/>
+        }
         <NavigationComponent active={0}/>
         <section className="content account">
             <header>
@@ -49,8 +66,7 @@ const SettingsAccountPage = () => {
                     <TextField onChange={(v) => controller.email = v} field="Email" value={controller.email}/>
                     <TextField onChange={(v) => controller.country = v} field="Страна" value={controller.country}/>
                     <SexCheckbox onChange={() => controller.isMale = !controller.isMale} isMale={controller.isMale}/>
-                    <ConfirmButton content="Сохранить" onConfirm={() => {
-                    }}/>
+                    <ConfirmButton content="Cохранить" onConfirm={() => controller.saveAccountSettings().catch(handleErrors)}/>
                 </div>
 
                 <div className="gap"/>

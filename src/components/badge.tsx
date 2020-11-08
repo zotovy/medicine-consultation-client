@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import '../index.scss'
+import '../modules/auth/index.scss'
 
 type Props = {
     icon: React.FC;
     title: string;
-    children: any;
+    children?: any;
     isOpen: boolean;
 }
 
@@ -26,7 +26,7 @@ const Badge: React.FC<Props> = (props: Props) => {
     }
 
     return <div className="badge-container">
-        <div className={`badge ${props.isOpen && isOpen ? 'open' : ""}`} >
+        <div className={`badge ${props.isOpen && isOpen ? 'open' : ""} ${props.children ? "" : "short"}`} >
             <div className="icon">{<props.icon />}</div>
             <div className="text">
                 <h3>{props.title}</h3>

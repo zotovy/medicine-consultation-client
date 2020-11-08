@@ -97,6 +97,16 @@ class FormatServices {
         input = this.formatBySchema(schema, input);
         return input;
     };
+
+    toNumericPhone = (phone: string) : number => {
+        phone = phone.split(" ").join("").split("-").join("").split("+").join().split(",").join("");
+        return parseInt(phone);
+    }
+
+    toUsualDate = (date: string) : Date => {
+        const parts = date.split("/");
+        return new Date(parseInt(parts[2]), parseInt(parts[1]), parseInt(parts[0]));
+    }
 }
 
 export default new FormatServices();

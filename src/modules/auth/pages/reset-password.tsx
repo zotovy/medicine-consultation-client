@@ -7,7 +7,7 @@ import { LockIcon, DoneIcon } from "../icons";
 import ConfirmButton from "../../../components/confirm-button";
 import PasswordError from "../components/password-error";
 import controller from "../stores/reset-password";
-import Badge from "../components/badge";
+import Badge from "../../../components/badge";
 
 
 const ResetPasswordPage: React.FC = () => {

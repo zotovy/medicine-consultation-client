@@ -6,10 +6,12 @@ import { AFRes, authFetch, EAuthFetch } from "../../services/fetch_services";
 import axios from "axios";
 import token_services from "../../services/token-services";
 
-class SettingsController implements ISettingsController{
+class SettingsController implements ISettingsController {
     // General
     @observable status: "user" | "doctor" = "doctor";
-    @observable isLoading : boolean = true;
+    @observable isLoading: boolean = true;
+    @observable isLoadingSave: boolean = false;
+
 
     // Account
     @observable profileImage: string = "";
@@ -23,23 +25,23 @@ class SettingsController implements ISettingsController{
     @observable city: string = "Пермь";
     @observable isMale: boolean = true;
     @observable isCalendarOpen: boolean = false;
+    @observable fullName: string = "";
+    @observable location: string = "";
 
     // Doctor
     @observable startConsultationAt: Time = new Time(9, 0);
     @observable endConsultationAt: Time = new Time(22, 0);
     @observable consultationTime: Duration = new Duration(50);
 
-    fetchUser = async () : Promise<void> => {
+    fetchUser = async (): Promise<void> => {
         const uid = localStorage.getItem("uid");
         const isUser = localStorage.getItem("isUser");
         if (!uid || isUser == null) throw "logout";
 
-        let result : AFRes | undefined;
+        let result: AFRes | undefined;
         this.isLoading = true;
-        if (isUser) result =  await this._fetchUser(uid);
+        if (isUser) result = await this._fetchUser(uid);
         this.isLoading = false;
-
-        console.log(result);
 
         if (!result || result.status === EAuthFetch.Error) throw "error";
         else if (result.status === EAuthFetch.Unauthorized) throw "logout";
@@ -51,21 +53,27 @@ class SettingsController implements ISettingsController{
                 if (isUser) user = result.data.user;
 
                 this.name = user.name;
+                this.surname = user.surname;
                 this.startConsultationAt = user.surname;
                 this.patronymic = user.patronymic;
                 this.phone = formatServices.formatNumericPhone(user.phone ?? 0);
-                this.birthday = user.birthday;
+                this.birthday = new Date(user.birthday);
                 this.email = user.email;
                 this.country = user.country;
                 this.city = user.city;
                 this.isMale = user.sex;
+                this.fullName = `${user.name} ${user.surname}`;
+
+                if (this.city && this.country) this.location = `${this.city}, ${this.country}`;
+                else if (this.city) this.location = this.city;
+                else if (this.country) this.location = this.country;
 
                 // todo: add another fields
             })();
         }
     }
 
-    private _fetchUser = async (id : string) : Promise<AFRes> =>
+    private _fetchUser = async (id: string): Promise<AFRes> =>
         await authFetch(() => axios.get(
             process.env.REACT_APP_SERVER_URL + `/api/user/${id}`,
             {
@@ -73,19 +81,45 @@ class SettingsController implements ISettingsController{
                     auth: token_services.header
                 }
             }
-            ));
+        ));
 
-    get fullName(): string {
-        return `${this.surname ?? ""} ${this.name ?? ""} ${this.patronymic ?? ""}`;
+    saveAccountSettings = async (): Promise<void> => {
+        this.isLoadingSave = true;
+        const uid = localStorage.getItem("uid");
+        const isUser = localStorage.getItem("isUser");
+        if (!uid || isUser == null) throw "logout";
+
+        const route = isUser ? `/api/user/${uid}` : `/api/doctor/${uid}`
+        const res = await authFetch(() => axios.put(
+            process.env.REACT_APP_SERVER_URL + route,
+            {
+                id: uid,
+                name: this.name,
+                surname: this.surname,
+                patronymic: this.patronymic,
+                phone: formatServices.toNumericPhone(this.phone),
+                email: this.email,
+                birthday: this.birthday.toISOString(),
+                country: this.country,
+                city: this.city,
+                sex: this.isMale,
+            },
+            {
+                headers: {
+                    auth: token_services.header
+                },
+            }));
+
+        this.isLoadingSave = false;
+        if (res.status === EAuthFetch.Error) throw "error";
+        else if (res.status === EAuthFetch.Unauthorized) throw "login";
+        else {
+            console.log("success!");
+        }
     }
 
-    get location(): string {
-        let location = "";
-        if (this.city) location = this.city;
-        else if (this.city && this.country) location = `${this.city}, ${this.country}`;
-        else if (this.country) location = this.country;
-        return location;
-    }
+
+
 
     get birthdayString(): string {
         return formatServices.formatDate(this.birthday);

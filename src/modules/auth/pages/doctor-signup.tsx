@@ -4,7 +4,7 @@ import { observer } from "mobx-react";
 import { useHistory } from "react-router-dom";
 import styled from 'styled-components';
 import MediaQuery from 'react-responsive';
-import Badge from "../components/badge";
+import Badge from "../../../components/badge";
 import signupUIStore from "../stores/signupUI";
 import ErrorBadge from "../../../components/error-badge";
 

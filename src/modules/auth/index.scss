@@ -68,19 +68,12 @@
             justify-content: center;
             align-items: center;
 
-
             img,
             svg {
                 width: 60%;
                 height: 60%;
             }
-
-
-
         }
-
-
-
 
         .text {
             width: calc(100% - 85px);
@@ -125,6 +118,26 @@
                     color: #565656;
                     font-size: 13px;
                 }
+            }
+        }
+
+        &.short {
+            pointer-events: none;
+            max-height: 65px;
+            min-width: 200px;
+
+            .icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .text {
+                width: calc(100% - 40px);
+            }
+
+            h3 {
+                font-size: 16px;
+                font-weight: 400;
             }
         }
     }
