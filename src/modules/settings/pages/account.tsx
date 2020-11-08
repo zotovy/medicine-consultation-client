@@ -48,7 +48,11 @@ const SettingsAccountPage = () => {
             <header>
                 <div className="profile-image" style={imgStyles}>
                     <div className="icon-pick"><IconClass/></div>
-                    <input type="file" accept="image/x-png,image/gif,image/jpeg"/>
+                    <input
+                        type="file"
+                        accept="image/x-png,image/gif,image/jpeg"
+                        multiple={false}
+                        onChange={(e) => controller.changeProfilePic(e.target.files)}/>
                 </div>
                 <div className="info">
                     <h2 className="name">{ controller.fullName }</h2>

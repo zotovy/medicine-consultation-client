@@ -51,10 +51,12 @@ class SettingsController implements ISettingsController {
 
                 let user;
                 if (isUser) user = result.data.user;
+                console.log(user);
 
                 this.name = user.name;
                 this.surname = user.surname;
-                this.startConsultationAt = user.surname;
+                this.profileImage = user.photoUrl;
+                this.surname = user.surname;
                 this.patronymic = user.patronymic;
                 this.phone = formatServices.formatNumericPhone(user.phone ?? 0);
                 this.birthday = new Date(user.birthday);
@@ -113,13 +115,37 @@ class SettingsController implements ISettingsController {
         this.isLoadingSave = false;
         if (res.status === EAuthFetch.Error) throw "error";
         else if (res.status === EAuthFetch.Unauthorized) throw "login";
-        else {
-            console.log("success!");
-        }
+
     }
 
+    changeProfilePic = async (files: FileList | null) : Promise<void> => {
+        if (files === null) return;
+        this.isLoadingSave = true;
+        const uid = localStorage.getItem("uid");
+        const isUser = localStorage.getItem("isUser");
+        if (!uid || isUser == null) throw "logout";
 
+        const bodyFormData = new FormData();
+        bodyFormData.append("1", files[0]);
 
+        const route = isUser ? `/api/user/setAvatar/${uid}` : `/api/doctor/${uid}`
+        const res = await authFetch(() => axios({
+            method: "POST",
+            url: process.env.REACT_APP_SERVER_URL + route,
+            data: bodyFormData,
+            headers: {'Content-Type': 'multipart/form-data', auth: token_services.header },
+        }));
+
+        action(() => {
+            this.isLoadingSave = false;
+            if (res.status === EAuthFetch.Error) throw "error";
+            else if (res.status === EAuthFetch.Unauthorized) throw "login";
+            else {
+                this.profileImage = res.data.photoUrlPath;
+            }
+        })();
+
+    }
 
     get birthdayString(): string {
         return formatServices.formatDate(this.birthday);
