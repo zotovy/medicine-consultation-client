@@ -136,6 +136,7 @@ class AuthStore {
             lastActiveAt: new Date(),
             favourites: [],
             photoUrl: "",
+
         };
 
         try {

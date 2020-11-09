@@ -1,11 +1,7 @@
 export default interface Consultation {
     id?: string;
-    patientId?: string;
-    patientName?: string;
-    doctorId?: string;
-    doctorName?: string;
-    doctorPhotoUrl?: string;
-    doctorSpecialty?: string;
+    patientId?: string | UserType;
+    doctorId?: string | DoctorType;
     date?: Date;
     note?: string;
 }

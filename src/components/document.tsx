@@ -35,9 +35,9 @@ const Document: React.FC<Props> = ({ file  }) => {
             <span className="title">{file.name.substring(0, 15) + (file.name.length > 15 ? "..." : "")}</span>
             <span className="subtitle">{formatServices.formatSize(file.size)} {type}</span>
         </div>
-        <div className="icon" onClick={}>
-            <CloseIcon />
-        </div>
+        {/*<div className="icon" onClick={}>*/}
+        {/*    <CloseIcon />*/}
+        {/*</div>*/}
     </div>
 }
 

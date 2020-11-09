@@ -46,12 +46,20 @@ class AccountController {
 
         if (UserStore.user !== null) {
             this._mapUserToClass(UserStore.user);
+            this.isLoading = false;
             return;
         }
 
-        let result: AFRes | undefined;
         this.isLoading = true;
-        if (isUser) result = await this._fetchUser(uid);
+        const route = isUser === "true" ? `/api/user/${uid}` : `/api/doctor/${uid}`
+        const result = await authFetch(() => axios.get(
+            process.env.REACT_APP_SERVER_URL + route,
+            {
+                headers: {
+                    auth: token_services.header
+                }
+            }
+        ));
         this.isLoading = false;
 
         if (!result || result.status === EAuthFetch.Error) throw "error";
@@ -61,7 +69,8 @@ class AccountController {
                 if (!result) throw "error";
 
                 let user;
-                if (isUser) user = result.data.user;
+                if (isUser === "true") user = result.data.user;
+                else user = result.data.doctor;
 
                 UserStore.user = user;
                 this._mapUserToClass(user);
@@ -74,16 +83,6 @@ class AccountController {
             })();
         }
     }
-
-    private _fetchUser = async (id: string): Promise<AFRes> =>
-        await authFetch(() => axios.get(
-            process.env.REACT_APP_SERVER_URL + `/api/user/${id}`,
-            {
-                headers: {
-                    auth: token_services.header
-                }
-            }
-        ));
 
     saveAccountSettings = async (): Promise<void> => {
         const uid = localStorage.getItem("uid");
@@ -170,7 +169,7 @@ class AccountController {
         })();
     }
 
-    private _mapUserToClass = (user : UserType) : void => {
+    @action private _mapUserToClass = (user : UserType) : void => {
         this.name = user.name;
         this.surname = user.surname;
         this.profileImage = user.photoUrl;

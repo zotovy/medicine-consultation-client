@@ -76,7 +76,7 @@ class FormatServices {
         return "+7 " + input;
     };
 
-    formatDate = (date: Date): string => {
+    formatDate = (date: Date | undefined): string => {
 
         if (!date) return "";
 
@@ -97,6 +97,26 @@ class FormatServices {
         input = this.formatBySchema(schema, input);
         return input;
     };
+
+    formatToUsualDate = (date: Date | undefined) : string => {
+        if (!date) return "";
+
+        const dDays = this._deltaDateInDay(date, new Date());
+        if (dDays < 1) return "меньше суток назад";
+        if (dDays < 1) return "день назад";
+
+        let day = date.getDay().toString(), month = date.getMonth().toString();
+        if (day.length === 1) day = "0" + day;
+        if (month.length === 1) month = "0" + month;
+
+        let str = `${day}.${month}`;
+        if (new Date().getFullYear() !== date.getFullYear()) str += `.${date.getFullYear()}`;
+        return str;
+    }
+
+    private _deltaDateInDay = (date1: Date, date2: Date) : number => {
+        return Math.abs(date1.getTime() - date2.getTime() / (1000 * 3600 * 24));
+    }
 
     toNumericPhone = (phone: string) : number => {
         phone = phone.split(" ").join("").split("-").join("").split("+").join().split(",").join("");

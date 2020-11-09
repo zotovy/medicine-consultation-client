@@ -58,9 +58,17 @@ export const IconClass : React.FC<IconProps> = () => {
     </svg>
 }
 
-export const DoneIcon: React.FC = () => {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="110.178" height="83.885" viewBox="0 0 110.178 83.885">
-        <path id="Icon_material-done" data-name="Icon material-done" d="M40.156,74.757,13.864,48.465,5.1,57.229,40.156,92.285l75.121-75.121L106.513,8.4Z" transform="translate(-5.1 -8.4)" fill="#fff" />
+export const NotFoundIcon : React.FC<IconProps> = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="179" height="150" viewBox="0 0 179 150">
+        <g id="Сгруппировать_191"  transform="translate(-913 -455)">
+            <ellipse id="Эллипс_44"  cx="89.5" cy="16" rx="89.5" ry="16" transform="translate(913 573)" fill="#f7f7f7"/>
+            <path id="Контур_138"  d="M14178.086,1995l-20.562-26.3H14108v71.14Z" transform="translate(-13107 -1452)" fill="#aeb8c2"/>
+            <path id="Контур_137" d="M14108,1995l20.563-26.3h49.523v71.14Z" transform="translate(-13174 -1452)" fill="#aeb8c2"/>
+            <rect id="Прямоугольник_306" width="95" height="125" rx="5" transform="translate(955 455)" fill="#f5f5f7"/>
+            <path id="Прямоугольник_304" d="M0,0H137a0,0,0,0,1,0,0V48a5,5,0,0,1-5,5H5a5,5,0,0,1-5-5V0A0,0,0,0,1,0,0Z" transform="translate(934 543)" fill="#dce0e6"/>
+            <path id="Прямоугольник_305" d="M0,0H68a0,0,0,0,1,0,0V12A15,15,0,0,1,53,27H15A15,15,0,0,1,0,12V0A0,0,0,0,1,0,0Z" transform="translate(969 540)" fill="#f5f5f7"/>
+            <rect id="Прямоугольник_307" width="69" height="38" rx="3" transform="translate(968 467)" fill="#dce0e6"/>
+        </g>
     </svg>;
 }
 

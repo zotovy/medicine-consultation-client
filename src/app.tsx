@@ -96,9 +96,9 @@ const App = () => {
                     <MainPage/>
                 </Suspense>
             </Route>
-            <Route path="/settings" >
+            <Route path="/settings">
                 <Menu/>
-                <Route path="/settings/account" >
+                <Route path="/settings/account">
                     <Suspense fallback={<React.Fragment/>}>
                         <SettingsAccountPage/>
                     </Suspense>

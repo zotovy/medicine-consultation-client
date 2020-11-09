@@ -22,6 +22,7 @@ const SettingsAccountPage = () => {
     const history = useHistory();
 
     const handleErrors = (e : any) => {
+        console.log(e);
         if (e === "logout") {
             token_services.removeTokens();
             history.push('/');
