@@ -60,9 +60,9 @@ var SympController = /** @class */ (function () {
         this.canFindDoctors = false;
         this.handlerClick = function () {
             if (_this.symptoms.find(function (n) { return n.active; }) !== undefined) {
-                _this._fetchDoctors(_this.bodyPart).then(function (response) { console.log(response); _this.doctors = response; });
+                _this._fetchDoctors(_this.bodyPart).then(function (response) { return _this.doctors = response; });
             }
-            else if (_this.symptoms.length == 0) {
+            else if (_this.symptoms.find(function (n) { return n.active == true; }) == undefined) {
                 _this.openBadgeCh();
             }
         };
@@ -129,7 +129,7 @@ var SympController = /** @class */ (function () {
                     switch (_a.label) {
                         case 0: return [4 /*yield*/, axios_1["default"]
                                 .get(process.env.REACT_APP_SERVER_URL +
-                                ("api/symptoms?bodyPart=" + bodyPart))
+                                ("/api/symptoms?bodyPart=" + bodyPart))
                                 .then(function (data) { return data.data; })["catch"](function (e) {
                                 return { success: false };
                             })];
@@ -186,8 +186,8 @@ var SympController = /** @class */ (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, axios_1["default"]
-                            .get(process.env.REACT_APP_SERVER_URL + ("api/doctors?symptoms=" + bodyPart))
-                            .then(function (data) { _this.canFindDoctors = true; return data.data; })["catch"](function (e) {
+                            .get(process.env.REACT_APP_SERVER_URL + ("/api/doctors?bodyPart=" + JSON.stringify([bodyPart])))
+                            .then(function (data) { _this.canFindDoctors = true; return data.data; })["catch"](function () {
                             return { success: false };
                         })];
                     case 1:

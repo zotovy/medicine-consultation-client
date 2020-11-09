@@ -18,7 +18,6 @@ var Slider = function () {
         history.push("/doctor/" + highlightSlideId);
     };
     var cloneDoctors = mobx_1.toJS(doctors);
-    console.log(cloneDoctors[0].speciality[0]);
     var history = react_router_dom_1.useHistory();
     return (react_1["default"].createElement("div", { className: "slider-container" },
         react_1["default"].createElement("div", { className: "slider-wrapper " + (doctors.length == 1 ? "slider-wrapper-row" : ""), style: { transform: "translate3d(-" + slideShift + "px, 0px, 0px)", transition: "all 300ms ease 0s" } },
@@ -47,7 +46,7 @@ var Slider = function () {
                 react_1["default"].createElement("div", { className: "slider-control-wrapper slider-control-wrapper-cBut" },
                     react_1["default"].createElement(confirm_button_1["default"], { content: '\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C', onConfirm: function () { } }))),
             react_1["default"].createElement("div", { className: "slider-control-wrapper slider-control-wrapper-right " + (highlightSlideId !== "" ? "control-right" : '') },
-                react_1["default"].createElement("div", { className: (currentSlide < Math.ceil(doctors.length / 4) ? "" : "disactive") + " slider-button slider-button-next", onClick: function () { prevNextButsController("next", Math.ceil(doctors.length / 4)); } },
+                react_1["default"].createElement("div", { className: (currentSlide < Math.ceil(doctors.length / 4) ? "" : "disactive") + " slider-button slider-button-next", onClick: function () { prevNextButsController("next", Math.ceil(doctors.length / 4) < 3 ? 1 : Math.ceil(doctors.length / 4)); } },
                     react_1["default"].createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "19.828", height: "35.657", viewBox: "0 0 19.828 35.657" },
                         react_1["default"].createElement("path", { id: "Icon_feather-chevron-right", "data-name": "Icon feather-chevron-right", d: "M13.5,39l15-15L13.5,9", transform: "translate(-10.672 -6.172)", fill: "none", stroke: "#30b9d6", "stroke-linecap": "round", "stroke-linejoin": "round", "stroke-width": "4" })))))));
 };

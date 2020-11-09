@@ -20,8 +20,8 @@ class SympController {
 
     @action handlerClick = () => {
         if(this.symptoms.find((n:any)  => n.active) !== undefined){
-            this._fetchDoctors(this.bodyPart).then(response => {console.log(response); this.doctors = response});
-        }else if(this.symptoms.length == 0){
+            this._fetchDoctors(this.bodyPart).then(response => this.doctors = response);
+        }else if(this.symptoms.find((n:any)  => n.active == true) == undefined){
             this.openBadgeCh()
         }
     }
@@ -86,7 +86,7 @@ class SympController {
         const response = await axios
             .get(
                 process.env.REACT_APP_SERVER_URL +
-                `api/symptoms?bodyPart=${bodyPart}`
+                `/api/symptoms?bodyPart=${bodyPart}`
             )
             .then((data: any) => data.data)
             .catch((e: any) => {
@@ -144,10 +144,10 @@ class SympController {
     ): Promise<DoctorType[]> => {
         const response = await axios
             .get(
-                process.env.REACT_APP_SERVER_URL + `api/doctors?symptoms=${bodyPart}`
+                process.env.REACT_APP_SERVER_URL + `/api/doctors?bodyPart=${JSON.stringify([bodyPart])}`
             )
             .then((data: any) => {this.canFindDoctors = true; return data.data})
-            .catch((e: any) => {
+            .catch(() => {
                 return { success: false };
             });
 

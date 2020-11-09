@@ -18,7 +18,7 @@ const SymptomsPage: React.FC = () => {
                 message="Произошла непридвиденная ошибка. Мы уже работаем над этим!"
             />
             <ErrorBadge
-                isOpen={controller.isErrorBadgeOpen}
+                isOpen={controller.isErrorBadgeOpenCh}
                 message="Выберите симптомы, которые Вас беспокоят."
             />
          {controller.canFindDoctors === true 

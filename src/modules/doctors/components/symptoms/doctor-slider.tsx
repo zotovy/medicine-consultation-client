@@ -17,7 +17,6 @@ const Slider: React.FC = () => {
         history.push(`/doctor/${highlightSlideId}`);
     }
     const cloneDoctors = toJS(doctors);
-    console.log(cloneDoctors[0].speciality[0])
     const history = useHistory();
     return(
         <div className="slider-container">
@@ -62,7 +61,7 @@ const Slider: React.FC = () => {
                     </div>
                 </Link>
                 <div className={`slider-control-wrapper slider-control-wrapper-right ${highlightSlideId !== "" ? "control-right" : ''}`}>
-                    <div className={`${currentSlide < Math.ceil(doctors.length / 4) ? "" :  "disactive"} slider-button slider-button-next`} onClick={()=>{prevNextButsController("next", Math.ceil(doctors.length / 4))}}>
+                    <div className={`${currentSlide < Math.ceil(doctors.length / 4) ? "" :  "disactive"} slider-button slider-button-next`} onClick={()=>{prevNextButsController("next", Math.ceil(doctors.length / 4) < 3 ? 1 : Math.ceil(doctors.length / 4))}}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.828" height="35.657" viewBox="0 0 19.828 35.657">
                             <path id="Icon_feather-chevron-right" data-name="Icon feather-chevron-right" d="M13.5,39l15-15L13.5,9" transform="translate(-10.672 -6.172)" fill="none" stroke="#30b9d6" stroke-linecap="round" stroke-linejoin="round" stroke-width="4"/>
                         </svg>
