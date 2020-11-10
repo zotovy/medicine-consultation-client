@@ -19,14 +19,18 @@ class ConsultationController {
         const uid = localStorage.getItem("uid");
         const isUser = localStorage.getItem("isUser");
         if (!uid || isUser == null) throw "logout";
+
+        if (UserStore.consultations !== null) {
+            this.consultations = UserStore.consultations;
+            return;
+        }
+
         this.isLoading = true;
 
         if (UserStore.user === null) await this._fetchUser();
         if (UserStore.user === null) throw "login";
 
         await action(async () => {
-
-
             // todo: doctor
             const result = await authFetch(() => axios.get(
                 process.env.REACT_APP_SERVER_URL + `/api/consultation/user/${uid}?isUser=${isUser}`,
