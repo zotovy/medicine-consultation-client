@@ -187,73 +187,134 @@ main.account-page section.account {
 }
 
 
-main.consultations-page section.consultations {
-    max-width: 600px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 75px;
-    grid-row-gap: 75px;
+main.consultations-page {
 
-    @media screen and (max-width: 1336px) {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .consultation-tile {
-        min-width: 300px;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 3px 15px rgba(#000000, 0.03);
+    .note-wrapper {
+        z-index: 100;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(black, 0.3);
 
         display: flex;
-        flex-direction: column;
+        justify-content: center;
+        align-items: center;
 
-        .header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 3px;
+        .note {
+            position: relative;
+            max-width: 75vw;
+            min-width: 400px;
+            background: white;
+            border-radius: 10px;
 
-            .profile-pic {
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                margin-right: 15px;
-                background-position: center;
-                background-size: cover;
-                background-repeat: no-repeat;
+
+
+            .header {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                padding: 15px;
+                border-bottom: 1px solid rgba(#111111, 0.1);
+
+                svg {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+
+                    path {
+                        pointer-events: all;
+                        cursor: pointer;
+                        fill: #565656;
+                    }
+                }
             }
 
-            .info {
-                display: flex;
-                flex-direction: column;
-
-                .title {
-                    font-size: 18px;
-                    color: #282828;
-                    font-weight: 500;
-                }
-
-                .subtitle {
-                    font-size: 16px;
-                    color: #707070;
-                }
+            .note-content {
+                width: 100%;
+                padding: 15px;
             }
         }
 
-        .tab {
-            cursor: pointer;
-            margin-top: 10px;
-            display: flex;
-            justify-content: space-between;
-
-            span {
-                font-size: 16px;
-                color: #565656;
-            }
-
-            svg {
-                width: 5px;
-                path { stroke: #707070; }
-            }
+        &.disable {
+            transform: scale(0);
         }
     }
+
+    section.consultations {
+        max-width: 600px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 75px;
+        grid-row-gap: 75px;
+
+        @media screen and (max-width: 1336px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .consultation-tile {
+            min-width: 300px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 3px 15px rgba(#000000, 0.03);
+
+            display: flex;
+            flex-direction: column;
+
+            .header {
+                display: flex;
+                align-items: center;
+                margin-bottom: 3px;
+
+                .profile-pic {
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 50%;
+                    margin-right: 15px;
+                    background-position: center;
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                }
+
+                .info {
+                    display: flex;
+                    flex-direction: column;
+
+                    .title {
+                        font-size: 18px;
+                        color: #282828;
+                        font-weight: 500;
+                    }
+
+                    .subtitle {
+                        font-size: 16px;
+                        color: #707070;
+                    }
+                }
+            }
+
+            .tab {
+                cursor: pointer;
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+
+                span {
+                    font-size: 16px;
+                    color: #565656;
+                }
+
+                svg {
+                    width: 5px;
+
+                    path {
+                        stroke: #707070;
+                    }
+                }
+            }
+        }
+
+    }
 }
+

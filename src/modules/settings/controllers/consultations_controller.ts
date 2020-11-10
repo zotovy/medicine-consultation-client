@@ -14,6 +14,12 @@ class ConsultationController {
 
     // Consultations
     @observable consultations: Consultation[] = [];
+    @observable isActive: boolean = false;
+    @observable selectedConsultation: number = -1;
+
+    get selectedCons() : Consultation {
+        return this.consultations[this.selectedConsultation];
+    }
 
     fetchConsultations = async () : Promise<void> => {
         const uid = localStorage.getItem("uid");
@@ -60,6 +66,11 @@ class ConsultationController {
         })();
     }
 
+    @action showConsultationNode = (i : number) : void => {
+        this.selectedConsultation = i;
+        this.isActive = true;
+    }
+
     private _fetchUser = async () : Promise<void> => {
         const uid = localStorage.getItem("uid");
         const isUser = localStorage.getItem("isUser");
@@ -90,6 +101,8 @@ class ConsultationController {
             })();
         }
     }
+
+
 }
 
 export default new ConsultationController();

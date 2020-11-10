@@ -4,6 +4,8 @@ import Navigation from "../components/navigation";
 import ConsultationTile from "../components/consultation-tile";
 import controller from "../controllers/consultations_controller";
 import NotFound from "../components/not-found";
+import NoteComponent from "../components/note";
+import "../styles.scss";
 
 const ConsultationsPage = () => {
 
@@ -19,10 +21,14 @@ const ConsultationsPage = () => {
     </main>
 
     return <main className="consultations-page settings-page">
+        <NoteComponent />
         <Navigation active={1} />
         <section className="content consultations">
             {
-                controller.consultations.map(e => <ConsultationTile consultation={e} key={e.toString()} />)
+                controller.consultations.map((e, i) => <ConsultationTile
+                    onShowNode={() => controller.showConsultationNode(i)}
+                    consultation={e}
+                    key={e.toString()} />)
             }
         </section>
     </main>
