@@ -4,7 +4,7 @@ declare interface Review {
         name: string;
         surname: string;
         photoUrl: string;
-    };
+    } | string;
     doctorId: string;
     content: string;
     point: number;

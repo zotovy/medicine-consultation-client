@@ -6,6 +6,7 @@ import controller from "../controllers/consultations_controller";
 import NotFound from "../components/not-found";
 import NoteComponent from "../components/note";
 import "../styles.scss";
+import SettingsLoadingComponent from "../components/loading";
 
 const ConsultationsPage = () => {
 
@@ -13,7 +14,9 @@ const ConsultationsPage = () => {
         controller.fetchConsultations();
     }, []);
 
-    if (controller.isLoading) return <h1>Loading...</h1>
+    if (controller.isLoading) {
+        return <SettingsLoadingComponent active={1}/>
+    }
 
     if (controller.consultations.length === 0) return  <main className="consultations-page settings-page">
         <Navigation active={1} />

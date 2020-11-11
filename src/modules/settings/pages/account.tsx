@@ -14,6 +14,7 @@ import controller from "../controllers/account-controller";
 import formatServices from "../../../services/format-services";
 import UserPlaceholder from "../../../static/images/user-placeholder.jpg"
 import token_services from "../../../services/token-services";
+import SettingsLoadingComponent from "../components/loading";
 
 
 
@@ -34,7 +35,9 @@ const SettingsAccountPage = () => {
         controller.fetchUser().catch(handleErrors);
     }, []);
 
-    if (controller.isLoading) return <h1>Loading...</h1>
+    if (controller.isLoading) {
+        return <SettingsLoadingComponent active={0}/>
+    }
 
     const imgStyles = {backgroundImage: controller.profileImage
             ? `url(${controller.profileImage})`

@@ -33,9 +33,6 @@ class ConsultationController {
 
         this.isLoading = true;
 
-        if (UserStore.user === null) await this._fetchUser();
-        if (UserStore.user === null) throw "login";
-
         await action(async () => {
             // todo: doctor
             const result = await authFetch(() => axios.get(
@@ -70,38 +67,6 @@ class ConsultationController {
         this.selectedConsultation = i;
         this.isActive = true;
     }
-
-    private _fetchUser = async () : Promise<void> => {
-        const uid = localStorage.getItem("uid");
-        const isUser = localStorage.getItem("isUser");
-        if (!uid || isUser == null) throw "logout";
-
-        const route = isUser === "true" ? `/api/user/${uid}` : `/api/doctor/${uid}`
-        const result: AFRes = await authFetch(() => axios.get(
-            process.env.REACT_APP_SERVER_URL + route,
-            {
-                headers: {
-                    auth: token_services.header
-                }
-            }
-        ));
-
-
-        if (!result || result.status === EAuthFetch.Error) throw "error";
-        else if (result.status === EAuthFetch.Unauthorized) throw "logout";
-        else {
-            action(() => {
-                if (!result) throw "error";
-
-                let user;
-                if (isUser === "true") user = result.data.user;
-                else user = result.data.doctor;
-
-                UserStore.user = user;
-            })();
-        }
-    }
-
 
 }
 

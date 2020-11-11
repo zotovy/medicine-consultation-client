@@ -4,16 +4,20 @@ import { observer } from "mobx-react";
 
 export default observer(() => {
     return <div className="loader">
-        <div className="sk-chase">
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-            <div className="sk-chase-dot"></div>
-        </div>
+        <LoadingIndicator/>
     </div>
 })
+
+export const LoadingIndicator : React.FC = () => {
+    return <div className="sk-chase">
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+        <div className="sk-chase-dot"></div>
+    </div>;
+}
 
 export const InlineLoadingIndicator: React.FC = () => {
     return <div id="circleG">

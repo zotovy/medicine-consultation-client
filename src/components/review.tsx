@@ -1,6 +1,7 @@
 import React from "react";
-import userPlaceholder from "../../../../../static/images/user-placeholder.jpg";
-import Rating from "../../rating";
+import userPlaceholder from "../static/images/user-placeholder.jpg";
+import Rating from "../modules/doctors/components/rating";
+import "./styles/review.scss";
 
 type Props = {
     id: string;
@@ -20,7 +21,7 @@ const Review: React.FC<Props> = (props: Props) => {
         backgroundImage: `url(${photoUrl})`,
     }
 
-    return <div className="review">
+    return <div className="review-component">
         <div className="header">
             <div className="photo" style={photoStyles} />
             <div className="fullname">

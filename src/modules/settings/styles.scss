@@ -54,11 +54,23 @@ main.settings-page {
     }
 
     .content {
+        width: 100%;
+        height: 100%;
         margin-left: 280px;
         padding-top: 25px;
+        max-width: calc(1100px - 280px);
 
         @media screen and (min-width: 1100px) {
-            margin-left: calc((100vw - 1100px) / 2 + 280px)
+            margin-left: calc((100vw - 1100px) / 2 + 280px);
+            margin-right: calc((100vw - 1100px) / 2 );
+        }
+
+        .settings-loading {
+            width: 90%;
+            height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
     }
 
@@ -83,6 +95,8 @@ main.settings-page {
             color: rgba(#111111, 0.75);
         }
     }
+
+
 }
 
 
@@ -314,7 +328,13 @@ main.consultations-page {
                 }
             }
         }
-
     }
+}
+
+main.reviews-page section.reviews {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 55px;
+    grid-row-gap: 55px;
 }
 
