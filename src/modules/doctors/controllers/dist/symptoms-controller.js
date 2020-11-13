@@ -130,7 +130,7 @@ var SympController = /** @class */ (function () {
                         case 0: return [4 /*yield*/, axios_1["default"]
                                 .get(process.env.REACT_APP_SERVER_URL +
                                 ("/api/symptoms?bodyPart=" + bodyPart))
-                                .then(function (data) { return data.data; })["catch"](function (e) {
+                                .then(function (data) { return data.data; })["catch"](function () {
                                 return { success: false };
                             })];
                         case 1:
@@ -156,6 +156,16 @@ var SympController = /** @class */ (function () {
             _this.symptoms = _this.arrSymps.map(function (item, i) {
                 return (item = _this.arrSymps[i]);
             });
+        };
+        this.resetController = function () {
+            _this.bodyPart = 'Голова';
+            _this.doctors = [];
+            _this.symptoms = [];
+            _this.loading = true;
+            _this.arrSymps = [];
+            _this.isErrorBadgeOpen = false;
+            _this.isErrorBadgeOpenCh = false;
+            _this.canFindDoctors = false;
         };
         this.highlightBodyPart = function (e) {
             // todo: highlight body part
@@ -251,6 +261,9 @@ var SympController = /** @class */ (function () {
     __decorate([
         mobx_1.action
     ], SympController.prototype, "updateSymps");
+    __decorate([
+        mobx_1.action
+    ], SympController.prototype, "resetController");
     __decorate([
         mobx_1.action
     ], SympController.prototype, "highlightBodyPart");

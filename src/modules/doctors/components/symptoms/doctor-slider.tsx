@@ -22,7 +22,7 @@ const Slider: React.FC = () => {
         <div className="slider-container">
             <div className={`slider-wrapper ${doctors.length == 1 ? "slider-wrapper-row" : ""}`} style={{ transform: `translate3d(-${slideShift}px, 0px, 0px)`, transition: `all 300ms ease 0s`}}>
                 {doctors.map((e) => <Slide id={e.id ?? ""} name={e.name ?? ""} surname={e.surname ?? ""} imgUrl={e.photoUrl ?? ""} rating={e.rating} speciality={e.speciality[0]} />)}
-            <Link to={`/find-doctor?specialities=av`}>
+            <Link to={`/find-doctor?specialities=${cloneDoctors[0].speciality[0]}`}>
                     <div className="slider-slide slider-show-more-but">
                         <div className="doctor_profile_pic show-more-pic">
                             <svg xmlns="http://www.w3.org/2000/svg" width="74.731" height="74.731" viewBox="0 0 74.731 74.731">

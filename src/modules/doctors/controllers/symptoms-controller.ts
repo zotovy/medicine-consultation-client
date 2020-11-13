@@ -89,7 +89,7 @@ class SympController {
                 `/api/symptoms?bodyPart=${bodyPart}`
             )
             .then((data: any) => data.data)
-            .catch((e: any) => {
+            .catch(() => {
                 return { success: false };
             });
 
@@ -111,6 +111,16 @@ class SympController {
             return (item = this.arrSymps[i]);
         });
     };
+    @action resetController = () => {
+         this.bodyPart = 'Голова';
+         this.doctors = [];
+         this.symptoms = [];
+         this.loading = true;
+         this.arrSymps = [];
+         this.isErrorBadgeOpen = false;
+         this.isErrorBadgeOpenCh = false;
+         this.canFindDoctors = false;
+    }
 
     @action highlightBodyPart = (e: any): void => {
         // todo: highlight body part
@@ -160,6 +170,7 @@ class SympController {
         }
         return await response.doctors;
     };
+    
 }
 
 export default new SympController();

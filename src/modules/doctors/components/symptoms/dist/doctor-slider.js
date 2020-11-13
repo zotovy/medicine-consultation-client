@@ -22,7 +22,7 @@ var Slider = function () {
     return (react_1["default"].createElement("div", { className: "slider-container" },
         react_1["default"].createElement("div", { className: "slider-wrapper " + (doctors.length == 1 ? "slider-wrapper-row" : ""), style: { transform: "translate3d(-" + slideShift + "px, 0px, 0px)", transition: "all 300ms ease 0s" } },
             doctors.map(function (e) { var _a, _b, _c, _d; return react_1["default"].createElement(doctor_slide_1["default"], { id: (_a = e.id) !== null && _a !== void 0 ? _a : "", name: (_b = e.name) !== null && _b !== void 0 ? _b : "", surname: (_c = e.surname) !== null && _c !== void 0 ? _c : "", imgUrl: (_d = e.photoUrl) !== null && _d !== void 0 ? _d : "", rating: e.rating, speciality: e.speciality[0] }); }),
-            react_1["default"].createElement(react_router_dom_2.Link, { to: "/find-doctor?specialities=av" },
+            react_1["default"].createElement(react_router_dom_2.Link, { to: "/find-doctor?specialities=" + cloneDoctors[0].speciality[0] },
                 react_1["default"].createElement("div", { className: "slider-slide slider-show-more-but" },
                     react_1["default"].createElement("div", { className: "doctor_profile_pic show-more-pic" },
                         react_1["default"].createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "74.731", height: "74.731", viewBox: "0 0 74.731 74.731" },

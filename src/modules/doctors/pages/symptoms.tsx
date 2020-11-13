@@ -1,4 +1,6 @@
-import React from "react";
+import React, { Suspense , lazy } from "react";
+import { Redirect, Route } from "react-router-dom";
+import Slider from "../components/symptoms/doctors";
 import Title from "../../../components/title";
 import { observer } from "mobx-react";
 import SymptomsTabs from '../components/symptoms/tabs'
@@ -6,11 +8,11 @@ import ConfirmButton from '../../../components/confirm-button';
 import SymptomsСhoice from '../components/symptoms/choice';
 import ErrorBadge from '../../../components/error-badge';
 import controller from "../controllers/symptoms-controller";
-import SymptomsFindDoctor from "../components/symptoms/doctors";
+
+
 
 const SymptomsPage: React.FC = () => {
-    const { handlerClick } = controller;
-
+    const { handlerClick, doctors } = controller;
     return (
         <>
             <ErrorBadge
@@ -23,7 +25,11 @@ const SymptomsPage: React.FC = () => {
             />
          {controller.canFindDoctors === true 
                 ? 
-                    <SymptomsFindDoctor/>        
+                    doctors.length !== 0 
+                        ? 
+                            <Slider/> 
+                        :
+                            <Redirect from="/" to="/symp-error"/>  
                 :
 
                     <div className="symptoms-wrapper">
