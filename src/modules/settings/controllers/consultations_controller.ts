@@ -34,7 +34,6 @@ class ConsultationController {
         this.isLoading = true;
 
         await action(async () => {
-            // todo: doctor
             const result = await authFetch(() => axios.get(
                 process.env.REACT_APP_SERVER_URL + `/api/consultation/user/${uid}?isUser=${isUser}`,
                 {

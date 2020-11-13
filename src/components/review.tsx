@@ -4,7 +4,6 @@ import Rating from "../modules/doctors/components/rating";
 import "./styles/review.scss";
 
 type Props = {
-    id: string;
     photoUrl?: string;
     fullName: string;
     text: string;

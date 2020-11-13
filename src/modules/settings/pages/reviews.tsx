@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import controller from "../controllers/reviews-component";
 import NavigationComponent from "../components/navigation";
@@ -6,6 +6,10 @@ import ReviewsComponent from "../../../components/review";
 import SettingsLoadingComponent from "../components/loading";
 
 const ReviewPage: React.FC = () => {
+
+    useEffect(() => {
+        controller.fetchReviews();
+    }, []);
 
     if (controller.isLoading) {
         return <SettingsLoadingComponent active={2}/>
@@ -16,13 +20,22 @@ const ReviewPage: React.FC = () => {
         <section className="content reviews">
 
             {
-                [1, 2].map(e => {
-                    return <ReviewsComponent id="1" fullName="123" rating={2} text="213"/>;
+                controller.reviews.map(e => {
+                    return <ReviewsComponent
+                        fullName={getFullName(e.doctorId as DoctorType)}
+                        rating={e.point}
+                        text={e.content}/>;
                 })
             }
 
         </section>
     </main>
+}
+
+const getFullName = (d: DoctorType) : string => {
+    if (!d || typeof d == "string") return "";
+    if(d.fullName) return d.fullName;
+    return `${d.name} ${d.surname}`;
 }
 
 export default observer(ReviewPage);

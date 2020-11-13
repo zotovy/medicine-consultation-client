@@ -5,7 +5,7 @@ declare interface Review {
         surname: string;
         photoUrl: string;
     } | string;
-    doctorId: string;
+    doctorId: string | DoctorType;
     content: string;
     point: number;
     timestamp: Date;
