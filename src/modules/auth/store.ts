@@ -50,7 +50,7 @@ class AuthStore {
 
         // validate
         const isEmailOk = validationServices.email(email);
-        const isPasswordOk = validatePassword(password);
+        const isPasswordOk = validationServices.password(password);
 
         if (!isEmailOk || !isPasswordOk) {
             loginUIStore.setError("Неверный email или пароль");
@@ -312,8 +312,6 @@ const fetchUser = async (uid: string): Promise<UserType | null> => {
         return null;
     }
 };
-
-const validatePassword = (password: string): boolean => password.length >= 8;
 
 const validateUserDataCreation = (): boolean => {
     signupUIStore.setErrorMessage();

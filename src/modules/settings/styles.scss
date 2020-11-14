@@ -350,30 +350,13 @@ main.notifications-page section.notifications {
 }
 
 main.change-password-page section.change-password-page {
+    //display: flex;
+    //justify-content: center;
+    //align-items: center;
+    //height: 70vh;
 
-    .row {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 90%;
-
-        &.start {
-            margin-top: 10px;
-            justify-content: start;
-        }
-
-        .text-field {
-            max-width: 45%;
-        }
-
-        .confirm-button {
-            width: 30%;
-        }
-
-        span.forgot-password {
-            color: #282828;
-            margin-left: 30px;
-        }
+    .confirm-button {
+        width: 30%;
     }
 
 }

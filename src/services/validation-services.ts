@@ -8,6 +8,9 @@ class ValidationServices {
         const regexp = new RegExp(/([^\S]|^)(((https?\:\/\/)|(www\.))(\S+))/);
         return regexp.test(text);
     };
+
+    password = (password: string): boolean => password.length >= 8;
+
 }
 
 export default new ValidationServices();
