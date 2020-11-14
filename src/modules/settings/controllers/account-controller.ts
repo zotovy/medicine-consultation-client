@@ -7,6 +7,7 @@ import axios from "axios";
 import token_services from "../../../services/token-services";
 import validate_services from "../../../services/validation-services";
 import UserStore from "./userStore";
+import storageServices from "../../../services/storage_services";
 
 class AccountController {
     // General
@@ -108,8 +109,27 @@ class AccountController {
             errorsLength += 1;
         }
 
+
         if (errorsLength > 0) return;
         this.isLoadingSave = true;
+
+        if (UserStore.user) {
+            const user : UserType = {
+                ...UserStore.user,
+                name: this.name,
+                surname: this.surname,
+                patronymic: this.patronymic,
+                phone: formatServices.toNumericPhone(this.phone),
+                email: this.email,
+                birthday: this.birthday as Date,
+                country: this.country,
+                city: this.city,
+                sex: this.isMale,
+            };
+            UserStore.user = user;
+            storageServices.saveUser(user);
+        }
+
 
         const route = isUser ? `/api/user/${uid}` : `/api/doctor/${uid}`
         const res = await authFetch(() => axios.put(

@@ -25,7 +25,7 @@ menu {
     }
 
     .name {
-        width: 200px;
+        width: 250px;
         display: flex;
         align-items: center;
 
@@ -204,7 +204,60 @@ menu {
     }
 
     .profile {
-        width: 200px;
+        cursor: pointer;
+        display: flex;
+        width: 250px;
+        align-items: center;
+        justify-content: flex-end;
+
+        .photo {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #cccccc;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-right: 10px;
+        }
+
+        span {
+            color: #282828;
+        }
+    }
+
+    .auth {
+        display: flex;
+        width: 250px;
+        align-items: center;
+        justify-content: flex-end;
+
+        button {
+            padding: 0 25px;
+            height: 35px;
+            background: $primary;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: 300ms box-shadow;
+
+            &.signup:hover {
+                box-shadow: 0px 4px 7px rgba(#30B9D6, 0.3);
+            }
+
+            &.login {
+                background: #E9F7FA;
+                color: $primary;
+                margin-right: 10px;
+
+                &:hover {
+                    background: #E6F2F4;
+                }
+            }
+        }
     }
 }
 
@@ -1353,7 +1406,6 @@ menu {
     margin: 24px 31px 22px 27px;
     position: relative;
     color: yellow;
-    height: -webkit-fill-available;
     @media screen and (max-height: 970px) {
         margin: 20px 27px 18px 23px;
     }

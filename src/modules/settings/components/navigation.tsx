@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import { AccountIcon, ConsultationIcon, LogoutIcon, NotificationIcon, PasswordIcon, ReviewsIcon } from "../icons";
 import tokenServices from "../../../services/token-services";
+import storageServices from "../../../services/storage_services";
 
 type Props = {
     active: number
@@ -16,6 +17,7 @@ const NavigationComponent: React.FC<Props> = ({ active }) => {
     const history = useHistory();
     const onExit = () => {
         tokenServices.logout();
+        storageServices.removeUser();
         history.push("/");
     }
 

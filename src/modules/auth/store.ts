@@ -6,6 +6,7 @@ import loginUIStore from "./stores/loginUI";
 import signupUIStore from "./stores/signupUI";
 import tokenServices from "../../services/token-services";
 import validationServices from "../../services/validation-services";
+import storageServices from "../../services/storage_services";
 import { ServerErrorType } from "./@types/server-errors";
 
 class AuthStore {
@@ -64,7 +65,7 @@ class AuthStore {
                 {
                     email,
                     password,
-                }
+                },
             );
 
             //${process.env.REACT_APP_SERVER_URL}
@@ -90,6 +91,10 @@ class AuthStore {
             this.user = await fetchUser(id);
 
             // Trigger home trigger to go to home page
+            if (this.user) {
+                console.log(this.user);
+                storageServices.saveUser(this.user);
+            }
             this.goToHomeTrigger = !this.goToHomeTrigger;
         } catch (e) {
             console.log("Some error...");
@@ -181,7 +186,9 @@ class AuthStore {
 
             // Set user
             this.user = user;
-
+            if (this.user) {
+                storageServices.saveUser(this.user);
+            }
             console.log(`Create user with id ${id}`);
 
             // Trigger home trigger to go to home page
@@ -304,7 +311,10 @@ class AuthStore {
 const fetchUser = async (uid: string): Promise<UserType | null> => {
     try {
         const raw = await axios.get(
-            `${process.env.REACT_APP_SERVER_URL}/api/user/${uid}`
+            `${process.env.REACT_APP_SERVER_URL}/api/user/${uid}`,
+            {
+                headers: { auth: tokenServices.header }
+            }
         );
         return raw.data.user;
     } catch (e) {

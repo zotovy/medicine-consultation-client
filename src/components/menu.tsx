@@ -1,0 +1,119 @@
+import React from "react";
+import { observer } from "mobx-react";
+import MediaQuery from "react-responsive";
+
+import { Link, withRouter } from "react-router-dom";
+import storageServices from "../services/storage_services";
+import tokenServices from "../services/token-services";
+import logo from "../static/logo.svg";
+import "../modules/doctors/styles.scss";
+
+let lastLocation = '/';
+
+const Menu: React.FC = (props: any) => {
+
+    let selected = "/"
+
+    if (props.location !== lastLocation) {
+        selected = props.location.pathname;
+    }
+
+    const user = storageServices.getUser();
+    const isLogin = user !== null;
+
+    const profileImgUrl = {
+        backgroundImage: `url(${user?.photoUrl})`,
+    };
+
+    return <menu>
+        <Link to="/">
+            <div className="name">
+                <img src={logo} alt="Лого" />
+                <h3>Горы Здоровья</h3>
+            </div>
+        </Link>
+        <div className="tabs">
+            <div className="links">
+                <Link to="/consultations">
+                    <div className={"tab " + (selected === "/consultation" ? "selected" : "")}>
+                        <span className="link">Консультации</span>
+                        <div className="circle"/>
+                    </div>
+                </Link>
+                <Link to="/sympthoms">
+                    <div className={"tab " + (selected === "/sympthoms" ? "selected" : "")}>
+                        <span className="link">Симптомы</span>
+                        <div className="circle"/>
+                    </div>
+                </Link>
+                <Link to="/find-doctor">
+                    <div className={"tab " + (selected === "/find-doctor" ? "selected" : "")}>
+                        <span className="link ">Врачи</span>
+                        <div className="circle"/>
+                    </div>
+                </Link>
+            </div>
+        </div>
+
+        <MediaQuery minWidth={769}>
+            {
+                tokenServices.isLogin()
+                    ? <Link to="/settings/account">
+                        <div className="profile">
+                            <div className="photo" style={profileImgUrl}/>
+                            <span className="span-name">{getName(user)}</span>
+                        </div>
+                    </Link>
+                    : <div className="auth">
+                        <Link to="/login">
+                            <button className="login">Войти</button>
+                        </Link>
+
+                        <Link to="/signup">
+                            <button className="signup">Регистрация</button>
+                        </Link>
+                    </div>
+            }
+        </MediaQuery>
+
+
+        <MediaQuery maxWidth={768}>
+            <div className="hamburger-menu">
+                <input id="menu__toggle" type="checkbox" />
+                <label className="menu__btn" >
+                    <span></span>
+                </label>
+                <ul className="menu__box">
+                    <Link to="/consulations">
+                        <div className={"tab " + (selected === "/consultation" ? "selected" : "")}>
+                            <span className="link">Консультации</span>
+                            <div className="circle"></div>
+                        </div>
+                    </Link>
+                    <Link to="/sympthoms">
+                        <div className={"tab " + (selected === "/sympthoms" ? "selected" : "")}>
+                            <span className="link">Симптомы</span>
+                            <div className="circle"></div>
+                        </div>
+                    </Link>
+                    <Link to="/find-doctor">
+                        <div className={"tab " + (selected === "/find-doctor" ? "selected" : "")}>
+                            <span className="link ">Врачи</span>
+                            <div className="circle"></div>
+                        </div>
+                    </Link>
+                </ul>
+            </div>
+        </MediaQuery>
+    </menu>
+}
+
+const getName = (user : UserType | null) : string => {
+    if (!user) return "";
+    let name = "";
+    if (user.name) name += user.name + " ";
+    if (user.surname) name += user.surname;
+    return name;
+};
+
+export default withRouter(observer(Menu));

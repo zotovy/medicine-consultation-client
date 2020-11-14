@@ -1,7 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./static/index.css";
-import Menu from "./modules/doctors/components/menu";
+import Menu from "./components/menu";
 // import SandBox from "./sandbox";
 require('dotenv').config()
 
