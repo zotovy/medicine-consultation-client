@@ -338,3 +338,16 @@ main.reviews-page section.reviews {
     grid-row-gap: 55px;
 }
 
+main.notifications-page section.notifications {
+
+    .checkbox-component {
+        margin-bottom: 10px;
+    }
+
+    .confirm-button {
+        margin-top: 20px;
+        max-width: 250px;
+    }
+
+}
+

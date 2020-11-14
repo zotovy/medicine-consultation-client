@@ -4,6 +4,7 @@ import controller from "../controllers/reviews-component";
 import NavigationComponent from "../components/navigation";
 import ReviewsComponent from "../../../components/review";
 import SettingsLoadingComponent from "../components/loading";
+import NotFound from "../components/not-found";
 
 const ReviewPage: React.FC = () => {
 
@@ -13,6 +14,10 @@ const ReviewPage: React.FC = () => {
 
     if (controller.isLoading) {
         return <SettingsLoadingComponent active={2}/>
+    }
+
+    if (controller.reviews.length === 0) {
+        return <NotFound text="У вас пока нет отзывов"/>
     }
 
     return <main className="reviews-page settings-page">

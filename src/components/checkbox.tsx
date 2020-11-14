@@ -54,7 +54,7 @@ const Text = styled.p`
 
 const Checkbox: React.FC<Props> = (props: Props) => {
   return (
-    <div className="">
+    <div className="checkbox-component">
       {/*
       // @ts-ignore */}
       < Container style={props.styles?.container} >
