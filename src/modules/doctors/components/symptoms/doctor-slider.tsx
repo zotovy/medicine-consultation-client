@@ -22,8 +22,7 @@ const Slider: React.FC = () => {
         <div className="slider-container">
             <div className={`slider-wrapper ${doctors.length == 1 ? "slider-wrapper-row" : ""}`} style={{ transform: `translate3d(-${slideShift}px, 0px, 0px)`, transition: `all 300ms ease 0s`}}>
                 {doctors.map((e) => <Slide id={e.id ?? ""} name={e.name ?? ""} surname={e.surname ?? ""} imgUrl={e.photoUrl ?? ""} rating={e.rating} speciality={e.speciality[0]} />)}
-            <Link to={`/find-doctor?specialities=${cloneDoctors[0].speciality[0]}`}>
-                    <div className="slider-slide slider-show-more-but">
+                <Link className="slider-slide slider-show-more-but" to={`/find-doctor?specialities=${cloneDoctors[0].speciality[0]}`}>
                         <div className="doctor_profile_pic show-more-pic">
                             <svg xmlns="http://www.w3.org/2000/svg" width="74.731" height="74.731" viewBox="0 0 74.731 74.731">
                                 <g id="Сгруппировать_179" data-name="Сгруппировать 179" transform="translate(-1037.887 -487)">
@@ -39,7 +38,6 @@ const Slider: React.FC = () => {
                         <div className="info info--show-more-but">
                             <h3 className="name-and-surname name-and-surname--show-more-but">Показать больше</h3>
                         </div>
-                    </div>
                 </Link>
             </div>
             <div className="slider-control">

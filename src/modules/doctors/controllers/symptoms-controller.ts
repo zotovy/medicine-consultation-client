@@ -1,5 +1,6 @@
 import { observable, action } from "mobx";
 import axios from "axios";
+import { toJS } from "mobx";
 
 type Item = { title: string; sourseSvg: any[]; active: boolean; id: number };
 type Symp = { name: string; active: boolean; id: number };
@@ -20,7 +21,7 @@ class SympController {
 
     @action handlerClick = () => {
         if(this.symptoms.find((n:any)  => n.active) !== undefined){
-            this._fetchDoctors(this.bodyPart).then(response => this.doctors = response);
+            this._fetchDoctors(this.bodyPart).then(response => {return (this.doctors = response,this.canFindDoctors = true)});
         }else if(this.symptoms.find((n:any)  => n.active == true) == undefined){
             this.openBadgeCh()
         }
@@ -68,6 +69,7 @@ class SympController {
         this.loading = true;
         return await this._fetchSymptoms(bodyPart).then(
             action((arrSymps = []) => {
+                console.log(arrSymps)
                 this.arrSymps = arrSymps.map((item, i): any => {
                     item.active = false;
                     item.id = i;
@@ -156,7 +158,7 @@ class SympController {
             .get(
                 process.env.REACT_APP_SERVER_URL + `/api/doctors?bodyPart=${JSON.stringify([bodyPart])}`
             )
-            .then((data: any) => {this.canFindDoctors = true; return data.data})
+            .then((data: any) => { return data.data})
             .catch(() => {
                 return { success: false };
             });

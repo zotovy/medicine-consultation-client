@@ -60,7 +60,7 @@ var SympController = /** @class */ (function () {
         this.canFindDoctors = false;
         this.handlerClick = function () {
             if (_this.symptoms.find(function (n) { return n.active; }) !== undefined) {
-                _this._fetchDoctors(_this.bodyPart).then(function (response) { return _this.doctors = response; });
+                _this._fetchDoctors(_this.bodyPart).then(function (response) { return (_this.doctors = response, _this.canFindDoctors = true); });
             }
             else if (_this.symptoms.find(function (n) { return n.active == true; }) == undefined) {
                 _this.openBadgeCh();
@@ -108,6 +108,7 @@ var SympController = /** @class */ (function () {
                             this.loading = true;
                             return [4 /*yield*/, this._fetchSymptoms(bodyPart).then(mobx_1.action(function (arrSymps) {
                                     if (arrSymps === void 0) { arrSymps = []; }
+                                    console.log(arrSymps);
                                     _this.arrSymps = arrSymps.map(function (item, i) {
                                         item.active = false;
                                         item.id = i;
@@ -192,12 +193,11 @@ var SympController = /** @class */ (function () {
         };
         this._fetchDoctors = function (bodyPart) { return __awaiter(_this, void 0, Promise, function () {
             var response;
-            var _this = this;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0: return [4 /*yield*/, axios_1["default"]
                             .get(process.env.REACT_APP_SERVER_URL + ("/api/doctors?bodyPart=" + JSON.stringify([bodyPart])))
-                            .then(function (data) { _this.canFindDoctors = true; return data.data; })["catch"](function () {
+                            .then(function (data) { return data.data; })["catch"](function () {
                             return { success: false };
                         })];
                     case 1:

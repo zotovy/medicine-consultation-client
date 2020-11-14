@@ -1618,7 +1618,7 @@ $hoverCol: #30B9D6;
         // todo active styles for svg [start]
 
         .active {
-            path:not(#male_arm,#fem_arm,#male_leg_bones,#fem_leg_bones,#fem_uthera) {
+            path:not(#male_arm,#fem_arm,#male_leg_bones,#fem_leg_bones,#fem_uthera,#male_neck,#fem_neck,) {
                 fill: $hoverCol !important;
             }
 
@@ -1626,7 +1626,6 @@ $hoverCol: #30B9D6;
                 fill: none !important;
                 stroke: $hoverCol;
             }
-
             .cls-13 {
                 fill: none !important;
                 stroke: $hoverCol;
@@ -1659,7 +1658,27 @@ $hoverCol: #30B9D6;
                 fill: $hoverCol !important;
             }
         }
-
+        #male_neck.active,#fem_neck.active{
+            path{
+                fill: none !important;
+                stroke: $hoverCol;
+            }
+        }
+        #male_mouth.active,#fem_mouth.active{
+            path{
+                fill: $hoverCol;
+                stroke: $hoverCol;
+            }
+        }
+        #male_eyes.active,#fem_eyes.active{
+            g{
+                fill: saturate($hoverCol, 20%);
+            }
+            path:not(path.male_eyebrows){ fill: saturate($hoverCol, 20%);}
+            path.male_eyebrows{
+                fill: #8da0b0 !important;
+            } 
+        }
         #fem_uthera.active {
             #fem_kidneys {
                 .cls-13 {
@@ -1715,7 +1734,35 @@ $hoverCol: #30B9D6;
 
             cursor: pointer;
         }
-
+        #male_neck,#fem_neck {
+            path{
+                stroke-width: 2px;
+            }
+            &:hover{
+                path{
+                    fill: none;
+                    stroke: saturate($hoverCol, 20%);
+                }
+                cursor: pointer !important; 
+            }
+        }
+        #male_mouth,#fem_mouth{
+            &:hover{
+                path{
+                    fill: saturate($hoverCol, 20%);
+                }
+                cursor: pointer !important; 
+            }
+        }
+        #male_eyes, #fem_eyes{
+            &:hover{
+                g{
+                    fill: saturate($hoverCol, 20%);
+                }
+                path:not(.male_eyebrows){ fill: saturate($hoverCol, 20%);}
+                cursor: pointer !important; 
+            }
+        }
         #male_lungs, #fem_lungs {
             &:hover {
                 path {
@@ -2081,7 +2128,7 @@ $hoverCol: #30B9D6;
     flex-direction: column;
     padding: 10px;
 
-    div:nth-child(even):not(.info) {
+    .slider-slide:nth-child(even):not(.info) {
         margin-top: 40px;
     }
     a{
@@ -2391,9 +2438,16 @@ $hoverCol: #30B9D6;
                                 background-color: transparent;
                                 border-radius: 10px;
                                 border: 5px solid #fff;
+                                transition: 0.3s;
                                 p{
                                     font-size: 18px;
                                     font-weight: bold;
+                                }
+                                &:hover{
+                                    background-color: #fff;
+                                    p{
+                                        color: $primary;
+                                    }
                                 }
                             }
                         }
@@ -2410,8 +2464,34 @@ $hoverCol: #30B9D6;
     }
 
 }
-
-
+.superman-anim--plus{
+    animation: 4s ease-in-out 0s normal none infinite superman-plus;
+}
+@keyframes superman-plus {
+    50% { 
+            transform: translate(-1014.19px, -152.859px);
+            transform-origin: center;
+        }
+  }
+.superman-anim--tablet-1{
+    animation: 4s ease-in-out 0s normal none infinite superman-tablet-1;
+}
+@keyframes superman-tablet-1 {
+    50% { 
+            transform:  translate( 0, 10px);
+            transform-origin: center;
+        }
+  }
+.superman-anim--tablet-2{
+    transform: translate(1044px, -315px);
+    animation: 4s ease-in-out 0s normal none infinite superman-tablet-2;
+}
+  @keyframes superman-tablet-2 {
+    50% { 
+            transform: translate(1044px, -325px);
+            transform-origin: center;
+        }
+  }
 // @-webkit-keyframes show-error-in {
 //   0% {
 //     width: 0;

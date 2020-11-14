@@ -1,5 +1,6 @@
-import React, { Suspense , lazy } from "react";
-import { Redirect, Route } from "react-router-dom";
+import React from "react";
+import { Redirect } from "react-router-dom";
+import { toJS } from "mobx"; 
 import Slider from "../components/symptoms/doctors";
 import Title from "../../../components/title";
 import { observer } from "mobx-react";
@@ -12,7 +13,8 @@ import controller from "../controllers/symptoms-controller";
 
 
 const SymptomsPage: React.FC = () => {
-    const { handlerClick, doctors } = controller;
+    let { handlerClick, doctors } = controller,
+        cloneDoctors = toJS(doctors);
     return (
         <>
             <ErrorBadge
@@ -25,7 +27,7 @@ const SymptomsPage: React.FC = () => {
             />
          {controller.canFindDoctors === true 
                 ? 
-                    doctors.length !== 0 
+                cloneDoctors.length !== 0 
                         ? 
                             <Slider/> 
                         :

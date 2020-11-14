@@ -1409,7 +1409,7 @@ menu .profile {
 .tab-content svg .male-side .cls-6 {
   stroke: #a8bac4;
 }
-.tab-content svg .active path:not(#male_arm, #fem_arm, #male_leg_bones, #fem_leg_bones, #fem_uthera) {
+.tab-content svg .active path:not(#male_arm, #fem_arm, #male_leg_bones, #fem_leg_bones, #fem_uthera, #male_neck, #fem_neck, path.male_eyebrows) {
   fill: #30B9D6 !important;
 }
 .tab-content svg .active g:not(#fem_uthera) .cls-13 {
@@ -1437,6 +1437,20 @@ menu .profile {
 }
 .tab-content svg .active polyline {
   fill: #30B9D6 !important;
+}
+.tab-content svg #male_neck.active path, .tab-content svg #fem_neck.active path {
+  fill: none !important;
+  stroke: #30B9D6;
+}
+.tab-content svg #male_mouth.active path, .tab-content svg #fem_mouth.active path {
+  fill: #30B9D6;
+  stroke: #30B9D6;
+}
+.tab-content svg #male_eyes.active g, .tab-content svg #fem_eyes.active g {
+  fill: #17c9ef;
+}
+.tab-content svg #male_eyes.active path:not(path.male_eyebrows), .tab-content svg #fem_eyes.active path:not(path.male_eyebrows) {
+  fill: #17c9ef;
 }
 .tab-content svg #fem_uthera.active #fem_kidneys .cls-13 {
   fill: none !important;
@@ -1471,6 +1485,31 @@ menu .profile {
   cursor: pointer;
 }
 .tab-content svg #male_heart:hover path, .tab-content svg #fem_heart:hover path {
+  fill: #17c9ef;
+}
+.tab-content svg #male_neck path, .tab-content svg #fem_neck path {
+  stroke-width: 2px;
+}
+.tab-content svg #male_neck:hover, .tab-content svg #fem_neck:hover {
+  cursor: pointer !important;
+}
+.tab-content svg #male_neck:hover path, .tab-content svg #fem_neck:hover path {
+  fill: none;
+  stroke: #17c9ef;
+}
+.tab-content svg #male_mouth:hover, .tab-content svg #fem_mouth:hover {
+  cursor: pointer !important;
+}
+.tab-content svg #male_mouth:hover path, .tab-content svg #fem_mouth:hover path {
+  fill: #17c9ef;
+}
+.tab-content svg #male_eyes:hover, .tab-content svg #fem_eyes:hover {
+  cursor: pointer !important;
+}
+.tab-content svg #male_eyes:hover g, .tab-content svg #fem_eyes:hover g {
+  fill: #17c9ef;
+}
+.tab-content svg #male_eyes:hover path:not(.male_eyebrows), .tab-content svg #fem_eyes:hover path:not(.male_eyebrows) {
   fill: #17c9ef;
 }
 .tab-content svg #male_lungs, .tab-content svg #fem_lungs {
@@ -1776,7 +1815,7 @@ menu .profile {
   flex-direction: column;
   padding: 10px;
 }
-.slider-wrapper div:nth-child(even):not(.info) {
+.slider-wrapper .slider-slide:nth-child(even):not(.info) {
   margin-top: 40px;
 }
 .slider-wrapper a {
@@ -2054,10 +2093,17 @@ menu .profile {
   background-color: transparent;
   border-radius: 10px;
   border: 5px solid #fff;
+  transition: 0.3s;
 }
 .error-wrapper .show-error-in .modal .modal-descriptions-container a div p {
   font-size: 18px;
   font-weight: bold;
+}
+.error-wrapper .show-error-in .modal .modal-descriptions-container a div:hover {
+  background-color: #fff;
+}
+.error-wrapper .show-error-in .modal .modal-descriptions-container a div:hover p {
+  color: #30B9D6;
 }
 .error-wrapper .show-error-in .error-background {
   top: -20px;
@@ -2065,4 +2111,36 @@ menu .profile {
 }
 .error-wrapper .show-error-in .error-background svg {
   overflow: hidden;
+}
+
+.superman-anim--plus {
+  animation: 4s ease-in-out 0s normal none infinite superman-plus;
+}
+
+@keyframes superman-plus {
+  50% {
+    transform: translate(-1014.19px, -152.859px);
+    transform-origin: center;
+  }
+}
+.superman-anim--tablet-1 {
+  animation: 4s ease-in-out 0s normal none infinite superman-tablet-1;
+}
+
+@keyframes superman-tablet-1 {
+  50% {
+    transform: translate(0, 10px);
+    transform-origin: center;
+  }
+}
+.superman-anim--tablet-2 {
+  transform: translate(1044px, -315px);
+  animation: 4s ease-in-out 0s normal none infinite superman-tablet-2;
+}
+
+@keyframes superman-tablet-2 {
+  50% {
+    transform: translate(1044px, -325px);
+    transform-origin: center;
+  }
 }
