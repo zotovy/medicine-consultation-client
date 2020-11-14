@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 import { AccountIcon, ConsultationIcon, LogoutIcon, NotificationIcon, PasswordIcon, ReviewsIcon } from "../icons";
+import tokenServices from "../../../services/token-services";
 
 type Props = {
     active: number
@@ -8,9 +9,16 @@ type Props = {
 
 const icons: React.FC[] = [AccountIcon, ConsultationIcon, ReviewsIcon, NotificationIcon, PasswordIcon];
 const titles: string[] = ["Аккаунт", "Консультации", "Отзывы", "Уведомления", "Пароль"];
-const paths : string[] = ['/account', "/consultations", "/reviews", "/notifications", "/password"]
+const paths: string[] = ['/account', "/consultations", "/reviews", "/notifications", "/password"]
 
 const NavigationComponent: React.FC<Props> = ({ active }) => {
+
+    const history = useHistory();
+    const onExit = () => {
+        tokenServices.logout();
+        history.push("/");
+    }
+
     return <div className="navigation">
         {
             titles.map((_, i) => {
@@ -18,8 +26,8 @@ const NavigationComponent: React.FC<Props> = ({ active }) => {
             })
         }
 
-        <div className="item">
-        <span className="icon"> <LogoutIcon/> </span>
+        <div className="item" onClick={onExit}>
+            <span className="icon"> <LogoutIcon/> </span>
             <span className="tab-name">Выйти</span>
         </div>
     </div>

@@ -77,6 +77,12 @@ class TokenServices {
         localStorage.removeItem("accessTokenSetDate");
     };
 
+    logout = () => {
+        this.removeTokens();
+        localStorage.removeItem("uid");
+        localStorage.removeItem("isUser");
+    }
+
     // Core
     private _needRefreshAccessToken(): boolean | null {
         const leftToLive = this._secondsToUpdate("accessTokenSetDate");

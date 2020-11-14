@@ -24,6 +24,7 @@ class NotificationsController {
         if (UserStore.user !== null) {
             action(() => {
                 if (!UserStore.user) return;
+                this.isLoading = false;
                 this.email = UserStore.user.notificationEmail;
                 this.needNotifications = UserStore.user.sendNotificationToEmail;
                 this.canDoMailing = UserStore.user.sendMailingsToEmail;
