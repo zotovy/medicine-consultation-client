@@ -5,6 +5,7 @@ import NavigationComponent from "../components/navigation";
 import ReviewsComponent from "../../../components/review";
 import SettingsLoadingComponent from "../components/loading";
 import NotFound from "../components/not-found";
+import GoBackIcon from "../components/go-back-icon";
 
 const ReviewPage: React.FC = () => {
 
@@ -21,6 +22,7 @@ const ReviewPage: React.FC = () => {
     }
 
     return <main className="reviews-page settings-page">
+        <GoBackIcon/>
         <NavigationComponent active={2}/>
         <section className="content reviews">
 
