@@ -1,5 +1,6 @@
 import { observable, action } from "mobx";
 import axios from "axios";
+import { toJS } from "mobx";
 
 type Item = { title: string; sourseSvg: any[]; active: boolean; id: number };
 type Symp = { name: string; active: boolean; id: number };
@@ -9,6 +10,8 @@ class SympController {
         { title: "М", sourseSvg: [1, 2], active: true, id: 0 },
         { title: "Ж", sourseSvg: [3, 4], active: false, id: 1 },
     ];
+    @observable bodyPart: string = 'Голова';
+    @observable doctors: DoctorType[] = [];
     @observable symptoms: Symp[] = [];
     @observable loading: boolean = true;
     @observable arrSymps: any | undefined;
@@ -18,8 +21,8 @@ class SympController {
 
     @action handlerClick = () => {
         if(this.symptoms.find((n:any)  => n.active) !== undefined){
-            this._fetchDoctors(this.symptoms.filter((item:Symp) => item.active === true))
-        }else{
+            this._fetchDoctors(this.bodyPart).then(response => {return (this.doctors = response,this.canFindDoctors = true)});
+        }else if(this.symptoms.find((n:any)  => n.active == true) == undefined){
             this.openBadgeCh()
         }
     }
@@ -39,7 +42,7 @@ class SympController {
         id: number
     ): void => {
         e.persist();
-        this.symptoms = this.symptoms.map((item: Symp, i: number) => {
+        this.symptoms = this.symptoms.map((item: Symp) => {
             if (item.id === id && item.active !== true) {
                 item.active = true;
             } else if (item.id === +id && item.active === true) {
@@ -50,7 +53,6 @@ class SympController {
     };
 
     @action openTab = (
-        e: React.MouseEvent<HTMLLIElement, MouseEvent>,
         id: number
     ): void => {
         this.items = this.items.map((item: Item) => {
@@ -67,6 +69,7 @@ class SympController {
         this.loading = true;
         return await this._fetchSymptoms(bodyPart).then(
             action((arrSymps = []) => {
+                console.log(arrSymps)
                 this.arrSymps = arrSymps.map((item, i): any => {
                     item.active = false;
                     item.id = i;
@@ -81,13 +84,14 @@ class SympController {
     private _fetchSymptoms = async (
         bodyPart: string = "Голова"
     ): Promise<Symp[] | undefined> => {
+        
         const response = await axios
             .get(
                 process.env.REACT_APP_SERVER_URL +
                 `/api/symptoms?bodyPart=${bodyPart}`
             )
             .then((data: any) => data.data)
-            .catch((e: any) => {
+            .catch(() => {
                 return { success: false };
             });
 
@@ -98,7 +102,7 @@ class SympController {
         } else {
             this.loading = false;
         }
-
+        this.bodyPart = bodyPart;
         return await response.symptoms;
     };
 
@@ -109,6 +113,16 @@ class SympController {
             return (item = this.arrSymps[i]);
         });
     };
+    @action resetController = () => {
+         this.bodyPart = 'Голова';
+         this.doctors = [];
+         this.symptoms = [];
+         this.loading = true;
+         this.arrSymps = [];
+         this.isErrorBadgeOpen = false;
+         this.isErrorBadgeOpenCh = false;
+         this.canFindDoctors = false;
+    }
 
     @action highlightBodyPart = (e: any): void => {
         // todo: highlight body part
@@ -138,14 +152,14 @@ class SympController {
     };
 
     private _fetchDoctors = async (
-        bodyParts: Symp[]
-    ): Promise<Symp[] | undefined> => {
+        bodyPart: string
+    ): Promise<DoctorType[]> => {
         const response = await axios
             .get(
-                process.env.REACT_APP_SERVER_URL + `/api/symptoms?bodyPart=${bodyParts.map((item:Symp) => item.name)}`
+                process.env.REACT_APP_SERVER_URL + `/api/doctors?bodyPart=${JSON.stringify([bodyPart])}`
             )
-            .then((data: any) => {this.canFindDoctors = true; return data.data})
-            .catch((e: any) => {
+            .then((data: any) => { return data.data})
+            .catch(() => {
                 return { success: false };
             });
 
@@ -156,8 +170,7 @@ class SympController {
         } else {
             this.loading = false;
         }
-
-        return await response.symptoms;
-    };
+        return await response.doctors;
+    }
 }
 export default new SympController();

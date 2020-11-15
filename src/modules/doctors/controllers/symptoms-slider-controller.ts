@@ -5,10 +5,10 @@ class SliderController {
     @observable slideShift: number = 0;
     @observable highlightSlideId: string = '';
 
-    @action prevNextButsController = (act: string): void => {
+    @action prevNextButsController = (act: string, amoutSlides?: number): void => {
         const sliderWrap:any = document.querySelector(".slider-wrapper");
 
-        if(act === "next" && this.currentSlide !== 3){
+        if(act === "next" && this.currentSlide !== amoutSlides){
             this.currentSlide++
             this.slideShift = this.slideShift + sliderWrap.offsetWidth + 40;
             this.highlightSlideId = "";
