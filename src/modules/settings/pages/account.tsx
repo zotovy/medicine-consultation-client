@@ -16,6 +16,7 @@ import UserPlaceholder from "../../../static/images/user-placeholder.jpg"
 import token_services from "../../../services/token-services";
 import SettingsLoadingComponent from "../components/loading";
 import MediaQuery from "react-responsive";
+import GoBackIcon from "../components/go-back-icon";
 
 
 const SettingsAccountPage = () => {
@@ -49,20 +50,9 @@ const SettingsAccountPage = () => {
             controller.isLoadingSave ? <LoadingLine/> : <React.Fragment/>
         }
 
-        <MediaQuery minWidth={425}>
-            <NavigationComponent active={0}/>
-        </MediaQuery>
-
+        <NavigationComponent active={0}/>
+        <GoBackIcon/>
         <section className="content account">
-
-            <MediaQuery maxWidth={425}>
-                <div className="back-icon">
-                   <Link to="/settings">
-                       <BackIcon/>
-                   </Link>
-                </div>
-            </MediaQuery>
-
             <header>
                 <div className="profile-image" style={imgStyles}>
                     <div className="icon-pick"><IconClass/></div>

@@ -7,6 +7,7 @@ import NotFound from "../components/not-found";
 import NoteComponent from "../components/note";
 import "../styles.scss";
 import SettingsLoadingComponent from "../components/loading";
+import GoBackIcon from "../components/go-back-icon";
 
 const ConsultationsPage = () => {
 
@@ -26,6 +27,7 @@ const ConsultationsPage = () => {
     return <main className="consultations-page settings-page">
         <NoteComponent />
         <Navigation active={1} />
+        <GoBackIcon/>
         <section className="content consultations">
             {
                 controller.consultations.map((e, i) => <ConsultationTile

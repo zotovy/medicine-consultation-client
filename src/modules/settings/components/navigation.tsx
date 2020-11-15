@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from "react-router-dom";
 import { AccountIcon, ConsultationIcon, LogoutIcon, NotificationIcon, PasswordIcon, ReviewsIcon } from "../icons";
 import tokenServices from "../../../services/token-services";
+import MediaQuery from "react-responsive";
 
 type Props = {
     active: number
@@ -19,19 +20,21 @@ const NavigationComponent: React.FC<Props> = ({ active }) => {
         history.push("/");
     }
 
-    return <div className="navigation">
-        {
-            titles.map((_, i) => {
-                return <NavigationItem i={i} isActive={i == active}/>
-            })
-        }
+    return <MediaQuery minWidth={425}>
+    <div className="navigation">
+            {
+                titles.map((_, i) => {
+                    return <NavigationItem i={i} isActive={i == active}/>
+                })
+            }
 
-        <div className="item" onClick={onExit}>
-            <span className="icon"> <LogoutIcon/> </span>
-            <span className="tab-name">Выйти</span>
+            <div className="item" onClick={onExit}>
+                <span className="icon"> <LogoutIcon/> </span>
+                <span className="tab-name">Выйти</span>
+            </div>
         </div>
-    </div>
-};
+    </MediaQuery>
+}
 
 const NavigationItem: React.FC<{ i: number, isActive: boolean, }> = ({ isActive, i }) => {
     const history = useHistory();

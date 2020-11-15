@@ -4,6 +4,11 @@ main.settings-page {
     background: #fefefe;
     min-height: 100vh;
 
+    .back-icon {
+        margin-left: 16px;
+        margin-top: 10px;
+    }
+
     .navigation {
         position: fixed;
         left: 25px;
@@ -221,10 +226,6 @@ main.account-page section.account {
 
     @media screen and (max-width: 425px) {
 
-        .back-icon {
-            margin-bottom: 20px;
-        }
-
         header {
             flex-direction: column;
             justify-content: center;
@@ -275,6 +276,11 @@ main.consultations-page {
             background: white;
             border-radius: 10px;
 
+            @media screen and (max-width: 425px) {
+                max-width: 90vw;
+                min-width: 75vw;
+            }
+
 
             .header {
                 display: flex;
@@ -314,7 +320,12 @@ main.consultations-page {
         grid-column-gap: 75px;
         grid-row-gap: 75px;
 
-        @media screen and (max-width: 1336px) {
+        @media screen and (max-width: 425px) {
+            grid-template-columns: repeat(1, 1fr);
+            grid-row-gap: 30px;
+        }
+
+        @media screen and (min-width: 425px) and (max-width: 1336px) {
             grid-template-columns: repeat(2, 1fr);
         }
 
@@ -380,6 +391,8 @@ main.consultations-page {
             }
         }
     }
+
+
 }
 
 main.reviews-page section.reviews {

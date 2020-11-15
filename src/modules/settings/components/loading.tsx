@@ -9,11 +9,7 @@ type Props = {
 
 const SettingsLoadingComponent: React.FC<Props> = ({ active }) => {
     return <main className="settings-page">
-
-        <MediaQuery minWidth={425}>
-            <NavigationComponent active={active}/>
-        </MediaQuery>
-
+        <NavigationComponent active={active}/>
         <section className="content">
             <div className="settings-loading">
                 <LoadingIndicator/>
