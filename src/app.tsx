@@ -94,8 +94,8 @@ const App = () => {
         </Suspense>
       </Route>
       <Route path="/symp-error">
-        <Suspense fallback={<React.Fragment />}>
-          <ErrorSympPage/>
+        <Suspense  fallback={<React.Fragment />}>
+          <ErrorSympPage />
         </Suspense>
       </Route>  
       <Route path="/admin-login" exact>
