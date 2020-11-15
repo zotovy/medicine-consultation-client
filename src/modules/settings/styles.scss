@@ -425,13 +425,15 @@ main.notifications-page section.notifications {
 }
 
 main.change-password-page section.change-password-page {
-    //display: flex;
-    //justify-content: center;
-    //align-items: center;
-    //height: 70vh;
 
     .confirm-button {
         width: 30%;
+    }
+
+    @media screen and (max-width: 425px) {
+        .confirm-button {
+            width: 100%;
+        }
     }
 
 }
