@@ -177,7 +177,6 @@ main.account-page section.account {
     }
 
 
-
     .edit {
         margin-top: 30px;
         max-width: 700px;
@@ -416,6 +415,12 @@ main.notifications-page section.notifications {
     .confirm-button {
         margin-top: 20px;
         max-width: 250px;
+    }
+
+    @media screen and (max-width: 425px) {
+        .confirm-button {
+            max-width: 100%;
+        }
     }
 }
 

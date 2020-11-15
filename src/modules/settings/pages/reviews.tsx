@@ -25,7 +25,6 @@ const ReviewPage: React.FC = () => {
         <GoBackIcon/>
         <NavigationComponent active={2}/>
         <section className="content reviews">
-
             {
                 controller.reviews.map(e => {
                     return <ReviewsComponent
