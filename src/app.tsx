@@ -34,80 +34,111 @@ const App = () => {
 
             {/* <Route path='/sandbox'><SandBox /></Route> */}
 
-      <Route path="/login" exact>
-        <Suspense fallback={<React.Fragment />}>
-          <Login />
-        </Suspense>
-      </Route>
-      <Route path="/signup" exact>
-        <Suspense fallback={<React.Fragment />}>
-          <Signup />
-        </Suspense>
-      </Route>
-      <Route path="/doctor-signup" exact>
-        <Suspense fallback={<React.Fragment />}>
-          <DoctorSignUp />
-        </Suspense>
-      </Route>
-      <Route path="/reset-password-from-email" exact>
-        <Suspense fallback={<React.Fragment />}>
-          <ResetPasswordFromEmail />
-        </Suspense>
-      </Route>
-      <Route path="/reset-password/:id" exact>
-        <Suspense fallback={<React.Fragment />}>
-          <ResetPassword />
-        </Suspense>
-      </Route>
-      <Route path="/find-doctor" exact>
-        <Suspense fallback={<React.Fragment />}>
-          <FilterCityModal />
-        </Suspense>
-        <div className="doctor-module">
-          <Menu />
-          <Suspense fallback={<React.Fragment />}>
-            <FindDoctor />
-          </Suspense>
-        </div>
-      </Route>
-      <Route path="/doctor/:id" exact>
-        <Menu />
-        <Suspense fallback={<React.Fragment />}>
-          <DetailDoctorPage />
-        </Suspense>
-      </Route>
-      <Route path="/sympthoms" exact>
-        <Menu />
-        <Suspense fallback={<React.Fragment />}>
-          <SymptomsPage />
-        </Suspense>
-      </Route>
-      <Route path="/appoint" exact>
-        <Suspense fallback={<React.Fragment />}>
-          <AppointmentPage />
-        </Suspense>
-      </Route>
-      <Route path="/consultation/:id" exact>
-        <Suspense fallback={<React.Fragment />}>
-          <ConsultationPage />
-        </Suspense>
-      </Route>
-      <Route path="/" exact>
-        <Menu />
-        <Suspense fallback={<React.Fragment />}>
-          <MainPage />
-        </Suspense>
-      </Route>
-      <Route path="/symp-error">
-        <Suspense  fallback={<React.Fragment />}>
-          <ErrorSympPage />
-        </Suspense>
-      </Route>  
-      <Route path="/admin-login" exact>
-        <Suspense fallback={<React.Fragment />}>
-          <AdminLogin />
-        </Suspense>
-      </Route>;
+            <Route path="/login" exact>
+                <Suspense fallback={<React.Fragment/>}>
+                    <Login/>
+                </Suspense>
+            </Route>
+            <Route path="/signup" exact>
+                <Suspense fallback={<React.Fragment/>}>
+                    <Signup/>
+                </Suspense>
+            </Route>
+            <Route path="/doctor-signup" exact>
+                <Suspense fallback={<React.Fragment/>}>
+                    <DoctorSignUp/>
+                </Suspense>
+            </Route>
+            <Route path="/reset-password-from-email" exact>
+                <Suspense fallback={<React.Fragment/>}>
+                    <ResetPasswordFromEmail/>
+                </Suspense>
+            </Route>
+            <Route path="/reset-password/:id" exact>
+                <Suspense fallback={<React.Fragment/>}>
+                    <ResetPassword/>
+                </Suspense>
+            </Route>
+            <Route path="/find-doctor" exact>
+                <Suspense fallback={<React.Fragment/>}>
+                    <FilterCityModal/>
+                </Suspense>
+                <div className="doctor-module">
+                    <Menu/>
+                    <Suspense fallback={<React.Fragment/>}>
+                        <FindDoctor/>
+                    </Suspense>
+                </div>
+            </Route>
+            <Route path="/doctor/:id" exact>
+                <Menu/>
+                <Suspense fallback={<React.Fragment/>}>
+                    <DetailDoctorPage/>
+                </Suspense>
+            </Route>
+            <Route path="/sympthoms" exact>
+                <Menu/>
+                <Suspense fallback={<React.Fragment/>}>
+                    <SymptomsPage/>
+                </Suspense>
+            </Route>
+            <Route path="/appoint" exact>
+                <Suspense fallback={<React.Fragment/>}>
+                    <AppointmentPage/>
+                </Suspense>
+            </Route>
+            <Route path="/consultation/:id" exact>
+                <Suspense fallback={<React.Fragment/>}>
+                    <ConsultationPage/>
+                </Suspense>
+            </Route>
+            <Route path="/" exact>
+                <Menu/>
+                <Suspense fallback={<React.Fragment/>}>
+                    <MainPage/>
+                </Suspense>
+            </Route>
+            <Route path="/symp-error">
+                <Suspense fallback={<React.Fragment/>}>
+                    <ErrorSympPage/>
+                </Suspense>
+            </Route>
+
+            <Route path="/settings">
+                <Menu/>
+                <Route path="/settings/account">
+                    <Suspense fallback={<React.Fragment/>}>
+                        <SettingsAccountPage/>
+                    </Suspense>
+                </Route>
+                <Route path="/settings/consultations">
+                    <Suspense fallback={<React.Fragment/>}>
+                        <SettingsConsultationPage/>
+                    </Suspense>
+                </Route>
+                <Route path="/settings/reviews">
+                    <Suspense fallback={<React.Fragment/>}>
+                        <SettingsReviewPage/>
+                    </Suspense>
+                </Route>
+                <Route path="/settings/notifications">
+                    <Suspense fallback={<React.Fragment/>}>
+                        <SettingsNotificationPage/>
+                    </Suspense>
+                </Route>
+                <Route path="/settings/password">
+                    <Suspense fallback={<React.Fragment/>}>
+                        <SettingsPasswordPage/>
+                    </Suspense>
+                </Route>
+            </Route>
+
+
+            <Route path="/admin-login" exact>
+                <Suspense fallback={<React.Fragment/>}>
+                    <AdminLogin/>
+                </Suspense>
+            </Route>;
 
             <Route path="/error">
                 <Suspense fallback={<React.Fragment/>}>
