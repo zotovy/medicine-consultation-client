@@ -10,7 +10,19 @@ class FindDoctorController {
     @observable isErrorBadgeOpen: boolean = false;
     private amountDoctorsOnOnePage = 50;
 
-    constructor() {
+    @action private onComponentReady = (config : Config) => {
+        this.name = config.fullName ?? "";
+        this.specialities = config.specialities ?? [];
+        this.child = config.child ?? [];
+        this.workExperience = config.workExperience ?? [];
+        this.qualification = config.qualification ?? [];
+        this.workPlan = config.workPlan ?? [];
+        this.selectedCities = config.city ?? [];
+        this.rating = config.rating ?? [];
+    }
+
+    fetchDoctors = (config : Config) => {
+        this.onComponentReady(config);
         this.isLoading = true;
         this.fecthDoctors(0, 50, true).then((docs) => {
             this.doctors = docs;
@@ -260,6 +272,17 @@ class FindDoctorController {
             this.isErrorBadgeOpen = false;
         }, 5000);
     };
+}
+
+export type Config = {
+    fullName?: string,
+    specialities?: string[],
+    child?: string[],
+    workExperience?: string[],
+    qualification?: string[],
+    workPlan?: string[],
+    city?: string[],
+    rating?: number[],
 }
 
 export default new FindDoctorController();
