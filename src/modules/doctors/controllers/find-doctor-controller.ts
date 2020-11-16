@@ -10,7 +10,7 @@ class FindDoctorController {
     @observable isErrorBadgeOpen: boolean = false;
     private amountDoctorsOnOnePage = 50;
 
-    @action private onComponentReady = (config : Config) => {
+    @action private onComponentReady = (config: Config) => {
         this.name = config.fullName ?? "";
         this.specialities = config.specialities ?? [];
         this.child = config.child ?? [];
@@ -21,7 +21,7 @@ class FindDoctorController {
         this.rating = config.rating ?? [];
     }
 
-    fetchDoctors = (config : Config) => {
+    fetchDoctors = (config: Config) => {
         this.onComponentReady(config);
         this.isLoading = true;
         this.fecthDoctors(0, 50, true).then((docs) => {
@@ -29,6 +29,9 @@ class FindDoctorController {
             this.isLoading = false;
         });
     }
+
+    onChangeLocation = () => {
+    };
 
     // Filters
     @observable mobileFiltersOpen: boolean = false;
@@ -88,8 +91,8 @@ class FindDoctorController {
             const defined = Array.isArray(value)
                 ? value.length > 0
                 : value
-                ? true
-                : false;
+                    ? true
+                    : false;
 
             if (defined) {
                 filter += `&${key}=${JSON.stringify(value)}`;
@@ -159,7 +162,7 @@ class FindDoctorController {
         const data = await axios
             .get(
                 process.env.REACT_APP_SERVER_URL +
-                    `/api/doctors?type=tile${filter}`
+                `/api/doctors?type=tile${filter}`
             )
             .then((data) => data.data)
             .catch(() => {
@@ -175,6 +178,23 @@ class FindDoctorController {
         return data.doctors ?? [];
     };
 
+    private _updateQueryParams = () => {
+        let path = "";
+        if (this.name.length > 0) path += `&fullName=${this.name}`;
+        if (this.specialities.length > 0) path += `&specialities=${this.specialities.join(",")}`;
+        if (this.child.length > 0) path += `&child=${this.child.join(",")}`;
+        if (this.workExperience.length > 0) path += `&workExperience=${this.workExperience.join(",")}`;
+        if (this.qualification.length > 0) path += `&qualification=${this.qualification.join(",")}`;
+        if (this.workPlan.length > 0) path += `&workPlan=${this.workPlan.join(",")}`;
+        if (this.selectedCities.length > 0) path += `&city=${this.selectedCities.join(",")}`;
+        if (this.rating.length > 0) path += `&rating=${this.rating.join(",")}`;
+
+        if (path.length > 0) path = "?" + path.substring(1);
+        const newUrl = window.location.protocol + "//" + window.location.host
+            + window.location.pathname + path;
+        window.history.pushState({ path: newUrl }, '', newUrl);
+    }
+
     private addOrRemoveItem = (array: any[], value: any): Array<any> => {
         const index = array.indexOf(value);
         if (index !== -1) {
@@ -182,7 +202,7 @@ class FindDoctorController {
         } else {
             array.push(value);
         }
-
+        this._updateQueryParams();
         return array;
     };
 
@@ -221,11 +241,13 @@ class FindDoctorController {
     @action addCity = (i: number): void => {
         if (!this.selectedCities.includes(this.queryCities[i])) {
             this.selectedCities.push(this.queryCities[i]);
+            this._updateQueryParams();
         }
     };
 
     @action removeCity = (i: number): void => {
         this.selectedCities.splice(i, 1);
+        this._updateQueryParams();
     };
 
     @action onModalSubmit = (): void => {
@@ -243,7 +265,7 @@ class FindDoctorController {
     };
 
     @action clickOnQualification = (value: string): void => {
-        this.qualification = this.addOrRemoveItem(this.child, value);
+        this.qualification = this.addOrRemoveItem(this.qualification, value);
         this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 

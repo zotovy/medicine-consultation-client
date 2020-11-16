@@ -25,8 +25,14 @@ const FindDoctor: React.FC = () => {
                config[e] = (queries[e] as string).split(",");
            }
         });
+        
+        try {
+            if (queries['rating']) {
+                config["rating"] =  (queries["rating"] as string).split(",").map(e => parseInt(e));
+            }
+        } catch (e) {
 
-        console.log(config);
+        }
 
         controller.fetchDoctors(config);
         document.getElementsByClassName("doctor-module")[0].addEventListener('scroll', handleScroll);
