@@ -254,8 +254,9 @@ class ConsultationController implements IConsultationController {
     @observable loading: boolean = false;
     @observable consultation?: TConsultation;
 
-    @observable isCameraOn: boolean = false;
+    @observable isCameraOn: boolean = true;
     @observable isMicroOn: boolean = false;
+    @observable isChatOn: boolean = false;
 
     // partner
     @observable isMinimized: boolean = false;
@@ -314,6 +315,7 @@ class ConsultationController implements IConsultationController {
 export interface IConsultationController {
     isCameraOn: boolean;
     isMicroOn: boolean;
+    isChatOn: boolean;
 }
 
 export type TLink = {

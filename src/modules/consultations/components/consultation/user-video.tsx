@@ -2,8 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { observer } from "mobx-react";
 import { CloseIcon } from '../../../doctors/icons';
 import controller from "../../controllers/consultation-controller";
-import { MicroSlashIcon } from '../../icons';
+import { MicroSlashIcon, RefreshIcon } from '../../icons';
 import userPlaceholder from "../../../../static/images/user-placeholder.jpg";
+import MediaQuery from "react-responsive";
 
 const UserVideo: React.FC = () => {
     const styles = controller.partnerImagePath ? { backgroundImage: `url(${controller.partnerImagePath})` } : {};
@@ -14,7 +15,7 @@ const UserVideo: React.FC = () => {
             <video playsInline autoPlay muted id="user-video"  />
 
             {
-                !controller.isMinimized
+                !controller.isMinimized || window.screen.width > 425
                     ? <React.Fragment>
                         <div className="close" onClick={() => controller.isMinimized = true}>
                             <CloseIcon />
@@ -29,6 +30,12 @@ const UserVideo: React.FC = () => {
                     </React.Fragment>
                     : <div className="minimized" style={styles} onClick={() => controller.isMinimized = false}/>
             }
+
+            <MediaQuery maxWidth={425}>
+                <div className="flip">
+                    <RefreshIcon/>
+                </div>
+            </MediaQuery>
         </div>
     </div>
 }

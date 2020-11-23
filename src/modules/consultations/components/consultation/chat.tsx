@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { observer } from "mobx-react";
 import controller from "../../controllers/consultation-controller";
 import Messages from "./messages";
-import { SendIcon } from "../../icons";
+import { BackIcon, SendIcon } from "../../icons";
+import MediaQuery from "react-responsive";
 
 const Chat: React.FC = () => {
 
@@ -11,8 +12,13 @@ const Chat: React.FC = () => {
         backgroundImage: `url("${controller.partnerImagePath?.trim() == "" ? def : controller.partnerImagePath}")`,
     }
 
-    return <div className="chat">
+    return <div className={`chat ${controller.isChatOn ? "" : "off"}`}>
         <header>
+            <MediaQuery maxWidth={425}>
+                <div className="back" onClick={() => controller.isChatOn = false}>
+                    <BackIcon/>
+                </div>
+            </MediaQuery>
             <div className="avatar" style={avatar}/>
             <div className="info">
                 <span id="name">{controller.partnerName}</span>

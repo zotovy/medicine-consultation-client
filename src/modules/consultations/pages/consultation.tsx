@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import controller from "../controllers/consultation-controller";
-import {CameraIcon, MicroIcon, LeaveCallIcon} from "../icons";
+import { CameraIcon, MicroIcon, LeaveCallIcon, ChatIcon } from "../icons";
 import Button from "../components/consultation/main-button";
 import UserVideo from "../components/consultation/user-video";
 import Chat from "../components/consultation/chat";
 import tokenServices from "../../../services/token-services";
+import MediaQuery from "react-responsive";
 
 interface IParams extends RouteComponentProps<{ id: string }> {
 }
@@ -83,6 +84,7 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
                 }}>
                     <MicroIcon />
                 </Button>
+
                 <div
                     id="leave"
                     className={`button leave`}
@@ -93,6 +95,12 @@ const ConsultationPage: React.FC<IParams> = ({ match, history }) => {
                 >
                     <LeaveCallIcon/>
                 </div>
+
+                <MediaQuery maxWidth={425}>
+                    <Button id="chat" ckey="isChatOn">
+                        <ChatIcon/>
+                    </Button>
+                </MediaQuery>
             </div>
         </div>
         <Chat />

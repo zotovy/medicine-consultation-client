@@ -223,7 +223,6 @@
 
         textarea.symptoms {
             resize: none;
-            overflow: ellipsis;
             width: 100%;
             outline: none;
             border: solid 1.15px #ccc;
@@ -338,7 +337,6 @@
         }
     }
 
-
     .buttons {
         margin-bottom: 10px;
         display: flex;
@@ -413,8 +411,6 @@
             max-height: 30vh;
             border-radius: 10px;
         }
-
-        
 
         .close {
             display: flex;
@@ -617,6 +613,66 @@
                 outline: none;
             }
 
+        }
+    }
+
+    @media screen and (max-width: 425px) {
+        .wrapper {
+            width: 100vw;
+        }
+
+        .chat {
+            width: 100vw;
+            transition: 300ms ease;
+
+            &.off {
+                transform: translateY(100vh);
+            }
+        }
+
+        .buttons {
+            margin-bottom: 20px;
+
+            .button {
+                margin: 0 10px;
+            }
+        }
+
+        .back {
+            margin-right: 20px;
+        }
+
+        .user {
+            top: 25px;
+            right: 25px;
+            left: initial;
+            bottom: initial;
+            
+            .close {
+                display: none;
+            }
+
+            .micro svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .micro {
+                bottom: 32px;
+            }
+
+            .flip {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: $primary;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-left: 50%;
+
+                transform: translateY(-15px) translateX(-50%);
+            }
         }
     }
 

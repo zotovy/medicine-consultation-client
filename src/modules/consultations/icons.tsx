@@ -10,6 +10,14 @@ export const AddIcon: React.FC = () => {
 
 }
 
+export const BackIcon : React.FC = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="35.965" height="20.82" viewBox="0 0 35.965 20.82">
+        <g id="Icon_feather-arrow-left" data-name="Icon feather-arrow-left" transform="translate(-6.5 -6.09)">
+            <path id="Контур_122" data-name="Контур 122" d="M41.465,18H7.5" transform="translate(0 -1.5)" fill="none" stroke="#707070" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            <path id="Контур_123" data-name="Контур 123" d="M18,25.5l-10.5-9L18,7.5" fill="none" stroke="#707070" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        </g>
+    </svg>
+}
 
 export const ImageIcon: React.FC = () => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="30.685" height="30.685" viewBox="0 0 30.685 30.685">
@@ -64,8 +72,33 @@ export const SendIcon: React.FC = () => {
     </svg>;
 }
 
+export const ChatIcon: React.FC = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="29.243" height="29.248" viewBox="0 0 29.243 29.248">
+        <g id="Icon_ionic-ios-chatboxes" data-name="Icon ionic-ios-chatboxes" transform="translate(-3.375 -3.375)">
+            <path id="Контур_10" data-name="Контур 10"
+                  d="M29.946,11.981H14.365a2.683,2.683,0,0,0-2.679,2.679V25.509a2.677,2.677,0,0,0,2.679,2.672H23.28a.768.768,0,0,1,.534.225l4.43,4.085c.246.239.654.141.654-.2V28.73c0-.422.267-.555.689-.555h.07a2.927,2.927,0,0,0,2.96-2.672V14.66A2.668,2.668,0,0,0,29.946,11.981Z"
+                  fill="#fff"/>
+            <path id="Контур_11" data-name="Контур 11"
+                  d="M12.262,10.259H24.736V5.667a2.293,2.293,0,0,0-2.292-2.292H5.667A2.293,2.293,0,0,0,3.375,5.667V17.283a2.293,2.293,0,0,0,2.292,2.292h4.3V12.551A2.3,2.3,0,0,1,12.262,10.259Z"
+                  fill="#fff"/>
+        </g>
+    </svg>
+}
 
-
-
-
+export const RefreshIcon: React.FC = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+        <g id="refresh" transform="translate(-0.001)">
+            <g id="Сгруппировать_182" data-name="Сгруппировать 182" transform="translate(0.828)">
+                <g id="Сгруппировать_181" data-name="Сгруппировать 181">
+                    <path id="Контур_124" data-name="Контур 124" d="M41.877,2.069a.586.586,0,0,0-.637.53l-.078.852A7.4,7.4,0,0,0,28.3,4.068a.586.586,0,1,0,1.044.533,6.229,6.229,0,0,1,10.837-.517l-.835-.6a.586.586,0,0,0-.681.954L41.2,6.251a.586.586,0,0,0,.924-.424l.285-3.121A.586.586,0,0,0,41.877,2.069Z" transform="translate(-28.237)" fill="#fff"/>
+                </g>
+            </g>
+            <g id="Сгруппировать_184" data-name="Сгруппировать 184" transform="translate(0.001 8.64)">
+                <g id="Сгруппировать_183" data-name="Сгруппировать 183">
+                    <path id="Контур_125" data-name="Контур 125" d="M13.854,296.416a.586.586,0,0,0-.788.255,6.229,6.229,0,0,1-10.837.517l.835.6a.586.586,0,0,0,.681-.954l-2.533-1.809a.587.587,0,0,0-.924.424L0,298.567a.586.586,0,1,0,1.167.106l.078-.852A7.4,7.4,0,0,0,14.11,297.2.586.586,0,0,0,13.854,296.416Z" transform="translate(-0.001 -294.913)" fill="#fff"/>
+                </g>
+            </g>
+        </g>
+    </svg>;
+}
 
