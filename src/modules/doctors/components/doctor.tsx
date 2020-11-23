@@ -4,6 +4,7 @@ import RatingComponent from "./rating";
 import { useHistory } from "react-router-dom";
 import detailController from "../controllers/detail-controller";
 import controller from "../controllers/find-doctor-controller";
+import userPlaceholder from "../../../static/images/user-placeholder.jpg";
 
 type Props = {
     name: string;
@@ -17,7 +18,7 @@ type Props = {
 
 const Doctor: React.FC<Props> = (props: Props) => {
 
-    const img = "https://www.epos-ural.ru/wp-content/uploads/2019/03/user-placeholder.jpg" ?? props.imgUrl;
+    const img = props.imgUrl ?? userPlaceholder;
     const history = useHistory();
 
     const goToDoctorPage = (): void => {
@@ -39,7 +40,7 @@ const Doctor: React.FC<Props> = (props: Props) => {
     }
 
     return <div className="doctor" onClick={goToDoctorPage}>
-        <div className="image" style={{ backgroundImage: `url(${img})` }}></div>
+        <div className="image" style={{ backgroundImage: `url(${img})` }}/>
         <div className="info">
             <h3>{props.name}&nbsp;{props.surname}</h3>
 
