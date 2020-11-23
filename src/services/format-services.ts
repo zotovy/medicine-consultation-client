@@ -80,9 +80,9 @@ class FormatServices {
 
         if (!date) return "";
 
-        return `${date.getDate()} / ${
+        return `${ date.getDate() } / ${
             date.getMonth() + 1
-        } / ${date.getFullYear()}`;
+        } / ${ date.getFullYear() }`;
     };
 
     formatSize = (bytes: number): string => {
@@ -98,7 +98,7 @@ class FormatServices {
         return input;
     };
 
-    formatToUsualDate = (date: Date | undefined) : string => {
+    formatToUsualDate = (date: Date | undefined): string => {
         if (!date) return "";
 
         const dDays = this._deltaDateInDay(date, new Date());
@@ -109,23 +109,76 @@ class FormatServices {
         if (day.length === 1) day = "0" + day;
         if (month.length === 1) month = "0" + month;
 
-        let str = `${day}.${month}`;
-        if (new Date().getFullYear() !== date.getFullYear()) str += `.${date.getFullYear()}`;
+        let str = `${ day }.${ month }`;
+        if (new Date().getFullYear() !== date.getFullYear()) str += `.${ date.getFullYear() }`;
         return str;
     }
 
-    private _deltaDateInDay = (date1: Date, date2: Date) : number => {
+    private _deltaDateInDay = (date1: Date, date2: Date): number => {
         return Math.abs(date1.getTime() - date2.getTime() / (1000 * 3600 * 24));
     }
 
-    toNumericPhone = (phone: string) : number => {
+    toNumericPhone = (phone: string): number => {
         phone = phone.split(" ").join("").split("-").join("").split("+").join().split(",").join("");
         return parseInt(phone);
     }
 
-    toUsualDate = (date: string) : Date => {
-        const parts = date.split("/");
-        return new Date(parseInt(parts[2]), parseInt(parts[1]), parseInt(parts[0]));
+    private getNumEnding = (num: number, ending: [string, string, string]): string => {
+        const last2 = num % 100;
+        if (last2 >= 11 && last2 <= 19) return ending[2];
+
+        const last = num % 10;
+        switch (last) {
+            case (1):
+                return ending[0];
+            case (2):
+            case (3):
+            case (4):
+                return ending[1];
+            default:
+                return ending[2]
+        }
+
+    }
+
+    experience = (experience: number): string => {
+        if (experience < 30) return "Меньше месяца";
+        if (experience < 365) {
+            const months = Math.floor(experience / 31);
+            return `${ months } ${ this.getNumEnding(months, ["месяц", "месяца", "месяцев"]) }`
+        }
+
+        const years = Math.floor(experience / 365);
+        return `${ years } ${ this.getNumEnding(years, ["год", "года", "лет"]) }`
+    }
+
+    age = (age: number): string => `${ age } ${ this.getNumEnding(age, ["год", "года", "лет"]) }`;
+
+    translateSpeciality = (speciality: string) : string => {
+        const specialities = {
+            Pediatrician: "Педиатр",
+            Therapist: "Терапевт",
+            Dermatologist: "Дерматолог",
+            Psychologist: "Психолог",
+            Defectologis: "Дефектолог",
+            Logopedist: "Логопед",
+            Nutritionist: "Диетолог",
+            Allergist: "Аллерголог",
+            Ophthalmologist: "Офтальмолог",
+            Neurologist: "Невролог",
+            Gynecologis: "Гинеколог",
+            Venereologist: "Венеролог",
+            Andrologist: "Андролог",
+            Cardiologist: "Кардиолог",
+            Pulmonologist: "Пульмонолог",
+            Otolaryngologist: "Отаринголог",
+            Orthopedist: "Ортопед",
+            Dentist: "Стоматолог",
+            Gastroenterologist: "Гастроэнтеролог",
+        };
+
+        // @ts-ignore
+        return specialities[speciality];
     }
 }
 

@@ -1,6 +1,5 @@
 import React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import Skeleton from 'react-loading-skeleton';
 import { observer } from "mobx-react";
 import controller from "../controllers/detail-controller";
 import { BookmarkIcon, InstagramIcon, MailIcon, TelegramIcon, ViberIcon, VkIcon, WhatsAppIcon } from "../icons";
@@ -11,6 +10,7 @@ import DoctorPlaceholder from "../../../static/images/user-placeholder.jpg";
 import Page404 from "../../main/pages/404";
 import LoadingHeader from "../components/detail/loading/loading-header";
 import LoadingConsultationsComponent from "../components/detail/loading/loading-consultations";
+import formatServices from "../../../services/format-services";
 
 type PathParamsType = {
     id: string,
@@ -26,7 +26,7 @@ const DetailPage: React.FC<Props> = (props) => {
     }
 
     const profileStyles = {
-        backgroundImage: `url(${controller.doctor?.photoUrl || DoctorPlaceholder})`,
+        backgroundImage: `url(${ controller.doctor?.photoUrl || DoctorPlaceholder })`,
     };
 
     if (controller.loading) {
@@ -39,29 +39,19 @@ const DetailPage: React.FC<Props> = (props) => {
     return <div className="detail-doctor-module">
         {
 
-            !controller.loading && controller.doctor === undefined
+            controller.doctor == undefined
                 ? <Page404/>
                 : <React.Fragment>
                     <header>
 
-                        <div className="profileImage" style={profileStyles}/>
+                        <div className="profileImage" style={ profileStyles }/>
 
                         <div className="info-main">
-                            <h2> {controller.doctor?.fullName} </h2>
-
-                            <span id="speciality">
-                                {
-                                    controller.doctor?.speciality
-                                        ? controller.doctor.speciality.length > 0
-                                        ? controller.doctor.speciality[0]
-                                        : ""
-                                        : ""
-                                }
-                            </span>
-                            <RatingComponent amount={4.5}/>
+                            <h2>{ controller.doctor.fullName }</h2>
+                            <RatingComponent amount={ controller.doctor.rating }/>
                             <div className="buttons">
                                 <button className="appoint">Записаться</button>
-                                {/* todo: save logic */}
+                                {/* todo: save logic */ }
                                 <button className="save"><BookmarkIcon/></button>
                             </div>
                         </div>
@@ -77,10 +67,34 @@ const DetailPage: React.FC<Props> = (props) => {
                                     <div className="key">Город:</div>
                                 </div>
                                 <div className="values">
-                                    <div className="value">Терапевт</div>
-                                    <div className="value">2 года</div>
-                                    <div className="value">31 год</div>
-                                    <div className="value">Красноярск</div>
+                                    <div className="value">
+                                        {
+                                            controller.doctor.speciality.length > 0
+                                                ? formatServices.translateSpeciality(controller.doctor.speciality[0])
+                                                : "Не указана"
+                                        }
+                                    </div>
+                                    <div className="value">
+                                        {
+                                            controller.doctor.experience
+                                                ? formatServices.experience(controller.doctor.experience)
+                                                : "Не указан"
+                                        }
+                                    </div>
+                                    <div className="value">
+                                        {
+                                            controller.doctor.age
+                                                ? formatServices.age(controller.doctor.age)
+                                                : "Не указан"
+                                        }
+                                    </div>
+                                    <div className="value">
+                                        {
+                                            controller.doctor.city && controller.doctor.city.length > 0
+                                                ? controller.doctor.city
+                                                : "Не указан"
+                                        }
+                                    </div>
                                 </div>
                             </div>
 
