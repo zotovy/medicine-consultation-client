@@ -81,25 +81,25 @@ const Menu: React.FC = (props: any) => {
             <div className="hamburger-menu">
                 <input id="menu__toggle" type="checkbox" />
                 <label className="menu__btn" >
-                    <span></span>
+                    <span/>
                 </label>
                 <ul className="menu__box">
                     <Link to="/consulations">
                         <div className={"tab " + (selected === "/consultation" ? "selected" : "")}>
                             <span className="link">Консультации</span>
-                            <div className="circle"></div>
+                            <div className="circle"/>
                         </div>
                     </Link>
                     <Link to="/sympthoms">
                         <div className={"tab " + (selected === "/sympthoms" ? "selected" : "")}>
                             <span className="link">Симптомы</span>
-                            <div className="circle"></div>
+                            <div className="circle"/>
                         </div>
                     </Link>
                     <Link to="/find-doctor">
                         <div className={"tab " + (selected === "/find-doctor" ? "selected" : "")}>
                             <span className="link ">Врачи</span>
-                            <div className="circle"></div>
+                            <div className="circle"/>
                         </div>
                     </Link>
                 </ul>
