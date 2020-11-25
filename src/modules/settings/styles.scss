@@ -24,7 +24,8 @@ main.settings-page {
         // Phone
         @media screen and (max-width: 425px) {
             left: 16px;
-            top: 0;
+            top: 100px;
+            width: 100%;
         }
 
 
@@ -255,7 +256,7 @@ main.account-page section.account {
 
 main.consultations-page {
 
-    .note-wrapper {
+    .settings-note-wrapper {
         z-index: 100;
         position: fixed;
         left: 0;

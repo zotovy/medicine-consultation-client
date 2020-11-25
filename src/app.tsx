@@ -18,6 +18,7 @@ const DetailDoctorPage = lazy(() => import("./modules/doctors").then(module => (
 const SymptomsPage = lazy(() => import("./modules/doctors").then(module => ({ default: module.SymptomsPage })));
 const AppointmentPage = lazy(() => import("./modules/consultations").then(module => ({ default: module.AppointmentPage })));
 const ConsultationPage = lazy(() => import("./modules/consultations").then(module => ({ default: module.ConsultationPage })));
+const SettingsPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsPage })));
 const SettingsAccountPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsAccountPage })));
 const SettingsConsultationPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsConsultationPage })));
 const SettingsReviewPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsReviewPage })));
@@ -106,6 +107,11 @@ const App = () => {
 
             <Route path="/settings">
                 <Menu/>
+                <Route path="/settings" exact>
+                    <Suspense fallback={<React.Fragment/>}>
+                        <SettingsPage/>
+                    </Suspense>
+                </Route>
                 <Route path="/settings/account">
                     <Suspense fallback={<React.Fragment/>}>
                         <SettingsAccountPage/>

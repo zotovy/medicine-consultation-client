@@ -1,3 +1,4 @@
+import SettingsPage from "./pages/settings";
 import SettingsAccountPage  from "./pages/account";
 import SettingsConsultationPage  from "./pages/consultations";
 import SettingsReviewPage  from "./pages/reviews";
@@ -6,6 +7,7 @@ import SettingsPasswordPage  from "./pages/password";
 
 
 export {
+    SettingsPage,
     SettingsAccountPage,
     SettingsConsultationPage,
     SettingsReviewPage,

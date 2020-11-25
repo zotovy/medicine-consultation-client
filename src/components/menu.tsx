@@ -6,7 +6,7 @@ import { Link, withRouter } from "react-router-dom";
 import storageServices from "../services/storage_services";
 import tokenServices from "../services/token-services";
 import logo from "../static/logo.svg";
-import "../modules/doctors/styles.scss";
+import "./styles/burger-menu.scss";
 
 let lastLocation = '/';
 
@@ -19,7 +19,6 @@ const Menu: React.FC = (props: any) => {
     }
 
     const user = storageServices.getUser();
-    const isLogin = user !== null;
 
     const profileImgUrl = {
         backgroundImage: `url(${user?.photoUrl})`,

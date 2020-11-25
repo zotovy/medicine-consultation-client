@@ -7,13 +7,14 @@ import MediaQuery from "react-responsive";
 
 type Props = {
     active: number
+    alwaysActive?: boolean
 }
 
 const icons: React.FC[] = [AccountIcon, ConsultationIcon, ReviewsIcon, NotificationIcon, PasswordIcon];
 const titles: string[] = ["Аккаунт", "Консультации", "Отзывы", "Уведомления", "Пароль"];
 const paths: string[] = ['/account', "/consultations", "/reviews", "/notifications", "/password"]
 
-const NavigationComponent: React.FC<Props> = ({ active }) => {
+const NavigationComponent: React.FC<Props> = ({ active, alwaysActive }) => {
 
     const history = useHistory();
     const onExit = () => {
@@ -22,7 +23,7 @@ const NavigationComponent: React.FC<Props> = ({ active }) => {
         history.push("/");
     }
 
-    return <MediaQuery minWidth={425}>
+    return <MediaQuery minWidth={alwaysActive ? 0 : 425}>
     <div className="navigation">
             {
                 titles.map((_, i) => {

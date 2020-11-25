@@ -4,7 +4,7 @@ import { CloseIcon } from "../icons";
 import controller from "../controllers/consultations_controller";
 
 const NoteComponent : React.FC = () => {
-    return <div className={`note-wrapper ${controller.isActive ? "" : "disable"}`} onClick={(e) => {
+    return <div className={`settings-note-wrapper ${controller.isActive ? "" : "disable"}`} onClick={(e) => {
         controller.isActive = false;
     }}>
         <div className="note" onClick={(e) => e.stopPropagation()}>
