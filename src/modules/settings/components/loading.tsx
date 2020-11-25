@@ -1,6 +1,7 @@
 import React from "react";
 import { LoadingIndicator } from "../../../components/loading-indicator";
 import NavigationComponent from "./navigation";
+import MediaQuery from "react-responsive";
 
 type Props = {
     active: number;

@@ -19,7 +19,6 @@ const NotificationPage : React.FC = () => {
         return <SettingsLoadingComponent active={3}/>
     }
     return <main className="notifications-page settings-page">
-
         {
             controller.isLoadingSave ? <LoadingLine/> : <React.Fragment/>
         }
@@ -36,11 +35,13 @@ const NotificationPage : React.FC = () => {
             <Checkbox
                 onChange={() => controller.needNotifications = !controller.needNotifications}
                 label="Присылать уведомления о консультациях"
-                checked={controller.needNotifications} />
+                checked={controller.needNotifications}
+            />
             <Checkbox
                 onChange={() => controller.canDoMailing = !controller.canDoMailing}
                 label="Рассылка по электронной почте"
-                checked={controller.canDoMailing}/>
+                checked={controller.canDoMailing}
+            />
 
             <ConfirmButton onConfirm={controller.saveAccountSettings} content="Сохранить" />
         </section>

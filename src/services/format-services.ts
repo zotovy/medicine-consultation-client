@@ -77,7 +77,6 @@ class FormatServices {
     };
 
     formatDate = (date: Date | undefined): string => {
-
         if (!date) return "";
 
         return `${ date.getDate() } / ${
