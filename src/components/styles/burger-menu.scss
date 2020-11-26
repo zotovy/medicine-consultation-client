@@ -126,7 +126,7 @@ menu {
         z-index: 11;
     }
 
-    @media screen and (min-width: 868px) {
+    @media screen and (min-width: 768px) {
 
         #menu__toggle,
         .menu__btn,
@@ -176,7 +176,7 @@ menu {
             }
         }
 
-        @media screen and (max-width: 868px) {
+        @media screen and (max-width: 768px) {
             z-index: 3;
             position: fixed;
             top: 0;
@@ -221,7 +221,8 @@ menu {
 
     .auth {
         display: flex;
-        width: 250px;
+        max-width: 250px;
+        min-width: 200px;
         align-items: center;
         justify-content: flex-end;
 
