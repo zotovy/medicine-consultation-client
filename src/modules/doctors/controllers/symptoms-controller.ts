@@ -122,6 +122,7 @@ class SympController {
          this.isErrorBadgeOpen = false;
          this.isErrorBadgeOpenCh = false;
          this.canFindDoctors = false;
+         this.clickHandlerSymp(this.bodyPart)
     }
 
     @action highlightBodyPart = (e: any): void => {

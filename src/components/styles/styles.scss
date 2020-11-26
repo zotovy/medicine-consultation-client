@@ -37,6 +37,13 @@
             line-height: 56px;
         }
     }
+    @media screen and (max-width: 1366px) {
+        h1 {
+            line-height: 43px;
+            font-size: 36px;
+        }
+    }
+    
 }
 //──── ERROR BADGE ───────────────────────────────────────────────────────────────────────
 .error-badge-container {

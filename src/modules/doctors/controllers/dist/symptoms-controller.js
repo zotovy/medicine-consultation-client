@@ -167,6 +167,7 @@ var SympController = /** @class */ (function () {
             _this.isErrorBadgeOpen = false;
             _this.isErrorBadgeOpenCh = false;
             _this.canFindDoctors = false;
+            _this.clickHandlerSymp(_this.bodyPart);
         };
         this.highlightBodyPart = function (e) {
             // todo: highlight body part
