@@ -69,7 +69,6 @@ class SympController {
         this.loading = true;
         return await this._fetchSymptoms(bodyPart).then(
             action((arrSymps = []) => {
-                console.log(arrSymps)
                 this.arrSymps = arrSymps.map((item, i): any => {
                     item.active = false;
                     item.id = i;
