@@ -8,9 +8,6 @@ $disable: rgba($primary, $alpha: 0.15);
  *                                    Menu                                                    *
  *                                                                                          */
 //========================================================================================
-// #root{
-//     height: 100%;
-// }
 menu {
     height: 70px;
     padding: 10px 28px;
@@ -95,7 +92,7 @@ menu {
         top: 8px;
     }
 
-
+}
 .doctor-module {
     max-width: 1920px;
     overflow-y: auto;
@@ -2213,7 +2210,6 @@ $hoverCol: #30B9D6;
  *                                                                                          */
 //========================================================================================
 .symptoms-wrapper {
-    height: 100%;
 
     @media screen and (max-width: 1366px) {
         margin-top: 0;
@@ -2222,11 +2218,12 @@ $hoverCol: #30B9D6;
 
     @media screen and (max-width: 500px) {
         overflow: visible;
+        .symptoms-subtitle {
+            margin-bottom: 0;
+        }
     }
 
-    .symptoms-subtitle {
-        margin-bottom: 0;
-    }
+
 }
 
 .slider-container {
@@ -3021,5 +3018,4 @@ $hoverCol: #30B9D6;
         transform: translate(1200px, 138px);
         transform-origin: center center;
     }
-}
 }

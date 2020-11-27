@@ -9,7 +9,7 @@ import ConfirmButton from '../../../components/confirm-button';
 import SymptomsСhoice from '../components/symptoms/choice';
 import ErrorBadge from '../../../components/error-badge';
 import controller from "../controllers/symptoms-controller";
-
+import "../styles.scss";
 
 
 const SymptomsPage: React.FC = () => {
