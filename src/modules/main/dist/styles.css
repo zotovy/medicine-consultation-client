@@ -1,0 +1,371 @@
+/*                                                                                      *
+ *                                    primary styles                                      *
+ *                                                                                          */
+.main-wrapper {
+  width: 1600px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.btn-link {
+  background-color: #30B9D6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+/*                                                                                      *
+ *                                    First section                                      *
+ *                                                                                          */
+.main-wrapper.sc--pre-sect {
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main-wrapper.sc--pre-sect .main-container-pre-sect {
+  width: 100%;
+  height: 749px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.main-wrapper.sc--pre-sect .main-container-pre-sect .pre-sect-text__1 {
+  font-size: 32px;
+  line-height: 43px;
+  font-weight: 400;
+  color: #727272;
+}
+.main-wrapper.sc--pre-sect .main-container-pre-sect .pre-sect-text__2 {
+  font-size: 48px;
+  line-height: 64px;
+  font-weight: 800;
+  color: #282828;
+}
+.main-wrapper.sc--pre-sect .main-container-pre-sect .pre-sect__online-counter-wrap {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+.main-wrapper.sc--pre-sect .main-container-pre-sect .pre-sect__online-counter-wrap .doctor_img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #30B9D6;
+  position: relative;
+}
+.main-wrapper.sc--pre-sect .main-container-pre-sect .pre-sect__online-counter-wrap .doctor_img:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #34C759;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  right: 0;
+}
+.main-wrapper.sc--pre-sect .main-container-pre-sect .pre-sect__online-counter-wrap .counter_info {
+  margin-left: 20px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32px;
+  color: #727272;
+}
+.main-wrapper.sc--pre-sect .main-container-pre-sect .btn-link__appoint {
+  margin-top: 15px;
+  width: 220px;
+  height: 60px;
+  font-size: 24px;
+  line-height: 32px;
+  box-shadow: 0px 5px 28px 0px rgba(48, 185, 214, 0.3);
+}
+.main-wrapper.sc--pre-sect .pre-sect__right {
+  height: 100%;
+  width: 50%;
+  background: url(./img/first-section.png) no-repeat;
+  background-size: contain;
+}
+
+/*                                                                                      *
+ *                                    Second Section                                      *
+ *                                                                                          */
+.main-wrapper.sc--symptoms {
+  margin-top: 166px;
+  padding: 0 20px 20px 10px;
+  margin-bottom: 250px;
+  overflow: unset;
+}
+.main-wrapper.sc--symptoms .title-wrap {
+  margin-top: 40px;
+}
+.main-wrapper.sc--symptoms .title-wrap h1 {
+  font-size: 36px;
+  line-height: 48px;
+}
+.main-wrapper.sc--symptoms .symptoms-list-items {
+  width: 100%;
+  margin-top: 82px;
+  display: flex;
+  justify-content: space-between;
+}
+.main-wrapper.sc--symptoms .symptoms-list-items .item {
+  background-color: #fff;
+  width: 177px;
+  height: 222px;
+  display: inherit;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+  box-shadow: 0px 0 15px 0px rgba(0, 0, 0, 0.1);
+}
+.main-wrapper.sc--symptoms .symptoms-list-items .item p {
+  margin-top: 148px;
+  text-align: center;
+  font-size: 23px;
+  line-height: 31px;
+}
+.main-wrapper.sc--symptoms .symptoms-list-items .item .item__wrap-img {
+  position: absolute;
+  right: -44px;
+  top: -30px;
+  width: 158px;
+  height: 158px;
+  background-color: #30B9D6;
+  box-shadow: 0px 3px 6px 0px rgba(48, 185, 214, 0.3);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main-wrapper.sc--symptoms .symptoms-list-items .item .item__wrap-img .item-img {
+  width: 90px;
+  height: 90px;
+  background-repeat: no-repeat !important;
+  background-size: contain;
+}
+.main-wrapper.sc--symptoms .symptoms-list-items .item .item__wrap-img .symp--headache {
+  background: url(./img/symptoms/Headache.png);
+}
+.main-wrapper.sc--symptoms .symptoms-list-items .item .item__wrap-img .symp--cough {
+  background: url(./img/symptoms/Cough.png);
+}
+.main-wrapper.sc--symptoms .symptoms-list-items .item .item__wrap-img .symp--rhinitis {
+  background: url(./img/symptoms/Rhinitis.png);
+}
+.main-wrapper.sc--symptoms .symptoms-list-items .item .item__wrap-img .symp--toothach {
+  background: url(./img/symptoms/Toothach.png);
+}
+.main-wrapper.sc--symptoms .symptoms-list-items .item .item__wrap-img .symp--temp {
+  background: url(./img/symptoms/Temp.png);
+}
+
+/*                                                                                      *
+ *                                    About Us Section                                      *
+ *                                                                                          */
+.sc--about-us {
+  margin-top: 210px;
+  height: 565px;
+}
+.sc--about-us .main-container-about-us {
+  display: flex;
+  justify-content: space-between;
+}
+.sc--about-us .main-container-about-us article .about-us__title {
+  margin-top: 10px;
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 97px;
+  text-transform: uppercase;
+}
+.sc--about-us .main-container-about-us article .about-us__text {
+  font-size: 24px;
+  line-height: 32px;
+  color: #727272;
+}
+.sc--about-us .main-container-about-us article .about-us__text ~ .about-us__text-p1 {
+  margin-top: 16px;
+}
+.sc--about-us .main-container-about-us article .about-us__text ~ .about-us__text-p2 {
+  margin-top: 15px;
+}
+.sc--about-us .main-container-about-us article .about-us__list ul {
+  margin-top: 27px;
+  list-style: none;
+}
+.sc--about-us .main-container-about-us article .about-us__list ul li {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+}
+.sc--about-us .main-container-about-us article .about-us__list ul li span {
+  margin-left: 20px;
+}
+.sc--about-us .main-container-about-us .about-us__right {
+  height: 565px;
+  width: 656px;
+  background: url(./img/third-section.png) no-repeat;
+  background-size: contain;
+}
+
+/*                                                                                      *
+ *                                    Benefits Section                                      *
+ *                                                                                          */
+.sc--benefits {
+  margin-top: 176px;
+}
+.sc--benefits .main-container-benefits .symptoms-subtitle {
+  text-align: center;
+  font-weight: 400;
+  font-size: 20px;
+  margin-top: 17px;
+  line-height: 32px;
+  color: #727272;
+}
+.sc--benefits .main-container-benefits .benefits-list-items {
+  margin-top: 57px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.sc--benefits .main-container-benefits .benefits-list-items .item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sc--benefits .main-container-benefits .benefits-list-items .item .item-img {
+  width: 180px;
+  height: 180px;
+  background-color: #30B9D6;
+  opacity: 0.1;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sc--benefits .main-container-benefits .benefits-list-items .item p {
+  margin-top: 37px;
+  color: #565656;
+  text-align: center;
+}
+
+/*                                                                                      *
+ *                                    How it Works Section                                 *
+ *                                                                                          */
+.sc--hiw {
+  margin-top: 207px;
+  overflow: unset;
+}
+.sc--hiw .main-container-hiw .title-wrap h1 {
+  font-size: 48px;
+  line-height: 65px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.sc--hiw .main-container-hiw .hiw-list-items {
+  margin-top: 108px;
+}
+.sc--hiw .main-container-hiw .hiw-list-items .hiw-list-item {
+  display: flex;
+  justify-content: space-between;
+  width: 1598px;
+}
+.sc--hiw .main-container-hiw .hiw-list-items .hiw-list-item .container-info__left .step-block {
+  width: 135px;
+  height: 55px;
+  background-color: #30B9D6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 9px 9px 0px rgba(48, 185, 214, 0.3);
+  font-size: 24px;
+  color: #fff;
+  line-height: 37px;
+}
+.sc--hiw .main-container-hiw .hiw-list-items .hiw-list-item .container-info__left .hiw-sect-text__1 {
+  font-size: 42px;
+  line-height: 56px;
+  margin-top: 26px;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #282828;
+}
+.sc--hiw .main-container-hiw .hiw-list-items .hiw-list-item .container-info__left .hiw-sect-text__2 {
+  margin-top: 24px;
+  font-size: 28px;
+  line-height: 37px;
+  color: #565656;
+  width: 705px;
+}
+.sc--hiw .main-container-hiw .hiw-list-items .hiw-list-item .container-info__left .btn-link__catalog {
+  width: 250px;
+  height: 60px;
+  box-shadow: 0px 4px 11px 0px rgba(48, 185, 214, 0.3);
+  font-size: 18px;
+  margin-top: 23px;
+  font-weight: 500;
+}
+.sc--hiw .main-container-hiw .hiw-list-items .hiw-list-item ~ .hiw-list-item-left {
+  float: left;
+}
+.sc--hiw .main-container-hiw .hiw-list-items .hiw-list-item ~ .hiw-list-item-right {
+  float: right;
+}
+
+.slider-slide {
+  width: 488px;
+  height: 145px;
+  border-radius: 15px;
+  background-color: #fff;
+  margin-right: 60px;
+  display: flex;
+  padding: 13px 15px 14px 15px;
+  -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
+  -moz-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
+  transition: 0.3s;
+}
+.slider-slide:hover {
+  background-color: #30B9D6;
+  color: #fff;
+  cursor: pointer;
+}
+.slider-slide:hover .speciality {
+  color: #fff;
+}
+.slider-slide:hover .rating .rating svg path {
+  fill: white;
+}
+.slider-slide:hover .rating .rating svg.disable-star-icon path {
+  fill: rgba(255, 255, 255, 0.5);
+}
+.slider-slide .rating .rating svg path {
+  transition: 0.2s;
+}
+
+.doctor_profile_pic {
+  width: 118px;
+  height: 118px;
+  border-radius: 20px;
+  background-position: center;
+  background-size: cover;
+  margin-right: 15px;
+}
+
+.info .name-and-surname {
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: 500;
+}
+.info .speciality {
+  color: #ccc;
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 0;
+  margin-bottom: 5px;
+  line-height: 21px;
+}
