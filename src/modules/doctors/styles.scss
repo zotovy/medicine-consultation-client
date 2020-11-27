@@ -2811,7 +2811,7 @@ $hoverCol: #30B9D6;
     }
 
     @include flex();
-    
+
     .show-error-in {
         background: #DBECF4;
         position: relative;
@@ -2826,53 +2826,74 @@ $hoverCol: #30B9D6;
             border-radius: 15px;
             position: relative;
             padding: 0 76px 55px 0;
-            .title-wrap{
+
+            .title-wrap {
                 position: relative;
-                div{
+
+                div {
                     position: absolute;
                     height: 301px;
                     left: -234px;
-                    h1 {  
+
+                    h1 {
                         line-height: 123px;
                         color: $primary;
                         font-size: 226px;
                         font-weight: bold;
+
                         span {
                             color: #fff;
                         }
                     }
+
                     @media screen and (max-width: 1336px) {
                         left: 17px;
                         top: -238px;
                         width: -webkit-fill-available;
                         height: 181px;
                         overflow: hidden;
-                        h1{
+
+                        h1 {
                             line-height: 177px;
-                            span{
+
+                            span {
                                 position: absolute;
                             }
                         }
                     }
+
                     @media screen and (max-width: 1024px) {
-                        width: 540px;
-                        left: -55px;
-                        font-size: 198px;
-                        h1{
-                            color:#fff;
+                        position: unset;
+                        height: auto;
+                        display: flex;
+                        justify-content: center;
+
+                        h1 {
+                            width: fit-content;
+                            color: #fff;
+
+                            span {
+                                position: unset;
+                            }
                         }
                     }
+
                     @media screen and (max-width: 675px) {
                         width: 100%;
-                        
-                        h1{
-                            font-size: 180px;
-                            color:#fff;
+
+                        h1 {
+                            font-size: 160px;
+                            color: #fff;
                         }
                     }
-                }   
-            }
 
+                    @media screen and (max-width: 485px) {
+                        h1 {
+                            font-size: 127px;
+                        }
+                    }
+                }
+            }
         }
 
         .modal-description-bg {
@@ -2926,7 +2947,8 @@ $hoverCol: #30B9D6;
         @media screen and (max-width: 1675px) {
             width: 1542px;
             height: 817px;
-            .modal{
+
+            .modal {
                 width: 675px;
                 height: 342px;
                 padding: 0 66px 48px 0;
@@ -2958,12 +2980,14 @@ $hoverCol: #30B9D6;
                     }
                 }
             }
+
             .modal-description-bg {
                 position: absolute;
                 height: 358px;
                 left: -139px;
                 top: 133px;
             }
+
             width: 100%;
             height: 100%;
             display: flex;
@@ -2975,12 +2999,15 @@ $hoverCol: #30B9D6;
         @media screen and (max-width: 1336px) {
             overflow: hidden;
             width: 100%;
+
             .modal-description-bg {
                 display: none;
             }
+
             .modal {
                 padding: 48px;
-                 .modal-descriptions-container {
+
+                .modal-descriptions-container {
                     margin: 0 !important;
                 }
 
@@ -3005,23 +3032,63 @@ $hoverCol: #30B9D6;
                 }
             }
         }
+
         @media screen and (max-width: 1024px) {
-            width: 100%;
-            height: 100%;
             background-color: $primary;
-        }
-        @media screen and (max-width: 675px) {
-            .modal{
-                width: 485px;
+
+            .modal {
+                width: 100%;
+                height: 100%;
+
+                .modal-descriptions-container {
+                    a {
+                        position: unset;
+                        margin-top: 45px;
+                        display: block;
+                        float: right;
+                    }
+                }
             }
         }
+
         @media screen and (max-width: 540px) {
-            .modal{
+            .modal {
                 width: 485px;
             }
         }
-        
+
+        @media screen and (max-width: 485px) {
+            .modal {
+                width: 325px;
+                padding: 0;
+            }
+        }
+
+        @media screen and (max-width: 445px) {
+            .modal {
+                height: fit-content;
+                .modal-descriptions-container {
+                    .modal-description-text{
+                        font-size: 17px;
+                    }
+                    a {
+                        div {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 185px;
+                            padding: 0;
+                            p{
+                                font-size: 14px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
+
+}
 
     .error-background {
 
@@ -3068,7 +3135,6 @@ $hoverCol: #30B9D6;
             }
         }
     }
-}
 
 
 .superman-anim--plus {
