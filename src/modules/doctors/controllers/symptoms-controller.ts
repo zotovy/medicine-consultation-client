@@ -69,7 +69,6 @@ class SympController {
         this.loading = true;
         return await this._fetchSymptoms(bodyPart).then(
             action((arrSymps = []) => {
-                console.log(arrSymps)
                 this.arrSymps = arrSymps.map((item, i): any => {
                     item.active = false;
                     item.id = i;
@@ -122,6 +121,7 @@ class SympController {
          this.isErrorBadgeOpen = false;
          this.isErrorBadgeOpenCh = false;
          this.canFindDoctors = false;
+         this.clickHandlerSymp(this.bodyPart)
     }
 
     @action highlightBodyPart = (e: any): void => {
