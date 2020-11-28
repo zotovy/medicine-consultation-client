@@ -266,18 +266,6 @@ class AuthStore {
                 return;
             }
 
-            // Tokens
-            const accessToken = response.data.tokens.access;
-            const refreshToken = response.data.tokens.refresh;
-
-            // save given tokens
-            tokenServices.saveAccessToken(accessToken);
-            tokenServices.saveRefreshToken(refreshToken);
-
-            // Save user id
-            const id = response.data.user.id;
-            localStorage.setItem("uid", id);
-            localStorage.setItem("isUser", "false");
 
             // Show badge
             signupUIStore.isBadgeOpen = true;
