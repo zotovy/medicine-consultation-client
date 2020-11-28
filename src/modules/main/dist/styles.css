@@ -257,7 +257,9 @@
  *                                                                                          */
 .sc--hiw {
   margin-top: 207px;
-  overflow: unset;
+  overflow: hidden;
+  padding: 20px;
+  width: 1640px;
 }
 .sc--hiw .main-container-hiw .title-wrap h1 {
   font-size: 48px;
@@ -306,7 +308,7 @@
   height: 60px;
   box-shadow: 0px 4px 11px 0px rgba(48, 185, 214, 0.3);
   font-size: 18px;
-  margin-top: 23px;
+  margin-top: 49px;
   font-weight: 500;
 }
 .sc--hiw .main-container-hiw .hiw-list-items .hiw-list-item ~ .hiw-list-item-left {
@@ -316,12 +318,28 @@
   float: right;
 }
 
+.hiw-sect__right {
+  width: 681px;
+  display: flex;
+  flex-direction: column;
+}
+.hiw-sect__right .rnd-doctor-left {
+  margin: 56px 0;
+  float: left;
+}
+.hiw-sect__right .rnd-doctor-center {
+  margin: 0 auto;
+}
+.hiw-sect__right .rnd-doctor-right {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .slider-slide {
   width: 488px;
   height: 145px;
   border-radius: 15px;
   background-color: #fff;
-  margin-right: 60px;
   display: flex;
   padding: 13px 15px 14px 15px;
   -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
@@ -368,4 +386,146 @@
   margin-top: 0;
   margin-bottom: 5px;
   line-height: 21px;
+}
+
+.hiw-list-item-right {
+  margin-top: 163px;
+}
+.hiw-list-item-right .container-info__left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.hiw-list-item-right .container-info__left .step-block {
+  float: right;
+}
+.hiw-list-item-right .container-info__left p {
+  text-align: right;
+}
+.hiw-list-item-right .hiw-sect__right {
+  height: fit-content;
+  margin: 118px 0 0 88px;
+}
+.hiw-list-item-right .hiw-sect__right .question__block {
+  width: 500px;
+  height: 75px;
+  color: #707070;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding-left: 30px;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+  box-shadow: 0px 10px 16px 0px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+.hiw-list-item-right .hiw-sect__right .btn-link__appoint {
+  width: 282px;
+  height: 75px;
+  font-size: 24px;
+  line-height: 32px;
+  box-shadow: 0px 5px 28px 0px rgba(48, 185, 214, 0.3);
+}
+
+.hiw-list-item:last-child {
+  margin-top: 150px;
+}
+
+.messenger {
+  width: 709px;
+  height: 370px;
+  margin-top: 90px;
+  display: block;
+}
+.messenger .message_container .message__block {
+  width: 528px;
+  height: 98px;
+  display: flex;
+  position: relative;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 11px 25px 0px rgba(0, 0, 0, 0.05);
+}
+.messenger .message_container .message__block span {
+  font-size: 24px;
+  line-height: 32px;
+  color: #282828;
+}
+.messenger .message_container .message__block svg {
+  position: absolute;
+  bottom: 0;
+}
+.messenger .message_container .sender_container {
+  margin-top: 16px;
+  width: 151px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.messenger .message_container .sender_container span {
+  font-size: 18px;
+  line-height: 24px;
+  color: #727272;
+}
+.messenger .message_container__left .message__block {
+  padding-left: 30px;
+}
+.messenger .message_container__left .message__block svg {
+  right: -60px;
+}
+.messenger .message_container__right {
+  float: right;
+}
+.messenger .message_container__right .message__block {
+  justify-content: flex-end;
+  padding-right: 30px;
+}
+.messenger .message_container__right .message__block svg {
+  left: -60px;
+}
+.messenger .message_container__right .sender-container-right {
+  float: right;
+}
+
+/*                                                                                      *
+ *                                    Registration Section                                 *
+ *                                                                                          */
+.sc--reg {
+  margin-top: 174px;
+  margin-bottom: 146px;
+}
+.sc--reg .main-container-reg .title-wrap {
+  text-transform: uppercase;
+}
+.sc--reg .main-container-reg .title-wrap * {
+  font-size: 48px;
+  line-height: 65px;
+  font-weight: 900;
+}
+.sc--reg .main-container-reg .reg-subtitle {
+  margin-top: 7px;
+  font-size: 22px;
+  line-height: 32px;
+  font-weight: 400;
+  color: #565656;
+  text-align: center;
+}
+.sc--reg .main-container-reg .btn-link__reg {
+  margin: 50px auto 0 auto;
+  width: 417px;
+  height: 75px;
+  font-size: 24px;
+  line-height: 32px;
+}
+.sc--reg .main-container-reg p {
+  margin-top: 24px;
+  text-align: center;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+  color: #707070;
+}
+.sc--reg .main-container-reg p a {
+  color: #30B9D6;
 }

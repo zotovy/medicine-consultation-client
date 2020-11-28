@@ -282,7 +282,9 @@
 //========================================================================================
 .sc--hiw{
     margin-top: 207px;
-    overflow: unset;
+    overflow: hidden;
+    padding: 20px;
+    width: 1640px;
     .main-container-hiw{
         .title-wrap{
             h1{
@@ -333,7 +335,7 @@
                         height: 60px;
                         box-shadow: 0px 4px 11px 0px rgba(48, 185, 214, 0.3);
                         font-size: 18px;
-                        margin-top: 23px;
+                        margin-top: 49px;
                         font-weight: 500;
                     }
                 }
@@ -351,13 +353,27 @@
         }
     }
 }
-
+.hiw-sect__right{
+    width: 681px;
+    display: flex;
+    flex-direction: column;
+    .rnd-doctor-left{
+        margin: 56px 0;
+        float: left;
+    }
+    .rnd-doctor-center{
+        margin: 0 auto;
+    }
+    .rnd-doctor-right{
+        display: flex;
+        justify-content: flex-end;
+    }
+}
 .slider-slide {
     width: 488px;
     height: 145px;
     border-radius: 15px;
     background-color: #fff;
-    margin-right: 60px;
     display: flex;
     padding: 13px 15px 14px 15px;
     -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
@@ -426,4 +442,153 @@
         margin-bottom: 5px;
         line-height: 21px;
     }
+}
+
+.hiw-list-item-right{
+    margin-top: 163px;
+    .container-info__left{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        .step-block{
+            float: right;
+        }
+        p{
+            text-align: right;
+        }
+    }
+    .hiw-sect__right{
+        height: fit-content;
+        margin: 118px 0 0 88px;
+        .question__block{
+           width: 500px;
+           height: 75px;
+           color: #707070;
+           display: flex;
+           align-items: center;
+           background-color: #fff;
+           padding-left: 30px;
+           font-size: 24px;
+           line-height: 32px;
+           font-weight: 400;
+           box-shadow: 0px 10px 16px 0px rgba(0, 0, 0, 0.05);
+           margin-bottom: 40px;
+        }
+        .btn-link__appoint{
+            width: 282px;
+            height: 75px;
+            font-size: 24px;
+            line-height: 32px;
+            box-shadow: 0px 5px 28px 0px rgba(48, 185, 214, 0.3);
+        }
+    }
+}
+.hiw-list-item:last-child{
+    margin-top: 150px;
+}
+.messenger{
+    width: 709px;
+    height: 370px;
+    margin-top: 90px;
+    display: block;
+    .message_container{
+        .message__block{
+            width: 528px;
+            height: 98px;
+            display: flex;
+            position: relative;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0px 11px 25px 0px rgba(0, 0, 0, 0.05);
+            span{
+                font-size: 24px;
+                line-height: 32px;
+                color: #282828;
+            }
+            svg{
+                position: absolute;
+                bottom: 0;
+            }
+        }
+        .sender_container{
+            margin-top: 16px;
+            width: 151px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            span{
+                font-size: 18px;
+                line-height: 24px;
+                color: #727272;
+            }
+        }
+    }
+    .message_container__left{
+        .message__block{
+            padding-left: 30px;
+            svg{
+                right: -60px;
+            }
+        }
+    }
+    .message_container__right{
+        .message__block{
+            justify-content: flex-end;
+            padding-right: 30px;
+            svg{
+                left: -60px;
+            }
+        }
+        .sender-container-right{
+            float: right;
+        }
+        float: right;
+    }
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                    Registration Section                                 *
+ *                                                                                          */
+//========================================================================================
+.sc--reg{
+    margin-top: 174px;
+    .main-container-reg{
+        .title-wrap{
+            text-transform: uppercase;
+            *{
+                font-size: 48px;
+                line-height: 65px;
+                font-weight: 900;
+            }
+
+        }
+        .reg-subtitle{
+            margin-top: 7px;
+            font-size: 22px;
+            line-height: 32px;
+            font-weight: 400;
+            color: #565656;
+            text-align: center;
+        }
+        .btn-link__reg{
+            margin: 50px auto 0 auto;
+            width: 417px;
+            height: 75px;
+            font-size: 24px;
+            line-height: 32px;
+        }
+        p{
+            margin-top: 24px;
+            text-align: center;
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 400;
+            color: #707070;
+            a{
+                color: $primary;
+            }
+        }
+    }
+    margin-bottom: 146px;
 }
