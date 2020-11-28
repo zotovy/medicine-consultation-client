@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react"
 import controller from "../controllers/link-controller"
 import Navigation from "../components/navigation";
@@ -10,6 +10,10 @@ import { LoadingIndicator } from "../../../components/loading-indicator";
 import SettingsLoadingComponent from "../components/loading";
 
 const LinksSettingsPage: React.FC = () => {
+
+    useEffect(() => {
+        controller.fetchUser();
+    }, []);
 
     if (controller.loading) {
         return <SettingsLoadingComponent active={4}/>
