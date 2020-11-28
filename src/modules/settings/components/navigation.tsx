@@ -1,6 +1,14 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import { AccountIcon, ConsultationIcon, LogoutIcon, NotificationIcon, PasswordIcon, ReviewsIcon } from "../icons";
+import {
+    AccountIcon,
+    ConsultationIcon,
+    LinkIcon,
+    LogoutIcon,
+    NotificationIcon,
+    PasswordIcon,
+    ReviewsIcon
+} from "../icons";
 import tokenServices from "../../../services/token-services";
 import storageServices from "../../../services/storage_services";
 import MediaQuery from "react-responsive";
@@ -10,11 +18,17 @@ type Props = {
     alwaysActive?: boolean
 }
 
-const icons: React.FC[] = [AccountIcon, ConsultationIcon, ReviewsIcon, NotificationIcon, PasswordIcon];
-const titles: string[] = ["Аккаунт", "Консультации", "Отзывы", "Уведомления", "Пароль"];
-const paths: string[] = ['/account', "/consultations", "/reviews", "/notifications", "/password"]
+let icons: React.FC[] = [AccountIcon, ConsultationIcon, ReviewsIcon, NotificationIcon, PasswordIcon];
+let titles: string[] = ["Аккаунт", "Консультации", "Отзывы", "Уведомления", "Пароль"];
+let paths: string[] = ['/account', "/consultations", "/reviews", "/notifications", "/password"]
 
 const NavigationComponent: React.FC<Props> = ({ active, alwaysActive }) => {
+
+    if (localStorage.getItem("isUser") === "false") {
+        titles = [...titles.slice(0, 4), "Ссылки", "Пароль"];
+        paths = [...paths.slice(0, 4), "/links", "/password"];
+        icons = [...icons.slice(0, 4), LinkIcon, PasswordIcon];
+    }
 
     const history = useHistory();
     const onExit = () => {

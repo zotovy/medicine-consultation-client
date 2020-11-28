@@ -5,8 +5,16 @@ import Navigation from "../components/navigation";
 import TextField from "../../../components/text-field";
 import "../styles.scss";
 import ConfirmButton from "../../../components/confirm-button";
+import NotFound from "../components/not-found";
+import { LoadingIndicator } from "../../../components/loading-indicator";
+import SettingsLoadingComponent from "../components/loading";
 
 const LinksSettingsPage: React.FC = () => {
+
+    if (controller.loading) {
+        return <SettingsLoadingComponent active={4}/>
+    }
+
     return <main className="links-page settings-page">
         <Navigation active={4}/>
         <section className="content links-page">
@@ -58,7 +66,7 @@ const LinksSettingsPage: React.FC = () => {
                 />
             </div>
 
-            <ConfirmButton onConfirm={controller.onSave} content={"Сохранить"} />
+            <ConfirmButton onConfirm={controller.onSave} content={"Сохранить"}/>
         </section>
     </main>
 }
