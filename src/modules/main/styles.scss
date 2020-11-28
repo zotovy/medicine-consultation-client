@@ -1,0 +1,594 @@
+@import "../../static/mixins.scss";
+@import "../../static/theme.scss";
+
+//========================================================================================
+/*                                                                                      *
+ *                                    primary styles                                      *
+ *                                                                                          */
+//========================================================================================
+
+.main-wrapper{
+    width: 1600px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.btn-link{
+    background-color: $primary;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+
+//========================================================================================
+/*                                                                                      *
+ *                                    First section                                      *
+ *                                                                                          */
+//========================================================================================
+
+.main-wrapper.sc--pre-sect{
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .main-container-pre-sect{
+        width: 100%;
+        height: 749px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .pre-sect-text__1{
+            font-size: 32px;
+            line-height: 43px;
+            font-weight: 400;
+            color: #727272;
+        }
+        .pre-sect-text__2{
+            font-size: 48px;
+            line-height: 64px;
+            font-weight: 800;
+            color: #282828;
+        }
+        .pre-sect__online-counter-wrap{
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            .doctor_img{
+                width:50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: $primary;
+                position: relative;
+                &:before{
+                    content: "";
+                    position: absolute;
+                    width: 10px;
+                    height: 10px;
+                    background-color: #34C759;
+                    border-radius: 50%;
+                    border: 4px solid #fff;
+                    right: 0;
+                }
+            }
+            .counter_info{
+                margin-left: 20px;
+                font-size: 24px;
+                font-weight: 400;
+                line-height: 32px;
+                color: #727272;
+            }
+        }
+        .btn-link__appoint{
+            margin-top: 15px;
+            width: 220px;
+            height: 60px;
+            font-size: 24px;
+            line-height: 32px;
+            box-shadow: 0px 5px 28px 0px rgba(48, 185, 214, 0.3);
+        }
+    }
+    .pre-sect__right{
+        height: 100%;
+        width: 50%;
+        background: url(./img/first-section.png) no-repeat;
+        background-size: contain;
+    }
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                    Second Section                                      *
+ *                                                                                          */
+//========================================================================================
+.main-wrapper.sc--symptoms{
+    margin-top: 166px;
+    padding: 0 20px 20px 10px;
+    margin-bottom: 250px;
+    overflow: unset;
+    .title-wrap{
+        margin-top: 40px;
+        h1{
+            font-size: 36px;
+            line-height: 48px;
+        }
+    }
+    .symptoms-list-items{
+        width: 100%;
+        margin-top: 82px;
+        display: flex;
+        justify-content: space-between;
+        .item{
+            background-color: #fff;
+            width: 177px;
+            height: 222px;
+            display: inherit;
+            justify-content: center;
+            position: relative;
+            cursor: pointer;
+            box-shadow: 0px 0 15px 0px rgba(0, 0, 0, 0.1);
+            p{
+                margin-top: 148px;
+                text-align: center;
+                font-size: 23px;
+                line-height: 31px;
+            }
+            .item__wrap-img{
+                position: absolute;
+                right: -44px;
+                top: -30px;
+                width: 158px;
+                height: 158px;
+                background-color: $primary;
+                box-shadow: 0px 3px 6px 0px rgba(48, 185, 214, 0.3);
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .item-img{
+                    width: 90px;
+                    height: 90px;
+                    background-repeat: no-repeat !important;
+                    background-size: contain;
+                } 
+                .symp--headache{
+                    background: url(./img/symptoms/Headache.png);
+                }
+                .symp--cough{
+                    background: url(./img/symptoms/Cough.png);
+                }
+                .symp--rhinitis{
+                    background: url(./img/symptoms/Rhinitis.png);
+                }
+                .symp--toothach{
+                    background: url(./img/symptoms/Toothach.png);
+                }
+                .symp--temp{
+                    background: url(./img/symptoms/Temp.png);
+                } 
+            }
+        }
+    }
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                    About Us Section                                      *
+ *                                                                                          */
+//========================================================================================
+
+.sc--about-us{
+    margin-top: 210px;
+    height: 565px;
+    .main-container-about-us{
+        display: flex;
+        justify-content: space-between;
+        article{
+            .about-us__title{
+                margin-top: 10px;
+                font-size: 72px;
+                font-weight: 900;
+                line-height: 97px;
+                text-transform: uppercase;
+            }
+            .about-us__text{
+                font-size: 24px;
+                line-height: 32px;
+                color: #727272;
+                ~.about-us__text-p1{
+                    margin-top: 16px;
+                }
+                ~.about-us__text-p2{
+                    margin-top: 15px;
+                }
+            }
+            .about-us__list{
+                ul{
+                    margin-top: 27px;
+                    list-style: none;
+                    li{
+                        display: flex;
+                        align-items: center;
+                        margin-top: 15px;
+                        span{
+                            margin-left: 20px;
+                        }
+                    }
+                }
+            }
+        }
+        .about-us__right{
+            height: 565px;
+            width: 656px;
+            background: url(./img/third-section.png) no-repeat;
+            background-size: contain;  
+        }
+    }
+
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                    Benefits Section                                      *
+ *                                                                                          */
+//========================================================================================
+.sc--benefits{
+    margin-top: 176px;
+    .main-container-benefits{
+        .symptoms-subtitle {
+            text-align: center;
+            font-weight: 400;
+            font-size: 20px;
+            margin-top: 17px;
+            line-height: 32px;
+            color: #727272;
+        }
+        .benefits-list-items{
+            margin-top: 57px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            .item{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                .item-img{
+                    width: 180px;
+                    height: 180px;
+                    background-color: #30B9D6;
+                    opacity: 0.1;
+                    border-radius: 25px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+                p{
+                    margin-top: 37px;
+                    color: #565656;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                    How it Works Section                                 *
+ *                                                                                          */
+//========================================================================================
+.sc--hiw{
+    margin-top: 207px;
+    overflow: hidden;
+    padding: 20px;
+    width: 1640px;
+    .main-container-hiw{
+        .title-wrap{
+            h1{
+                font-size: 48px;
+                line-height: 65px;
+                font-weight: 900;
+                text-transform: uppercase;
+            }
+        }
+        .hiw-list-items{
+            margin-top: 108px;
+            .hiw-list-item{
+                display: flex;
+                justify-content: space-between;
+                width: 1598px;
+
+                .container-info__left{
+                    .step-block{
+                        width: 135px;
+                        height: 55px;
+                        background-color: $primary;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 10px;
+                        box-shadow: 0px 9px 9px 0px rgba(48, 185, 214, 0.3);
+                        font-size: 24px;
+                        color: #fff;
+                        line-height: 37px;
+                    }
+                    .hiw-sect-text__1{
+                        font-size: 42px;
+                        line-height: 56px;
+                        margin-top: 26px;
+                        text-transform: uppercase;
+                        font-weight: 800;
+                        color: #282828;
+                    }
+                    .hiw-sect-text__2{
+                        margin-top: 24px;
+                        font-size: 28px;
+                        line-height: 37px;
+                        color: #565656;
+                        width: 705px;
+                    }
+                    .btn-link__catalog{
+                        width: 250px;
+                        height: 60px;
+                        box-shadow: 0px 4px 11px 0px rgba(48, 185, 214, 0.3);
+                        font-size: 18px;
+                        margin-top: 49px;
+                        font-weight: 500;
+                    }
+                }
+
+
+
+
+                ~.hiw-list-item-left{
+                    float: left;
+                }
+                ~.hiw-list-item-right{
+                    float: right;
+                }
+            }
+        }
+    }
+}
+.hiw-sect__right{
+    width: 681px;
+    display: flex;
+    flex-direction: column;
+    .rnd-doctor-left{
+        margin: 56px 0;
+        float: left;
+    }
+    .rnd-doctor-center{
+        margin: 0 auto;
+    }
+    .rnd-doctor-right{
+        display: flex;
+        justify-content: flex-end;
+    }
+}
+.slider-slide {
+    width: 488px;
+    height: 145px;
+    border-radius: 15px;
+    background-color: #fff;
+    display: flex;
+    padding: 13px 15px 14px 15px;
+    -webkit-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 11px 0px rgba(0, 0, 0, 0.25);
+    transition: 0.3s;
+    &:hover {
+        background-color: $primary;
+        color: #fff;
+        cursor: pointer;
+
+        .speciality {
+            color: #fff;
+        }
+
+        .rating {
+            .rating {
+
+                svg {
+                    path {
+                        fill: white;
+                    }
+
+
+                    &.disable-star-icon {
+                        path {
+                            fill: rgba(255, 255, 255, 0.5);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .rating {
+        .rating {
+            svg {
+                path {
+                    transition: 0.2s
+                }
+            }
+        }
+    }
+}
+.doctor_profile_pic {
+    width: 118px;
+    height: 118px;
+    border-radius: 20px;
+    background-position: center;
+    background-size: cover;
+    margin-right: 15px;
+}
+
+.info {
+    .name-and-surname {
+        margin-top: 10px;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .speciality {
+        color: #ccc;
+        font-size: 16px;
+        font-weight: 400;
+        margin-top: 0;
+        margin-bottom: 5px;
+        line-height: 21px;
+    }
+}
+
+.hiw-list-item-right{
+    margin-top: 163px;
+    .container-info__left{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        .step-block{
+            float: right;
+        }
+        p{
+            text-align: right;
+        }
+    }
+    .hiw-sect__right{
+        height: fit-content;
+        margin: 118px 0 0 88px;
+        .question__block{
+           width: 500px;
+           height: 75px;
+           color: #707070;
+           display: flex;
+           align-items: center;
+           background-color: #fff;
+           padding-left: 30px;
+           font-size: 24px;
+           line-height: 32px;
+           font-weight: 400;
+           box-shadow: 0px 10px 16px 0px rgba(0, 0, 0, 0.05);
+           margin-bottom: 40px;
+        }
+        .btn-link__appoint{
+            width: 282px;
+            height: 75px;
+            font-size: 24px;
+            line-height: 32px;
+            box-shadow: 0px 5px 28px 0px rgba(48, 185, 214, 0.3);
+        }
+    }
+}
+.hiw-list-item:last-child{
+    margin-top: 150px;
+}
+.messenger{
+    width: 709px;
+    height: 370px;
+    margin-top: 90px;
+    display: block;
+    .message_container{
+        .message__block{
+            width: 528px;
+            height: 98px;
+            display: flex;
+            position: relative;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0px 11px 25px 0px rgba(0, 0, 0, 0.05);
+            span{
+                font-size: 24px;
+                line-height: 32px;
+                color: #282828;
+            }
+            svg{
+                position: absolute;
+                bottom: 0;
+            }
+        }
+        .sender_container{
+            margin-top: 16px;
+            width: 151px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            span{
+                font-size: 18px;
+                line-height: 24px;
+                color: #727272;
+            }
+        }
+    }
+    .message_container__left{
+        .message__block{
+            padding-left: 30px;
+            svg{
+                right: -60px;
+            }
+        }
+    }
+    .message_container__right{
+        .message__block{
+            justify-content: flex-end;
+            padding-right: 30px;
+            svg{
+                left: -60px;
+            }
+        }
+        .sender-container-right{
+            float: right;
+        }
+        float: right;
+    }
+}
+
+//========================================================================================
+/*                                                                                      *
+ *                                    Registration Section                                 *
+ *                                                                                          */
+//========================================================================================
+.sc--reg{
+    margin-top: 174px;
+    .main-container-reg{
+        .title-wrap{
+            text-transform: uppercase;
+            *{
+                font-size: 48px;
+                line-height: 65px;
+                font-weight: 900;
+            }
+
+        }
+        .reg-subtitle{
+            margin-top: 7px;
+            font-size: 22px;
+            line-height: 32px;
+            font-weight: 400;
+            color: #565656;
+            text-align: center;
+        }
+        .btn-link__reg{
+            margin: 50px auto 0 auto;
+            width: 417px;
+            height: 75px;
+            font-size: 24px;
+            line-height: 32px;
+        }
+        p{
+            margin-top: 24px;
+            text-align: center;
+            font-size: 24px;
+            line-height: 32px;
+            font-weight: 400;
+            color: #707070;
+            a{
+                color: $primary;
+            }
+        }
+    }
+    margin-bottom: 146px;
+}
