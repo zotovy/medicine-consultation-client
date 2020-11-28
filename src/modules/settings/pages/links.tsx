@@ -8,6 +8,7 @@ import ConfirmButton from "../../../components/confirm-button";
 import NotFound from "../components/not-found";
 import { LoadingIndicator } from "../../../components/loading-indicator";
 import SettingsLoadingComponent from "../components/loading";
+import GoBackIcon from "../components/go-back-icon";
 
 const LinksSettingsPage: React.FC = () => {
 
@@ -21,6 +22,7 @@ const LinksSettingsPage: React.FC = () => {
 
     return <main className="links-page settings-page">
         <Navigation active={4}/>
+        <GoBackIcon/>
         <section className="content links-page">
             <div className="row">
                 <TextField

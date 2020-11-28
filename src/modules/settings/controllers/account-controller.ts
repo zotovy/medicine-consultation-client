@@ -63,6 +63,8 @@ class AccountController {
         ));
         this.isLoading = false;
 
+        console.log(result);
+
         if (!result || result.status === EAuthFetch.Error) throw "error";
         else if (result.status === EAuthFetch.Unauthorized) throw "logout";
         else {
@@ -86,6 +88,14 @@ class AccountController {
     }
 
     saveAccountSettings = async (): Promise<void> => {
+
+        action(() => {
+            this.nameError = undefined;
+            this.emailError = undefined;
+            this.surnameError = undefined;
+            this.phoneError = undefined;
+        })();
+
         const uid = localStorage.getItem("uid");
         const isUser = localStorage.getItem("isUser");
         if (!uid || isUser == null) throw "logout";
@@ -131,7 +141,7 @@ class AccountController {
         }
 
 
-        const route = isUser ? `/api/user/${uid}` : `/api/doctor/${uid}`
+        const route = isUser == "true" ? `/api/user/${uid}` : `/api/doctor/${uid}`
         const res = await authFetch(() => axios.put(
             process.env.REACT_APP_SERVER_URL + route,
             {
@@ -141,7 +151,7 @@ class AccountController {
                 patronymic: this.patronymic,
                 phone: formatServices.toNumericPhone(this.phone),
                 email: this.email,
-                birthday: (this.birthday as Date).toISOString(),
+                birthday: this.birthday ? (this.birthday as Date).toISOString() : undefined,
                 country: this.country,
                 city: this.city,
                 sex: this.isMale,

@@ -8,6 +8,7 @@ import Checkbox from "../../../components/checkbox";
 import ConfirmButton from "../../../components/confirm-button"
 import LoadingLine from "../../../components/loading-line";
 import SettingsLoadingComponent from "../components/loading";
+import GoBackIcon from "../components/go-back-icon";
 
 const NotificationPage : React.FC = () => {
 
@@ -22,7 +23,7 @@ const NotificationPage : React.FC = () => {
         {
             controller.isLoadingSave ? <LoadingLine/> : <React.Fragment/>
         }
-
+        <GoBackIcon/>
         <Navigation active={3} />
         <section className="content notifications">
             <TextField
