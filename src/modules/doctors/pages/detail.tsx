@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { observer } from "mobx-react";
-import controller from "../controllers/detail-controller";
+import controller, { ESocialLinkTypes } from "../controllers/detail-controller";
 import { BookmarkIcon, InstagramIcon, MailIcon, TelegramIcon, ViberIcon, VkIcon, WhatsAppIcon } from "../icons";
 import RatingComponent from "../components/rating";
 import ConsultationSelector from "../components/detail/consulation-selector";
@@ -17,6 +17,7 @@ type PathParamsType = {
 }
 
 type Props = RouteComponentProps<PathParamsType>;
+
 
 const DetailPage: React.FC<Props> = (props) => {
 
@@ -38,7 +39,6 @@ const DetailPage: React.FC<Props> = (props) => {
 
     return <div className="detail-doctor-module">
         {
-
             controller.doctor == undefined
                 ? <Page404/>
                 : <React.Fragment>
@@ -99,12 +99,11 @@ const DetailPage: React.FC<Props> = (props) => {
                             </div>
 
                             <div className="social-medias">
-                                <VkIcon/>
-                                <InstagramIcon/>
-                                <TelegramIcon/>
-                                <WhatsAppIcon/>
-                                <ViberIcon/>
-                                <MailIcon/>
+                                {
+                                    controller.getSocialLinks()?.map(e => <a href={e.href}>
+                                        <LinkIcon type={e.type} />
+                                    </a>)
+                                }
                             </div>
                         </div>
                     </header>
@@ -121,5 +120,16 @@ const DetailPage: React.FC<Props> = (props) => {
         }
     </div>
 }
+
+const LinkIcon : React.FC<{type: ESocialLinkTypes}> = ({ type }) => {
+    if (type == ESocialLinkTypes.vk) return <VkIcon/>
+    if (type == ESocialLinkTypes.instagram) return <InstagramIcon/>
+    if (type == ESocialLinkTypes.telegram) return <TelegramIcon/>
+    if (type == ESocialLinkTypes.whatsApp) return <WhatsAppIcon/>
+    if (type == ESocialLinkTypes.viber) return <ViberIcon/>
+    if (type == ESocialLinkTypes.email) return <MailIcon/>
+    return <React.Fragment/>
+}
+
 
 export default withRouter(observer(DetailPage));

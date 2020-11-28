@@ -70,7 +70,7 @@ class DetailController {
             number % 100 > 4 && number % 100 < 20
                 ? 2
                 : [2, 0, 1, 1, 1, 2][number % 10 < 5 ? number % 10 : 5]
-        ];
+            ];
     };
 
     // Selector
@@ -167,6 +167,20 @@ class DetailController {
 
         return consultationTime;
     };
+
+    public getSocialLinks = (): SocialLink[] | null => {
+        let links: SocialLink[] = [];
+
+        SocialLinkTypes.forEach(e => {
+            if (!this.doctor) return [];
+            // @ts-ignore
+            const v = this.doctor[`${e}Link`];
+            // @ts-ignore
+            if (v != null && v != "") links.push({ type: e, href: v })
+            console.log(`${e}Link`, v);
+        });
+        return links;
+    }
 }
 
 type Time = {
@@ -174,5 +188,23 @@ type Time = {
     isOccupied?: boolean;
     x: number;
 };
+
+const SocialLinkTypes = [
+    "vk", "instagram", "telegram", "whatsApp", "viber", "email",
+]
+
+export enum ESocialLinkTypes {
+    "vk" = "vk",
+    "instagram" = "instagram",
+    "telegram" = "telegram",
+    "whatsApp" = "whatsApp",
+    "viber" = "viber",
+    "email" = "email",
+}
+
+type SocialLink = {
+    type: ESocialLinkTypes,
+    href: string
+}
 
 export default new DetailController();
