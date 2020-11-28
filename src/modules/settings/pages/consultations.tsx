@@ -21,7 +21,7 @@ const ConsultationsPage = () => {
 
     if (controller.consultations.length === 0) return  <main className="consultations-page settings-page">
         <Navigation active={1} />
-        <NotFound text="У вас еще небыло консультаций" />
+        <NotFound text="У вас еще не было консультаций" />
     </main>
 
     return <main className="consultations-page settings-page">
