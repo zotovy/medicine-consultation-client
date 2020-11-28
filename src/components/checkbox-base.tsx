@@ -1,5 +1,5 @@
 import React from "react";
-import "./styles/checkbox.css";
+import "./styles/checkbox.sass";
 
 
 type Props = {
@@ -10,17 +10,19 @@ type Props = {
 
 const CheckboxBase: React.FC<Props> = (props: Props) => {
     return <div className="checkbox">
-        <label>
-            <input
-                id="checkbox"
-                type="checkbox"
-                checked={props.checked}
-                onChange={props.onChange}
-            />
-            <span data-test={props.dataTest} className="checkbox-material">
-                <span className="check"></span>
+        <input className="inp-cbx" id="cbx" type="checkbox"
+               checked={props.checked}
+               onChange={props.onChange}
+               />
+        <label className="cbx" htmlFor="cbx">
+            <span>
+                <svg
+                    width="12px" height="10px" viewBox="0 0 12 10">
+                    <polyline
+                        points="1.5 6 4.5 9 10.5 1">
+                    </polyline>
+                </svg>
             </span>
-
         </label>
     </div>
 }

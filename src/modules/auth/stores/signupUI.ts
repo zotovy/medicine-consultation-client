@@ -70,7 +70,10 @@ class SingupUIStore {
     @action setPassword = (val: string) => (this.password = val);
     @action setConfirmPassword = (val: string) => (this.confirmPassword = val);
     @action toggleIsMale = () => (this.isMale = !this.isMale);
-    @action toggleAgreeWT = () => (this.agreeWithTerms = !this.agreeWithTerms);
+    @action toggleAgreeWT = () => {
+        this.agreeWithTerms = !this.agreeWithTerms;
+        console.log(this.agreeWithTerms);
+    }
     @action toggleNeedMailing = () => (this.needMailing = !this.needMailing);
     @action toggleShowPassword = () =>
         (this.showPassword = this.password === "" ? false : !this.showPassword);

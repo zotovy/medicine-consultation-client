@@ -1,0 +1,67 @@
+html, body
+  height: 100%
+
+
+.checkbox
+  position: relative
+
+  input
+    position: absolute
+    top: 0
+    left: 0
+    width: 18px
+    height: 18px
+    z-index: 100
+    opacity: 0
+    cursor: pointer
+
+.cbx
+  margin: auto
+  -webkit-user-select: none
+  user-select: none
+  cursor: pointer
+
+  span
+    display: inline-block
+    vertical-align: middle
+    transform: translate3d(0,0,0)
+    &:first-child
+      position: relative
+      width: 18px
+      height: 18px
+      border-radius: 3px
+      transform: scale(1)
+      vertical-align: middle
+      border: 1px solid #30B9D6
+      transition: all .2s ease
+      svg
+        position: absolute
+        top: 3px
+        left: 2px
+        fill: none
+        stroke: #FFFFFF
+        stroke-width: 2
+        stroke-linecap: round
+        stroke-linejoin: round
+        stroke-dasharray: 16px
+        stroke-dashoffset: 16px
+        transition: all .3s ease
+        transition-delay: .1s
+        transform: translate3d(0,0,0)
+    &:last-child
+      padding-left: 8px
+  &:hover span:first-child
+    border-color: #30B9D6
+
+.inp-cbx:checked + .cbx
+  span
+    &:first-child
+      background: #30B9D6
+      border-color: #30B9D6
+      animation: wave .4s ease
+      svg
+        stroke-dashoffset: 0
+      &:before
+        transform: scale(3.5)
+        opacity: 0
+        transition: all .6s ease
