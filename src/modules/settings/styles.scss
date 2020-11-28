@@ -438,5 +438,22 @@ main.change-password-page section.change-password-page {
 
 }
 
+main.links-page section.links-page {
+
+    .row {
+        width: 100%;
+        display: flex;
+
+        &-gap {
+            width: 20%;
+        }
+    }
+
+    .confirm-button {
+        margin-top: 20px;
+        width: 33%;
+    }
+}
+
 
 

@@ -24,6 +24,7 @@ const SettingsConsultationPage = lazy(() => import("./modules/settings").then(mo
 const SettingsReviewPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsReviewPage })));
 const SettingsNotificationPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsNotificationPage })));
 const SettingsPasswordPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsPasswordPage })));
+const SettingsLinksPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsLinksPage })));
 const ErrorPage = lazy(() => import("./modules/other/pages/error"));
 const Admin = lazy(() => import("./modules/admin"));
 const AdminLogin = lazy(() => import("./modules/admin").then(module => ({ default: module.Login })));
@@ -135,6 +136,11 @@ const App = () => {
                 <Route path="/settings/password">
                     <Suspense fallback={<React.Fragment/>}>
                         <SettingsPasswordPage/>
+                    </Suspense>
+                </Route>
+                <Route path="/settings/links">
+                    <Suspense fallback={<React.Fragment/>}>
+                        <SettingsLinksPage/>
                     </Suspense>
                 </Route>
             </Route>

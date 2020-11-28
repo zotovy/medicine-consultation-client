@@ -12,4 +12,10 @@ declare interface DoctorType extends UserType {
     clientsReviews: Review[];
     clientsConsultations: string[];
     sheldure: string[];
+    vkLink?: string,
+    instagramLink?: string,
+    telegramLink?: string,
+    whatsAppLink?: string,
+    viberLink?: string,
+    emailLink?: string,
 }

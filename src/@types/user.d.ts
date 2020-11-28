@@ -21,4 +21,5 @@ declare interface UserType {
     lastActiveAt: Date;
     favourites: any;
     birthday?: Date;
+
 }

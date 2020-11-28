@@ -4,6 +4,7 @@ import SettingsConsultationPage  from "./pages/consultations";
 import SettingsReviewPage  from "./pages/reviews";
 import SettingsNotificationPage  from "./pages/notification";
 import SettingsPasswordPage  from "./pages/password";
+import SettingsLinksPage  from "./pages/links";
 
 
 export {
@@ -12,6 +13,7 @@ export {
     SettingsConsultationPage,
     SettingsReviewPage,
     SettingsNotificationPage,
-    SettingsPasswordPage
+    SettingsPasswordPage,
+    SettingsLinksPage
 }
 

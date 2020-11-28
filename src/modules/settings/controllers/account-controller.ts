@@ -52,7 +52,7 @@ class AccountController {
         }
 
         this.isLoading = true;
-        const route = isUser === "true" ? `/api/user/${uid}` : `/api/doctor/${uid}`
+        const route = isUser == "true" ? `/api/user/${uid}` : `/api/doctor/${uid}`
         const result = await authFetch(() => axios.get(
             process.env.REACT_APP_SERVER_URL + route,
             {
