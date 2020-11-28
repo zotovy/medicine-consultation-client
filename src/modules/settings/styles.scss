@@ -453,6 +453,20 @@ main.links-page section.links-page {
         margin-top: 20px;
         width: 33%;
     }
+
+    @media screen and (max-width: 425px) {
+        .row {
+            flex-direction: column;
+
+            &-gap {
+                display: none;
+            }
+        }
+
+        .confirm-button {
+            width: 100%;
+        }
+    }
 }
 
 
