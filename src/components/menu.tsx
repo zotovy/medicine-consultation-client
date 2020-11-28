@@ -20,7 +20,8 @@ const Menu: React.FC = (props: any) => {
     }
 
     const user = storageServices.getUser();
-    if (user?.photoUrl != undefined && user.photoUrl.length == 0) user.photoUrl = userPlaceholder;
+
+    if (user && (!user?.photoUrl || user.photoUrl.length == 0)) user.photoUrl = userPlaceholder;
 
     const profileImgUrl = {
         backgroundImage: `url(${user?.photoUrl})`,
