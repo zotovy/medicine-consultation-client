@@ -18,7 +18,7 @@ type Props = {
 
 const Doctor: React.FC<Props> = (props: Props) => {
 
-    const img = props.imgUrl ?? userPlaceholder;
+    const img = props.imgUrl && props.imgUrl.length != 0 ? props.imgUrl : userPlaceholder;
     const history = useHistory();
 
     const goToDoctorPage = (): void => {
