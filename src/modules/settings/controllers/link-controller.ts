@@ -8,6 +8,7 @@ import token_services from "../../../services/token-services";
 class LinkController {
 
     @observable loading: boolean = true;
+    @observable saveLoading: boolean = true;
 
     @observable vk? : string;
     @observable instagram? : string;
@@ -52,9 +53,6 @@ class LinkController {
     }
 
     @action private _mapUserToClass = (doctor : DoctorType) => {
-
-        console.log(doctor.vkLink);
-
         this.vk = doctor.vkLink;
         this.instagram = doctor.instagramLink;
         this.telegram = doctor.telegramLink;
@@ -64,7 +62,27 @@ class LinkController {
     }
 
     @action onSave = async () : Promise<void> => {
+        const uid = localStorage.getItem("uid");
 
+        const result = await authFetch(() => axios.post(
+            process.env.REACT_APP_SERVER_URL + `/api/doctor/${uid}/update-links`,
+            {
+                vk: this.vk ?? "",
+                instagram: this.instagram ?? "",
+                telegram: this.telegram ?? "",
+                whatsApp: this.whatsApp ?? "",
+                viber: this.viber ?? "",
+                email: this.email ?? "",
+            },
+            {
+                headers: {
+                    auth: token_services.header
+                }
+            }
+        ));
+        this.saveLoading = true;
+        if (!result || result.status === EAuthFetch.Error) throw "error";
+        else if (result.status === EAuthFetch.Unauthorized) throw "logout";
     }
 
     // Used to go back
