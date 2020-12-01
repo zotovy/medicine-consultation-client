@@ -42,8 +42,8 @@ const Menu: React.FC = (props: any) => {
                         <div className="circle"/>
                     </div>
                 </Link>
-                <Link to="/sympthoms">
-                    <div className={"tab " + (selected === "/sympthoms" ? "selected" : "")}>
+                <Link to="/symptoms">
+                    <div className={"tab " + (selected === "/symptoms" ? "selected" : "")}>
                         <span className="link">Симптомы</span>
                         <div className="circle"/>
                     </div>
@@ -92,8 +92,8 @@ const Menu: React.FC = (props: any) => {
                             <div className="circle"/>
                         </div>
                     </Link>
-                    <Link to="/sympthoms">
-                        <div className={"tab " + (selected === "/sympthoms" ? "selected" : "")}>
+                    <Link to="/symptoms">
+                        <div className={"tab " + (selected === "/symptoms" ? "selected" : "")}>
                             <span className="link">Симптомы</span>
                             <div className="circle"/>
                         </div>

@@ -78,7 +78,7 @@ const App = () => {
                     <DetailDoctorPage/>
                 </Suspense>
             </Route>
-            <Route path="/sympthoms" exact>
+            <Route path="/symptoms" exact>
                 <Menu/>
                 <Suspense fallback={<React.Fragment/>}>
                     <SymptomsPage/>
