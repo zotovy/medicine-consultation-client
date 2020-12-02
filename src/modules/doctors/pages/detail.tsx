@@ -55,8 +55,6 @@ const DetailPage: React.FC<Props> = (props) => {
                                     onClick={() => props.history.push(`/appoint/${props.match.params.id}`)}>
                                     Записаться
                                 </button>
-                                {/* todo: save logic */ }
-                                <button className="save"><BookmarkIcon/></button>
                             </div>
                         </div>
 

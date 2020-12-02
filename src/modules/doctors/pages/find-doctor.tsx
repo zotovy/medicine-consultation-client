@@ -47,7 +47,7 @@ const FindDoctor: React.FC = () => {
         }
     }
 
-    return <React.Fragment>
+    return <main className="find-doctor-page">
         <ErrorBadge
             isOpen={controller.isErrorBadgeOpen}
             message="Произошла непридвиденная ошибка. Мы уже работаем над этим!"
@@ -57,7 +57,7 @@ const FindDoctor: React.FC = () => {
         {/* <div className={`loading-badge ${controller.isLoading ? "" : "close"}`}>
             <LoadingIndicator />
         </div> */}
-    </React.Fragment>
+    </main>
 };
 
 export default observer(FindDoctor);
