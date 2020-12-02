@@ -283,8 +283,16 @@ class FindDoctorController {
         this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
-    @action onNameChange = (value: string): void => {
+    @action onNameChange = async (value: string): Promise<void> => {
         this.name = value;
+
+        // this's the mechanism for delayed response
+        // execute 1 fetch while all name is written except a lot of after every letter of the name changed
+        const ok = await new Promise<boolean>(resolve => {
+           setTimeout(() => resolve(this.name === value), 300);
+        });
+        if (!ok) return;
+
         this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
