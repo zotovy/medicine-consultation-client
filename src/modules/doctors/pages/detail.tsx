@@ -50,7 +50,11 @@ const DetailPage: React.FC<Props> = (props) => {
                             <h2>{ controller.doctor.fullName }</h2>
                             <RatingComponent amount={ controller.doctor.rating }/>
                             <div className="buttons">
-                                <button className="appoint">Записаться</button>
+                                <button
+                                    className="appoint"
+                                    onClick={() => props.history.push(`/appoint/${props.match.params.id}`)}>
+                                    Записаться
+                                </button>
                                 {/* todo: save logic */ }
                                 <button className="save"><BookmarkIcon/></button>
                             </div>
