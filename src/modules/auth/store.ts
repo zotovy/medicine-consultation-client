@@ -1,13 +1,13 @@
-import { observable, action } from "mobx";
+import {action, observable} from "mobx";
 import axios from "axios";
-
 // Another stores & services
 import loginUIStore from "./stores/loginUI";
 import signupUIStore from "./stores/signupUI";
 import tokenServices from "../../services/token-services";
 import validationServices from "../../services/validation-services";
 import storageServices from "../../services/storage_services";
-import { ServerErrorType } from "./@types/server-errors";
+import {ServerErrorType} from "./@types/server-errors";
+import {authFetch, EAuthFetch} from "../../services/fetch_services";
 
 class AuthStore {
     constructor() {
@@ -90,11 +90,11 @@ class AuthStore {
             // Fetch user based on id
             this.user = await fetchUser(id);
 
-            // Trigger home trigger to go to home page
             if (this.user) {
                 console.log(this.user);
                 storageServices.saveUser(this.user);
             }
+
             this.goToHomeTrigger = !this.goToHomeTrigger;
         } catch (e) {
             console.log("Some error...");
@@ -296,19 +296,19 @@ class AuthStore {
 }
 
 // Functions
-const fetchUser = async (uid: string): Promise<UserType | null> => {
-    try {
-        const raw = await axios.get(
-            `${process.env.REACT_APP_SERVER_URL}/api/user/${uid}`,
-            {
-                headers: { auth: tokenServices.header }
-            }
-        );
-        return raw.data.user;
-    } catch (e) {
-        console.log(e);
-        return null;
+const fetchUser = async (uid: string): Promise<UserType | DoctorType | null> => {
+    const route = localStorage.getItem("isUser") == "true"
+        ? `${process.env.REACT_APP_SERVER_URL}/api/user/${uid}`
+        : `${process.env.REACT_APP_SERVER_URL}/api/doctor/${uid}`;
+
+    const result = await authFetch(() => axios.get(route, {
+        headers: {auth: tokenServices.header}
+    }));
+    if (result.status == EAuthFetch.Success) {
+        if (result.data.user) return result.data.user as UserType;
+        else return result.data.doctor as DoctorType;
     }
+    return null;
 };
 
 const validateUserDataCreation = (): boolean => {
