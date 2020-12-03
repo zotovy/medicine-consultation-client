@@ -175,7 +175,7 @@ $disable: rgba($primary, $alpha: 0.15);
         .search {
             display: flex;
             align-items: center;
-            width: calc(100% - 410px);
+            width: calc(100% - 430px);
             position: relative;
 
             @media screen and (max-width: 1024px) {
@@ -238,6 +238,10 @@ $disable: rgba($primary, $alpha: 0.15);
                 background: $primary;
                 border-radius: 10px;
                 cursor: pointer;
+                position: relative;
+                width: 175px;
+                display: flex;
+                justify-content: center;
 
                 @media screen and (min-width: 1024px) {
                     @include primaryBoxShadow();
@@ -246,6 +250,28 @@ $disable: rgba($primary, $alpha: 0.15);
                 svg {
                     padding: 1px;
                     margin-left: 5px;
+                }
+
+                .dropdown {
+                    position: absolute;
+                    display: flex;
+                    flex-direction: column;
+                    top: 45px;
+                    left: 0px;
+                    padding: 10px;
+                    background: white;
+                    border-radius: 7px;
+                    box-shadow: 0 2px 7px rgba(black, 0.1);
+                    z-index: 100;
+                    color: #282828;
+
+                    &.off {
+                        display: none;
+                    }
+
+                    :first-child {
+                        margin-bottom: 5px;
+                    }
                 }
             }
         }

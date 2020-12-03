@@ -1,12 +1,12 @@
 // This file includes search input & all existing filters =)
 import React from "react";
 import { observer } from "mobx-react";
-import { SearchIcon, CaretteDown, Chevron } from "../icons";
+import { CaretteDown, Chevron, SearchIcon } from "../icons";
 import FilterItemBase from "./filter/item-base";
 import { ESpeciality, workExperience } from "../enums";
 import Checkbox from "../../../components/checkbox";
 import RatingListItem from "./filter/rating-list-item";
-import controller from "../controllers/find-doctor-controller";
+import controller, { ESortBy } from "../controllers/find-doctor-controller";
 import MediaQuery from "react-responsive";
 
 const Filter: React.FC = () => {
@@ -109,10 +109,23 @@ const Filter: React.FC = () => {
 
                 <div className="sort-by">
                     <span id="sort-by__title">Сортироваться по</span>
-                    <div className="selector">
-                        Рейтингу
+                    <div className="selector" onClick={() => controller.sortByFilterOpen = !controller.sortByFilterOpen}>
+                        { controller.sortBy }
                         <CaretteDown />
+                        <div className={`dropdown ${controller.sortByFilterOpen ? "" : "off"}`}>
+                            <span
+                                className="selection"
+                                onClick={() => controller.clickOnSortBy(ESortBy.rating)} >
+                                Рейтингу
+                            </span>
+                            <span
+                                className="selection"
+                                onClick={() => controller.clickOnSortBy(ESortBy.experience)} >
+                                Опыту работы
+                            </span>
+                        </div>
                     </div>
+
                 </div>
 
                 <div onClick={controller.clickOnDownward} className={`downward-upward ${controller.isDownward ? "" : "upward"}`}>

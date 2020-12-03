@@ -30,11 +30,11 @@ class FindDoctorController {
         });
     }
 
-    onChangeLocation = () => {
-    };
+    onChangeLocation = () => {};
 
     // Filters
     @observable mobileFiltersOpen: boolean = false;
+    @observable sortByFilterOpen: boolean = false;
     @observable name: string = "";
     @observable isDownward: boolean = false;
     @observable openedFilter: string = "";
@@ -48,6 +48,7 @@ class FindDoctorController {
     @observable queryCities: string[] = [];
     @observable workPlan: string[] = [];
     @observable child: string[] = [];
+    @observable private _sortBy: ESortBy = ESortBy.rating;
 
     loadNextPage = async () => {
         if (this.isInfinyLoading) {
@@ -82,6 +83,7 @@ class FindDoctorController {
             rating: this.rating,
             city: this.selectedCities,
             workPlan: this.workPlan,
+            sortBy: this._sortBy,
         };
 
         Object.keys(mapFilter).forEach((key) => {
@@ -90,9 +92,7 @@ class FindDoctorController {
 
             const defined = Array.isArray(value)
                 ? value.length > 0
-                : value
-                    ? true
-                    : false;
+                : !!value;
 
             if (defined) {
                 filter += `&${key}=${JSON.stringify(value)}`;
@@ -206,6 +206,13 @@ class FindDoctorController {
         return array;
     };
 
+    @action clickOnSortBy = (value : ESortBy): void => {
+        if (value != this.sortBy) {
+            this._sortBy = value;
+            this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+        }
+    }
+
     @action clickOnFilter = (value: string): void => {
         this.openedFilter = value === this.openedFilter ? "" : value;
     };
@@ -296,6 +303,11 @@ class FindDoctorController {
         this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
+    get sortBy(): string {
+        if (this._sortBy == ESortBy.rating) return "Рейтингу";
+        else return "Опыту работы";
+    }
+
     private openBadge = () => {
         this.isErrorBadgeOpen = true;
         setTimeout(() => {
@@ -313,6 +325,11 @@ export type Config = {
     workPlan?: string[],
     city?: string[],
     rating?: number[],
+}
+
+export enum ESortBy {
+    rating = "rating",
+    experience = "experience"
 }
 
 export default new FindDoctorController();

@@ -15,20 +15,20 @@ const FindDoctor: React.FC = () => {
     // Scroll component
     useEffect(() => {
 
-        const q : (keyof Config)[]   = ["fullName", "specialities", "child", "workExperience", "qualification", "workPlan", "city"];
-        const config : Config = {};
+        const q: (keyof Config)[] = ["fullName", "specialities", "child", "workExperience", "qualification", "workPlan", "city"];
+        const config: Config = {};
         const queries = queryString.parse(history.location.search ?? "");
 
-        q.forEach((e ) => {
-           if (queries[e]) {
-               // @ts-ignore
-               config[e] = (queries[e] as string).split(",");
-           }
+        q.forEach((e) => {
+            if (queries[e]) {
+                // @ts-ignore
+                config[e] = (queries[e] as string).split(",");
+            }
         });
-        
+
         try {
             if (queries['rating']) {
-                config["rating"] =  (queries["rating"] as string).split(",").map(e => parseInt(e));
+                config["rating"] = (queries["rating"] as string).split(",").map(e => parseInt(e));
             }
         } catch (e) {
 
@@ -52,8 +52,8 @@ const FindDoctor: React.FC = () => {
             isOpen={controller.isErrorBadgeOpen}
             message="Произошла непридвиденная ошибка. Мы уже работаем над этим!"
         />
-        <Filter />
-        <DoctorWrapper />
+        <Filter/>
+        <DoctorWrapper/>
         {/* <div className={`loading-badge ${controller.isLoading ? "" : "close"}`}>
             <LoadingIndicator />
         </div> */}
