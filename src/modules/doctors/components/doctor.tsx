@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import detailController from "../controllers/detail-controller";
 import controller from "../controllers/find-doctor-controller";
 import userPlaceholder from "../../../static/images/user-placeholder.jpg";
+import formatServices from "../../../services/format-services";
 
 type Props = {
     name: string;
@@ -45,8 +46,9 @@ const Doctor: React.FC<Props> = (props: Props) => {
             <h3>{props.name}&nbsp;{props.surname}</h3>
 
             {
-                //todo: bugfix -  21 лет
-                props.age || props.speciality ? <span className="speciality-and-age">{props.speciality ? props.speciality + ", " : ""}{props.age ? props.age + " лет" : ""}</span> : <React.Fragment />
+                props.age || props.speciality
+                    ? <span className="speciality-and-age">{ formatServices.getAgeAndSpeciality(props.age, props.speciality) }</span>
+                    : <React.Fragment />
             }
 
             <div className="rating">

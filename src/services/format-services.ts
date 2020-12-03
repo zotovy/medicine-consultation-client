@@ -1,3 +1,4 @@
+
 class FormatServices {
     formatBySchema = (schema: string, input: string) => {
         const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -79,9 +80,9 @@ class FormatServices {
     formatDate = (date: Date | undefined): string => {
         if (!date) return "";
 
-        return `${ date.getDate() } / ${
+        return `${date.getDate()} / ${
             date.getMonth() + 1
-        } / ${ date.getFullYear() }`;
+        } / ${date.getFullYear()}`;
     };
 
     formatSize = (bytes: number): string => {
@@ -108,8 +109,8 @@ class FormatServices {
         if (day.length === 1) day = "0" + day;
         if (month.length === 1) month = "0" + month;
 
-        let str = `${ day }.${ month }`;
-        if (new Date().getFullYear() !== date.getFullYear()) str += `.${ date.getFullYear() }`;
+        let str = `${day}.${month}`;
+        if (new Date().getFullYear() !== date.getFullYear()) str += `.${date.getFullYear()}`;
         return str;
     }
 
@@ -144,16 +145,16 @@ class FormatServices {
         if (experience < 30) return "Меньше месяца";
         if (experience < 365) {
             const months = Math.floor(experience / 31);
-            return `${ months } ${ this.getNumEnding(months, ["месяц", "месяца", "месяцев"]) }`
+            return `${months} ${this.getNumEnding(months, ["месяц", "месяца", "месяцев"])}`
         }
 
         const years = Math.floor(experience / 365);
-        return `${ years } ${ this.getNumEnding(years, ["год", "года", "лет"]) }`
+        return `${years} ${this.getNumEnding(years, ["год", "года", "лет"])}`
     }
 
-    age = (age: number): string => `${ age } ${ this.getNumEnding(age, ["год", "года", "лет"]) }`;
+    age = (age: number): string => `${age} ${this.getNumEnding(age, ["год", "года", "лет"])}`;
 
-    translateSpeciality = (speciality: string) : string => {
+    translateSpeciality = (speciality: string): string => {
         const specialities = {
             Pediatrician: "Педиатр",
             Therapist: "Терапевт",
@@ -178,6 +179,16 @@ class FormatServices {
 
         // @ts-ignore
         return specialities[speciality];
+    }
+
+    getAgeAndSpeciality = (age: number | null = null, speciality: string | null = null) => {
+
+        let string = "";
+        if (typeof speciality == "string" && speciality.length > 0) string += `${speciality}, `;
+        if (age) string += `${this.age(age)}, `;
+
+        if (string.length > 0) string = string.substring(0, string.length - 2);
+        return string;
     }
 }
 
