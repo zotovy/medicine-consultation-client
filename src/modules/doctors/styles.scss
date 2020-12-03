@@ -150,6 +150,10 @@ $disable: rgba($primary, $alpha: 0.15);
     .filter {
         margin-top: 10px;
 
+        .checkbox-component {
+            margin-bottom: 5px;
+        }
+
         .column {
             display: flex;
             flex-direction: column;
