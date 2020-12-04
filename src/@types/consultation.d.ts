@@ -1,4 +1,4 @@
-declare type TConsultation = {
+declare type Consultation = {
     id: string;
     patientId: string | UserType;
     doctorId: string | DoctorType;

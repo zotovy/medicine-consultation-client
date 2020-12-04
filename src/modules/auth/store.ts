@@ -123,6 +123,7 @@ class AuthStore {
 
         // Create user
         const user: UserType = {
+            id: "",
             name,
             surname,
             phone,
@@ -141,7 +142,6 @@ class AuthStore {
             lastActiveAt: new Date(),
             favourites: [],
             photoUrl: "",
-
         };
 
         try {

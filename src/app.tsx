@@ -26,8 +26,6 @@ const SettingsNotificationPage = lazy(() => import("./modules/settings").then(mo
 const SettingsPasswordPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsPasswordPage })));
 const SettingsLinksPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsLinksPage })));
 const ErrorPage = lazy(() => import("./modules/other/pages/error"));
-const Admin = lazy(() => import("./modules/admin"));
-const AdminLogin = lazy(() => import("./modules/admin").then(module => ({ default: module.Login })));
 const ErrorSympPage = lazy(() => import("./modules/doctors/components/symptoms/error-page"));
 
 const App = () => {
@@ -145,23 +143,11 @@ const App = () => {
                 </Route>
             </Route>
 
-
-            <Route path="/admin-login" exact>
-                <Suspense fallback={<React.Fragment/>}>
-                    <AdminLogin/>
-                </Suspense>
-            </Route>;
-
             <Route path="/error">
                 <Suspense fallback={<React.Fragment/>}>
                     <ErrorPage/>
                 </Suspense>
             </Route>
-
-            <Suspense fallback={<React.Fragment/>}>
-                <Admin/>
-            </Suspense>
-
 
         </Switch>
     );

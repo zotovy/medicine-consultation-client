@@ -1,6 +1,5 @@
 import { action, observable } from "mobx";
-import Consultation from "../../admin/types/consultation";
-import { AFRes, authFetch, EAuthFetch } from "../../../services/fetch_services";
+import { authFetch, EAuthFetch } from "../../../services/fetch_services";
 import axios from "axios";
 import token_services from "../../../services/token-services";
 import UserStore from "./userStore";

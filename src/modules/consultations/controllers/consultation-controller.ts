@@ -202,7 +202,7 @@ class ConsultationController implements IConsultationController {
 
                 const uid = localStorage.getItem("uid");
                 this._messages =
-                    cons.messages?.map((e) => ({
+                    cons.messages?.map((e : any) => ({
                         isUser: e.user === uid,
                         message: e.message,
                         type: EMessageType.Message,
@@ -232,7 +232,7 @@ class ConsultationController implements IConsultationController {
 
     private _fetchConsultation = async (
         id: string
-    ): Promise<TConsultation | "error" | "unauthorized"> => {
+    ): Promise<Consultation | "error" | "unauthorized"> => {
         const response = await authFetch(() =>
             axios.get(
                 process.env.REACT_APP_SERVER_URL + "/api/consultation/" + id,
@@ -252,7 +252,7 @@ class ConsultationController implements IConsultationController {
 
     @observable error: boolean = false;
     @observable loading: boolean = false;
-    @observable consultation?: TConsultation;
+    @observable consultation?: Consultation;
 
     @observable isCameraOn: boolean = true;
     @observable isMicroOn: boolean = false;

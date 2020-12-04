@@ -13,7 +13,7 @@ declare interface UserType {
     city?: string;
     country?: string;
     consultations?: Consultation[];
-    review?: Review[];
+    reviews?: Review[];
     notificationEmail: string;
     sendNotificationToEmail: boolean;
     sendMailingsToEmail: boolean;

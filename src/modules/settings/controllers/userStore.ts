@@ -1,4 +1,3 @@
-import Consultation from "../../admin/types/consultation";
 
 class UserStore {
     static user : UserType | DoctorType | null = null;

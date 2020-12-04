@@ -1,6 +1,5 @@
 import React from 'react';
 import { ChevronIcon } from "../icons";
-import Consultation from "../../admin/types/consultation";
 import userPlaceholder from "../../../static/images/user-placeholder.jpg";
 import formatServices from "../../../services/format-services";
 

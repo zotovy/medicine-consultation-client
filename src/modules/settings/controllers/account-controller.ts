@@ -169,7 +169,7 @@ class AccountController {
             const errs = res.data.errors;
             if (errs.email === "unique_error") this.emailError = "Этот email уже используется";
         } else {
-            const newUser : UserType = {
+            const newUser = {
                 name: this.name,
                 surname: this.surname,
                 patronymic: this.patronymic,
@@ -180,7 +180,7 @@ class AccountController {
                 city: this.city,
                 sex: this.isMale,
                 fullName: this.fullName,
-            };
+            } as UserType;
             UserStore.user = newUser;
             storageServices.saveUser(newUser);
         }
@@ -210,11 +210,11 @@ class AccountController {
             else if (res.status === EAuthFetch.Unauthorized) throw "login";
             else {
                 this.profileImage = res.data.photoUrlPath;
-                const newUser : UserType = {
+                const newUser = {
                     ...UserStore.user,
                     fullName: this.fullName,
                     photoUrl: res.data.photoUrlPath,
-                }
+                } as UserType;
                 UserStore.user = newUser;
                 storageServices.saveUser(newUser);
             }
