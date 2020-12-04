@@ -234,7 +234,7 @@ var MainPage = function () {
                             react_1["default"].createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "152", height: "152", viewBox: "0 0 152 152" },
                                 react_1["default"].createElement("defs", null,
                                     react_1["default"].createElement("filter", { id: "clock", x: "0", y: "0", width: "152", height: "152", filterUnits: "userSpaceOnUse" },
-                                        react_1["default"].createElement("feOffset", { dy: "9", input: "SourceAlpha" }),
+                                        react_1["default"].createElement("feOffset", { dy: "9", "in": "SourceAlpha" }),
                                         react_1["default"].createElement("feGaussianBlur", { stdDeviation: "4", result: "blur" }),
                                         react_1["default"].createElement("feFlood", { "flood-color": "#30b9d6", "flood-opacity": "0.251" }),
                                         react_1["default"].createElement("feComposite", { operator: "in", in2: "blur" }),

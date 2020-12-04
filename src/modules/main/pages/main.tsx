@@ -300,7 +300,7 @@ return <>
             <svg xmlns="http://www.w3.org/2000/svg" width="152" height="152" viewBox="0 0 152 152">
               <defs>
                 <filter id="clock" x="0" y="0" width="152" height="152" filterUnits="userSpaceOnUse">
-                  <feOffset dy="9" input="SourceAlpha"/>
+                  <feOffset dy="9" in={"SourceAlpha"}/>
                   <feGaussianBlur stdDeviation="4" result="blur"/>
                   <feFlood flood-color="#30b9d6" flood-opacity="0.251"/>
                   <feComposite operator="in" in2="blur"/>
