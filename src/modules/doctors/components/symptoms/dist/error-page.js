@@ -4,6 +4,7 @@ var react_1 = require("react");
 var confirm_button_1 = require("../../../../components/confirm-button");
 var symptoms_controller_1 = require("../../controllers/symptoms-controller");
 var react_router_dom_1 = require("react-router-dom");
+require("../../styles.scss");
 var Error = function () {
     var resetController = symptoms_controller_1["default"].resetController;
     return react_1["default"].createElement(react_1["default"].Fragment, null,
