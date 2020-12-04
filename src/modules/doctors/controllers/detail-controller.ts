@@ -31,6 +31,8 @@ class DetailController {
         );
     };
 
+    onErrorCB = () => {}
+
     private _fetchDoctor = async (
         id: string
     ): Promise<DoctorType | undefined> => {
@@ -40,7 +42,7 @@ class DetailController {
             .catch((e) => e.response);
 
         if (!response?.success) {
-            // todo: error handling
+            this.onErrorCB();
             return;
         }
 

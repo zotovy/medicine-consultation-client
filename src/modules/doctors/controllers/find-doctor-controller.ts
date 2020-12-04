@@ -57,10 +57,10 @@ class FindDoctorController {
 
         this.isInfinyLoading = true;
 
-        // todo: filter
-
         const doctors = await this.fecthDoctors(
-            this.currentPage * this.amountDoctorsOnOnePage
+            this.currentPage * this.amountDoctorsOnOnePage,
+            50,
+            true
         );
         this.setDoctorAndOffLoading(doctors);
     };

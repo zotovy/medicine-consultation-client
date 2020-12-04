@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { observer } from "mobx-react";
 import controller, { ESocialLinkTypes } from "../controllers/detail-controller";
@@ -20,6 +20,10 @@ type Props = RouteComponentProps<PathParamsType>;
 
 
 const DetailPage: React.FC<Props> = (props) => {
+
+    useEffect(() => {
+        controller.onErrorCB = () => props.history.push("/404");
+    }, []);
 
     if (controller.doctorId !== props.match.params.id) {
         controller.doctorId = props.match.params.id;

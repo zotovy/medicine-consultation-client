@@ -242,7 +242,7 @@ class AuthStore {
                 .post(
                     `${process.env.REACT_APP_SERVER_URL}/api/doctor-request/send`,
                     doctor
-                ) // todo
+                )
                 .catch((e) => {
                     return e.response;
                 });

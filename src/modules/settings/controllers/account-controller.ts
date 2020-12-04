@@ -81,8 +81,6 @@ class AccountController {
                 if (this.city && this.country) this.location = `${this.city}, ${this.country}`;
                 else if (this.city) this.location = this.city;
                 else if (this.country) this.location = this.country;
-
-                // todo: add another fields
             })();
         }
     }
