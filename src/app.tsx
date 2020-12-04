@@ -30,7 +30,7 @@ const ErrorSympPage = lazy(() => import("./modules/doctors/components/symptoms/e
 
 const App = () => {
     return (
-        <Switch>
+        <Switch >
 
             {/* <Route path='/sandbox'><SandBox /></Route> */}
 
