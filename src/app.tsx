@@ -1,7 +1,8 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import "./static/index.css";
 import Menu from "./components/menu";
+import ReactGA from "react-ga";
 // import SandBox from "./sandbox";
 require('dotenv').config()
 
@@ -28,7 +29,12 @@ const SettingsLinksPage = lazy(() => import("./modules/settings").then(module =>
 const ErrorPage = lazy(() => import("./modules/other/pages/error"));
 const ErrorSympPage = lazy(() => import("./modules/doctors/components/symptoms/error-page"));
 
+
 const App = () => {
+
+    useEffect(() => {
+    }, []);
+
     return (
         <Switch >
 
