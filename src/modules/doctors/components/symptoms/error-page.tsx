@@ -2,7 +2,7 @@ import React from "react";
 import ConfirmButton from '../../../../components/confirm-button';
 import controller from "../../controllers/symptoms-controller";
 import { Link } from "react-router-dom";
-import "../../styles.scss";
+import "../../styles.scss"
 
 const Error: React.FC = () => {
 const {resetController} = controller;
