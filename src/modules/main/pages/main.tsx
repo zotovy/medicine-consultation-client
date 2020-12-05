@@ -300,7 +300,6 @@ return <>
             <svg xmlns="http://www.w3.org/2000/svg" width="152" height="152" viewBox="0 0 152 152">
               <defs>
                 <filter id="clock" x="0" y="0" width="152" height="152" filterUnits="userSpaceOnUse">
-                  <feOffset dy="9" input="SourceAlpha"/>
                   <feGaussianBlur stdDeviation="4" result="blur"/>
                   <feFlood flood-color="#30b9d6" flood-opacity="0.251"/>
                   <feComposite operator="in" in2="blur"/>
@@ -316,19 +315,56 @@ return <>
         </div>
         <div className="item">
           <div className="item-img">
+            <svg xmlns="http://www.w3.org/2000/svg"width="115.562" height="152" viewBox="0 0 115.562 152">
+              <defs>
+                <filter id="geo" x="0" y="0" width="115.562" height="152" filterUnits="userSpaceOnUse">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feFlood flood-color="#30b9d6" flood-opacity="0.251"/>
+                  <feComposite operator="in" in2="blur"/>
+                  <feComposite in="SourceGraphic"/>
+                </filter>
+              </defs>
+              <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#geo)">
+                <path id="geo-2" data-name="geo" d="M118.261,0C84.127,0,62.132,36.17,77.43,66.378l23.492,50.56a19.118,19.118,0,0,0,34.676,0l23.493-50.561C174.392,36.161,152.388,0,118.261,0Zm0,31.438a14.3,14.3,0,1,1-14.3,14.3,14.32,14.32,0,0,1,14.3-14.3Z" transform="translate(-60.48 3)" fill="#30b9d6"/>
+              </g>
+            </svg>
 
           </div>
           <p>В Любом месте</p>
         </div>
         <div className="item">
           <div className="item-img">
-
+            <svg xmlns="http://www.w3.org/2000/svg" width="152" height="151.999" viewBox="0 0 152 151.999">
+              <defs>
+                <filter id="Контур_111" x="0" y="0" width="152" height="151.999" filterUnits="userSpaceOnUse">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feFlood flood-color="#30b9d6" flood-opacity="0.251"/>
+                  <feComposite operator="in" in2="blur"/>
+                  <feComposite in="SourceGraphic"/>
+                </filter>
+              </defs>
+              <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Контур_111)">
+                <path id="Контур_111-2" data-name="Контур 111" d="M127.582,49.018A9.142,9.142,0,0,0,120,42.55l-34.018-4.7L72.519,5.685a9.238,9.238,0,0,0-17.05,0L42.007,37.851,7.989,42.55A9.266,9.266,0,0,0,3.1,58.645L28.733,81.5l-5.266,35.865a9.248,9.248,0,0,0,14.339,9.014L63.994,108.57,90.182,126.4a9.247,9.247,0,0,0,14.34-9.014L99.255,81.5l25.63-22.855A9.184,9.184,0,0,0,127.582,49.018Z" transform="translate(12 3)" fill="#30b9d6"/>
+              </g>
+            </svg>
           </div>
           <p>Лучшие Врачи</p>
         </div>
         <div className="item">
           <div className="item-img">
-
+            <svg xmlns="http://www.w3.org/2000/svg" width="109.333" height="152" viewBox="0 0 109.333 152">
+              <defs>
+                <filter id="Контур_112" x="0" y="0" width="109.333" height="152" filterUnits="userSpaceOnUse">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feFlood flood-color="#30b9d6" flood-opacity="0.251"/>
+                  <feComposite operator="in" in2="blur"/>
+                  <feComposite in="SourceGraphic"/>
+                </filter>
+              </defs>
+              <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Контур_112)">
+                <path id="Контур_112-2" data-name="Контур 112" d="M74.667,0h-56A14.679,14.679,0,0,0,4,14.667v98.667A14.679,14.679,0,0,0,18.667,128h56a14.679,14.679,0,0,0,14.667-14.667V14.667A14.679,14.679,0,0,0,74.667,0Zm4,112a5.335,5.335,0,0,1-5.333,5.333H20A5.335,5.335,0,0,1,14.667,112V16A5.335,5.335,0,0,1,20,10.667h2.667A5.335,5.335,0,0,1,28,16a5.335,5.335,0,0,0,5.333,5.333H60A5.335,5.335,0,0,0,65.333,16a5.335,5.335,0,0,1,5.333-5.333h2.667A5.335,5.335,0,0,1,78.667,16Z" transform="translate(8 3)" fill="#30b9d6"/>
+              </g>
+            </svg>
           </div>
           <p>Доступно на любом<br />устройстве</p>
         </div>

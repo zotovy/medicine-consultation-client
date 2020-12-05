@@ -5,7 +5,7 @@ li{
     cursor: pointer;
 }
 .footer{
-    width: 1486px;
+    width: fit-content;
     height: 235px;
     margin: 0 auto;
     display: flex;
@@ -67,6 +67,7 @@ li{
             color: #282828;
         }
     }
+
 }
 .socials{
     display: flex;
@@ -99,7 +100,7 @@ li{
             }  
         }
     }
-    .social-link:nth-child(even):not(.info) {
+    a:nth-child(even):not(.info) {
         margin-top: 25px;
     }
 }

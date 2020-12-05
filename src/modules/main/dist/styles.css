@@ -35,13 +35,13 @@
   align-items: center;
 }
 .main-wrapper.sc--pre-sect .main-container-pre-sect .pre-sect-text__1 {
-  font-size: 32px;
+  font-size: 27px;
   line-height: 43px;
   font-weight: 400;
   color: #727272;
 }
 .main-wrapper.sc--pre-sect .main-container-pre-sect .pre-sect-text__2 {
-  font-size: 48px;
+  font-size: 44px;
   line-height: 64px;
   font-weight: 800;
   color: #282828;
@@ -69,19 +69,24 @@
   right: 0;
 }
 .main-wrapper.sc--pre-sect .main-container-pre-sect .pre-sect__online-counter-wrap .counter_info {
-  margin-left: 20px;
-  font-size: 24px;
+  margin-left: 10px;
+  font-size: 18px;
   font-weight: 400;
   line-height: 32px;
   color: #727272;
 }
 .main-wrapper.sc--pre-sect .main-container-pre-sect .btn-link__appoint {
   margin-top: 15px;
-  width: 220px;
+  width: 200px;
   height: 60px;
-  font-size: 24px;
+  font-size: 18px;
   line-height: 32px;
   box-shadow: 0px 5px 28px 0px rgba(48, 185, 214, 0.3);
+  transition: 0.3s;
+}
+.main-wrapper.sc--pre-sect .main-container-pre-sect .btn-link__appoint:hover {
+  background-color: #2abddc;
+  box-shadow: 0px 3px 15px rgba(48, 185, 215, 0.3);
 }
 .main-wrapper.sc--pre-sect .pre-sect__right {
   height: 100%;
@@ -229,8 +234,7 @@
 .sc--benefits .main-container-benefits .benefits-list-items .item .item-img {
   width: 180px;
   height: 180px;
-  background-color: #30B9D6;
-  opacity: 0.1;
+  background-color: #30bad61a;
   border-radius: 25px;
   display: flex;
   justify-content: center;
