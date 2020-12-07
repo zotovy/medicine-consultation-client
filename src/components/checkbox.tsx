@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CheckboxBase from "./checkbox-base";
 
 type Props = {
+  id?: string;
   label: string;
   checked: boolean;
   onChange: () => void;
@@ -54,11 +55,11 @@ const Text = styled.p`
 
 const Checkbox: React.FC<Props> = (props: Props) => {
   return (
-    <div className="checkbox-component">
+    <div className="checkbox-component" id={props.id}>
       {/*
       // @ts-ignore */}
       < Container style={props.styles?.container} >
-        <CheckboxBase checked={props.checked} onChange={props.onChange} dataTest={props.dataTest} />
+        <CheckboxBase for={props.id} checked={props.checked} onChange={props.onChange} dataTest={props.dataTest} />
 
 
         {/*
