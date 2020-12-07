@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/footer.scss";
 import logo from "../static/logo.svg";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 const Footer: React.FC = () => {
     return <div className="footer">
@@ -25,7 +25,7 @@ const Footer: React.FC = () => {
             <ul className="footer__link-list">
                 <li className="list-title">Сервис</li>
                 <Link to="/consultations"><li>Консультация</li></Link>
-                <Link to="/sympthoms"><li>Симптомы</li></Link>
+                <Link to="/symptoms"><li>Симптомы</li></Link>
                 <Link to="/find-doctor"><li>Врачи</li></Link>
                 <Link to="#"><li>Блог</li></Link>
             </ul>
