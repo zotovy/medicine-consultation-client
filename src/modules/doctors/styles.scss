@@ -341,6 +341,7 @@ $disable: rgba($primary, $alpha: 0.15);
                 z-index: 10;
 
                 .title {
+                    transition: 0.3s;
                     display: flex;
                     align-items: center;
                     margin: 0;
@@ -350,6 +351,7 @@ $disable: rgba($primary, $alpha: 0.15);
                     cursor: pointer;
 
                     h5 {
+                        transition: 0.3s;
                         color: #707070;
                         font-size: 14px;
                         font-weight: 400;
@@ -390,7 +392,20 @@ $disable: rgba($primary, $alpha: 0.15);
                         }
                     }
                 }
-
+                &.open{
+                    .title{
+                        border-radius: 10px;
+                        border: 1.2px solid $primary;
+                        h5{
+                            color: $primary;
+                        }
+                        svg{
+                            path{
+                                stroke: $primary !important;
+                            }
+                        }
+                    }
+                }
                 .collapsed {
                     position: absolute;
                     display: block;
@@ -1223,6 +1238,12 @@ $disable: rgba($primary, $alpha: 0.15);
         height: 60px;
 
     }
+    &:hover{
+        div{
+            background-color: #2CC3E3;
+            box-shadow: 0px 3px 5px rgba(48,185,215,0.4);
+        }
+    }
 }
 
 .tabs-wrapper {
@@ -1297,7 +1318,10 @@ $disable: rgba($primary, $alpha: 0.15);
     border-radius: 5px;
     outline: none;
     font-size: 18px;
-
+    transition: 0.3s;
+    &:hover:not(.tab-active){
+        background-color: #A1D5E1;
+    }
     @media screen and (max-height: 970px) {
         font-size: 13px;
         width: 32px;
@@ -2119,13 +2143,15 @@ $hoverCol: #30B9D6;
             justify-content: center;
             align-items: center;
             position: relative;
-
+            :hover{
+                background-color: #20cbef !important;
+            }
             .fav-plus {
                 border-radius: 2.5px;
                 height: 4px;
                 width: 17px;
                 background-color: $primary;
-
+                transition: 0.3s;
                 &:before {
                     border-radius: 2.5px;
                     content: " ";
@@ -2143,7 +2169,7 @@ $hoverCol: #30B9D6;
                 height: 30px;
                 background-color: $primary;
                 border-radius: 5px;
-
+                transition: 0.3s;
                 &:before {
                     border-radius: 2.5px;
                     content: " ";
