@@ -62,6 +62,7 @@ class ConsultationController implements IConsultationController {
                 host: process.env.REACT_APP_PEER_SERVER_URL,
                 port: port,
                 path: "/mc",
+                secure: true,
             });
 
             this.peer.on("call", (call) => {
@@ -114,6 +115,7 @@ class ConsultationController implements IConsultationController {
     };
 
     private _extractLinks = (message: string): (TLink | string)[] => {
+        if (!message) return [];
         const splitted = message.split(" ");
         const messages: (TLink | string)[] = [];
 
