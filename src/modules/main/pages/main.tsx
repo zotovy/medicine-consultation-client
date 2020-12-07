@@ -20,7 +20,7 @@ return <>
           <div className="doctor_img"></div>
           <span className="counter_info">{`🤷 врачей онлайн`}</span>
         </div>
-        <div className="btn-link btn-link__appoint">Записаться</div>
+        <Link to="/find-doctors"><div className="btn-link btn-link__appoint">Записаться</div></Link>
       </article>
       <article className="pre-sect__right">
       <svg xmlns="http://www.w3.org/2000/svg" width="805.268" height="751.507" viewBox="0 0 805.268 751.507">
@@ -154,81 +154,81 @@ return <>
     <div className="main-container-symptoms">
       <Title title="Что вас беспокоит" mark="?" />
       <article className="symptoms-list-items">
-        <div className="item">
-          <div className="item__wrap-img">
-            <div className="item-img">
-              <svg xmlns="http://www.w3.org/2000/svg"width="90" height="90" viewBox="0 0 90 90">
-                <defs>
-                  <pattern id="pattern1" preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 90 90">
-                    <image width="90" height="90" href="data:image/png;base64,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"/>
-                  </pattern>
-                </defs>
-                <rect id="icons8-головная-боль-90" width="90" height="90" rx="23" fill="url(#pattern1)"/>
-              </svg>
+        <Link to="/find-doctor?specialities=Неврологист" className="item">
+            <div className="item__wrap-img">
+              <div className="item-img">
+                <svg xmlns="http://www.w3.org/2000/svg"width="90" height="90" viewBox="0 0 90 90">
+                  <defs>
+                    <pattern id="pattern1" preserveAspectRatio="none" width="100%" height="100%" viewBox="0 0 90 90">
+                      <image width="90" height="90" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAABmJLR0QA/wD/AP+gvaeTAAAIX0lEQVR4nO2dbawdRRnH/1OgpaUFWl60KKWCNALa1mJQUb5IEw0JJCiU8qUhAppQwPhGRGIkvmtoQ4IJhlSRqISSGIxGIC1YvEAQKYRrqUItQk2R0Pbe0np7e2/B/vwwe7Ucd/bMzM7s2WvOLzlp7p6dZ57575zd2Wdmnkp9+vTp06dPnz5NYHrtQCfANEnvlbRY0lmSTpX0TkmzJR0jaZas3yOS9kraJemvkp6X9ISkx4wxo817PgkAFgNfA34HjFKPMeDXwEXAYb1uW88BTgG+CWypKWwVm4ELe93WngB8FPgl8GZGgTu5E5iayP8jgGXAAPA68MUUdpMBnAn8pkFxO3kAmF7D/xOAm4DtHXb/6VP+8NiKAxycLum7kq6V1Mt75j5JUyXtDykELJF0naTLJU0rOeXh+q7VBFgIDDbab8v5GeA9wgIOAy4E1nex+xgwK6eGPs5eCRzIq58XzwJev1zgRMpvD2UMADNz69jN4ZszChfKxz38PRv4KXZo6EMrRP5hLsUi2IFjLI0dPVyG/fmH0AqRv5JYqLr81uHnbOwYO5RokafUk/Ytzi+X9J1U9hKx03F8qaQzA209KukCY8xIjCNJhAYWSPqJ2hc7Oc5xfEA2RuJLLZGlBEIDUyStkRT9MpCRRZQM64wxr8n26iEPG0+qpshSmh59jaTzEtjJwcmSzi37whgzKOl8dRf7tOLTO4A5wN5UT65MPELFywqwCNjVxcZOYFEdrer26JWy8eE2s1vVr/4vysazqzhe0kN1xY4COKq40m3mPuCIijbMxA7ZfNkJvC1Grzo9+irZK91WfiVpmTHmjbIvsePh+xX2fDk+8Pz6ABsz9MBUpO7JE2wGZjcp8jzgYEJhUjJIRdwZmIGdMgthI7CCiouXBeC6xOKkYhRwDsUI68ljwF3AB5rUttPh0B7RFHdV+Ozbk18Fvge8o0lNyxyehn84sWlKQ6L49eTHgeVkuj3ETGUtVPmUThvY4jh+t8pHC+OS7pF0mzHm6WxeKU7o9yf3Ih2uaN35HX//Q9Ltku4wxuwIqQA7LJxujHHVVUrMOPr0iDJNcYrj+Ndlo3UDkpZLmm+M+VaIyMBpwGpJ2yV9KtSxmB797ogyTbBNjjCtMeYWSbeEGsTGSJZKul7SBfpvxwzWIEbouRFlcoGkxyX9SNJaY8ybSYza28MK2SUSZ5Sc0ojQJ0SUScm4rLgPSrrXGLMtlWHsGHylpE/LLqh0MT/UdozQzb2CWl6WNCgbgP+DpCdzrBYF5kh6QX6LfKouQikxQuca2h2QFfSZ4t9NkjYZY/Zkqu8tGGOGgeck+YRCg0PDvRT6VUnrZHvqRkmDxpgDiWzHsk6ZhA6m5pvbbuA27IKVtk3kCviEb0OacCaGfcA36PXCky5gV4xOWqGfxy5HmBQA23IInWwBjYNBSR8yxrhiEG3kmRxGcwo9JOliY8zrGevIQbeJ2ihyCv1tY8xLGe3nYnsOo7mE3iXpjpiCwALsNogZEWWPKsrWeSYke9OshecD0DnT0cX2AuCVwsaNEeVvKsq+Eis2sCTHwzDGER+uiLB7qMgAmyJsPHdI+SixseHQSSN00IqeEpEBgjb1FHb2d9gIFhuYm0PoXPdon1Wakv6z5HeDpJM6vtobUW/nis+TJG0IFDvL9uaeCl0hsiQ9ElFvWZlQsduxjzzVT8lxu5jgALA4wuYS4A2Hzdh7dpL2BpNQ6AcqRF5Rw78rKsS+P8LepBd6BnAjdqQwBrwG3ENETy6xvQRYW9gcAzZhNzLFjM2TtDc4VAmMy2717WSmMWZfqL02g90VW/ZQHjfGHBliK+Zh6IpdRK0bbjknOo7vDjUUI/RWx/EPR9hqOx9xHA8OPMUI/UfH8atp4axJLEVbrnR8/VQTDix1PSCAL2R3oCGAL1W082NNODAF+JvDgYPA7cDR2R3JBHB00QbXQvsXsXsrG3FmecXVBhgBHgRq37exm+MvBX6Ozb80Uny2YPNwXIJnmogu9Zxb+DzSpW3L6tYV6tjDXRwCWFuzjsvwm8N7Gbi0Zl33etSzvk4dsY7Nxf6MqhgFXPuxq2xPBX7s0fBO1hCxkBw4ju5p4LYCbw+1nQRs7LZbOrUvB9o8EngoQuQJ1gNBLxPADV1svgCcGqZOYrDTRz8AhhxOvkRALwNurSHyBKsD6puKvfWUMQR8n4hX92wA76to+PUBdlwXLATvFBHA5x02DgJnxamRGdwPyF3AsZ42hh029mADQ/OBdwFfLY5FC41NGuC6sOvqqZER4DyH0wBrPG2sLin7BHByybnziu86WeVZ150V/rpev9sBdizq4hKP8lMLsXdie9sqKtJdHnL+UFGm8vxDyi2r8LM0F1OrwN6rXfnuhinpmT3wcR7uW9Q4bb03d4LNoutiIz3MfgjMAp6u8O/mXvkWDHZ37V8qGrOOGglZa/g1g+ox+mZsovDJA3BO8TN0saHJno0NFv2+wp8x4Oym/EkKsLKiYWDn8rKvnQbeQ/eEgp/N7UdWsFspqtgDXEWGSQNsSPczdE+wdWvquhsHmyLYJzL2KAnHrtjM6z55R9fSVHw5N8Dh2KUEPgxg493B+12wI4rLi4vmwy9IEMv2obE5PmzW21WSPudZZL9stvGnZLc7bJWdgZ+YhT+2+Jwum3HhHNksBr6Ru9WSbjDG/Mvz/MkFcDX/u+qzSUYB16Tr/xfAGfQmy9ggsLDX7W8U7FzgtTSTpHAHcA0N3Y9bCXAM/nn1Q/k7Npw6aWflk4MdmXwSuBt3wMeHYexo4mJa1INbubKoEOiDsv8x2ULZ7OVzis9EGovdkoaLz58l/UnSs7JpJpIkSOnTp0+fPn369Jl8/BvW3C4xqR2oSgAAAABJRU5ErkJggg=="/>
+                    </pattern>
+                  </defs>
+                  <rect id="icons8-головная-боль-90" width="90" height="90" rx="23" fill="url(#pattern1)"/>
+                </svg>
+              </div>
             </div>
-          </div>
-          <p>Головная<br />боль</p>
-        </div>
-        <div className="item">
-          <div className="item__wrap-img">
-            <div className="item-img">
-              <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
-                <defs>
-                  <pattern id="pattern2" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" viewBox="0 0 90 90">
-                    <image width="90" height="90" href="data:image/png;base64,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"/>
-                  </pattern>
-                </defs>
-                <rect id="icons8-кашляющий-90" width="90" height="90" fill="url(#pattern2)"/>
-              </svg>
+            <p>Головная<br />боль</p>
+        </Link>
+        <Link to="/find-doctor?specialities=Педиатр,Терапевт" className="item">
+            <div className="item__wrap-img">
+              <div className="item-img">
+                <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
+                  <defs>
+                    <pattern id="pattern2" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" viewBox="0 0 90 90">
+                      <image width="90" height="90" href="data:image/png;base64,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"/>
+                    </pattern>
+                  </defs>
+                  <rect id="icons8-кашляющий-90" width="90" height="90" fill="url(#pattern2)"/>
+                </svg>
+              </div>
             </div>
-          </div>
-          <p>Боль в<br />горле</p>
-        </div>
-        <div className="item">
-          <div className="item__wrap-img">
-            <div className="item-img symp--rhinitis">
-              <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
-                <defs>
-                  <pattern id="pattern3" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" viewBox="0 0 90 90">
-                    <image width="90" height="90" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAABmJLR0QA/wD/AP+gvaeTAAAEu0lEQVR4nO2cz6tWRRjHP2P+wEitBOmHGSK26Aca2CaSLCILkgoxqrsQMqqFRrUIgmoRuIz6A27URgzKpVG0CQqDIm5qtbAyiuDiXWR2BU3TT4vzSmZ57n3vnJk573vPZyeceb7PfO84z5yZOS90dHR0dHR0dOQglE4AQDVl/BBC8X7OKZ3AbKEzOhOd0ZnojM5EZ3QmOqMz0Rmdic7oTBQ3Wk2eQw6NqSieADAvg8bcDBq1dEZnYrYYPT+DRi1tMHpJBo3FGTRqaYPRl2fQuCKDRi1tMDrHiM7xx6ylDUZfk0Hj6gwatbTB6JVDolFLZ3Qm2mD02gwaazJo1FL0LE1dABwDFiSWOgUsDiH8mVjnopQe0etIbzJULyzrMuhclNJGP5xR68GMWv+h2NShBuBH8hWqn4BVIYSkVxsuRskRfR95VwMrgY0Z9f5FSaNfmiWa5VA3WY5NJfqcfY5WlwDfAMtza/cYB24KIRzNKZp16ugdKb1NOZOh2vcYbcPxVjLUNwtOGRfyRs6+J5061OuAx4B7gVuAZSn1ZsAEcBD4CNgdQvi1cD79od6gvqueKTto++KMultdXdq/KVHnqK+op4taFscp9WUbnsMbmzrUxcAe4J6mYhbmY2BzCGGyiWCNGK1eCnwA3NlEvBaxD9gYQjgeG6ip/x67GD6TAW4H3mkiULTR6gjwUAO5tJXN6qOxQaKmDnUe8AtwVWwiLWccuD6EcHqmAWJH9AMMv8lQvU3eHxMg1ujHI9sPEiMxjWONvi2y/SAR1dfYOfokec782sDJEMLCmTaOHdFnI9sPEmdiGscaPRHZfpCI6mus0V9Gth8kvohpHGv0+5HtB4n3Yho38cLyFdVe8zCzH1gXQvhrpgGiRnTvTWkE+D0mTss5CozEmAwN7HWEEA4CdwOHY2O1kB+Au0II38YGamT3LoQwBtwIvMBwrESOAM8DN4cQ9jcRsPEzQ/USYD3VTaQ1wCrgSmARLfg66gJOAZPAb1Sjdz/wIfBZCCFq3VwUdYW6p8wJ1b/YY3VwPLyoQd1Z0OSdVhcsZwfqiwVMfrV0v4ugPmOeKwln1edK97co6lb1REKTT6hbS/ezFahr1UMJTD6k5vgYaXBQF6mvqZMNGDzZi7WoRm+LuiVnH1uFukx9XZ2YgcETvba1d/zUpb1nJ9SlOfrV2mWO1YbVemADcCuwmuqS5GW9R45TvYV+D4wBnwCfTuekWh0FtvX++VYI4ckmc+8A1DusViHnOKtuKJ3XUKHOVQ/8z5RzQC3+KzVDg7qtZn5/onR+jaM+krviq/PVwzVG/2z1yfRwUKLi93R31K5XKnbkyic56uh5HRvNpLlQHZ+G0ePqjO9utAYLVXx1ZBomn2Owr7lZsOKre/swem/KXJJjwYqvHunD6CMpc0mKhSu+/e2fHEuRQ66vR5+m/pcMVgBPJdT/LtGz7cEWVHz12T5G9PYUOSTH/ip+1GXvmhwWqF9PQ39MbdtJ/fSwJRVfXT6F2WPqtan0k2OLKr7VyN6hfm5VICfVfer21CM5+X60Osk/e8hT8UcIIcdvlWYnx6pj+Cv+NMhh9K5Ez3acj7Oh4reFoa/4baJkxe/o6OgYUP4Gmj5+CPabGc8AAAAASUVORK5CYII="/>
-                  </pattern>
-                </defs>
-                <rect id="icons8-насморк-90" width="90" height="90" fill="url(#pattern3)"/>
-              </svg>
+            <p>Боль в<br />горле</p>
+        </Link>
+        <Link to="/find-doctor?specialities=Педиатр,Терапевт" className="item">
+            <div className="item__wrap-img">
+              <div className="item-img symp--rhinitis">
+                <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
+                  <defs>
+                    <pattern id="pattern3" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" viewBox="0 0 90 90">
+                      <image width="90" height="90" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAABmJLR0QA/wD/AP+gvaeTAAAEu0lEQVR4nO2cz6tWRRjHP2P+wEitBOmHGSK26Aca2CaSLCILkgoxqrsQMqqFRrUIgmoRuIz6A27URgzKpVG0CQqDIm5qtbAyiuDiXWR2BU3TT4vzSmZ57n3vnJk573vPZyeceb7PfO84z5yZOS90dHR0dHR0dOQglE4AQDVl/BBC8X7OKZ3AbKEzOhOd0ZnojM5EZ3QmOqMz0Rmdic7oTBQ3Wk2eQw6NqSieADAvg8bcDBq1dEZnYrYYPT+DRi1tMHpJBo3FGTRqaYPRl2fQuCKDRi1tMDrHiM7xx6ylDUZfk0Hj6gwatbTB6JVDolFLZ3Qm2mD02gwaazJo1FL0LE1dABwDFiSWOgUsDiH8mVjnopQe0etIbzJULyzrMuhclNJGP5xR68GMWv+h2NShBuBH8hWqn4BVIYSkVxsuRskRfR95VwMrgY0Z9f5FSaNfmiWa5VA3WY5NJfqcfY5WlwDfAMtza/cYB24KIRzNKZp16ugdKb1NOZOh2vcYbcPxVjLUNwtOGRfyRs6+J5061OuAx4B7gVuAZSn1ZsAEcBD4CNgdQvi1cD79od6gvqueKTto++KMultdXdq/KVHnqK+op4taFscp9WUbnsMbmzrUxcAe4J6mYhbmY2BzCGGyiWCNGK1eCnwA3NlEvBaxD9gYQjgeG6ip/x67GD6TAW4H3mkiULTR6gjwUAO5tJXN6qOxQaKmDnUe8AtwVWwiLWccuD6EcHqmAWJH9AMMv8lQvU3eHxMg1ujHI9sPEiMxjWONvi2y/SAR1dfYOfokec782sDJEMLCmTaOHdFnI9sPEmdiGscaPRHZfpCI6mus0V9Gth8kvohpHGv0+5HtB4n3Yho38cLyFdVe8zCzH1gXQvhrpgGiRnTvTWkE+D0mTss5CozEmAwN7HWEEA4CdwOHY2O1kB+Au0II38YGamT3LoQwBtwIvMBwrESOAM8DN4cQ9jcRsPEzQ/USYD3VTaQ1wCrgSmARLfg66gJOAZPAb1Sjdz/wIfBZCCFq3VwUdYW6p8wJ1b/YY3VwPLyoQd1Z0OSdVhcsZwfqiwVMfrV0v4ugPmOeKwln1edK97co6lb1REKTT6hbS/ezFahr1UMJTD6k5vgYaXBQF6mvqZMNGDzZi7WoRm+LuiVnH1uFukx9XZ2YgcETvba1d/zUpb1nJ9SlOfrV2mWO1YbVemADcCuwmuqS5GW9R45TvYV+D4wBnwCfTuekWh0FtvX++VYI4ckmc+8A1DusViHnOKtuKJ3XUKHOVQ/8z5RzQC3+KzVDg7qtZn5/onR+jaM+krviq/PVwzVG/2z1yfRwUKLi93R31K5XKnbkyic56uh5HRvNpLlQHZ+G0ePqjO9utAYLVXx1ZBomn2Owr7lZsOKre/swem/KXJJjwYqvHunD6CMpc0mKhSu+/e2fHEuRQ66vR5+m/pcMVgBPJdT/LtGz7cEWVHz12T5G9PYUOSTH/ip+1GXvmhwWqF9PQ39MbdtJ/fSwJRVfXT6F2WPqtan0k2OLKr7VyN6hfm5VICfVfer21CM5+X60Osk/e8hT8UcIIcdvlWYnx6pj+Cv+NMhh9K5Ez3acj7Oh4reFoa/4baJkxe/o6OgYUP4Gmj5+CPabGc8AAAAASUVORK5CYII="/>
+                    </pattern>
+                  </defs>
+                  <rect id="icons8-насморк-90" width="90" height="90" fill="url(#pattern3)"/>
+                </svg>
+              </div>
             </div>
-          </div>
-          <p>Насморк</p>
-        </div>
-        <div className="item">
-          <div className="item__wrap-img">
-            <div className="item-img symp--toothach">
-              <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
-                <defs>
-                  <pattern id="pattern4" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" viewBox="0 0 90 90">
-                    <image width="90" height="90" href="data:image/png;base64,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"/>
-                  </pattern>
-                </defs>
-                <rect id="icons8-зубная-боль-90" width="90" height="90" fill="url(#pattern4)"/>
-              </svg>
+            <p>Насморк</p>
+        </Link>
+        <Link to="/find-doctor?specialities=Dantist" className="item">
+            <div className="item__wrap-img">
+              <div className="item-img symp--toothach">
+                <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
+                  <defs>
+                    <pattern id="pattern4" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" viewBox="0 0 90 90">
+                      <image width="90" height="90" href="data:image/png;base64,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"/>
+                    </pattern>
+                  </defs>
+                  <rect id="icons8-зубная-боль-90" width="90" height="90" fill="url(#pattern4)"/>
+                </svg>
+              </div>
             </div>
-          </div>
-          <p>Зубная<br />боль</p>
-        </div>
-        <div className="item">
-          <div className="item__wrap-img">
-            <div className="item-img symp--temp">
-              <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
-                <defs>
-                  <pattern id="pattern5" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" viewBox="0 0 90 90">
-                    <image width="90" height="90" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAABmJLR0QA/wD/AP+gvaeTAAAFV0lEQVR4nO2c66tVRRiHf1Mm3aws89YhVKpT0U2jNMsP9SGwtC+BhRBJWqihUgT9CxX9AyFkRX4IoVSwJIiiUA8ZhEhYVIIYGWXZuQjZuTx9mL3pZPudtfbZa2adrfN8khfnvfyYM3vmXbOWlMlkMplMJpPJZDKZ1gBTgeeBA8AQ1TEE7Ac2AhfVXWetAHOAryoU1+IgMLvuemsBP5NTiNzkS2qc2RfUFVjSs5LuThjvHknrEsb7D3UK/dR5ElOS5OoKDAxKujxx2EHn3BWJY0qqV2ha2Z1zleQU23+71Ll0nFdkoRORhU5EFjoRWehEZKETkYVORBY6EVPqTqAsk+0A0i55RiciC52ILHQistCJyEInIgudiCx0IrLQichCJyILnYgsdCKy0InIQieiFqGBi+uIW2fs5EID0yTtTh13HHuBK2uMHx9gBnAodBMxMLaS/9/ga+CaOFXWDHAZ0FcgwM7A+HaF3lkQaz9waZxqawJwwK5A0WeADQU+2hK6MWZjw7fFB0BXPKEpBfBSoNhfgSUlfLQtdGPcfcBvgfgvVFNlzQALgb8DIt9e0s+EhG6MvSMg9hngzs6qrBn8krHPKPAvYHEJH3OBLYEZuYkSr00ASxoxW/E53byEAKsDAj1XMLYH2AaMBnw0GQG2AnMLfG4I+Hiy2uoTgZ/N3xhFfRaaQcBK4M8SAp/NAPB4QV6fGGMPh3KatADLjYJGgJsD4zYDYxMQuckYgR0McGsjh1Y8HEeNiADvG8W8FxizinJLRRGjBGY2sMMYtyOOGpEALsF+ObPlVg64DjhVgchNfsf4kQTuN8YMUmMfpm2AFUYhxzDWQeDdCkVuss2I5YDjxphHYmgSq6l0r2Hf7Zz7394X6JG0KkIeq4E5ZxsbOViNLSv3jogltHUAOGjYn5AU463WqQ3f7eQS5fASS+hew37IsD8UKY+QbysXK/eOiCX0dMN+wrDfFimPkG8rFyv3jogltNVY7zfsMyLlIUmzDPspw95VQlsnLKsJNBYpD0kaiei7NLGEHjTs0wz7z5HykOwlwnon3Mq9I2IJbf1ZXm/Yj0bKQ5J+NOxWLlbuHRFL6B8Mu9Xj2BMpj5BvK5fvYyQRS+jvDPsDhn2XpNEIeYzIPpgsM+xW7h0RS+gDhr1ld8w5d1zSWxHyeNM599PZxkYbwOrUWblPPoCZ2K3Olk9V8E2lgQr7HP2tjt+NWEuNMaNAzK1m9WBfLXgnMOYxqmuTrgzE2W6M2xdHjYjgH/W3Yhi4ITBuc4dijwKbAv57sRv/6+OoERHganx/txXBXQZ+Zk9kGekHVhT43muMHQCinAqjA7weEOXpgrFz8Q9crdk3nmHgDYw1eZzPtQEfr1RbfUKA2dgzcwi4q4SPHvwnNT8EjuD/SgYb/96DX6J6SvhZBJw2cukHZlZTdU0ALwZm0QkC63WFOdwI/BLIY3PsHKIDTMF/GzQk9sKI8RcViNwHXBgrflKABYTvaZwGnokQdy32cgHwBzCv6ri1AjyK/9EK8RFwUwWxerF3F02GgeVV1DbpANZQfDlmGP9EfGmbvh3+xLed4p3KGAW7nqpJfgUKWCNpq8p9/eaopI8lfSHpW0nH9G+/eJqkefJduGXyvYv5JXyOSFrnnHu7nby7EvwyUuVlmbKc4lxdLiyA+fiPZ6eij3Pth68s+K3fFvyBIRZDwMtA13yoKxrALOA1qm2TDgCv0u0nvhgA0/GXxfczsau7Y/g3DNYDV9Vdz3gm7cVr4FpJD0paLOkWSQvk7380n6QPSjopvzM5IqlP0qfOuZPps81kMplMJpPJZDKZLuYfvUGcU2DZ45kAAAAASUVORK5CYII="/>
-                  </pattern>
-                </defs>
-                <rect id="icons8-термометр-90" width="90" height="90" fill="url(#pattern5)"/>
-              </svg>
+            <p>Зубная<br />боль</p>
+        </Link>
+        <Link to="/find-doctor?specialities=Педиатр,Терапевт,Пульмонолог" className="item">
+            <div className="item__wrap-img">
+              <div className="item-img symp--temp">
+                <svg xmlns="http://www.w3.org/2000/svg" width="90" height="90" viewBox="0 0 90 90">
+                  <defs>
+                    <pattern id="pattern5" preserveAspectRatio="xMidYMid slice" width="100%" height="100%" viewBox="0 0 90 90">
+                      <image width="90" height="90" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAABmJLR0QA/wD/AP+gvaeTAAAFV0lEQVR4nO2c66tVRRiHf1Mm3aws89YhVKpT0U2jNMsP9SGwtC+BhRBJWqihUgT9CxX9AyFkRX4IoVSwJIiiUA8ZhEhYVIIYGWXZuQjZuTx9mL3pZPudtfbZa2adrfN8khfnvfyYM3vmXbOWlMlkMplMJpPJZDKZ1gBTgeeBA8AQ1TEE7Ac2AhfVXWetAHOAryoU1+IgMLvuemsBP5NTiNzkS2qc2RfUFVjSs5LuThjvHknrEsb7D3UK/dR5ElOS5OoKDAxKujxx2EHn3BWJY0qqV2ha2Z1zleQU23+71Ll0nFdkoRORhU5EFjoRWehEZKETkYVORBY6EVPqTqAsk+0A0i55RiciC52ILHQistCJyEInIgudiCx0IrLQichCJyILnYgsdCKy0InIQieiFqGBi+uIW2fs5EID0yTtTh13HHuBK2uMHx9gBnAodBMxMLaS/9/ga+CaOFXWDHAZ0FcgwM7A+HaF3lkQaz9waZxqawJwwK5A0WeADQU+2hK6MWZjw7fFB0BXPKEpBfBSoNhfgSUlfLQtdGPcfcBvgfgvVFNlzQALgb8DIt9e0s+EhG6MvSMg9hngzs6qrBn8krHPKPAvYHEJH3OBLYEZuYkSr00ASxoxW/E53byEAKsDAj1XMLYH2AaMBnw0GQG2AnMLfG4I+Hiy2uoTgZ/N3xhFfRaaQcBK4M8SAp/NAPB4QV6fGGMPh3KatADLjYJGgJsD4zYDYxMQuckYgR0McGsjh1Y8HEeNiADvG8W8FxizinJLRRGjBGY2sMMYtyOOGpEALsF+ObPlVg64DjhVgchNfsf4kQTuN8YMUmMfpm2AFUYhxzDWQeDdCkVuss2I5YDjxphHYmgSq6l0r2Hf7Zz7394X6JG0KkIeq4E5ZxsbOViNLSv3jogltHUAOGjYn5AU463WqQ3f7eQS5fASS+hew37IsD8UKY+QbysXK/eOiCX0dMN+wrDfFimPkG8rFyv3jogltNVY7zfsMyLlIUmzDPspw95VQlsnLKsJNBYpD0kaiei7NLGEHjTs0wz7z5HykOwlwnon3Mq9I2IJbf1ZXm/Yj0bKQ5J+NOxWLlbuHRFL6B8Mu9Xj2BMpj5BvK5fvYyQRS+jvDPsDhn2XpNEIeYzIPpgsM+xW7h0RS+gDhr1ld8w5d1zSWxHyeNM599PZxkYbwOrUWblPPoCZ2K3Olk9V8E2lgQr7HP2tjt+NWEuNMaNAzK1m9WBfLXgnMOYxqmuTrgzE2W6M2xdHjYjgH/W3Yhi4ITBuc4dijwKbAv57sRv/6+OoERHganx/txXBXQZ+Zk9kGekHVhT43muMHQCinAqjA7weEOXpgrFz8Q9crdk3nmHgDYw1eZzPtQEfr1RbfUKA2dgzcwi4q4SPHvwnNT8EjuD/SgYb/96DX6J6SvhZBJw2cukHZlZTdU0ALwZm0QkC63WFOdwI/BLIY3PsHKIDTMF/GzQk9sKI8RcViNwHXBgrflKABYTvaZwGnokQdy32cgHwBzCv6ri1AjyK/9EK8RFwUwWxerF3F02GgeVV1DbpANZQfDlmGP9EfGmbvh3+xLed4p3KGAW7nqpJfgUKWCNpq8p9/eaopI8lfSHpW0nH9G+/eJqkefJduGXyvYv5JXyOSFrnnHu7nby7EvwyUuVlmbKc4lxdLiyA+fiPZ6eij3Pth68s+K3fFvyBIRZDwMtA13yoKxrALOA1qm2TDgCv0u0nvhgA0/GXxfczsau7Y/g3DNYDV9Vdz3gm7cVr4FpJD0paLOkWSQvk7380n6QPSjopvzM5IqlP0qfOuZPps81kMplMJpPJZDKZLuYfvUGcU2DZ45kAAAAASUVORK5CYII="/>
+                    </pattern>
+                  </defs>
+                  <rect id="icons8-термометр-90" width="90" height="90" fill="url(#pattern5)"/>
+                </svg>
+              </div>
             </div>
-          </div>
-          <p>Простуда</p>
-        </div>
+            <p>Простуда</p>
+        </Link>
       </article>
     </div>
   </section>
@@ -300,7 +300,6 @@ return <>
             <svg xmlns="http://www.w3.org/2000/svg" width="152" height="152" viewBox="0 0 152 152">
               <defs>
                 <filter id="clock" x="0" y="0" width="152" height="152" filterUnits="userSpaceOnUse">
-                  <feOffset dy="9" input="SourceAlpha"/>
                   <feGaussianBlur stdDeviation="4" result="blur"/>
                   <feFlood flood-color="#30b9d6" flood-opacity="0.251"/>
                   <feComposite operator="in" in2="blur"/>
@@ -316,19 +315,56 @@ return <>
         </div>
         <div className="item">
           <div className="item-img">
+            <svg xmlns="http://www.w3.org/2000/svg"width="115.562" height="152" viewBox="0 0 115.562 152">
+              <defs>
+                <filter id="geo" x="0" y="0" width="115.562" height="152" filterUnits="userSpaceOnUse">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feFlood flood-color="#30b9d6" flood-opacity="0.251"/>
+                  <feComposite operator="in" in2="blur"/>
+                  <feComposite in="SourceGraphic"/>
+                </filter>
+              </defs>
+              <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#geo)">
+                <path id="geo-2" data-name="geo" d="M118.261,0C84.127,0,62.132,36.17,77.43,66.378l23.492,50.56a19.118,19.118,0,0,0,34.676,0l23.493-50.561C174.392,36.161,152.388,0,118.261,0Zm0,31.438a14.3,14.3,0,1,1-14.3,14.3,14.32,14.32,0,0,1,14.3-14.3Z" transform="translate(-60.48 3)" fill="#30b9d6"/>
+              </g>
+            </svg>
 
           </div>
           <p>В Любом месте</p>
         </div>
         <div className="item">
           <div className="item-img">
-
+            <svg xmlns="http://www.w3.org/2000/svg" width="152" height="151.999" viewBox="0 0 152 151.999">
+              <defs>
+                <filter id="Контур_111" x="0" y="0" width="152" height="151.999" filterUnits="userSpaceOnUse">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feFlood flood-color="#30b9d6" flood-opacity="0.251"/>
+                  <feComposite operator="in" in2="blur"/>
+                  <feComposite in="SourceGraphic"/>
+                </filter>
+              </defs>
+              <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Контур_111)">
+                <path id="Контур_111-2" data-name="Контур 111" d="M127.582,49.018A9.142,9.142,0,0,0,120,42.55l-34.018-4.7L72.519,5.685a9.238,9.238,0,0,0-17.05,0L42.007,37.851,7.989,42.55A9.266,9.266,0,0,0,3.1,58.645L28.733,81.5l-5.266,35.865a9.248,9.248,0,0,0,14.339,9.014L63.994,108.57,90.182,126.4a9.247,9.247,0,0,0,14.34-9.014L99.255,81.5l25.63-22.855A9.184,9.184,0,0,0,127.582,49.018Z" transform="translate(12 3)" fill="#30b9d6"/>
+              </g>
+            </svg>
           </div>
           <p>Лучшие Врачи</p>
         </div>
         <div className="item">
           <div className="item-img">
-
+            <svg xmlns="http://www.w3.org/2000/svg" width="109.333" height="152" viewBox="0 0 109.333 152">
+              <defs>
+                <filter id="Контур_112" x="0" y="0" width="109.333" height="152" filterUnits="userSpaceOnUse">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feFlood flood-color="#30b9d6" flood-opacity="0.251"/>
+                  <feComposite operator="in" in2="blur"/>
+                  <feComposite in="SourceGraphic"/>
+                </filter>
+              </defs>
+              <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Контур_112)">
+                <path id="Контур_112-2" data-name="Контур 112" d="M74.667,0h-56A14.679,14.679,0,0,0,4,14.667v98.667A14.679,14.679,0,0,0,18.667,128h56a14.679,14.679,0,0,0,14.667-14.667V14.667A14.679,14.679,0,0,0,74.667,0Zm4,112a5.335,5.335,0,0,1-5.333,5.333H20A5.335,5.335,0,0,1,14.667,112V16A5.335,5.335,0,0,1,20,10.667h2.667A5.335,5.335,0,0,1,28,16a5.335,5.335,0,0,0,5.333,5.333H60A5.335,5.335,0,0,0,65.333,16a5.335,5.335,0,0,1,5.333-5.333h2.667A5.335,5.335,0,0,1,78.667,16Z" transform="translate(8 3)" fill="#30b9d6"/>
+              </g>
+            </svg>
           </div>
           <p>Доступно на любом<br />устройстве</p>
         </div>
@@ -348,7 +384,7 @@ return <>
               выбрать любого подходящего врача, просмотрев его рейтинг, почитав его отзывы и изучить детальную
               информацию на его личной странице. А чтобы выбор проходил еще более удобным вы можете воспользоваться
               фильтром</p>
-            <div className="btn-link btn-link__catalog">Найти врача</div>
+            <Link to="/find-doctor"><div className="btn-link btn-link__catalog">Найти врача</div></Link>
           </div>
           <div className="hiw-sect__right">
             <div className="rnd-doctor rnd-doctor-center">
@@ -373,7 +409,7 @@ return <>
           <div className="hiw-sect__right">
             <div className="question__block">Как Вас зовут?</div>
             <div className="question__block">Какие у вас проблемы?</div>
-            <div className="btn-link btn-link__appoint">Записаться</div>
+            <Link to="/find-doctor"><div className="btn-link btn-link__appoint">Записаться</div></Link>
           </div>
           <div className="container-info__left">
             <div className="step-block">Шаг 2</div>
@@ -454,9 +490,9 @@ return <>
     <div className="main-container-reg">
       <Title title="Уже не терпится начать" mark="?" />
       <h3 className="reg-subtitle">Зарегистрируйтесь и сделайте свою жизнь здоровее!</h3>
-      <div className="btn-link btn-link__reg">Зарегистрироваться</div>
+      <Link to="/signup"><div className="btn-link btn-link__reg">Зарегистрироваться</div></Link>
       <p>Уже есть аккаунт?
-        <Link to='./login'>Войти</Link>
+        <Link to='/login'>Войти</Link>
       </p>
     </div>
   </section>
