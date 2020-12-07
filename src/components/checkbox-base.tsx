@@ -10,7 +10,7 @@ type Props = {
 }
 
 const CheckboxBase: React.FC<Props> = (props: Props) => {
-    return <div className="checkbox">
+    return <div className="checkbox" >
         <input className="inp-cbx" id="cbx" type="checkbox"
                checked={props.checked}
                onChange={props.onChange}

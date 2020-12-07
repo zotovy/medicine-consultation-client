@@ -55,13 +55,6 @@ const Page1: React.FC<Props> = ({ className }) => {
                         error={controller.phoneError}
                         hint="Введите Ваш телефон"
                         field="Телефон" />
-                    <div style={styles.calendarWrapper} className="calendar-wrapper">
-                        <Calendar
-                            isOpen={controller.calendarOpen}
-                            onSave={controller.onCalendarSave}
-                            onClose={() => controller.calendarOpen = false}
-                        />
-                    </div>
                     <DateTextField
                         onChange={() => { }}
                         onFocus={() => controller.calendarOpen = true}
@@ -74,6 +67,13 @@ const Page1: React.FC<Props> = ({ className }) => {
             <SexCheckbox onChange={() => controller.isMale = !controller.isMale} isMale={controller.isMale} />
             <SizedBox height="40px" />
             <ConfirmButton content="Продолжить" onConfirm={() => controller.pageIndex = 1} />
+            <div style={styles.calendarWrapper} className="calendar-wrapper">
+                <Calendar
+                    isOpen={controller.calendarOpen}
+                    onSave={controller.onCalendarSave}
+                    onClose={() => controller.calendarOpen = false}
+                />
+            </div>
         </Container>
     </div>
 }
