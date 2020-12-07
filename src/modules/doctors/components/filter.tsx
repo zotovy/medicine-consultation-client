@@ -3,7 +3,7 @@ import React from "react";
 import { observer } from "mobx-react";
 import { CaretteDown, Chevron, SearchIcon } from "../icons";
 import FilterItemBase from "./filter/item-base";
-import { ESpeciality, workExperience } from "../enums";
+import { doctorSpecialities, workExperience } from "../enums";
 import Checkbox from "../../../components/checkbox";
 import RatingListItem from "./filter/rating-list-item";
 import controller, { ESortBy } from "../controllers/find-doctor-controller";
@@ -15,7 +15,8 @@ const Filter: React.FC = () => {
     const otherFilters = <React.Fragment>
         <FilterItemBase title="Специальность">
             {
-                Object.keys(ESpeciality).map(speciality => <Checkbox
+                doctorSpecialities.map(speciality => <Checkbox
+                    id={speciality}
                     key={speciality}
                     label={speciality}
                     checked={controller.specialities.includes(speciality)}
@@ -129,9 +130,9 @@ const Filter: React.FC = () => {
                 </div>
 
                 <div onClick={controller.clickOnDownward} className={`downward-upward ${controller.isDownward ? "" : "upward"}`}>
-                    <p className="stick" id="stick-top"></p>
-                    <p className="stick" id="stick-centre"></p>
-                    <p className="stick" id="stick-bottom"></p>
+                    <p className="stick" id="stick-top"/>
+                    <p className="stick" id="stick-centre"/>
+                    <p className="stick" id="stick-bottom"/>
                 </div>
             </div>
 

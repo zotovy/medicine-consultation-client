@@ -3,6 +3,7 @@ import "./styles/checkbox.sass";
 
 
 type Props = {
+    for?: string;
     checked: boolean;
     onChange: () => void;
     dataTest?: string;
@@ -14,7 +15,7 @@ const CheckboxBase: React.FC<Props> = (props: Props) => {
                checked={props.checked}
                onChange={props.onChange}
                />
-        <label className="cbx" htmlFor="cbx">
+        <label className="cbx" htmlFor={props.for ?? "cbx"}>
             <span>
                 <svg
                     width="12px" height="10px" viewBox="0 0 12 10">
