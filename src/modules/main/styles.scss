@@ -8,7 +8,7 @@
 //========================================================================================
 
 .main-wrapper{
-    width: 1600px;
+    width: 1400px;
     margin: 0 auto;
     overflow: hidden;
 
@@ -40,6 +40,7 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    overflow: unset;
     .main-container-pre-sect{
         width: 100%;
         height: 749px;
@@ -96,8 +97,8 @@ a{
             box-shadow: 0px 5px 28px 0px rgba(48, 185, 214, 0.3);
             transition: 0.3s;
             &:hover{
-                background-color: saturate($primary, 5%);
-                box-shadow: 0px 3px 15px rgba(48,185,215,0.3);
+                background-color: #2CC3E3;
+                box-shadow: 0px 3px 20px rgba(48,185,215,0.4);
             } 
         }
     }
@@ -340,8 +341,8 @@ a{
                         transition: 0.3s;
                         cursor: pointer;
                         &:hover{
-                            background-color: saturate($primary, 5%);
-                            box-shadow: 0px 3px 15px rgba(48,185,215,0.3);
+                            background-color: #2CC3E3;
+                            box-shadow: 0px 3px 20px rgba(48,185,215,0.4);
                         } 
                     }
                 }
@@ -482,15 +483,15 @@ a{
         }
         .btn-link__appoint{
             width: 250px;
-            height: 75px;
+            height: 60px;
             font-size: 20px;
             line-height: 32px;
             box-shadow: 0px 5px 28px 0px rgba(48, 185, 214, 0.3);
             transition: 0.3s;
             cursor: pointer;
             &:hover{
-                background-color: saturate($primary, 5%);
-                box-shadow: 0px 3px 15px rgba(48,185,215,0.3);
+                background-color: #2CC3E3;
+                box-shadow: 0px 3px 20px rgba(48,185,215,0.4);
             } 
         }
     }
@@ -511,7 +512,7 @@ a{
             position: relative;
             align-items: center;
             border-radius: 10px;
-            box-shadow: 0px 11px 25px 0px rgba(0, 0, 0, 0.05);
+            box-shadow: 0px 5px 26px 0px rgba(0, 0, 0, 0.05);
             span{
                 font-size: 20px;
                 line-height: 30px;
@@ -553,6 +554,9 @@ a{
         }
         .sender-container-right{
             float: right;
+            span{
+                margin-left: 10px;
+            }
         }
         float: right;
     }
@@ -590,8 +594,8 @@ a{
             line-height: 32px;
             transition: 0.3s;
             &:hover{
-                background-color: saturate($primary, 5%);
-                box-shadow: 0px 3px 15px rgba(48,185,215,0.3);
+                background-color: #2CC3E3;
+                box-shadow: 0px 3px 20px rgba(48,185,215,0.4);
             }           
         }
         p{
@@ -607,139 +611,10 @@ a{
                 color: $primary;
                 transition: 0.3s;
                 &:hover{
-                    color: saturate($primary, 20%);
+                    color: saturate($primary, 40%);
                 }
             }
         }
     }
     margin-bottom: 146px;
 }
-
-.cls-1, .cls-18, .cls-19, .cls-6, .cls-7 {
-    fill: none;
-  }
-
-  .cls-2 {
-    fill: #fff;
-  }
-
-  .cls-3 {
-    isolation: isolate;
-  }
-
-  .cls-4, .cls-5 {
-    fill: #def9f6;
-  }
-
-  .cls-14, .cls-5 {
-    mix-blend-mode: multiply;
-  }
-
-  .cls-6, .cls-7 {
-    stroke: #92d4d6;
-  }
-
-  .cls-18, .cls-19, .cls-6, .cls-7 {
-    stroke-miterlimit: 10;
-  }
-
-  .cls-7 {
-    stroke-dasharray: 4.99 4.99;
-  }
-
-  .cls-26, .cls-8 {
-    fill: #231f20;
-  }
-
-  .cls-8 {
-    opacity: 0.1;
-  }
-
-  .cls-9 {
-    fill: #92d4d6;
-  }
-
-  .cls-10 {
-    fill: #b1daeb;
-  }
-
-  .cls-11 {
-    clip-path: url(#clip-path);
-  }
-
-  .cls-12 {
-    fill: #ebf3f7;
-  }
-
-  .cls-13, .cls-14 {
-    fill: #343a4a;
-  }
-
-  .cls-14 {
-    opacity: 0.5;
-  }
-
-  .cls-15 {
-    clip-path: url(#clip-path-2);
-  }
-
-  .cls-16 {
-    fill: #62b0a4;
-  }
-
-  .cls-17 {
-    fill: #f99d6e;
-  }
-
-  .cls-18 {
-    stroke: #ebf3f7;
-  }
-
-  .cls-19 {
-    stroke: #343a4a;
-    stroke-width: 2px;
-  }
-
-  .cls-20 {
-    fill: #4aa69b;
-  }
-
-  .cls-21 {
-    fill: #fac39a;
-  }
-
-  .cls-22 {
-    fill: #d25961;
-  }
-
-  .cls-23 {
-    fill: #192d4e;
-  }
-
-  .cls-24 {
-    fill: #e38371;
-  }
-
-  .cls-25 {
-    clip-path: url(#clip-path-3);
-  }
-
-  .cls-26 {
-    opacity: 0.3;
-  }
-
-  .cls-27 {
-    fill: #d8555f;
-  }
-
-  .cls-28 {
-    fill: #76bba0;
-  }
-
-  .cls-29 {
-    fill: #00bdd7;
-  }
-
-  .cls-30 {
-    fill: #fffdf9;
-  }
