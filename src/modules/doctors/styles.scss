@@ -1380,7 +1380,9 @@ $disable: rgba($primary, $alpha: 0.15);
 
 
 $hoverCol: #30B9D6;
-
+#male_arm-2{
+    fill:  #b6cae5 !important;
+}
 .tab-content {
     height: 644px;
     height: 100%;
@@ -1417,7 +1419,8 @@ $hoverCol: #30B9D6;
             }
 
             .cls-5 {
-                fill: #9caabd;
+                fill: #b6cae5 !important;
+                mix-blend-mode: normal !important;
             }
 
             .cls-6 {
