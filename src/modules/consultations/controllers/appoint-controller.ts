@@ -13,6 +13,7 @@ class AppointmentController {
     // Page 1
     @observable fullName: string = settingsController.fullName;
     @observable fullNameError: string = "";
+    @observable time : string = "";
     @observable birthDay: string = settingsController.birthdayString;
     @observable birthDayError: string = "";
     @observable phone: string = formatServices.formatPhone(

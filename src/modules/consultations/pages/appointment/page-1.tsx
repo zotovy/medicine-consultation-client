@@ -47,6 +47,11 @@ const Page1: React.FC<Props> = ({ className }) => {
                         error={controller.birthDayError}
                         hint="Введите Вашу дату рождения"
                         field="Дата рождения" />
+                    <TextField
+                        onChange={(v) => controller.time = v}
+                        value={controller.time}
+                        hint="Введите время приема"
+                        field="Время приёма" />
                 </div>
                 <div className="form-column">
                     <TextField
