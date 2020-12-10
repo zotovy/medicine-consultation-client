@@ -945,6 +945,8 @@ $disable: rgba($primary, $alpha: 0.15);
 
         section.additional-information {
             margin-left: 100px;
+            width: 50%;
+
             .tabs-group {
                 margin-bottom: 20px;
 
@@ -991,9 +993,10 @@ $disable: rgba($primary, $alpha: 0.15);
             }
 
             .content {
+                width: 100%;
                 height: 100%;
                 position: relative;
-                overflow: hidden;
+                overflow-x: hidden;
 
                 &.selected2 .content_page {
                     transform: translateX(-100%);
@@ -1048,6 +1051,24 @@ $disable: rgba($primary, $alpha: 0.15);
                     p.subtitle {
                         font-size: 15px;
                         color: #707070;
+                    }
+                }
+
+                .image-tile {
+                    &_image {
+                        width: 125px;
+                        height: 125px;
+                        border-radius: 10px;
+                        box-shadow: 0 3px 6px rgba(black, 0.05);
+                        background-size: cover;
+                        background-position: center;
+                        margin-bottom: 5px;
+                        cursor: pointer;
+                    }
+
+                    span.title {
+                        font-size: 18px;
+                        color: #282828;
                     }
                 }
             }
