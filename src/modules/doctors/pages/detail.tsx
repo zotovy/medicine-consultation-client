@@ -11,6 +11,8 @@ import LoadingHeader from "../components/detail/loading/loading-header";
 import LoadingConsultationsComponent from "../components/detail/loading/loading-consultations";
 import formatServices from "../../../services/format-services";
 import AdditionalInformation from "../components/detail/additional-information";
+import WeekTableComponent from "../components/detail/additional-information/week-table";
+import SizedBox from "../../../components/sized-box";
 
 type PathParamsType = {
     id: string,
@@ -114,7 +116,6 @@ const DetailPage: React.FC<Props> = (props) => {
                        </div>
 
                         <div className="price">
-
                             <span className="price_value">
                                 <span className="from">до</span>
                                 &nbsp;
@@ -127,7 +128,7 @@ const DetailPage: React.FC<Props> = (props) => {
                     <div className="row col-2">
                         {/* ------ INFORMATION ------ */}
                         <section className="information">
-                            <h3 className="information_title">Информация</h3>
+                            <h3 className="title">Информация</h3>
                             <div className="content">
                                 <p className="content-paragraph">
                                     Ворошкевич Андрей Альбертович - врач пластический хирург, стаж 38 лет. Все отзывы о враче. Запись онлайн или по телефону.
@@ -138,10 +139,12 @@ const DetailPage: React.FC<Props> = (props) => {
                                 </p>
                             </div>
                         </section>
-
                         <AdditionalInformation/>
                     </div>
+                    <SizedBox height="40px"/>
 
+                    <h3 className="title">Запись на приём</h3>
+                    <WeekTableComponent/>
 
                     {
 

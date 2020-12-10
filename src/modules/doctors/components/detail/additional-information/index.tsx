@@ -9,12 +9,13 @@ const underlineClasses = ["first", "second", "third"];
 const getTabClass = (i: number) => `tab ${controller.selectedTabIndex == i ? "selected" : ""}`;
 const handleClick = (i: number) => controller.selectedTabIndex = i;
 const getSelectedClass = () => `selected${controller.selectedTabIndex + 1}`;
+const getSectionHeight = () => {
+    const max = Math.max(3, 1, 1);
+    return 55 + Math.round(max / 2) * 100;
+}
 
-const Index : React.FC = () => {
-
-
-
-    return <section className="additional-information">
+const AdditionalInformation : React.FC = () => {
+    return <section className="additional-information" style={{ height: `${getSectionHeight()}px` }}>
         {/* ------- TABS ------- */}
         <div className="tabs-group">
             <div className="tabs">
@@ -57,4 +58,4 @@ const Index : React.FC = () => {
     </section>
 }
 
-export default observer(Index);
+export default observer(AdditionalInformation);

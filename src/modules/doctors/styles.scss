@@ -710,6 +710,14 @@ $disable: rgba($primary, $alpha: 0.15);
     width: 100%;
     padding: 0 28px;
 
+
+    h3.title {
+        font-size: 28px;
+        color: #282828;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
     @media screen and (min-width: 1440px) {
         padding: 10px calc(50% - 704px);
     }
@@ -927,13 +935,6 @@ $disable: rgba($primary, $alpha: 0.15);
         section.information {
             width: calc(50% - 100px);
 
-            h3.information_title {
-                font-size: 28px;
-                color: #282828;
-                font-weight: 600;
-                margin-bottom: 15px;
-            }
-
             .content {
                 &-paragraph {
                     color: #565656;
@@ -997,6 +998,7 @@ $disable: rgba($primary, $alpha: 0.15);
                 height: 100%;
                 position: relative;
                 overflow-x: hidden;
+                //overflow-y: visible;
 
                 &.selected2 .content_page {
                     transform: translateX(-100%);
@@ -1008,7 +1010,6 @@ $disable: rgba($primary, $alpha: 0.15);
 
                 .content_page {
                     width: 100%;
-                    height: 100%;
                     display: grid;
                     grid-template-columns: repeat(2, 1fr);
                     grid-column-gap: 30px;
@@ -1073,182 +1074,77 @@ $disable: rgba($primary, $alpha: 0.15);
                 }
             }
         }
-
     }
 
     .title {
         margin-bottom: 10px;
     }
 
-    .selector {
-        margin-top: 10px;
+    .week-table {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
 
-        .week-selector {
+
+        .day {
+            //width: calc((100% - 60px) / 7);
             display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 5px;
-            background: #f2f2f2;
-            width: 175px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-
-            svg {
-                padding: 3px;
-                cursor: pointer;
-
-                &:hover {
-                    path {
-                        stroke: #1e1e1e;
-                    }
-                }
-
-                path {
-                    stroke: #565656;
-                }
-
-                &#left {
-                    transform: rotate(180deg);
-                }
-            }
-
-            span#data {
-                display: flex;
-                justify-content: center;
-                //width: 105px;
-                margin: 0 5px;
-                user-select: none;
-            }
-
-
-        }
-
-        .day-row {
-            display: flex;
-            align-items: start;
-            margin-top: 5px;
+            flex-direction: column;
 
             .day-name {
+                padding: 10px 20px;
+                border: 1px solid #CCCCCC;
+                border-radius: 8px;
                 display: flex;
-                align-items: center;
-                height: 28px;
-                font-size: 18px;
-                font-weight: 500;
-                margin-right: 15px;
-                width: 30px;
-            }
+                flex-direction: column;
+                margin-bottom: 5px;
 
-            .weekend {
-                display: flex;
-                align-items: center;
-                height: 28px;
-                font-size: 18px;
-                color: #565656;
-                font-style: italic;
-            }
+                &.today {
+                    position: relative;
 
-            .times {
-                display: flex;
-                flex-wrap: wrap;
-
-                .time {
-                    margin-bottom: 7px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 28px;
-                    width: 70px;
-                    background: #E9F7FA;
-                    color: #30B9D6;
-                    margin-right: 10px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                    max-width: calc(100vw - 99px);
-
-                    &:hover {
-                        background: #E6F2F4;
-                    }
-
-                    &.occupied {
-                        color: white;
+                    &:before {
+                        content: "";
+                        width: 7px;
+                        height: 7px;
+                        border-radius: 50%;
+                        position: absolute;
                         background: $primary;
-                        cursor: initial;
+                        right: 7px;
+                        top: 7px;
                     }
+                }
 
-                    &.x2 {
-                        width: 150px;
-                    }
+                span.date {
+                    font-size: 18px;
+                    color: #282828;
+                }
 
-                    &.x3 {
-                        width: 230px;
-                    }
+                span.week-day {
+                    color: rgba(#282828, 0.75);
+                    font-size: 12px;
+                }
+            }
 
-                    &.x4 {
-                        width: 310px;
-                    }
+            .time {
+                padding: 10px 20px;
+                border-radius: 8px;
+                background: #E9F7FA;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: $primary;
+                margin-top: 10px;
 
-                    &.x5 {
-                        width: 390px;
-                    }
-
-                    &.x6 {
-                        width: 470px;
-                    }
-
-                    &.x7 {
-                        width: 550px;
-                    }
-
-                    &.x8 {
-                        width: 630px;
-                    }
-
-                    &.x10 {
-                        width: 710px;
-                    }
-
-                    &.x11 {
-                        width: 790px;
-                    }
-
-                    &.x12 {
-                        width: 870px;
-                    }
+                &:hover {
+                    cursor: pointer;
+                    background: #E6F2F4;
                 }
             }
         }
 
-        @media screen and (max-width: 425px) {
-            margin: 0 16px;
-
-            .week-selector {
-                width: 100%;
-                justify-content: space-between;
-                padding: 10px 15px;
-
-                svg {
-                    padding: 2px;
-                }
-
-                span#data {
-                    width: 100%;
-                    font-size: 18px;
-                }
-            }
-
-            .day-row {
-
-                flex-direction: column;
-
-                .times {
-                    width: 100%;
-                    justify-content: space-between;
-
-                    .time {
-                        margin-right: 0;
-                    }
-                }
-            }
+        &:nth-child(7) {
+            margin-right: 0;
         }
     }
 
@@ -1281,8 +1177,6 @@ $disable: rgba($primary, $alpha: 0.15);
             width: 100%;
             column-gap: 50px;
             row-gap: 50px;
-
-
         }
 
         @media screen and (max-width: 425px) {
