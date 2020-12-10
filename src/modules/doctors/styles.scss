@@ -921,6 +921,29 @@ $disable: rgba($primary, $alpha: 0.15);
         }
     }
 
+    .row.col-2 {
+
+        .information {
+            width: calc(50% - 100px);
+
+            &_title {
+                font-size: 28px;
+                color: #282828;
+                font-weight: 600;
+                margin-bottom: 15px;
+            }
+
+            .content {
+                &-paragraph {
+                    color: #565656;
+                    font-size: 18px;
+                }
+            }
+
+        }
+
+    }
+
     .title {
         margin-bottom: 10px;
     }

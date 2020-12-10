@@ -123,6 +123,24 @@ const DetailPage: React.FC<Props> = (props) => {
                         </div>
                     </header>
 
+                    <div className="row col-2">
+                        {/* ------ INFORMATION ------ */}
+                        <section className="information">
+                            <h3 className="information_title">Информация</h3>
+                            <div className="content">
+                                <p className="content-paragraph">
+                                    Ворошкевич Андрей Альбертович - врач пластический хирург, стаж 38 лет. Все отзывы о враче. Запись онлайн или по телефону.
+                                </p>
+                                <br/>
+                                <p className="content-paragraph">
+                                    Пластический хирург. Проводит такие операции, как ринопластика, коррекция шеи, лица, век, пластика молочных желез, пластика живота, липосакция и др. Постоянный участник отечественных и зарубежных конференций и конгрессов. Автор многочисленных научных работ.
+                                </p>
+                            </div>
+                        </section>
+
+
+                    </div>
+
 
                     {
 
