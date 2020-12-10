@@ -745,10 +745,18 @@ $disable: rgba($primary, $alpha: 0.15);
     }
 
     header {
+        justify-content: space-between;
+        width: 100%;
         padding: 30px 0;
         display: flex;
-        align-items: center;
+        align-items: start;
         height: 240px;
+
+        .left-side {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
 
         .profileImage {
             width: 180px;
@@ -788,10 +796,6 @@ $disable: rgba($primary, $alpha: 0.15);
                 align-items: center;
                 margin-top: 7px;
 
-
-
-
-
                 button.appoint {
                     padding: 11px 28px;
                     border-radius: 10px;
@@ -818,17 +822,10 @@ $disable: rgba($primary, $alpha: 0.15);
             }
         }
 
-        .divider {
-            width: 2px;
-            height: 100%;
-            margin: 0 75px;
-            background: #EFEFEF;
-            border-radius: 1px;
-
-
-        }
-
         .info-detail {
+            display: flex;
+            margin-left: 100px;
+
             .info {
                 display: flex;
                 font-size: 16px;
@@ -859,10 +856,37 @@ $disable: rgba($primary, $alpha: 0.15);
                     cursor: pointer;
                     width: 25px;
                     margin-right: 20px;
-
-
-
                 }
+            }
+        }
+
+        .price {
+
+            ::selection {
+                background: rgba(black, 0.2);
+                color: initial;
+            }
+
+            background: #F8F8F8;
+            border-radius: 10px;
+            border: 1px solid #CCCCCC;
+            padding: 8px 18px;
+            display: flex;
+
+            span.from {
+                color: #707070;
+                font-size: 18px;
+                font-weight: 400;
+            }
+
+            span.price_value {
+                color: #282828;
+                font-size: 28px;
+                font-weight: 600;
+            }
+
+            sup.currency {
+                font-size: 18px;
             }
         }
 

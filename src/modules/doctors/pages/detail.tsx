@@ -48,69 +48,79 @@ const DetailPage: React.FC<Props> = (props) => {
                 : <React.Fragment>
                     <header>
 
-                        <div className="profileImage" style={ profileStyles }/>
+                       <div className="left-side">
+                           <div className="profileImage" style={ profileStyles }/>
 
-                        <div className="info-main">
-                            <h2>{ controller.doctor.fullName }</h2>
-                            <RatingComponent amount={ controller.doctor.rating }/>
-                            <div className="buttons">
-                                <button
-                                    className="appoint"
-                                    onClick={() => props.history.push(`/appoint/${props.match.params.id}`)}>
-                                    Записаться
-                                </button>
-                            </div>
-                        </div>
+                           <div className="info-main">
+                               <h2>{ controller.doctor.fullName }</h2>
+                               <RatingComponent amount={ controller.doctor.rating }/>
+                               <div className="buttons">
+                                   <button
+                                       className="appoint"
+                                       onClick={() => props.history.push(`/appoint/${props.match.params.id}`)}>
+                                       Записаться
+                                   </button>
+                               </div>
+                           </div>
 
-                        <div className="divider"/>
+                           <div className="info-detail">
+                               <div className="info">
+                                   <div className="keys">
+                                       <div className="key">Специальность:</div>
+                                       <div className="key">Опыт работы:</div>
+                                       <div className="key">Возраст:</div>
+                                       <div className="key">Город:</div>
+                                   </div>
+                                   <div className="values">
+                                       <div className="value">
+                                           {
+                                               controller.doctor.speciality.length > 0
+                                                   ? formatServices.translateSpeciality(controller.doctor.speciality[0])
+                                                   : "Не указана"
+                                           }
+                                       </div>
+                                       <div className="value">
+                                           {
+                                               controller.doctor.experience
+                                                   ? formatServices.experience(controller.doctor.experience)
+                                                   : "Не указан"
+                                           }
+                                       </div>
+                                       <div className="value">
+                                           {
+                                               controller.doctor.age
+                                                   ? formatServices.age(controller.doctor.age)
+                                                   : "Не указан"
+                                           }
+                                       </div>
+                                       <div className="value">
+                                           {
+                                               controller.doctor.city && controller.doctor.city.length > 0
+                                                   ? controller.doctor.city
+                                                   : "Не указан"
+                                           }
+                                       </div>
+                                   </div>
+                               </div>
 
-                        <div className="info-detail">
-                            <div className="info">
-                                <div className="keys">
-                                    <div className="key">Специальность:</div>
-                                    <div className="key">Опыт работы:</div>
-                                    <div className="key">Возраст:</div>
-                                    <div className="key">Город:</div>
-                                </div>
-                                <div className="values">
-                                    <div className="value">
-                                        {
-                                            controller.doctor.speciality.length > 0
-                                                ? formatServices.translateSpeciality(controller.doctor.speciality[0])
-                                                : "Не указана"
-                                        }
-                                    </div>
-                                    <div className="value">
-                                        {
-                                            controller.doctor.experience
-                                                ? formatServices.experience(controller.doctor.experience)
-                                                : "Не указан"
-                                        }
-                                    </div>
-                                    <div className="value">
-                                        {
-                                            controller.doctor.age
-                                                ? formatServices.age(controller.doctor.age)
-                                                : "Не указан"
-                                        }
-                                    </div>
-                                    <div className="value">
-                                        {
-                                            controller.doctor.city && controller.doctor.city.length > 0
-                                                ? controller.doctor.city
-                                                : "Не указан"
-                                        }
-                                    </div>
-                                </div>
-                            </div>
+                               <div className="social-medias">
+                                   {
+                                       controller.getSocialLinks()?.map(e => <a href={e.href}>
+                                           <LinkIcon type={e.type} />
+                                       </a>)
+                                   }
+                               </div>
+                           </div>
+                       </div>
 
-                            <div className="social-medias">
-                                {
-                                    controller.getSocialLinks()?.map(e => <a href={e.href}>
-                                        <LinkIcon type={e.type} />
-                                    </a>)
-                                }
-                            </div>
+                        <div className="price">
+
+                            <span className="price_value">
+                                <span className="from">до</span>
+                                &nbsp;
+                                900
+                                <sup className="currency">₽</sup>
+                            </span>
                         </div>
                     </header>
 
