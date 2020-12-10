@@ -927,7 +927,7 @@ $disable: rgba($primary, $alpha: 0.15);
         section.information {
             width: calc(50% - 100px);
 
-            &_title {
+            h3.information_title {
                 font-size: 28px;
                 color: #282828;
                 font-weight: 600;
