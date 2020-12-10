@@ -4,7 +4,6 @@ import { observer } from "mobx-react";
 import controller, { ESocialLinkTypes } from "../controllers/detail-controller";
 import { BookmarkIcon, InstagramIcon, MailIcon, TelegramIcon, ViberIcon, VkIcon, WhatsAppIcon } from "../icons";
 import RatingComponent from "../components/rating";
-import ConsultationSelector from "../components/detail/consulation-selector";
 import Reviews from "../components/detail/reviews";
 import DoctorPlaceholder from "../../../static/images/user-placeholder.jpg";
 import Page404 from "../../main/pages/404";
@@ -125,7 +124,6 @@ const DetailPage: React.FC<Props> = (props) => {
                     </header>
 
 
-                    <ConsultationSelector/>
                     {
 
                         controller.doctor?.clientsReviews?.length ?? 0 > 0
