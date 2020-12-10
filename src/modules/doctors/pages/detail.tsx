@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { observer } from "mobx-react";
 import controller, { ESocialLinkTypes } from "../controllers/detail-controller";
-import { BookmarkIcon, InstagramIcon, MailIcon, TelegramIcon, ViberIcon, VkIcon, WhatsAppIcon } from "../icons";
+import { InstagramIcon, MailIcon, TelegramIcon, ViberIcon, VkIcon, WhatsAppIcon } from "../icons";
 import RatingComponent from "../components/rating";
 import Reviews from "../components/detail/reviews";
 import DoctorPlaceholder from "../../../static/images/user-placeholder.jpg";
@@ -10,6 +10,7 @@ import Page404 from "../../main/pages/404";
 import LoadingHeader from "../components/detail/loading/loading-header";
 import LoadingConsultationsComponent from "../components/detail/loading/loading-consultations";
 import formatServices from "../../../services/format-services";
+import AdditionalInformation from "../components/detail/additional-information";
 
 type PathParamsType = {
     id: string,
@@ -138,7 +139,7 @@ const DetailPage: React.FC<Props> = (props) => {
                             </div>
                         </section>
 
-
+                        <AdditionalInformation/>
                     </div>
 
 

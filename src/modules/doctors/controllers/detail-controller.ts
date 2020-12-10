@@ -21,6 +21,9 @@ class DetailController {
     @observable doctor: DoctorType | undefined;
     @observable loading: boolean = true;
 
+    // UI
+    @observable selectedTabIndex : number = 0;
+
     @action public fetchDoctor = (id: string): void => {
         this.loading = true;
         this._fetchDoctor(id).then(
