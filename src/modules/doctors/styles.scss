@@ -944,8 +944,9 @@ $disable: rgba($primary, $alpha: 0.15);
         }
 
         section.additional-information {
+            margin-left: 100px;
             .tabs-group {
-                margin-left: 100px;
+                margin-bottom: 20px;
 
                 .tabs {
                     display: flex;
@@ -987,6 +988,68 @@ $disable: rgba($primary, $alpha: 0.15);
                     }
                 }
 
+            }
+
+            .content {
+                height: 100%;
+                position: relative;
+                overflow: hidden;
+
+                &.selected2 .content_page {
+                    transform: translateX(-100%);
+                }
+
+                &.selected3 .content_page {
+                    transform: translateX(-200%);
+                }
+
+                .content_page {
+                    width: 100%;
+                    height: 100%;
+                    display: grid;
+                    grid-template-columns: repeat(2, 1fr);
+                    grid-column-gap: 30px;
+                    grid-row-gap: 30px;
+                    position: absolute;
+                    transition: transform 400ms ease-in-out;
+
+                    &-2 {
+                        left: 0;
+                    }
+
+                    &-2 {
+                        left: 100%;
+                    }
+
+                    &-3 {
+                        left: 200%;
+                    }
+                }
+
+                .tile {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+
+                    span.years {
+                        background: #E9F7FA;
+                        border-radius: 5px;
+                        color: $primary;
+                        font-size: 15px;
+                        padding: 5px 15px;
+                        margin-bottom: 5px;
+                    }
+
+                    span.tile-title {
+                        font-size: 18px;
+                        color: #282828;
+                    }
+
+                    p.subtitle {
+                        font-size: 15px;
+                        color: #707070;
+                    }
+                }
             }
         }
 
