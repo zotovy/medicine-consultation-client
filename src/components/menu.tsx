@@ -57,7 +57,7 @@ const Menu: React.FC = (props: any) => {
             </div>
         </div>
 
-        <MediaQuery minWidth={769}>
+        <MediaQuery minWidth={1024}>
             {
                 tokenServices.isLogin()
                     ? <Link to="/settings/account">
@@ -79,7 +79,7 @@ const Menu: React.FC = (props: any) => {
         </MediaQuery>
 
 
-        <MediaQuery maxWidth={768}>
+        <MediaQuery maxWidth={1024}>
             <div className="hamburger-menu">
                 <input id="menu__toggle" type="checkbox" />
                 <label className="menu__btn" >

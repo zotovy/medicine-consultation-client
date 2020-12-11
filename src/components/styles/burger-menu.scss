@@ -2,6 +2,7 @@
 //@import "../../static/theme.scss";
 
 menu {
+    width: calc(100% - 56px);
     height: 70px;
     padding: 10px 28px;
     display: flex;
@@ -10,7 +11,9 @@ menu {
     background: #fefefe;
 
     @media screen and (min-width: 1440px) {
-        padding: 10px calc(50% - 704px);
+        padding: 10px 16px;
+        margin: 0 auto;
+        max-width: 1440px;
     }
 
     @media screen and (max-width: 425px) {
@@ -126,7 +129,7 @@ menu {
         z-index: 11;
     }
 
-    @media screen and (min-width: 768px) {
+    @media screen and (min-width: 1024px) {
 
         #menu__toggle,
         .menu__btn,
@@ -176,7 +179,7 @@ menu {
             }
         }
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 1024px) {
             z-index: 3;
             position: fixed;
             top: 0;
@@ -237,6 +240,7 @@ menu {
             font-size: 16px;
             outline: none;
             transition: 0.3s;
+
             &.signup:hover {
                 background-color: #2CC3E3;
                 box-shadow: 0px 3px 5px rgba(48,185,215,0.4);
