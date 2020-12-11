@@ -21,7 +21,10 @@
         width: 776px !important;          
     }
     @media screen and (max-width: 800px) {
-        width: 528px !important;          
+        width: 530px !important;          
+    }
+    @media screen and (max-width: 540px) {
+        width: 430px !important;        
     }
     
 }
@@ -88,7 +91,8 @@ a{
             }
             @media screen and (max-width: 1240px) {
                 font-size: 24px;
-                text-align: center;   
+                text-align: center;
+                margin-top: 15px;   
             }
             @media screen and (max-width: 800px) {
                 font-size: 20px;
@@ -115,6 +119,10 @@ a{
             @media screen and (max-width: 800px) {
                 font-size: 32px;
                 line-height: 43px;      
+            }
+            @media screen and (max-width: 540px) {
+                font-size: 26px;
+                line-height: 35px;       
             }
         }
         .pre-sect__online-counter-wrap{
@@ -217,6 +225,14 @@ a{
                 width: 531px;
                 height: 531px;   
             }        
+        }
+        @media screen and (max-width: 573px) {
+            width: 420px;
+            height: 420px; 
+            svg{
+                width: 420px;
+                height: 420px;   
+            } 
         }
           
     }
@@ -471,7 +487,7 @@ a{
                 margin-top: 40px;  
                 margin-bottom: 30px; 
             }
-            @media screen and (max-width: 1240px) {
+            @media screen and (max-width: 800px) {
                 width: 100%;
             }
         }
@@ -508,6 +524,11 @@ a{
                 margin-top: 25px;
                 font-size: 17px;
             }
+            @media screen and (max-width: 800px) {
+                width: 373px;
+                margin: 0 auto;
+                margin-top: 10px;
+            }
         }
         .benefits-list-items{
             margin-top: 57px;
@@ -517,10 +538,20 @@ a{
             @media screen and (max-width: 1240px) {
                 margin-top: 44px;
             }
+            @media screen and (max-width: 800px) {
+                width: 363px;
+                margin: 25px auto 0 auto;
+                flex-wrap: wrap;
+            }
             .item{
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                @media screen and (max-width: 800px) {
+                    &:nth-child(N+3){
+                        margin-top: 29px;
+                    }
+                }
                 .item-img{
                     width: 180px;
                     height: 180px;
@@ -543,6 +574,13 @@ a{
                             height: 86px;
                         }
                     }
+                    @media screen and (max-width: 800px) {
+                        width: 130px;
+                        height: 130px;
+                        svg{
+                            height: 96px;
+                        }
+                    }
                 }
                 p{
                     margin-top: 27px;
@@ -555,6 +593,9 @@ a{
                     @media screen and (max-width: 1240px) {
                         margin-top: 10px;
                         font-size: 16px;
+                    }
+                    @media screen and (max-width: 800px) {
+                        width: 130px;
                     }
                 }
             }
@@ -599,10 +640,22 @@ a{
                 }
             }
             @media screen and (max-width: 1320px) {
-                font-size: 38px;
+                h1{
+                    font-size: 38px;
+                }
+                
             }
             @media screen and (max-width: 1240px) {
-                font-size: 34px;
+                h1{
+                    font-size: 34px;
+                    font-weight: 600;
+                }
+            }
+            @media screen and (max-width: 800px) {
+                h1{
+                    font-size: 36px;
+                    line-height: 43px;
+                }
             }
         }
         .hiw-list-items{
@@ -612,6 +665,9 @@ a{
             }
             @media screen and (max-width: 1240px) {
                 margin-top: 68px;
+            }
+            @media screen and (max-width: 800px) {
+                margin-top: 40px;
             }
             .hiw-list-item{
                 display: flex;
@@ -654,6 +710,13 @@ a{
                             width: 90px;
                             height: 40px;   
                         }
+                        @media screen and (max-width: 530px) {
+                            width: 70px;
+                            height: 30px;
+                            font-size: 14px;
+                            border-radius: 5px; 
+                        }
+                        
                     }
                     .hiw-sect-text__1{
                         font-size: 42px;
@@ -1102,6 +1165,9 @@ a{
     @media screen and (max-width: 1240px) {
         margin-top: 140px;
     }
+    @media screen and (max-width: 530px) {
+        margin-top: 97px;
+    }
     .main-container-reg{
         .title-wrap{
             text-transform: uppercase;
@@ -1122,6 +1188,18 @@ a{
                     line-height: 48px;
                 }
             }
+            @media screen and (max-width: 800px) {
+               *{
+                   font-size: 32px;
+                   line-height: 43px;
+               }
+            }
+            @media screen and (max-width: 530px) {
+                *{
+                    font-size: 26px;
+                    line-height: 35px;
+                } 
+            }
         }
         .reg-subtitle{
             font-size: 20px;
@@ -1139,6 +1217,9 @@ a{
                 line-height: 24px;
                 width: 298px;
                 margin: 3px auto 0 auto;
+            }
+            @media screen and (max-width: 800px) {
+                margin-top: 10px;
             }
         }
         .btn-link__reg{
@@ -1161,10 +1242,14 @@ a{
                 margin-top: 25px;
             }  
             @media screen and (max-width: 1240px) {
-                margin-top: 10px;
+                margin-top: 20px;
                 width: 320px;
                 height: 50px;
-            }     
+            } 
+
+            @media screen and (max-width: 800px) {
+                margin-top: 30px;
+            }    
         }
 
         p{
