@@ -143,7 +143,10 @@ const DetailPage: React.FC<Props> = (props) => {
                     </div>
                     <SizedBox height="40px"/>
 
-                    <h3 className="title">Запись на приём</h3>
+                    <div className="week-table-title">
+                        <h3 className="title">Запись на приём</h3>
+                        <span className="see-more">Посмотреть полное расписание</span>
+                    </div>
                     <WeekTableComponent/>
 
                     {

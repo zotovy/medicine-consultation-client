@@ -22,7 +22,8 @@ class DetailController {
     @observable loading: boolean = true;
 
     // UI
-    @observable selectedTabIndex : number = 0;
+    @observable selectedTabIndex: number = 0;
+    @observable selectedWeekIndex: number = 0;
 
     @action public fetchDoctor = (id: string): void => {
         this.loading = true;

@@ -98,25 +98,9 @@ export const WarningIcon = () => {
 
 }
 
-export const BookmarkIcon = (props: any) => {
-    if (props.booked) {
-        return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="15.894" height="25.432" viewBox="0 0 15.894 25.432">
-            <path id="bookmark" d="M109.255,0h-10.6A2.649,2.649,0,0,0,96.01,2.649V24.9a.53.53,0,0,0,.9.375l7.042-7.043L111,25.275a.53.53,0,0,0,.9-.374V2.649A2.649,2.649,0,0,0,109.255,0Z" transform="translate(-96.01)" fill="#30B9D6" />
-        </svg>
-    } else {
-        return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="17.394" height="27.009" viewBox="0 0 17.394 27.009">
-            <path id="bookmark" d="M109.255,0h-10.6A2.649,2.649,0,0,0,96.01,2.649V24.9a.53.53,0,0,0,.9.375l7.042-7.043L111,25.275a.53.53,0,0,0,.9-.374V2.649A2.649,2.649,0,0,0,109.255,0Z" transform="translate(-95.26 0.75)" fill="none" stroke="#30B9D6" strokeWidth="1.5" />
-        </svg>
-
-    }
-}
-
-export const ArrowRight = () => {
-    return <svg xmlns="http://www.w3.org/2000/svg" width="22" height="14.941" viewBox="0 0 22 14.941">
-        <g id="Icon_feather-arrow-right" data-name="Icon feather-arrow-right" transform="translate(-7 -10.593)">
-            <path id="Контур_16" data-name="Контур 16" d="M7.5,18h21" fill="none" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" />
-            <path id="Контур_17" data-name="Контур 17" d="M20.237,11.3,28.5,18l-8.263,6.83" fill="none" stroke="#565656" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" />
-        </g>
+export const ChevronRight = () => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="9.811" height="18.121" viewBox="0 0 9.811 18.121">
+        <path id="Icon_feather-chevron-right" d="M13.5,25l8-8-8-8" transform="translate(-12.439 -7.939)" fill="none" stroke="#ccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
     </svg>
 }
 
