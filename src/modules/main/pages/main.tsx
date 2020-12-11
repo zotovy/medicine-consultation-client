@@ -497,7 +497,7 @@ return <>
       </p>
     </div>
   </section>
-  <Footer />
+  {/* <Footer/> */}
 </>
 }
 
