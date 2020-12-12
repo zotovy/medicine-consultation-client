@@ -15,7 +15,9 @@ const ReviewsComponent: React.FC = () => {
                     return <Review key={`${i}-review`} fullName={`${e.patientId?.name} ${e.patientId.surname}`} id={e.patientId._id} rating={e.point} text={e.content} photoUrl={e.patientId.photoUrl} />
                 })
             }
-
+            <Review key={`review`} fullName={`Ярослав Зотов`} rating={4} text={"Пример отзыва:)"} photoUrl={""} />
+            <Review key={`review`} fullName={`Ярослав Зотов`} rating={4} text={"Пример отзыва:)"} photoUrl={""} />
+            <Review key={`review`} fullName={`Ярослав Зотов`} rating={4} text={"Пример отзыва:)"} photoUrl={""} />
         </div>
         <span className="load-more">Ещё отзывы</span>
     </div>

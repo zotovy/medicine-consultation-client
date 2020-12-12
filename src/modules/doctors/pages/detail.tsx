@@ -149,6 +149,9 @@ const DetailPage: React.FC<Props> = (props) => {
                     </div>
                     <WeekTableComponent/>
 
+                    {/* todo: remove reviews after preview  */}
+                    <Reviews/>
+
                     {
 
                         controller.doctor?.clientsReviews?.length ?? 0 > 0
