@@ -26,7 +26,12 @@
     @media screen and (max-width: 540px) {
         width: 430px !important;        
     }
-    
+    @media screen and (max-width: 450px) {
+        width: 370px !important;        
+    }
+    @media screen and (max-width: 380px) {
+        width: 300px !important;        
+    }
 }
 .btn-link{
     background-color: $primary;
@@ -63,6 +68,12 @@ a{
     @media screen and (max-width: 1240px) {
         margin-top: 104px;
     }
+    @media screen and (max-width: 450px) {
+        margin-top: 95px;
+    }
+    @media screen and (max-width: 380px) {
+        margin-top: 35px;
+    }
     .main-container-pre-sect{
         width: 100%;
         height: 749px;
@@ -98,6 +109,15 @@ a{
                 font-size: 20px;
                 line-height: 27px;      
             }
+            @media screen and (max-width: 450px) {
+                font-size: 16px;
+                line-height: 21px;
+                margin-top: 6px;        
+            }
+            @media screen and (max-width: 380px) {
+                font-size: 14.5px;
+                line-height: 19px;        
+            }
         }
         .pre-sect-text__2{
             font-size: 44px;
@@ -123,6 +143,14 @@ a{
             @media screen and (max-width: 540px) {
                 font-size: 26px;
                 line-height: 35px;       
+            }
+            @media screen and (max-width: 450px) {
+                font-size: 24px;
+                line-height: 32px;   
+            }
+            @media screen and (max-width: 380px) {
+                font-size: 20px;
+                line-height: 27px;      
             }
         }
         .pre-sect__online-counter-wrap{
@@ -176,6 +204,11 @@ a{
             @media screen and (max-width: 1240px) {
                 width: 381px;
                 margin: 25px auto 0 auto;   
+            }
+            @media screen and (max-width: 450px) {
+                width: 290px;
+                height: 50px;
+                margin-top: 20px;      
             } 
         }
         .reg-link-s1{
@@ -188,6 +221,10 @@ a{
             &:hover{
                 color: saturate($primary, 40%);
             }
+            @media screen and (max-width: 450px) {
+                margin-top: 9px;     
+            }
+             
         }
 
     }
@@ -234,6 +271,23 @@ a{
                 height: 420px;   
             } 
         }
+        @media screen and (max-width: 450px) {
+            width: 350px; 
+            height: 350px;
+            svg{
+                width: 350px; 
+                height: 350px;   
+            }     
+        } 
+        @media screen and (max-width: 380px) {
+            width: 300px;
+            height: 300px;
+            svg{
+                width: 300px;
+                height: 300px;
+            }
+        }
+        
           
     }
     .pre-sect__left{
@@ -267,7 +321,10 @@ a{
     }
     @media screen and (max-width: 800px) {
         margin-top: 90px;
-    }  
+    }
+    @media screen and (max-width: 540px) {
+        padding: 0;
+    }   
     .title-wrap{
         margin-top: 40px;
         h1{
@@ -285,7 +342,12 @@ a{
             h1{
                 font-size: 32px;
             }
-        } 
+        }
+        @media screen and (max-width: 450px) {
+            h1{
+                font-size: 22px; 
+            }    
+        }  
     }
     .symptoms-list-items{
         width: 100%;
@@ -304,7 +366,16 @@ a{
             margin-top: 60px;
             flex-wrap: wrap;
             width: 400px;
-        }  
+        }
+        @media screen and (max-width: 540px) {
+            width: 380px;        
+        }
+        @media screen and (max-width: 450px) {
+            width: 320px;      
+        }
+        @media screen and (max-width: 380px) {
+            width: 270px !important;        
+        }   
         .item{
             background-color: #fff;
             width: 177px;
@@ -327,7 +398,17 @@ a{
                 &:nth-child(N+3){
                     margin-top: 70px;
                 }
-            } 
+            }
+            @media screen and (max-width: 540px) {
+                width: 120px;
+                height: 150px; 
+                &:nth-child(2N+1){
+                    margin-right: 30px;
+                }       
+            }
+            @media screen and (max-width: 380px) {
+                width: 110px;        
+            }
             p{
                 margin-top: 148px;
                 text-align: center;
@@ -338,6 +419,14 @@ a{
                     line-height: 25px;
                     font-size: 18px;     
                 }
+                @media screen and (max-width: 540px) {
+                    margin-top: 100px;
+                    font-size: 17px;
+
+                }
+                @media screen and (max-width: 380px) {
+                    margin-top: 95px;        
+                } 
             }
             .item__wrap-img{
                 position: absolute;
@@ -356,6 +445,14 @@ a{
                     height: 145px;
                     right: -30px;       
                 }
+                @media screen and (max-width: 540px) {
+                    width: 116px;
+                    height: 116px;
+                }
+                @media screen and (max-width: 380px) {
+                    width: 110px;
+                    height: 110px;        
+                } 
                 .item-img{
                     width: 90px;
                     height: 90px;
@@ -370,7 +467,10 @@ a{
                         justify-content: center;
                         align-items: center; 
                     } 
-
+                    @media screen and (max-width: 540px) {
+                        width: 60px;
+                        height: 60px;
+                    } 
                 } 
             }
         }
@@ -396,6 +496,9 @@ a{
     @media screen and (max-width: 1240px) {
         width: 642px;
         height: fit-content;   
+    }
+    @media screen and (max-width: 450px) {
+        margin-top: 95px;
     }
     .main-container-about-us{
         display: flex;
@@ -433,12 +536,19 @@ a{
                 }
                 @media screen and (max-width: 1700px) {
                     font-size: 19px;
+                    line-height: 26px;
                 }
                 @media screen and (max-width: 1450px) {
                     font-size: 17px;
+                    line-height: 22px;
                 }
                 @media screen and (max-width: 1240px) {
                     font-size: 18px;
+                    line-height: 24px;
+                }
+                @media screen and (max-width: 380px) {
+                   font-size: 17px;
+                   line-height: 22px;      
                 } 
             }
             .about-us__list{
@@ -464,6 +574,7 @@ a{
                             }
                             svg{
                                 width: 40px;
+                                height: 40px;
                             }
                         }
                     }
@@ -472,8 +583,12 @@ a{
                         li{
                             svg{
                                 width: 30px;
+                                height: 30px;
                             }
                         }
+                    }
+                    @media screen and (max-width: 450px) {
+                        margin-top: 20px;
                     } 
                 }
             }
@@ -506,7 +621,18 @@ a{
         width: 674px;
         margin: 107px auto 0 auto;
     }
+    @media screen and (max-width: 450px) {
+        margin-top: 60px;
+    }
     .main-container-benefits{
+        @media screen and (max-width: 450px) {
+            .title-wrap{
+                h1{
+                    font-size: 22px;
+                    line-height: 30px;
+                }
+            }
+        }
         .symptoms-subtitle {
             text-align: center;
             font-weight: 400;
@@ -523,12 +649,21 @@ a{
             @media screen and (max-width: 1240px) {
                 margin-top: 25px;
                 font-size: 17px;
+                line-height: 22px;
             }
             @media screen and (max-width: 800px) {
                 width: 373px;
                 margin: 0 auto;
                 margin-top: 10px;
             }
+            @media screen and (max-width: 450px) {
+                font-size: 16px;
+                width: 350px;
+            }
+            @media screen and (max-width: 380px) {
+                width: 300px;
+            }
+            
         }
         .benefits-list-items{
             margin-top: 57px;
@@ -542,6 +677,12 @@ a{
                 width: 363px;
                 margin: 25px auto 0 auto;
                 flex-wrap: wrap;
+            }
+            @media screen and (max-width: 450px) {
+                width: 319px;
+            }
+            @media screen and (max-width: 380px) {
+                width: 300px;
             }
             .item{
                 display: flex;
@@ -579,6 +720,14 @@ a{
                         height: 130px;
                         svg{
                             height: 96px;
+                        }
+                    }
+                    @media screen and (max-width: 380px) {
+                        width: 100px;
+                        border-radius: 15px;
+                        height: 100px;
+                        svg{
+                            height: 76px;
                         }
                     }
                 }
@@ -655,6 +804,12 @@ a{
                 h1{
                     font-size: 36px;
                     line-height: 43px;
+                }
+            }
+            @media screen and (max-width: 450px) {
+                h1{
+                   font-size: 24px;
+                    line-height: 32px;
                 }
             }
         }
@@ -737,6 +892,10 @@ a{
                             font-size: 26px;   
                             line-height: 35px;
                         }
+                        @media screen and (max-width: 450px) {
+                            font-size: 20px;
+                            line-height: 27px;
+                        }
                     }
                     .hiw-sect-text__2{
                         margin-top: 24px;
@@ -750,12 +909,12 @@ a{
                         }
                         @media screen and (max-width: 1320px) {
                             margin-top: 15px;
-                            font-size: 17px;
                             width: 500px;   
                         }
                         @media screen and (max-width: 1240px) {
                             margin-top: 7px;
                             font-size: 18px;
+                            line-height: 24px;
                             width: 100%;   
                         }
                     }
@@ -1168,6 +1327,7 @@ a{
     @media screen and (max-width: 530px) {
         margin-top: 97px;
     }
+    
     .main-container-reg{
         .title-wrap{
             text-transform: uppercase;
@@ -1200,6 +1360,18 @@ a{
                     line-height: 35px;
                 } 
             }
+            @media screen and (max-width: 450px) {
+                *{
+                    font-size: 24px;
+                    line-height: 32px;
+                }        
+            }
+            @media screen and (max-width: 380px) {
+                *{
+                    font-size: 20px;
+                    line-height: 27px;
+                }
+            }
         }
         .reg-subtitle{
             font-size: 20px;
@@ -1220,6 +1392,10 @@ a{
             }
             @media screen and (max-width: 800px) {
                 margin-top: 10px;
+            }
+            @media screen and (max-width: 450px) {
+               font-size: 16px;
+               line-height: 21px;       
             }
         }
         .btn-link__reg{
@@ -1249,6 +1425,14 @@ a{
 
             @media screen and (max-width: 800px) {
                 margin-top: 30px;
+            }
+            @media screen and (max-width: 450px) {
+                font-size: 18px;       
+            }
+            @media screen and (max-width: 380px) {
+                width: 300px;
+                height: 45px;
+                font-size: 17px;
             }    
         }
 
@@ -1277,6 +1461,9 @@ a{
             }
             @media screen and (max-width: 1240px) {
                 margin-top: 20px;
+            }
+            @media screen and (max-width: 450px) {
+                margin-top: 15px;      
             }   
         }
     }
