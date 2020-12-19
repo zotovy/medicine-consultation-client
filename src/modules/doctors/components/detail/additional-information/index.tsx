@@ -15,6 +15,9 @@ const getSectionHeight = () => {
 }
 
 const AdditionalInformation : React.FC = () => {
+
+    const imgUrl : string = "https://ortho-rus.ru/uploads/posts/2019-09/1569532135_1-e1512037094751.jpg";
+
     return <section className="additional-information" style={{ height: `${getSectionHeight()}px` }}>
         {/* ------- TABS ------- */}
         <div className="tabs-group">
@@ -52,7 +55,8 @@ const AdditionalInformation : React.FC = () => {
             <div className="content_page content_page-3">
                 <ImageTile
                     title="Диплом по специальности «Лечебное дело"
-                    imageUrl="https://ortho-rus.ru/uploads/posts/2019-09/1569532135_1-e1512037094751.jpg" />
+                    imageUrl={imgUrl}
+                />
             </div>
         </div>
     </section>

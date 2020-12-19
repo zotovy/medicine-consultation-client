@@ -14,6 +14,7 @@ import AdditionalInformation from "../components/detail/additional-information";
 import WeekTableComponent from "../components/detail/additional-information/week-table";
 import SizedBox from "../../../components/sized-box";
 import FullScheduleModalWindow from "../components/detail/full-schedule";
+import FullSizeImageComponent from "../components/detail/full-size-image";
 
 type PathParamsType = {
     id: string,
@@ -45,6 +46,7 @@ const DetailPage: React.FC<Props> = (props) => {
     }
 
     return <div className="detail-doctor-module">
+        <FullSizeImageComponent/>
         {
             controller.doctor == undefined
                 ? <Page404/>
