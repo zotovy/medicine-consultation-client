@@ -1083,6 +1083,7 @@ $disable: rgba($primary, $alpha: 0.15);
     .week-table-title {
         display: flex;
         justify-content: space-between;
+        align-items: center;
 
         span.see-more {
             color: $primary;
@@ -1226,6 +1227,108 @@ $disable: rgba($primary, $alpha: 0.15);
         @media screen and (min-width: 1336px) {
             .reviews {
                 grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    }
+
+    .full-schedule-modal-window-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(black, 0.5);
+        z-index: 200;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 400ms;
+
+        &.open {
+            opacity: 1;
+            pointer-events: initial;
+
+            .modal-window {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-window {
+            width: 75%;
+            max-width: 1250px;
+            height: 85%;
+            max-height: 1000px;
+            background: white;
+            border-radius: 15px;
+            position: relative;
+            box-shadow: 0 16px 28px rgba(black, 0.16);
+            transform: scale(0.3);
+            opacity: 0;
+            transition: transform 400ms, opacity 300ms;
+            padding: 40px;
+
+            svg {
+                position: fixed;
+                top: 25px;
+                right: 25px;
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+
+                path {
+                    fill: $primary;
+                }
+            }
+
+            .content {
+                margin-right: 20px;
+                overflow-y: scroll;
+                height: 100%;
+                border-radius: 10px;
+            }
+
+            .day {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 30px;
+
+                span.name {
+                    font-size: 24px;
+                    font-weight: 500;
+                    color: #282828;
+                    margin-bottom: 15px;
+                }
+
+                .times {
+                    width: 100%;
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, 170px);
+                    grid-row-gap: 10px;
+                    grid-column-gap: 10px;
+
+                    .time {
+                        padding: 15px 30px;
+                        border-radius: 8px;
+                        background: #E9F7FA;
+                        color: $primary;
+                        cursor: pointer;
+
+                        &:not(.selected):hover {
+                            background: #E6F2F4;
+                        }
+
+
+                        &.selected {
+                            color: white;
+                            background: $primary;
+                            cursor: initial;
+                        }
+                    }
+                }
             }
         }
     }

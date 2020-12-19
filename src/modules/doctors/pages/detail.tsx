@@ -13,6 +13,7 @@ import formatServices from "../../../services/format-services";
 import AdditionalInformation from "../components/detail/additional-information";
 import WeekTableComponent from "../components/detail/additional-information/week-table";
 import SizedBox from "../../../components/sized-box";
+import FullScheduleModalWindow from "../components/detail/full-schedule";
 
 type PathParamsType = {
     id: string,
@@ -48,8 +49,9 @@ const DetailPage: React.FC<Props> = (props) => {
             controller.doctor == undefined
                 ? <Page404/>
                 : <React.Fragment>
-                    <header>
+                    <FullScheduleModalWindow/>
 
+                    <header>
                        <div className="left-side">
                            <div className="profileImage" style={ profileStyles }/>
 
@@ -145,7 +147,11 @@ const DetailPage: React.FC<Props> = (props) => {
 
                     <div className="week-table-title">
                         <h3 className="title">Запись на приём</h3>
-                        <span className="see-more">Посмотреть полное расписание</span>
+                        <span
+                            className="see-more"
+                            onClick={() => controller.isScheduleModalWindowOpen = true}>
+                            Посмотреть полное расписание
+                        </span>
                     </div>
                     <WeekTableComponent/>
 

@@ -3,9 +3,6 @@ import Review from "../../../../components/review"
 import controller from "../../controllers/detail-controller";
 
 const ReviewsComponent: React.FC = () => {
-
-    console.log(controller.doctor?.clientsReviews);
-
     return <div className="reviews-component">
         {/* <Title title="Отзывы" /> */}
         <div className="reviews">

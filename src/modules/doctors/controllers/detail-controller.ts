@@ -24,6 +24,7 @@ class DetailController {
     // UI
     @observable selectedTabIndex: number = 0;
     @observable selectedWeekIndex: number = 0;
+    @observable isScheduleModalWindowOpen: boolean = true;
 
     @action public fetchDoctor = (id: string): void => {
         this.loading = true;
