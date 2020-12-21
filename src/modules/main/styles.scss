@@ -376,9 +376,6 @@ a{
     margin-bottom: 250px;
     overflow: unset;
     &._show-elem{
-        .title-wrap{
-
-        }
         .symptoms-list-items{
             -webkit-animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
             animation: slide-in-bottom 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -481,6 +478,7 @@ a{
             background-color: #fff;
             width: 177px;
             height: 222px;
+            border-radius: 10px;
             display: inherit;
             justify-content: center;
             position: relative;

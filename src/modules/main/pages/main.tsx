@@ -1074,7 +1074,7 @@ class MainPage extends React.Component {
           </div>
         </article>
 
-        <article className="hiw-list-item hiw-list-item-right">
+        <article className="hiw-list-item hiw-second-section hiw-list-item-right _anim-items _anim-not-hide">
           <div className="hiw-sect__right">
             <div className="question__block">Как Вас зовут?</div>
             <div className="question__block">Какие у вас проблемы?</div>
@@ -1147,7 +1147,7 @@ class MainPage extends React.Component {
               <div className="sender_container sender-container-right">
                 <span>Доктор</span>
                 <div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 56 56">
                       <defs>
                         <pattern id="pattern" preserveAspectRatio="xMidYMid slice" width="100%" height="100%"
                           viewBox="0 0 600 600">
