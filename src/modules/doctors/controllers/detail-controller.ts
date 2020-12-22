@@ -54,25 +54,6 @@ class DetailController {
         return await response.doctor;
     };
 
-    // todo
-    formatExperience = (experience: number): string => {
-        if (experience >= 365) return Math.floor(experience / 365) + "";
-        if (experience >= 212) return "больше 6 месяцев";
-        if (experience >= 182) return "6 месяцев";
-        if (experience >= 120) return "больше 3 месяцев";
-        if (experience >= 90) return "3 месяца";
-        if (experience >= 60) return "2 месяца";
-        if (experience >= 30) return "1 месяц";
-
-        if (experience === 0) return "Отсутствует";
-
-        const fEnding = [1, 21];
-        const sEnding = [2, 3, 4, 22, 23, 24];
-        if (fEnding.includes(experience)) return experience + " день";
-        if (sEnding.includes(experience)) return experience + " дня";
-        return experience + " дней";
-    };
-
     // Schedule
     firstWeekSchedule: DayType[] = [];
     secondWeekSchedule: DayType[] = [];
@@ -104,17 +85,11 @@ class DetailController {
             const v = this.doctor[`${e}Link`];
             // @ts-ignore
             if (v != null && v != "") links.push({ type: e, href: v })
-            console.log(`${e}Link`, v);
         });
         return links;
     }
 }
 
-type Time = {
-    title: string;
-    isOccupied?: boolean;
-    x: number;
-};
 
 const SocialLinkTypes = [
     "vk", "instagram", "telegram", "whatsApp", "viber", "email",
