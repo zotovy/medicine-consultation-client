@@ -1,5 +1,5 @@
 declare interface DoctorType extends UserType {
-    education: string;
+    _education: string;
     yearEducation: [Date, Date];
     blankSeries: string;
     blankNumber: string;
@@ -18,4 +18,34 @@ declare interface DoctorType extends UserType {
     whatsAppLink?: string,
     viberLink?: string,
     emailLink?: string,
+    information?: string;
+    price: number;
+    workPlaces?: DoctorWorkplaceType[];
+    education?: DoctorEducationType[];
+    qualificationProofs?: DoctorQualificationDocumentType[];
+}
+
+declare type DoctorWorkplaceType = {
+    fromYear: number;
+    toYear: number;
+    organisation: string;
+    speciality: string;
+}
+
+
+// declare enum DoctorEducation {
+//     Baccalaureate,  // Бакалавриат
+//     Specialty,      // Специалитет
+//     Master,         // Магистратура
+// }
+
+declare type DoctorEducationType = {
+    year: number;
+    institute: string;
+    education: DoctorEducation;
+}
+
+declare type DoctorQualificationDocumentType = {
+    imageUrl: string;
+    name: string;
 }

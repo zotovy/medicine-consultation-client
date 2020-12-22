@@ -79,7 +79,7 @@ class FindDoctorController {
             amount,
             fullName: this.name,
             isDownward: this.isDownward,
-            qualification: this.qualification,
+            _qualification: this.qualification,
             rating: this.rating,
             city: this.selectedCities,
             workPlan: this.workPlan,

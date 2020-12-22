@@ -3,6 +3,8 @@ import controller from "../../../controllers/detail-controller";
 import { observer } from "mobx-react";
 import TileComponent from "./tile";
 import ImageTile from "./image-tile";
+import { DoctorDetailHelper } from "../../../helper";
+import Doctor from "../../doctor";
 
 // Tab classes
 const underlineClasses = ["first", "second", "third"];
@@ -13,10 +15,15 @@ const getSectionHeight = () => {
     const max = Math.max(3, 1, 1);
     return 55 + Math.round(max / 2) * 100;
 }
+const getContentPage = (i: number, hasData: boolean) => `content_page content_page-${i} ${!hasData ? "no-data" : ""}`;
 
 const AdditionalInformation : React.FC = () => {
-
     const imgUrl : string = "https://ortho-rus.ru/uploads/posts/2019-09/1569532135_1-e1512037094751.jpg";
+
+    // UI State
+    const workPlaces = DoctorDetailHelper.getWorkPlaces(controller.doctor?.workPlaces);
+    const education = DoctorDetailHelper.getEducation(controller.doctor?.education);
+    const qualificationProofs = controller.doctor?.qualificationProofs ?? [];
 
     return <section className="additional-information" style={{ height: `${getSectionHeight()}px` }}>
         {/* ------- TABS ------- */}
@@ -32,31 +39,26 @@ const AdditionalInformation : React.FC = () => {
 
         {/* ------- CONTENT ------- */}
         <div className={`content  ${getSelectedClass()}`}>
-            <div className="content_page content_page-1">
-                <TileComponent
-                    years="2005 - 2016"
-                    title="ООО «Клиника классической медицины»"
-                    subtitle="Невролог, мануальный терапевт"/>
-                <TileComponent
-                    years="2016 - 2018"
-                    title="ООО «Клиника Нейроортопедии»"
-                    subtitle="Невролог, остеопат, мануальный терапевт"/>
-                <TileComponent
-                    years="с 2018"
-                    title="ООО «Дискотерапия плюс»"
-                    subtitle="Невролог, остеопат, мануальный терапевт"/>
+            <div className={getContentPage(1, workPlaces.length != 0)}>
+                {
+                    workPlaces.length != 0
+                        ? workPlaces.map(e => <TileComponent {...e} />)
+                        : <span className="no-data">У этого доктора нет опыта работы</span>
+                }
             </div>
-            <div className="content_page content_page-2">
-                <TileComponent
-                    years="1981"
-                    title="Пермский государственный медицинский университет им. акад. Е.А. Вагнера (лечебное дело)"
-                    subtitle="Базовое образование"/>
+            <div className={getContentPage(2, education.length != 0)}>
+                {
+                    education.length != 0
+                        ? education.map(e => <TileComponent {...e} />)
+                        : <span className="no-data">У этого доктора не указано образование</span>
+                }
             </div>
-            <div className="content_page content_page-3">
-                <ImageTile
-                    title="Диплом по специальности «Лечебное дело"
-                    imageUrl={imgUrl}
-                />
+            <div className={getContentPage(3, qualificationProofs.length != 0)}>
+                {
+                    qualificationProofs.length != 0
+                        ? qualificationProofs.map(e => <ImageTile title={e.name} imageUrl={e.imageUrl}/>)
+                        : <span className="no-data">У этого доктора не подтверждены квалификации</span>
+                }
             </div>
         </div>
     </section>

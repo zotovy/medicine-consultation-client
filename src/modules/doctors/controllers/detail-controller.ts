@@ -82,6 +82,8 @@ class DetailController {
             ];
     };
 
+
+
     // Selector
     @observable fromDate: Date;
     @observable toDate: Date;

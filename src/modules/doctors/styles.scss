@@ -1017,6 +1017,17 @@ $disable: rgba($primary, $alpha: 0.15);
                     position: absolute;
                     transition: transform 400ms ease-in-out;
 
+                    &.no-data {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        height: 195px;
+
+                        span.no-data {
+                            color: #757575;
+                        }
+                    }
+
                     &-2 {
                         left: 0;
                     }
