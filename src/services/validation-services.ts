@@ -12,7 +12,7 @@ class ValidationServices {
     password = (password: string): boolean => password.length >= 8;
 
     theSameDay = (date1: Date, date2: Date): boolean => {
-        const day = date1.getDay() === date2.getDay();
+        const day = date1.getDate() === date2.getDate();
         const month = date1.getDay() === date2.getDay();
         const year = date1.getDay() === date2.getDay();
         return day && month && year;
