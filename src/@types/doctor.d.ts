@@ -9,9 +9,7 @@ declare interface DoctorType extends UserType {
     experience: number;
     rating: number;
     whosFavourite: string[];
-    clientsReviews: Review[];
-    clientsConsultations: string[];
-    sheldure: string[];
+    schedule: Schedule[];
     vkLink?: string,
     instagramLink?: string,
     telegramLink?: string,
@@ -23,6 +21,7 @@ declare interface DoctorType extends UserType {
     workPlaces?: DoctorWorkplaceType[];
     education?: DoctorEducationType[];
     qualificationProofs?: DoctorQualificationDocumentType[];
+    workingTime: DoctorWorkingType;
 }
 
 declare type DoctorWorkplaceType = {
@@ -39,6 +38,11 @@ declare type DoctorWorkplaceType = {
 //     Master,         // Магистратура
 // }
 
+declare type Schedule = {
+    from: Date;
+    to: Date;
+}
+
 declare type DoctorEducationType = {
     year: number;
     institute: string;
@@ -48,4 +52,16 @@ declare type DoctorEducationType = {
 declare type DoctorQualificationDocumentType = {
     imageUrl: string;
     name: string;
+}
+
+declare type DoctorWorkingType = {
+    from: {
+        h: number,
+        m: number,
+    },
+    to: {
+        h: number,
+        m: number,
+    },
+    consultationTimeInMin: number,
 }

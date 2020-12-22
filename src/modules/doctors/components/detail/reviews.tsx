@@ -7,7 +7,7 @@ const ReviewsComponent: React.FC = () => {
         {/* <Title title="Отзывы" /> */}
         <div className="reviews">
             {
-                controller.doctor?.clientsReviews.map((e, i) => {
+                controller.doctor?.reviews?.map((e, i) => {
                     // @ts-ignore
                     return <Review key={`${i}-review`} fullName={`${e.patientId?.name} ${e.patientId.surname}`} id={e.patientId._id} rating={e.point} text={e.content} photoUrl={e.patientId.photoUrl} />
                 })

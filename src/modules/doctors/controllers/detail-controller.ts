@@ -1,6 +1,7 @@
 import axios from "axios";
 import { observable, action } from "mobx";
 import settingDoctorController from "../../settings/controllers/account-controller";
+import { AppointmentObject } from "../../../../../server/types/models";
 
 class DetailController {
     constructor() {
@@ -48,10 +49,18 @@ class DetailController {
             .then((data) => data.data)
             .catch((e) => e.response);
 
-        if (!response?.success) {
+        if (!response?.success || !response.doctor) {
             this.onErrorCB();
             return;
         }
+
+        try {
+            response.doctor.schedule = response.doctor?.schedule?.map((e : AppointmentObject) => {
+                e["from"] = new Date(e['from'])
+                e['to'] = new Date(e['to']);
+                return e;
+            });
+        } catch (e) {}
 
         return await response.doctor;
     };
@@ -117,66 +126,6 @@ class DetailController {
             date.getMonth(),
             date.getDate() + amount
         );
-    };
-
-    getFormattedFromDate = () => this.getFormattedDate(this.fromDate);
-    getFormattedToDate = () => this.getFormattedDate(this.toDate);
-
-    nextWeek = () => {
-        this.fromDate = this.addDays(this.fromDate, 7);
-        this.toDate = this.addDays(this.toDate, 7);
-    };
-
-    previousWeek = () => {
-        this.fromDate = this.addDays(this.fromDate, -7);
-        this.toDate = this.addDays(this.toDate, -7);
-    };
-
-    getUIDayMarker = (occupied: number[]): Time[] => {
-        // build all consultation time
-        const consultationTimeTitle: string[] = [];
-
-        let now = settingDoctorController.startConsultationAt;
-        const end = settingDoctorController.endConsultationAt;
-
-        while (end.biggerOrEqualThan(now)) {
-            consultationTimeTitle.push(now.format());
-            now = now.add(settingDoctorController.consultationTime.minutes);
-        }
-
-        const consultationTime: Time[] = [];
-        let last: Time;
-        let occupiedInARow: number = 0;
-
-        consultationTimeTitle.forEach((e, i) => {
-            const isOccupied = occupied.includes(i);
-
-            if (
-                last &&
-                last.isOccupied &&
-                isOccupied &&
-                occupiedInARow <= 12 &&
-                window.screen.width > 425
-            ) {
-                occupiedInARow += 1;
-                last = {
-                    title: last.title.split(" - ")[0] + " - " + e,
-                    isOccupied,
-                    x: occupiedInARow,
-                };
-                consultationTime[consultationTime.length - 1] = last;
-            } else {
-                last = {
-                    title: e,
-                    isOccupied,
-                    x: 0,
-                };
-                consultationTime.push(last);
-                occupiedInARow = 0;
-            }
-        });
-
-        return consultationTime;
     };
 
     public getSocialLinks = (): SocialLink[] | null => {

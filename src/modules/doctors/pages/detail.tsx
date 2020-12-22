@@ -163,7 +163,7 @@ const DetailPage: React.FC<Props> = (props) => {
 
                     {
 
-                        controller.doctor?.clientsReviews?.length ?? 0 > 0
+                        controller.doctor?.reviews?.length ?? 0 > 0
                             ? <Reviews/>
                             : <React.Fragment/>
                     }
