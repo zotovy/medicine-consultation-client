@@ -158,7 +158,6 @@ const DetailPage: React.FC<Props> = (props) => {
                     </div>
                     <WeekTableComponent/>
 
-                    {/* todo: remove reviews after preview  */}
                     <Reviews/>
 
                     {

@@ -1321,6 +1321,12 @@ $disable: rgba($primary, $alpha: 0.15);
                     margin-bottom: 15px;
                 }
 
+                span.text {
+                    margin-top: 20px;
+                    color: #565656;
+                    font-size: 18px;
+                }
+
                 .times {
                     width: 100%;
                     display: grid;
