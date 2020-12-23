@@ -1,3 +1,4 @@
+import { missingConfigurationPrompt } from "@wdio/cli/build/commands/config";
 
 class FormatServices {
     formatBySchema = (schema: string, input: string) => {
@@ -190,6 +191,23 @@ class FormatServices {
         if (string.length > 0) string = string.substring(0, string.length - 2);
         return string;
     }
+
+    formatDayAndMonth = (day: number, month: number) : string => {
+        const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
+        return `${day} ${months[month - 1]}`;
+    }
+
+    getDayOfTheWeek = (i: number) : string => {
+        return ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"][i];
+    }
+
+    formatCustomTime = (time: { h: number, m: number}): string => {
+        let h = time.h.toString(), m = time.m.toString();
+        if (h.length === 1) h = "0" + h;
+        if (m.length === 1) m = "0" + m;
+        return `${h}:${m}`;
+    }
+
 }
 
 export default new FormatServices();

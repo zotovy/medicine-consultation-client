@@ -229,12 +229,12 @@ class AuthStore {
                 blankSeries: signupUIStore.blankSeries,
                 blankNumber: signupUIStore.blankNumber,
                 issueDate: signupUIStore.issueDate,
-                workPlaces: signupUIStore.workPlaces,
+                _workPlaces: signupUIStore.workPlaces,
                 passportIssuedByWhom: signupUIStore.passportIssuedByWhom,
                 passportIssueDate: signupUIStore.passportIssueDate,
                 passportSeries: signupUIStore.passportSeries,
                 password: signupUIStore.password,
-                workExperience: signupUIStore.workExperience,
+                _workExperience: signupUIStore.workExperience,
             };
 
             // send doctor to db

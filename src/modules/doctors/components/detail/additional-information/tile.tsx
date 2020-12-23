@@ -1,12 +1,12 @@
 import React from "react";
 
-type Props = {
+export type YearsTitleComponentProps = {
     years: string;
     title: string;
     subtitle: string;
 }
 
-const TileComponent: React.FC<Props> = ({ years, title, subtitle }) => {
+const TileComponent: React.FC<YearsTitleComponentProps> = ({ years, title, subtitle }) => {
     return <div className="tile">
         <span className="years">{ years }</span>
         <span className="tile-title">{ title }</span>

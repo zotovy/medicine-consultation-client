@@ -12,7 +12,7 @@ declare interface UserType {
     sex: boolean;
     city?: string;
     country?: string;
-    consultations?: Consultation[];
+    consultations: Consultation[];
     reviews?: Review[];
     notificationEmail: string;
     sendNotificationToEmail: boolean;
