@@ -1161,6 +1161,13 @@ $disable: rgba($primary, $alpha: 0.15);
                 }
             }
 
+            span.text {
+                margin-top: 20px;
+                text-align: center;
+                color: #565656;
+                font-size: 18px;
+            }
+
             .time {
                 padding: 10px 20px;
                 border-radius: 8px;

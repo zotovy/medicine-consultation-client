@@ -105,6 +105,7 @@ export class DoctorDetailHelper {
                 dayOfTheWeek: formatServices.getDayOfTheWeek(date.getDay() == 0 ? 6 : date.getDay() - 1),
                 times,
                 today: validateServices.theSameDay(new Date(), date),
+                isWeekEnd: controller.doctor.workingTime.weekends.includes(date.getDay() == 0 ? 6 : date.getDay() - 1),
             });
         }
         return days;
@@ -116,6 +117,7 @@ export type DayType = {
     dayOfTheWeek: string;
     times: AppointTime[];
     today: boolean;
+    isWeekEnd: boolean;
 }
 
 export type AppointTime = {

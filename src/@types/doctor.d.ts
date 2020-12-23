@@ -64,4 +64,5 @@ declare type DoctorWorkingType = {
         m: number,
     },
     consultationTimeInMin: number,
+    weekends: number[],
 }

@@ -7,9 +7,6 @@ import formatServices from "../../../../services/format-services";
 import { DayType, Time } from "../../helper";
 
 const FullScheduleModalWindow : React.FC = () => {
-
-
-
     return <div className={`full-schedule-modal-window-container ${controller.isScheduleModalWindowOpen ? "open" : ""}`}>
         <div className="modal-window">
             <CloseIcon onClick={() => controller.isScheduleModalWindowOpen = false} />

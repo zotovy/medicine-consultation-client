@@ -58,14 +58,6 @@ class DetailController {
     firstWeekSchedule: DayType[] = [];
     secondWeekSchedule: DayType[] = [];
 
-    private getWeekDay = (date: Date): number => {
-        if (date.getDay() === 0) {
-            return 6;
-        }
-
-        return date.getDay() - 1;
-    };
-
     private calcSchedule = () => {
         const startFirstWeek = new Date();
         startFirstWeek.setDate(new Date().getDate() - new Date().getDay() + 1)

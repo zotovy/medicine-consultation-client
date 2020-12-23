@@ -89,7 +89,16 @@ const WeekTableComponent : React.FC = () => {
                         <span className="week-day">{ e.dayOfTheWeek }</span>
                     </div>
                     {
-                        e.times.filter(elem => !elem.occupied).map(elem => <div className="time">{ elem.time }</div>)
+                        !e.isWeekEnd || <span className="text">Выходной</span>
+                    }
+                    {
+                        e.times.filter(elem => !elem.occupied).length !== 0
+                            || <span className="text">Нет свободной записи</span>
+                    }
+                    {
+                        e.isWeekEnd
+                            ? <React.Fragment/>
+                            : e.times.filter(elem => !elem.occupied).map(elem => <div className="time">{ elem.time }</div>)
                     }
                 </div>)
             }
@@ -104,7 +113,16 @@ const WeekTableComponent : React.FC = () => {
                         <span className="week-day">{ e.dayOfTheWeek }</span>
                     </div>
                     {
-                        e.times.filter(elem => !elem.occupied).map(elem => <div className="time">{ elem.time }</div>)
+                        !e.isWeekEnd || <span className="text">Выходной</span>
+                    }
+                    {
+                        e.times.filter(elem => !elem.occupied).length !== 0
+                        || <span className="text">Нет свободной записи</span>
+                    }
+                    {
+                        e.isWeekEnd
+                            ? <React.Fragment/>
+                            : e.times.filter(elem => !elem.occupied).map(elem => <div className="time">{ elem.time }</div>)
                     }
                 </div>)
             }
