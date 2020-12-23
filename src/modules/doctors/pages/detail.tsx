@@ -157,9 +157,7 @@ const DetailPage: React.FC<Props> = (props) => {
                         </span>
                     </div>
                     <WeekTableComponent/>
-
-                    <Reviews/>
-
+                    
                     {
 
                         controller.doctor?.reviews?.length ?? 0 > 0
