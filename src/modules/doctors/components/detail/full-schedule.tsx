@@ -14,26 +14,6 @@ const FullScheduleModalWindow : React.FC = () => {
         <div className="modal-window">
             <CloseIcon onClick={() => controller.isScheduleModalWindowOpen = false} />
            <div className="content">
-               {/*{*/}
-               {/*    [1, 2, 3, 4, 5, 6, 7].map(e => {*/}
-               {/*        return <div className="day">*/}
-               {/*            <span className="name">9 Декабря</span>*/}
-               {/*            <div className="times">*/}
-               {/*                <div className="time">8:00 - 9:00</div>*/}
-               {/*                <div className="time selected">8:00 - 9:00</div>*/}
-               {/*                <div className="time">8:00 - 9:00</div>*/}
-               {/*                <div className="time">8:00 - 9:00</div>*/}
-               {/*                <div className="time">8:00 - 9:00</div>*/}
-               {/*                <div className="time">8:00 - 9:00</div>*/}
-               {/*                <div className="time">8:00 - 9:00</div>*/}
-               {/*                <div className="time">8:00 - 9:00</div>*/}
-               {/*                <div className="time">8:00 - 9:00</div>*/}
-               {/*                <div className="time">8:00 - 9:00</div>*/}
-               {/*                <div className="time">8:00 - 9:00</div>*/}
-               {/*            </div>*/}
-               {/*        </div>*/}
-               {/*    })*/}
-               {/*}*/}
                {
                    controller.firstWeekSchedule.concat(controller.secondWeekSchedule).map(e => <div className="day">
                        <span className="name">{ e.day }</span>

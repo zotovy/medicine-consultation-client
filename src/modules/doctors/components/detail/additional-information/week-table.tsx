@@ -84,7 +84,7 @@ const WeekTableComponent : React.FC = () => {
         <div className={`week ${getWeekClass()}`}>
             {
                 controller.firstWeekSchedule.map(e => <div className="day">
-                    <div className="day-name">
+                    <div className={`day-name ${e.today ? "today" : ""}`}>
                         <span className="date">{ e.day }</span>
                         <span className="week-day">{ e.dayOfTheWeek }</span>
                     </div>

@@ -104,6 +104,7 @@ export class DoctorDetailHelper {
                 day: formatServices.formatDayAndMonth(date.getDate(), date.getMonth() + 1),
                 dayOfTheWeek: formatServices.getDayOfTheWeek(date.getDay() == 0 ? 6 : date.getDay() - 1),
                 times,
+                today: validateServices.theSameDay(new Date(), date),
             });
         }
         return days;
@@ -114,6 +115,7 @@ export type DayType = {
     day: string;
     dayOfTheWeek: string;
     times: AppointTime[];
+    today: boolean;
 }
 
 export type AppointTime = {
