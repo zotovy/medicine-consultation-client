@@ -714,6 +714,52 @@ $disable: rgba($primary, $alpha: 0.15);
         padding: 0;
     }
 
+    @mixin detailInformationComponentsStyles {
+        .tile {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+
+            span.years {
+                background: #E9F7FA;
+                border-radius: 5px;
+                color: $primary;
+                font-size: 15px;
+                padding: 5px 15px;
+                margin-bottom: 5px;
+            }
+
+            span.tile-title {
+                font-size: 18px;
+                color: #282828;
+            }
+
+            p.subtitle {
+                font-size: 15px;
+                color: #707070;
+            }
+        }
+
+        .image-tile {
+            &_image {
+                width: 125px;
+                height: 125px;
+                border-radius: 10px;
+                box-shadow: 0 3px 6px rgba(black, 0.05);
+                background-size: cover;
+                background-position: center;
+                margin-bottom: 5px;
+                cursor: pointer;
+            }
+
+            span.title {
+                font-size: 18px;
+                color: #282828;
+            }
+        }
+    }
+
+
 
     h3.title {
         font-size: 28px;
@@ -1048,52 +1094,11 @@ $disable: rgba($primary, $alpha: 0.15);
                     }
                 }
 
-                .tile {
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-
-                    span.years {
-                        background: #E9F7FA;
-                        border-radius: 5px;
-                        color: $primary;
-                        font-size: 15px;
-                        padding: 5px 15px;
-                        margin-bottom: 5px;
-                    }
-
-                    span.tile-title {
-                        font-size: 18px;
-                        color: #282828;
-                    }
-
-                    p.subtitle {
-                        font-size: 15px;
-                        color: #707070;
-                    }
-                }
-
-                .image-tile {
-                    &_image {
-                        width: 125px;
-                        height: 125px;
-                        border-radius: 10px;
-                        box-shadow: 0 3px 6px rgba(black, 0.05);
-                        background-size: cover;
-                        background-position: center;
-                        margin-bottom: 5px;
-                        cursor: pointer;
-                    }
-
-                    span.title {
-                        font-size: 18px;
-                        color: #282828;
-                    }
-                }
+                @include detailInformationComponentsStyles();
             }
         }
 
-        @media screen and (max-width: 868px) {
+        @media screen and (max-width: 1024px) {
             margin-bottom: 25px;
 
             .additional-information {
@@ -1101,6 +1106,19 @@ $disable: rgba($primary, $alpha: 0.15);
             }
 
             section.information {
+
+                .row {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    span.more {
+                        font-size: 14px;
+                        color: $primary;
+                        margin-bottom: 10px;
+                    }
+                }
+
                 width: 100%;
 
                 p.content-paragraph {
@@ -1466,7 +1484,7 @@ $disable: rgba($primary, $alpha: 0.15);
         display: flex;
         justify-content: center;
         align-items: center;
-        z-index: 2000;
+        z-index: 20000;
         background: rgba(black, 0.5);
         transition: 300ms transform, 300ms opacity;
 
@@ -1485,6 +1503,66 @@ $disable: rgba($primary, $alpha: 0.15);
             border-radius: 15px;
             max-width: 90%;
             max-height: 90%;
+        }
+    }
+
+    .detail-information-mobile {
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: white;
+        width: 100vw;
+        height: 100vh;
+        padding: 16px;
+        z-index: 10000;
+        @include detailInformationComponentsStyles();
+        transition: transform 400ms;
+
+        &.closed {
+            transform: translateX(100vw);
+        }
+
+        .close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+
+            svg {
+                width: 20px;
+                height: 20px;
+
+                path {
+                    fill: $primary
+                }
+            }
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #282828;
+        }
+
+        .information {
+            margin-bottom: 30px;
+            .value {
+                font-size: 16px;
+                color: rgba(black, 0.8);
+                margin-bottom: 3px;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .tile {
+            margin-bottom: 15px;
+        }
+
+        section {
+            margin-bottom: 10px;
         }
     }
 }

@@ -16,6 +16,7 @@ class DetailController {
     @observable isScheduleModalWindowOpen: boolean = false;
     @observable selectedQualificationImage: string | null = null;
     @observable isAnySelectedQualificationImage: boolean = false;
+    @observable isMobileInformationPageOpen = false;
 
     @action public fetchDoctor = (id: string): void => {
         this.loading = true;

@@ -15,6 +15,7 @@ import WeekTableComponent, { WeekTableComponentMobile } from "../components/deta
 import FullScheduleModalWindow from "../components/detail/full-schedule";
 import FullSizeImageComponent from "../components/detail/full-size-image";
 import MediaQuery from "react-responsive";
+import DetailInformationMobile from "../components/detail/detail-information-mobile";
 
 type PathParamsType = {
     id: string,
@@ -46,6 +47,7 @@ const DetailPage: React.FC<Props> = (props) => {
     }
 
     return <div className="detail-doctor-module">
+        <DetailInformationMobile/>
         <FullSizeImageComponent/>
         {
             controller.doctor == undefined
@@ -140,7 +142,12 @@ const DetailPage: React.FC<Props> = (props) => {
                     <div className="row col-2">
                         {/* ------ INFORMATION ------ */}
                         <section className="information">
-                            <h3 className="title">Информация</h3>
+                            <div className="row">
+                                <h3 className="title">Информация</h3>
+                                <MediaQuery maxWidth={1024}>
+                                    <span onClick={() => controller.isMobileInformationPageOpen = true} className="more">Подробнее</span>
+                                </MediaQuery>
+                            </div>
                             <div className="content">
                                 {
                                     controller.doctor.information?.split("\n\n").map((e: string, i, arr) => {
