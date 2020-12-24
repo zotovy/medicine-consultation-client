@@ -18,8 +18,6 @@ const getSectionHeight = () => {
 const getContentPage = (i: number, hasData: boolean) => `content_page content_page-${i} ${!hasData ? "no-data" : ""}`;
 
 const AdditionalInformation : React.FC = () => {
-    const imgUrl : string = "https://ortho-rus.ru/uploads/posts/2019-09/1569532135_1-e1512037094751.jpg";
-
     // UI State
     const workPlaces = DoctorDetailHelper.getWorkPlaces(controller.doctor?.workPlaces);
     const education = DoctorDetailHelper.getEducation(controller.doctor?.education);

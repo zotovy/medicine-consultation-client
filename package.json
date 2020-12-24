@@ -87,6 +87,7 @@
         "react-loading-skeleton": "^2.1.1",
         "react-protected-route-component": "^0.1.1",
         "react-responsive": "^8.1.0",
+        "react-responsive-carousel": "^3.2.11",
         "react-router-dom": "^5.2.0",
         "react-scripts": "^3.4.3",
         "resolve": "1.15.0",

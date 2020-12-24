@@ -11,10 +11,10 @@ import LoadingHeader from "../components/detail/loading/loading-header";
 import LoadingConsultationsComponent from "../components/detail/loading/loading-consultations";
 import formatServices from "../../../services/format-services";
 import AdditionalInformation from "../components/detail/additional-information";
-import WeekTableComponent from "../components/detail/additional-information/week-table";
-import SizedBox from "../../../components/sized-box";
+import WeekTableComponent, { WeekTableComponentMobile } from "../components/detail/additional-information/week-table";
 import FullScheduleModalWindow from "../components/detail/full-schedule";
 import FullSizeImageComponent from "../components/detail/full-size-image";
+import MediaQuery from "react-responsive";
 
 type PathParamsType = {
     id: string,
@@ -129,16 +129,26 @@ const DetailPage: React.FC<Props> = (props) => {
                         </div>
                     </header>
 
+                    <MediaQuery maxWidth={580}>
+                        <button
+                            className="appoint mobile-view"
+                            onClick={() => props.history.push(`/appoint/${props.match.params.id}`)}>
+                            Записаться
+                        </button>
+                    </MediaQuery>
+
                     <div className="row col-2">
                         {/* ------ INFORMATION ------ */}
                         <section className="information">
                             <h3 className="title">Информация</h3>
                             <div className="content">
                                 {
-                                    controller.doctor.information?.split("\n\n").map((e: string) => {
+                                    controller.doctor.information?.split("\n\n").map((e: string, i, arr) => {
                                         return <React.Fragment>
                                             <p className="content-paragraph">{ e }</p>
-                                            <br/>
+                                            {
+                                                i == arr.length - 1 || <br/>
+                                            }
                                         </React.Fragment>
                                     })
                                 }
@@ -146,24 +156,20 @@ const DetailPage: React.FC<Props> = (props) => {
                         </section>
                         <AdditionalInformation/>
                     </div>
-                    <SizedBox height="40px"/>
 
                     <div className="week-table-title">
                         <h3 className="title">Запись на приём</h3>
                         <span
                             className="see-more"
                             onClick={() => controller.isScheduleModalWindowOpen = true}>
-                            Посмотреть полное расписание
+                            <MediaQuery minWidth={868}>Посмотреть полное расписание</MediaQuery>
+                            <MediaQuery maxWidth={869}>Подробнее</MediaQuery>
                         </span>
                     </div>
-                    <WeekTableComponent/>
-                    
-                    {
+                    <MediaQuery minWidth={1024}><WeekTableComponent/></MediaQuery>
+                    <MediaQuery maxWidth={1023}><WeekTableComponentMobile/></MediaQuery>
 
-                        controller.doctor?.reviews?.length ?? 0 > 0
-                            ? <Reviews/>
-                            : <React.Fragment/>
-                    }
+                    <Reviews/>
                 </React.Fragment>
         }
     </div>

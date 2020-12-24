@@ -88,7 +88,7 @@ export class DoctorDetailHelper {
         });
         return availableTime.map(e => ({
             occupied: e.isOccupied,
-            time: `${formatServices.formatCustomTime(e.from)} – ${formatServices.formatCustomTime(e.to)}`,
+            time: `${formatServices.formatCustomTime(e.from)} - ${formatServices.formatCustomTime(e.to)}`,
         }));
     }
 
