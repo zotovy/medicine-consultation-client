@@ -15,6 +15,6 @@ declare interface IBecomeDoctor {
     passportIssuedByWhom?: string;
     passportSeries?: string;
     passportIssueDate?: string;
-    workExperience?: string;
-    workPlaces?: string;
+    _workExperience?: string;
+    _workPlaces?: string;
 }

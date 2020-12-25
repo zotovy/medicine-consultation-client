@@ -13,6 +13,8 @@ import formatServices from "../../../services/format-services";
 import AdditionalInformation from "../components/detail/additional-information";
 import WeekTableComponent from "../components/detail/additional-information/week-table";
 import SizedBox from "../../../components/sized-box";
+import FullScheduleModalWindow from "../components/detail/full-schedule";
+import FullSizeImageComponent from "../components/detail/full-size-image";
 
 type PathParamsType = {
     id: string,
@@ -44,12 +46,14 @@ const DetailPage: React.FC<Props> = (props) => {
     }
 
     return <div className="detail-doctor-module">
+        <FullSizeImageComponent/>
         {
             controller.doctor == undefined
                 ? <Page404/>
                 : <React.Fragment>
-                    <header>
+                    <FullScheduleModalWindow/>
 
+                    <header>
                        <div className="left-side">
                            <div className="profileImage" style={ profileStyles }/>
 
@@ -117,9 +121,9 @@ const DetailPage: React.FC<Props> = (props) => {
 
                         <div className="price">
                             <span className="price_value">
-                                <span className="from">до</span>
+                                <span className="from">от</span>
                                 &nbsp;
-                                900
+                                { controller.doctor.price }
                                 <sup className="currency">₽</sup>
                             </span>
                         </div>
@@ -130,13 +134,14 @@ const DetailPage: React.FC<Props> = (props) => {
                         <section className="information">
                             <h3 className="title">Информация</h3>
                             <div className="content">
-                                <p className="content-paragraph">
-                                    Ворошкевич Андрей Альбертович - врач пластический хирург, стаж 38 лет. Все отзывы о враче. Запись онлайн или по телефону.
-                                </p>
-                                <br/>
-                                <p className="content-paragraph">
-                                    Пластический хирург. Проводит такие операции, как ринопластика, коррекция шеи, лица, век, пластика молочных желез, пластика живота, липосакция и др. Постоянный участник отечественных и зарубежных конференций и конгрессов. Автор многочисленных научных работ.
-                                </p>
+                                {
+                                    controller.doctor.information?.split("\n\n").map((e: string) => {
+                                        return <React.Fragment>
+                                            <p className="content-paragraph">{ e }</p>
+                                            <br/>
+                                        </React.Fragment>
+                                    })
+                                }
                             </div>
                         </section>
                         <AdditionalInformation/>
@@ -145,16 +150,17 @@ const DetailPage: React.FC<Props> = (props) => {
 
                     <div className="week-table-title">
                         <h3 className="title">Запись на приём</h3>
-                        <span className="see-more">Посмотреть полное расписание</span>
+                        <span
+                            className="see-more"
+                            onClick={() => controller.isScheduleModalWindowOpen = true}>
+                            Посмотреть полное расписание
+                        </span>
                     </div>
                     <WeekTableComponent/>
-
-                    {/* todo: remove reviews after preview  */}
-                    <Reviews/>
-
+                    
                     {
 
-                        controller.doctor?.clientsReviews?.length ?? 0 > 0
+                        controller.doctor?.reviews?.length ?? 0 > 0
                             ? <Reviews/>
                             : <React.Fragment/>
                     }
