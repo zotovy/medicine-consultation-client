@@ -18,7 +18,7 @@ class AnimController {
                         animItemOffset = offset(animItem).top,
                         animStart = 5;
 
-                    let animItemPoint = window.innerHeight - animItemHeight / 4;
+                    let animItemPoint = window.innerHeight - animItemHeight / 3;
                     if (animItemHeight > window.innerHeight) {
                         animItemPoint = window.innerHeight - window.innerHeight / animStart;
                     }

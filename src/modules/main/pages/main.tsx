@@ -1044,8 +1044,8 @@ class MainPage extends React.Component {
   <section className="main-wrapper sc--hiw">
     <div className="main-container-hiw">
       <Title title="Как это Работает" mark="?" />
-      <div className="hiw-list-items">
-        <article className="hiw-list-item hiw-list-item-left">
+      <div className="hiw-list-items _anim-items _anim-not-hide">
+        <article className="hiw-list-item hiw-list-1-item hiw-list-item-left">
           <div className="container-info__left">
             <div className="step-block">Шаг 1</div>
             <p className="hiw-sect-text__1 hiw-sect-text__1-1">Выберите подходящего<br />врача из каталога врачей</p>
@@ -1074,7 +1074,7 @@ class MainPage extends React.Component {
           </div>
         </article>
 
-        <article className="hiw-list-item hiw-second-section hiw-list-item-right _anim-items _anim-not-hide">
+        <article className="hiw-list-item hiw-list-2-item hiw-second-section hiw-list-item-right _anim-items _anim-not-hide">
           <div className="hiw-sect__right">
             <div className="question__block">Как Вас зовут?</div>
             <div className="question__block">Какие у вас проблемы?</div>
@@ -1090,7 +1090,7 @@ class MainPage extends React.Component {
           </div>
         </article>
 
-        <article className="hiw-list-item hiw-list-item-left">
+        <article className="hiw-list-item hiw-list-3-item hiw-list-item-left _anim-items _anim-not-hide">
           <div className="container-info__left">
             <div className="step-block">Шаг 3</div>
             <p className="hiw-sect-text__1 hiw-sect-text__1-1">Получите качественную<br />Онлайн консультацию</p>
