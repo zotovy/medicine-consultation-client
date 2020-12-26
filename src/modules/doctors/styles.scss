@@ -946,7 +946,6 @@ $disable: rgba($primary, $alpha: 0.15);
             .profileImage {
                 width: 150px;
                 height: 150px;
-                margin-bottom: 20px;
             }
 
             .info-main {
@@ -987,7 +986,6 @@ $disable: rgba($primary, $alpha: 0.15);
     }
 
     .row.col-2 {
-        padding: 0 16px;
         display: flex;
         margin-bottom: 40px;
 
@@ -1103,8 +1101,9 @@ $disable: rgba($primary, $alpha: 0.15);
             }
         }
 
-        @media screen and (max-width: 1024px) {
+        @media screen and (max-width: 1204px) {
             margin-bottom: 25px;
+            padding: 0 16px;
 
             .additional-information {
                 display: none;
@@ -1128,6 +1127,14 @@ $disable: rgba($primary, $alpha: 0.15);
 
                 p.content-paragraph {
                     font-size: 16px;
+                }
+            }
+        }
+
+        @media screen and (max-width: 1336px) {
+            section.additional-information {
+                .tab {
+                    font-size: 20px !important;
                 }
             }
         }
@@ -1342,6 +1349,7 @@ $disable: rgba($primary, $alpha: 0.15);
                     flex-direction: row;
                     justify-content: center;
                     align-items: center;
+                    width: 100%;
 
                     span {
                         font-size: 16px !important;
@@ -1425,7 +1433,7 @@ $disable: rgba($primary, $alpha: 0.15);
         width: 100vw;
         height: 100vh;
         background: rgba(black, 0.5);
-        z-index: 200;
+        z-index: 10000;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -1608,7 +1616,7 @@ $disable: rgba($primary, $alpha: 0.15);
         }
 
         .tile {
-            margin-bottom: 15px;
+            margin-bottom: 30px;
         }
 
         section {

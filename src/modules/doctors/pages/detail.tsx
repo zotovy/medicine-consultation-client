@@ -144,7 +144,7 @@ const DetailPage: React.FC<Props> = (props) => {
                         <section className="information">
                             <div className="row">
                                 <h3 className="title">Информация</h3>
-                                <MediaQuery maxWidth={1024}>
+                                <MediaQuery maxWidth={1204}>
                                     <span onClick={() => controller.isMobileInformationPageOpen = true} className="more">Подробнее</span>
                                 </MediaQuery>
                             </div>
