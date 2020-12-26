@@ -16,55 +16,9 @@ const WeekTableComponent : React.FC = () => {
 
     // ================= UI ===================
     return <div className="week-table">
-        {/* ----- FIRST WEEK ----- */}
-        <div className={`week ${getWeekClass()}`}>
-            {
-                controller.firstWeekSchedule.map(e => <div className="day">
-                    <div className={`day-name ${e.today ? "today" : ""}`}>
-                        <span className="date">{ e.day }</span>
-                        <span className="week-day">{ e.dayOfTheWeek }</span>
-                    </div>
-                    {
-                        !e.isWeekEnd || <span className="text">Выходной</span>
-                    }
-                    {
-                        e.times.filter(elem => !elem.occupied).length !== 0
-                            || <span className="text">Нет свободной записи</span>
-                    }
-                    {
-                        e.isWeekEnd
-                            ? <React.Fragment/>
-                            : e.times.filter(elem => !elem.occupied).map(elem => <div className="time">{ elem.time }</div>)
-                    }
-                </div>)
-            }
-        </div>
+        <Carousel>
 
-        {/* ----- SECOND WEEK ----- */}
-        <div className={`week week-2 ${getWeekClass()}`}>
-            {
-                controller.secondWeekSchedule.map(e => <div className="day">
-                    <div className="day-name">
-                        <span className="date">{ e.day }</span>
-                        <span className="week-day">{ e.dayOfTheWeek }</span>
-                    </div>
-                    {
-                        !e.isWeekEnd || <span className="text">Выходной</span>
-                    }
-                    {
-                        e.times.filter(elem => !elem.occupied).length !== 0
-                        || <span className="text">Нет свободной записи</span>
-                    }
-                    {
-                        e.isWeekEnd
-                            ? <React.Fragment/>
-                            : e.times.filter(elem => !elem.occupied).map(elem => <div className="time">{ elem.time }</div>)
-                    }
-                </div>)
-            }
-        </div>
-
-        <div className={`next ${getWeekClass()}`} onClick={handleArrowClick}><ChevronRight/></div>
+        </Carousel>
     </div>
 }
 
@@ -78,14 +32,20 @@ const PrevIcon: ControllerProps = (handler) => <div className="slider-controller
 
 export const WeekTableComponentMobile: React.FC = observer(() => {
     return <div className="week-table">
-        <Carousel renderArrowNext={NextIcon} renderArrowPrev={PrevIcon} showIndicators={false} showStatus={false} className="carousel">
+        <Carousel
+            renderArrowNext={NextIcon}
+            renderArrowPrev={PrevIcon}
+            showThumbs={false}
+            showIndicators={false}
+            showStatus={false}
+            className="carousel">
             {
-                controller.firstWeekSchedule.concat(controller.secondWeekSchedule).map(e => <div className="day">
+                controller.schedule.map(e => <div className="day" key={e.day}>
                     <div className={`day-name ${e.today ? "today" : ""}`}>
                         <span className="date">{ e.day }</span>
                         <span className="week-day">{ e.dayOfTheWeek }</span>
                     </div>
-                    <div className="times">
+                    <div className={`times ${e.isWeekEnd || e.times.filter(elem => !elem.occupied).length === 0 ? "no-grid" : ""}`}>
                         {
                             !e.isWeekEnd || <span className="text">Выходной</span>
                         }
@@ -96,7 +56,7 @@ export const WeekTableComponentMobile: React.FC = observer(() => {
                         {
                             e.isWeekEnd
                                 ? <React.Fragment/>
-                                : e.times.filter(elem => !elem.occupied).map(elem => <div className="time">{ elem.time }</div>)
+                                : e.times.filter(elem => !elem.occupied).map(elem => <div key={`${e.day}-${elem.time}`} className="time">{ elem.time }</div>)
                         }
                     </div>
                 </div>)

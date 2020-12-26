@@ -56,22 +56,21 @@ const DetailInformationMobile: React.FC = () => {
             <section className={getClasses("work-places", controller.doctor.workPlaces?.length)}>
                 <h3 className="title">Опыт работы</h3>
                 {
-                    DoctorDetailHelper.getWorkPlaces(controller.doctor.workPlaces).map(e => <TileComponent {...e} />)
+                    DoctorDetailHelper.getWorkPlaces(controller.doctor.workPlaces).map(e => <TileComponent key={`workplace-${e.title}`} {...e} />)
                 }
             </section>
 
             <section className={getClasses("education", controller.doctor.education?.length)}>
                 <h3 className="title">Образование</h3>
                 {
-                    DoctorDetailHelper.getEducation(controller.doctor.education).map(e => <TileComponent {...e} />)
+                    DoctorDetailHelper.getEducation(controller.doctor.education).map(e => <TileComponent key={`education-${e.title}`} {...e} />)
                 }
             </section>
 
             <section className={getClasses("qualification-proofs", controller.doctor.qualificationProofs?.length)}>
                 <h3 className="title">Квалификация</h3>
                 {
-                    controller.doctor.qualificationProofs?.map(e => <ImageTileComponent title={e.name}
-                                                                                        imageUrl={e.imageUrl}/>)
+                    controller.doctor.qualificationProofs?.map(e => <ImageTileComponent key={`qualification-${e.name}`} title={e.name} imageUrl={e.imageUrl}/>)
                     ?? <React.Fragment/>
                 }
             </section>

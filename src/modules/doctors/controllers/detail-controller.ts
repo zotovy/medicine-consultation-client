@@ -56,17 +56,18 @@ class DetailController {
     };
 
     // Schedule
-    firstWeekSchedule: DayType[] = [];
-    secondWeekSchedule: DayType[] = [];
+    schedule: DayType[] = [];
 
     private calcSchedule = () => {
-        const startFirstWeek = new Date();
-        startFirstWeek.setDate(new Date().getDate() - new Date().getDay() + 1)
-        const startSecondWeek = new Date();
-        startSecondWeek.setDate(new Date().getDate() - new Date().getDay() + 8)
+        // Change this value if you want to display another amount of weeks
+        const amountOfWeeks = 2;
 
-        this.firstWeekSchedule = DoctorDetailHelper.getScheduleWeek(startFirstWeek);
-        this.secondWeekSchedule = DoctorDetailHelper.getScheduleWeek(startSecondWeek);
+        for (let i = 0; i < amountOfWeeks; i++) {
+            const startOfTheWeek = new Date();
+            startOfTheWeek.setDate(new Date().getDate() - new Date().getDay() + i * 7 + 1)
+            const schedule = DoctorDetailHelper.getScheduleWeek(startOfTheWeek);
+            this.schedule = this.schedule.concat(schedule)
+        }
     }
 
     public getSocialLinks = (): SocialLink[] | null => {

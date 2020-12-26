@@ -152,7 +152,7 @@ const DetailPage: React.FC<Props> = (props) => {
                                 {
                                     controller.doctor.information?.split("\n\n").map((e: string, i, arr) => {
                                         return <React.Fragment>
-                                            <p className="content-paragraph">{ e }</p>
+                                            <p className="content-paragraph" key={`paragraph-${i}`}>{ e }</p>
                                             {
                                                 i == arr.length - 1 || <br/>
                                             }
@@ -173,8 +173,8 @@ const DetailPage: React.FC<Props> = (props) => {
                             <MediaQuery maxWidth={869}>Подробнее</MediaQuery>
                         </span>
                     </div>
-                    <MediaQuery minWidth={1024}><WeekTableComponent/></MediaQuery>
-                    <MediaQuery maxWidth={1023}><WeekTableComponentMobile/></MediaQuery>
+                    <MediaQuery minWidth={868}><WeekTableComponent/></MediaQuery>
+                    <MediaQuery maxWidth={869}><WeekTableComponentMobile/></MediaQuery>
 
                     <Reviews/>
                 </React.Fragment>

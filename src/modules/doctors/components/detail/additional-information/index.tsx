@@ -40,21 +40,21 @@ const AdditionalInformation : React.FC = () => {
             <div className={getContentPage(1, workPlaces.length != 0)}>
                 {
                     workPlaces.length != 0
-                        ? workPlaces.map(e => <TileComponent {...e} />)
+                        ? workPlaces.map(e => <TileComponent key={`workplace-${e.title}`} {...e} />)
                         : <span className="no-data">У этого доктора нет опыта работы</span>
                 }
             </div>
             <div className={getContentPage(2, education.length != 0)}>
                 {
                     education.length != 0
-                        ? education.map(e => <TileComponent {...e} />)
+                        ? education.map(e => <TileComponent key={`education-${e.title}`} {...e} />)
                         : <span className="no-data">У этого доктора не указано образование</span>
                 }
             </div>
             <div className={getContentPage(3, qualificationProofs.length != 0)}>
                 {
                     qualificationProofs.length != 0
-                        ? qualificationProofs.map(e => <ImageTile title={e.name} imageUrl={e.imageUrl}/>)
+                        ? qualificationProofs.map(e => <ImageTile key={`qualification-${e.name}`} title={e.name} imageUrl={e.imageUrl}/>)
                         : <span className="no-data">У этого доктора не подтверждены квалификации</span>
                 }
             </div>
