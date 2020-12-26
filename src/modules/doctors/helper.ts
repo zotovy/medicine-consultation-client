@@ -110,6 +110,17 @@ export class DoctorDetailHelper {
         }
         return days;
     }
+
+    public static groupDays = (days: DayType[], groupBy: number): DayType[][] => {
+        let d: DayType[][] = [];
+        days.forEach((e, i) => {
+            let index = Math.floor(i / groupBy);
+            if (d[index]) d[index].push(e)
+            else d[index] = [e];
+        });
+        console.log(d);
+        return d;
+    }
 }
 
 export type DayType = {
