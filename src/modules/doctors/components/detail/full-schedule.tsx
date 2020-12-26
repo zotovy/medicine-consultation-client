@@ -13,14 +13,14 @@ const FullScheduleModalWindow: React.FC = () => {
             <CloseIcon onClick={() => controller.isScheduleModalWindowOpen = false}/>
             <div className="content">
                 {
-                    controller.firstWeekSchedule.concat(controller.secondWeekSchedule).map(e => <div className="day">
+                    controller.schedule.map(e => <div key={e.day} className="day">
                        <span className="name">
                            {e.day}
                        </span>
                         <div className="times">
                             {
                                 !e.isWeekEnd
-                                    ? e.times.map(el => <div className={`time ${el.occupied ? "selected" : ""}`}>
+                                    ? e.times.map(el => <div key={`${e.day}-${el.time}`} className={`time ${el.occupied ? "selected" : ""}`}>
                                         {
                                             el.time
                                         }

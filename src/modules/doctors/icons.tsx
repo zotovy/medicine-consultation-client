@@ -100,7 +100,7 @@ export const WarningIcon = () => {
 
 export const ChevronRight = () => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="9.811" height="18.121" viewBox="0 0 9.811 18.121">
-        <path id="Icon_feather-chevron-right" d="M13.5,25l8-8-8-8" transform="translate(-12.439 -7.939)" fill="none" stroke="#ccc" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+        <path id="Icon_feather-chevron-right" d="M13.5,25l8-8-8-8" transform="translate(-12.439 -7.939)" fill="none" stroke="#ccc" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"/>
     </svg>
 }
 
@@ -137,8 +137,8 @@ export const ViberIcon = () => {
 export const MailIcon = () => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="33.203" height="26.3" viewBox="0 0 33.203 26.3">
         <g id="Icon_feather-mail" data-name="Icon feather-mail" transform="translate(-1.398 -4.85)">
-            <path id="Контур_120" data-name="Контур 120" d="M6,6H30a3.009,3.009,0,0,1,3,3V27a3.009,3.009,0,0,1-3,3H6a3.009,3.009,0,0,1-3-3V9A3.009,3.009,0,0,1,6,6Z" fill="none" stroke="#30b9d6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3"/>
-            <path id="Контур_121" data-name="Контур 121" d="M33,9,18,19.5,3,9" fill="none" stroke="#30b9d6" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3"/>
+            <path id="Контур_120" data-name="Контур 120" d="M6,6H30a3.009,3.009,0,0,1,3,3V27a3.009,3.009,0,0,1-3,3H6a3.009,3.009,0,0,1-3-3V9A3.009,3.009,0,0,1,6,6Z" fill="none" stroke="#30b9d6" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.3"/>
+            <path id="Контур_121" data-name="Контур 121" d="M33,9,18,19.5,3,9" fill="none" stroke="#30b9d6" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.3"/>
         </g>
     </svg>
 }

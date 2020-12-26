@@ -88,7 +88,7 @@ export class DoctorDetailHelper {
         });
         return availableTime.map(e => ({
             occupied: e.isOccupied,
-            time: `${formatServices.formatCustomTime(e.from)} – ${formatServices.formatCustomTime(e.to)}`,
+            time: `${formatServices.formatCustomTime(e.from)} - ${formatServices.formatCustomTime(e.to)}`,
         }));
     }
 
@@ -109,6 +109,17 @@ export class DoctorDetailHelper {
             });
         }
         return days;
+    }
+
+    public static groupDays = (days: DayType[], groupBy: number): DayType[][] => {
+        let d: DayType[][] = [];
+        days.forEach((e, i) => {
+            let index = Math.floor(i / groupBy);
+            if (d[index]) d[index].push(e)
+            else d[index] = [e];
+        });
+        console.log(d);
+        return d;
     }
 }
 
