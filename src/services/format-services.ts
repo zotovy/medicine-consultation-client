@@ -1,4 +1,4 @@
-import { missingConfigurationPrompt } from "@wdio/cli/build/commands/config";
+
 
 class FormatServices {
     formatBySchema = (schema: string, input: string) => {
