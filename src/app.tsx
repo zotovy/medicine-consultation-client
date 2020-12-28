@@ -28,7 +28,7 @@ const SettingsPasswordPage = lazy(() => import("./modules/settings").then(module
 const SettingsLinksPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsLinksPage })));
 const ErrorPage = lazy(() => import("./modules/other/pages/error"));
 const ErrorSympPage = lazy(() => import("./modules/doctors/components/symptoms/error-page"));
-
+const HubConsultationPage = lazy(() => import("./modules/consultations").then(module => ({ default: module.HubConsultationPage })));
 
 const App = () => {
 
@@ -80,6 +80,12 @@ const App = () => {
                 <Menu/>
                 <Suspense fallback={<React.Fragment/>}>
                     <DetailDoctorPage/>
+                </Suspense>
+            </Route>
+            <Route path="/hub" exact>
+                <Menu/>
+                <Suspense fallback={<React.Fragment/>}>
+                    <HubConsultationPage/>
                 </Suspense>
             </Route>
             <Route path="/symptoms" exact>

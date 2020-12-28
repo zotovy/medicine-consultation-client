@@ -1,4 +1,4 @@
 import AppointmentPage from "./pages/appointment";
 import ConsultationPage from "./pages/consultation";
-
-export { AppointmentPage, ConsultationPage };
+import HubConsultationPage from "./pages/hub/index";
+export { AppointmentPage, ConsultationPage, HubConsultationPage };
