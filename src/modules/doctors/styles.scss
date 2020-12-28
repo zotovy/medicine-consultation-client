@@ -870,6 +870,7 @@ $disable: rgba($primary, $alpha: 0.15);
 
         .info-detail {
             display: flex;
+            flex-direction: column;
             margin-left: 100px;
 
             .info {
