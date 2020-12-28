@@ -1,7 +1,6 @@
 import axios from "axios";
 import { observable, action } from "mobx";
 import settingDoctorController from "../../settings/controllers/account-controller";
-import { AppointmentObject } from "../../../../../server/types/models";
 import { DayType, DoctorDetailHelper } from "../helper";
 
 class DetailController {
@@ -45,7 +44,7 @@ class DetailController {
         }
 
         try {
-            response.doctor.schedule = response.doctor?.schedule?.map((e : AppointmentObject) => {
+            response.doctor.schedule = response.doctor?.schedule?.map((e : Schedule) => {
                 e["from"] = new Date(e['from'])
                 e['to'] = new Date(e['to']);
                 return e;
