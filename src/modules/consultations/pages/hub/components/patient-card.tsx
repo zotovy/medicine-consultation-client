@@ -131,7 +131,7 @@ const Error: React.FC<Props> = (props: Props) => {
                     </div>   
                 </div>
                 <div className="patient-card-footer">
-                    
+                    <p className="card-notification">Консультация пройдет {date.getDate()}&nbsp;{months[+date.getMonth()]} в {date.getHours()}:{date.getMinutes()}. Вы можете <u>отказаться</u> от этой консультации до её начала. После завершения консультации вы получите ?₽ на свой баланс.</p>
                 </div>       
             </div>
         </>
