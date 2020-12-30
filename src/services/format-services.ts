@@ -33,6 +33,11 @@ class FormatServices {
                     // if need "-" on i => insert
                     input = input.substring(0, i) + "/" + input.substring(i);
                 }
+            } else if (schema[i] === ":") {
+                if (input[i] !== ":") {
+                    // if need ":" on i => insert
+                    input = input.substring(0, i) + ":" + input.substring(i);
+                }
             }
         }
 
@@ -77,6 +82,12 @@ class FormatServices {
         // 932 332-73-50 --> +7 932 332-73-50
         return "+7 " + input;
     };
+
+    formatTime = (input: string): string => {
+        let schema = "**:**"
+        input = this.formatBySchema(schema, input);
+        return input;
+    }
 
     formatDate = (date: Date | undefined): string => {
         if (!date) return "";

@@ -252,7 +252,6 @@ main.account-page section.account {
     }
 }
 
-
 main.consultations-page {
 
     .settings-note-wrapper {
@@ -469,5 +468,71 @@ main.links-page section.links-page {
     }
 }
 
+main.settings-page.doctor-page section.doctor {
+    .row {
+        width: 90%;
+        display: flex;
 
+        .space {
+            flex: 0 0 auto;
+            width: 100px;
+        }
+    }
+
+    span#working-days {
+        color: #565656;
+        font-size: 14px;
+    }
+
+    .working-days {
+        margin-top: 5px;
+        display: flex;
+        flex-wrap: wrap;
+
+        button.day {
+            width: 145px;
+            height: 40px;
+            background: #E9F7FA;
+            border-radius: 7px;
+            color: $primary;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+            border: none;
+            outline: none;
+            transition: 100ms background, 100ms color;
+
+            &.selected {
+                background: $primary;
+                color: white;
+            }
+
+            &:not(.selected) {
+                cursor: pointer;
+            }
+        }
+    }
+
+    #price-textfield {
+        width: calc(50% - 91px);
+        margin-bottom: 3px;
+
+        p.textfield-error {
+            display: none;
+        }
+    }
+
+    #under-price {
+        color: #565656;
+        font-size: 16px;
+    }
+
+    .confirm-button {
+        margin-top: 25px;
+        width: 270px;
+    }
+}
 

@@ -26,6 +26,7 @@ const SettingsReviewPage = lazy(() => import("./modules/settings").then(module =
 const SettingsNotificationPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsNotificationPage })));
 const SettingsPasswordPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsPasswordPage })));
 const SettingsLinksPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsLinksPage })));
+const SettingsDoctorPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsDoctorPage })));
 const ErrorPage = lazy(() => import("./modules/other/pages/error"));
 const ErrorSympPage = lazy(() => import("./modules/doctors/components/symptoms/error-page"));
 
@@ -145,6 +146,11 @@ const App = () => {
                 <Route path="/settings/links">
                     <Suspense fallback={<React.Fragment/>}>
                         <SettingsLinksPage/>
+                    </Suspense>
+                </Route>
+                <Route path="/settings/doctor">
+                    <Suspense fallback={<React.Fragment/>}>
+                        <SettingsDoctorPage/>
                     </Suspense>
                 </Route>
             </Route>

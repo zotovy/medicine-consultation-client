@@ -27,6 +27,7 @@ type Props = {
   useTextHint?: boolean;
   removePassswordIcon?: boolean;
   rows?: number;
+  id?: string;
 };
 
 const Container = styled.div`
@@ -189,7 +190,7 @@ const TextField: React.FC<Props> = (props: Props) => {
 
   return (
     // @ts-ignore
-    <Container style={props.styles?.container || {}} className="text-field" >
+    <Container style={props.styles?.container || {}} className="text-field" id={props.id}>
       {/*
        // @ts-ignore */}
       <Field style={props.styles?.field || {}}>{props.field}</Field>
@@ -234,7 +235,7 @@ const TextField: React.FC<Props> = (props: Props) => {
         />}
 
       {
-        !props.needErrorHandle ? props.error ? <ErrorText>{props.error}</ErrorText> : <p style={{ fontSize: "12px" }} className="textfield-error">⠀</p> : ""
+        !props.needErrorHandle ? props.error ? <ErrorText>{props.error}</ErrorText> : <p style={{ fontSize: "12px" }} className="textfield-error">&nbsp;</p> : ""
       }
 
     </Container>

@@ -37,6 +37,13 @@ export const LinkIcon : React.FC<IconProps> = ({ }) => {
     </svg>;
 }
 
+export const DoctorIcon : React.FC<IconProps> = ({ }) => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" viewBox="0 0 27 27">
+        <path id="Icon_awesome-plus-square" data-name="Icon awesome-plus-square" d="M24.107,2.25H2.893A2.894,2.894,0,0,0,0,5.143V26.357A2.894,2.894,0,0,0,2.893,29.25H24.107A2.894,2.894,0,0,0,27,26.357V5.143A2.894,2.894,0,0,0,24.107,2.25ZM22.179,17.438a.725.725,0,0,1-.723.723H15.911v5.545a.725.725,0,0,1-.723.723H11.813a.725.725,0,0,1-.723-.723V18.161H5.545a.725.725,0,0,1-.723-.723V14.063a.725.725,0,0,1,.723-.723h5.545V7.795a.725.725,0,0,1,.723-.723h3.375a.725.725,0,0,1,.723.723v5.545h5.545a.725.725,0,0,1,.723.723Z" transform="translate(0 -2.25)" fill="#ccc"/>
+    </svg>
+
+}
+
 export const PasswordIcon : React.FC<IconProps> = ({className}) => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="19.81" height="26" viewBox="0 0 19.81 26">
         <path id="Icon_material-lock" data-name="Icon material-lock" d="M23.333,10.167H22.1V7.69a6.19,6.19,0,1,0-12.381,0v2.476H8.476A2.483,2.483,0,0,0,6,12.643V25.024A2.483,2.483,0,0,0,8.476,27.5H23.333a2.483,2.483,0,0,0,2.476-2.476V12.643A2.483,2.483,0,0,0,23.333,10.167ZM15.9,21.31a2.476,2.476,0,1,1,2.476-2.476A2.483,2.483,0,0,1,15.9,21.31Zm3.838-11.143H12.067V7.69a3.838,3.838,0,1,1,7.676,0Z" transform="translate(-6 -1.5)" fill="#ccc"/>

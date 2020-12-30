@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import {
     AccountIcon,
     ConsultationIcon,
+    DoctorIcon,
     LinkIcon,
     LogoutIcon,
     NotificationIcon,
@@ -25,9 +26,9 @@ let paths: string[] = ['/account', "/consultations", "/reviews", "/notifications
 const NavigationComponent: React.FC<Props> = ({ active, alwaysActive }) => {
 
     if (localStorage.getItem("isUser") === "false") {
-        titles = [...titles.slice(0, 4), "Ссылки", "Пароль"];
-        paths = [...paths.slice(0, 4), "/links", "/password"];
-        icons = [...icons.slice(0, 4), LinkIcon, PasswordIcon];
+        titles = [...titles.slice(0, 4), "Ссылки", "Доктор", "Пароль"];
+        paths = [...paths.slice(0, 4), "/links", "/doctor", "/password"];
+        icons = [...icons.slice(0, 4), LinkIcon, DoctorIcon, PasswordIcon];
     }
 
     const history = useHistory();

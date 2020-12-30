@@ -7,7 +7,7 @@ import GoBackIcon from "../components/go-back-icon";
 
 const ChangePasswordPage : React.FC = () => {
     return <main className="change-password-page settings-page">
-        <Navigation active={5} />
+        <Navigation active={6} />
         <GoBackIcon/>
         <section className="content change-password-page">
             <Link to="/">
