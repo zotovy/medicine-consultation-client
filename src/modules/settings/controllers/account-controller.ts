@@ -2,7 +2,7 @@ import { action, observable } from "mobx";
 import Time from "../../../utils/time";
 import Duration from "../../../utils/duration";
 import formatServices from "../../../services/format-services";
-import { AFRes, authFetch, EAuthFetch } from "../../../services/fetch_services";
+import { authFetch, EAuthFetch } from "../../../services/fetch_services";
 import axios from "axios";
 import token_services from "../../../services/token-services";
 import validate_services from "../../../services/validation-services";
@@ -62,9 +62,7 @@ class AccountController {
             }
         ));
         this.isLoading = false;
-
-        console.log(result);
-
+        
         if (!result || result.status === EAuthFetch.Error) throw "error";
         else if (result.status === EAuthFetch.Unauthorized) throw "logout";
         else {

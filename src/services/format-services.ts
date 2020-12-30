@@ -83,7 +83,7 @@ class FormatServices {
         return "+7 " + input;
     };
 
-    formatTime = (input: string): string => {
+    formatTimeInput = (input: string): string => {
         let schema = "**:**"
         input = this.formatBySchema(schema, input);
         return input;
@@ -214,6 +214,13 @@ class FormatServices {
 
     formatCustomTime = (time: { h: number, m: number}): string => {
         let h = time.h.toString(), m = time.m.toString();
+        if (h.length === 1) h = "0" + h;
+        if (m.length === 1) m = "0" + m;
+        return `${h}:${m}`;
+    }
+
+    formatTime = (date: Date): string => {
+        let h = date.getHours().toString(), m = date.getMinutes().toString();
         if (h.length === 1) h = "0" + h;
         if (m.length === 1) m = "0" + m;
         return `${h}:${m}`;

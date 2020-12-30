@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 
 import controller from "../controllers/doctor-controller";
@@ -7,6 +7,8 @@ import Navigation from "../components/navigation";
 import GoBackIcon from "../components/go-back-icon";
 import TextField from "../../../components/text-field";
 import ConfirmButton from "../../../components/confirm-button";
+import SettingsLoadingComponent from "../components/loading";
+import { Simulate } from "react-dom/test-utils";
 
 const days: string[] = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
 const clickOnWorkingDays = (i: number) => { 
@@ -15,6 +17,15 @@ const clickOnWorkingDays = (i: number) => {
 }
 
 const DoctorSettingsPage = () => {
+
+    useEffect(() => {
+        controller.load();
+    }, []);
+
+    if (controller.isLoading) {
+        return <SettingsLoadingComponent active={5}/>
+    }
+
     return <main className="doctor-page settings-page">
         <Navigation active={5}/>
         <GoBackIcon/>
@@ -24,14 +35,21 @@ const DoctorSettingsPage = () => {
                     field="Время начало консультаций"
                     error={controller.beginTimeError}
                     value={controller.consultationBeginTime}
-                    onChange={(v) => controller.consultationBeginTime = formatServices.formatTime(v)}/>
+                    onChange={(v) => controller.consultationBeginTime = formatServices.formatTimeInput(v)}/>
                 <div className="space"/>
                 <TextField
                     field="Время конца консультаций"
                     error={controller.endTimeError}
                     value={controller.consultationEndTime}
-                    onChange={(v) => controller.consultationEndTime = formatServices.formatTime(v)}/>
+                    onChange={(v) => controller.consultationEndTime = formatServices.formatTimeInput(v)}/>
             </div>
+
+            <TextField
+                field="Продолжительность консультации"
+                type="integer"
+                error={controller.consultationDurationError}
+                value={controller.consultationDuration}
+                onChange={(v) => controller.consultationDuration = v}/>
 
             <span id="working-days">Рабочие дни</span>
             <div className="working-days">
@@ -44,6 +62,9 @@ const DoctorSettingsPage = () => {
                     </button>)
                 }
             </div>
+            {
+                !controller.workingDaysError || <div className="working-days_error">{ controller.workingDaysError }</div>
+            }
 
             <TextField
                 id="price-textfield"
@@ -52,7 +73,7 @@ const DoctorSettingsPage = () => {
                 error={controller.priceError}
                 value={controller.price}
                 onChange={controller.setPrice}/>
-            <span id="under-price">{ controller.doctorWillGet }</span>
+            <span id="under-price">Вы будете получать { controller.doctorWillGet } за одну консультацию</span>
 
             <ConfirmButton onConfirm={controller.save} content="Сохранить"/>
         </section>

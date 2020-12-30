@@ -470,7 +470,6 @@ main.links-page section.links-page {
 
 main.settings-page.doctor-page section.doctor {
     .row {
-        width: 90%;
         display: flex;
 
         .space {
@@ -510,14 +509,11 @@ main.settings-page.doctor-page section.doctor {
                 color: white;
             }
 
-            &:not(.selected) {
-                cursor: pointer;
-            }
         }
     }
 
     #price-textfield {
-        width: calc(50% - 91px);
+        width: calc(50% - 50px);
         margin-bottom: 3px;
 
         p.textfield-error {
@@ -533,6 +529,14 @@ main.settings-page.doctor-page section.doctor {
     .confirm-button {
         margin-top: 25px;
         width: 270px;
+    }
+
+    .working-days_error {
+        font-size: 14px;
+        color:#ff3b30;
+        -webkit-transition:300ms ease-in-out;
+        transition:300ms ease-in-out;
+        margin-bottom: 10px;
     }
 }
 

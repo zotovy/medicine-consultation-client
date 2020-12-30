@@ -4,30 +4,30 @@ import { mainColor, dark, darkGrey, disable } from "../styles";
 
 
 type Props = {
-  validator?: any;
-  onFocus?: () => void;
-  onBlur?: () => void;
-  inputId?: string; // user for testing
-  onChange: (value: string) => void;
-  value?: string;
-  field?: string;
-  hint?: string;
-  type?: string;
-  inputRef?: any;
-  error?: string;
-  needErrorHandle?: boolean;
-  onShowPasswordChanged?: () => void;
-  showPassword?: boolean;
-  styles?: {
-    container?: object;
-    field?: object;
-    input?: object;
-  };
-  inputDataTest?: string;
-  useTextHint?: boolean;
-  removePassswordIcon?: boolean;
-  rows?: number;
-  id?: string;
+    validator?: any;
+    onFocus?: () => void;
+    onBlur?: () => void;
+    inputId?: string; // user for testing
+    onChange: (value: string) => void;
+    value?: string;
+    field?: string;
+    hint?: string;
+    type?: string;
+    inputRef?: any;
+    error?: string;
+    needErrorHandle?: boolean;
+    onShowPasswordChanged?: () => void;
+    showPassword?: boolean;
+    styles?: {
+        container?: object;
+        field?: object;
+        input?: object;
+    };
+    inputDataTest?: string;
+    useTextHint?: boolean;
+    removePassswordIcon?: boolean;
+    rows?: number;
+    id?: string;
 };
 
 const Container = styled.div`
@@ -139,115 +139,121 @@ const ShowPassword = styled.div`
 
 const TextField: React.FC<Props> = (props: Props) => {
 
-  // let styles = {};
+    // let styles = {};
 
-  // if (props.useTextHint && props.type === "password") {
-  //   styles = props.value.trim() === "" ? {} : { letterSpacing: "5px", width: "calc(100% + 14px)" };
-  // } else {
+    // if (props.useTextHint && props.type === "password") {
+    //   styles = props.value.trim() === "" ? {} : { letterSpacing: "5px", width: "calc(100% + 14px)" };
+    // } else {
 
-  // }
+    // }
 
-  const styles = props.type === "password" && !props.showPassword ? { letterSpacing: "5px", width: "calc(100% + 14px)" } : {};
-
-  let inputStyles = props.styles?.input || {};
-  inputStyles = {
-    ...inputStyles,
-    ...styles,
-    ...props.styles?.input
-  }
-
-  if (props.type === "password" && !props.showPassword && !props.useTextHint) {
-    inputStyles = {
-      ...inputStyles,
-      letterSpacing: "5px",
-    }
-  }
-
-  if (props.type === "password" && props.useTextHint) {
-    if (props.value?.trim() === "") {
-      inputStyles = {
-        ...inputStyles,
-        letterSpacing: "0px",
-        width: "100%"
-      }
-    } else {
-      inputStyles = {
-        ...inputStyles,
+    const styles = props.type === "password" && !props.showPassword ? {
         letterSpacing: "5px",
-        width: "100%"
-      }
-    }
-  }
+        width: "calc(100% + 14px)"
+    } : {};
 
-  if (props.error) {
+    let inputStyles = props.styles?.input || {};
     inputStyles = {
-      ...inputStyles,
-      border: "1.15px solid #ff3b30"
+        ...inputStyles,
+        ...styles,
+        ...props.styles?.input
     }
-  }
+
+    if (props.type === "password" && !props.showPassword && !props.useTextHint) {
+        inputStyles = {
+            ...inputStyles,
+            letterSpacing: "5px",
+        }
+    }
+
+    if (props.type === "password" && props.useTextHint) {
+        if (props.value?.trim() === "") {
+            inputStyles = {
+                ...inputStyles,
+                letterSpacing: "0px",
+                width: "100%"
+            }
+        } else {
+            inputStyles = {
+                ...inputStyles,
+                letterSpacing: "5px",
+                width: "100%"
+            }
+        }
+    }
+
+    if (props.error) {
+        inputStyles = {
+            ...inputStyles,
+            border: "1.15px solid #ff3b30"
+        }
+    }
 
 
-
-  return (
-    // @ts-ignore
-    <Container style={props.styles?.container || {}} className="text-field" id={props.id}>
-      {/*
+    return (
+        // @ts-ignore
+        <Container style={props.styles?.container || {}} className="text-field" id={props.id}>
+            {/*
        // @ts-ignore */}
-      <Field style={props.styles?.field || {}}>{props.field}</Field>
-      {/*
+            <Field style={props.styles?.field || {}}>{props.field}</Field>
+            {/*
           // @ts-ignore */}
-      {props.field === "Пароль" ? <Row >
-        <Input
-          id={props.inputId}
-          onFocus={props.onFocus}
-          onBlur={props.onBlur}
-          ref={props.inputRef}
-          {/* 
+            {props.field === "Пароль" ? <Row>
+                <Input
+                    id={props.inputId}
+                    onFocus={props.onFocus}
+                    onBlur={props.onBlur}
+                    ref={props.inputRef}
+                    {/*
           // @ts-ignore */ ...{}}
-          style={inputStyles}
-          placeholder={props.hint}
-          onChange={(e) => props.onChange(e.target.value)}
-          type={props.showPassword && props.value !== "" ? "text" : "password"}
-          value={props.value}
-          data-test={props.inputDataTest}
-        />
+                    style={inputStyles}
+                    placeholder={props.hint}
+                    onChange={(e) => props.onChange(e.target.value)}
+                    type={props.showPassword && props.value !== "" ? "text" : "password"}
+                    value={props.value}
+                    data-test={props.inputDataTest}
+                />
 
-        <ShowPassword id="show-password-button" style={{ color: props.showPassword ? "#282828" : "#ccc" }} onClick={props.onShowPasswordChanged}>
-          {
-            props.showPassword && props.value !== "" ? <i className="fa fa-eye-slash" ></i> : <i className="fa fa-eye"></i>
+                <ShowPassword id="show-password-button" style={{ color: props.showPassword ? "#282828" : "#ccc" }}
+                              onClick={props.onShowPasswordChanged}>
+                    {
+                        props.showPassword && props.value !== "" ? <i className="fa fa-eye-slash"></i> :
+                            <i className="fa fa-eye"></i>
 
-          }
-        </ShowPassword>
-      </Row> : <Input
+                    }
+                </ShowPassword>
+            </Row> : <Input
 
-          id={props.inputId}
-          onFocus={props.onFocus}
-          onBlur={props.onBlur}
-          ref={props.inputRef}
-          {/* 
+                id={props.inputId}
+                onFocus={props.onFocus}
+                onBlur={props.onBlur}
+                ref={props.inputRef}
+                {/*
           // @ts-ignore */ ...{}}
-          style={inputStyles}
-          placeholder={props.hint}
-          onChange={(e) => props.onChange(e.target.value)}
-          type={props.type ?? "text"}
-          value={props.value}
-          data-test={props.inputDataTest}
-        />}
+                style={inputStyles}
+                placeholder={props.hint}
+                onChange={(e) => props.onChange(e.target.value)}
+                type={props.type ?? "text"}
+                value={props.value}
+                data-test={props.inputDataTest}
+            />}
 
-      {
-        !props.needErrorHandle ? props.error ? <ErrorText>{props.error}</ErrorText> : <p style={{ fontSize: "12px" }} className="textfield-error">&nbsp;</p> : ""
-      }
+            {
+                !props.needErrorHandle ? props.error ?
+                    <ErrorText className="textfield-error">{props.error}</ErrorText> :
+                    <p style={{ fontSize: "12px" }} className="textfield-error">&nbsp;</p> : ""
+            }
 
-    </Container>
-  );
+        </Container>
+    );
 };
 
 export default TextField;
 
 export {
-  Input,
-  ErrorText,
-  Row,
-  Field,
-  Container,
+    Input,
+    ErrorText,
+    Row,
+    Field,
+    Container,
 }
