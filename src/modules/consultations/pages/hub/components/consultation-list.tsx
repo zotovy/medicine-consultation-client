@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles.scss";
 import Item from "./list-item";
-
+import { observer } from "mobx-react";
 type ItemInfo = {
     imgUrl: string;
     name: string;
@@ -29,4 +29,4 @@ const ListConsultations: React.FC<ItemInfo> = (props: ItemInfo) => {
     )
 }
 
-export default ListConsultations;
+export default observer(ListConsultations);

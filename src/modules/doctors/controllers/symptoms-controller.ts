@@ -1,6 +1,5 @@
 import { observable, action } from "mobx";
 import axios from "axios";
-import { toJS } from "mobx";
 
 type Item = { title: string; sourseSvg: any[]; active: boolean; id: number };
 type Symp = { name: string; active: boolean; id: number };

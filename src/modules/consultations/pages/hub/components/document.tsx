@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles.scss";
 import { PdfIcon, FileIcon, ImageIcon } from "../../../../../modules/consultations/icons";
-
+import { observer } from "mobx-react";
 
 type Props = {
     path: string;
@@ -39,4 +39,4 @@ const Doc: React.FC<Props> = (props: Props) => {
     )
 }
 
-export default Doc;
+export default observer(Doc);

@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles.scss";
-
+import { observer } from "mobx-react";
 type Props = {
     numberRequest: number;
 };
@@ -17,4 +17,4 @@ const Error: React.FC<Props> = (props: Props) => {
     )
 }
 
-export default Error;
+export default observer(Error);

@@ -5,10 +5,14 @@ import PatientСard from "./components/patient-card"
 import RequestIndicator from "./components/request-indicator"
 import Calendar from "./components/calendar"
 import ConsultationList from "./components/consultation-list"
-
+import { observer } from "mobx-react";
+import controller from "./controllers/hub-controller";
+import { toJS } from "mobx"; 
 const Hub: React.FC = () => {
-    const showError: boolean = false;
-    return(
+    let {showError, arrAppointments} = controller,
+        arrApp =  toJS(arrAppointments);
+        console.log(arrApp) 
+    return( 
         <>
             {
                 !showError 
@@ -16,7 +20,7 @@ const Hub: React.FC = () => {
                         <>
                             <div className="hub-wrapper">
                                 <div className="hub-wrapper__patient-card left-side">
-                                    <PatientСard    name='Василий' 
+                                    <PatientСard    name={controller.name} 
                                                     surname="Иванов" 
                                                     number="+7 (932) 33-27-350" 
                                                     sex="Мужской" 
@@ -47,4 +51,4 @@ const Hub: React.FC = () => {
     )
 } 
 
-export default Hub;
+export default observer(Hub);

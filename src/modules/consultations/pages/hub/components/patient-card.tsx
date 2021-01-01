@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles.scss";
 import Doc from "./document";
+import { observer } from "mobx-react";
 
 type Props = {
     imgUrl: string;
@@ -17,7 +18,7 @@ type Props = {
     id: string;
 };
 
-const Error: React.FC<Props> = (props: Props) => {
+const Card: React.FC<Props> = (props: Props) => {
 
     const date = new Date(`${props.date}`);
     const months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
@@ -138,4 +139,4 @@ const Error: React.FC<Props> = (props: Props) => {
     )
 }
 
-export default Error;
+export default observer(Card);
