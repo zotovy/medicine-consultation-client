@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./styles.scss";
 import Error from "./components/hub-error";
 import PatientСard from "./components/patient-card"
@@ -9,9 +9,14 @@ import { observer } from "mobx-react";
 import controller from "./controllers/hub-controller";
 import { toJS } from "mobx"; 
 const Hub: React.FC = () => {
+    useEffect(() => {
+        controller.getAppoints(`${localStorage.getItem('uid')}`);
+        controller.getAppoinsRequest(`${localStorage.getItem('uid')}`);
+    }, []);
+
     let {showError, arrAppointments} = controller,
         arrApp =  toJS(arrAppointments);
-        console.log(arrApp) 
+    console.log(arrApp)
     return( 
         <>
             {

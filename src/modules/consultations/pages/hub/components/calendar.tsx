@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import classnames from "classnames";
 import "../styles.scss";
+import controller from "../controllers/hub-controller";
 
 type Props = {
     isOpen?: boolean;
@@ -13,7 +14,7 @@ type Props = {
     maxYear?: number;
     confirmMessage?: string;
     clearMessage?: string;
-    onSave?: (date: Date) => void;
+    onDayClick?: (date: Date) => void;
 };
 
 type DateObj = {
@@ -30,12 +31,32 @@ const Calendar: React.FC<Props> = (props: Props) => {
     const startedFromSun = props.startedFromSun ?? false;
     const months = props.months ?? ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
     const isOpen = props.isOpen ?? true;
-    const minYear = props.minYear ?? 1500;
-    const maxYear = props.minYear ?? 3000;
-    const confirmMessage = props.confirmMessage ?? "Выбрать";
-    const clearMessage = props.clearMessage ?? "Очистить";
-    const onSave = function (date: Date) { };
+    const onDayClick = function (date: Date) {
+        console.log(date) 
+        controller.handlerCalendarClick(date);
+    };
 
+    const formatedSelectedDate = () => {
+        let date = selectedDate;
+
+        if (selectedDate.getFullYear() === 1000) {
+            date = new Date();
+        }
+
+        let day = date.getDate().toString();
+        let month = (date.getMonth() + 1).toString();
+
+        if (day.length === 1) {
+            day = "0" + day;
+        }
+
+        if (month.length === 1) {
+            month = "0" + month;
+        }
+
+
+        return `${day} / ${month} / ${date.getFullYear()}`
+    }
 
     const getDates = (year: number, month: number): Array<DateObj> => {
 
@@ -96,28 +117,6 @@ const Calendar: React.FC<Props> = (props: Props) => {
         } else {
             return false
         }
-    }
-
-    const formatedSelectedDate = () => {
-        let date = selectedDate;
-
-        if (selectedDate.getFullYear() === 1000) {
-            date = new Date();
-        }
-
-        let day = date.getDate().toString();
-        let month = (date.getMonth() + 1).toString();
-
-        if (day.length === 1) {
-            day = "0" + day;
-        }
-
-        if (month.length === 1) {
-            month = "0" + month;
-        }
-
-
-        return `${day} / ${month} / ${date.getFullYear()}`
     }
 
     const getDatesFromMon = (year: number, month: number): Array<DateObj> => {
@@ -212,26 +211,6 @@ const Calendar: React.FC<Props> = (props: Props) => {
         setWeeks(groupByWeek(newDates));
     }
 
-    const goYearForward = () => {
-        if (year !== maxYear) {
-            setYear(year + 1);
-
-            const newDates = startedFromSun ? getDates(year + 1, monthIndex) : getDatesFromMon(year + 1, monthIndex);
-            setWeeks(groupByWeek(newDates));
-        }
-
-    }
-
-    const goYearBackward = () => {
-        if (year !== minYear) {
-            setYear(year - 1);
-
-            const newDates = startedFromSun ? getDates(year - 1, monthIndex) : getDatesFromMon(year - 1, monthIndex);
-            setWeeks(groupByWeek(newDates));
-        }
-
-    }
-
     const [monthIndex, setMonthIndex] = useState(new Date().getMonth());
     const [year, setYear] = useState(new Date().getFullYear());
     const [selectedDate, setSelectedDate] = useState(new Date(1000, 11, 21));
@@ -280,7 +259,7 @@ const Calendar: React.FC<Props> = (props: Props) => {
                                         );
                                         return <span
                                             key={day.date.toString()}
-                                            onClick={() => {setSelectedDate(day.date); onSave(selectedDate)}}
+                                            onClick={() => {setSelectedDate(day.date); onDayClick(selectedDate)}}
                                             className={classes}
                                             id={day.date.getDate().toString()}>
                                             {day.date.getDate()}

@@ -18,29 +18,57 @@ class HubController {
     @observable _id: any;
     @observable name: any;
 
-    @action public onHubReady = async (id: string = "5fe98b597c4d6207627c1097") => {
+    @action public getAppoints = async (id: string) => {
         return await this._fetchAppointments(id).then(
             action((arr = []) => {
                 return this.arrAppointments = arr;
             })
         );
     };
-    private _fetchAppointments = async (id: string = "5fe98b597c4d6207627c1097"): Promise<any> => {
-        console.log(1)
+    private _fetchAppointments = async (id: string): Promise<any> => {
         const response = await axios
             .get(
                 process.env.REACT_APP_SERVER_URL +
-                `/doctor/${JSON.stringify(id)}/appoints`
+                `/doctor/${id}/appoints`
+            )
+            .then((data: any) => data.data)
+            .catch(() => {
+                return { success: false };
+            });
+            // if(!response.success || response.lenght == 0){
+            //     return this.showError = true;
+            // }
+        return await response.symptoms;
+    };
+
+    @action public getAppoinsRequest = async (id: string) => {
+        return await this._fetchAppointmentsRequest(id).then(
+            action((arr = []) => {
+                return this.arrAppointments = arr;
+            })
+        );
+    };
+
+    private _fetchAppointmentsRequest = async (id: string): Promise<any> => {
+        const response = await axios
+            .get(
+                process.env.REACT_APP_SERVER_URL +
+                `/doctor/${id}/appoints-requests`
             )
             .then((data: any) => data.data)
             .catch(() => {
                 return { success: false };
             });
             if(!response.success || response.lenght == 0){
-                return this.showError = true;
+                console.error('error')
             }
-            this.name = "Вася";
         return await response.symptoms;
+    };
+    
+    @action handlerCalendarClick = async (date:Date) => {
+        console.log("1-"+date)
+        let date2 = new Date(date);
+        console.log("2-"+date2)
     };
 }
 export default new HubController();
