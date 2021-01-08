@@ -1,9 +1,9 @@
 import { AxiosResponse } from "axios";
 import tokenServices from "./token-services";
 
-const authFetch = async (
+const authFetch = async <T = any>(
     f: () => Promise<AxiosResponse<any>>
-): Promise<AFRes> => {
+): Promise<AFRes<T>> => {
     try {
         let data = await f().catch((e) => e?.response);
 
@@ -13,7 +13,7 @@ const authFetch = async (
             if (!uid)
                 return {
                     status: EAuthFetch.Unauthorized,
-                    data: {},
+                    data: {} as T,
                 };
 
             await tokenServices.getAndUpdateNewAccessToken();
@@ -22,18 +22,18 @@ const authFetch = async (
             if (data.status === 403 || data.status === 412)
                 return {
                     status: EAuthFetch.Unauthorized,
-                    data: {},
+                    data: {} as T,
                 };
         }
 
         return {
             status: EAuthFetch.Success,
-            data: data.data,
+            data: data.data as T,
         };
     } catch (e) {
         return {
             status: EAuthFetch.Error,
-            data: {},
+            data: {} as T,
         };
     }
 };
@@ -44,9 +44,9 @@ export enum EAuthFetch {
     Error,
 }
 
-export type AFRes = {
+export type AFRes<T = any> = {
     status: EAuthFetch;
-    data: any | {};
+    data: T;
 };
 
 export { authFetch };

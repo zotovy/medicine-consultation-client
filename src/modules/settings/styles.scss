@@ -425,11 +425,38 @@ main.notifications-page section.notifications {
 
 main.change-password-page section.change-password-page {
 
+    .textfield-row {
+        display: flex;
+
+        .space {
+            width: 100px;
+            flex: 0 0 auto;
+        }
+
+        &#old-row {
+            width: calc(50% - 50px);
+        }
+    }
+
     .confirm-button {
+        margin-top: 10px;
         width: 30%;
     }
 
-    @media screen and (max-width: 425px) {
+    @media screen and (max-width: 1336px) {
+        margin-right: 100px;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .textfield-row {
+            flex-direction: column;
+            width: calc(100% - 16px);
+
+            &#old-row {
+                width: calc(100% - 16px);
+            }
+        }
+
         .confirm-button {
             width: 100%;
         }
