@@ -11,6 +11,7 @@ class DoctorSettingsController {
     @observable selectedDays: number[] = [];
     @observable price: string = "1000";
     @observable consultationDuration: string = "40";
+    @observable consultationPause: string = "0";
 
     load = async (): Promise<void> => {
         const uid = localStorage.getItem("uid");
@@ -25,6 +26,7 @@ class DoctorSettingsController {
             this.selectedDays = doctor.workingTime.weekends;
             this.setPrice(doctor.price.toString());
             this.consultationDuration = doctor.workingTime.consultationTimeInMin.toString();
+            this.consultationPause = doctor.workingTime.consultationPauseInMin.toString();
             this.isLoading = false;
             return;
         }
@@ -37,7 +39,6 @@ class DoctorSettingsController {
                 headers: { auth: tokenServices.header }
             }
         ));
-
 
         if (!result || result.status === EAuthFetch.Error) throw "error";
         else if (result.status === EAuthFetch.Unauthorized) throw "logout";
@@ -54,6 +55,7 @@ class DoctorSettingsController {
                 this.consultationEndTime = formatServices.formatCustomTime(user.workingTime.to);
                 this.selectedDays = user.workingTime.weekends;
                 this.consultationDuration = user.workingTime.consultationTimeInMin.toString();
+                this.consultationPause = user.workingTime.consultationPauseInMin.toString();
                 this.setPrice(user.price.toString());
             })();
         }
@@ -75,6 +77,7 @@ class DoctorSettingsController {
                 from: formatDate(this.consultationBeginTime),
                 to: formatDate(this.consultationEndTime),
                 consultationTimeInMin: parseInt(this.consultationDuration),
+                consultationPauseInMin: parseInt(this.consultationPause),
                 weekends: this.selectedDays,
                 price: this.price,
             },
@@ -91,6 +94,7 @@ class DoctorSettingsController {
     @observable workingDaysError: string | undefined = undefined;
     @observable priceError: string | undefined = undefined;
     @observable consultationDurationError: string | undefined = undefined;
+    @observable consultationPauseError: string | undefined = undefined;
     doctorWillGet: string = "Вы будете получать 1000₽ за одну консультацию";
 
     @action validate = (): boolean => {
@@ -120,10 +124,16 @@ class DoctorSettingsController {
             isOk = false;
         }
         const dur = parseInt(this.consultationDuration)
-        if (dur > 180 || dur < 20) {
+        if (dur >= 180 || dur <= 20) {
             this.consultationDurationError = "Неверный формат. Время консультации должно быть от 20 до 180 минут";
             isOk = false;
         }
+        const pause = parseInt(this.consultationDuration)
+        if  (pause <= 0) {
+            this.consultationPauseError = "Неверный формат. Пауза между консультациями должна быть от 0 до 180 минут";
+            isOk = false;
+        }
+
         if (parseInt(this.price) < 300) isOk = false;
 
         return isOk;

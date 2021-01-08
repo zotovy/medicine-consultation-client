@@ -11,7 +11,7 @@ import SettingsLoadingComponent from "../components/loading";
 import { Simulate } from "react-dom/test-utils";
 
 const days: string[] = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
-const clickOnWorkingDays = (i: number) => { 
+const clickOnWorkingDays = (i: number) => {
     if (controller.selectedDays.includes(i)) controller.selectedDays = controller.selectedDays.filter(e => e != i);
     else controller.selectedDays.push(i);
 }
@@ -43,13 +43,21 @@ const DoctorSettingsPage = () => {
                     value={controller.consultationEndTime}
                     onChange={(v) => controller.consultationEndTime = formatServices.formatTimeInput(v)}/>
             </div>
-
-            <TextField
-                field="Продолжительность консультации"
-                type="integer"
-                error={controller.consultationDurationError}
-                value={controller.consultationDuration}
-                onChange={(v) => controller.consultationDuration = v}/>
+            <div className="row">
+                <TextField
+                    field="Продолжительность консультации"
+                    type="integer"
+                    error={controller.consultationDurationError}
+                    value={controller.consultationDuration}
+                    onChange={(v) => controller.consultationDuration = v}/>
+                <div className="space"/>
+                <TextField
+                    field="Пауза между консультациями"
+                    type="integer"
+                    error={controller.consultationPauseError}
+                    value={controller.consultationPause}
+                    onChange={(v) => controller.consultationPause = v}/>
+            </div>
 
             <span id="working-days">Рабочие дни</span>
             <div className="working-days">
@@ -58,12 +66,12 @@ const DoctorSettingsPage = () => {
                         key={`${e}-day-button`}
                         onClick={() => clickOnWorkingDays(i)}
                         className={`day ${controller.selectedDays.includes(i) ? "selected" : ""}`}>
-                        { e }
+                        {e}
                     </button>)
                 }
             </div>
             {
-                !controller.workingDaysError || <div className="working-days_error">{ controller.workingDaysError }</div>
+                !controller.workingDaysError || <div className="working-days_error">{controller.workingDaysError}</div>
             }
 
             <TextField
@@ -73,7 +81,7 @@ const DoctorSettingsPage = () => {
                 error={controller.priceError}
                 value={controller.price}
                 onChange={controller.setPrice}/>
-            <span id="under-price">Вы будете получать { controller.doctorWillGet } за одну консультацию</span>
+            <span id="under-price">Вы будете получать {controller.doctorWillGet} за одну консультацию</span>
 
             <ConfirmButton onConfirm={controller.save} content="Сохранить"/>
         </section>

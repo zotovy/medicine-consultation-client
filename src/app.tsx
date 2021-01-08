@@ -33,9 +33,6 @@ const ErrorSympPage = lazy(() => import("./modules/doctors/components/symptoms/e
 
 const App = () => {
 
-    useEffect(() => {
-    }, []);
-
     return (
         <Switch >
 
