@@ -18,7 +18,7 @@ export class DoctorDetailHelper {
         });
     }
 
-    public static getEducation = (education?: DoctorEducationType[]):  YearsTitleComponentProps[] => {
+    public static getEducation = (education?: DoctorEducationType[]): YearsTitleComponentProps[] => {
         if (!education || education.length === 0) return [];
         return education.map(e => {
             return {
@@ -44,8 +44,8 @@ export class DoctorDetailHelper {
 
     private static getScheduleTime = (date: Date): AppointTime[] => {
         if (!controller.doctor) return [];
-        const allTime: {from: Time, to: Time}[] = [];
-        const availableTime: {from: Time, to: Time, isOccupied: boolean }[] = [];
+        const allTime: { from: Time, to: Time }[] = [];
+        const availableTime: { from: Time, to: Time, isOccupied: boolean }[] = [];
 
         // Add all possible consultation dates
         let time1InMin = controller.doctor.workingTime.from.h * 60 + controller.doctor.workingTime.from.m;
@@ -62,7 +62,7 @@ export class DoctorDetailHelper {
                     m: finishTimeInMin % 60,
                 }
             });
-            time1InMin += controller.doctor.workingTime.consultationTimeInMin;
+            time1InMin += controller.doctor.workingTime.consultationTimeInMin + controller.doctor.workingTime.consultationPauseInMin;
         }
 
         // Remove occupied time
@@ -94,7 +94,7 @@ export class DoctorDetailHelper {
 
     public static getScheduleWeek = (fromDate: Date): DayType[] => {
         if (!controller.doctor) return [];
-        const days : DayType[] = [];
+        const days: DayType[] = [];
         for (let i = 0; i < 7; i++) {
             const date = new Date();
             date.setDate(fromDate.getDate() + i);
