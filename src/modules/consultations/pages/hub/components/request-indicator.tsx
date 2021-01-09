@@ -9,8 +9,15 @@ const Error: React.FC<Props> = (props: Props) => {
         <>
             <div className="request-indicator-container">
                 <div className="request-indicator">
-                    <div>{props.numberRequest}</div>
-                    <span>{props.numberRequest !== 0 ? "Новая заявка" : "Заявок нет"}</span>
+                    {+props.numberRequest !== 0 
+                        ?
+                            <>
+                                <div>{props.numberRequest}</div>
+                                <span>Новая заявка</span>
+                            </> 
+                        :
+                            <span>Заявок нет</span>
+                    }
                 </div>
             </div>
         </>

@@ -1,74 +1,105 @@
 import { observable, action } from "mobx";
 import axios from "axios";
-
-// type arrAppointment = {
-//     from: string;
-//     to: string;
-//     consulation: {
-//         patient: {
-//             name:string;
-//             suranme: string;
-//             patronymic: string;
-//         }
-//     }
-// }
+import { authFetch } from "../../../../../services/fetch_services";
+import tokenServices from "../../../../../services/token-services";
 class HubController {
     @observable showError: boolean = false;
-    @observable arrAppointments: any[] = [];
-    @observable _id: any;
+    @observable arrAppointments: any = [];
+    @observable _id: any = localStorage.getItem('uid');
     @observable name: any;
+    @observable date: string = "";
+    @observable showLoader: boolean = false;
+    @observable numberRequest: number = 0;
+    @observable infoForCard: any = [];
+    @observable showCard: boolean = false;  
+    @observable itemPosActive: number = 0;
+    @action setDate = (sD: Date) => {
+        let formatDate = sD;
+        if (sD.getFullYear() === 1000) {
+            formatDate = new Date();
+        }
+        let day = formatDate.getDate().toString(),
+            month = (formatDate.getMonth() + 1).toString();
+        if (day.length === 1) {
+            day = "0" + day;
+        }
+        if (month.length === 1) {
+            month = "0" + month;
+        }
+        this.date = `${day}.${month}.${formatDate.getFullYear()}`;
+        this.onItemHandlerClick([])
+        this.getAppoints(this._id)
+    }
 
     @action public getAppoints = async (id: string) => {
-        return await this._fetchAppointments(id).then(
+        this.showLoader = true;
+        this._id = id;
+        return await this._fetchAppointments(id, this.date).then(
             action((arr = []) => {
-                return this.arrAppointments = arr;
+                if(arr.appoints.length !== 0){
+                    this.showCard = true;
+                    this.infoForCard = arr.appoints[0];
+                };
+                return  this.arrAppointments = arr.appoints;
             })
         );
     };
-    private _fetchAppointments = async (id: string): Promise<any> => {
-        const response = await axios
-            .get(
-                process.env.REACT_APP_SERVER_URL +
-                `/doctor/${id}/appoints`
-            )
-            .then((data: any) => data.data)
-            .catch(() => {
-                return { success: false };
-            });
-            // if(!response.success || response.lenght == 0){
-            //     return this.showError = true;
-            // }
-        return await response.symptoms;
+    private _fetchAppointments = async (id: string, date: string): Promise<any> => {
+        const response = await authFetch(() => axios.get(
+            process.env.REACT_APP_SERVER_URL + `/api/doctor/${id}/appoints?numericDate=${date}`,
+            {
+                headers: {
+                    auth: tokenServices.header
+                }
+            }
+        ))
+        .then((data: any) => {return data.data})
+        .catch(() => {
+            return { success: false };
+        })
+        if (!response.success) {
+            return [];
+        } else {
+            this.showLoader = false;
+        }
+        return response
     };
 
     @action public getAppoinsRequest = async (id: string) => {
         return await this._fetchAppointmentsRequest(id).then(
             action((arr = []) => {
-                return this.arrAppointments = arr;
+                return this.numberRequest = arr;
             })
         );
     };
 
     private _fetchAppointmentsRequest = async (id: string): Promise<any> => {
-        const response = await axios
-            .get(
-                process.env.REACT_APP_SERVER_URL +
-                `/doctor/${id}/appoints-requests`
-            )
-            .then((data: any) => data.data)
+            const response = await authFetch(() => axios.get(
+                process.env.REACT_APP_SERVER_URL + `/api/doctor/${id}/appoints-requests`,
+                {
+                    headers: {
+                        auth: tokenServices.header
+                    }
+                }
+            ))
+            .then((data: any) => {return data.data})
             .catch(() => {
                 return { success: false };
-            });
-            if(!response.success || response.lenght == 0){
-                console.error('error')
+            })
+            if (!response.success) {
+                return [0];
             }
-        return await response.symptoms;
+            return response
     };
-    
-    @action handlerCalendarClick = async (date:Date) => {
-        console.log("1-"+date)
-        let date2 = new Date(date);
-        console.log("2-"+date2)
-    };
+
+    @action onItemHandlerClick = (info: [], pos: number = 0) => {
+        this.itemPosActive = pos;
+        if(info.length !== 0){
+            this.showCard = true;
+            this.infoForCard = info;
+        }else{
+            this.showCard = false;
+        }
+    } 
 }
 export default new HubController();

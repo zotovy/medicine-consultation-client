@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 import "../styles.scss";
 import controller from "../controllers/hub-controller";
@@ -31,11 +31,9 @@ const Calendar: React.FC<Props> = (props: Props) => {
     const startedFromSun = props.startedFromSun ?? false;
     const months = props.months ?? ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"];
     const isOpen = props.isOpen ?? true;
-    const onDayClick = function (date: Date) {
-        console.log(date) 
-        controller.handlerCalendarClick(date);
-    };
-
+    useEffect(() => {
+        controller.setDate(selectedDate)
+    }, []);
     const formatedSelectedDate = () => {
         let date = selectedDate;
 
@@ -223,7 +221,9 @@ const Calendar: React.FC<Props> = (props: Props) => {
             maxWidth: props.maxWidth,
         }
     }
-
+    const onDayClick = function (date: Date) {
+        controller.setDate(date);
+    };
     return <React.Fragment>
         <div className={classnames("calendar-container", !isOpen ? "calendar-container-disable" : "")} style={styles.calendarContainer}>
             <div className="right-sidebar-calendar">
@@ -259,7 +259,7 @@ const Calendar: React.FC<Props> = (props: Props) => {
                                         );
                                         return <span
                                             key={day.date.toString()}
-                                            onClick={() => {setSelectedDate(day.date); onDayClick(selectedDate)}}
+                                            onClick={() => {setSelectedDate(day.date); onDayClick(day.date)}}
                                             className={classes}
                                             id={day.date.getDate().toString()}>
                                             {day.date.getDate()}

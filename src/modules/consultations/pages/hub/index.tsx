@@ -4,19 +4,19 @@ import Error from "./components/hub-error";
 import PatientСard from "./components/patient-card"
 import RequestIndicator from "./components/request-indicator"
 import Calendar from "./components/calendar"
-import ConsultationList from "./components/consultation-list"
+import ListItem from "./components/consultation-list"
 import { observer } from "mobx-react";
 import controller from "./controllers/hub-controller";
+import Loader from "../../../../components/loading-indicator";
 import { toJS } from "mobx"; 
+
 const Hub: React.FC = () => {
     useEffect(() => {
         controller.getAppoints(`${localStorage.getItem('uid')}`);
         controller.getAppoinsRequest(`${localStorage.getItem('uid')}`);
     }, []);
-
-    let {showError, arrAppointments} = controller,
-        arrApp =  toJS(arrAppointments);
-    console.log(arrApp)
+    let arrApp = toJS(controller.arrAppointments);
+    const {showError, showLoader, numberRequest, infoForCard, showCard, itemPosActive} = controller;
     return( 
         <>
             {
@@ -25,26 +25,46 @@ const Hub: React.FC = () => {
                         <>
                             <div className="hub-wrapper">
                                 <div className="hub-wrapper__patient-card left-side">
-                                    <PatientСard    name={controller.name} 
-                                                    surname="Иванов" 
-                                                    number="+7 (932) 33-27-350" 
-                                                    sex="Мужской" 
-                                                    chronicDiseases="" 
-                                                    symptoms="Всё оч плохо ноги нет. Я не знаю что мне делать. Мне кажется я скоро умру, если вы мне не поможете" 
-                                                    imgUrl=""
-                                                    middlename="Иванович"
-                                                    date="2020-12-31T23:39:06.265Z"
-                                                    age= {1}
-                                                    fullname="Василий Иванов Иванович"
-                                                    id="AVCX21314DC"
-                                    />
+                                    {
+                                        showCard
+                                            ?
+                                                <PatientСard    patientName={infoForCard.patientName} 
+                                                    number={infoForCard.phone} 
+                                                    sex={infoForCard.sex}
+                                                    chronicDiseases={infoForCard.chronicDiseases ?? ''} 
+                                                    symptoms={infoForCard.symptoms ?? ''} 
+                                                    imgUrl={infoForCard.imgUrl ?? ''} 
+                                                    dateTo={infoForCard.to} 
+                                                    dateFrom={infoForCard.from} 
+                                                    birthday= {infoForCard.birthday} 
+                                                    id= {infoForCard._id}
+                                                    documents={infoForCard.documents}
+                                                />
+                                            :
+                                            <></>
+                                    }
+                                    
                                 </div>
                                 <div className="hub-wrapper__sidebar right-side">
-                                    <RequestIndicator numberRequest={1} />
+                                    <RequestIndicator numberRequest={numberRequest} />
                                     <div className="hub-calendar">
                                         <Calendar/>
                                     </div>
-                                    <ConsultationList imgUrl="" name="Василий" surname="Иванов" date="2020-12-31T23:39:06.265Z" id="AVCX21314DC" dateTo="" dateFrom=""/>
+                                    <div className="consultation-list-wrapper">
+                                        <p className="list-section-title">Консультации</p>
+                                        <div className="consultation-list">
+                                            {
+                                                !showLoader
+                                                ? <>
+                                                    {arrApp.map((e:any, i: number) => <ListItem key={e._id} posActive={itemPosActive}allInfo={e} arrPos={i}imgUrl={e.imgUrl ?? ''} patientName={e.patientName} id={e._id} dateTo={e.to} dateFrom={e.from}/>)} 
+                                                </>
+                                                :
+                                                <>
+                                                    <Loader/>
+                                                </>
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
