@@ -2578,13 +2578,14 @@ $hoverCol: #30B9D6;
 
         /* width */
         &::-webkit-scrollbar {
-            width: 4px;
-            margin-left: 5px;
+            height: 4px;
+            margin-top: 10px;
         }
 
         /* Track */
         &::-webkit-scrollbar-track {
             background: #f1f1f1;
+            height: 4px;
             cursor: pointer;
         }
 

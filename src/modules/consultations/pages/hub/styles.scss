@@ -1,0 +1,506 @@
+@import "../../../../static/mixins.scss";
+@import "../../../../static/theme.scss";
+
+.hub-wrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 1377px;
+    margin: 34px auto;
+}
+
+    //========================================================================================
+    /*                                                                                      *
+     *                                    Error Styles                                   *
+     *                                                                                      */
+    //========================================================================================
+
+.hub-error-wrapper{
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .hub-error{
+        width: 547px;
+        height: 438px;
+        .hub-error-text{
+            margin-top: 15px;
+            font-size: 18px;
+            color: #565656;
+            text-align: center;
+        }
+    }
+}
+
+    //========================================================================================
+    /*                                                                                      *
+     *                                    Indicator Styles                                   *
+     *                                                                                      */
+    //========================================================================================
+.hub-wrapper__sidebar{
+    width: 389px;
+}
+.request-indicator-container{
+    width: 100%;
+    height: 50px;
+    cursor: pointer;
+    .request-indicator{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        -webkit-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.07);
+        -moz-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.07);
+        box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.07);
+        border-radius: 10px;
+        background-color: #fff;
+        div{
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            background-color: $primary;
+            color: #fff;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 24px;
+        }
+        span{
+            color: #282828;
+            font-size: 18px;
+            margin-left: 12px;
+            line-height: 24px;
+        }
+    }
+}
+    //========================================================================================
+    /*                                                                                      *
+     *                                    Patient Card Styles                                   *
+     *                                                                                      */
+    //========================================================================================
+.hub-wrapper__patient-card{
+    width: 909px;
+    height: 485px;
+}
+
+.patient-card-header{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    div{
+        display: flex;
+        align-items: center;
+        .card-profile-pic{
+            width: 100px;
+            height: 100px;
+            background-position: center;
+            background-size: cover;
+            border-radius: 10px;
+        }
+        .card-name-surname-container{
+            margin-left: 30px;
+            display: inline-block;
+            .card-name-surname-middlename{
+                color: #111111;
+                font-size: 22px;
+                line-height: 30px;
+                font-weight: 600;
+            }
+            .card-consultation-data{
+                font-size: 18px;
+                line-height: 24px;
+                color: #707070;
+                font-weight: 400;
+                margin-top: 3px;
+            }
+        }
+        .card-buttons{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .card-connect-button{
+                width: 160px;
+                height: 35px;
+                background-color: $primary;
+                color: #fff;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 18px;
+                font-weight: 400;
+                line-height: 24px;
+                cursor: pointer;
+            }
+            .card-discard-button{
+                width: 35px;
+                height: 35px;
+                background-color: #E9F7FA;
+                border-radius: 6px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+        }
+    } 
+}
+
+.patient-card-body{
+    .card-section-title{
+        margin-top: 17px;
+        color: #282828;
+        font-size: 20px;
+        line-height: 27px;
+        font-weight: 500;
+    }
+    .card-patient-information{
+        width: 841px;
+        height: 55px;
+        margin-top: 8px;
+        display: flex;
+        justify-content: space-between;
+        .card-col-1,.card-col-2,.card-col-3,.card-col-4{
+            .card-row-2{
+                margin-top: 7px;
+            }
+            .card-row-1,.card-row-2{
+                display: flex;
+                justify-content: space-between;
+                .card-patient-information-p{
+                    color: #828282;
+                    font-size: 18px;
+                    line-height: 24px;
+                    font-weight: 400;
+                }
+                .card-patient-information-a{
+                    color: #282828;
+                    font-size: 18px;
+                    line-height: 24px;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+    .card-row-3{
+        margin-top: 17px;
+    }
+    .card-row-4{
+        margin-top: 7px;
+    }
+    .card-row-3,.card-row-4{
+        display: flex;
+        justify-content: space-between;
+        .card-patient-information-p{
+            color: #828282;
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: 400;
+
+        }
+        .card-patient-information-a{
+            color: #282828;
+            font-size: 18px;
+            line-height: 24px;
+            font-weight: 400;
+        } 
+    }
+    .card-info-symps{
+        width: 868px;
+        display: flex;
+        justify-content: space-between;
+        .card-col-5{
+            span{
+                width: max-content;
+            }
+        }
+        .card-col-6{
+            margin-left: 45px
+        }
+    }
+}
+
+.card-info-docs{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    .doc-wrapper:nth-child(6){
+        margin-left: 0;
+    }
+    .doc-wrapper:nth-child(N+6){
+        margin-top: 10px;
+    }
+}
+    //========================================================================================
+    /*                                                                                      *
+     *                                    Doc Styles                                        *
+     *                                                                                      */
+    //========================================================================================
+
+.doc-wrapper{
+    width: 155px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 9.8px 10.4px 9.8px 10.4px;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.doc-wrapper:not(:first-child){
+    margin-left: 30px;
+}
+.doc-info{
+    margin-left: 9.6px;
+    .doc-info--name{
+        width: 100px;
+        font-size: 14px;
+        line-height: 19px;
+        color: #282828;
+    }
+    .doc-info--size--type{
+        margin-top: -2px;
+        font-size: 12px;
+        line-height: 16px;
+        color: #707070;
+    }
+}
+
+    //========================================================================================
+    /*                                                                                      *
+     *                                    Card Footer Styles                                        *
+     *                                                                                      */
+    //========================================================================================
+
+    .patient-card-footer{
+        margin-top: 30px;
+        .card-notification{
+            font-size: 18px;
+            line-height: 22px;
+            color: #282828;
+            u{
+                color: $primary;            
+            }
+        }
+    }
+
+
+
+        //========================================================================================
+    /*                                                                                      *
+     *                                    Calendar  Styles                                        *
+     *                                                                                      */
+    //========================================================================================
+    .hub-calendar{
+        margin-top: 20px;
+    }
+    .calendar-container {
+        pointer-events: all;
+        background: white;
+        border-radius: 7px;
+        padding: 10px 30px 23px 30px;
+        min-width: 300px;
+        max-width: 500px;
+        -webkit-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.07);
+        -moz-box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.07);
+        box-shadow: 0px 5px 25px 0px rgba(0, 0, 0, 0.07);
+    }
+    .right-sidebar-calendar{
+        .calendar-up-row{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            color: #ccc;
+            font-size: 24px;
+            padding: 0 10px;
+            .fa:hover{
+                cursor: pointer;
+                color: #afafaf;
+            }
+            .year-back {
+                margin-right: 5px;
+            }
+            .year-forward{
+                margin-left: 5px;
+            }
+            span.month{
+                font-size: 16px;
+                line-height: 21px;
+                color: #282828;
+                font-weight: 600;
+            }
+        }
+        .weekdays{
+            font-size: 14px;
+            color: #ccc;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            margin:  10px 0;
+            span {
+                width: fit-content;
+            }
+        }
+        .days {
+            display: flex;
+            flex-direction: column;
+            .week {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                span.day {
+                    transition: 300ms;
+                    border-radius: 50%;
+                    cursor: pointer;
+                    color: #282828;
+                    margin: 3px;
+                    padding: 7px 2px 1px 1px;
+                    display: flex;
+                    width: 34px;
+                    height: 34px;
+                    justify-content: center;
+                    &:hover{
+                        background: #fafafa;
+                    }
+                }
+                span.today {
+                    border: 1px #30b9d6 solid;
+                }
+                span.disable-day {
+                    color: #ccc;
+                }
+                span.selected {
+                    color: white;
+                    background: #30b9d6;
+                    &:hover {
+                        background: #30b9d6;
+                    }
+                }
+            }
+        }
+
+    }
+    
+        //========================================================================================
+    /*                                                                                      *
+     *                                    Coslutation list  Styles                                   *
+     *                                                                                      */
+    //========================================================================================
+.consultation-list-wrapper{
+    margin-top: 27px;
+
+    .list-section-title{
+        margin-bottom: 17px;
+        color: #282828;
+        font-size: 24px;
+        line-height: 27px;
+        font-weight: 500;
+    }
+}
+.consultation-list{
+    width: 110%;
+    height: 340px !important;
+    box-sizing: content-box;
+    overflow-y: auto;
+    padding: 0 15px;
+    margin-left: -15px;
+    padding-top: 15px;
+    .loader{
+        width: 100%;
+        height: 100%;
+    }
+}
+.list-item{
+    cursor: pointer !important;
+    width: 100%;
+    height: 111px;
+    padding: 14px 15px 13px 15px;
+    -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.07);
+    -moz-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.07);
+    box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.07);
+    border-radius: 10px;
+    &.list-item:not(:first-child){
+        margin-top: 30px;
+    }
+    .item-row-up{
+        position: relative;
+        display: flex;
+        align-items: center;
+        .item-profile-pic{
+            width: 55px;
+            height: 55px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+        }
+        .item-name-surname{
+            margin-left: 13.5px;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 24px;
+            color: #282828;
+            height: 28px;
+            position: relative;
+            &:before{
+                content: "";
+                position: absolute;
+                width: 50%;
+                height: 4px;
+                border-radius: 2px;
+                bottom: 0;
+                background-color: $primary;
+            }
+        }
+        .item-time-to{
+            font-size: 14px;
+            color: #C7C5C5cc;
+            line-height: 19px;
+            font-weight: 400;
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+    }
+    .item-row-down{
+        margin-top: 9px;
+        .card-consultation-data{
+            color: #565656;
+            font-size: 14px;
+            line-height: 19px;
+            font-weight: 400;
+        }
+    }
+    &.active{
+        background-color: $primary;
+        border-radius: 10px;
+        .item-row-up{
+            .item-name-surname{
+                color: #fff;
+                &:before{
+                    background-color: #fff;
+                }
+            }
+            .item-time-to{
+                color: #fff;
+            }
+        }
+        .item-row-down{
+            .card-consultation-data{
+                color: #fff;
+            }
+        }
+    }
+}
