@@ -208,7 +208,10 @@ const TextField: React.FC<Props> = (props: Props) => {
           // @ts-ignore */ ...{}}
                     style={inputStyles}
                     placeholder={props.hint}
-                    onChange={(e) => props.onChange(e.target.value)}
+                    onChange={(e) => {
+                        if (props.type !== "password") props.onChange(e.target.value);
+                        else if (new RegExp("^[A-Za-z0-9_-]*$").test(e.target.value)) props.onChange(e.target.value);
+                    }}
                     type={props.showPassword && props.value !== "" ? "text" : "password"}
                     value={props.value}
                     data-test={props.inputDataTest}
