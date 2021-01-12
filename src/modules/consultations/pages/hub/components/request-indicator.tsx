@@ -1,13 +1,14 @@
 import React from "react";
 import "../styles.scss";
 import { observer } from "mobx-react";
+import controller from "../controllers/hub-controller"
 type Props = {
     numberRequest: number;
 };
-const Error: React.FC<Props> = (props: Props) => {
+const RequestIndicator: React.FC<Props> = (props: Props) => {
     return(
         <>
-            <div className="request-indicator-container">
+            <div className="request-indicator-container" onClick={() => {if(+props.numberRequest == 0 ){controller.openRequestsPage()}}}>
                 <div className="request-indicator">
                     {+props.numberRequest !== 0 
                         ?
@@ -24,4 +25,4 @@ const Error: React.FC<Props> = (props: Props) => {
     )
 }
 
-export default observer(Error);
+export default observer(RequestIndicator);

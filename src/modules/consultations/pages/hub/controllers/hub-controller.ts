@@ -13,6 +13,9 @@ class HubController {
     @observable infoForCard: any = [];
     @observable showCard: boolean = false;  
     @observable itemPosActive: number = 0;
+    @observable showPopUp: boolean = false;    
+    @observable showRequestsPage: boolean = false;
+
     @action setDate = (sD: Date) => {
         let formatDate = sD;
         if (sD.getFullYear() === 1000) {
@@ -101,5 +104,15 @@ class HubController {
             this.showCard = false;
         }
     } 
+    @action closePopUp = () => {
+        console.log(this.showPopUp)
+        this.showPopUp = false;
+    }
+    @action openPopUp = () => {
+        this.showPopUp = true;
+    }
+    @action openRequestsPage = () => {
+        this.showRequestsPage = true;
+    }
 }
 export default new HubController();

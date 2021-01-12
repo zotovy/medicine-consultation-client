@@ -1,6 +1,7 @@
 import React from "react";
 import "../styles.scss";
 import Doc from "./document";
+import controller from "../controllers/hub-controller"
 import { observer } from "mobx-react";
 
 type Props = {
@@ -18,7 +19,6 @@ type Props = {
 };
 
 const Card: React.FC<Props> = (props: Props) => {
-
     const date = new Date(`${props.dateFrom}`),
         dateTo = new Date(`${props.dateTo}`),
         dateFrom = new Date(`${props.dateFrom}`),
@@ -88,6 +88,7 @@ const Card: React.FC<Props> = (props: Props) => {
             currentDate = new Date();
         return +currentDate.getFullYear() - +age.getFullYear();
     }
+
     return(
         <>
             <div className="patient-card-container">
@@ -102,7 +103,7 @@ const Card: React.FC<Props> = (props: Props) => {
                     <div>
                         <div className="card-buttons">
                             <div className="card-connect-button">Подключиться</div>
-                            <div className="card-discard-button">
+                            <div className="card-discard-button" onClick={() => controller.openPopUp()}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
                                     <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M14.92,13.144l5.357-5.359A1.256,1.256,0,0,0,18.5,6.01l-5.357,5.359L7.787,6.01A1.256,1.256,0,1,0,6.012,7.786l5.357,5.359L6.012,18.5a1.256,1.256,0,0,0,1.775,1.776l5.357-5.359L18.5,20.279A1.256,1.256,0,0,0,20.277,18.5Z" transform="translate(-5.643 -5.644)" fill="#30b9d6"/>
                                 </svg>
@@ -167,11 +168,11 @@ const Card: React.FC<Props> = (props: Props) => {
                     </div>
                     <p className="card-section-title">Документы</p>
                     <div className="card-info-docs">
-                        {props.documents !== undefined ? props.documents.map((e:any) => <Doc name={e.name} type={e.type} size={e.size} path={e.path}/>) : ""} 
+                        {props.documents !== undefined ? props.documents.map((e:any) => <Doc name={e.name} type={e.type} size={e.size} path={e.path}/>) : <span className='doc-null-text'>Документы не приложены</span>} 
                     </div>   
                 </div>
                 <div className="patient-card-footer">
-                    <p className="card-notification">Консультация пройдет {date.getDate()}&nbsp;{months[+date.getMonth()]} с {formatDate(`${dateFrom.getHours()}`,`${dateFrom.getMinutes()}`)} до {formatDate(`${dateTo.getHours()}`,`${dateTo.getMinutes()}`)}. Вы можете <u>отказаться</u> от этой консультации до её начала. После завершения консультации вы получите ?₽ на свой баланс.</p>
+                    <p className="card-notification">Консультация пройдет {date.getDate()}&nbsp;{months[+date.getMonth()]} с {formatDate(`${dateFrom.getHours()}`,`${dateFrom.getMinutes()}`)} до {formatDate(`${dateTo.getHours()}`,`${dateTo.getMinutes()}`)}. Вы можете <span onClick={() => controller.openPopUp()}>отказаться</span> от этой консультации до её начала. После завершения консультации вы получите {JSON.parse(localStorage.getItem("user") as string).price}₽ на свой баланс.</p>
                 </div>       
             </div>
         </>

@@ -139,6 +139,10 @@
                 font-weight: 400;
                 line-height: 24px;
                 cursor: pointer;
+                transition: 0.3s;
+                &:hover{
+                    background-color: darken($primary, 3.5%);
+                }
             }
             .card-discard-button{
                 width: 35px;
@@ -150,6 +154,15 @@
                 justify-content: center;
                 margin-left: 10px;
                 cursor: pointer;
+                transition: 0.3s;
+                &:hover{
+                    background-color: darken(#E9F7FA, 3.5%);
+                    svg{
+                        path{
+                            fill: darken($primary, 3.5%);
+                        }
+                    }
+                }
             }
         }
     } 
@@ -241,6 +254,11 @@
     .doc-wrapper:nth-child(N+6){
         margin-top: 10px;
     }
+    .doc-null-text{
+        font-size: 14px;
+        font-weight: 400;
+        color: #585858;
+    }
 }
     //========================================================================================
     /*                                                                                      *
@@ -289,8 +307,13 @@
             font-size: 18px;
             line-height: 22px;
             color: #282828;
-            u{
-                color: $primary;            
+            span{
+                cursor: pointer;
+                color: $primary;
+                transition: 0.3s; 
+                &:hover{ 
+                    color: darken($primary, 8%);
+                }           
             }
         }
     }
@@ -386,7 +409,7 @@
                     color: white;
                     background: #30b9d6;
                     &:hover {
-                        background: #30b9d6;
+                        background: lighten(#30b9d6, 5%);
                     }
                 }
             }
@@ -435,6 +458,7 @@
     &.list-item:not(:first-child){
         margin-top: 30px;
     }
+    transition: 0.3s;
     .item-row-up{
         position: relative;
         display: flex;
@@ -504,3 +528,236 @@
         }
     }
 }
+        //========================================================================================
+    /*                                                                                      *
+     *                                    PopUp list  Styles                              *
+     *                                                                                      */
+    //========================================================================================
+
+    .hub-wrapper-popup{
+        top: 0;
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(40, 40, 40, 0.4);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .block-popup{
+            background-color: #fff;
+            border-radius: 20px;
+            padding: 28px 26px;
+            width: 650px;
+            position: relative;
+            h2{
+                font-size: 24px;
+                line-height: 32px;
+                color: #282828;
+                font-weight: 600;
+            }
+            .popup-text-container{
+                margin-top: 10px;
+                font-size: 14px;
+                line-height: 19px;
+                color: #282828;
+                font-weight: 400;
+                h4:last-child{
+                    margin-top: 15px;
+                }
+            }
+            .popup-buts-container{
+                margin-top: 48px;
+                display: flex;
+                justify-content: space-between;
+                width: 100%;
+                .popup-buts{
+                    height: 46px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 16px;
+                    line-height: 21px;
+                    color: #fff;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    font-weight: 400;
+                    &.popup-discard-but{
+                        background-color: #FF3B30;
+                        width: 244px;
+                        transition: 0.3s;
+                        &:hover{
+                            background-color: lighten(#FF3B30, 3.5%);
+                        }
+                    }
+                    &.popup-сancel-but{
+                        background-color: $primary;
+                        width: 180px;
+                        transition: 0.3s;
+                        &:hover{
+                            background-color: darken($primary, 3.5%);
+                        }
+                    }
+                }
+            }
+            .close-popup-but{
+                position: absolute;
+                top: 28px;
+                right: 26px;
+                cursor: pointer;
+                svg{
+                    path{
+                        transition: 0.3s;
+                    }
+                }
+                &:hover{
+                    svg{
+                        path{
+                            fill: darken($primary, 8%);
+                        }
+                    }  
+                }
+            }
+        }
+    }
+
+//========================================================================================
+/*                                                                                      *
+ *                                    PopUp list  Styles                              *
+*                                                                                      */
+//========================================================================================
+
+.requests-page-wrapper{
+    width: 1377px;
+    margin: 37px auto;
+    .request-page-title{
+        font-size: 25px;
+        line-height: 33px;
+        color: #282828;
+        font-weight: 600;
+    }
+    .request-page-hint{
+        margin-top: 10px;
+        font-size: 18px;
+        color: #282828;
+        font-weight: 400;
+    }
+    .container-requests-list{
+        margin-top: 24px;
+        .request-list-item{
+            cursor: pointer;
+            width: 400px;
+            padding: 14px 15px 13px 15px;
+            -webkit-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.07);
+            -moz-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.07);
+            box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.07);
+            border-radius: 10px;
+            &.list-item:not(:first-child){
+                margin-top: 30px;
+            }
+            transition: 0.3s;
+            .item-row-up{
+                position: relative;
+                display: flex;
+                align-items: center;
+                .item-profile-pic{
+                    width: 55px;
+                    height: 55px;
+                    background-size: cover;
+                    background-position: center;
+                    border-radius: 50%;
+                }
+                .item-name-surname{
+                    margin-left: 13.5px;
+                    font-size: 18px;
+                    font-weight: 500;
+                    line-height: 24px;
+                    color: #282828;
+                    height: 28px;
+                    position: relative;
+                    &:before{
+                        content: "";
+                        position: absolute;
+                        width: 50%;
+                        height: 4px;
+                        border-radius: 2px;
+                        bottom: 0;
+                        background-color: $primary;
+                    }
+                }
+                .item-time-to{
+                    font-size: 14px;
+                    color: #C7C5C5cc;
+                    line-height: 19px;
+                    font-weight: 400;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                }
+            }
+            .item-row-down{
+                margin-top: 9px;
+                .card-consultation-data{
+                    color: #565656;
+                    font-size: 14px;
+                    line-height: 19px;
+                    font-weight: 400;
+                }
+            }
+            &.active{
+                background-color: $primary;
+                border-radius: 10px;
+                .item-row-up{
+                    .item-name-surname{
+                        color: #fff;
+                        &:before{
+                            background-color: #fff;
+                        }
+                    }
+                    .item-time-to{
+                        color: #fff;
+                    }
+                }
+                .item-row-down{
+                    .card-consultation-data{
+                        color: #fff;
+                    }
+                }
+            }
+            .buts-container{
+                display: flex;
+                margin-top: 14px;
+                .popup-buts{
+                    height: 31px;
+                    width: 140px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 14px;
+                    line-height: 19px;
+                    color: #fff;
+                    border-radius: 7PX;
+                    cursor: pointer;
+                    font-weight: 400;
+                    &.popup-discard-but{
+                        background-color: #FF3B30;
+                        transition: 0.3s;
+                        &:hover{
+                            background-color: lighten(#FF3B30, 3.5%);
+                        }
+                    }
+                    &.popup-сancel-but{
+                        background-color: $primary;
+                        transition: 0.3s;
+                        &:hover{
+                            background-color: darken($primary, 3.5%);
+                        }
+                    }
+                    &:last-child{
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+

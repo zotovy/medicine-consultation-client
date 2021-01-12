@@ -5,8 +5,7 @@ import { toJS } from "mobx";
 import sliderController from "../../controllers/symptoms-slider-controller";
 import ConfirmButton from '../../../../components/confirm-button';
 import detailController from "../../controllers/detail-controller";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import controller from "../../controllers/symptoms-controller";
 
 const Slider: React.FC = () => {
