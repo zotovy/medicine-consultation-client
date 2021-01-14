@@ -21,7 +21,7 @@ const Hub: React.FC = () => {
         }, []);
     }
     let arrApp = toJS(controller.arrAppointments);
-    const {showError, showLoader, numberRequest, infoForCard, showCard, itemPosActive, showPopUp, showRequestsPage } = controller;
+    const {showError, showLoader, consRequest, infoForCard, showCard, itemPosActive, showPopUp, showRequestsPage } = controller;
     return( 
         <>
             {localStorage.getItem("uid") !== null ?
@@ -63,7 +63,7 @@ const Hub: React.FC = () => {
                                                                     
                                                                 </div>
                                                                 <div className="hub-wrapper__sidebar right-side">
-                                                                    <RequestIndicator numberRequest={numberRequest}/>
+                                                                    <RequestIndicator numberRequest={consRequest.length}/>
                                                                     <div className="hub-calendar">
                                                                         <Calendar/>
                                                                     </div>

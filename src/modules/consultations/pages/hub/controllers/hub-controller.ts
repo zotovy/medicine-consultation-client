@@ -9,7 +9,7 @@ class HubController {
     @observable name: any;
     @observable date: string = "";
     @observable showLoader: boolean = false;
-    @observable numberRequest: number = 0;
+    @observable consRequest: any = [];
     @observable infoForCard: any = [];
     @observable showCard: boolean = false;  
     @observable itemPosActive: number = 0;
@@ -68,15 +68,16 @@ class HubController {
         return response
     };
 
-    @action public getAppoinsRequest = async (id: string) => {
+    @action public getAppoinsRequest = async (id: string | null) => {
         return await this._fetchAppointmentsRequest(id).then(
             action((arr = []) => {
-                return this.numberRequest = arr.requests.length;
+                console.log(arr)
+                return this.consRequest = arr.requests;
             })
         );
     };
 
-    private _fetchAppointmentsRequest = async (id: string): Promise<any> => {
+    private _fetchAppointmentsRequest = async (id: string | null): Promise<any> => {
             const response = await authFetch(() => axios.get(
                 process.env.REACT_APP_SERVER_URL + `/api/doctor/${id}/appoints-requests`,
                 {
@@ -116,6 +117,43 @@ class HubController {
     }
     @action closeRequestsPage = () => {
         this.showRequestsPage = false;
+    }
+
+    @action confirmRequest = async (appointId: string) : Promise<any> => {
+        const uid = localStorage.getItem("uid");
+        const result = await authFetch(() => axios.post(
+            process.env.REACT_APP_SERVER_URL + `/api/doctor/${uid}/appoint/${appointId}/confirm`,
+            {
+                headers: {
+                    auth: tokenServices.header
+                }
+            }
+        ))
+        .then((data: any) => {this.getAppoinsRequest(uid); return data.data})
+        .catch(() => {
+            return { success: false };
+        });
+        if (result.success){
+            this.getAppoinsRequest(uid);
+        }
+    }
+    @action rejectRequest = async (appointId: string) : Promise<any> => {
+        const uid = localStorage.getItem("uid");
+        const result = await authFetch(() => axios.post(
+            process.env.REACT_APP_SERVER_URL + `/api/doctor/${uid}/appoint/${appointId}/reject`,
+            {
+                headers: {
+                    auth: tokenServices.header
+                }
+            }
+        ))
+        .then((data: any) => {return data.data})
+        .catch(() => {
+            return { success: false };
+        });
+        if (result.success){
+            this.getAppoinsRequest(uid);
+        }
     }
 }
 export default new HubController();
