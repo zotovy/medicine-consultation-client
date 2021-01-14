@@ -33,6 +33,7 @@ const ListItem: React.FC<ItemInfo> = (props: ItemInfo) => {
                 timeToHours = -1 * timeToHours
             }
             let timeTo = (timeToDays * 24) - timeToHours;
+            
             if (timeTo >= 24){
                 timeToDays = Math.floor(timeTo/24);
                 timeToHours = timeTo%24;

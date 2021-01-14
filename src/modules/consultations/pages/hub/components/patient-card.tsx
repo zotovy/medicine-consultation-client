@@ -2,6 +2,7 @@ import React from "react";
 import "../styles.scss";
 import Doc from "./document";
 import controller from "../controllers/hub-controller"
+import { Link, useHistory } from "react-router-dom";
 import { observer } from "mobx-react";
 
 type Props = {
@@ -25,6 +26,11 @@ const Card: React.FC<Props> = (props: Props) => {
         months = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
         img = "https://www.epos-ural.ru/wp-content/uploads/2019/03/user-placeholder.jpg" ?? props.imgUrl;
 
+    const history = useHistory();
+    const goToConsultation = (): void => {
+        // controller.sendAthorize(localStorage.getItem("accessToken"));
+        history.push(`/consultation/${props.id}`);
+    }
     function agetostr(age: number = -1) {
         let txt;
         if(age == -1){
@@ -102,7 +108,7 @@ const Card: React.FC<Props> = (props: Props) => {
                     </div>
                     <div>
                         <div className="card-buttons">
-                            <div className="card-connect-button">Подключиться</div>
+                            <Link  to={`/consultation/${props.id}`}><div className="card-connect-button">Подключиться</div></Link>
                             <div className="card-discard-button" onClick={() => controller.openPopUp()}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
                                     <path id="Icon_ionic-ios-close" data-name="Icon ionic-ios-close" d="M14.92,13.144l5.357-5.359A1.256,1.256,0,0,0,18.5,6.01l-5.357,5.359L7.787,6.01A1.256,1.256,0,1,0,6.012,7.786l5.357,5.359L6.012,18.5a1.256,1.256,0,0,0,1.775,1.776l5.357-5.359L18.5,20.279A1.256,1.256,0,0,0,20.277,18.5Z" transform="translate(-5.643 -5.644)" fill="#30b9d6"/>

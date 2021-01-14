@@ -71,7 +71,7 @@ class HubController {
     @action public getAppoinsRequest = async (id: string) => {
         return await this._fetchAppointmentsRequest(id).then(
             action((arr = []) => {
-                return this.numberRequest = arr;
+                return this.numberRequest = arr.requests.length;
             })
         );
     };
@@ -113,6 +113,9 @@ class HubController {
     }
     @action openRequestsPage = () => {
         this.showRequestsPage = true;
+    }
+    @action closeRequestsPage = () => {
+        this.showRequestsPage = false;
     }
 }
 export default new HubController();

@@ -629,6 +629,7 @@
 .requests-page-wrapper{
     width: 1377px;
     margin: 37px auto;
+    position: relative;
     .request-page-title{
         font-size: 25px;
         line-height: 33px;
@@ -640,6 +641,25 @@
         font-size: 18px;
         color: #282828;
         font-weight: 400;
+    }
+    .close-requests-page-but {
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
+        svg {
+            path {
+                transition: 0.3s;
+            }
+        }
+
+        &:hover {
+            svg {
+                path {
+                    fill: darken($primary, 8%);
+                }
+            }
+        }
     }
     .container-requests-list{
         margin-top: 24px;
