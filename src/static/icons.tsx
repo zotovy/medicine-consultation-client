@@ -29,3 +29,9 @@ export const LongArrowIcon: React.FC<Props> = (props) => {
         </g>
     </svg>;
 }
+
+export const Chevron = ({ fill, open, onClick, id }: { fill?: string, id?: string, open: boolean, onClick?: () => void }) => {
+    return <svg id={id} xmlns="http://www.w3.org/2000/svg" onClick={onClick} width="12.621" height="22.243" viewBox="0 0 12.621 22.243" className={open ? "open" : ""}>
+        <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M0,9,9,0l9,9" transform="translate(11.121 2.121) rotate(90)" fill="none" stroke={fill ?? "#282828"} strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
+    </svg>
+}

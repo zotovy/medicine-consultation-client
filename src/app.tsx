@@ -3,7 +3,6 @@ import { Switch, Route } from "react-router-dom";
 import "./static/index.css";
 import Menu from "./components/menu";
 import ReactGA from "react-ga";
-import { SupportIcon } from "./static/icons";
 // import SandBox from "./sandbox";
 require('dotenv').config()
 

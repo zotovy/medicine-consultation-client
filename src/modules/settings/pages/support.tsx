@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "../components/navigation";
 import GoBackIcon from "../components/go-back-icon";
-import { SupportPage } from "../../support";
+import SupportPage from "../../support";
 import "../styles.scss";
 
 const SupportSettingsPage: React.FC = () => {

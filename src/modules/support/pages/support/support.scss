@@ -1,0 +1,11 @@
+@import "../../styles";
+
+.support-page {
+    @include supportHeader();
+
+    .chats-list {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+}

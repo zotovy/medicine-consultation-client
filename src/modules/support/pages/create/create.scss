@@ -1,0 +1,19 @@
+.create-support-page {
+    .row {
+        display: flex;
+
+        .space {
+            width: 100px;
+            flex: 00 auto;
+        }
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    .confirm-button {
+        margin-top: 20px;
+        max-width: 300px;
+    }
+}
