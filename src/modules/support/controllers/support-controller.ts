@@ -15,6 +15,7 @@ class SupportController {
             user: "5fe98b597c4d6207627c1097",
             problem: "Other",
             number: 134,
+            id: "1",
         },
         {
             date: new Date(2020, 11, 31, 9, 0),
@@ -29,6 +30,7 @@ class SupportController {
             user: "5fe98b597c4d6207627c1097",
             problem: "Tech",
             number: 12,
+            id: "2",
         },
         {
             date: new Date(2019, 3, 1, 19, 10),
@@ -37,12 +39,23 @@ class SupportController {
                     content: "Да, 500р вернулось на ваш счёт. Спасибо за обращение!",
                     date: new Date(2019, 3, 12, 19, 10),
                     isUser: false,
+                },
+                {
+                    content: "Да, 500р вернулось на ваш счёт. Спасибо за обращение!",
+                    date: new Date(2019, 3, 12, 19, 10),
+                    isUser: true,
+                },
+                {
+                    content: "Да, 500р вернулось на ваш счёт. Спасибо за обращение!",
+                    date: new Date(2019, 3, 12, 19, 10),
+                    isUser: true,
                 }
             ],
             title: "Доктор не пришёл на консультацию",
             user: "5fe98b597c4d6207627c1097",
             problem: "Doctor",
             number: 7,
+            id: "3",
         }
     ];
 

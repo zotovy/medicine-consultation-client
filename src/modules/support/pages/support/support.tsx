@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { Observer } from "mobx-react";
-import { AddIcon } from "../../../../static/icons";
 import "./support.scss";
 import controller from "../../controllers/support-controller";
 import SupportChatComponent from "../../components/support-chat";
+import SupportHeader from "../../components/header";
 
 /**
  * This page is injectable. Do not use it without any wrapper
@@ -12,20 +12,18 @@ import SupportChatComponent from "../../components/support-chat";
 
 const SupportPage: React.FC = () => {
     return <div className="support-page">
-        <header>
-            <h1>Центр поддержки</h1>
-            <Link to="/settings/support/create">
-                <button id="create-question">
-                    <AddIcon/>
-                </button>
-            </Link>
-        </header>
+        <SupportHeader title="Центр поддержки" link="/settings/support/create"/>
 
         <Observer>
             {
                 () => <div className="chats-list">
                     {
-                        controller.chats.map(e => <SupportChatComponent {...e} />)
+                        controller.chats.map(e => <Link to={{
+                            pathname: "/settings/support/chat",
+                            search: `?id=${e.number}`
+                        }}>
+                            <SupportChatComponent {...e} />
+                        </Link>)
                     }
                 </div>
             }

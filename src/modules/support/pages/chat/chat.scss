@@ -1,0 +1,9 @@
+@import "../../styles";
+
+.chat-support-page {
+    @include supportHeader();
+
+    .messages {
+        margin-top: 30px;
+    }
+}

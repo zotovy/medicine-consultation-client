@@ -11,6 +11,9 @@
             color: #282828;
             font-size: 24px;
             font-weight: 500;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden
         }
 
         button {

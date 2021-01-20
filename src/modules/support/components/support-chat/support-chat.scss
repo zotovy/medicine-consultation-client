@@ -49,6 +49,9 @@
 
 
     h5.title {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
         font-size: 18px;
         color: #282828;
         font-weight: 400;

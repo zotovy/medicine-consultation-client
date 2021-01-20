@@ -7,6 +7,7 @@ import TextField from "../../../../components/text-field";
 import DropDown from "../../../../components/dropdown";
 import TextArea from "../../../../components/textarea";
 import ConfirmButton from "../../../../components/confirm-button";
+import SupportHeader from "../../components/header";
 
 /**
  * This page is injectable. Do not use it without any wrapper
@@ -16,12 +17,7 @@ const questionTypes = ["Техническая", "Проблема с докто
 
 const CreatePage: React.FC = () => {
     return <div className="create-support-page">
-        <header>
-            <h1>Задать вопрос</h1>
-            <Link to="/settings/support/">
-                <button id="cancel">Назад</button>
-            </Link>
-        </header>
+        <SupportHeader title="Задать вопрос" link="/settings/support/" back="Назад"/>
 
         <form>
             <div className="row">

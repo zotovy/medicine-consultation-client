@@ -1,4 +1,5 @@
 declare type SupportChatType = {
+    id: string;
     user: string | UserType;
     messages: SupportMessageType[],
     title: string,
