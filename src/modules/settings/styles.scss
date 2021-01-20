@@ -35,14 +35,15 @@ main.settings-page {
             margin-bottom: 20px;
 
             .icon {
-                margin-right: 17px;
+                margin-right: 25px;
                 width: 27px;
-                display: inline;
+                height: 27px;
+                display: flex;
+                align-items: center;
 
                 svg {
                     width: 27px;
                     height: 27px;
-                    margin-right: 25px;
                 }
             }
 

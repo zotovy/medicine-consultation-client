@@ -12,7 +12,7 @@ const SettingsPage: React.FC = () => {
     }, []);
 
     return <main className="main-page settings-page">
-        <NavigationComponent active={ -1 } alwaysActive={true}/>
+        <NavigationComponent active="/" alwaysActive={true}/>
         <section className="content"/>
     </main>
 

@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import "./static/index.css";
 import Menu from "./components/menu";
 import ReactGA from "react-ga";
+import { SupportIcon } from "./static/icons";
 // import SandBox from "./sandbox";
 require('dotenv').config()
 
@@ -27,6 +28,7 @@ const SettingsNotificationPage = lazy(() => import("./modules/settings").then(mo
 const SettingsPasswordPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsPasswordPage })));
 const SettingsLinksPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsLinksPage })));
 const SettingsDoctorPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SettingsDoctorPage })));
+const SettingsSupportPage = lazy(() => import("./modules/settings").then(module => ({ default: module.SupportPage })));
 const ErrorPage = lazy(() => import("./modules/other/pages/error"));
 const ErrorSympPage = lazy(() => import("./modules/doctors/components/symptoms/error-page"));
 const HubConsultationPage = lazy(() => import("./modules/consultations").then(module => ({ default: module.HubConsultationPage })));
@@ -154,6 +156,11 @@ const App = () => {
                 <Route path="/settings/doctor">
                     <Suspense fallback={<React.Fragment/>}>
                         <SettingsDoctorPage/>
+                    </Suspense>
+                </Route>
+                <Route path="/settings/support">
+                    <Suspense fallback={<React.Fragment/>}>
+                        <SettingsSupportPage/>
                     </Suspense>
                 </Route>
             </Route>

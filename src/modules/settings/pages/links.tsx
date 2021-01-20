@@ -17,11 +17,11 @@ const LinksSettingsPage: React.FC = () => {
     }, []);
 
     if (controller.loading) {
-        return <SettingsLoadingComponent active={4}/>
+        return <SettingsLoadingComponent active="/links"/>
     }
 
     return <main className="links-page settings-page">
-        <Navigation active={4}/>
+        <Navigation active="/links"/>
         <GoBackIcon/>
         <section className="content links-page">
             <div className="row">

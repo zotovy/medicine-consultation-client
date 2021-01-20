@@ -15,7 +15,7 @@ const ChangePasswordPage : React.FC = () => {
     }, []);
 
     return <main className="change-password-page settings-page">
-        <Navigation active={6} />
+        <Navigation active="/password" />
         <GoBackIcon/>
         <section className="content change-password-page">
             <div className="textfield-row" id="old-row">

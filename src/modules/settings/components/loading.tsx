@@ -4,7 +4,7 @@ import NavigationComponent from "./navigation";
 import MediaQuery from "react-responsive";
 
 type Props = {
-    active: number;
+    active: string;
 }
 
 const SettingsLoadingComponent: React.FC<Props> = ({ active }) => {

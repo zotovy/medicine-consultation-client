@@ -108,24 +108,37 @@ class FormatServices {
         return input;
     };
 
-    formatToUsualDate = (date: Date | undefined): string => {
+    formatToUsualDate = (date: Date | undefined, needTime = false, useMonthName = false): string => {
         if (!date) return "";
+
+        if (needTime) {
+            const dMinutes = this._deltaDateInMinutes(date, new Date());
+            if (dMinutes < 1) return "Меньше минуты назад";
+            if (dMinutes < 60) return `${dMinutes} ${this.getNumEnding(dMinutes, ["минута", "минуты", "минут"])} назад`;
+            if (dMinutes < 1440) return `${Math.floor(dMinutes / 60)} ${this.getNumEnding(dMinutes, ["час", "часа", "часов"])} назад`;
+        }
 
         const dDays = this._deltaDateInDay(date, new Date());
         if (dDays < 1) return "меньше суток назад";
         if (dDays < 1) return "день назад";
 
-        let day = date.getDay().toString(), month = date.getMonth().toString();
+        let day = date.getDate().toString(), month = (date.getMonth() + 1).toString();
         if (day.length === 1) day = "0" + day;
         if (month.length === 1) month = "0" + month;
 
+
         let str = `${day}.${month}`;
-        if (new Date().getFullYear() !== date.getFullYear()) str += `.${date.getFullYear()}`;
+        if (useMonthName) str = this.formatDayAndMonth(parseInt(day), parseInt(month));
+        if (new Date().getFullYear() !== date.getFullYear()) str += `${useMonthName ? " " : "."}${date.getFullYear()} ${useMonthName ? "г." : ""}`;
         return str;
     }
 
     private _deltaDateInDay = (date1: Date, date2: Date): number => {
         return Math.abs(date1.getTime() - date2.getTime() / (1000 * 3600 * 24));
+    }
+
+    private _deltaDateInMinutes = (date1: Date, date2: Date): number => {
+        return Math.abs(date1.getTime() - date2.getTime() / 1000);
     }
 
     toNumericPhone = (phone: string): number => {

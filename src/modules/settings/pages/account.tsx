@@ -36,7 +36,7 @@ const SettingsAccountPage = () => {
     }, []);
 
     if (controller.isLoading) {
-        return <SettingsLoadingComponent active={0}/>
+        return <SettingsLoadingComponent active="/pages"/>
     }
 
     const imgStyles = {
@@ -50,7 +50,7 @@ const SettingsAccountPage = () => {
             controller.isLoadingSave ? <LoadingLine/> : <React.Fragment/>
         }
 
-        <NavigationComponent active={0}/>
+        <NavigationComponent active="/account"/>
         <GoBackIcon/>
         <section className="content account">
             <header>

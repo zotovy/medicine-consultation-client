@@ -7,7 +7,6 @@ export const AddIcon: React.FC = () => {
             <line id="Линия_25" data-name="Линия 25" x2="25.328" transform="translate(1040.164 777) rotate(90)" fill="none" stroke="#30b9d6" stroke-linecap="round" stroke-width="3" />
         </g>
     </svg>
-
 }
 
 export const BackIcon : React.FC = () => {

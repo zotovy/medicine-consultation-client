@@ -1,0 +1,36 @@
+.support-page {
+
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h1 {
+            color: #282828;
+            font-size: 24px;
+            font-weight: 500;
+        }
+
+        button {
+            background: none;
+            border: none;
+            outline: none;
+            width: 24px;
+            height: 24px;
+            padding: 0;
+            cursor: pointer;
+
+            svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+    }
+
+    .chats-list {
+        margin-top: 10px;
+        width: 100%;
+    }
+
+}

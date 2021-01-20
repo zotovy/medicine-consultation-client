@@ -6,6 +6,7 @@ import SettingsNotificationPage from "./pages/notification";
 import SettingsPasswordPage from "./pages/password";
 import SettingsLinksPage from "./pages/links";
 import SettingsDoctorPage from "./pages/doctor";
+import SupportPage from "./pages/support";
 
 export {
     SettingsPage,
@@ -15,6 +16,7 @@ export {
     SettingsNotificationPage,
     SettingsPasswordPage,
     SettingsLinksPage,
-    SettingsDoctorPage
+    SettingsDoctorPage,
+    SupportPage
 }
 
