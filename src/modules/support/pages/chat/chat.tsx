@@ -6,6 +6,7 @@ import SupportHeader from "../../components/header";
 import controller from "../../controllers/support-controller";
 import { AdminMessage, UserMessage } from "../../components/message/message";
 import formatServices from "../../../../services/format-services";
+import { SendIcon } from "../../../../static/icons";
 
 import "./chat.scss";
 
@@ -40,6 +41,13 @@ const ChatPage: React.FC = () => {
                     </React.Fragment>
                 }
             </Observer>
+        </div>
+
+        <div className="message-input">
+            <input type="text" placeholder="Введите ваше сообщение"/>
+            <button className="send-message">
+                <SendIcon/>
+            </button>
         </div>
     </div>
 }

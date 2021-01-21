@@ -35,3 +35,9 @@ export const Chevron = ({ fill, open, onClick, id }: { fill?: string, id?: strin
         <path id="Icon_feather-chevron-down" data-name="Icon feather-chevron-down" d="M0,9,9,0l9,9" transform="translate(11.121 2.121) rotate(90)" fill="none" stroke={fill ?? "#282828"} strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" />
     </svg>
 }
+
+export const SendIcon: React.FC<Props> = (props) => {
+    return <svg xmlns="http://www.w3.org/2000/svg" width="19.007" height="19.005" viewBox="0 0 19.007 19.005">
+        <path id="Icon_ionic-ios-send" data-name="Icon ionic-ios-send" d="M22.911,4.545,4.738,12.466a.417.417,0,0,0,.015.757L9.669,16a.793.793,0,0,0,.906-.089l9.693-8.356c.064-.054.218-.158.277-.1s-.035.213-.089.277L12.07,17.179a.79.79,0,0,0-.079.946L15.2,23.277a.418.418,0,0,0,.752-.01L23.47,5.095A.417.417,0,0,0,22.911,4.545Z" transform="translate(-4.503 -4.503)" fill="#fff" />
+    </svg>;
+}
