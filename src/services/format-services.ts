@@ -113,9 +113,10 @@ class FormatServices {
 
         if (needTime) {
             const dMinutes = this._deltaDateInMinutes(date, new Date());
+            console.log(dMinutes);
             if (dMinutes < 1) return "Меньше минуты назад";
-            if (dMinutes < 60) return `${dMinutes} ${this.getNumEnding(dMinutes, ["минута", "минуты", "минут"])} назад`;
-            if (dMinutes < 1440) return `${Math.floor(dMinutes / 60)} ${this.getNumEnding(dMinutes, ["час", "часа", "часов"])} назад`;
+            if (dMinutes < 60) return `${dMinutes} ${this.getNumEnding(dMinutes, ["минуту", "минуты", "минут"])} назад`;
+            if (dMinutes < 1440) return `${Math.floor(dMinutes / 60)} ${this.getNumEnding(Math.floor(dMinutes / 60), ["час", "часа", "часов"])} назад`;
         }
 
         const dDays = this._deltaDateInDay(date, new Date());
@@ -138,7 +139,7 @@ class FormatServices {
     }
 
     private _deltaDateInMinutes = (date1: Date, date2: Date): number => {
-        return Math.abs(date1.getTime() - date2.getTime() / 1000);
+        return Math.floor(Math.abs(date1.getTime() - date2.getTime())/ 1000 / 60);
     }
 
     toNumericPhone = (phone: string): number => {
