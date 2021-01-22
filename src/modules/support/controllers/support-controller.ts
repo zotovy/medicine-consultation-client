@@ -5,8 +5,9 @@ import { authFetch, EAuthFetch } from "../../../services/fetch_services";
 import { SupportProblemType } from "../../../../../server/types/models";
 
 class SupportController {
-    @observable loading = false;
+    @observable loading = true;
     @observable chats: SupportChatType[] = [];
+    fetchedChats = false;
 
     // Create state
     createTitle: string = "";
@@ -17,7 +18,7 @@ class SupportController {
     @observable createDescriptionError?: string;
 
     // Chat state
-    chatMessage: string = "";
+    @observable chatMessage: string = "";
 
     goBackCb = () => {}
 
@@ -28,7 +29,6 @@ class SupportController {
                 throw e;
             });
             this.loading = false;
-            console.log(this.chats);
         })();
     }
 
@@ -44,6 +44,8 @@ class SupportController {
 
         if (res.status === EAuthFetch.Error) throw "error";
         if (res.status === EAuthFetch.Unauthorized) throw "logout";
+
+        this.fetchedChats = true;
         return (res.data.questions ?? []).map((e: any) => ({
             ...e,
             timestamp: new Date(e.timestamp),
@@ -134,14 +136,17 @@ class SupportController {
 
     public sendMessage = async (chatId: string) => {
         const messageContent = this.chatMessage
-        const message: SupportMessageType = {
-            content: messageContent,
-            isUser: true,
-            date: new Date(),
-        }
-        this.chatMessage = "";
-        const index = this.chats.findIndex(e => e._id === chatId);
-        this.chats[index].messages.push(message);
+
+        action(() => {
+            const message: SupportMessageType = {
+                content: messageContent,
+                isUser: true,
+                date: new Date(),
+            }
+            this.chatMessage = "";
+            const index = this.chats.findIndex(e => e._id === chatId);
+            this.chats[index].messages.push(message);
+        })();
 
         const isUser = localStorage.getItem("isUser") === "true";
         const route = `/api/${isUser ? "user" : "doctor"}/support-questions/${chatId}/send-message`;

@@ -29,9 +29,10 @@ const Dropdown: React.FC<Props> = (props) => {
             name={props.name}
             id={props.id}
             style={dropdownStyles}
+            defaultValue={props.placeholder ? "__default" : undefined}
             onChange={(e) => props.onSelect ? props.onSelect(e.target.value) : undefined}>
             {
-                props.placeholder ? <option value="" disabled selected>{ props.placeholder }</option> : <React.Fragment/>
+                props.placeholder ? <option value="__default" disabled>{ props.placeholder }</option> : <React.Fragment/>
             }
             {
                 props.options.map((e, i) => <option key={props.values[i]} value={props.values[i]}>{e}</option>)

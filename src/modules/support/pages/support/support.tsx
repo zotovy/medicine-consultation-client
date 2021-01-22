@@ -13,7 +13,7 @@ import SupportHeader from "../../components/header";
 const SupportPage: React.FC = () => {
 
     useEffect(() => {
-        controller.fetchChats();
+        if (!controller.fetchedChats) controller.fetchChats();
     }, []);
 
     return <div className="support-page">
