@@ -4,7 +4,7 @@ import "./textarea.scss";
 type Props = {
     field?: string
     id?: string;
-    onChange?: () => {};
+    onChange?: (v: string) => {};
     rows?: number;
     cols?: number;
     hint?: string;
@@ -31,13 +31,14 @@ const TextArea: React.FC<Props> = (props) => {
         { props.field ? <div className="field">{}</div> : <React.Fragment/> }
         <textarea
             id={props.id}
-            onChange={props.onChange}
+            onChange={(e) => props.onChange ? props.onChange(e.target.value) : null}
             rows={props.rows}
             cols={props.cols}
             placeholder={props.hint}
             value={props.value}
             style={textareaStyles}
         />
+        <span className="error-text">{ props.error }</span>
     </div>
 }
 

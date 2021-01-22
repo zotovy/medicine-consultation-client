@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Observer } from "mobx-react"
 import qs from "query-string";
 import { useHistory } from "react-router-dom";

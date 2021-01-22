@@ -3,8 +3,9 @@ import "./dropdown.scss";
 
 type Props = {
     options: string[];
+    values: string[];
     selected?: string;
-    onSelect?: () => {};
+    onSelect?: (v: string) => {};
     id?: string;
     hint?: string;
     value?: string;
@@ -12,6 +13,7 @@ type Props = {
     name?: string;
     simulateField?: boolean;
     styles?: any;
+    placeholder?: string;
 }
 
 const Dropdown: React.FC<Props> = (props) => {
@@ -22,9 +24,17 @@ const Dropdown: React.FC<Props> = (props) => {
 
     return <div className="dropdown-container">
         { props.simulateField ? <div className="field">&nbsp;</div> : <React.Fragment/> }
-        <select className="dropdown" name={props.name} id={props.id} style={dropdownStyles}>
+        <select
+            className="dropdown"
+            name={props.name}
+            id={props.id}
+            style={dropdownStyles}
+            onChange={(e) => props.onSelect ? props.onSelect(e.target.value) : undefined}>
             {
-                props.options.map(e => <option value={e}>{e}</option>)
+                props.placeholder ? <option value="" disabled selected>{ props.placeholder }</option> : <React.Fragment/>
+            }
+            {
+                props.options.map((e, i) => <option key={props.values[i]} value={props.values[i]}>{e}</option>)
             }
         </select>
         <span className="error-text">{ props.error }</span>

@@ -3,7 +3,7 @@ declare type SupportChatType = {
     user: string | UserType;
     messages: SupportMessageType[],
     title: string,
-    date: Date,
+    timestamp: Date,
     problem: SupportChatProblemType,
     number: number,
 }

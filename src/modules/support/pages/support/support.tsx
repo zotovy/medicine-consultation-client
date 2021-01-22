@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from 'react-router-dom';
-import { Observer } from "mobx-react";
+import { observer, Observer } from "mobx-react";
 import "./support.scss";
 import controller from "../../controllers/support-controller";
 import SupportChatComponent from "../../components/support-chat";
@@ -11,6 +11,11 @@ import SupportHeader from "../../components/header";
  */
 
 const SupportPage: React.FC = () => {
+
+    useEffect(() => {
+        controller.fetchChats();
+    }, []);
+
     return <div className="support-page">
         <SupportHeader title="Центр поддержки" link="/settings/support/create"/>
 
@@ -31,4 +36,4 @@ const SupportPage: React.FC = () => {
     </div>
 }
 
-export default SupportPage;
+export default observer(SupportPage);
