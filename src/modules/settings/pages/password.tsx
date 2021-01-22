@@ -10,8 +10,10 @@ import controller from "../controllers/password-controller";
 const ChangePasswordPage : React.FC = () => {
 
     const history = useHistory();
-    useEffect(() => controller.redirectToLogin = () => {
-        history.push("/login");
+    useEffect(() => {
+        controller.redirectToLogin = () => {
+            history.push("/login");
+        };
     }, []);
 
     return <main className="change-password-page settings-page">
