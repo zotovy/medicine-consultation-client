@@ -7,8 +7,8 @@ type Props = {
 export const AddIcon: React.FC = () => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="28.328" height="28.328" viewBox="0 0 28.328 28.328">
         <g id="Сгруппировать_78" data-name="Сгруппировать 78" transform="translate(-1026 -775.5)">
-            <line id="Линия_24" data-name="Линия 24" x2="25.328" transform="translate(1027.5 789.664)" fill="none" stroke="#30b9d6" stroke-linecap="round" stroke-width="3" />
-            <line id="Линия_25" data-name="Линия 25" x2="25.328" transform="translate(1040.164 777) rotate(90)" fill="none" stroke="#30b9d6" stroke-linecap="round" stroke-width="3" />
+            <line id="Линия_24" data-name="Линия 24" x2="25.328" transform="translate(1027.5 789.664)" fill="none" stroke="#30b9d6" strokeLinecap="round" strokeWidth="3" />
+            <line id="Линия_25" data-name="Линия 25" x2="25.328" transform="translate(1040.164 777) rotate(90)" fill="none" stroke="#30b9d6" strokeLinecap="round" strokeWidth="3" />
         </g>
     </svg>
 }
@@ -24,8 +24,8 @@ export const SupportIcon: React.FC = () => {
 export const LongArrowIcon: React.FC<Props> = (props) => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="32.367" height="11.621" viewBox="0 0 32.367 11.621" {...props}>
         <g id="Icon_feather-arrow-right" data-name="Icon feather-arrow-right" transform="translate(14.617 -6.439)">
-            <path id="Контур_334" data-name="Контур 334" d="M7.5,18H38.367" transform="translate(-21.367 -5.75)" fill="none" stroke="#30b9d6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-            <path id="Контур_335" data-name="Контур 335" d="M18,7.5l4.75,4.75L18,17" transform="translate(-5.75)" fill="none" stroke="#30b9d6" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+            <path id="Контур_334" data-name="Контур 334" d="M7.5,18H38.367" transform="translate(-21.367 -5.75)" fill="none" stroke="#30b9d6" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"/>
+            <path id="Контур_335" data-name="Контур 335" d="M18,7.5l4.75,4.75L18,17" transform="translate(-5.75)" fill="none" stroke="#30b9d6" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5"/>
         </g>
     </svg>;
 }

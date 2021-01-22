@@ -27,7 +27,9 @@ const SupportChatComponent: React.FC<SupportChatType> = (chat) => {
             <div className="row">
                 <h5 className="title">{ chat.title }</h5>
                 <div className="information">
-                    <span className="new-message">Новое сообщение</span>
+                    {
+                        !chat.readByUser ? <span className="new-message">Новое сообщение</span> : <React.Fragment/>
+                    }
                     <span className="number">№{ chat.number }</span>
                     <span className="last-message-time ">
                         { formatServices.formatToUsualDate(lastMessage.date, true, true).toLowerCase() }

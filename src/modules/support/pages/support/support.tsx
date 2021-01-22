@@ -21,13 +21,13 @@ const SupportPage: React.FC = () => {
 
         <Observer>
             {
-                () => <div className="chats-list">
+                () => <div className="chats-list" key={"chat-list"}>
                     {
-                        controller.chats.map(e => <Link to={{
+                        controller.chats.map(e => <Link key={`Link-${e._id}`} to={{
                             pathname: "/settings/support/chat",
                             search: `?id=${e.number}`
                         }}>
-                            <SupportChatComponent {...e} />
+                            <SupportChatComponent key={e._id} {...e} />
                         </Link>)
                     }
                 </div>

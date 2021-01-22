@@ -1,11 +1,12 @@
 declare type SupportChatType = {
-    id: string;
+    _id: string;
     user: string | UserType;
     messages: SupportMessageType[],
     title: string,
     timestamp: Date,
     problem: SupportChatProblemType,
     number: number,
+    readByUser: boolean;
 }
 
 declare type SupportMessageType = {

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { toJS } from "mobx";
 import { Observer } from "mobx-react"
 import qs from "query-string";
 import { useHistory } from "react-router-dom";
@@ -23,6 +24,11 @@ const ChatPage: React.FC = () => {
         history.goBack();
         return <React.Fragment/>
     }
+
+    useEffect(() => {
+        console.log(toJS(chat));
+        if (!chat.readByUser) controller.setReadByUser(chat._id);
+    }, [id]);
 
     return <div className="chat-support-page">
         <SupportHeader title={chat.title} link="/settings/support/" back="Назад"/>

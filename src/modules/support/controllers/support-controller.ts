@@ -75,12 +75,13 @@ class SupportController {
                     isUser: true,
                     content: this.createDescription,
                 }],
-                id: "",
+                _id: "",
                 problem: this.createProblem as SupportProblemType,
                 title: this.createTitle,
                 user: localStorage.getItem("uid") as string,
                 number,
                 timestamp: new Date(),
+                readByUser: true,
             };
             this.chats.push(chat);
             this.loading = false;
@@ -109,6 +110,23 @@ class SupportController {
             ok = false
         }
         return ok;
+    }
+
+    public setReadByUser = async (chatId: string) => {
+        const index = this.chats.findIndex(e => e._id === chatId);
+        this.chats[index].readByUser = true;
+
+        const isUser = localStorage.getItem("isUser") === "true";
+        const route = `/api/${isUser ? "user" : "doctor"}/support-questions/${chatId}/read-messages`;
+        const res = await authFetch(() => axios.post(
+            process.env.REACT_APP_SERVER_URL + route,
+            {},
+            {
+                headers: { auth: tokenServices.header },
+            }
+        ));
+        if (res.status === EAuthFetch.Error) throw "error";
+        if (res.status === EAuthFetch.Unauthorized) throw "logout";
     }
 }
 
