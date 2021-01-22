@@ -16,6 +16,9 @@ class SupportController {
     @observable createProblemError?: string;
     @observable createDescriptionError?: string;
 
+    // Chat state
+    chatMessage: string = "";
+
     goBackCb = () => {}
 
     public fetchChats = () => {
@@ -121,6 +124,32 @@ class SupportController {
         const res = await authFetch(() => axios.post(
             process.env.REACT_APP_SERVER_URL + route,
             {},
+            {
+                headers: { auth: tokenServices.header },
+            }
+        ));
+        if (res.status === EAuthFetch.Error) throw "error";
+        if (res.status === EAuthFetch.Unauthorized) throw "logout";
+    }
+
+    public sendMessage = async (chatId: string) => {
+        const messageContent = this.chatMessage
+        const message: SupportMessageType = {
+            content: messageContent,
+            isUser: true,
+            date: new Date(),
+        }
+        this.chatMessage = "";
+        const index = this.chats.findIndex(e => e._id === chatId);
+        this.chats[index].messages.push(message);
+
+        const isUser = localStorage.getItem("isUser") === "true";
+        const route = `/api/${isUser ? "user" : "doctor"}/support-questions/${chatId}/send-message`;
+        const res = await authFetch(() => axios.post(
+            process.env.REACT_APP_SERVER_URL + route,
+            {
+                message: messageContent
+            },
             {
                 headers: { auth: tokenServices.header },
             }

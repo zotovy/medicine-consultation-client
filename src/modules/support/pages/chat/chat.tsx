@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { toJS } from "mobx";
-import { Observer } from "mobx-react"
+import { observer, Observer } from "mobx-react"
 import qs from "query-string";
 import { useHistory } from "react-router-dom";
 import SupportHeader from "../../components/header";
@@ -34,28 +34,26 @@ const ChatPage: React.FC = () => {
         <SupportHeader title={chat.title} link="/settings/support/" back="Назад"/>
 
         <div className="messages">
-            <Observer>
-                {
-                    () => <React.Fragment>
-                        {
-                            chat.messages.map(e => {
-                                const time = formatServices.formatToUsualDate(e.date, true, true);
-                                if (e.isUser) return <UserMessage time={time} content={e.content} photoUrl={user.photoUrl}/>
-                                else return <AdminMessage time={time} content={e.content} />
-                            })
-                        }
-                    </React.Fragment>
-                }
-            </Observer>
+            {
+                chat.messages.map(e => {
+                    const time = formatServices.formatToUsualDate(e.date, true, true);
+                    if (e.isUser) return <UserMessage time={time} content={e.content} photoUrl={user.photoUrl}/>
+                    else return <AdminMessage time={time} content={e.content} />
+                })
+            }
         </div>
 
         <div className="message-input">
-            <input type="text" placeholder="Введите ваше сообщение"/>
-            <button className="send-message">
+            <input
+                type="text"
+                placeholder="Введите ваше сообщение"
+                onChange={(e) => controller.chatMessage = e.target.value}
+            />
+            <button className="send-message" onClick={() => controller.sendMessage(chat._id)}>
                 <SendIcon/>
             </button>
         </div>
     </div>
 }
 
-export default ChatPage;
+export default observer(ChatPage);
