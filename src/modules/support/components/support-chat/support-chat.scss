@@ -93,6 +93,10 @@
     }
 
     @media screen and (max-width: 768px) {
+        .column > .space {
+            display: none;
+        }
+
         padding: 15px;
 
         .icon {
@@ -129,10 +133,62 @@
 
         p.last-message {
             margin-top: 5px;
+            margin-right: 0;
         }
 
         .main-row {
             justify-content: flex-start;
+        }
+    }
+
+    @media screen and (min-width: 768px) and (max-width: 960px) {
+        position: relative;
+
+        .main-row {
+            justify-content: flex-start;
+        }
+
+        .column > .space {
+            display: none;
+        }
+
+        .icon {
+            margin-right: 10px;
+            width: 28px;
+            height: 28px;
+
+            img {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        .information {
+            flex: 0 0 auto;
+        }
+
+        span.last-message-time,
+        .long-arrow-icon {
+            display: none;
+        }
+
+        span.new-message {
+            text-indent: -9999px;
+            display: block;
+            position: initial !important;
+            padding-left: 0!important;
+            height: 0px;
+
+            &:before {
+                top: 10px !important;
+                right: 10px;
+                left: auto !important;
+            }
+        }
+
+        p.last-message {
+            margin-top: 5px;
+            margin-right: 0;
         }
     }
 }

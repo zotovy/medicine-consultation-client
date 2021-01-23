@@ -20,13 +20,6 @@ const SupportChatComponent: React.FC<SupportChatType> = (chat) => {
     const user = JSON.parse(localStorage.getItem("user") as string);
 
     return <div className="support-chat-component">
-
-        {/*<MediaQuery maxWidth={960}>*/}
-        {/*    {*/}
-        {/*        chat.readByUser ? .new-message-*/}
-        {/*    }*/}
-        {/*</MediaQuery>*/}
-
         <div className="row main-row">
             <div className="icon">
                 <img src={SupportProblemToIcon.get(chat.problem)} alt={`${chat.problem}-icon`}/>
@@ -47,7 +40,7 @@ const SupportChatComponent: React.FC<SupportChatType> = (chat) => {
                 </div>
                 <div className="space"/>
                 <div className="row">
-                    <MediaQuery minWidth={768}>
+                    <MediaQuery minWidth={959}>
                         <p className="last-message">
                             { `${lastMessage.isUser ? user.name : "Администратор"}: ${lastMessage.content}` }
                         </p>
@@ -56,7 +49,7 @@ const SupportChatComponent: React.FC<SupportChatType> = (chat) => {
                 </div>
             </div>
         </div>
-        <MediaQuery maxWidth={768}>
+        <MediaQuery maxWidth={960}>
             <p className="last-message">
                 { `${lastMessage.isUser ? user.name : "Администратор"}: ${lastMessage.content}` }
             </p>
