@@ -42,7 +42,7 @@ const CreatePage: React.FC = () => {
                     options={questionTypes}
                     values={["Tech", "Doctor", "Other"]}
                     name="problem"
-                    simulateField={true}
+                    simulateField={window.screen.width >= 768}
                     styles={{ minWidth: "250px" }}
                     placeholder="Выберите тип проблемы"
                     error={controller.createProblemError}

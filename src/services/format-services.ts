@@ -113,7 +113,6 @@ class FormatServices {
 
         if (needTime) {
             const dMinutes = this._deltaDateInMinutes(date, new Date());
-            console.log(dMinutes);
             if (dMinutes < 1) return "Меньше минуты назад";
             if (dMinutes < 60) return `${dMinutes} ${this.getNumEnding(dMinutes, ["минуту", "минуты", "минут"])} назад`;
             if (dMinutes < 1440) return `${Math.floor(dMinutes / 60)} ${this.getNumEnding(Math.floor(dMinutes / 60), ["час", "часа", "часов"])} назад`;

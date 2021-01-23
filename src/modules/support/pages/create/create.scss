@@ -16,4 +16,18 @@
         margin-top: 20px;
         max-width: 300px;
     }
+
+    @media screen and (max-width: 768px) {
+        .row {
+            flex-direction: column;
+        }
+
+        .dropdown {
+            margin-bottom: 10px;
+        }
+
+        .confirm-button {
+            max-width: 100%;
+        }
+    }
 }
