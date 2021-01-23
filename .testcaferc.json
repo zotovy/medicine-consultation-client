@@ -1,6 +1,0 @@
-{
-    "browsers": ["chrome"],
-    "src": [
-        "./e2e/**/*.test.ts"
-    ]
-}
