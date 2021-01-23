@@ -42,4 +42,10 @@
             outline: none;
         }
     }
+
+    @media screen and (max-width: 768px) {
+        .messages {
+            height: calc(100vh - 274px);
+        }
+    }
 }
