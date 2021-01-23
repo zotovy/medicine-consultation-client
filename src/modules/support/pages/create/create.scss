@@ -18,16 +18,18 @@
     }
 
     @media screen and (max-width: 768px) {
+        .confirm-button {
+            max-width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 960px) {
         .row {
             flex-direction: column;
         }
 
         .dropdown {
             margin-bottom: 10px;
-        }
-
-        .confirm-button {
-            max-width: 100%;
         }
     }
 }
