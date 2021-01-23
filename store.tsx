@@ -1,11 +1,16 @@
 import React from "react";
 
+// Controllers
+import AnimController from "./modules/main/controller";
+
 let clientSideStores: Controllers | null;
 
-type Controllers = {}
+type Controllers = {
+    animController: AnimController
+}
 
 const createController = (): Controllers => ({
-
+    animController: new AnimController(),
 })
 
 export const getControllers = (): Controllers => {

@@ -32,3 +32,11 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# security
+/security/
+
+# ideas
+/.idea/
+./.DS_Store
+

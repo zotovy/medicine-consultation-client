@@ -19,7 +19,7 @@ class MyApp extends App {
     render() {
         const { Component, pageProps } = this.props;
         return (
-            <Provider {...this.state.counterController}>
+            <Provider {...this.state}>
                 <Component {...pageProps} />
             </Provider>
         );

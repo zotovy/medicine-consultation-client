@@ -1,3 +1,3 @@
-export default () => {
-    return <h1>hooome</h1>
-}
+import { MainPage } from "../modules/main";
+
+export default MainPage;
