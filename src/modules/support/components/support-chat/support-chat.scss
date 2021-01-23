@@ -7,7 +7,8 @@
     border: 1px solid #E9F7FA;
     border-radius: 5px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     margin-bottom: 20px;
     cursor: pointer;
 
@@ -31,22 +32,21 @@
     .column {
         width: calc(100% - 48px);
 
-        .row {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            svg {
-                flex: 0 0 auto;
-            }
-        }
-
         .space {
             height: 3px;
         }
     }
 
+    .row {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        svg {
+            flex: 0 0 auto;
+        }
+    }
 
     h5.title {
         text-overflow: ellipsis;
@@ -89,6 +89,50 @@
             padding-left: 20px;
             font-size: 14px;
             color: #B5B5B5;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        padding: 15px;
+
+        .icon {
+            margin-right: 10px;
+            width: 28px;
+            height: 28px;
+
+            img {
+                width: 18px;
+                height: 18px;
+            }
+        }
+
+        h5.title {
+            font-size: 16px;
+        }
+
+        span.number,
+        span.last-message-time,
+        .long-arrow-icon {
+            display: none;
+        }
+
+        span.new-message {
+            text-indent: -9999px;
+            display: block;
+            position: initial;
+            padding-left: 0!important;
+
+            &:before {
+                transform: translateX(10px) translateY(-10px);
+            }
+        }
+
+        p.last-message {
+            margin-top: 5px;
+        }
+
+        .main-row {
+            justify-content: flex-start;
         }
     }
 }

@@ -86,7 +86,7 @@ main.settings-page {
         }
 
         // Phone
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 1024px) {
             max-width: calc(100vw - 32px);
             width: calc(100% - 32px);
             margin-left: 16px;

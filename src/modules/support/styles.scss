@@ -31,5 +31,16 @@
                 height: 24px;
             }
         }
+
+        @media screen and (max-width: 768px) {
+            button {
+                height: 18px;
+
+                svg {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
     }
 }

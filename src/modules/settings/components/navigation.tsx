@@ -39,7 +39,7 @@ const NavigationComponent: React.FC<Props> = ({ active, alwaysActive }) => {
         history.push("/");
     }
 
-    return <MediaQuery minWidth={alwaysActive ? 0 : 425}>
+    return <MediaQuery minWidth={alwaysActive ? 0 : 1024}>
     <div className="navigation">
             {
                 paths.map((e, i) => {

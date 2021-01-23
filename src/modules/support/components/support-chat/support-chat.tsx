@@ -7,6 +7,7 @@ import TechIcon from "../../../../static/icons/support-tech-problem.png";
 import DoctorIcon from "../../../../static/icons/support-doctor-problem.png";
 import OtherIcon from "../../../../static/icons/support-other-problem.png";
 import { LongArrowIcon } from "../../../../static/icons";
+import MediaQuery from "react-responsive";
 
 const SupportProblemToIcon = new Map<SupportChatProblemType, string>();
 SupportProblemToIcon.set("Tech", TechIcon);
@@ -19,31 +20,47 @@ const SupportChatComponent: React.FC<SupportChatType> = (chat) => {
     const user = JSON.parse(localStorage.getItem("user") as string);
 
     return <div className="support-chat-component">
-        <div className="icon">
-            <img src={SupportProblemToIcon.get(chat.problem)} alt={`${chat.problem}-icon`}/>
-        </div>
 
-        <div className="column">
-            <div className="row">
-                <h5 className="title">{ chat.title }</h5>
-                <div className="information">
-                    {
-                        !chat.readByUser ? <span className="new-message">Новое сообщение</span> : <React.Fragment/>
-                    }
-                    <span className="number">№{ chat.number }</span>
-                    <span className="last-message-time ">
+        {/*<MediaQuery maxWidth={960}>*/}
+        {/*    {*/}
+        {/*        chat.readByUser ? .new-message-*/}
+        {/*    }*/}
+        {/*</MediaQuery>*/}
+
+        <div className="row main-row">
+            <div className="icon">
+                <img src={SupportProblemToIcon.get(chat.problem)} alt={`${chat.problem}-icon`}/>
+            </div>
+
+            <div className="column">
+                <div className="row">
+                    <h5 className="title">{ chat.title }</h5>
+                    <div className="information">
+                        {
+                            !chat.readByUser ? <span className="new-message">Новое сообщение</span> : <React.Fragment/>
+                        }
+                        <span className="number">№{ chat.number }</span>
+                        <span className="last-message-time ">
                         { formatServices.formatToUsualDate(lastMessage.date, true, true).toLowerCase() }
                     </span>
+                    </div>
+                </div>
+                <div className="space"/>
+                <div className="row">
+                    <MediaQuery minWidth={768}>
+                        <p className="last-message">
+                            { `${lastMessage.isUser ? user.name : "Администратор"}: ${lastMessage.content}` }
+                        </p>
+                    </MediaQuery>
+                    <LongArrowIcon className="long-arrow-icon"/>
                 </div>
             </div>
-            <div className="space"/>
-            <div className="row">
-                <p className="last-message">
-                    { `${lastMessage.isUser ? user.name : "Администратор"}: ${lastMessage.content}` }
-                </p>
-                <LongArrowIcon className="long-arrow-icon"/>
-            </div>
         </div>
+        <MediaQuery maxWidth={768}>
+            <p className="last-message">
+                { `${lastMessage.isUser ? user.name : "Администратор"}: ${lastMessage.content}` }
+            </p>
+        </MediaQuery>
     </div>;
 }
 
