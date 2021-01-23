@@ -1,7 +1,7 @@
 import createHistory from 'history/createBrowserHistory'
 // import ReactGA from 'react-ga';
 //
-// ReactGA.initialize(process.env.REACT_APP_GA_TRACKING_CODE ?? "", {
+// ReactGA.initialize(process.env._GA_TRACKING_CODE ?? "", {
 //     debug: true,
 //     titleCase: true,
 // });

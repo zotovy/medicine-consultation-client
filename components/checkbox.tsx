@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CheckboxBase from "./checkbox-base";
 
 type Props = {
   id?: string;

@@ -7,7 +7,6 @@ const dev = process.env.NODE_ENV !== 'production'
 const app = next({ dev, dir: __dirname });
 const handle = app.getRequestHandler();
 
-
 const options = {
     key: fs.readFileSync('./security/cert.key'),
     cert: fs.readFileSync('./security/cert.cert'),

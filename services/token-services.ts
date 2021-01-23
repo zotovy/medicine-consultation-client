@@ -53,7 +53,7 @@ class TokenServices {
 
     generateNewTokens = async (id: string): Promise<void> => {
         const responce = await axios.post(
-            `${process.env.REACT_APP_SERVER_URL}/api/generate-token`,
+            `${process.env.SERVER_URL}/api/generate-token`,
             { id: id }
         );
 
@@ -126,7 +126,7 @@ class TokenServices {
         if (!refreshToken || !accessToken || !userId) return null;
 
         const responce = await axios
-            .post(`${process.env.REACT_APP_SERVER_URL}/api/token`, {
+            .post(`${process.env.SERVER_URL}/api/token`, {
                 accessToken,
                 refreshToken,
                 userId,

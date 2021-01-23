@@ -18,19 +18,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "experimentalDecorators": true,
-    "types": [
-      "node",
-      "jest",
-      "webdriverio",
-      "@wdio/sync",
-      "expect-webdriverio",
-      "wdio-wiremock-service"
-    ]
+    "experimentalDecorators": true
   },
   "include": [
     "*.tsx",
-    "*.ts"
+    "*.ts",
+    "@types/*.d.ts"
   ],
   "exclude": [
     "node_modules"

@@ -19,6 +19,6 @@
 //
 // export default ErrorBadge;
 
-export default () => {
+export default (props: any) => {
     return <div>todo</div>
 }
