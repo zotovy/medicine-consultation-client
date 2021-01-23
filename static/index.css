@@ -1,0 +1,90 @@
+@font-face {
+    font-family: "Inter";
+    src: local("FiraSans"), url(./fonts/INTER-REGULAR.TTF) format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: local("FiraSans"), url(./fonts/INTER-MEDIUM.TTF) format("truetype");
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: local("FiraSans"), url(./fonts/INTER-SEMIBOLD.TTF) format("truetype");
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Inter";
+    src: local("FiraSans"), url(./fonts/INTER-BOLD.TTF) format("truetype");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html, input, textarea {
+    font-family: "Inter", sans-serif;
+}
+
+body::-webkit-scrollbar {
+    position: absolute;
+    width: 20px;
+    height: 18px;
+}
+
+body::-webkit-scrollbar-thumb {
+    height: 6px;
+    border: 7px solid rgba(0, 0, 0, 0);
+    background-clip: padding-box;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+body::-webkit-scrollbar-button {
+    width: 0;
+    height: 0;
+    display: none;
+}
+
+body::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+/* @media screen and (max-width: 768px) {
+    body,
+    html {
+        overflow-y: scroll;
+    }
+} */
+
+* ::selection {
+    background: #30b9d6;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+}
+
+span.link {
+    color: #30b9d6;
+}
+
+span.link :hover {
+    text-decoration: underline;
+}
