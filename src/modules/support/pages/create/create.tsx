@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import { observer } from "mobx-react";
 import "./create.scss";
 import controller from "../../controllers/support-controller";
+import { useWindowWidth } from "@react-hook/window-size";
 
 // Components
 import TextField from "../../../../components/text-field";
@@ -18,7 +19,7 @@ import SupportHeader from "../../components/header";
 const questionTypes = ["Техническая", "Проблема с доктором", "Другое"];
 
 const CreatePage: React.FC = () => {
-
+    const windowWidth = useWindowWidth();
     const history = useHistory();
     useEffect(() => {
        controller.goBackCb = () => history.goBack();
@@ -42,7 +43,7 @@ const CreatePage: React.FC = () => {
                     options={questionTypes}
                     values={["Tech", "Doctor", "Other"]}
                     name="problem"
-                    simulateField={window.screen.width >= 768}
+                    simulateField={windowWidth >= 960}
                     styles={{ minWidth: "250px" }}
                     placeholder="Выберите тип проблемы"
                     error={controller.createProblemError}
