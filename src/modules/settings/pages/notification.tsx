@@ -17,14 +17,14 @@ const NotificationPage : React.FC = () => {
     }, []);
 
     if (controller.isLoading) {
-        return <SettingsLoadingComponent active={3}/>
+        return <SettingsLoadingComponent active="/notifications"/>
     }
     return <main className="notifications-page settings-page">
         {
             controller.isLoadingSave ? <LoadingLine/> : <React.Fragment/>
         }
         <GoBackIcon/>
-        <Navigation active={3} />
+        <Navigation active="/notifications" />
         <section className="content notifications">
             <TextField
                 onChange={(v) => controller.email = v}

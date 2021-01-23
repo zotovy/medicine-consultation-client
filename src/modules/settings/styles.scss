@@ -35,14 +35,15 @@ main.settings-page {
             margin-bottom: 20px;
 
             .icon {
-                margin-right: 17px;
+                margin-right: 25px;
                 width: 27px;
-                display: inline;
+                height: 27px;
+                display: flex;
+                align-items: center;
 
                 svg {
                     width: 27px;
                     height: 27px;
-                    margin-right: 25px;
                 }
             }
 
@@ -85,7 +86,7 @@ main.settings-page {
         }
 
         // Phone
-        @media screen and (max-width: 425px) {
+        @media screen and (max-width: 1024px) {
             max-width: calc(100vw - 32px);
             width: calc(100% - 32px);
             margin-left: 16px;

@@ -8,7 +8,6 @@ import GoBackIcon from "../components/go-back-icon";
 import TextField from "../../../components/text-field";
 import ConfirmButton from "../../../components/confirm-button";
 import SettingsLoadingComponent from "../components/loading";
-import { Simulate } from "react-dom/test-utils";
 
 const days: string[] = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
 const clickOnWorkingDays = (i: number) => {
@@ -23,11 +22,11 @@ const DoctorSettingsPage = () => {
     }, []);
 
     if (controller.isLoading) {
-        return <SettingsLoadingComponent active={5}/>
+        return <SettingsLoadingComponent active="/doctor"/>
     }
 
     return <main className="doctor-page settings-page">
-        <Navigation active={5}/>
+        <Navigation active="/doctor"/>
         <GoBackIcon/>
         <section className="content doctor">
             <div className="row">

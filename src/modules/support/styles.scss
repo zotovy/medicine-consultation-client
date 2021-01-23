@@ -1,0 +1,52 @@
+@import "../../static/theme";
+
+@mixin supportHeader {
+    header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h1 {
+            color: #282828;
+            font-size: 24px;
+            font-weight: 500;
+            //text-overflow: ellipsis;
+            //white-space: nowrap;
+            overflow: hidden
+        }
+
+        button {
+            background: none;
+            border: none;
+            outline: none;
+            height: 24px;
+            padding: 0;
+            cursor: pointer;
+            color: $primary;
+            font-size: 16px;
+
+            svg {
+                width: 24px;
+                height: 24px;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+
+            h1 {
+                font-size: 18px;
+                margin-right: 20px;
+            }
+
+            button {
+                height: 18px;
+
+                svg {
+                    width: 18px;
+                    height: 18px;
+                }
+            }
+        }
+    }
+}

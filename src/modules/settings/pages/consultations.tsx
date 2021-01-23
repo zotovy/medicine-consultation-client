@@ -16,17 +16,17 @@ const ConsultationsPage = () => {
     }, []);
 
     if (controller.isLoading) {
-        return <SettingsLoadingComponent active={1}/>
+        return <SettingsLoadingComponent active="/consultations"/>
     }
 
     if (controller.consultations.length === 0) return  <main className="consultations-page settings-page">
-        <Navigation active={1} />
+        <Navigation active="/consultations" />
         <NotFound text="У вас еще не было консультаций" />
     </main>
 
     return <main className="consultations-page settings-page">
         <NoteComponent />
-        <Navigation active={1} />
+        <Navigation active="/consultations" />
         <GoBackIcon/>
         <section className="content consultations">
             {

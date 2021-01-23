@@ -15,19 +15,19 @@ const ReviewPage: React.FC = () => {
     }, []);
 
     if (controller.isLoading) {
-        return <SettingsLoadingComponent active={2}/>
+        return <SettingsLoadingComponent active="/reviews"/>
     }
 
     if (controller.reviews.length === 0) {
         return <main className="consultations-page settings-page">
-            <Navigation active={2} />
+            <Navigation active="/reviews" />
             <NotFound text="У вас пока нет отзывов"/>
         </main>
     }
 
     return <main className="reviews-page settings-page">
         <GoBackIcon/>
-        <NavigationComponent active={2}/>
+        <NavigationComponent active="/reviews"/>
         <section className="content reviews">
             {
                 controller.reviews.map(e => {

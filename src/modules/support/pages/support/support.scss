@@ -1,0 +1,15 @@
+@import "../../styles";
+
+.support-page {
+    @include supportHeader();
+
+    .chats-list {
+        margin-top: 10px;
+        width: 100%;
+
+        @media screen and (max-width: 768px) {
+            margin-top: 20px;
+        }
+    }
+
+}

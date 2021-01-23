@@ -10,25 +10,26 @@ import {
     PasswordIcon,
     ReviewsIcon
 } from "../icons";
+import { SupportIcon } from "../../../static/icons";
 import tokenServices from "../../../services/token-services";
 import storageServices from "../../../services/storage_services";
 import MediaQuery from "react-responsive";
 
 type Props = {
-    active: number
+    active: string
     alwaysActive?: boolean
 }
 
-let icons: React.FC[] = [AccountIcon, ConsultationIcon, ReviewsIcon, NotificationIcon, PasswordIcon];
-let titles: string[] = ["Аккаунт", "Консультации", "Отзывы", "Уведомления", "Пароль"];
-let paths: string[] = ['/account', "/consultations", "/reviews", "/notifications", "/password"]
+let icons: React.FC[] = [AccountIcon, ConsultationIcon, ReviewsIcon, NotificationIcon, PasswordIcon, SupportIcon];
+let titles: string[] = ["Аккаунт", "Консультации", "Отзывы", "Уведомления", "Пароль", "Поддержка"];
+let paths: string[] = ['/account', "/consultations", "/reviews", "/notifications", "/password", "/support"]
 
 const NavigationComponent: React.FC<Props> = ({ active, alwaysActive }) => {
 
     if (localStorage.getItem("isUser") === "false") {
-        titles = [...titles.slice(0, 4), "Ссылки", "Доктор", "Пароль"];
-        paths = [...paths.slice(0, 4), "/links", "/doctor", "/password"];
-        icons = [...icons.slice(0, 4), LinkIcon, DoctorIcon, PasswordIcon];
+        titles = [...titles.slice(0, 4), "Ссылки", "Доктор", "Пароль", "Поддержка"];
+        paths = [...paths.slice(0, 4), "/links", "/doctor", "/password", "/support"];
+        icons = [...icons.slice(0, 4), LinkIcon, DoctorIcon, PasswordIcon, SupportIcon];
     }
 
     const history = useHistory();
@@ -38,11 +39,11 @@ const NavigationComponent: React.FC<Props> = ({ active, alwaysActive }) => {
         history.push("/");
     }
 
-    return <MediaQuery minWidth={alwaysActive ? 0 : 425}>
+    return <MediaQuery minWidth={alwaysActive ? 0 : 1024}>
     <div className="navigation">
             {
-                titles.map((_, i) => {
-                    return <NavigationItem i={i} isActive={i == active}/>
+                paths.map((e, i) => {
+                    return <NavigationItem i={i} isActive={e === active }/>
                 })
             }
 
