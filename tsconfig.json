@@ -21,8 +21,11 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
+      "@/components/*": ["components/*"],
       "@/static/*": ["static/*"],
-      "@/modules/*": ["modules/*"]
+      "@/modules/*": ["modules/*"],
+      "@/services/*": ["services/*"],
+      "@/utils/*": ["utils/*"]
     }
   },
   "include": [

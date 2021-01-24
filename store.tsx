@@ -1,12 +1,13 @@
 import React from "react";
 import { enableStaticRendering } from "mobx-react";
 
-
 // Controllers
 import AnimController from "./modules/main/controller";
 import SignupUIStore from "./modules/auth/stores/signupUI"; 
 import LoginUIStore from "./modules/auth/stores/loginUI";
 import ResetPasswordFromEmailController from "./modules/auth/stores/reset-password";
+import ConsultationController from "./modules/settings/controllers/consultations_controller";
+import AccountController from "@/modules/settings/controllers/account-controller";
 
 enableStaticRendering(typeof window === "undefined");
 
@@ -17,6 +18,8 @@ export type Controllers = {
     signupUiStore: SignupUIStore,
     loginUIStore: LoginUIStore
     resetPasswordFromEmailController: ResetPasswordFromEmailController,
+    consultationController: ConsultationController,
+    accountController: AccountController,
 }
 
 const createController = (): Controllers => ({
@@ -24,6 +27,8 @@ const createController = (): Controllers => ({
     signupUiStore: new SignupUIStore(),
     loginUIStore: new LoginUIStore(),
     resetPasswordFromEmailController: new ResetPasswordFromEmailController(),
+    consultationController: new ConsultationController(),
+    accountController: new AccountController(),
 })
 
 export const getControllers = (): Controllers => {

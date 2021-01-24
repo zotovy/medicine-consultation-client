@@ -15,21 +15,23 @@ class TokenServices {
     }
 
     saveAccessToken(token: string) {
-        localStorage.setItem("accessToken", token);
+        if (typeof window !== "undefined") localStorage.setItem("accessToken", token);
 
         const now = moment();
-        localStorage.setItem("accessTokenSetDate", now.toISOString());
+        if (typeof window !== "undefined") localStorage.setItem("accessTokenSetDate", now.toISOString());
     }
 
     saveRefreshToken(token: string) {
-        localStorage.setItem("refreshToken", token);
+        if (typeof window !== "undefined") localStorage.setItem("refreshToken", token);
 
         const now = moment();
-        localStorage.setItem("refreshTokenSetDate", now.toISOString());
+        if (typeof window !== "undefined") localStorage.setItem("refreshTokenSetDate", now.toISOString());
     }
 
     isLogin(): boolean {
-        const accessToken = localStorage.getItem("accessToken");
+        const accessToken = typeof window === "undefined"
+            ? null
+            : localStorage.getItem("accessToken");
 
         if (accessToken) {
             return true;
@@ -97,13 +99,13 @@ class TokenServices {
         return leftToLive != null ? leftToLive <= 0 : null;
     }
 
-    private _getAccessToken = (): string | null =>
-        localStorage.getItem("accessToken");
-    private _getRefreshToken = (): string | null =>
-        localStorage.getItem("refreshToken");
+    private _getAccessToken = (): string | null => typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+    private _getRefreshToken = (): string | null => typeof window !== "undefined" ? localStorage.getItem("refreshToken") : null;
 
     private _secondsToUpdate(tokenKey: string): number | null {
-        const setDate = localStorage.getItem(tokenKey);
+        const setDate = typeof window === "undefined"
+            ? null
+            : localStorage.getItem(tokenKey);
 
         if (!setDate) return null;
 
@@ -121,7 +123,9 @@ class TokenServices {
 
         const refreshToken = this._getRefreshToken();
         const accessToken = this._getAccessToken();
-        const userId = localStorage.getItem("uid");
+        const userId = typeof window === "undefined"
+            ? null
+            : localStorage.getItem("uid");
 
         if (!refreshToken || !accessToken || !userId) return null;
 

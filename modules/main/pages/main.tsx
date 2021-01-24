@@ -7,6 +7,7 @@ import Doctor from "../../doctors/components/symptoms/doctor-slide";
 import Link from "next/link";
 import MediaQuery from "react-responsive";
 import AnimController from "../controller";
+import Menu from "@/components/menu";
 
 type Props = {
     animController: AnimController,
@@ -21,6 +22,7 @@ const MainPage: NextPage<Props> = (props) => {
         }, []);
 
         return <React.Fragment>
+            <Menu/>
             <section className="main-wrapper sc--pre-sect">
                 <div className="main-container-pre-sect">
                     <article className="pre-sect__left _anim-items _anim-not-hide">

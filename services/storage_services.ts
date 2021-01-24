@@ -1,7 +1,12 @@
 class StorageServices {
-    saveUser = (user: UserType): void => localStorage.setItem("user", JSON.stringify(user));
+    saveUser = (user: UserType): void => {
+        if (typeof window !== "undefined") {
+            localStorage.setItem("user", JSON.stringify(user));
+        }
+    };
 
     getUser = (): UserType | null => {
+        if (typeof window === "undefined") return null;
         const raw = localStorage.getItem("user");
         if (!raw) return null;
         return JSON.parse(raw);
@@ -10,8 +15,6 @@ class StorageServices {
     removeUser = (): void => localStorage.removeItem("user");
 
 }
-
-
 
 
 export default new StorageServices();

@@ -257,4 +257,20 @@ menu {
             }
         }
     }
+
+    .tab span.link {
+        cursor: pointer;
+    }
+
+    @media screen and (max-width: 1024px) {
+        .profile.auth {
+            display: none;
+        }
+    }
+
+    @media screen and (min-width: 1024px) {
+        .hamburger-menu {
+            display: none;
+        }
+    }
 }
