@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
-import { inject, observer } from "mobx-react";
+import { observer } from "mobx-react";
 import { NextPage } from "next";
 import Title from "../../../components/title";
 import Doctor from "../../doctors/components/symptoms/doctor-slide";
@@ -8,13 +8,12 @@ import Link from "next/link";
 import MediaQuery from "react-responsive";
 import AnimController from "../controller";
 import Menu from "@/components/menu";
+import { useInjection, TYPES } from "../../../container";
 
-type Props = {
-    animController: AnimController,
-}
 
-const MainPage: NextPage<Props> = (props) => {
-        const controller = props.animController;
+
+const MainPage: NextPage = () => {
+        const controller = useInjection<AnimController>(TYPES.animController);
         useEffect(() => {
             const {startAnim} = controller;
             startAnim();
@@ -2209,4 +2208,4 @@ const MainPage: NextPage<Props> = (props) => {
 }
 
 
-export default inject("animController")(observer(MainPage));
+export default observer(MainPage);

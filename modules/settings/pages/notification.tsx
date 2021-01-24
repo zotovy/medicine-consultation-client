@@ -12,11 +12,11 @@ import LoadingLine from "@/components/loading-line";
 import SettingsLoadingComponent from "../components/loading";
 import GoBackIcon from "../components/go-back-icon";
 import withController from "@/utils/inject";
+import { useInjection, TYPES } from "../../../container";
 
-type ControllerProps = { notificationsController: NotificationsController };
 
-const NotificationPage : NextPage<ControllerProps> = (props) => {
-    const controller = props.notificationsController;
+const NotificationPage : NextPage = () => {
+    const controller = useInjection<NotificationsController>(TYPES.notificationsController)
 
     useEffect(() => {
         controller.fetchNotifications();

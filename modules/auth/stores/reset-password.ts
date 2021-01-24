@@ -1,7 +1,9 @@
 import { makeObservable, observable } from "mobx";
 import axios from "axios";
+import { injectable } from "inversify";
 import { checkPassword } from "../helper";
 
+@injectable()
 export default class ResetPasswordFromEmailController {
 
     constructor() {

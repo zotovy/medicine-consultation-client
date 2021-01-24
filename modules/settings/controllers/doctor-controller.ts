@@ -1,10 +1,12 @@
 import { observable, action, makeObservable } from "mobx";
+import { injectable } from "inversify";
 import UserStore from "./userStore";
 import formatServices from "@/services/format-services";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
 import axios from "axios";
 import tokenServices from "@/services/token-services";
 
+@injectable()
 export default class DoctorSettingsController {
 
     constructor() {

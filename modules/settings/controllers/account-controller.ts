@@ -1,4 +1,5 @@
 import { action, observable, makeObservable } from "mobx";
+import { injectable } from "inversify";
 import Time from "@/utils/time";
 import Duration from "@/utils/duration";
 import formatServices from "@/services/format-services";
@@ -9,6 +10,7 @@ import validate_services from "@/services/validation-services";
 import UserStore from "./userStore";
 import storageServices from "@/services/storage_services";
 
+@injectable()
 export default class AccountController {
 
     constructor() {

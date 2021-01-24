@@ -7,16 +7,15 @@ import { AdminMessage, UserMessage } from "../../components/message/message";
 import formatServices from "@/services/format-services";
 import { SendIcon } from "@/static/icons";
 import styles from "./chat.module.scss";
-import withController from "../../../../utils/inject";
+import { TYPES, useInjection } from "../../../../container";
 
 /**
  * This page is injectable. Do not use it without any wrapper
  */
 
-type ControllersProps = { supportController: SupportController };
 
-const ChatPage: React.FC<ControllersProps> = (props) => {
-    const controller = props.supportController;
+const ChatPage: React.FC = () => {
+    const controller = useInjection<SupportController>(TYPES.supportController);
 
     useEffect(() => {
         if (controller.chats.length == 0) {
@@ -68,4 +67,4 @@ const ChatPage: React.FC<ControllersProps> = (props) => {
     </div>
 }
 
-export default withController(observer(ChatPage), "supportController");
+export default observer(ChatPage);

@@ -18,6 +18,7 @@ import Divider from "../../components/divider";
 import DateTextField from "../../../../components/year-date-textfield";
 import Calendar from "../../../../components/calendar";
 import withController from "../../../../utils/inject";
+import { TYPES, useInjection } from "../../../../container";
 
 
 
@@ -103,14 +104,11 @@ const Row = styled.div`
     }
 `
 
-type Props = {
-    signupUiStore: SignupUIStore
-}
 
-const DSPage2: React.FC<Props> = ({ signupUiStore }) => {
+const DSPage2: React.FC = () => {
+    const signupUiStore = useInjection<SignupUIStore>(TYPES.signupUiStore);
 
     return <Page2 className={signupUiStore.pageIndex === 0 ? "" : signupUiStore.pageIndex === 1 ? "minus55" : "minus110"}>
-
         <Container >
             <Title text="Стать врачём" />
             <SizedBox height="10px" />
@@ -218,4 +216,4 @@ const DSPage2: React.FC<Props> = ({ signupUiStore }) => {
     </Page2>
 }
 
-export default withController(observer(DSPage2), "signupUiStore");
+export default observer(DSPage2);

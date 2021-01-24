@@ -5,16 +5,15 @@ import SupportController from "../../controllers/support-controller";
 import SupportChatComponent from "../../components/support-chat";
 import SupportHeader from "../../components/header";
 import styles from "./support.module.scss";
-import withController from "../../../../utils/inject";
+import { TYPES, useInjection } from "../../../../container";
 
 /**
  * This page is injectable. Do not use it without any wrapper
  */
 
-type ControllersProps = { supportController: SupportController  }
 
-const SupportPage: React.FC<ControllersProps> = (props) => {
-    const controller = props.supportController;
+const SupportPage: React.FC = (props) => {
+    const controller = useInjection<SupportController>(TYPES.supportController);
     useEffect(() => {
         if (!controller.fetchedChats) controller.fetchChats();
     }, []);
@@ -45,4 +44,4 @@ const SupportPage: React.FC<ControllersProps> = (props) => {
     </div>
 }
 
-export default withController(observer(SupportPage), "supportController");
+export default observer(SupportPage);

@@ -1,9 +1,11 @@
 import { action, observable } from "mobx";
+import { injectable } from "inversify";
 import UserStore from "./userStore";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
 import axios from "axios";
 import token_services from "@/services/token-services";
 
+@injectable()
 export default class LinkController {
 
     @observable loading: boolean = true;

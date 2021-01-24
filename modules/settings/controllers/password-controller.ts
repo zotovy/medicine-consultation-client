@@ -1,10 +1,13 @@
 import { observable, action } from "mobx";
+import { injectable } from "inversify";
 import axios from "axios";
 import { authFetch } from "@/services/fetch_services";
 import validationService from "@/services/validation-services";
 import tokenServices from "@/services/token-services";
+import { IController } from "../../../container";
 
-export default class PasswordController {
+@injectable()
+export default class PasswordController implements IController{
     // UI
     oldPassword: string = "";
     newPassword: string = "";

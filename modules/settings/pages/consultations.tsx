@@ -10,12 +10,11 @@ import NotFound from "../components/not-found";
 import NoteComponent from "../components/note";
 import SettingsLoadingComponent from "../components/loading";
 import GoBackIcon from "../components/go-back-icon";
-import withController from "../../../utils/inject";
+import { TYPES, useInjection } from "../../../container";
 
-type ConsultationProps = { consultationController: ConsultationController };
 
-const ConsultationsPage: NextPage<ConsultationProps> = (props) => {
-    const controller = props.consultationController;
+const ConsultationsPage: NextPage = () => {
+    const controller = useInjection<ConsultationController>(TYPES.consultationController);
 
     useEffect(() => {
         if (typeof window !== "undefined") {
@@ -57,4 +56,4 @@ const ConsultationsPage: NextPage<ConsultationProps> = (props) => {
 
 };
 
-export default withController(observer(ConsultationsPage), "consultationController");
+export default observer(ConsultationsPage);

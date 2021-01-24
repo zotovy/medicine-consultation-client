@@ -1,8 +1,10 @@
 import { action, makeObservable, observable } from "mobx";
+import { injectable } from "inversify";
 import axios from "axios";
 import tokenServices from "@/services/token-services";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
 
+@injectable()
 export default class SupportController {
 
     constructor() {

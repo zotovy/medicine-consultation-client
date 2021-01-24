@@ -1,8 +1,9 @@
 import React from "react";
-import { inject, IWrappedComponent, observer } from "mobx-react";
+import { observer } from "mobx-react";
 import styled from "styled-components";
 import MediaQuery from 'react-responsive';
 import Linker from "next/link";
+import { TYPES, useInjection } from "../../../../container";
 
 // Store
 import SignupUIStore from "../../stores/signupUI";
@@ -17,7 +18,6 @@ import SignUpForm from "../../components/signup-form";
 import SexCheckbox from "../../../../components/sex-checkbox";
 import ConfirmButton from "../../../../components/confirm-button";
 import SignupLink from "../../components/signup-link";
-import withController from "../../../../utils/inject";
 
 
 const Page1 = styled.div`
@@ -26,15 +26,6 @@ const Page1 = styled.div`
     transition: 1s;
 `;
 
-const HalfOfWidth = styled.div`
-    width: 50%;
-
-    /* Phone */
-    @media screen and (max-width: 424px) {
-        width: 100%;
-        margin-bottom: 10px;
-    } 
-`;
 
 const Row = styled.div`
     display: flex;
@@ -49,12 +40,10 @@ const Row = styled.div`
     }
 `
 
-type Props = {
-    signupUiStore: SignupUIStore,
-}
 
-const DSPage1: React.FC<Props> = (props) => {
-    const { signupUiStore } = props;
+
+const DSPage1: React.FC = () => {
+    const signupUiStore = useInjection<SignupUIStore>(TYPES.signupUiStore);
 
     return <Page1
         className={signupUiStore.pageIndex === 0 ? "" : signupUiStore.pageIndex === 1 ? "minus55" : "minus110"}>
@@ -91,4 +80,4 @@ const DSPage1: React.FC<Props> = (props) => {
     </Page1>
 }
 
-export default withController(observer(DSPage1), "signupUiStore");
+export default observer(DSPage1);

@@ -8,12 +8,10 @@ import { observer } from "mobx-react";
 import ConfirmButton from "@/components/confirm-button";
 import GoBackIcon from "../components/go-back-icon";
 import TextField from "@/components/text-field";
-import withController from "@/utils/inject";
+import { TYPES, useInjection } from "../../../container";
 
-type ControllerProps = { passwordController: PasswordController };
-
-const ChangePasswordPage: NextPage<ControllerProps> = (props) => {
-    const controller = props.passwordController;
+const ChangePasswordPage: NextPage = () => {
+    const controller = useInjection<PasswordController>(TYPES.passwordController)
     const router = useRouter();
     useEffect(() => {
         controller.redirectToLogin = () => {
@@ -59,4 +57,4 @@ const ChangePasswordPage: NextPage<ControllerProps> = (props) => {
     </React.Fragment>
 }
 
-export default withController(observer(ChangePasswordPage), "passwordController");
+export default observer(ChangePasswordPage)

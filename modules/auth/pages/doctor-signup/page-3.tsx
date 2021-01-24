@@ -1,10 +1,11 @@
 import React from "react";
 import { observer } from "mobx-react";
 import styled from "styled-components";
+import { TYPES, useInjection } from "../../../../container";
 
 // Store
-import SignupUIStore from "../../stores/signupUI";
 
+import SignupUIStore from "../../stores/signupUI";
 // Components
 import Container from "../../components/container";
 import Title from "../../components/title";
@@ -87,11 +88,10 @@ const HalfOfWidth = styled.div`
     } 
 `;
 
-type Props = {
-    signupUiStore: SignupUIStore
-}
 
-const DSPage3: React.FC<Props> = ({ signupUiStore }) => {
+const DSPage3: React.FC = () => {
+    const signupUiStore = useInjection<SignupUIStore>(TYPES.signupUiStore);
+
     return <Page3 className={signupUiStore.pageIndex === 0 ? "" : signupUiStore.pageIndex === 1 ? "minus55" : "minus110"}>
         <Container>
             <Title text="Стать врачём" />

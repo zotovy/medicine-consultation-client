@@ -11,6 +11,7 @@ import TextField from "../../../components/text-field";
 import ConfirmButton from "../../../components/confirm-button";
 import SettingsLoadingComponent from "../components/loading";
 import withController from "../../../utils/inject";
+import { useInjection, TYPES } from "../../../container";
 
 const days: string[] = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
 const clickOnWorkingDays = (controller: DoctorSettingsController, i: number) => {
@@ -18,10 +19,9 @@ const clickOnWorkingDays = (controller: DoctorSettingsController, i: number) => 
     else controller.selectedDays.push(i);
 }
 
-type ControllerProps = { doctorSettingsController: DoctorSettingsController };
 
-const DoctorSettingsPage: NextPage<ControllerProps> = (props) => {
-    const controller = props.doctorSettingsController;
+const DoctorSettingsPage: NextPage = () => {
+    const controller = useInjection<DoctorSettingsController>(TYPES.doctorSettingsController);
 
     useEffect(() => {
         controller.load();

@@ -1,5 +1,7 @@
 import { action } from "mobx";
+import { injectable } from "inversify";
 
+@injectable()
 export default class AnimController {
     @action startAnim = () => {
         const animItems: any = document.querySelectorAll("._anim-items"),

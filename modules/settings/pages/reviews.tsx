@@ -10,12 +10,11 @@ import SettingsLoadingComponent from "../components/loading";
 import NotFound from "../components/not-found";
 import GoBackIcon from "../components/go-back-icon";
 import Navigation from "../components/navigation";
-import withController from "@/utils/inject";
+import { TYPES, useInjection } from "../../../container";
 
-type ControllerProps = { reviewsController: ReviewsController };
 
-const ReviewPage: NextPage<ControllerProps> = (props) => {
-    const controller = props.reviewsController;
+const ReviewPage: NextPage = (props) => {
+    const controller = useInjection<ReviewsController>(TYPES.reviewsController);
 
     useEffect(() => {
         controller.fetchReviews();
@@ -65,4 +64,4 @@ const getFullName = (d: DoctorType) : string => {
     return `${d.name} ${d.surname}`;
 }
 
-export default withController(observer(ReviewPage), "reviewsController");
+export default observer(ReviewPage)

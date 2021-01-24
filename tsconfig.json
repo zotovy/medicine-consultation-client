@@ -21,17 +21,35 @@
     "experimentalDecorators": true,
     "baseUrl": ".",
     "paths": {
-      "@/components/*": ["components/*"],
-      "@/static/*": ["static/*"],
-      "@/modules/*": ["modules/*"],
-      "@/services/*": ["services/*"],
-      "@/utils/*": ["utils/*"]
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/static/*": [
+        "static/*"
+      ],
+      "@/modules/*": [
+        "modules/*"
+      ],
+      "@/services/*": [
+        "services/*"
+      ],
+      "@/utils/*": [
+        "utils/*"
+      ]
     },
     "typeRoots": [
       "."
+    ],
+    "types": [
+      "reflect-metadata"
     ]
   },
   "exclude": [
     "node_modules"
+  ],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }

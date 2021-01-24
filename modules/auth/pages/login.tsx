@@ -18,6 +18,8 @@ import Title from "../components/title";
 import SubTitle from "../components/subtitle";
 import Link from "../components/link";
 import withController from "../../../utils/inject";
+import { TYPES, useInjection } from "../../../container";
+import SignupUIStore from "@/modules/auth/stores/signupUI";
 
 // Assets
 // import bgImage from "../../../static/images/login-bg.png";
@@ -72,14 +74,13 @@ const ErrorMessage = styled.div`
 `;
 
 
-type Props = {
-    loginUIStore: LoginUIStore;
-}
 
-const Login: NextPage<Props> = observer((props) => {
+
+const Login: NextPage = observer(() => {
     let router = useRouter();
 
-    const { loginUIStore } = props;
+    const loginUIStore = useInjection<LoginUIStore>(TYPES.signupUiStore);
+
 
     // Navigate to home page after login
     reaction(() => loginUIStore.goToHomeTrigger, () => router.push("/"));
@@ -156,5 +157,5 @@ const Login: NextPage<Props> = observer((props) => {
 
 });
 
-export default withController(Login, "loginUIStore") as NextPage;
+export default Login;
 // export default inject("loginUIStore")(Login);

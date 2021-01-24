@@ -4,6 +4,9 @@ import MediaQuery from 'react-responsive';
 import styled from "styled-components";
 import { reaction } from "mobx";
 import { observer } from "mobx-react";
+import { useRouter } from "next/router";
+import { NextPage } from "next";
+import { TYPES, useInjection } from "../../../container";
 
 // Stores
 import SignupUIStore from "../stores/signupUI";
@@ -24,10 +27,6 @@ import PasswordError from "../components/password-error";
 import ErrorBadge from "../../../components/error-badge";
 
 
-// Static
-import { useRouter } from "next/router";
-import { NextPage } from "next";
-import withController from "../../../utils/inject";
 
 const Wrapper = styled.div`
     display: flex;
@@ -50,12 +49,11 @@ const HalfOfWidth = styled.div`
 `;
 
 
-type ControllersProps = {
-    signupUiStore: SignupUIStore,
-};
 
-const UserSignUp: NextPage<ControllersProps> = observer(({ signupUiStore }) => {
+
+const UserSignUp: NextPage = observer(() => {
     const router = useRouter();
+    const signupUiStore = useInjection<SignupUIStore>(TYPES.signupUiStore);
 
     // Navigate to home page after login
     reaction(() => signupUiStore.goToHomeTrigger, () => router.push("/"));

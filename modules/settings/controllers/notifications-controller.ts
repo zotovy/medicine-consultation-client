@@ -1,10 +1,12 @@
 import { action, makeObservable, observable } from "mobx";
+import { injectable } from "inversify";
 import UserStore from "./userStore";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
 import axios from "axios";
 import token_services from "@/services/token-services";
 import validate_services from "@/services/validation-services";
 
+@injectable()
 export default class NotificationsController {
 
     constructor() {

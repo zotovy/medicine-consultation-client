@@ -1,4 +1,5 @@
 import { observable, action, makeObservable } from "mobx";
+import { injectable } from "inversify";
 import formatServices from "../../../services/format-services";
 import axios from "axios";
 import tokenServices from "../../../services/token-services";
@@ -6,6 +7,7 @@ import storageServices from "../../../services/storage_services";
 import validationServices from "../../../services/validation-services";
 import { ServerErrorType } from "../@types/server-errors";
 
+@injectable()
 export default class SingupUIStore {
     constructor() {
         makeObservable(this);

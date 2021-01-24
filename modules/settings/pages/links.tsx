@@ -8,12 +8,11 @@ import ConfirmButton from "@/components/confirm-button";
 import Navigation from "../components/navigation";
 import SettingsLoadingComponent from "../components/loading";
 import GoBackIcon from "../components/go-back-icon";
-import withController from "@/utils/inject";
+import { useInjection, TYPES } from "../../../container";
 
-type ControllerProps = { linkController: LinkController };
 
-const LinksSettingsPage: NextPage<ControllerProps> = (props) => {
-    const controller = props.linkController;
+const LinksSettingsPage: NextPage = () => {
+    const controller = useInjection<LinkController>(TYPES.linkController)
 
     useEffect(() => {
         controller.fetchUser();
@@ -83,4 +82,4 @@ const LinksSettingsPage: NextPage<ControllerProps> = (props) => {
     </React.Fragment>
 }
 
-export default withController(observer(LinksSettingsPage), "linkController");
+export default observer(LinksSettingsPage)

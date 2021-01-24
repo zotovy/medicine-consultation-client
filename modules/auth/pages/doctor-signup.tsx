@@ -15,6 +15,7 @@ import Image from '../components/image';
 // Pages
 import Page1 from "./doctor-signup/page-1";
 import withController from "../../../utils/inject";
+import { TYPES, useInjection } from "../../../container";
 
 const Page2 = dynamic(() => import("./doctor-signup/page-2"));
 const Page3 = dynamic(() => import("./doctor-signup/page-3"));
@@ -40,14 +41,10 @@ const BadgeIcon: React.FC = () => {
     return <img src="../../../static/images/tick.png" alt="icon"/>
 }
 
-type Props = {
-    signupUiStore: SignupUIStore
-}
-
-
-const DoctorSignUp: NextPage<Props> = (props) => {
+const DoctorSignUp: NextPage = () => {
     const router = useRouter();
-    const { signupUiStore } = props;
+    const signupUiStore = useInjection<SignupUIStore>(TYPES.signupUiStore);
+
 
     reaction(() => signupUiStore.redirectToHomeTrigger, () => {
         router.push("/");
@@ -69,4 +66,4 @@ const DoctorSignUp: NextPage<Props> = (props) => {
     </div>
 }
 
-export default withController(observer(DoctorSignUp), "signupUiStore");
+export default observer(DoctorSignUp);

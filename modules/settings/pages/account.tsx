@@ -16,14 +16,13 @@ import token_services from "@/services/token-services";
 import NavigationComponent from "../components/navigation";
 import SettingsLoadingComponent from "../components/loading";
 import GoBackIcon from "../components/go-back-icon";
-import withController from "../../../utils/inject";
 import Menu from "../../../components/menu";
+import { TYPES, useInjection } from "../../../container";
 
-type ControllerProps = { accountController: AccountController };
 
-const SettingsAccountPage: NextPage<ControllerProps> = (props) => {
+const SettingsAccountPage: NextPage = () => {
     const router = useRouter();
-    const controller = props.accountController;
+    const controller = useInjection<AccountController>(TYPES.accountController);
 
     const handleErrors = (e: any) => {
         console.log(e);
@@ -155,5 +154,5 @@ const SettingsAccountPage: NextPage<ControllerProps> = (props) => {
     </React.Fragment>
 };
 
-export default withController(observer(SettingsAccountPage), "accountController");
+export default observer(SettingsAccountPage);
 

@@ -1,21 +1,17 @@
 import React from 'react';
 import { NextPage } from "next"; 
 import { useHistory } from "react-router-dom";
-import { observer, inject } from 'mobx-react';
+import { observer } from 'mobx-react';
 import ResetPasswordFromEmailController from "../stores/reset-password";
 import TextField from "../../../components/text-field";
 import ConfirmButton from "../../../components/confirm-button";
 import { LockIcon, DoneIcon } from '../icons';
 import PasswordError from "../components/password-error";
-import withController from "../../../utils/inject";
+import { TYPES, useInjection } from "../../../container";
 
-type Props = {
-    resetPasswordFromEmailController: ResetPasswordFromEmailController;
-}
-
-const ResetPasswordFromEmailPage: NextPage<Props> = (props) => {
+const ResetPasswordFromEmailPage: NextPage = () => {
     const history = useHistory();
-    const controller = props.resetPasswordFromEmailController;
+    const controller = useInjection<ResetPasswordFromEmailController>(TYPES.resetPasswordFromEmailController);
 
     const goHome = () => {
         history.push("/");
@@ -69,4 +65,4 @@ const ResetPasswordFromEmailPage: NextPage<Props> = (props) => {
     </section>
 }
 
-export default withController(observer(ResetPasswordFromEmailPage), "resetPasswordFromEmailController");
+export default observer(ResetPasswordFromEmailPage)

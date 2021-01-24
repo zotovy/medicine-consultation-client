@@ -10,14 +10,13 @@ import PasswordError from "../components/password-error";
 import ResetPasswordFromEmailController from "../stores/reset-password";
 import Badge from "../../../components/badge";
 import withController from "../../../utils/inject";
+import { TYPES, useInjection } from "../../../container";
 
-type Props = {
-    resetPasswordFromEmailController: ResetPasswordFromEmailController;
-}
 
-const ResetPasswordPage: NextPage<Props> = ( props) => {
+
+const ResetPasswordPage: NextPage = () => {
     const router = useRouter();
-    const controller = props.resetPasswordFromEmailController;
+    const controller = useInjection<ResetPasswordFromEmailController>(TYPES.resetPasswordFromEmailController);
     const { id } = router.query;
 
     const goHome = () =>

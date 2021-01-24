@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import { useWindowWidth } from "@react-hook/window-size";
 import SupportController from "../../controllers/support-controller";
 import styles from "./create.module.scss";
-import withController from "@/utils/inject";
 
 // Components
 import TextField from "@/components/text-field";
@@ -12,6 +11,7 @@ import DropDown from "@/components/dropdown";
 import TextArea from "@/components/textarea";
 import ConfirmButton from "@/components/confirm-button";
 import SupportHeader from "../../components/header";
+import { TYPES, useInjection } from "../../../../container";
 
 
 /**
@@ -20,11 +20,8 @@ import SupportHeader from "../../components/header";
 
 const questionTypes = ["Техническая", "Проблема с доктором", "Другое"];
 
-type ControllerProps = { supportController: SupportController };
-
-const CreatePage: React.FC<ControllerProps> = (props) => {
-    const controller = props.supportController;
-    const windowWidth = useWindowWidth();
+const CreatePage: React.FC = () => {
+    const controller = useInjection<SupportController>(TYPES.supportController);    const windowWidth = useWindowWidth();
     const router = useRouter();
     useEffect(() => {
        controller.goBackCb = () => router.back();
@@ -69,4 +66,4 @@ const CreatePage: React.FC<ControllerProps> = (props) => {
     </div>;
 }
 
-export default withController(observer(CreatePage), "supportController");
+export default observer(CreatePage);

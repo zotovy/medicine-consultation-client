@@ -1,3 +1,4 @@
+import { injectable } from "inversify";
 import { action, observable, makeObservable } from "mobx";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
 import axios from "axios";
@@ -5,6 +6,7 @@ import token_services from "@/services/token-services";
 import UserStore from "./userStore";
 import TranslateServices from "@/services/translate_services";
 
+@injectable()
 export default class ConsultationController {
 
     constructor() {
