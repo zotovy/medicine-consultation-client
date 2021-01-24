@@ -18,7 +18,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/static/*": ["static/*"],
+      "@/modules/*": ["modules/*"]
+    }
   },
   "include": [
     "*.tsx",

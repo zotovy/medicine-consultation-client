@@ -20,8 +20,6 @@ import SignupLink from "../../components/signup-link";
 import withController from "../../../../utils/inject";
 
 
-
-
 const Page1 = styled.div`
     position:relative;
     left: 0px;
@@ -58,28 +56,34 @@ type Props = {
 const DSPage1: React.FC<Props> = (props) => {
     const { signupUiStore } = props;
 
-    return <Page1 className={signupUiStore.pageIndex === 0 ? "" : signupUiStore.pageIndex === 1 ? "minus55" : "minus110"} >
+    return <Page1
+        className={signupUiStore.pageIndex === 0 ? "" : signupUiStore.pageIndex === 1 ? "minus55" : "minus110"}>
         <Container>
-            <Title text="Стать врачём" />
-            <SizedBox height="10px" />
-            <SubTitle>Зарегистрируйтесь как врач для того, чтобы иметь возможность предоставлять свои медицинские услуги</SubTitle>
-            <SizedBox height="10px" />
-            <Linker href="/login">
-                <Link>Уже есть аккаунт? <span className="link">Войти!</span></Link>
-            </Linker>
-            <SizedBox height="10px" />
-            <SignUpForm />
-            <SexCheckbox isMale={signupUiStore.isMale} onChange={signupUiStore.toggleIsMale} />
-            <SizedBox height="15px" />
+            <Title text="Стать врачём"/>
+            <SizedBox height="10px"/>
+            <SubTitle>Зарегистрируйтесь как врач для того, чтобы иметь возможность предоставлять свои медицинские
+                услуги</SubTitle>
+            <SizedBox height="10px"/>
+            <Link>
+                Уже есть аккаунт?
+                &nbsp;
+                <Linker href="/login">
+                    <span className="link">Войти!</span>
+                </Linker>
+            </Link>
+            <SizedBox height="10px"/>
+            <SignUpForm/>
+            <SexCheckbox isMale={signupUiStore.isMale} onChange={signupUiStore.toggleIsMale}/>
+            <SizedBox height="15px"/>
 
             <Row>
-                <ConfirmButton content="Продолжить" onConfirm={signupUiStore.goNextPage} />
-                <MediaQuery maxDeviceWidth="435px"><SizedBox height="10px" /></MediaQuery>
+                <ConfirmButton content="Продолжить" onConfirm={signupUiStore.goNextPage}/>
+                <MediaQuery maxDeviceWidth="435px"><SizedBox height="10px"/></MediaQuery>
                 <Linker href="/signup">
                     <SignupLink><span>Регистрация для пользователей</span></SignupLink>
                 </Linker>
             </Row>
-            <SizedBox height="10px" />
+            <SizedBox height="10px"/>
 
         </Container>
     </Page1>

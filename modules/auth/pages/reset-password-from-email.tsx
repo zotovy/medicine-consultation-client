@@ -2,7 +2,7 @@ import React from 'react';
 import { NextPage } from "next"; 
 import { useHistory } from "react-router-dom";
 import { observer, inject } from 'mobx-react';
-import ResetPasswordFromEmailСontroller from "../stores/reset-password";
+import ResetPasswordFromEmailController from "../stores/reset-password";
 import TextField from "../../../components/text-field";
 import ConfirmButton from "../../../components/confirm-button";
 import { LockIcon, DoneIcon } from '../icons';
@@ -10,12 +10,12 @@ import PasswordError from "../components/password-error";
 import withController from "../../../utils/inject";
 
 type Props = {
-    resetPasswordFromEmailСontroller: ResetPasswordFromEmailСontroller;
+    resetPasswordFromEmailController: ResetPasswordFromEmailController;
 }
 
 const ResetPasswordFromEmailPage: NextPage<Props> = (props) => {
     const history = useHistory();
-    const controller = props.resetPasswordFromEmailСontroller;
+    const controller = props.resetPasswordFromEmailController;
 
     const goHome = () => {
         history.push("/");

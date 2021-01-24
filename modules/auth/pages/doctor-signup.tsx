@@ -54,10 +54,10 @@ const DoctorSignUp: NextPage<Props> = (props) => {
     });
 
     return <div className="doctor-signup-module">
-        {/*<ErrorBadge message={signupUiStore.errorMessage ?? ""} isOpen={signupUiStore.showErrorMessage} />*/}
+        <ErrorBadge message={signupUiStore.errorMessage ?? ""} isOpen={signupUiStore.showErrorMessage} />
 
-        {/*<Badge icon={BadgeIcon} title="Спасибо за регистрацию!" isOpen={signupUiStore.isBadgeOpen}>*/}
-        {/*    Ваши данные отправлены на проверку. Подробнее о том, как работает сервис вы можете почитать <a>здесь</a>.</Badge>*/}
+        <Badge icon={BadgeIcon} title="Спасибо за регистрацию!" isOpen={signupUiStore.isBadgeOpen}>
+            Ваши данные отправлены на проверку. Подробнее о том, как работает сервис вы можете почитать <a>здесь</a>.</Badge>
         <Wrapper>
             <Image className="signup-image" image="../../../static/images/signup-bg.png"/>
             <Swapper>

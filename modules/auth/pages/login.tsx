@@ -133,24 +133,24 @@ const Login: NextPage<Props> = observer((props) => {
                     </React.Fragment>
                     : null
             }
-            <Linker href="/reset-password-from-email">
-                <Link>
+            <Link>
+                <Linker href="/reset-password-from-email">
                     <span>Забыли пароль?</span>
-                </Link>
-            </Linker>
+                </Linker>
+            </Link>
 
         </Row>
     </Container>
 
     return <main className="login-module">
-            {/*<MediaQuery minWidth="768px">*/}
-            <Bg className="login-bg">
-                {content}
-            </Bg>
-            {/*</MediaQuery>*/}
-            {/*<MediaQuery maxWidth="767px">*/}
-            {/*    {content}*/}
-            {/*</MediaQuery>*/}
+        {/*<MediaQuery minWidth="768px">*/}
+        <Bg className="login-bg">
+            {content}
+        </Bg>
+        {/*</MediaQuery>*/}
+        {/*<MediaQuery maxWidth="767px">*/}
+        {/*    {content}*/}
+        {/*</MediaQuery>*/}
     </main>
 
 });
