@@ -399,7 +399,7 @@ export default class SingupUIStore {
         }
 
         // phone
-        if (formatServices.formatPhone(this.phone).length !== 11) {
+        if (this.phone.length !== 16) {
             hasError = true;
             this.setPhoneError("Телефон введен неверно");
         } else {

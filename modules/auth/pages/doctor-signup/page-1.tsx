@@ -43,6 +43,7 @@ const Row = styled.div`
     flex-direction: row;
     align-items: center;
     width: 100%;
+    margin-top: 20px;
 
     /** Phone */
     @media screen and (max-width: 426px) {

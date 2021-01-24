@@ -34,6 +34,7 @@ const Page3 = styled.div`
     top: 0px;
     left: 155vw;
     transition: 1s;
+    margin-top: 20px;
 
     @media screen and (max-width: 1024px) {
         left: 200vw;

@@ -95,6 +95,7 @@ const Row = styled.div`
     flex-direction: row;
     align-items: center;
     width: 100%;
+    margin-top: 20px;
 
     /** Phone */
     @media screen and (max-width: 426px) {
@@ -103,12 +104,12 @@ const Row = styled.div`
 `
 
 type Props = {
-    signupUIStore: SignupUIStore
+    signupUiStore: SignupUIStore
 }
 
-const DSPage2: React.FC<Props> = ({ signupUIStore }) => {
+const DSPage2: React.FC<Props> = ({ signupUiStore }) => {
 
-    return <Page2 className={signupUIStore.pageIndex === 0 ? "" : signupUIStore.pageIndex === 1 ? "minus55" : "minus110"}>
+    return <Page2 className={signupUiStore.pageIndex === 0 ? "" : signupUiStore.pageIndex === 1 ? "minus55" : "minus110"}>
 
         <Container >
             <Title text="Стать врачём" />
@@ -116,9 +117,9 @@ const DSPage2: React.FC<Props> = ({ signupUIStore }) => {
             <SubTitle>Чтобы допустить вас на платформу нам необходимы данные о вашем медицинском образовании</SubTitle>
             <SizedBox height="10px" />
             <TextField
-                error={signupUIStore.instituteError}
-                onChange={signupUIStore.setInstitute}
-                value={signupUIStore.institute}
+                error={signupUiStore.instituteError}
+                onChange={signupUiStore.setInstitute}
+                value={signupUiStore.institute}
                 validator={() => { }}
                 field={"Образование"}
                 hint={"Медицинский колледж №1 г. Москва"}
@@ -128,9 +129,9 @@ const DSPage2: React.FC<Props> = ({ signupUIStore }) => {
             <Form>
                 <FormColumn>
                     <TextField
-                        error={signupUIStore.specialityError}
-                        onChange={signupUIStore.setSpeciality}
-                        value={signupUIStore.speciality}
+                        error={signupUiStore.specialityError}
+                        onChange={signupUiStore.setSpeciality}
+                        value={signupUiStore.speciality}
                         validator={() => { }}
                         field={"Специальность"}
                         hint={"Терапевт"}
@@ -139,9 +140,9 @@ const DSPage2: React.FC<Props> = ({ signupUIStore }) => {
                 </FormColumn>
                 <FormColumn>
                     <TextField
-                        error={signupUIStore.studyYearsError}
-                        onChange={signupUIStore.setStudyYears}
-                        value={signupUIStore.studyYears}
+                        error={signupUiStore.studyYearsError}
+                        onChange={signupUiStore.setStudyYears}
+                        value={signupUiStore.studyYears}
                         validator={() => { }}
                         field={"Годы обучения"}
                         hint="2015 - 2020"
@@ -156,38 +157,38 @@ const DSPage2: React.FC<Props> = ({ signupUIStore }) => {
             <Form>
                 <FormColumn>
                     <TextField
-                        error={signupUIStore.blankSeriesError}
-                        onChange={signupUIStore.setBlankSeries}
-                        value={signupUIStore.blankSeries}
+                        error={signupUiStore.blankSeriesError}
+                        onChange={signupUiStore.setBlankSeries}
+                        value={signupUiStore.blankSeries}
                         validator={() => { }}
                         field={"Серия бланка"}
                         hint={"107777"}
                         type={"text"}
                     />
-                    <CalendarWrapper style={{ zIndex: signupUIStore.isCalendarExist ? 1 : -100 }}>
+                    <CalendarWrapper style={{ zIndex: signupUiStore.isCalendarExist ? 1 : -100 }}>
                         <Calendar
-                            onSave={signupUIStore.onCalendarDateSelected}
-                            isOpen={signupUIStore.isCalendarOpen}
-                            onClose={signupUIStore.onCalendarClose}
+                            onSave={signupUiStore.onCalendarDateSelected}
+                            isOpen={signupUiStore.isCalendarOpen}
+                            onClose={signupUiStore.onCalendarClose}
                         />
                     </CalendarWrapper>
 
                     <DateTextField
-                        error={signupUIStore.issueDateError}
+                        error={signupUiStore.issueDateError}
                         onChange={() => { }}
-                        value={signupUIStore.issueDate}
+                        value={signupUiStore.issueDate}
                         field={"Дата выдачи"}
                         hint={"21 / 11 / 2019"}
-                        onFocus={signupUIStore.onCalendarOpen}
+                        onFocus={signupUiStore.onCalendarOpen}
                     />
 
 
                 </FormColumn>
                 <FormColumn>
                     <TextField
-                        error={signupUIStore.blankNumberError}
-                        onChange={signupUIStore.setBlankNumber}
-                        value={signupUIStore.blankNumber}
+                        error={signupUiStore.blankNumberError}
+                        onChange={signupUiStore.setBlankNumber}
+                        value={signupUiStore.blankNumber}
                         validator={() => { }}
                         field={"Номер бланка"}
                         hint={"0253595"}
@@ -207,10 +208,10 @@ const DSPage2: React.FC<Props> = ({ signupUIStore }) => {
 
             <Row>
                 <HalfOfWidth>
-                    <ConfirmButton content="Продолжить" onConfirm={signupUIStore.goNextPage} />
+                    <ConfirmButton content="Продолжить" onConfirm={signupUiStore.goNextPage} />
                 </HalfOfWidth>
                 <SignupLink>
-                    <span onClick={signupUIStore.goBeforePage}>Вернуться назад</span>
+                    <span onClick={signupUiStore.goBeforePage}>Вернуться назад</span>
                 </SignupLink>
             </Row>
         </Container>
