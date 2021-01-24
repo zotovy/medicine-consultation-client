@@ -5,7 +5,6 @@ import Menu from "@/components/menu";
 import NavigationComponent from "../components/navigation";
 
 const SettingsPage: NextPage = () => {
-
     const router = useRouter();
     useEffect(() => {
         if (window.window.screen.width > 768) {
@@ -20,7 +19,6 @@ const SettingsPage: NextPage = () => {
             <section className="content"/>
         </main>
     </React.Fragment>
-
 }
 
 export default SettingsPage;

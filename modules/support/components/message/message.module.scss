@@ -1,0 +1,65 @@
+@import "../../../../static/theme";
+
+
+.support__message {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+
+    span.time {
+        color: #CCCCCC;
+        font-size: 14px;
+        margin-top: auto;
+    }
+
+    span.messageContent {
+        max-width: 70%;
+        font-size: 16px;
+        margin: 0 10px;
+        padding: 10px;
+        border-radius: 10px;
+        color: #707070;
+        background: #F8F8F8;
+    }
+
+    .photoUrl {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    &.userMessage {
+        flex-direction: row;
+
+        span.messageContent {
+            background: #E9F7FA;
+            color: $primary;
+        }
+
+        span.messageContent {
+            text-align: right;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        span.messageContent {
+            margin-right: 0;
+            padding: 7px;
+            font-size: 14px;
+        }
+
+        .photoUrl {
+            display: none;
+        }
+
+        span.time{
+            font-size: 11px;
+        }
+    }
+}
+

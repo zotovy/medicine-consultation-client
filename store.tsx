@@ -13,6 +13,7 @@ import DoctorSettingsController from "@/modules/settings/controllers/doctor-cont
 import NotificationsController from "@/modules/settings/controllers/notifications-controller";
 import LinkController from "@/modules/settings/controllers/link-controller";
 import PasswordController from "@/modules/settings/controllers/password-controller";
+import SupportController from "@/modules/support/controllers/support-controller";
 
 enableStaticRendering(typeof window === "undefined");
 
@@ -30,6 +31,7 @@ export type Controllers = {
     notificationsController: NotificationsController,
     linkController: LinkController,
     passwordController: PasswordController,
+    supportController: SupportController,
 }
 
 const createController = (): Controllers => ({
@@ -44,6 +46,7 @@ const createController = (): Controllers => ({
     notificationsController: new NotificationsController(),
     linkController: new LinkController(),
     passwordController: new PasswordController(),
+    supportController: new SupportController(),
 })
 
 export const getControllers = (): Controllers => {

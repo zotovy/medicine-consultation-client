@@ -65,7 +65,7 @@ const UserSignUp: NextPage<ControllersProps> = observer(({ signupUiStore }) => {
 
             {/*<ErrorBadge message={signupUiStore.errorMessage ?? ""} isOpen={signupUiStore.showErrorMessage} />*/}
             {/*<MediaQuery minDeviceWidth="1025px"><Image image="../../../static/images/signup-bg.png" /></MediaQuery>*/}
-            <Image className="signup-image" image="../../../static/images/signup-bg.png"/>
+            <Image className="signup-image" image="../../../public/signup-bg.png"/>
 
             <Container>
                 <Title text="Регистрация"/>

@@ -13,7 +13,7 @@ import {
 } from "@/static/icons";
 import tokenServices from "@/services/token-services";
 import storageServices from "@/services/storage_services";
-import { useWindowWidth } from "@react-hook/window-size";
+// import { useWindowWidth } from "@react-hook/window-size";
 
 type Props = {
     active: string
@@ -42,7 +42,8 @@ const NavigationComponent: React.FC<Props> = ({ active, alwaysActive }) => {
         storageServices.removeUser();
         router.push("/");
     }
-    const width = useWindowWidth() ?? 0;
+    // const width = useWindowWidth() ?? 0;
+    const width = 1920;
 
     if (!alwaysActive && width < 1024) return <React.Fragment/>
 

@@ -3,7 +3,7 @@ import Head from "next/head";
 import React from "react";
 import { Provider } from "mobx-react";
 import { getControllers } from "../store";
-import "../styles.global.scss";
+import "../styles.scss";
 
 class MyApp extends App {
     state = getControllers();

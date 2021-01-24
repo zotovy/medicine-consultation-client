@@ -9,6 +9,7 @@ type Props = {
   size?: string;
   styles?: object;
   dataTest?: string;
+  className?: string;
 };
 
 const Button = styled.div`
@@ -55,7 +56,7 @@ const Text = styled.p`
 const ConfirmButton: React.FC<Props> = (props: Props) => {
   return (
     <Button
-      className="confirm-button"
+      className={`confirm-button ${props.className}`}
       data-test={props.dataTest}
       {/*
        // @ts-ignore */  ...{}}

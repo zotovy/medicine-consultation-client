@@ -1,5 +1,5 @@
 import React from "react";
-import "./dropdown.module.scss";
+import styles from "./dropdown.module.scss";
 
 type Props = {
     options: string[];
@@ -22,10 +22,10 @@ const Dropdown: React.FC<Props> = (props) => {
     if (props.error) dropdownStyles.border = "1.15px solid #ff3b30";
     if (props.styles) dropdownStyles = {...dropdownStyles, ...props.styles}
 
-    return <div className="dropdown-container">
+    return <div className={styles.dropdownContainer}>
         { props.simulateField ? <div className="field">&nbsp;</div> : <React.Fragment/> }
         <select
-            className="dropdown"
+            className={styles.dropdown}
             name={props.name}
             id={props.id}
             style={dropdownStyles}
@@ -38,7 +38,7 @@ const Dropdown: React.FC<Props> = (props) => {
                 props.options.map((e, i) => <option key={props.values[i]} value={props.values[i]}>{e}</option>)
             }
         </select>
-        <span className="error-text">{ props.error }</span>
+        <span className={styles.errorText}>{ props.error }&nbsp;</span>
     </div>
 }
 

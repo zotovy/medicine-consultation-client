@@ -1,4 +1,5 @@
 import React from "react";
+import NextImage from "next/image";
 import styled from "styled-components";
 
 const Image = styled.div`
@@ -24,10 +25,11 @@ type Props = {
 
 const ImageComponent: React.FC<Props> = ({ image, className }) => {
 
-  const styles = { backgroundImage: `url(${image})` }
+  // const styles = { backgroundImage: `url(${image})` }
 
   return <Image className={className}>
-    <div className="image" style={styles}/>
+    {/*<NextImage src={image} width={"100%"} height={"100%"} />*/}
+    <div className="signup-image" />
   </Image>
 }
 

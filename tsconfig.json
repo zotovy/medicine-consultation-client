@@ -26,13 +26,11 @@
       "@/modules/*": ["modules/*"],
       "@/services/*": ["services/*"],
       "@/utils/*": ["utils/*"]
-    }
+    },
+    "typeRoots": [
+      "."
+    ]
   },
-  "include": [
-    "*.tsx",
-    "*.ts",
-    "@types/*.d.ts"
-  ],
   "exclude": [
     "node_modules"
   ]

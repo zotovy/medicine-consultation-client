@@ -5,4 +5,11 @@ declare module "*.svg" {
     export default src;
 }
 
+declare module '*.scss' {
+    const content: {
+        [className: string]: string;
+    }
+    export = content
+}
+
 declare module "kladrapi-for-node" {}

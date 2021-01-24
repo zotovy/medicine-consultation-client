@@ -1,5 +1,5 @@
 import React from "react";
-import "./textarea.scss";
+import styles from "./textarea.module.scss";
 
 type Props = {
     field?: string
@@ -27,9 +27,10 @@ const TextArea: React.FC<Props> = (props) => {
     if (props.minWidth != undefined ) textareaStyles.minWidth = props.minWidth;
     if (props.minHeight != undefined ) textareaStyles.minHeight = props.minHeight;
 
-    return <div className="text-area-container">
+    return <div className={styles.textAreaContainer}>
         { props.field ? <div className="field">{}</div> : <React.Fragment/> }
         <textarea
+            className={styles.textarea}
             id={props.id}
             onChange={(e) => props.onChange ? props.onChange(e.target.value) : null}
             rows={props.rows}
@@ -38,7 +39,7 @@ const TextArea: React.FC<Props> = (props) => {
             value={props.value}
             style={textareaStyles}
         />
-        <span className="error-text">{ props.error }</span>
+        <span className={styles.errorText}>{ props.error }</span>
     </div>
 }
 

@@ -1,8 +1,8 @@
 import React from "react";
 import { NextPage } from "next";
 import Linker from "next/link";
+import Image from "next/image";
 import styled from "styled-components";
-// import MediaQuery from 'react-responsive';
 import { reaction } from "mobx";
 import { observer } from "mobx-react";
 
@@ -23,10 +23,7 @@ import withController from "../../../utils/inject";
 // import bgImage from "../../../static/images/login-bg.png";
 
 const Bg = styled.div`
-  background: url(../../../static/images/login-bg.png);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position-x: center;
+ 
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -87,7 +84,7 @@ const Login: NextPage<Props> = observer((props) => {
     // Navigate to home page after login
     reaction(() => loginUIStore.goToHomeTrigger, () => router.push("/"));
 
-    const content = <Container>
+    const Content = <Container>
         <Title text="Вход"/>
         <SizedBox height="10px"/>
         <SubTitle styles={{ textAlign: "center" }}>
@@ -144,9 +141,13 @@ const Login: NextPage<Props> = observer((props) => {
 
     return <main className="login-module">
         {/*<MediaQuery minWidth="768px">*/}
-        <Bg className="login-bg">
-            {content}
-        </Bg>
+        {/*<div className="login-bg">*/}
+        {/*    <Image src={"/images/login-bg.png"} width={"100%"} height={"100%"}/>*/}
+        {/*</div>*/}
+            <Bg className="login-bg">
+                {Content}
+            </Bg>
+
         {/*</MediaQuery>*/}
         {/*<MediaQuery maxWidth="767px">*/}
         {/*    {content}*/}

@@ -1,0 +1,36 @@
+.createSupportPage {
+    .row {
+        display: flex;
+        align-items: flex-end;
+
+        .space {
+            width: 100px;
+            flex: 00 auto;
+        }
+    }
+
+    form {
+        margin-top: 20px;
+    }
+
+    .confirmButton {
+        margin-top: 20px;
+        max-width: 300px;
+    }
+
+    @media screen and (max-width: 768px) {
+        .confirmButton {
+            max-width: 100%;
+        }
+    }
+
+    @media screen and (max-width: 960px) {
+        .row {
+            flex-direction: column;
+        }
+
+        .dropdown {
+            margin-bottom: 10px;
+        }
+    }
+}

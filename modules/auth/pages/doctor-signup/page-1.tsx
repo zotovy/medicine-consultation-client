@@ -79,9 +79,11 @@ const DSPage1: React.FC<Props> = (props) => {
             <Row>
                 <ConfirmButton content="Продолжить" onConfirm={signupUiStore.goNextPage}/>
                 <MediaQuery maxDeviceWidth="435px"><SizedBox height="10px"/></MediaQuery>
-                <Linker href="/signup">
-                    <SignupLink><span>Регистрация для пользователей</span></SignupLink>
-                </Linker>
+                <SignupLink>
+                    <Linker href="/signup">
+                        <span>Регистрация для пользователей</span>
+                    </Linker>
+                </SignupLink>
             </Row>
             <SizedBox height="10px"/>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import storageServices from "@/services/storage_services";
@@ -16,16 +17,12 @@ const Menu: React.FC = () => {
     }
 
     const user = storageServices.getUser();
-    if (user && (!user?.photoUrl || user.photoUrl.length == 0)) user.photoUrl = "../static/images/user-placeholder.jpg";
-
-    const profileImgUrl = {
-        backgroundImage: `url(${user?.photoUrl})`,
-    };
+    if (user && (!user?.photoUrl || user.photoUrl.length == 0)) user.photoUrl = "/images/user-placeholder.jpg";
 
     return <menu>
         <Link href="/">
             <div className="name">
-                <img src="../static/logo.svg" alt="Лого"/>
+                <Image src="/logo.svg" width="32px" height="32px" alt="Лого"/>
                 <h3>Горы Здоровья</h3>
             </div>
         </Link>
@@ -43,7 +40,7 @@ const Menu: React.FC = () => {
                         <div className="circle"/>
                     </div>
                 </Link>
-                <Link href="/find-doctor" >
+                <Link href="/find-doctor">
                     <div className={"tab " + (selected === "/find-doctor" ? "selected" : "")}>
                         <span className="link ">Врачи</span>
                         <div className="circle"/>
@@ -57,7 +54,18 @@ const Menu: React.FC = () => {
             tokenServices.isLogin()
                 ? <Link href="/settings/account">
                     <div className="profile">
-                        <div className="photo" style={profileImgUrl}/>
+                        {
+                            user?.photoUrl[0] === "/"
+                                ? <div className="photo">
+                                    <Image
+                                        src={"/images/user-placeholder.jpg"}
+                                        alt={"user"}
+                                        width="35px"
+                                        height="35px"
+                                        className="photo"/>
+                                </div>
+                                : <div className="photo" style={{ backgroundImage: `url(${user?.photoUrl})` }}/>
+                        }
                         <span className="span-name">{getName(user)}</span>
                     </div>
                 </Link>
