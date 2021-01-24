@@ -4,7 +4,7 @@ import { observer } from "mobx-react"
 import SupportController from "../../controllers/support-controller";
 import SupportHeader from "../../components/header";
 import { AdminMessage, UserMessage } from "../../components/message/message";
-import formatServices from "@/services/format-services";
+import FormatServices from "@/services/format-services";
 import { SendIcon } from "@/static/icons";
 import styles from "./chat.module.scss";
 import { TYPES, useInjection } from "../../../../container";
@@ -46,7 +46,7 @@ const ChatPage: React.FC = () => {
         <div className={styles.messages}>
             {
                 chat.messages.map(e => {
-                    const time = formatServices.formatToUsualDate(e.date, true, true);
+                    const time = FormatServices.formatToUsualDate(e.date, true, true);
                     if (e.isUser) return <UserMessage key={`user-${e.date}`} time={time} content={e.content} photoUrl={user.photoUrl}/>
                     else return <AdminMessage key={`admin-${e.date}`} time={time} content={e.content} />
                 })

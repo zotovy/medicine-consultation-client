@@ -2,13 +2,13 @@ import { action, observable, makeObservable } from "mobx";
 import { injectable } from "inversify";
 import Time from "@/utils/time";
 import Duration from "@/utils/duration";
-import formatServices from "@/services/format-services";
+import FormatServices from "@/services/format-services";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
 import axios from "axios";
 import token_services from "@/services/token-services";
 import validate_services from "@/services/validation-services";
 import UserStore from "./userStore";
-import storageServices from "@/services/storage_services";
+import StorageServices from "@/services/storage_services";
 
 @injectable()
 export default class AccountController {
@@ -113,7 +113,7 @@ export default class AccountController {
             this.surnameError = "Необходимо ввести фамилию"
             errorsLength += 1;
         }
-        if (formatServices.toNumericPhone(this.phone).toString().length !== 11) {
+        if (FormatServices.toNumericPhone(this.phone).toString().length !== 11) {
             this.phoneError = "Неправильный телефон"
             errorsLength += 1;
         }
@@ -132,7 +132,7 @@ export default class AccountController {
                 name: this.name,
                 surname: this.surname,
                 patronymic: this.patronymic,
-                phone: formatServices.toNumericPhone(this.phone),
+                phone: FormatServices.toNumericPhone(this.phone),
                 email: this.email,
                 birthday: this.birthday as Date,
                 country: this.country,
@@ -140,7 +140,7 @@ export default class AccountController {
                 sex: this.isMale,
             };
             UserStore.user = user;
-            storageServices.saveUser(user);
+            StorageServices.saveUser(user);
         }
 
 
@@ -152,7 +152,7 @@ export default class AccountController {
                 name: this.name,
                 surname: this.surname,
                 patronymic: this.patronymic,
-                phone: formatServices.toNumericPhone(this.phone),
+                phone: FormatServices.toNumericPhone(this.phone),
                 email: this.email,
                 birthday: this.birthday ? (this.birthday as Date).toISOString() : undefined,
                 country: this.country,
@@ -176,7 +176,7 @@ export default class AccountController {
                 name: this.name,
                 surname: this.surname,
                 patronymic: this.patronymic,
-                phone: formatServices.toNumericPhone(this.phone),
+                phone: FormatServices.toNumericPhone(this.phone),
                 email: this.email,
                 birthday: this.birthday as Date,
                 country: this.country,
@@ -185,7 +185,7 @@ export default class AccountController {
                 fullName: this.fullName,
             } as UserType;
             UserStore.user = newUser;
-            storageServices.saveUser(newUser);
+            StorageServices.saveUser(newUser);
         }
     }
 
@@ -219,7 +219,7 @@ export default class AccountController {
                     photoUrl: res.data.photoUrlPath,
                 } as UserType;
                 UserStore.user = newUser;
-                storageServices.saveUser(newUser);
+                StorageServices.saveUser(newUser);
             }
         })();
     }
@@ -230,7 +230,7 @@ export default class AccountController {
         this.profileImage = user.photoUrl;
         this.surname = user.surname;
         this.patronymic = user.patronymic ?? "";
-        this.phone = formatServices.formatNumericPhone(user.phone ?? 0);
+        this.phone = FormatServices.formatNumericPhone(user.phone ?? 0);
         this.birthday = user.birthday ? new Date(user.birthday) : null;
         this.email = user.email;
         this.country = user.country ?? "";
@@ -240,6 +240,6 @@ export default class AccountController {
     }
 
     get birthdayString(): string {
-        return formatServices.formatDate(this.birthday as Date);
+        return FormatServices.formatDate(this.birthday as Date);
     }
 }

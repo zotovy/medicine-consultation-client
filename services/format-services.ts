@@ -1,5 +1,5 @@
-class FormatServices {
-    formatBySchema = (schema: string, input: string) => {
+export default class FormatServices {
+    static formatBySchema = (schema: string, input: string) => {
         const nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
         // cut last element if user enter too much
@@ -47,7 +47,7 @@ class FormatServices {
         return input;
     };
 
-    formatNumericPhone = (numeric: number): string => {
+    static formatNumericPhone = (numeric: number): string => {
         let number: string = String(numeric);
         number = number.substring(1);
 
@@ -68,26 +68,26 @@ class FormatServices {
         return final;
     };
 
-    formatPhone = (input: string): string => {
+    static formatPhone = (input: string): string => {
         let schema = "*** ***-**-**";
 
         // cut input country code
         // +7 932 332-73-50 --> 932 332-73-50
         input = input.substring(3);
 
-        input = this.formatBySchema(schema, input);
+        input = FormatServices.formatBySchema(schema, input);
 
         // 932 332-73-50 --> +7 932 332-73-50
         return "+7 " + input;
     };
 
-    formatTimeInput = (input: string): string => {
+    static formatTimeInput = (input: string): string => {
         let schema = "**:**"
-        input = this.formatBySchema(schema, input);
+        input = FormatServices.formatBySchema(schema, input);
         return input;
     }
 
-    formatDate = (date: Date | undefined): string => {
+    static formatDate = (date: Date | undefined): string => {
         if (!date) return "";
 
         return `${date.getDate()} / ${
@@ -95,30 +95,30 @@ class FormatServices {
         } / ${date.getFullYear()}`;
     };
 
-    formatSize = (bytes: number): string => {
+    static formatSize = (bytes: number): string => {
         if (bytes >= 1e9) return Math.floor(bytes / 1e9) + " Гб";
         if (bytes >= 1000000) return Math.floor(bytes / 1000000) + " Мб";
         if (bytes >= 1000) return Math.floor(bytes / 1000) + " Кб";
         return Math.floor(bytes / 1000) + " Б";
     };
 
-    formatCard = (input: string): string => {
+    static formatCard = (input: string): string => {
         let schema = "**** **** **** ****";
-        input = this.formatBySchema(schema, input);
+        input = FormatServices.formatBySchema(schema, input);
         return input;
     };
 
-    formatToUsualDate = (date: Date | undefined, needTime = false, useMonthName = false): string => {
+    static formatToUsualDate = (date: Date | undefined, needTime = false, useMonthName = false): string => {
         if (!date) return "";
 
         if (needTime) {
-            const dMinutes = this._deltaDateInMinutes(date, new Date());
+            const dMinutes = FormatServices._deltaDateInMinutes(date, new Date());
             if (dMinutes < 1) return "Меньше минуты назад";
-            if (dMinutes < 60) return `${dMinutes} ${this.getNumEnding(dMinutes, ["минуту", "минуты", "минут"])} назад`;
-            if (dMinutes < 1440) return `${Math.floor(dMinutes / 60)} ${this.getNumEnding(Math.floor(dMinutes / 60), ["час", "часа", "часов"])} назад`;
+            if (dMinutes < 60) return `${dMinutes} ${FormatServices.getNumEnding(dMinutes, ["минуту", "минуты", "минут"])} назад`;
+            if (dMinutes < 1440) return `${Math.floor(dMinutes / 60)} ${FormatServices.getNumEnding(Math.floor(dMinutes / 60), ["час", "часа", "часов"])} назад`;
         }
 
-        const dDays = this._deltaDateInDay(date, new Date());
+        const dDays = FormatServices._deltaDateInDay(date, new Date());
         if (dDays < 1) return "меньше суток назад";
         if (dDays < 1) return "день назад";
 
@@ -128,25 +128,25 @@ class FormatServices {
 
 
         let str = `${day}.${month}`;
-        if (useMonthName) str = this.formatDayAndMonth(parseInt(day), parseInt(month));
+        if (useMonthName) str = FormatServices.formatDayAndMonth(parseInt(day), parseInt(month));
         if (new Date().getFullYear() !== date.getFullYear()) str += `${useMonthName ? " " : "."}${date.getFullYear()} ${useMonthName ? "г." : ""}`;
         return str;
     }
 
-    private _deltaDateInDay = (date1: Date, date2: Date): number => {
+    private static _deltaDateInDay = (date1: Date, date2: Date): number => {
         return Math.abs(date1.getTime() - date2.getTime() / (1000 * 3600 * 24));
     }
 
-    private _deltaDateInMinutes = (date1: Date, date2: Date): number => {
+    private static _deltaDateInMinutes = (date1: Date, date2: Date): number => {
         return Math.floor(Math.abs(date1.getTime() - date2.getTime())/ 1000 / 60);
     }
 
-    toNumericPhone = (phone: string): number => {
+    static toNumericPhone = (phone: string): number => {
         phone = phone.split(" ").join("").split("-").join("").split("+").join().split(",").join("");
         return parseInt(phone);
     }
 
-    private getNumEnding = (num: number, ending: [string, string, string]): string => {
+    private static getNumEnding = (num: number, ending: [string, string, string]): string => {
         const last2 = num % 100;
         if (last2 >= 11 && last2 <= 19) return ending[2];
 
@@ -164,20 +164,20 @@ class FormatServices {
 
     }
 
-    experience = (experience: number): string => {
+    static experience = (experience: number): string => {
         if (experience < 30) return "Меньше месяца";
         if (experience < 365) {
             const months = Math.floor(experience / 31);
-            return `${months} ${this.getNumEnding(months, ["месяц", "месяца", "месяцев"])}`
+            return `${months} ${FormatServices.getNumEnding(months, ["месяц", "месяца", "месяцев"])}`
         }
 
         const years = Math.floor(experience / 365);
-        return `${years} ${this.getNumEnding(years, ["год", "года", "лет"])}`
+        return `${years} ${FormatServices.getNumEnding(years, ["год", "года", "лет"])}`
     }
 
-    age = (age: number): string => `${age} ${this.getNumEnding(age, ["год", "года", "лет"])}`;
+    static age = (age: number): string => `${age} ${FormatServices.getNumEnding(age, ["год", "года", "лет"])}`;
 
-    translateSpeciality = (speciality: string): string => {
+    static translateSpeciality = (speciality: string): string => {
         const specialities = {
             Pediatrician: "Педиатр",
             Therapist: "Терапевт",
@@ -204,33 +204,33 @@ class FormatServices {
         return specialities[speciality];
     }
 
-    getAgeAndSpeciality = (age: number | null = null, speciality: string | null = null) => {
+    static getAgeAndSpeciality = (age: number | null = null, speciality: string | null = null) => {
 
         let string = "";
         if (typeof speciality == "string" && speciality.length > 0) string += `${speciality}, `;
-        if (age) string += `${this.age(age)}, `;
+        if (age) string += `${FormatServices.age(age)}, `;
 
         if (string.length > 0) string = string.substring(0, string.length - 2);
         return string;
     }
 
-    formatDayAndMonth = (day: number, month: number) : string => {
+    static formatDayAndMonth = (day: number, month: number) : string => {
         const months = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
         return `${day} ${months[month - 1]}`;
     }
 
-    getDayOfTheWeek = (i: number) : string => {
+    static getDayOfTheWeek = (i: number) : string => {
         return ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"][i];
     }
 
-    formatCustomTime = (time: { h: number, m: number}): string => {
+    static formatCustomTime = (time: { h: number, m: number}): string => {
         let h = time.h.toString(), m = time.m.toString();
         if (h.length === 1) h = "0" + h;
         if (m.length === 1) m = "0" + m;
         return `${h}:${m}`;
     }
 
-    formatTime = (date: Date): string => {
+    static formatTime = (date: Date): string => {
         let h = date.getHours().toString(), m = date.getMinutes().toString();
         if (h.length === 1) h = "0" + h;
         if (m.length === 1) m = "0" + m;
@@ -239,4 +239,3 @@ class FormatServices {
 
 }
 
-export default new FormatServices();

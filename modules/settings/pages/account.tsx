@@ -11,7 +11,7 @@ import ConfirmButton from "@/components/confirm-button";
 import DateTextField from "@/components/year-date-textfield";
 import Calendar from "@/components/calendar";
 import LoadingLine from "@/components/loading-line";
-import formatServices from "@/services/format-services";
+import FormatServices from "@/services/format-services";
 import token_services from "@/services/token-services";
 import NavigationComponent from "../components/navigation";
 import SettingsLoadingComponent from "../components/loading";
@@ -103,7 +103,7 @@ const SettingsAccountPage: NextPage = () => {
                     <TextField
                         onChange={(v) => controller.phone = v}
                         field="Телефон"
-                        value={formatServices.formatPhone(controller.phone)}
+                        value={FormatServices.formatPhone(controller.phone)}
                         error={controller.phoneError}
                     />
                 </div>
@@ -129,7 +129,7 @@ const SettingsAccountPage: NextPage = () => {
                     <DateTextField
                         field="День рождения"
                         onChange={() => null}
-                        value={formatServices.formatDate(controller.birthday as Date)}
+                        value={FormatServices.formatDate(controller.birthday as Date)}
                         onFocus={() => controller.isCalendarOpen = true}
                     />
                 </div>

@@ -1,7 +1,7 @@
 import { observable, action, makeObservable } from "mobx";
 import { injectable } from "inversify";
 import UserStore from "./userStore";
-import formatServices from "@/services/format-services";
+import FormatServices from "@/services/format-services";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
 import axios from "axios";
 import tokenServices from "@/services/token-services";
@@ -28,8 +28,8 @@ export default class DoctorSettingsController {
 
         if (UserStore.user !== null) {
             const doctor = UserStore.user as DoctorType;
-            this.consultationBeginTime = formatServices.formatCustomTime(doctor.workingTime.from);
-            this.consultationEndTime = formatServices.formatCustomTime(doctor.workingTime.to);
+            this.consultationBeginTime = FormatServices.formatCustomTime(doctor.workingTime.from);
+            this.consultationEndTime = FormatServices.formatCustomTime(doctor.workingTime.to);
             this.selectedDays = doctor.workingTime.weekends;
             this.setPrice(doctor.price.toString());
             this.consultationDuration = doctor.workingTime.consultationTimeInMin.toString();
@@ -58,8 +58,8 @@ export default class DoctorSettingsController {
                 else user = result.data.doctor;
 
                 UserStore.user = user as DoctorType;
-                this.consultationBeginTime = formatServices.formatCustomTime(user.workingTime.from);
-                this.consultationEndTime = formatServices.formatCustomTime(user.workingTime.to);
+                this.consultationBeginTime = FormatServices.formatCustomTime(user.workingTime.from);
+                this.consultationEndTime = FormatServices.formatCustomTime(user.workingTime.to);
                 this.selectedDays = user.workingTime.weekends;
                 this.consultationDuration = user.workingTime.consultationTimeInMin.toString();
                 this.consultationPause = user.workingTime.consultationPauseInMin.toString();

@@ -12,7 +12,7 @@ import {
     SupportIcon
 } from "@/static/icons";
 import tokenServices from "@/services/token-services";
-import storageServices from "@/services/storage_services";
+import StorageServices from "@/services/storage_services";
 // import { useWindowWidth } from "@react-hook/window-size";
 
 type Props = {
@@ -39,7 +39,7 @@ const NavigationComponent: React.FC<Props> = ({ active, alwaysActive }) => {
     const router = useRouter();
     const onExit = () => {
         tokenServices.logout();
-        storageServices.removeUser();
+        StorageServices.removeUser();
         router.push("/");
     }
     // const width = useWindowWidth() ?? 0;

@@ -3,7 +3,7 @@
 // import { observer } from "mobx-react";
 // import { PdfIcon, FileIcon, ImageIcon } from "../modules/consultations/icons";
 // import { CloseIcon } from "../modules/doctors/icons";
-// import formatServices from "../services/format-services";
+// import FormatServices from "../services/format-services";
 //
 // type Props = {
 //     file: File,
@@ -33,7 +33,7 @@
 //         <Icon type={file.type} />
 //         <div className="info">
 //             <span className="title">{file.name.substring(0, 15) + (file.name.length > 15 ? "..." : "")}</span>
-//             <span className="subtitle">{formatServices.formatSize(file.size)} {type}</span>
+//             <span className="subtitle">{FormatServices.formatSize(file.size)} {type}</span>
 //         </div>
 //         {/*<div className="icon" onClick={}>*/}
 //         {/*    <CloseIcon />*/}

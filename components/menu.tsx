@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import storageServices from "@/services/storage_services";
+import StorageServices from "@/services/storage_services";
 import tokenServices from "@/services/token-services";
 import { observer } from "mobx-react";
 
@@ -16,7 +16,7 @@ const Menu: React.FC = () => {
         selected = router.asPath;
     }
 
-    const user = storageServices.getUser();
+    const user = StorageServices.getUser();
     if (user && (!user?.photoUrl || user.photoUrl.length == 0)) user.photoUrl = "/images/user-placeholder.jpg";
 
     return <menu>

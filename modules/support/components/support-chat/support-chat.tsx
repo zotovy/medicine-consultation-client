@@ -1,7 +1,7 @@
 import React from "react";
 import MediaQuery from "react-responsive";
 import { LongArrowIcon } from "@/static/icons";
-import formatServices from "@/services/format-services";
+import FormatServices from "@/services/format-services";
 import styles from "./support-chat.module.scss";
 
 // icons
@@ -33,7 +33,7 @@ const SupportChatComponent: React.FC<SupportChatType> = (chat) => {
                         }
                         <span className={styles.number}>№{ chat.number }</span>
                         <span className={styles.lastMessageTime}>
-                        { formatServices.formatToUsualDate(lastMessage.date, true, true).toLowerCase() }
+                        { FormatServices.formatToUsualDate(lastMessage.date, true, true).toLowerCase() }
                     </span>
                     </div>
                 </div>

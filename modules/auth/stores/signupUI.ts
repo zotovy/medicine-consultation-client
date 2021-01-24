@@ -1,9 +1,9 @@
 import { observable, action, makeObservable } from "mobx";
 import { injectable } from "inversify";
-import formatServices from "../../../services/format-services";
+import FormatServices from "../../../services/format-services";
 import axios from "axios";
 import tokenServices from "../../../services/token-services";
-import storageServices from "../../../services/storage_services";
+import StorageServices from "../../../services/storage_services";
 import validationServices from "../../../services/validation-services";
 import { ServerErrorType } from "../@types/server-errors";
 
@@ -76,7 +76,7 @@ export default class SingupUIStore {
     @action setName = (val: string) => (this.name = val);
     @action setSurname = (val: string) => (this.surname = val);
     @action setPhone = (val: string) =>
-        (this.phone = formatServices.formatPhone(val));
+        (this.phone = FormatServices.formatPhone(val));
     @action setEmail = (val: string) => (this.email = val);
     @action setPassword = (val: string) => (this.password = val);
     @action setConfirmPassword = (val: string) => (this.confirmPassword = val);
@@ -201,7 +201,7 @@ export default class SingupUIStore {
         const name = this.name;
         const surname = this.surname;
         const phone = parseInt(
-           formatServices.formatPhone(this.phone)
+           FormatServices.formatPhone(this.phone)
         );
         const email = this.email;
         const password = this.password;
@@ -273,7 +273,7 @@ export default class SingupUIStore {
 
             // Set user
             if (user) {
-                storageServices.saveUser(user);
+                StorageServices.saveUser(user);
             }
             console.log(`Create user with id ${id}`);
 
@@ -306,7 +306,7 @@ export default class SingupUIStore {
             const doctor: IBecomeDoctor = {
                 name: this.name,
                 surname: this.surname,
-                phone: formatServices.formatPhone(this.phone),
+                phone: FormatServices.formatPhone(this.phone),
                 email: this.email,
                 sex: this.isMale,
                 education: this.institute,

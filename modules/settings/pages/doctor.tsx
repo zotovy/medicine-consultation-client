@@ -4,7 +4,7 @@ import Head from "next/head";
 import { NextPage } from "next";
 
 import DoctorSettingsController from "../controllers/doctor-controller";
-import formatServices from "../../../services/format-services";
+import FormatServices from "../../../services/format-services";
 import Navigation from "../components/navigation";
 import GoBackIcon from "../components/go-back-icon";
 import TextField from "../../../components/text-field";
@@ -43,13 +43,13 @@ const DoctorSettingsPage: NextPage = () => {
                     field="Время начало консультаций"
                     error={controller.beginTimeError}
                     value={controller.consultationBeginTime}
-                    onChange={(v) => controller.consultationBeginTime = formatServices.formatTimeInput(v)}/>
+                    onChange={(v) => controller.consultationBeginTime = FormatServices.formatTimeInput(v)}/>
                 <div className="space"/>
                 <TextField
                     field="Время конца консультаций"
                     error={controller.endTimeError}
                     value={controller.consultationEndTime}
-                    onChange={(v) => controller.consultationEndTime = formatServices.formatTimeInput(v)}/>
+                    onChange={(v) => controller.consultationEndTime = FormatServices.formatTimeInput(v)}/>
             </div>
             <div className="row">
                 <TextField

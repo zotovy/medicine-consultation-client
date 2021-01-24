@@ -3,7 +3,7 @@ import { observable, action, makeObservable } from "mobx";
 import validationServices from "../../../services/validation-services";
 import axios from "axios";
 import tokenServices from "../../../services/token-services";
-import storageServices from "../../../services/storage_services";
+import StorageServices from "../../../services/storage_services";
 import { authFetch, EAuthFetch } from "../../../services/fetch_services";
 
 @injectable()
@@ -74,7 +74,7 @@ export default class LoginUIStore {
             const user = await fetchUser(id);
 
             if (user) {
-                storageServices.saveUser(user);
+                StorageServices.saveUser(user);
             }
 
             this.goToHomeTrigger = !this.goToHomeTrigger;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronIcon } from "@/static/icons";
-import formatServices from "../../../services/format-services";
+import FormatServices from "../../../services/format-services";
 
 type Props = {
     consultation: Consultation;
@@ -23,7 +23,7 @@ const ConsultationTile: React.FC<Props> = ({ onShowNode, consultation, key }) =>
                 <span className="title">{(consultation.doctorId as DoctorType).fullName}</span>
                 <span className="subtitle">
                     {(consultation.doctorId as DoctorType).speciality},&nbsp;
-                    {formatServices.formatToUsualDate(consultation.date)}</span>
+                    {FormatServices.formatToUsualDate(consultation.date)}</span>
             </div>
         </div>
 

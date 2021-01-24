@@ -1,34 +1,34 @@
 import moment from "moment";
 import axios from "axios";
 
-class TokenServices {
+export default class tokenServices {
     // Settings
-    accessTokenLifetime: number = 1800;
-    refreshTokenLifetime: number = 31536000;
+    static accessTokenLifetime: number = 1800;
+    static refreshTokenLifetime: number = 31536000;
 
     // Api
-    accessTokenLeftTime = () => this._secondsToUpdate("accessToken");
-    refreshTokenLeftTime = () => this._secondsToUpdate("refreshToken");
+    static accessTokenLeftTime = () => tokenServices._secondsToUpdate("accessToken");
+    static refreshTokenLeftTime = () => tokenServices._secondsToUpdate("refreshToken");
 
-    get header(): string {
-        return `Bearer ${this._getAccessToken()}`;
+    static get header(): string {
+        return `Bearer ${tokenServices._getAccessToken()}`;
     }
 
-    saveAccessToken(token: string) {
+    static saveAccessToken(token: string) {
         if (typeof window !== "undefined") localStorage.setItem("accessToken", token);
 
         const now = moment();
         if (typeof window !== "undefined") localStorage.setItem("accessTokenSetDate", now.toISOString());
     }
 
-    saveRefreshToken(token: string) {
+    static saveRefreshToken(token: string) {
         if (typeof window !== "undefined") localStorage.setItem("refreshToken", token);
 
         const now = moment();
         if (typeof window !== "undefined") localStorage.setItem("refreshTokenSetDate", now.toISOString());
     }
 
-    isLogin(): boolean {
+    static isLogin(): boolean {
         const accessToken = typeof window === "undefined"
             ? null
             : localStorage.getItem("accessToken");
@@ -40,20 +40,20 @@ class TokenServices {
         return false;
     }
 
-    checkAndUpdateToken = async (): Promise<boolean | null> => {
-        if (this._needRefreshAccessToken()) {
-            const token = await this._getNewAccessToken();
+    static checkAndUpdateToken = async (): Promise<boolean | null> => {
+        if (tokenServices._needRefreshAccessToken()) {
+            const token = await tokenServices._getNewAccessToken();
 
             console.log(token);
             if (token) {
-                this.saveAccessToken(token ?? "");
+                tokenServices.saveAccessToken(token ?? "");
             }
         }
 
-        return !this._needRefreshRefreshToken();
+        return !tokenServices._needRefreshRefreshToken();
     };
 
-    generateNewTokens = async (id: string): Promise<void> => {
+    static generateNewTokens = async (id: string): Promise<void> => {
         const responce = await axios.post(
             `${process.env.SERVER_URL}/api/generate-token`,
             { id: id }
@@ -68,41 +68,41 @@ class TokenServices {
         const accessToken = responce.data.tokens.access;
         const refreshToken = responce.data.tokens.refresh;
 
-        this.saveAccessToken(accessToken);
-        this.saveRefreshToken(refreshToken);
+        tokenServices.saveAccessToken(accessToken);
+        tokenServices.saveRefreshToken(refreshToken);
     };
 
-    removeTokens = () => {
+    static removeTokens = () => {
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("refreshTokenSetDate");
         localStorage.removeItem("accessToken");
         localStorage.removeItem("accessTokenSetDate");
     };
 
-    logout = () => {
-        this.removeTokens();
+    static logout = () => {
+        tokenServices.removeTokens();
         localStorage.removeItem("uid");
         localStorage.removeItem("isUser");
     }
 
     // Core
-    private _needRefreshAccessToken(): boolean | null {
-        const leftToLive = this._secondsToUpdate("accessTokenSetDate");
+    private static  _needRefreshAccessToken(): boolean | null {
+        const leftToLive = tokenServices._secondsToUpdate("accessTokenSetDate");
         return leftToLive != null
-            ? leftToLive >= this.accessTokenLifetime
+            ? leftToLive >= tokenServices.accessTokenLifetime
             : null;
     }
 
-    private _needRefreshRefreshToken(): boolean | null {
-        const leftToLive = this._secondsToUpdate("refreshTokenSetDate");
+    private static _needRefreshRefreshToken(): boolean | null {
+        const leftToLive = tokenServices._secondsToUpdate("refreshTokenSetDate");
 
         return leftToLive != null ? leftToLive <= 0 : null;
     }
 
-    private _getAccessToken = (): string | null => typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
-    private _getRefreshToken = (): string | null => typeof window !== "undefined" ? localStorage.getItem("refreshToken") : null;
+    private static _getAccessToken = (): string | null => typeof window !== "undefined" ? localStorage.getItem("accessToken") : null;
+    private static  _getRefreshToken = (): string | null => typeof window !== "undefined" ? localStorage.getItem("refreshToken") : null;
 
-    private _secondsToUpdate(tokenKey: string): number | null {
+    private static  _secondsToUpdate(tokenKey: string): number | null {
         const setDate = typeof window === "undefined"
             ? null
             : localStorage.getItem(tokenKey);
@@ -116,13 +116,13 @@ class TokenServices {
         return diff.asSeconds();
     }
 
-    private _getNewAccessToken = async (): Promise<any | null> => {
-        if (this._needRefreshRefreshToken()) {
+    private  static _getNewAccessToken = async (): Promise<any | null> => {
+        if (tokenServices._needRefreshRefreshToken()) {
             return null;
         }
 
-        const refreshToken = this._getRefreshToken();
-        const accessToken = this._getAccessToken();
+        const refreshToken = tokenServices._getRefreshToken();
+        const accessToken = tokenServices._getAccessToken();
         const userId = typeof window === "undefined"
             ? null
             : localStorage.getItem("uid");
@@ -145,13 +145,12 @@ class TokenServices {
         return responce?.data.tokens;
     };
 
-    getAndUpdateNewAccessToken = async (): Promise<void> => {
-        const tokens = await this._getNewAccessToken();
+    static getAndUpdateNewAccessToken = async (): Promise<void> => {
+        const tokens = await tokenServices._getNewAccessToken();
         if (tokens) {
-            this.saveAccessToken(tokens.access ?? "");
-            this.saveRefreshToken(tokens.refresh ?? "");
+            tokenServices.saveAccessToken(tokens.access ?? "");
+            tokenServices.saveRefreshToken(tokens.refresh ?? "");
         }
     };
 }
 
-export default new TokenServices();
