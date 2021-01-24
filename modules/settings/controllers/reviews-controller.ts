@@ -1,10 +1,15 @@
-import { action, observable } from "mobx";
+import { action, observable, makeObservable } from "mobx";
 import UserStore from "./userStore";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
 import axios from "axios";
 import token_services from "@/services/token-services";
 
-class ReviewsComponent {
+export default class ReviewsController {
+
+    constructor() {
+        makeObservable(this);
+    }
+
     // General
     @observable status: "user" | "doctor" = "doctor";
     @observable isLoading: boolean = true;
@@ -26,7 +31,7 @@ class ReviewsComponent {
 
         await action(async () => {
             const result = await authFetch(() => axios.get(
-                process.env.REACT_APP_SERVER_URL + `/api/user/${uid}/reviews?tile=true&isUser=${isUser}`,
+                process.env.SERVER_URL + `/api/user/${uid}/reviews?tile=true&isUser=${isUser}`,
                 {
                     headers: { auth: token_services.header },
                 }
@@ -39,12 +44,7 @@ class ReviewsComponent {
                 this.reviews = result.data.reviews;
                 UserStore.reviews = this.reviews;
             }
-
         })();
-
-
     }
 
 }
-
-export default new ReviewsComponent();

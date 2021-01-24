@@ -1,11 +1,16 @@
-import { action, observable } from "mobx";
+import { action, makeObservable, observable } from "mobx";
 import UserStore from "./userStore";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
 import axios from "axios";
 import token_services from "@/services/token-services";
 import validate_services from "@/services/validation-services";
 
-class NotificationsController {
+export default class NotificationsController {
+
+    constructor() {
+        makeObservable(this);
+    }
+
     // General
     @observable status: "user" | "doctor" = "doctor";
     @observable isLoading: boolean = true;
@@ -35,7 +40,7 @@ class NotificationsController {
         this.isLoading = true;
         const route = isUser === "true" ? `/api/user/${uid}` : `/api/doctor/${uid}`
         const result = await authFetch(() => axios.get(
-            process.env.REACT_APP_SERVER_URL + route,
+            process.env.SERVER_URL + route,
             {
                 headers: {
                     auth: token_services.header
@@ -77,7 +82,7 @@ class NotificationsController {
 
         this.isLoadingSave = true;
         const res = await authFetch(() => axios.put(
-            process.env.REACT_APP_SERVER_URL + route,
+            process.env.SERVER_URL + route,
             {
                 id: uid,
                 notificationEmail: this.email,
@@ -100,5 +105,3 @@ class NotificationsController {
     }
 
 }
-
-export default new NotificationsController();

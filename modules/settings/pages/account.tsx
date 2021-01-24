@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { NextPage } from "next";
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { observer } from "mobx-react";
 import { IconClass } from "@/static/icons";
@@ -33,11 +34,13 @@ const SettingsAccountPage: NextPage<ControllerProps> = (props) => {
     }
 
     useEffect(() => {
-        controller.fetchUser().catch(handleErrors);
+        if (typeof window !== "undefined") {
+            controller.fetchUser().catch(handleErrors);
+        }
     }, []);
 
     if (controller.isLoading) {
-        return <SettingsLoadingComponent active="/pages"/>
+        return <SettingsLoadingComponent active="/account"/>
     }
 
     const imgStyles = {
@@ -47,6 +50,9 @@ const SettingsAccountPage: NextPage<ControllerProps> = (props) => {
     };
 
     return <React.Fragment>
+        <Head>
+            <title>Настройки – Аккаунт</title>
+        </Head>
         <Menu/>
         <main className="account-page settings-page">
         {

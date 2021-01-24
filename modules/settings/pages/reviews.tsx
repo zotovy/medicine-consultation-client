@@ -1,14 +1,21 @@
 import React, { useEffect } from "react";
+import { NextPage } from "next";
+import Head from "next/head";
 import { observer } from "mobx-react";
-import controller from "../controllers/reviews-component";
+import Menu from "@/components/menu";
+import ReviewsComponent from "@/components/review";
+import ReviewsController from "../controllers/reviews-controller";
 import NavigationComponent from "../components/navigation";
-import ReviewsComponent from "../../../components/review";
 import SettingsLoadingComponent from "../components/loading";
 import NotFound from "../components/not-found";
 import GoBackIcon from "../components/go-back-icon";
 import Navigation from "../components/navigation";
+import withController from "@/utils/inject";
 
-const ReviewPage: React.FC = () => {
+type ControllerProps = { reviewsController: ReviewsController };
+
+const ReviewPage: NextPage<ControllerProps> = (props) => {
+    const controller = props.reviewsController;
 
     useEffect(() => {
         controller.fetchReviews();
@@ -19,27 +26,37 @@ const ReviewPage: React.FC = () => {
     }
 
     if (controller.reviews.length === 0) {
-        return <main className="consultations-page settings-page">
-            <Navigation active="/reviews" />
-            <NotFound text="У вас пока нет отзывов"/>
-        </main>
+
+        return <React.Fragment>
+            <Menu/>
+            <main className="consultations-page settings-page">
+                <Navigation active="/reviews" />
+                <NotFound text="У вас пока нет отзывов"/>
+            </main>
+        </React.Fragment>
     }
 
-    return <main className="reviews-page settings-page">
-        <GoBackIcon/>
-        <NavigationComponent active="/reviews"/>
-        <section className="content reviews">
-            {
-                controller.reviews.map(e => {
-                    return <ReviewsComponent
-                        fullName={getFullName(e.doctorId as DoctorType)}
-                        rating={e.point}
-                        text={e.content}/>;
-                })
-            }
+    return <React.Fragment>
+        <Head>
+            <title>Настройки – Отзывы</title>
+        </Head>
+        <Menu/>
+        <main className="reviews-page settings-page">
+            <GoBackIcon/>
+            <NavigationComponent active="/reviews"/>
+            <section className="content reviews">
+                {
+                    controller.reviews.map(e => {
+                        return <ReviewsComponent
+                            fullName={getFullName(e.doctorId as DoctorType)}
+                            rating={e.point}
+                            text={e.content}/>;
+                    })
+                }
 
-        </section>
-    </main>
+            </section>
+        </main>
+    </React.Fragment>
 }
 
 const getFullName = (d: DoctorType) : string => {
@@ -48,4 +65,4 @@ const getFullName = (d: DoctorType) : string => {
     return `${d.name} ${d.surname}`;
 }
 
-export default observer(ReviewPage);
+export default withController(observer(ReviewPage), "reviewsController");

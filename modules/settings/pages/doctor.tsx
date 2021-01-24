@@ -1,21 +1,27 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
+import Head from "next/head";
+import { NextPage } from "next";
 
-import controller from "../controllers/doctor-controller";
+import DoctorSettingsController from "../controllers/doctor-controller";
 import formatServices from "../../../services/format-services";
 import Navigation from "../components/navigation";
 import GoBackIcon from "../components/go-back-icon";
 import TextField from "../../../components/text-field";
 import ConfirmButton from "../../../components/confirm-button";
 import SettingsLoadingComponent from "../components/loading";
+import withController from "../../../utils/inject";
 
 const days: string[] = ["Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота", "Воскресенье"];
-const clickOnWorkingDays = (i: number) => {
+const clickOnWorkingDays = (controller: DoctorSettingsController, i: number) => {
     if (controller.selectedDays.includes(i)) controller.selectedDays = controller.selectedDays.filter(e => e != i);
     else controller.selectedDays.push(i);
 }
 
-const DoctorSettingsPage = () => {
+type ControllerProps = { doctorSettingsController: DoctorSettingsController };
+
+const DoctorSettingsPage: NextPage<ControllerProps> = (props) => {
+    const controller = props.doctorSettingsController;
 
     useEffect(() => {
         controller.load();
@@ -26,6 +32,9 @@ const DoctorSettingsPage = () => {
     }
 
     return <main className="doctor-page settings-page">
+        <Head>
+            <title>Настройки – Отзывы</title>
+        </Head>
         <Navigation active="/doctor"/>
         <GoBackIcon/>
         <section className="content doctor">
@@ -63,7 +72,7 @@ const DoctorSettingsPage = () => {
                 {
                     days.map((e, i) => <button
                         key={`${e}-day-button`}
-                        onClick={() => clickOnWorkingDays(i)}
+                        onClick={() => clickOnWorkingDays(controller, i)}
                         className={`day ${controller.selectedDays.includes(i) ? "selected" : ""}`}>
                         {e}
                     </button>)
@@ -87,4 +96,4 @@ const DoctorSettingsPage = () => {
     </main>
 }
 
-export default observer(DoctorSettingsPage);
+export default withController(observer(DoctorSettingsPage), "doctorSettingsController");

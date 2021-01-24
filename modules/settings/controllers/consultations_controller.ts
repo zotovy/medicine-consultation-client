@@ -1,4 +1,4 @@
-import { action, observable } from "mobx";
+import { action, observable, makeObservable } from "mobx";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
 import axios from "axios";
 import token_services from "@/services/token-services";
@@ -6,6 +6,10 @@ import UserStore from "./userStore";
 import TranslateServices from "@/services/translate_services";
 
 export default class ConsultationController {
+
+    constructor() {
+        makeObservable(this);
+    }
 
     // General
     @observable status: "user" | "doctor" = "doctor";
@@ -32,6 +36,7 @@ export default class ConsultationController {
 
         this.isLoading = true;
 
+        console.log("fetching", process.env.SERVER_URL + `/api/consultation/user/${uid}?isUser=${isUser}`);
         await action(async () => {
             const result = await authFetch(() => axios.get(
                 process.env.SERVER_URL + `/api/consultation/user/${uid}?isUser=${isUser}`,

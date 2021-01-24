@@ -4,7 +4,7 @@ import { authFetch } from "@/services/fetch_services";
 import validationService from "@/services/validation-services";
 import tokenServices from "@/services/token-services";
 
-class PasswordController {
+export default class PasswordController {
     // UI
     oldPassword: string = "";
     newPassword: string = "";
@@ -83,5 +83,3 @@ type Error =
 type Response = SuccessResponse | FailedResponse;
 type SuccessResponse = { success: true };
 type FailedResponse = { success: false, error: Error };
-
-export default new PasswordController();

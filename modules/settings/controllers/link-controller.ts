@@ -4,7 +4,7 @@ import { authFetch, EAuthFetch } from "@/services/fetch_services";
 import axios from "axios";
 import token_services from "@/services/token-services";
 
-class LinkController {
+export default class LinkController {
 
     @observable loading: boolean = true;
     @observable saveLoading: boolean = true;
@@ -88,4 +88,3 @@ class LinkController {
     errorCb = () => {}
 }
 
-export default new LinkController();

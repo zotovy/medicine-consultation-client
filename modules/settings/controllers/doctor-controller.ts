@@ -1,11 +1,16 @@
-import { observable, action } from "mobx";
+import { observable, action, makeObservable } from "mobx";
 import UserStore from "./userStore";
 import formatServices from "@/services/format-services";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
 import axios from "axios";
 import tokenServices from "@/services/token-services";
 
-class DoctorSettingsController {
+export default class DoctorSettingsController {
+
+    constructor() {
+        makeObservable(this);
+    }
+
     @observable consultationBeginTime: string = "09:00";
     @observable consultationEndTime: string = "18:00";
     @observable selectedDays: number[] = [];
@@ -155,5 +160,3 @@ class DoctorSettingsController {
         if (!num) this.doctorWillGet = "0₽";
     }
 }
-
-export default new DoctorSettingsController();

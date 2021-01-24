@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
-import Menu from "@/components/menu";
+import { NextPage } from "next";
 import { useRouter } from "next/router";
+import Menu from "@/components/menu";
 import NavigationComponent from "../components/navigation";
 
-const SettingsPage: React.FC = () => {
+const SettingsPage: NextPage = () => {
 
     const router = useRouter();
     useEffect(() => {
