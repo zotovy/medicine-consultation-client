@@ -1,11 +1,11 @@
 import React from "react";
 import { observer } from "mobx-react";
 import { Carousel } from 'react-responsive-carousel';
-import { useWindowWidth } from "@react-hook/window-size";
 import DetailController from "../../../controllers/detail-controller";
 import { ChevronRight } from "../../../icons";
 import { DayType, DoctorDetailHelper } from "../../../helper";
 import { TYPES, useInjection } from "../../../../../container";
+import { toJS } from "mobx";
 
 type ControllerProps = (clickHandler: () => void, hasNext: boolean, label: string) => React.ReactNode;
 
@@ -13,13 +13,6 @@ const NextIcon: ControllerProps = (handler) => <div className="slider-controller
 const PrevIcon: ControllerProps = (handler) => <div className="slider-controller slider-controller-prev" onClick={handler}><ChevronRight/></div>
 
 const DayComponent: React.FC<{day: DayType}> = ({ day }) => {
-
-    const controller = useInjection<DetailController>(TYPES.detailDoctorController);
-
-    // const handleArrowClick = () => controller.selectedWeekIndex == 0
-    //     ? controller.selectedWeekIndex = 1
-    //     : controller.selectedWeekIndex = 0
-
     return <div className="day" key={day.day}>
         <div className={`day-name ${day.today ? "today" : ""}`}>
             <span className="date">{day.day }</span>
@@ -45,13 +38,16 @@ const DayComponent: React.FC<{day: DayType}> = ({ day }) => {
 const WeekTableComponent : React.FC = () => {
     const controller = useInjection<DetailController>(TYPES.detailDoctorController);
 
-    const width = useWindowWidth();
+    // const width = useWindowWidth();
+    const width = 1920;
     let amount = 1;
 
     if (width < 1043) amount = 4
     else if (width < 1250) amount = 5
     else if (width < 1400) amount = 6
     else amount = 7
+
+    console.log(toJS(controller.doctor?.schedule), amount);
 
     // ================= UI ===================
     return <div className="week-table">
@@ -78,16 +74,17 @@ export const WeekTableComponentMobile: React.FC = observer(() => {
     const controller = useInjection<DetailController>(TYPES.detailDoctorController);
 
     return <div className="week-table">
-        <Carousel
-            renderArrowNext={NextIcon}
-            renderArrowPrev={PrevIcon}
-            showThumbs={false}
-            showIndicators={false}
-            showStatus={false}
-            className="carousel">
-            {
-                controller.schedule.map(e => <DayComponent day={e}/>)
-            }
-        </Carousel>
+        <h5>mobile</h5>
+        {/*<Carousel*/}
+        {/*    renderArrowNext={NextIcon}*/}
+        {/*    renderArrowPrev={PrevIcon}*/}
+        {/*    showThumbs={false}*/}
+        {/*    showIndicators={false}*/}
+        {/*    showStatus={false}*/}
+        {/*    className="carousel">*/}
+        {/*    {*/}
+        {/*        controller.schedule.map(e => <DayComponent day={e}/>)*/}
+        {/*    }*/}
+        {/*</Carousel>*/}
     </div>
 });

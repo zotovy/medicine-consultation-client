@@ -35,6 +35,13 @@ export default class DetailController {
 
     onErrorCB = () => {}
 
+    @action setDoctor = (doctor: DoctorType) => {
+        this.doctor = doctor;
+        this.doctorId = doctor.id;
+        this.loading = false;
+        this.calcSchedule();
+    }
+
     _fetchDoctor = async (
         id: string
     ): Promise<DoctorType | undefined> => {
@@ -69,7 +76,7 @@ export default class DetailController {
         for (let i = 0; i < amountOfWeeks; i++) {
             const startOfTheWeek = new Date();
             startOfTheWeek.setDate(new Date().getDate() - new Date().getDay() + i * 7 + 1)
-            const schedule = DoctorDetailHelper.getScheduleWeek(startOfTheWeek);
+            const schedule = DoctorDetailHelper.getScheduleWeek(this, startOfTheWeek);
             this.schedule = this.schedule.concat(schedule)
         }
     }

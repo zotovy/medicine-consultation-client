@@ -25,12 +25,7 @@ const DetailPage: NextPage<ServerProps> = (props) => {
     const controller = useInjection<DetailController>(TYPES.detailDoctorController);
     const router = useRouter();
 
-
-    if (!controller.doctor) {
-        controller.doctor = props.doctor;
-        controller.doctorId = props.doctor?.id;
-        controller.loading = false;
-    }
+    if (!controller.doctor && props.doctor) controller.setDoctor(props.doctor);
 
     useEffect(() => {
         controller.onErrorCB = () => router.push("/404");

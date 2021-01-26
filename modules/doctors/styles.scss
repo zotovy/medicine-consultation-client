@@ -1119,6 +1119,12 @@ $disable: rgba($primary, $alpha: 0.15);
             }
         }
 
+        span.more {
+            @media screen and (min-width: 1024px) {
+                display: none;
+            }
+        }
+
         @media screen and (max-width: 1204px) {
             margin-bottom: 25px;
             padding: 0 16px;
@@ -1139,9 +1145,7 @@ $disable: rgba($primary, $alpha: 0.15);
                         color: $primary;
                         margin-bottom: 10px;
 
-                        //@media screen and (min-width: 1024px) {
-                        //    display: none;
-                        //}
+
                     }
                 }
 
@@ -1574,7 +1578,7 @@ $disable: rgba($primary, $alpha: 0.15);
         align-items: center;
         z-index: 20000;
         background: rgba(black, 0.5);
-        transition: 300ms transform, 300ms opacity;
+        transition: 300ms opacity !important;
 
         &.disable {
             opacity: 0;

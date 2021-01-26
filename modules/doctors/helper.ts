@@ -1,8 +1,8 @@
 import { YearsTitleComponentProps } from "./components/detail/additional-information/tile";
 import { DoctorEducation } from "../../@types/enums";
-import controller from "./controllers/detail-controller";
-import formatServices from "../../services/format-services";
-import validateServices from "../../services/validation-services";
+import DetailController from "./controllers/detail-controller";
+import formatServices from "@/services/format-services";
+import validateServices from "@/services/validation-services";
 
 export class DoctorDetailHelper {
 
@@ -42,7 +42,7 @@ export class DoctorDetailHelper {
         }
     }
 
-    private static getScheduleTime = (date: Date): AppointTime[] => {
+    private static getScheduleTime = (controller: DetailController, date: Date): AppointTime[] => {
         if (!controller.doctor) return [];
         const allTime: { from: Time, to: Time }[] = [];
         const availableTime: { from: Time, to: Time, isOccupied: boolean }[] = [];
@@ -71,6 +71,8 @@ export class DoctorDetailHelper {
             let isOccupied = false;
             for (let i = 0; i < controller.doctor.schedule.length; i++) {
                 const item = controller.doctor.schedule[i];
+                item.from = new Date(item.from);
+                item.to = new Date(item.to);
                 if (!validateServices.theSameDay(item.from, date)) continue;
                 const from = e.from.h === item.from.getHours() && e.from.m === item.from.getMinutes();
                 const to = e.to.h === item.to.getHours() && e.to.m === item.to.getMinutes();
@@ -92,13 +94,13 @@ export class DoctorDetailHelper {
         }));
     }
 
-    public static getScheduleWeek = (fromDate: Date): DayType[] => {
+    public static getScheduleWeek = (controller: DetailController, fromDate: Date): DayType[] => {
         if (!controller.doctor) return [];
         const days: DayType[] = [];
         for (let i = 0; i < 7; i++) {
             const date = new Date();
             date.setDate(fromDate.getDate() + i);
-            const times = DoctorDetailHelper.getScheduleTime(date);
+            const times = DoctorDetailHelper.getScheduleTime(controller, date);
 
             days.push({
                 day: formatServices.formatDayAndMonth(date.getDate(), date.getMonth() + 1),
@@ -118,7 +120,6 @@ export class DoctorDetailHelper {
             if (d[index]) d[index].push(e)
             else d[index] = [e];
         });
-        console.log(d);
         return d;
     }
 }

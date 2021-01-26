@@ -69,10 +69,10 @@
     font-size: 12px;
 }
 
-.disable {
-    transition: 1s;
-    transform: translateX(500px);
-}
+/*.disable {*/
+/*    transition: 1s;*/
+/*    transform: translateX(500px);*/
+/*}*/
 
 .alert-icon {
     border-radius: 50%;

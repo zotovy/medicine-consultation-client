@@ -24,7 +24,7 @@ export default class ValidationServices {
         return hour && minutes;
     }
 
-    static theSameDayAndTime = (date1: Date, date2: Date): boolean => this.theSameDay(date1, date2) && this.theSameTime(date1, date2);
+    static theSameDayAndTime = (date1: Date, date2: Date): boolean => ValidationServices.theSameDay(date1, date2) && ValidationServices.theSameTime(date1, date2);
 }
 
 
