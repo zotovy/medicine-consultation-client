@@ -3,6 +3,8 @@ import Head from "next/head";
 import React from "react";
 import { InversifyProvider, getContainer } from "../container";
 import "../styles.scss";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 
 class MyApp extends App {
 

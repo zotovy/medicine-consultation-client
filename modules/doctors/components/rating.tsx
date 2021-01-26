@@ -1,5 +1,5 @@
 import React from "react";
-import { FullStar, HalfStar } from "@/static/icons";
+import { FullStar, HalfStar } from "../icons";
 
 type Props = {
     amount: number;
