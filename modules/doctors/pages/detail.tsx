@@ -16,6 +16,7 @@ import FullScheduleModalWindow from "../components/detail/full-schedule";
 import FullSizeImageComponent from "../components/detail/full-size-image";
 import DetailInformationMobile from "../components/detail/detail-information-mobile";
 import { getContainer, TYPES, useInjection } from "../../../container";
+import { useWindowWidth } from "@react-hook/window-size";
 
 type ServerProps = {
     doctor?: DoctorType,
@@ -30,6 +31,8 @@ const DetailPage: NextPage<ServerProps> = (props) => {
     useEffect(() => {
         controller.onErrorCB = () => router.push("/404");
     }, []);
+
+    const windowWidth = useWindowWidth() ?? 1920;
 
     if (controller.doctorId !== router.query.id) {
         controller.doctorId = router.query.id as string;
@@ -179,7 +182,7 @@ const DetailPage: NextPage<ServerProps> = (props) => {
                         </span>
                     </div>
                     {
-                        typeof window !== "undefined" && window.screen.width > 868
+                        windowWidth > 868
                             ? <WeekTableComponent/>
                             : <WeekTableComponentMobile/>
                     }

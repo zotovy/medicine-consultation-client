@@ -6,6 +6,7 @@ import { ChevronRight } from "../../../icons";
 import { DayType, DoctorDetailHelper } from "../../../helper";
 import { TYPES, useInjection } from "../../../../../container";
 import { toJS } from "mobx";
+import { useWindowWidth } from "@react-hook/window-size";
 
 type ControllerProps = (clickHandler: () => void, hasNext: boolean, label: string) => React.ReactNode;
 
@@ -38,8 +39,7 @@ const DayComponent: React.FC<{day: DayType}> = ({ day }) => {
 const WeekTableComponent : React.FC = () => {
     const controller = useInjection<DetailController>(TYPES.detailDoctorController);
 
-    // const width = useWindowWidth();
-    const width = 1920;
+    const width = useWindowWidth() ?? 1920;
     let amount = 1;
 
     if (width < 1043) amount = 4
@@ -74,17 +74,16 @@ export const WeekTableComponentMobile: React.FC = observer(() => {
     const controller = useInjection<DetailController>(TYPES.detailDoctorController);
 
     return <div className="week-table">
-        <h5>mobile</h5>
-        {/*<Carousel*/}
-        {/*    renderArrowNext={NextIcon}*/}
-        {/*    renderArrowPrev={PrevIcon}*/}
-        {/*    showThumbs={false}*/}
-        {/*    showIndicators={false}*/}
-        {/*    showStatus={false}*/}
-        {/*    className="carousel">*/}
-        {/*    {*/}
-        {/*        controller.schedule.map(e => <DayComponent day={e}/>)*/}
-        {/*    }*/}
-        {/*</Carousel>*/}
+        <Carousel
+            renderArrowNext={NextIcon}
+            renderArrowPrev={PrevIcon}
+            showThumbs={false}
+            showIndicators={false}
+            showStatus={false}
+            className="carousel">
+            {
+                controller.schedule.map(e => <DayComponent day={e}/>)
+            }
+        </Carousel>
     </div>
 });
