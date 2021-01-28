@@ -7,6 +7,8 @@ import FindDoctorController, { Config } from "../controllers/find-doctor-control
 import { TYPES, useInjection } from "../../../container";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
+import Menu from "@/components/menu";
+import CityAddModal from "@/modules/doctors/components/filter/city-add-modal";
 
 
 // todo: ssr
@@ -19,7 +21,6 @@ const FindDoctor: NextPage = () => {
         const q: (keyof Config)[] = ["fullName", "specialities", "child", "workExperience", "qualification", "workPlan", "city"];
         const config: Config = {};
         const queries = history.query;
-        console.log(queries);
 
         q.forEach((e) => {
             if (queries[e]) {
@@ -49,17 +50,21 @@ const FindDoctor: NextPage = () => {
         }
     }
 
-    return <main className="find-doctor-page">
-        <ErrorBadge
-            isOpen={controller.isErrorBadgeOpen}
-            message="Произошла непридвиденная ошибка. Мы уже работаем над этим!"
-        />
-        <Filter/>
-        <DoctorWrapper/>
-        {/* <div className={`loading-badge ${controller.isLoading ? "" : "close"}`}>
+    return <div className="doctor-module">
+        <CityAddModal/>
+        <Menu/>
+        <main className=" find-doctor-page">
+            <ErrorBadge
+                isOpen={controller.isErrorBadgeOpen}
+                message="Произошла непридвиденная ошибка. Мы уже работаем над этим!"
+            />
+            <Filter/>
+            <DoctorWrapper/>
+            {/* <div className={`loading-badge ${controller.isLoading ? "" : "close"}`}>
             <LoadingIndicator />
         </div> */}
-    </main>
+        </main>
+    </div>
 };
 
 export default observer(FindDoctor);

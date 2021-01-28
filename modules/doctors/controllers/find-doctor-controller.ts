@@ -168,7 +168,7 @@ export default class FindDoctorController {
 
         const data = await axios
             .get(
-                process.env.REACT_APP_SERVER_URL +
+                process.env.SERVER_URL +
                 `/api/doctors?type=tile${filter}`
             )
             .then((data) => data.data)

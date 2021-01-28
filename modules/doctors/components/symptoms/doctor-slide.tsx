@@ -13,7 +13,7 @@ type Props = {
 };
 
 const Slide: React.FC<Props> = (props: Props) => {
-    const consroller = useInjection<SliderController>(TYPES.symptomsSliderController);
+    const controller = useInjection<SliderController>(TYPES.symptomsSliderController);
     const {highlightSlideId ,slideHandlerClick} = controller;
     const img = "https://www.epos-ural.ru/wp-content/uploads/2019/03/user-placeholder.jpg" ?? props.imgUrl;
 

@@ -28,7 +28,7 @@ const Menu: React.FC = () => {
         </Link>
         <div className="tabs">
             <div className="links">
-                <Link href="/consultations">
+                <Link href="/consultations" passHref>
                     <div className={"tab " + (selected === "/consultation" ? "selected" : "")}>
                         <span className="link">Консультации</span>
                         <div className="circle"/>
@@ -40,7 +40,7 @@ const Menu: React.FC = () => {
                         <div className="circle"/>
                     </div>
                 </Link>
-                <Link href="/find-doctor">
+                <Link href="/find-doctor" passHref>
                     <div className={"tab " + (selected === "/find-doctor" ? "selected" : "")}>
                         <span className="link ">Врачи</span>
                         <div className="circle"/>

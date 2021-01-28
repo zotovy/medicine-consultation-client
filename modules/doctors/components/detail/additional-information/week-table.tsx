@@ -5,7 +5,6 @@ import DetailController from "../../../controllers/detail-controller";
 import { ChevronRight } from "../../../icons";
 import { DayType, DoctorDetailHelper } from "../../../helper";
 import { TYPES, useInjection } from "../../../../../container";
-import { toJS } from "mobx";
 import { useWindowWidth } from "@react-hook/window-size";
 
 type ControllerProps = (clickHandler: () => void, hasNext: boolean, label: string) => React.ReactNode;
@@ -47,7 +46,6 @@ const WeekTableComponent : React.FC = () => {
     else if (width < 1400) amount = 6
     else amount = 7
 
-    console.log(toJS(controller.doctor?.schedule), amount);
 
     // ================= UI ===================
     return <div className="week-table">

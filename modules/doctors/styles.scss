@@ -194,7 +194,7 @@ $disable: rgba($primary, $alpha: 0.15);
                 }
             }
 
-            input:focus~svg path {
+            input:focus ~ svg path {
                 stroke: #30b9d6;
             }
 
@@ -372,7 +372,7 @@ $disable: rgba($primary, $alpha: 0.15);
                         height: 40.64px;
                     }
 
-                    &#rating~.collapsed {
+                    &#rating ~ .collapsed {
                         margin-left: -110px;
                     }
                 }
@@ -390,20 +390,24 @@ $disable: rgba($primary, $alpha: 0.15);
                         }
                     }
                 }
-                &.open{
-                    .title{
+
+                &.open {
+                    .title {
                         border-radius: 10px;
                         border: 1.2px solid $primary;
-                        h5{
+
+                        h5 {
                             color: $primary;
                         }
-                        svg{
-                            path{
+
+                        svg {
+                            path {
                                 stroke: $primary !important;
                             }
                         }
                     }
                 }
+
                 .collapsed {
                     position: absolute;
                     display: block;
@@ -444,9 +448,25 @@ $disable: rgba($primary, $alpha: 0.15);
                 }
             }
 
+            .desktop-filters {
+                display: flex;
+
+                @media screen and (max-width: 1025px) {
+                    display: none;
+                }
+            }
+
+            #mobile-filters {
+                @media screen and (min-width: 1025px) {
+                    background: red;
+                    display: none;
+                }
+            }
+
             @media screen and (max-width: 1024px) {
                 flex-direction: column;
                 margin: 10px 0 0;
+
 
                 .item {
                     width: 100%;
@@ -464,18 +484,8 @@ $disable: rgba($primary, $alpha: 0.15);
                             border-bottom: none;
                         }
 
-                        &.open>.title {
+                        &.open > .title {
                             border-bottom: 1.2px solid #e8e8e8 !important;
-                        }
-
-                        @media screen and (min-width: 1025px) {
-                            display: none;
-                        }
-                    }
-
-                    &.desktop-filters {
-                        @media screen and (max-width: 1025px) {
-                            display: none;
                         }
                     }
 
@@ -493,7 +503,7 @@ $disable: rgba($primary, $alpha: 0.15);
                         padding: 8px;
                         border-radius: 0;
 
-                        &#rating~.collapsed {
+                        &#rating ~ .collapsed {
                             margin-left: 0;
                         }
                     }
@@ -507,11 +517,10 @@ $disable: rgba($primary, $alpha: 0.15);
                             border-bottom: 1.2px solid #e8e8e8 !important;
                         }
 
-                        &.open>.title {
+                        &.open > .title {
                             border-bottom: 1.2px solid #e8e8e8 !important;
                         }
                     }
-
 
 
                     .collapsed {
@@ -629,7 +638,7 @@ $disable: rgba($primary, $alpha: 0.15);
                 }
             }
 
-            input:focus~.icon svg path {
+            input:focus ~ .icon svg path {
                 stroke: #30b9d6;
             }
 
@@ -768,7 +777,6 @@ $disable: rgba($primary, $alpha: 0.15);
     }
 
 
-
     h3.title {
         font-size: 28px;
         color: #282828;
@@ -798,7 +806,7 @@ $disable: rgba($primary, $alpha: 0.15);
         transition: box-shadow 200ms;
         box-shadow: 0 3px 6px rgba(#30B9D6, 0.1);
 
-        @media screen and (max-width: 868px){
+        @media screen and (max-width: 868px) {
             font-size: 16px;
             padding: 10px 28px;
         }
@@ -849,6 +857,7 @@ $disable: rgba($primary, $alpha: 0.15);
                 font-weight: 500;
                 margin-bottom: 10px;
             }
+
             svg {
                 margin-right: 10px;
             }
@@ -947,7 +956,7 @@ $disable: rgba($primary, $alpha: 0.15);
             }
         }
 
-        @media screen and (min-width: 580px) and (max-width: 1024px)  {
+        @media screen and (min-width: 580px) and (max-width: 1024px) {
             .left-side {
                 margin-bottom: 10px;
             }
@@ -1297,7 +1306,6 @@ $disable: rgba($primary, $alpha: 0.15);
             }
 
 
-
             .time {
                 padding: 10px 20px;
                 border-radius: 8px;
@@ -1391,7 +1399,7 @@ $disable: rgba($primary, $alpha: 0.15);
                 display: grid;
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
                 grid-gap: 10px;
-                
+
                 &.no-grid {
                     display: flex;
                     margin-top: 20px;
@@ -1638,6 +1646,7 @@ $disable: rgba($primary, $alpha: 0.15);
 
         .information {
             margin-bottom: 30px;
+
             .value {
                 font-size: 16px;
                 color: rgba(black, 0.8);
@@ -1782,10 +1791,11 @@ $disable: rgba($primary, $alpha: 0.15);
         height: 60px;
 
     }
-    &:hover{
-        div{
+
+    &:hover {
+        div {
             background-color: #2CC3E3;
-            box-shadow: 0px 3px 5px rgba(48,185,215,0.4);
+            box-shadow: 0px 3px 5px rgba(48, 185, 215, 0.4);
         }
     }
 }
@@ -1863,9 +1873,11 @@ $disable: rgba($primary, $alpha: 0.15);
     outline: none;
     font-size: 18px;
     transition: 0.3s;
-    &:hover:not(.tab-active){
+
+    &:hover:not(.tab-active) {
         background-color: #A1D5E1;
     }
+
     @media screen and (max-height: 970px) {
         font-size: 13px;
         width: 32px;
@@ -1924,9 +1936,10 @@ $disable: rgba($primary, $alpha: 0.15);
 
 
 $hoverCol: #30B9D6;
-#male_arm-2{
-    fill:  #b6cae5 !important;
+#male_arm-2 {
+    fill: #b6cae5 !important;
 }
+
 .tab-content {
     height: 644px;
     height: 100%;
@@ -2125,7 +2138,8 @@ $hoverCol: #30B9D6;
             .cls-6 {
                 stroke-miterlimit: 10;
             }
-ro
+
+            ro
             .cls-4,
             .cls-6 {
                 fill: #a8bac4;
@@ -2531,7 +2545,7 @@ ro
                 color: #ccc;
             }
 
-            ~svg {
+            ~ svg {
                 padding: 5px;
                 position: absolute;
                 right: 10px;
@@ -2547,7 +2561,7 @@ ro
                 color: #282828;
             }
 
-            &:focus~svg path {
+            &:focus ~ svg path {
                 stroke: #282828;
             }
         }
@@ -2557,7 +2571,7 @@ ro
                 border-radius: 0;
                 padding: 15px 20px;
 
-                ~svg {
+                ~ svg {
                     right: 20px;
                 }
             }
@@ -2691,15 +2705,18 @@ ro
             justify-content: center;
             align-items: center;
             position: relative;
-            :hover{
+
+            :hover {
                 background-color: #20cbef !important;
             }
+
             .fav-plus {
                 border-radius: 2.5px;
                 height: 4px;
                 width: 17px;
                 background-color: $primary;
                 transition: 0.3s;
+
                 &:before {
                     border-radius: 2.5px;
                     content: " ";
@@ -2718,6 +2735,7 @@ ro
                 background-color: $primary;
                 border-radius: 5px;
                 transition: 0.3s;
+
                 &:before {
                     border-radius: 2.5px;
                     content: " ";
@@ -3166,7 +3184,6 @@ ro
 }
 
 
-
 //========================================================================================
 /*                                                                                      *
  !                                    Error Page                                               *
@@ -3456,10 +3473,12 @@ ro
         @media screen and (max-width: 445px) {
             .modal {
                 height: fit-content;
+
                 .modal-descriptions-container {
-                    .modal-description-text{
+                    .modal-description-text {
                         font-size: 17px;
                     }
+
                     a {
                         div {
                             display: flex;
@@ -3467,7 +3486,8 @@ ro
                             align-items: center;
                             width: 185px;
                             padding: 0;
-                            p{
+
+                            p {
                                 font-size: 14px;
                             }
                         }
@@ -3479,51 +3499,52 @@ ro
 
 }
 
-    .error-background {
+.error-background {
 
-        top: 38px;
-        position: absolute;
+    top: 38px;
+    position: absolute;
 
-        @media screen and (max-width: 1675px) {
-            top: -34px;
+    @media screen and (max-width: 1675px) {
+        top: -34px;
 
-            svg {
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-            }
+        svg {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
+    }
 
-        @media screen and (max-width: 1336px) {
-            width: 1273px;
-            height: 672px;
-            svg {
-                width: 100%;
-                height: 100%;
-                overflow: hidden;
-                g {
+    @media screen and (max-width: 1336px) {
+        width: 1273px;
+        height: 672px;
+        svg {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
 
-                    g,
-                    path {
-                        display: none;
-                    }
+            g {
 
-                    .main_bg {
+                g,
+                path {
+                    display: none;
+                }
+
+                .main_bg {
+                    display: block;
+
+                    * {
                         display: block;
-
-                        * {
-                            display: block;
-                        }
                     }
                 }
             }
         }
-        @media screen and (max-width: 1024px) {
-            svg{
-                display: none;
-            }
+    }
+    @media screen and (max-width: 1024px) {
+        svg {
+            display: none;
         }
     }
+}
 
 
 .superman-anim--plus {
