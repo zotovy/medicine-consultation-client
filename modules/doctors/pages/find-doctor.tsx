@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { GetServerSidePropsContext, NextPage } from "next";
 import Menu from "@/components/menu";
 import CityAddModal from "@/modules/doctors/components/filter/city-add-modal";
+import Head from "next/head";
 
 
 type Props = {
@@ -41,6 +42,9 @@ const FindDoctor: NextPage<Props> = (props) => {
     }
 
     return <div className="doctor-module">
+        <Head>
+            <title>Поиск врача</title>
+        </Head>
         <CityAddModal/>
         <Menu/>
         <main className=" find-doctor-page">

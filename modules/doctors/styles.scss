@@ -1207,6 +1207,18 @@ $disable: rgba($primary, $alpha: 0.15);
         width: 100%;
         display: flex;
 
+        &.mobile {
+            @media screen and (min-width: 868px) {
+                display: none;
+            }
+        }
+
+        &.desktop {
+            @media screen and (max-width: 868px) {
+                display: none;
+            }
+        }
+
         .carousel {
             .slider-wrapper {
                 margin: 0 35px;

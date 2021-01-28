@@ -71,7 +71,7 @@ export default observer(WeekTableComponent);
 export const WeekTableComponentMobile: React.FC = observer(() => {
     const controller = useInjection<DetailController>(TYPES.detailDoctorController);
 
-    return <div className="week-table">
+    return <div className="week-table mobile">
         <Carousel
             renderArrowNext={NextIcon}
             renderArrowPrev={PrevIcon}

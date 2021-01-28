@@ -17,6 +17,8 @@ import FullSizeImageComponent from "../components/detail/full-size-image";
 import DetailInformationMobile from "../components/detail/detail-information-mobile";
 import { getContainer, TYPES, useInjection } from "../../../container";
 import { useWindowWidth } from "@react-hook/window-size";
+import Head from "next/head";
+import Menu from "@/components/menu";
 
 type ServerProps = {
     doctor?: DoctorType,
@@ -50,13 +52,11 @@ const DetailPage: NextPage<ServerProps> = (props) => {
         </div>;
     }
 
-    // return <main>
-    //     {
-    //         controller.doctor.toString()
-    //     }
-    // </main>
-
     return <div className="detail-doctor-module">
+        <Menu/>
+        <Head>
+            <title>{controller.doctor?.fullName ?? "404"}</title>
+        </Head>
         <DetailInformationMobile/>
         <FullSizeImageComponent/>
         {
@@ -177,15 +177,12 @@ const DetailPage: NextPage<ServerProps> = (props) => {
                             className="see-more"
                             onClick={() => controller.isScheduleModalWindowOpen = true}>
                             Посмотреть {
-                                typeof window !== "undefined" && window.screen.width > 868 ? "полное расписание" : ""
-                            }
+                            typeof window !== "undefined" && window.screen.width > 868 ? "полное расписание" : ""
+                        }
                         </span>
                     </div>
-                    {
-                        windowWidth > 868
-                            ? <WeekTableComponent/>
-                            : <WeekTableComponentMobile/>
-                    }
+                    <WeekTableComponent/>
+                    <WeekTableComponentMobile/>
                     <Reviews/>
                 </React.Fragment>
         }
