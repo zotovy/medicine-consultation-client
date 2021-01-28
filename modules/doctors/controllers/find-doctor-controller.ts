@@ -17,7 +17,7 @@ export default class FindDoctorController {
     @observable isErrorBadgeOpen: boolean = false;
     private amountDoctorsOnOnePage = 50;
 
-    @action private onComponentReady = (config: Config) => {
+    @action onComponentReady = (config: Config) => {
         this.name = config.fullName ?? "";
         this.specialities = config.specialities ?? [];
         this.child = config.child ?? [];
@@ -31,10 +31,36 @@ export default class FindDoctorController {
     fetchDoctors = (config: Config) => {
         this.onComponentReady(config);
         this.isLoading = true;
-        this.fecthDoctors(0, 50, true).then((docs) => {
+        this._fetchDoctors(0, 50, true).then((docs) => {
             this.doctors = docs;
             this.isLoading = false;
         });
+    }
+
+    @observable setDoctors = (config: Config, doctors: DoctorType[]) => {
+        this.onComponentReady(config);
+        this.isLoading = false;
+        this.doctors = doctors;
+    }
+
+    getConfig = (queries: any): Config => {
+        const q: (keyof Config)[] = ["fullName", "specialities", "child", "workExperience", "qualification", "workPlan", "city"];
+        const config: Config = {};
+
+        q.forEach((e) => {
+            if (queries[e]) {
+                // @ts-ignore
+                config[e] = (queries[e] as string).split(",");
+            }
+        });
+
+        try {
+            if (queries['rating']) {
+                config["rating"] = (queries["rating"] as string).split(",").map(e => parseInt(e));
+            }
+        } catch (e) {}
+
+        return config;
     }
 
     onChangeLocation = () => {};
@@ -64,7 +90,7 @@ export default class FindDoctorController {
 
         this.isInfinyLoading = true;
 
-        const doctors = await this.fecthDoctors(
+        const doctors = await this._fetchDoctors(
             this.currentPage * this.amountDoctorsOnOnePage,
             50,
             true
@@ -157,7 +183,7 @@ export default class FindDoctorController {
         return filter;
     };
 
-    private fecthDoctors = async (
+    _fetchDoctors = async (
         from: number = 0,
         amount: number = this.amountDoctorsOnOnePage,
         needFilter: boolean = false
@@ -177,6 +203,7 @@ export default class FindDoctorController {
                     success: false,
                 };
             });
+
 
         if (!data.success) {
             this.openBadge();
@@ -216,7 +243,7 @@ export default class FindDoctorController {
     @action clickOnSortBy = (value : ESortBy): void => {
         if (value != this.sortBy) {
             this._sortBy = value;
-            this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+            this._fetchDoctors(0, 50, true).then((docs) => (this.doctors = docs));
         }
     }
 
@@ -226,17 +253,17 @@ export default class FindDoctorController {
 
     @action clickOnSpecialityFilter = (value: string): void => {
         this.specialities = this.addOrRemoveItem(this.specialities, value);
-        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+        this._fetchDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     @action clickOnWorkExperienceFilter = (value: string): void => {
         this.workExperience = this.addOrRemoveItem(this.workExperience, value);
-        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+        this._fetchDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     @action clickOnRating = (value: number): void => {
         this.rating = this.addOrRemoveItem(this.rating, value);
-        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+        this._fetchDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     @action typeCity = (value: string): void => {
@@ -266,21 +293,21 @@ export default class FindDoctorController {
 
     @action onModalSubmit = (): void => {
         this.isSelectCityModalOpen = false;
-        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+        this._fetchDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     @action clickOnWorkPlan = (value: string): void => {
         this.workPlan = this.addOrRemoveItem(this.workPlan, value);
-        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+        this._fetchDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
     @action clickOnChild = (value: string): void => {
         this.child = this.addOrRemoveItem(this.child, value);
-        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+        this._fetchDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     @action clickOnQualification = (value: string): void => {
         this.qualification = this.addOrRemoveItem(this.qualification, value);
-        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+        this._fetchDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     @action clearFilter = (): void => {
@@ -294,7 +321,7 @@ export default class FindDoctorController {
 
     @action clickOnDownward = (): void => {
         this.isDownward = !this.isDownward;
-        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+        this._fetchDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     @action onNameChange = async (value: string): Promise<void> => {
@@ -307,7 +334,7 @@ export default class FindDoctorController {
         });
         if (!ok) return;
 
-        this.fecthDoctors(0, 50, true).then((docs) => (this.doctors = docs));
+        this._fetchDoctors(0, 50, true).then((docs) => (this.doctors = docs));
     };
 
     get sortBy(): string {

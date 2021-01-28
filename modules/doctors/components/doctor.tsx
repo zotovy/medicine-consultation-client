@@ -1,11 +1,11 @@
 import React from "react";
 import Skeleton from 'react-loading-skeleton';
 import RatingComponent from "./rating";
-import { useHistory } from "react-router-dom";
 import DetailController from "../controllers/detail-controller";
 import FindDoctorController from "../controllers/find-doctor-controller";
 import formatServices from "../../../services/format-services";
 import { TYPES, useInjection } from "../../../container";
+import { useRouter } from "next/router";
 
 type Props = {
     name: string;
@@ -22,7 +22,7 @@ const Doctor: React.FC<Props> = (props: Props) => {
     const controller = useInjection<FindDoctorController>(TYPES.findDoctorController);
 
     const img = props.imgUrl && props.imgUrl.length != 0 ? props.imgUrl : "../../../static/images/user-placeholder.jpg";
-    const history = useHistory();
+    const history = useRouter();
 
     const goToDoctorPage = (): void => {
         detailController.fetchDoctor(props.id);

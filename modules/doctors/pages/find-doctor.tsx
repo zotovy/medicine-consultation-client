@@ -4,40 +4,30 @@ import DoctorWrapper from '../components/doctors-wrapper';
 import Filter from '../components/filter';
 import ErrorBadge from '@/components/error-badge';
 import FindDoctorController, { Config } from "../controllers/find-doctor-controller";
-import { TYPES, useInjection } from "../../../container";
+import { getContainer, TYPES, useInjection } from "../../../container";
 import { useRouter } from "next/router";
-import { NextPage } from "next";
+import { GetServerSidePropsContext, NextPage } from "next";
 import Menu from "@/components/menu";
 import CityAddModal from "@/modules/doctors/components/filter/city-add-modal";
 
 
-// todo: ssr
-const FindDoctor: NextPage = () => {
+type Props = {
+    doctors: DoctorType[],
+}
+
+const FindDoctor: NextPage<Props> = (props) => {
     const controller = useInjection<FindDoctorController>(TYPES.findDoctorController);
     const history = useRouter();
+
+        console.log(7, props.doctors)
+
     // Scroll component
     useEffect(() => {
+        const config = controller.getConfig(history.query);
 
-        const q: (keyof Config)[] = ["fullName", "specialities", "child", "workExperience", "qualification", "workPlan", "city"];
-        const config: Config = {};
-        const queries = history.query;
+        if (controller.doctors.length === 0) controller.setDoctors(config, props.doctors);
+        else controller.fetchDoctors(config);
 
-        q.forEach((e) => {
-            if (queries[e]) {
-                // @ts-ignore
-                config[e] = (queries[e] as string).split(",");
-            }
-        });
-
-        try {
-            if (queries['rating']) {
-                config["rating"] = (queries["rating"] as string).split(",").map(e => parseInt(e));
-            }
-        } catch (e) {
-
-        }
-
-        controller.fetchDoctors(config);
         document.getElementsByClassName("doctor-module")[0].addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
@@ -66,5 +56,15 @@ const FindDoctor: NextPage = () => {
         </main>
     </div>
 };
+
+export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
+    const container = getContainer();
+    const controller = container.get<FindDoctorController>(TYPES.findDoctorController);
+    const config = controller.getConfig(ctx.query);
+    console.log(config);
+    controller.onComponentReady(config);
+    const doctors = await controller._fetchDoctors();
+    return { props: { doctors } };
+}
 
 export default observer(FindDoctor);
