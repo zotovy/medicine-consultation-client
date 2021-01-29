@@ -14,7 +14,7 @@ import { TYPES, useInjection } from "../../../container";
 
 
 const ConsultationsPage: NextPage = () => {
-    const controller = useInjection<ConsultationController>(TYPES.consultationController);
+    const controller = useInjection<ConsultationController>(TYPES.settingsConsultationController);
 
     useEffect(() => {
         if (typeof window !== "undefined") {

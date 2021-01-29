@@ -1,4 +1,5 @@
-import { observable, action, makeObservable } from "mobx";
+import React from "react";
+import { action, makeObservable, observable } from "mobx";
 import axios from "axios";
 import { injectable } from "inversify";
 
@@ -36,11 +37,10 @@ export default class SympController {
     @action handlerSearch = (e: React.ChangeEvent<HTMLInputElement>): void => {
         e.persist();
         let searchQuery = e.target.value.toLowerCase();
-        const displayedContacts = this.arrSymps.filter((el: Symp) => {
+        this.symptoms = this.arrSymps.filter((el: Symp) => {
             const searchValue = el.name.toLowerCase();
-            return searchValue.indexOf(searchQuery) !== -1 || el.active === true;
+            return searchValue.indexOf(searchQuery) !== -1 || el.active;
         });
-        this.symptoms = displayedContacts;
     };
 
     @action choiseSymp = (
@@ -92,7 +92,7 @@ export default class SympController {
         
         const response = await axios
             .get(
-                process.env.REACT_APP_SERVER_URL +
+                process.env.SERVER_URL +
                 `/api/symptoms?bodyPart=${bodyPart}`
             )
             .then((data: any) => data.data)
@@ -162,7 +162,7 @@ export default class SympController {
     ): Promise<DoctorType[]> => {
         const response = await axios
             .get(
-                process.env.REACT_APP_SERVER_URL + `/api/doctors?bodyPart=${JSON.stringify([bodyPart])}`
+                process.env.SERVER_URL + `/api/doctors?bodyPart=${JSON.stringify([bodyPart])}`
             )
             .then((data: any) => { return data.data})
             .catch(() => {

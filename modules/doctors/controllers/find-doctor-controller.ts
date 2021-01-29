@@ -3,6 +3,22 @@ import jsonp from "jsonp";
 import axios from "axios";
 import { injectable } from "inversify";
 
+export type Config = {
+    fullName?: string,
+    specialities?: string[],
+    child?: string[],
+    workExperience?: string[],
+    qualification?: string[],
+    workPlan?: string[],
+    city?: string[],
+    rating?: number[],
+}
+
+export enum ESortBy {
+    rating = "rating",
+    experience = "experience"
+}
+
 @injectable()
 export default class FindDoctorController {
 
@@ -350,19 +366,5 @@ export default class FindDoctorController {
     };
 }
 
-export type Config = {
-    fullName?: string,
-    specialities?: string[],
-    child?: string[],
-    workExperience?: string[],
-    qualification?: string[],
-    workPlan?: string[],
-    city?: string[],
-    rating?: number[],
-}
 
-export enum ESortBy {
-    rating = "rating",
-    experience = "experience"
-}
 

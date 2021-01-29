@@ -25,11 +25,11 @@ type Props = {
 
 const ImageComponent: React.FC<Props> = ({ image, className }) => {
 
-  // const styles = { backgroundImage: `url(${image})` }
+  const styles = { backgroundImage: `url(${image})` }
 
   return <Image className={className}>
     {/*<NextImage src={image} width={"100%"} height={"100%"} />*/}
-    <div className="signup-image" />
+    <div className="signup-image" style={styles} />
   </Image>
 }
 

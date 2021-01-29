@@ -15,6 +15,7 @@ type Props = {
     maxHeight?: string;
     minWidth?: string;
     minHeight?: string;
+    className?: string;
 }
 
 const TextArea: React.FC<Props> = (props) => {
@@ -28,9 +29,9 @@ const TextArea: React.FC<Props> = (props) => {
     if (props.minHeight != undefined ) textareaStyles.minHeight = props.minHeight;
 
     return <div className={styles.textAreaContainer}>
-        { props.field ? <div className="field">{}</div> : <React.Fragment/> }
+        { props.field ? <div className={styles.field}>{ props.field }</div> : <React.Fragment/> }
         <textarea
-            className={styles.textarea}
+            className={`${styles.textarea} ${props.className}`}
             id={props.id}
             onChange={(e) => props.onChange ? props.onChange(e.target.value) : null}
             rows={props.rows}

@@ -2,7 +2,7 @@ import FindDoctor, { getServerSideProps as FindDoctorGetServerSideProps } from "
 import DetailDoctorPage, { GetServerSideProps as DetailGetServerSideProps } from './pages/detail';
 import FilterCityModal from './components/filter/city-add-modal';
 import SymptomsPage from './pages/symptoms';
-
+import ErrorSymptomsPage from "./components/symptoms/error-page";
 
 export {
     FindDoctor,
@@ -11,4 +11,5 @@ export {
     SymptomsPage,
     DetailGetServerSideProps,
     FindDoctorGetServerSideProps,
+    ErrorSymptomsPage
 }
