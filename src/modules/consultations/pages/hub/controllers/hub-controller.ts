@@ -15,6 +15,12 @@ class HubController {
     @observable itemPosActive: number = 0;
     @observable showPopUp: boolean = false;    
     @observable showRequestsPage: boolean = false;
+    @observable shortDate: string = "";
+    @observable arrDates: [] = [];
+    @observable userArrAppointments: any = [];
+    @observable userArrRequestAppointments: any = [];  
+    
+
 
     @action setDate = (sD: Date) => {
         let formatDate = sD;
@@ -30,24 +36,53 @@ class HubController {
             month = "0" + month;
         }
         this.date = `${day}.${month}.${formatDate.getFullYear()}`;
-        this.onItemHandlerClick([])
-        this.getAppoints(this._id)
+        this.shortDate = `${month}.${formatDate.getFullYear()}`;
+        this.onItemHandlerClick([]);
+        this.getAppointsDate(this._id);
+        this.getAppoints(this._id);
     }
-
-    @action public getAppoints = async (id: string) => {
+    @action public getAppointsDate = async (id: string) => {
+        return await this._fetchAppointmentsDate(id,this.shortDate).then(
+            action((arr = []) => {
+                console.log(arr.dates)
+                return  this.arrDates = arr.dates;
+            })
+        );
+    };
+    private _fetchAppointmentsDate = async (id: string, date: string): Promise<any> => {
+        const response = await authFetch(() => axios.get(
+            process.env.REACT_APP_SERVER_URL + `/api/doctor/get-consultations-dates/${date}`,
+            {
+                headers: {
+                    auth: tokenServices.header
+                }
+            }
+        ))
+        .then((data: any) => {return data.data})
+        .catch(() => {
+            return { success: false };
+        })
+        if (!response.success) {
+            return [];
+        }
+        return response
+    };
+    @action public getAppoints = async (id: string | null) => {
         this.showLoader = true;
         this._id = id;
         return await this._fetchAppointments(id, this.date).then(
             action((arr = []) => {
-                if(arr.appoints.length !== 0){
-                    this.showCard = true;
-                    this.infoForCard = arr.appoints[0];
-                };
+                if(arr.appoints !== undefined){
+                    if(arr.appoints.length !== 0){
+                        this.showCard = true;
+                        this.infoForCard = arr.appoints[0];
+                    };
+                }
                 return  this.arrAppointments = arr.appoints;
             })
         );
     };
-    private _fetchAppointments = async (id: string, date: string): Promise<any> => {
+    private _fetchAppointments = async (id: string | null, date: string): Promise<any> => {
         const response = await authFetch(() => axios.get(
             process.env.REACT_APP_SERVER_URL + `/api/doctor/${id}/appoints?numericDate=${date}`,
             {
@@ -71,7 +106,6 @@ class HubController {
     @action public getAppoinsRequest = async (id: string | null) => {
         return await this._fetchAppointmentsRequest(id).then(
             action((arr = []) => {
-                console.log(arr)
                 return this.consRequest = arr.requests;
             })
         );
@@ -123,6 +157,7 @@ class HubController {
         const uid = localStorage.getItem("uid");
         const result = await authFetch(() => axios.post(
             process.env.REACT_APP_SERVER_URL + `/api/doctor/${uid}/appoint/${appointId}/confirm`,
+            {},
             {
                 headers: {
                     auth: tokenServices.header
@@ -141,6 +176,7 @@ class HubController {
         const uid = localStorage.getItem("uid");
         const result = await authFetch(() => axios.post(
             process.env.REACT_APP_SERVER_URL + `/api/doctor/${uid}/appoint/${appointId}/reject`,
+            {},
             {
                 headers: {
                     auth: tokenServices.header
@@ -155,5 +191,85 @@ class HubController {
             this.getAppoinsRequest(uid);
         }
     }
+    @action rejectConsultation = async (consultationId: string) : Promise<any> => {
+        const uid = localStorage.getItem("uid");
+        const result = await authFetch(() => axios.post(
+            process.env.REACT_APP_SERVER_URL + `/api/doctor/${uid}/consultation/${consultationId}/reject`,
+            {},
+            {
+                headers: {
+                    auth: tokenServices.header
+                }
+            }
+        ))
+        .then((data: any) => {return data.data})
+        .catch(() => {
+            return { success: false };
+        });
+        if (result.success){
+            this.closePopUp();
+            this.getAppoints(uid);
+        }
+    }
+    @action userGetAppoints = async (id: string | null) => {
+        this.showLoader = true;
+        this._id = id;
+        return await this._fetchUserAppointments(id).then(
+            action((arr = []) => {
+                console.log(arr)
+                return  this.userArrAppointments = arr.appoints;
+            })
+        );
+    };
+    private _fetchUserAppointments = async (id: string | null): Promise<any> => {
+        const response = await authFetch(() => axios.get(
+            process.env.REACT_APP_SERVER_URL + `/api/user/${id}/appoints`,
+            {
+                headers: {
+                    auth: tokenServices.header
+                }
+            }
+        ))
+        .then((data: any) => {return data.data})
+        .catch(() => {
+            return { success: false };
+        })
+        if (!response.success) {
+            return [];
+        } else {
+            this.showLoader = false;
+        }
+        return response
+    };
+    @action userGetRequestAppoints = async (id: string | null) => {
+        this.showLoader = true;
+        this._id = id;
+        return await this._fetchUserRequestAppointments(id).then(
+            action((arr = []) => {
+                console.log(arr)
+                return  this.userArrRequestAppointments = arr.requests;
+            })
+        );
+    };
+    private _fetchUserRequestAppointments = async (id: string | null): Promise<any> => {
+        const response = await authFetch(() => axios.get(
+            process.env.REACT_APP_SERVER_URL + `/api/user/${id}/appoints`,
+            {
+                headers: {
+                    auth: tokenServices.header
+                }
+            }
+        ))
+        .then((data: any) => {return data.data})
+        .catch(() => {
+            return { success: false };
+        })
+        if (!response.success) {
+            return [];
+        } else {
+            this.showLoader = false;
+        }
+        return response
+    };
 }
 export default new HubController();

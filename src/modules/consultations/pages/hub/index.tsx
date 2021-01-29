@@ -12,7 +12,7 @@ import { toJS } from "mobx";
 import { Redirect } from "react-router-dom"; 
 import WarningPopUp from "./components/warning-popup"
 import RequestsPage from "./components/requests-page"
-
+import UserHub from "./user-hub"
 const Hub: React.FC = () => {
     if(localStorage.getItem("uid") !== null){
         useEffect(() => {
@@ -22,80 +22,81 @@ const Hub: React.FC = () => {
     }
     let arrApp = toJS(controller.arrAppointments);
     const {showError, showLoader, consRequest, infoForCard, showCard, itemPosActive, showPopUp, showRequestsPage } = controller;
-    return( 
+    console.log(localStorage.getItem("isUser") === "true")
+    return(
         <>
-            {localStorage.getItem("uid") !== null ?
+        {localStorage.getItem("isUser") as string !== "true"
+            ?
                 <>
-                    {
-                        !showError 
-                            ? 
-                                <>
-                                    {showPopUp 
-                                        ? 
-                                            <WarningPopUp/> 
-                                        : 
-                                            <>
-                                                {showRequestsPage 
-                                                    ? 
-                                                        <RequestsPage/> 
-                                                    : 
-                                                        <>
-                                                            <div className="hub-wrapper">
-                                                                <div className="hub-wrapper__patient-card left-side">
-                                                                    {
-                                                                        showCard
-                                                                            ?
-                                                                                <PatientСard    patientName={infoForCard.patientName} 
-                                                                                    number={infoForCard.phone} 
-                                                                                    sex={infoForCard.sex}
-                                                                                    chronicDiseases={infoForCard.chronicDiseases ?? ''} 
-                                                                                    symptoms={infoForCard.symptoms ?? ''} 
-                                                                                    imgUrl={infoForCard.imgUrl ?? ''} 
-                                                                                    dateTo={infoForCard.to} 
-                                                                                    dateFrom={infoForCard.from} 
-                                                                                    birthday= {infoForCard.birthday} 
-                                                                                    id= {infoForCard._id}
-                                                                                    documents={infoForCard.documents}
-                                                                                />
-                                                                            :
-                                                                            <></>
-                                                                    }
-                                                                    
+                    {localStorage.getItem("uid") !== null 
+                        ?
+                            <>
+                                {!showError
+                                    ?
+                                        <>
+                                                {showRequestsPage
+                                                    ?
+                                                    <RequestsPage />
+                                                    :
+                                                    <>
+                                                        <div className="hub-wrapper">
+                                                            <div className="hub-wrapper__patient-card left-side">
+                                                                {
+                                                                showCard
+                                                                ?
+                                                                <PatientСard patientName={infoForCard.patientName} number={infoForCard.phone}
+                                                                    sex={infoForCard.sex} chronicDiseases={infoForCard.chronicDiseases ?? '' }
+                                                                    symptoms={infoForCard.symptoms ?? '' } imgUrl={infoForCard.imgUrl ?? '' }
+                                                                    dateTo={infoForCard.to} dateFrom={infoForCard.from}
+                                                                    birthday={infoForCard.birthday} id={infoForCard._id}
+                                                                    documents={infoForCard.documents} />
+                                                                :
+                                                                <></>
+                                                                }
+
+                                                            </div>
+                                                            <div className="hub-wrapper__sidebar right-side">
+                                                                <RequestIndicator numberRequest={consRequest.length ?? 0} />
+                                                                <div className="hub-calendar">
+                                                                    <Calendar />
                                                                 </div>
-                                                                <div className="hub-wrapper__sidebar right-side">
-                                                                    <RequestIndicator numberRequest={consRequest.length}/>
-                                                                    <div className="hub-calendar">
-                                                                        <Calendar/>
-                                                                    </div>
-                                                                    <div className="consultation-list-wrapper">
-                                                                        <p className="list-section-title">Консультации</p>
-                                                                        <div className="consultation-list">
-                                                                            {
-                                                                                !showLoader
-                                                                                ? <>
-                                                                                    {arrApp.map((e:any, i: number) => <ListItem key={e._id} posActive={itemPosActive}allInfo={e} arrPos={i}imgUrl={e.imgUrl ?? ''} patientName={e.patientName} id={e._id} dateTo={e.to} dateFrom={e.from}/>)} 
-                                                                                </>
-                                                                                :
-                                                                                <>
-                                                                                    <Loader/>
-                                                                                </>
-                                                                            }
-                                                                        </div>
+                                                                <div className="consultation-list-wrapper">
+                                                                    <p className="list-section-title">Консультации</p>
+                                                                    <div className="consultation-list">
+                                                                        {
+                                                                        !showLoader
+                                                                        ? <>
+                                                                            {arrApp.map((e:any, i: number) =>
+                                                                            <ListItem key={e._id ?? ''} posActive={itemPosActive ?? ''}allInfo={e ?? ''}
+                                                                                arrPos={i ?? ''}imgUrl={e.imgUrl ?? '' } patientName={e.patientName ?? ''}
+                                                                                id={e._id ?? ''} dateTo={e.to ?? ''} dateFrom={e.from ?? ''} />)}
+                                                                        </>
+                                                                        :
+                                                                        <>
+                                                                            <Loader />
+                                                                        </>
+                                                                        }
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                        </>
+                                                        </div>
+                                                        {showPopUp ? <WarningPopUp/> : <></>} 
+                                                    </>
                                                 }
                                             </>
-                                    }
-                                </>
-                            : 
-                                <Error/>
-                    }
+                                        : 
+                                            <Error/>
+                                }
+                            </>
+                        : 
+                            <Redirect to="/" from="/hub"/>
+                    }   
                 </>
-                : 
-                <Redirect to="/" from="/hub"/>
-            }   
+            :
+                <> 
+                    <UserHub/>
+                </>
+            }
         </>     
     )
 } 

@@ -2,12 +2,12 @@ import React from "react";
 import "../styles.scss";
 import controller from "../controllers/hub-controller"
 import { observer } from "mobx-react";
+import { toJS } from "mobx";
 const PopUp: React.FC = () => {
-
-
     return(
         <>
-            <div className="hub-wrapper-popup" onClick={() => controller.closePopUp()}>
+            <div className="hub-wrapper-popup">
+                <div className="click-back" onClick={() => controller.closePopUp()}></div>
                 <div className="block-popup">
                     <h2>Отменить консультацию</h2>
                     <div className="popup-text-container">
@@ -15,7 +15,7 @@ const PopUp: React.FC = () => {
                         <h4>Данная консультация будет безвозвратно  отменена, а <span>рейтинг</span> вашего аккаунта <span>снижется</span>. Мы настоятельно рекомендуем  провести данную консультацию.</h4>
                     </div>
                     <div className="popup-buts-container">
-                        <div className="popup-discard-but popup-buts">Отменить консультацию</div>
+                        <div className="popup-discard-but popup-buts" onClick={() => controller.rejectConsultation(controller.infoForCard.consultation)}>Отменить консультацию</div>
                         <div className="popup-сancel-but popup-buts" onClick={() => controller.closePopUp()}>Пока не отменять</div>
                     </div>
                     <div className="close-popup-but" onClick={() => controller.closePopUp()}>

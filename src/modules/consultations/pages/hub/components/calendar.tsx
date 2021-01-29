@@ -208,6 +208,14 @@ const Calendar: React.FC<Props> = (props: Props) => {
         const newDates = startedFromSun ? getDates(year, Math.abs(monthIndex - 1) % 12) : getDatesFromMon(year, (monthIndex - 1) % 12);
         setWeeks(groupByWeek(newDates));
     }
+    const findDate = (date1: Date, date2: Date) => {
+        console.log(`1-> ${date1.getDate() + date1.getFullYear() + date1.getMonth()} 2-> ${date2.getDate() + date2.getFullYear() + date2.getMonth()} 3-> ${date1.getDate() + date1.getFullYear() + date1.getMonth() == date2.getDate() + date2.getFullYear() + date2.getMonth()}`)
+        if (date1.getDate() + date1.getFullYear() + (date1.getMonth() + 1) == date2.getDate() + date2.getFullYear() + (date2.getMonth()+1)) {
+            return true
+        } else {
+            return false
+        }
+    }
 
     const [monthIndex, setMonthIndex] = useState(new Date().getMonth());
     const [year, setYear] = useState(new Date().getFullYear());
@@ -224,6 +232,12 @@ const Calendar: React.FC<Props> = (props: Props) => {
     const onDayClick = function (date: Date) {
         controller.setDate(date);
     };
+    let highlightDates: Date[];
+    if(controller.arrDates !== undefined){
+        highlightDates = controller.arrDates.map((e) => {
+            return new Date(e)
+        })
+    }
     return <React.Fragment>
         <div className={classnames("calendar-container", !isOpen ? "calendar-container-disable" : "")} style={styles.calendarContainer}>
             <div className="right-sidebar-calendar">
@@ -250,12 +264,16 @@ const Calendar: React.FC<Props> = (props: Props) => {
                         weeks.map((week, i) => {
                             return <div className="week" key={i}>
                                 {
-                                    week.map(day => {
-                                        const classes = classnames(
+                                    week.map((day, i) => {
+                                        console.log(day.date)
+                                        let classes = classnames(
                                             "day",
                                             day.disable ? "disable-day" : "",
                                             compareDates(day.date, new Date()) ? "today" : '',
                                             compareDates(day.date, selectedDate) ? "selected" : '',
+                                            highlightDates.map(date => {
+                                                return findDate(day.date, date) ? "highlight-date" : ''
+                                            })
                                         );
                                         return <span
                                             key={day.date.toString()}

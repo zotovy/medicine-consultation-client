@@ -10,7 +10,7 @@ const RequestsPage: React.FC = () => {
                 <h2 className="request-page-title">Заявки на консультацию</h2>
                 <h4 className="request-page-hint">Пациенты оставили заявки на ваши консультации. Вы можете подтвердить их в течение 24 часов или сразу отказаться.</h4>
                 <div className="container-requests-list">
-                    {controller.consRequest.map((e:any, i: number) => <RequestCard key={e.patient._id + i} patientName={e.appointment.patientName} dateTo={e.appointment.to} dateFrom={e.appointment.to} appointId={e.appointment._id} imgUrl={e.patient.photoUrl}/>)} 
+                    {controller.consRequest.map((e:any, i: number) => <RequestCard key={e.patient._id + i} patientName={e.appointment.patientName} dateTo={e.appointment.to} dateFrom={e.appointment.to} appointId={e._id} imgUrl={e.patient.photoUrl}/>)} 
                 </div>
                 <div className="close-requests-page-but" onClick={() => controller.closeRequestsPage()}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="20.953" height="20.953" viewBox="0 0 20.953 20.953">

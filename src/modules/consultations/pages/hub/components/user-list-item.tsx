@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../styles.scss";
 import { observer } from "mobx-react";
 import controller from "../controllers/hub-controller";
@@ -14,7 +14,7 @@ type ItemInfo = {
     posActive: number;
 }
 
-const ListItem: React.FC<ItemInfo> = (props: ItemInfo) => {
+const UserItem: React.FC<ItemInfo> = (props: ItemInfo) => {
 
     const img = "https://www.epos-ural.ru/wp-content/uploads/2019/03/user-placeholder.jpg" ?? props.imgUrl,
         date:any = new Date(`${props.dateFrom}`),
@@ -30,23 +30,22 @@ const ListItem: React.FC<ItemInfo> = (props: ItemInfo) => {
             timeToDays = Math.floor(t / (1000 * 60 * 60 * 24)),
             timeToMinutes = Math.floor((t / 1000 / 60) % 60);
         console.log(`TimeToHours -> ${timeToHours}; TimeToDays -> ${timeToDays}; TimeToMinutes -> ${timeToMinutes}`);
-        if (timeToDays == 1){
-            if (timeToHours < 0) {
-                timeToHours = -1 * timeToHours
-            }
-            timeToDays = 0
-        } else if (timeToDays > 1){
-            if (timeToHours < 0) {
-                timeToHours = -1 * timeToHours
-            }
-            let timeTo = (timeToDays * 24) - timeToHours;
-            if (timeTo >= 24){
-                timeToDays = Math.floor(timeTo/24);
-                timeToHours = timeTo%24;
-            }else {
-                timeToHours = timeTo%24;
-            }
-        }
+        // if (timeToDays == 1){
+        //     if (timeToHours < 0) {
+        //         timeToHours = -1 * timeToHours
+        //     }
+        // } else if (timeToDays > 1){
+        //     if (timeToHours < 0) {
+        //         timeToHours = -1 * timeToHours
+        //     }
+        //     let timeTo = (timeToDays * 24) - timeToHours;
+        //     if (timeTo >= 24){
+        //         timeToDays = Math.floor(timeTo/24);
+        //         timeToHours = timeTo%24;
+        //     }else {
+        //         timeToHours = timeTo%24;
+        //     }
+        // }
         if (timeToDays == 0) {
             if (timeToHours < 0) {
                 timeToHours = -1 * timeToHours
@@ -69,7 +68,7 @@ const ListItem: React.FC<ItemInfo> = (props: ItemInfo) => {
             } else if (timeToHours > 5) {
                 txt = `${timeToHours} часов`;
             }
-            if (timeToDays = 1) {
+            if (timeToDays == 1) {
                 txt = `Через ${timeToDays} день ${txt}`;
             } else if (timeToDays > 1 && timeToDays < 1) {
                 txt = `Через ${timeToDays} дня ${txt}`;
@@ -99,7 +98,7 @@ const ListItem: React.FC<ItemInfo> = (props: ItemInfo) => {
     }
     return(
         <>
-            <div className={`list-item ${props.arrPos == props.posActive ? "active" : ""}`} onClick={()=>{controller.onItemHandlerClick(props.allInfo, props.arrPos)}}>
+            <div className={`list-item`}>
                 <div className="item-row-up">
                     <div className="item-profile-pic" style={{ backgroundImage: `url(${img})` }}></div>
                     <h3 className="item-name-surname">{props.patientName}</h3>
@@ -108,9 +107,13 @@ const ListItem: React.FC<ItemInfo> = (props: ItemInfo) => {
                 <div className="item-row-down">
                    <h4 className="card-consultation-data">{date.getDate()}&nbsp;{months[+date.getMonth()]},&nbsp;{formatDate(`${dateFrom.getHours()}`,`${dateFrom.getMinutes()}`)} – {formatDate(`${dateTo.getHours()}`,`${dateTo.getMinutes()}`)}</h4> 
                 </div>
+                <div className="buts-container">
+                    <div className="confirm-but item-buts" onClick={() => 1}>Подключиться</div>
+                    <div className="discard-but item-buts" onClick={() => controller.openPopUp()}>Отказаться</div>             
+                </div>
             </div>
         </>
     )
 }
 
-export default observer(ListItem);
+export default observer(UserItem);
