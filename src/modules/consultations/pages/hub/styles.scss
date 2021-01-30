@@ -15,6 +15,12 @@ $disable: rgba($primary, $alpha: 0.15);
         @media screen and (max-width: 1200px) {
             width: 918px;
         }
+        @media screen and (max-width: 975px) {
+            width: 727px;
+        }
+        @media screen and (max-width: 768px) {
+            width: 335px;
+        }
     }
     &.hub-wrapper--user{
         @media screen and (max-width: 1240px) {
@@ -117,9 +123,29 @@ $disable: rgba($primary, $alpha: 0.15);
     height: 485px;
     @media screen and (max-width: 1400px) {
         width: 775px;
+        height: fit-content;
     }
     @media screen and (max-width: 1200px) {
         width: 451px;
+        height: fit-content;
+    }
+    @media screen and (max-width: 975px) {
+        width: 335px;
+        height: fit-content;
+    }
+    @media screen and (max-width: 975px) {
+        .sub-wrap-card{
+            display: flex;
+            justify-content: center;
+            position: relative;
+            .list-section-title{
+                margin: 0 auto;
+                font-size: 16px;
+                line-height: 21px;
+                font-weight: 400;
+            }
+            margin-bottom: 20px;
+        }
     }
 }
 
@@ -252,6 +278,9 @@ $disable: rgba($primary, $alpha: 0.15);
         margin-top: 8px;
         display: flex;
         justify-content: space-between;
+        @media screen and (max-width: 1200px) {
+            height: auto;
+        }
         @media screen and (max-width: 1400px) {
             width: 639px;
         }
@@ -266,8 +295,10 @@ $disable: rgba($primary, $alpha: 0.15);
                 }
             }
             @media screen and (max-width: 1200px) {
-                .card-col-2,.card-col-4{
-                    width: 296px;
+                .card-col-1,.card-col-2{
+                    .card-row-2,.card-row-3,.card-row-4{
+                        margin-top: 7px;
+                    }
                 }
             }
             .card-row-1,.card-row-2{
@@ -331,9 +362,6 @@ $disable: rgba($primary, $alpha: 0.15);
         width: 868px;
         display: flex;
         justify-content: space-between;
-        @media screen and (max-width: 1400px) {
-            width: 738px;
-        }
         .card-col-5{
             span{
                 width: max-content;
@@ -341,6 +369,31 @@ $disable: rgba($primary, $alpha: 0.15);
         }
         .card-col-6{
             margin-left: 45px
+        }
+        @media screen and (max-width: 1400px) {
+            width: 738px;
+        }
+        @media screen and (max-width: 1200px) {
+            width: 335px;
+        }
+        @media screen and (max-width: 975px) {
+            display: flex;
+            flex-direction: column;
+            justify-content: unset;
+            .card-col-5,.card-col-6{
+                display: flex;
+                flex-direction: column;
+                .card-row-3,.card-row-4{
+                    margin: 0;
+                }
+            }
+            .card-col-5{
+                margin-top: 19px;
+            }
+            .card-col-6{
+                margin: 0;
+                margin-top: 14px;
+            }
         }
     }
 }
@@ -351,6 +404,9 @@ $disable: rgba($primary, $alpha: 0.15);
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    @media screen and (max-width: 1200px) {
+        width: 335px;
+    }
     .doc-wrapper:nth-child(6){
         margin-left: 0;
     }
@@ -418,6 +474,10 @@ $disable: rgba($primary, $alpha: 0.15);
                 &:hover{ 
                     color: darken($primary, 8%);
                 }           
+            }
+            @media screen and (max-width: 1200px) {
+                font-size: 16px;
+                line-height: 21px;
             }
         }
     }
@@ -556,6 +616,9 @@ $disable: rgba($primary, $alpha: 0.15);
     padding: 0 15px;
     margin-left: -15px;
     padding-top: 15px;
+    @media screen and (max-width: 1200px) {
+        width: 100%;
+    }
     .loader{
         width: 100%;
         height: 100%;
@@ -806,14 +869,34 @@ $disable: rgba($primary, $alpha: 0.15);
 //========================================================================================
 
 .requests-page-wrapper{
-    width: 1377px;
     margin: 37px auto;
     position: relative;
+    @media screen and (min-width: 1440px) {
+        width: 1360px;
+    }
+    width: calc(100% - 56px);
+    @media screen and (max-width: 1200px) {
+        width: 918px;
+    }
+    @media screen and (max-width: 975px) {
+        width: 727px;
+    }
+    @media screen and (max-width: 768px) {
+        width: 335px;
+    }
     .request-page-title{
         font-size: 25px;
         line-height: 33px;
         color: #282828;
         font-weight: 600;
+        @media screen and (max-width: 1440px) {
+            font-size: 18px;
+            margin-top: 28px;
+            line-height: 24px;
+        }
+        @media screen and (max-width: 600px) {
+            text-align: center;
+        }
     }
     .request-page-hint{
         margin-top: 10px;
@@ -842,6 +925,9 @@ $disable: rgba($primary, $alpha: 0.15);
     }
     .container-requests-list{
         margin-top: 24px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         .request-list-item{
             cursor: pointer;
             width: 400px;
@@ -850,6 +936,15 @@ $disable: rgba($primary, $alpha: 0.15);
             -moz-box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.07);
             box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.07);
             border-radius: 10px;
+            &:not(:first-child){
+                margin: 0;
+            }
+            &:nth-child(3N+2){
+                margin: 0 80px;
+            }
+            &:nth-child(N+4){
+                margin-top: 80px;
+            }
             &.list-item:not(:first-child){
                 margin-top: 30px;
             }
@@ -955,6 +1050,51 @@ $disable: rgba($primary, $alpha: 0.15);
                     &:last-child{
                         margin-left: 20px;
                     }
+                }
+            }
+            @media screen and (max-width: 1440px) {
+                width: 335px;
+                .buts-container{
+                    margin-top: 9px;
+                    .item-buts{
+                        width: 128px;
+                        height: 29px;
+                        font-size: 12px;
+                        line-height: 16px;
+                        border-radius: 7px;
+                    }
+                }
+            }
+            @media screen and (max-width: 1240px) {
+                &:not(:first-child){
+                    margin: 0;
+                }
+                &:nth-child(3N+2){
+                    margin: 0 0;
+                }
+                &:nth-child(N+4){
+                    margin-top: 0;
+                }
+                &:nth-child(N+3){
+                    margin-top: 30px;
+                }
+            }
+            @media screen and (max-width: 780px) and (min-width: 580px) {
+                width: 100%;
+                height: auto;
+                .item-row-down{
+                    height: 29px;
+                    display: inline-flex;
+                    align-items: center;
+                }
+                .buts-container{
+                    display: inline-flex;
+                    float: right;
+                }
+            }
+            @media screen and (max-width: 580px) {
+                &:nth-child(N+3){
+                    margin-top: 25px;
                 }
             }
         }

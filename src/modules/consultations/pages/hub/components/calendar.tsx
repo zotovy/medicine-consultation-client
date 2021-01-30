@@ -209,7 +209,6 @@ const Calendar: React.FC<Props> = (props: Props) => {
         setWeeks(groupByWeek(newDates));
     }
     const findDate = (date1: Date, date2: Date) => {
-        console.log(`1-> ${date1.getDate() + date1.getFullYear() + date1.getMonth()} 2-> ${date2.getDate() + date2.getFullYear() + date2.getMonth()} 3-> ${date1.getDate() + date1.getFullYear() + date1.getMonth() == date2.getDate() + date2.getFullYear() + date2.getMonth()}`)
         if (date1.getDate() + date1.getFullYear() + (date1.getMonth() + 1) == date2.getDate() + date2.getFullYear() + (date2.getMonth()+1)) {
             return true
         } else {
@@ -265,7 +264,6 @@ const Calendar: React.FC<Props> = (props: Props) => {
                             return <div className="week" key={i}>
                                 {
                                     week.map((day, i) => {
-                                        console.log(day.date)
                                         let classes = classnames(
                                             "day",
                                             day.disable ? "disable-day" : "",

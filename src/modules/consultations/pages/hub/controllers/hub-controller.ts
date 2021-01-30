@@ -13,6 +13,7 @@ class HubController {
     @observable infoForCard: any = [];
     @observable showCard: boolean = false;  
     @observable itemPosActive: number = 0;
+    @observable itemPosActive768: any = 2;
     @observable showPopUp: boolean = false;    
     @observable showRequestsPage: boolean = false;
     @observable shortDate: string = "";
@@ -37,7 +38,12 @@ class HubController {
         }
         this.date = `${day}.${month}.${formatDate.getFullYear()}`;
         this.shortDate = `${month}.${formatDate.getFullYear()}`;
-        this.onItemHandlerClick([]);
+        if(window.innerWidth <= 768){
+            this.onItemHandlerClick([],-1);
+        }else{
+            this.onItemHandlerClick([]);
+        }
+        
         this.getAppointsDate(this._id);
         this.getAppoints(this._id);
     }
@@ -74,7 +80,9 @@ class HubController {
             action((arr = []) => {
                 if(arr.appoints !== undefined){
                     if(arr.appoints.length !== 0){
-                        this.showCard = true;
+                        if(window.innerWidth >= 768){
+                            this.showCard = true;
+                        }
                         this.infoForCard = arr.appoints[0];
                     };
                 }
@@ -130,9 +138,10 @@ class HubController {
             return response
     };
 
-    @action onItemHandlerClick = (info: [], pos: number = 0) => {
+    @action onItemHandlerClick = (info: [] = [], pos: number = 0) => {
         this.itemPosActive = pos;
-        if(info.length !== 0){
+        this.itemPosActive768 = pos;
+        if(info.length !== 0 && pos !== -1){
             this.showCard = true;
             this.infoForCard = info;
         }else{
@@ -271,5 +280,8 @@ class HubController {
         }
         return response
     };
+    @action closeCard = () => {
+        this.showCard = false
+    }
 }
 export default new HubController();

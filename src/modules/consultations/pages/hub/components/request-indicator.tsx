@@ -8,7 +8,7 @@ type Props = {
 const RequestIndicator: React.FC<Props> = (props: Props) => {
     return(
         <>
-            <div className="request-indicator-container" onClick={() => {if(+props.numberRequest !== 0 ){controller.openRequestsPage()}}}>
+            <div className="request-indicator-container" onClick={() => {if(+props.numberRequest == 0 ){controller.openRequestsPage()}}}>
                 <div className="request-indicator">
                     {+props.numberRequest !== 0 
                         ?

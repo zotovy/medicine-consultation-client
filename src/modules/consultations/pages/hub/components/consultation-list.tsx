@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import "../styles.scss";
 import { observer } from "mobx-react";
 import controller from "../controllers/hub-controller";
+import MediaQuery from "react-responsive";
 
 type ItemInfo = {
     imgUrl: string;
@@ -29,7 +30,6 @@ const ListItem: React.FC<ItemInfo> = (props: ItemInfo) => {
             timeToHours =  Math.ceil((t / (1000 * 60 * 60)) % 24),
             timeToDays = Math.floor(t / (1000 * 60 * 60 * 24)),
             timeToMinutes = Math.floor((t / 1000 / 60) % 60);
-        console.log(`TimeToHours -> ${timeToHours}; TimeToDays -> ${timeToDays}; TimeToMinutes -> ${timeToMinutes}`);
         if (timeToDays == 1){
             if (timeToHours < 0) {
                 timeToHours = -1 * timeToHours
@@ -99,16 +99,30 @@ const ListItem: React.FC<ItemInfo> = (props: ItemInfo) => {
     }
     return(
         <>
-            <div className={`list-item ${props.arrPos == props.posActive ? "active" : ""}`} onClick={()=>{controller.onItemHandlerClick(props.allInfo, props.arrPos)}}>
-                <div className="item-row-up">
-                    <div className="item-profile-pic" style={{ backgroundImage: `url(${img})` }}></div>
-                    <h3 className="item-name-surname">{props.patientName}</h3>
-                    <h4 className="item-time-to">{showTimeTo()}</h4>
+            <MediaQuery maxWidth={768}>
+                <div className={`list-item ${props.arrPos == props.posActive ? "active" : ""}`} onClick={()=>{controller.onItemHandlerClick(props.allInfo, props.arrPos)}}>
+                    <div className="item-row-up">
+                        <div className="item-profile-pic" style={{ backgroundImage: `url(${img})` }}></div>
+                        <h3 className="item-name-surname">{props.patientName}</h3>
+                        <h4 className="item-time-to">{showTimeTo()}</h4>
+                    </div>
+                    <div className="item-row-down">
+                    <h4 className="card-consultation-data">{date.getDate()}&nbsp;{months[+date.getMonth()]},&nbsp;{formatDate(`${dateFrom.getHours()}`,`${dateFrom.getMinutes()}`)} – {formatDate(`${dateTo.getHours()}`,`${dateTo.getMinutes()}`)}</h4> 
+                    </div>
                 </div>
-                <div className="item-row-down">
-                   <h4 className="card-consultation-data">{date.getDate()}&nbsp;{months[+date.getMonth()]},&nbsp;{formatDate(`${dateFrom.getHours()}`,`${dateFrom.getMinutes()}`)} – {formatDate(`${dateTo.getHours()}`,`${dateTo.getMinutes()}`)}</h4> 
+            </MediaQuery>
+            <MediaQuery minWidth={769}>
+                <div className={`list-item ${props.arrPos == props.posActive ? "active" : ""}`} onClick={()=>{controller.onItemHandlerClick(props.allInfo, props.arrPos)}}>
+                    <div className="item-row-up">
+                        <div className="item-profile-pic" style={{ backgroundImage: `url(${img})` }}></div>
+                        <h3 className="item-name-surname">{props.patientName}</h3>
+                        <h4 className="item-time-to">{showTimeTo()}</h4>
+                    </div>
+                    <div className="item-row-down">
+                    <h4 className="card-consultation-data">{date.getDate()}&nbsp;{months[+date.getMonth()]},&nbsp;{formatDate(`${dateFrom.getHours()}`,`${dateFrom.getMinutes()}`)} – {formatDate(`${dateTo.getHours()}`,`${dateTo.getMinutes()}`)}</h4> 
+                    </div>
                 </div>
-            </div>
+            </MediaQuery>
         </>
     )
 }

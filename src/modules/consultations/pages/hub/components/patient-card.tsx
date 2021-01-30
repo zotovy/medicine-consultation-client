@@ -4,6 +4,7 @@ import Doc from "./document";
 import controller from "../controllers/hub-controller"
 import { Link, useHistory } from "react-router-dom";
 import { observer } from "mobx-react";
+import MediaQuery from "react-responsive";
 
 type Props = {
     imgUrl: string;
@@ -119,58 +120,127 @@ const Card: React.FC<Props> = (props: Props) => {
                 </div>
                 <div className="patient-card-body">
                     <p className="card-section-title">Информация</p>
-                    <div className="card-patient-information">
-                        <div className="card-col-1">
-                            <div className="card-row-1">
-                                <span className="card-patient-information-p">ФИО:</span>
+                    <div className="card-patient-information">             
+                        <MediaQuery minWidth={1201}>
+                            <div className="card-col-1">
+                                <div className="card-row-1">
+                                    <span className="card-patient-information-p">ФИО:</span>
+                                </div>
+                                <div className="card-row-2">
+                                    <span className="card-patient-information-p">Возраст:</span>
+                                </div>
                             </div>
-                            <div className="card-row-2">
-                                <span className="card-patient-information-p">Возраст:</span>
+                            <div className="card-col-2">
+                                <div className="card-row-1">
+                                    <span className="card-patient-information-a">{props.patientName}</span>
+                                </div>
+                                <div className="card-row-2">
+                                    <span className="card-patient-information-a">{agetostr(formatAge(props.birthday))}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="card-col-2">
-                            <div className="card-row-1">
-                                <span className="card-patient-information-a">{props.patientName}</span>
+                            <div className="card-col-3">
+                                <div className="card-row-1">
+                                    <span className="card-patient-information-p">Телефон:</span>
+                                </div>
+                                <div className="card-row-2">
+                                    <span className="card-patient-information-p">Пол:</span>
+                                </div>
                             </div>
-                            <div className="card-row-2">
-                                <span className="card-patient-information-a">{agetostr(formatAge(props.birthday))}</span>
+                            <div className="card-col-4">
+                                <div className="card-row-1">
+                                    <span className="card-patient-information-a">{formatPhone(props.number)}</span>
+                                </div>
+                                <div className="card-row-2">
+                                    <span className="card-patient-information-a">{props.sex == true ? "Мужской" : "Женский"}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="card-col-3">
-                            <div className="card-row-1">
-                                <span className="card-patient-information-p">Телефон:</span>
+                        </MediaQuery>
+                        <MediaQuery maxWidth={1200}>
+                            <div className="card-col-1">
+                                <div className="card-row-1">
+                                    <span className="card-patient-information-p">ФИО:</span>
+                                </div>
+                                <div className="card-row-2">
+                                    <span className="card-patient-information-p">Возраст:</span>
+                                </div>
+                                <div className="card-row-3">
+                                    <span className="card-patient-information-p">Телефон:</span>
+                                </div>
+                                <div className="card-row-4">
+                                    <span className="card-patient-information-p">Пол:</span>
+                                </div>
                             </div>
-                            <div className="card-row-2">
-                                <span className="card-patient-information-p">Пол:</span>
-
+                            <div className="card-col-2">
+                                <div className="card-row-1">
+                                    <span className="card-patient-information-a">{props.patientName}</span>
+                                </div>
+                                <div className="card-row-2">
+                                    <span className="card-patient-information-a">{agetostr(formatAge(props.birthday))}</span>
+                                </div>
+                                <div className="card-row-3">
+                                    <span className="card-patient-information-a">{formatPhone(props.number)}</span>
+                                </div>
+                                <div className="card-row-4">
+                                    <span className="card-patient-information-a">{props.sex == true ? "Мужской" : "Женский"}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div className="card-col-4">
-                            <div className="card-row-1">
-                                <span className="card-patient-information-a">{formatPhone(props.number)}</span>
-                            </div>
-                            <div className="card-row-2">
-                                <span className="card-patient-information-a">{props.sex == true ? "Мужской" : "Женский"}</span>
-                            </div>
-                        </div>
+                        </MediaQuery>
                     </div>
                     <div className="card-info-symps">
-                        <div className="card-col-5">
-                            <div className="card-row-3">
-                                <span className="card-patient-information-p">Хронические заболевания:</span>
+                        <MediaQuery minWidth={1200}>
+                            <div className="card-col-5">
+                                <div className="card-row-3">
+                                    <span className="card-patient-information-p">Хронические заболевания:</span>
+                                </div>
+                                <div className="card-row-4">
+                                    <span className="card-patient-information-p">Cимптомы:</span>
+                                </div> 
                             </div>
-                            <div className="card-row-4">
-                                <span className="card-patient-information-p">Cимптомы:</span>
-                            </div> 
-                        </div>
-                        <div className="card-col-6">
-                            <div className="card-row-3">
-                                <span className="card-patient-information-a">{props.chronicDiseases.length !== 0 ? props.chronicDiseases : "Отсутствуют"}</span>
+                            <div className="card-col-6">
+                                <div className="card-row-3">
+                                    <span className="card-patient-information-a">{props.chronicDiseases.length !== 0 ? props.chronicDiseases : "Отсутствуют"}</span>
+                                </div>
+                                <div className="card-row-4">
+                                    <span className="card-patient-information-a">{props.symptoms.length !== 0 ? props.symptoms : "Отсутствуют"}</span>
+                                </div>
                             </div>
-                            <div className="card-row-4">
-                                <span className="card-patient-information-a">{props.symptoms.length !== 0 ? props.symptoms : "Отсутствуют"}</span>
+                        </MediaQuery>
+                        <MediaQuery maxWidth={1201} minWidth={976}>
+                            <div className="card-col-5">
+                                <div className="card-row-3">
+                                    <span className="card-patient-information-p">Хронические заболевания:</span>
+                                </div>
+                                <div className="card-row-3">
+                                    <span className="card-patient-information-a">{props.chronicDiseases.length !== 0 ? props.chronicDiseases : "Отсутствуют"}</span>
+                                </div> 
                             </div>
-                        </div>
+                            <div className="card-col-6">
+                                <div className="card-row-4">
+                                    <span className="card-patient-information-p">Cимптомы:</span>
+                                </div>
+                                <div className="card-row-4">
+                                    <span className="card-patient-information-a">{props.symptoms.length !== 0 ? props.symptoms : "Отсутствуют"}</span>
+                                </div>
+                            </div>
+                        </MediaQuery>
+                        <MediaQuery maxWidth={975}>
+                            <div className="card-col-5">
+                                <div className="card-row-3">
+                                    <span className="card-patient-information-p">Хронические заболевания:</span>
+                                </div>
+                                <div className="card-row-3">
+                                    <span className="card-patient-information-a">{props.chronicDiseases.length !== 0 ? props.chronicDiseases : "Отсутствуют"}</span>
+                                </div> 
+                            </div>
+                            <div className="card-col-6">
+                                <div className="card-row-4">
+                                    <span className="card-patient-information-p">Cимптомы:</span>
+                                </div>
+                                <div className="card-row-4">
+                                    <span className="card-patient-information-a">{props.symptoms.length !== 0 ? props.symptoms : "Отсутствуют"}</span>
+                                </div>
+                            </div>
+                        </MediaQuery>
                     </div>
                     <p className="card-section-title">Документы</p>
                     <div className="card-info-docs">

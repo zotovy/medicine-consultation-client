@@ -2,7 +2,7 @@ import React from "react";
 import "../styles.scss";
 import { observer } from "mobx-react";
 import controller from "../controllers/hub-controller"
-import RequestCard from "./request-card"
+
 type Props = {
     patientName: string;
     dateTo: string;
