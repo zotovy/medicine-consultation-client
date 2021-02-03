@@ -1,3 +1,4 @@
+
 export default {
     controller: Symbol("controller"),
     animController: Symbol("animController"),
@@ -18,4 +19,5 @@ export default {
     symptomsSliderController: Symbol("symptomsSliderController"),
     appointController: Symbol("appointController"),
     consultationController: Symbol("consultationController"),
+    balanceController: Symbol("balanceController"),
 }

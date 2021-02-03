@@ -23,6 +23,7 @@ import SymptomsController from "@/modules/doctors/controllers/symptoms-controlle
 import SymptomsSliderController from "@/modules/doctors/controllers/symptoms-slider-controller";
 import AppointmentController from "@/modules/consultations/controllers/appoint-controller";
 import ConsultationController from "@/modules/consultations/controllers/consultation-controller";
+import BalanceController from "@/modules/balance/balance-controller";
 
 enableStaticRendering(typeof window === "undefined");
 
@@ -65,6 +66,7 @@ const createController = (): Container => {
     container.bind<SymptomsController>(TYPES.symptomsController).to(SymptomsController).inSingletonScope();
     container.bind<SymptomsSliderController>(TYPES.symptomsSliderController).to(SymptomsSliderController).inSingletonScope();
     container.bind<AppointmentController>(TYPES.appointController).to(AppointmentController).inSingletonScope();
+    container.bind<BalanceController>(TYPES.balanceController).to(BalanceController).inSingletonScope();
 
     if (typeof window !== "undefined") {
         container.bind<ConsultationController>(TYPES.consultationController).to(ConsultationController).inSingletonScope();
@@ -86,6 +88,7 @@ const createController = (): Container => {
     container.bind<IController>(TYPES.controller).to(SymptomsController).inSingletonScope()
     container.bind<IController>(TYPES.controller).to(SymptomsSliderController).inSingletonScope()
     container.bind<IController>(TYPES.controller).to(AppointmentController).inSingletonScope()
+    container.bind<IController>(TYPES.controller).to(BalanceController).inSingletonScope()
 
     if (typeof window !== "undefined") {
         container.bind<IController>(TYPES.consultationController).to(ConsultationController).inSingletonScope();
