@@ -71,7 +71,7 @@ export type Props = {
 }
 
 const BalanceCard: React.FC<Props> = ({ balance }) => {
-    return <Container>
+    return <Container className="balance-card__component">
         <MyBalanceText>Мой баланс</MyBalanceText>
         <BalanceText>{ balance.toLocaleString() }</BalanceText>
         <TransactionButton><SendIcon/></TransactionButton>

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import DepositStatistic from "@/modules/balance/components/deposit-statistic";
-import BalanceCard from "@/modules/balance/components/balance-card";
+
+// Components
+import Header from "../components/header";
 
 /**
  * This page is injectable. Do not use it without any wrapper
@@ -15,8 +16,7 @@ const Page = styled.div`
 
 const UserBalancePage: React.FC = () => {
     return <Page>
-        <BalanceCard balance={500} />
-        <DepositStatistic date={"В Ноябре"} amount={50021312} />
+        <Header/>
     </Page>
 }
 

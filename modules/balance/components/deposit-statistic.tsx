@@ -13,7 +13,7 @@ const DateText = styled.span`
 
 const MoneyAmountText = styled.h5`
   color: #30b9d6;
-  font-size: 32px;
+  font-size: 28px;
   font-weight: 500;
   margin-top: 3px;
   
@@ -31,7 +31,7 @@ export type Props = {
 }
 
 const DepositStatistic: React.FC<Props> = ({ date, amount }) => {
-    return <Container>
+    return <Container className="deposit-statistic__component">
         <DateText>{ date }</DateText>
         <MoneyAmountText>{ amount.toLocaleString() }</MoneyAmountText>
     </Container>
