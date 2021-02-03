@@ -2,7 +2,6 @@ import React from "react";
 import { observer } from "mobx-react";
 import { CloseIcon } from "@/static/icons";
 import ConsultationController from "../controllers/consultations_controller";
-import withController from "@/utils/inject";
 
 type ControllerProps = { consultationController: ConsultationController };
 
@@ -25,4 +24,4 @@ const NoteComponent : React.FC<ControllerProps > = (props) => {
     </div>
 }
 
-export default withController(observer(NoteComponent), "consultationController");
+export default observer(NoteComponent);

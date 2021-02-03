@@ -2,6 +2,7 @@ import React from 'react';
 import { useRouter } from "next/router";
 import {
     AccountIcon,
+    BalanceIcon,
     ConsultationIcon,
     DoctorIcon,
     LinkIcon,
@@ -20,9 +21,9 @@ type Props = {
     alwaysActive?: boolean
 }
 
-let icons: React.FC[] = [AccountIcon, ConsultationIcon, ReviewsIcon, NotificationIcon, PasswordIcon, SupportIcon];
-let titles: string[] = ["Аккаунт", "Консультации", "Отзывы", "Уведомления", "Пароль", "Поддержка"];
-let paths: string[] = ['/account', "/consultations", "/reviews", "/notifications", "/password", "/support"]
+let titles: string[] = ["Аккаунт", "Консультации", "Отзывы", "Уведомления", "Пароль", "Поддержка", "Баланс"];
+let paths: string[] = ['/account', "/consultations", "/reviews", "/notifications", "/password", "/support", "/balance"]
+let icons: React.FC[] = [AccountIcon, ConsultationIcon, ReviewsIcon, NotificationIcon, PasswordIcon, SupportIcon, BalanceIcon];
 
 const NavigationComponent: React.FC<Props> = ({ active, alwaysActive }) => {
 
@@ -31,9 +32,9 @@ const NavigationComponent: React.FC<Props> = ({ active, alwaysActive }) => {
         : localStorage.getItem("isUser") === "true";
 
     if (!isUser) {
-        titles = [...titles.slice(0, 4), "Ссылки", "Доктор", "Пароль", "Поддержка"];
-        paths = [...paths.slice(0, 4), "/links", "/doctor", "/password", "/support"];
-        icons = [...icons.slice(0, 4), LinkIcon, DoctorIcon, PasswordIcon, SupportIcon];
+        titles = [...titles.slice(0, 4), "Ссылки", "Доктор", "Пароль", "Поддержка", "Баланс"];
+        paths = [...paths.slice(0, 4), "/links", "/doctor", "/password", "/support", "/balance"];
+        icons = [...icons.slice(0, 4), LinkIcon, DoctorIcon, PasswordIcon, SupportIcon, BalanceIcon];
     }
 
     const router = useRouter();
@@ -42,7 +43,6 @@ const NavigationComponent: React.FC<Props> = ({ active, alwaysActive }) => {
         StorageServices.removeUser();
         router.push("/");
     }
-    // const width = useWindowWidth() ?? 0;
     const width = 1920;
 
     if (!alwaysActive && width < 1024) return <React.Fragment/>
