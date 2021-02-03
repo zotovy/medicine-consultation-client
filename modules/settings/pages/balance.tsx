@@ -9,7 +9,7 @@ import GoBackIcon from "@/modules/settings/components/go-back-icon";
 const BalancePage: NextPage = () => {
     return <React.Fragment>
         <Head>
-            <title>Настройки – Аккаунт</title>
+            <title>Настройки – Баланс</title>
         </Head>
         <Menu/>
         <main className="balance-page settings-page">
