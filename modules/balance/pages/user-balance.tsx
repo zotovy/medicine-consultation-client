@@ -1,6 +1,7 @@
 import React from "react";
-import BalanceCard from "@/modules/balance/components/balance-card";
 import styled from "styled-components";
+import DepositStatistic from "@/modules/balance/components/deposit-statistic";
+import BalanceCard from "@/modules/balance/components/balance-card";
 
 /**
  * This page is injectable. Do not use it without any wrapper
@@ -8,13 +9,14 @@ import styled from "styled-components";
 
 const Page = styled.div`
   display: flex;
-  flex-direction: column;
+  //flex-direction: column;
   align-items: flex-start;
 `;
 
 const UserBalancePage: React.FC = () => {
     return <Page>
-        <BalanceCard balance={123.1235}/>
+        <BalanceCard balance={500} />
+        <DepositStatistic date={"В Ноябре"} amount={50021312} />
     </Page>
 }
 
