@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import Domain from "../domain";
 import { ChevronRight } from "@/static/icons";
 
 const Container = styled.div`
@@ -48,6 +49,7 @@ const PeriodSelectorModal = styled.div`
   text-align: end;
   color: #282828;
   font-size: 15px;
+  z-index: 12;
   
   &.disable {
     display: none;
@@ -107,16 +109,6 @@ export type Props = {
     data: TableDataType,
 }
 
-// todo: do smth with this
-const availablePeriods = ["За месяц", "За 6 месяцев", "За год", "За 2 года", "За все время"];
-const translateDataType: any = {
-    date: "Дата",
-    method: "Способ",
-    credentials: "Реквизиты",
-    status: "Статус",
-    amount: "Количество",
-}
-
 const TableComponent: React.FC<Props> = (props) => {
     const [isPeriodSelectorActive, setIsPeriodSelectorActive] = useState(false);
 
@@ -134,7 +126,7 @@ const TableComponent: React.FC<Props> = (props) => {
 
             <PeriodSelectorModal className={isPeriodSelectorActive ? "active" : "disable"}>
                 {
-                    availablePeriods.map(e => <span
+                    Domain.availablePeriods.map(e => <span
                         onClick={() => {
                         setIsPeriodSelectorActive(false);
                         props.onSelectPeriod(e);}}
@@ -148,11 +140,11 @@ const TableComponent: React.FC<Props> = (props) => {
             {
                 Object.keys(props.data).map(e => {
                     // @ts-ignore
-                    const key = e as keyof TableDataType
+                    const key = e as keyof TableDataType;
 
                     const data = props.data[key];
                     return <Column>
-                        <span className="main">{ translateDataType[key] }</span>
+                        <span className="main">{ Domain.dataTranslation[key] }</span>
                         {
                             data.map(e => <span>{ e }</span>)
                         }
