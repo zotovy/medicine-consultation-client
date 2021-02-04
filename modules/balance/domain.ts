@@ -13,3 +13,4 @@ export type BalanceData = {
     balance: number;
     history: ITransaction[],
 };
+

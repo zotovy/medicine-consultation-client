@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { TYPES, useInjection } from "container";
 
@@ -8,6 +8,7 @@ import PrimaryButton from "@/modules/balance/components/primary-button";
 import { AddIcon, SendIcon } from "@/static/icons";
 import TableComponent from "@/modules/balance/components/table";
 import BalanceController from "@/modules/balance/balance-controller";
+import { observer } from "mobx-react";
 
 /**
  * This page is injectable. Do not use it without any wrapper
@@ -36,14 +37,23 @@ const Page = styled.div`
 const UserBalancePage: React.FC = () => {
     const controller = useInjection<BalanceController>(TYPES.balanceController);
 
+    useEffect(() => {
+        controller.fetchBalanceData();
+    }, []);
+
+    if (controller.isLoading) return <React.Fragment/>
+
     return <Page>
-        <Header/>
+        <Header
+            thisMonthAmount={controller.topUpLastMonth}
+            thisYearAmount={controller.topUpLastYear}
+            balance={controller.balanceAmount} />
         <div className="buttons">
             <PrimaryButton type="primary"> <SendIcon/> Вывести </PrimaryButton>
             <PrimaryButton type="secondary"> <AddIcon/> Пополнить </PrimaryButton>
         </div>
-        <TableComponent data={controller.withdrawalsMoneyTable} onSelectPeriod={() => {}} selectedPeriod="За месяц" title="Выводы средств"/>
+        {/*<TableComponent data={controller.withdrawalsMoneyTable} onSelectPeriod={() => {}} selectedPeriod="За месяц" title="Выводы средств"/>*/}
     </Page>
 }
 
-export default UserBalancePage;
+export default observer(UserBalancePage);

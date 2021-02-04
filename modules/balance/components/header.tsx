@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import BalanceCard from "@/modules/balance/components/balance-card";
 import DepositStatistic from "@/modules/balance/components/deposit-statistic";
+import TranslateServices from "@/services/translate_services";
 
 const Header = styled.header`
   display: flex;
@@ -34,16 +35,23 @@ const DepositStatisticContainer = styled.div`
   }
 `;
 
-export type Props = {}
+export type Props = {
+    balance: number;
+    thisMonthAmount: number;
+    thisYearAmount: number;
+}
 
-const HeaderComponent: React.FC<Props> = ({}) => {
+const HeaderComponent: React.FC<Props> = (props) => {
+    const currentMonth = `В ${TranslateServices.monthsPP[new Date().getMonth()]}`;
+    const currentYear = `В ${new Date().getFullYear()} г.`;
+
     return <Header>
-        <BalanceCard balance={21123.312}/>
+        <BalanceCard balance={props.balance}/>
         <DepositStatisticContainer>
             <span className="put-on-money_text">Пополнение баланса</span>
             <div className="deposit-row">
-                <DepositStatistic date="В Ноябре" amount={21411.0}/>
-                <DepositStatistic date="В 2020г." amount={123112.12}/>
+                <DepositStatistic date={currentMonth} amount={props.thisMonthAmount}/>
+                <DepositStatistic date={currentYear} amount={props.thisYearAmount}/>
             </div>
         </DepositStatisticContainer>
     </Header>

@@ -24,7 +24,7 @@ export default class BalanceService {
      * @throws "invalid_error"
      */
     public static fetchBalanceData = async (): Promise<BalanceData> => {
-        const route = `/api/${BalanceService.routeCharacter}/${BalanceService.uid}`;
+        const route = process.env.SERVER_URL + `/api/${BalanceService.routeCharacter}/${BalanceService.uid}/balance`;
         const res = await authFetch<BalanceData>(() => axios.get(route, { headers: { auth: TokenServices.header } }));
 
         if (res.status === 403) throw "access_denied";

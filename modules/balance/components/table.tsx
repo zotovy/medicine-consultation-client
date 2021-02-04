@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Domain from "../domain";
 import { ChevronRight } from "@/static/icons";
+import { TableDataType } from "@/modules/balance/balance-controller";
 
 const Container = styled.div`
   width: 100%;
@@ -156,12 +157,5 @@ const TableComponent: React.FC<Props> = (props) => {
     </Container>
 }
 
-export type TableDataType = {
-    date: string[],
-    method: string[],
-    credentials: string[],
-    status: string[],
-    amount: string[],
-}
-
 export default TableComponent;
+
