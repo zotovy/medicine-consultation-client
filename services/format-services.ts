@@ -89,10 +89,11 @@ export default class FormatServices {
 
     static formatDate = (date: Date | undefined): string => {
         if (!date) return "";
+        let day = date.getDay().toString(), month = (date.getMonth() + 1).toString();
+        if (day.length === 1) day = "0" + day;
+        if (month.length === 1) month = "0" + month;
 
-        return `${date.getDate()} / ${
-            date.getMonth() + 1
-        } / ${date.getFullYear()}`;
+        return `${day} / ${month} / ${date.getFullYear()}`;
     };
 
     static formatSize = (bytes: number): string => {

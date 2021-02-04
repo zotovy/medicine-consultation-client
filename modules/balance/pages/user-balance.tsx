@@ -7,7 +7,7 @@ import Header from "@/modules/balance/components/header";
 import PrimaryButton from "@/modules/balance/components/primary-button";
 import { AddIcon, SendIcon } from "@/static/icons";
 import TableComponent from "@/modules/balance/components/table";
-import BalanceController from "@/modules/balance/balance-controller";
+import BalanceController, { TableDataType } from "@/modules/balance/balance-controller";
 import { observer } from "mobx-react";
 
 /**
@@ -38,7 +38,7 @@ const UserBalancePage: React.FC = () => {
     const controller = useInjection<BalanceController>(TYPES.balanceController);
 
     useEffect(() => {
-        controller.fetchBalanceData();
+        controller.load();
     }, []);
 
     if (controller.isLoading) return <React.Fragment/>
@@ -52,7 +52,14 @@ const UserBalancePage: React.FC = () => {
             <PrimaryButton type="primary"> <SendIcon/> Вывести </PrimaryButton>
             <PrimaryButton type="secondary"> <AddIcon/> Пополнить </PrimaryButton>
         </div>
-        {/*<TableComponent data={controller.withdrawalsMoneyTable} onSelectPeriod={() => {}} selectedPeriod="За месяц" title="Выводы средств"/>*/}
+        <TableComponent
+            data={controller.withdrawalsMoneyTable as TableDataType}
+            onSelectPeriod={(period) => controller.changeTablePeriod(period, "withdrawals")}
+            title="Выводы средств"/>
+        <TableComponent
+            data={controller.topUpMoneyTable as TableDataType}
+            onSelectPeriod={(period) => controller.changeTablePeriod(period, "top_up")}
+            title="Пополнение баланса"/>
     </Page>
 }
 

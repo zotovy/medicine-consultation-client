@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Domain from "../domain";
 import { ChevronRight } from "@/static/icons";
-import { TableDataType } from "@/modules/balance/balance-controller";
+import { TableDataType, TransactionPeriod } from "@/modules/balance/balance-controller";
 
 const Container = styled.div`
   width: 100%;
@@ -104,34 +104,37 @@ const Column = styled.div`
 `;
 
 export type Props = {
-    selectedPeriod: string;
     title: string
-    onSelectPeriod: (period: string) => any;
+    onSelectPeriod: (period: TransactionPeriod) => any;
     data: TableDataType,
 }
 
 const TableComponent: React.FC<Props> = (props) => {
     const [isPeriodSelectorActive, setIsPeriodSelectorActive] = useState(false);
+    const [selectedPeriod, setSelectedPeriod] = useState("За год")
 
     return <Container className="table__component">
         <Header>
-            <Title>{ props.title }</Title>
+            <Title>{props.title}</Title>
 
             <PeriodSelector
                 onClick={() => setIsPeriodSelectorActive(!isPeriodSelectorActive)}
                 className={isPeriodSelectorActive ? "active" : "disable"}
             >
-                { props.selectedPeriod }
+                { selectedPeriod }
                 <ChevronRight/>
             </PeriodSelector>
 
             <PeriodSelectorModal className={isPeriodSelectorActive ? "active" : "disable"}>
                 {
-                    Domain.availablePeriods.map(e => <span
+                    Domain.availablePeriods.map((e, i) => <span
                         onClick={() => {
-                        setIsPeriodSelectorActive(false);
-                        props.onSelectPeriod(e);}}
-                    >{ e }</span>)
+                            setSelectedPeriod(e);
+                            setIsPeriodSelectorActive(false);
+                            // @ts-ignore
+                            props.onSelectPeriod(Domain.periodKeys[i]);
+                        }}
+                    >{e}</span>)
                 }
             </PeriodSelectorModal>
         </Header>
@@ -139,15 +142,12 @@ const TableComponent: React.FC<Props> = (props) => {
         <Table>
             <MainRowBg/>
             {
-                Object.keys(props.data).map(e => {
-                    // @ts-ignore
-                    const key = e as keyof TableDataType;
-
+                Domain.tableDataKeys.map(key => {
                     const data = props.data[key];
                     return <Column>
-                        <span className="main">{ Domain.dataTranslation[key] }</span>
+                        <span className="main">{Domain.dataTranslation[key]}</span>
                         {
-                            data.map(e => <span>{ e }</span>)
+                            data.map(e => <span>{e}</span>)
                         }
                     </Column>
                 })

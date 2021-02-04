@@ -1,3 +1,6 @@
+import { TableDataType } from "@/modules/balance/balance-controller";
+import FormatServices from "@/services/format-services";
+
 export default class Selector {
 
     private static getBalanceInThisTime = (history: ITransaction[], date: Date): number => {
@@ -23,4 +26,48 @@ export default class Selector {
         const endData = new Date(now.getFullYear(), 0, 1);
         return Selector.getBalanceInThisTime(history, endData);
     }
+
+    public static getTableData = (history: ITransaction[], direction: "withdrawals" | "top_up"): TableDataType => {
+        let data: TableDataType = {
+            amount: [],
+            status: [],
+            credentials: [],
+            method: [],
+            date: [],
+        };
+
+        for (let transaction of history) {
+            if (transaction.direction !== direction) continue;
+            data.date.push(FormatServices.formatDate(new Date(transaction.date)).split(" ").join(""));
+            data.method.push(Selector.translateTransactionMethod[transaction.paymentMethod]);
+            data.credentials.push(transaction.bankDetails);
+            data.status.push(Selector.translateTransactionStatus[transaction.status]);
+            data.amount.push(`${transaction.amount.toLocaleString()}₽`);
+        }
+
+        return data;
+    }
+
+    private static translateTransactionStatus: any = {
+        "waiting_for_capture": "Ожидание перевода",
+        "succeeded": "Успешно",
+        "canceled": "Отклонен"
+    };
+
+    private static translateTransactionMethod: any = {
+        "bank_card": "Банковская карта",
+        "apple_pay": "Apple Pay",
+        "google_pay": "Google Pay",
+        "yoo_money": "YooMoney",
+        "qiwi": "Qiwi",
+        "webmoney": "Webmoney",
+        "sberbank": "Сбербанк",
+        "alfabank": "Альфабанк",
+        "tinkoff_bank": "Тинькофф",
+        "b2b_sberbank": "Б2Б Сбербанк",
+        "mobile_balance": "Баланс телефона",
+        "cash": "Наличные",
+        "installments": "Рассрочка",
+    }
 }
+
