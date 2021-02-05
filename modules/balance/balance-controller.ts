@@ -1,4 +1,4 @@
-import { observable, makeObservable, action } from "mobx";
+import { observable, makeObservable, action, toJS } from "mobx";
 import { injectable } from "inversify";
 import BalanceService from "./balance-service";
 import Selector from "@/modules/balance/selector";
@@ -17,6 +17,7 @@ export default class BalanceController {
     @observable topUpLastYear: number = 0;
     @observable withdrawalsMoneyTable: TableDataType | null = null;
     @observable topUpMoneyTable: TableDataType | null = null;
+    @observable chart: DoctorChartDataType | null = null;
 
     private cache: Cache = {
         history: {},
@@ -31,6 +32,7 @@ export default class BalanceController {
             this.topUpLastYear = Selector.getBalanceInThisYear(data.history);
             this.topUpMoneyTable = Selector.getTableData(data.history, "top_up")
             this.withdrawalsMoneyTable = Selector.getTableData(data.history, "withdrawals")
+            this.chart = Selector.getDoctorChartData(data.history, "this_year");
             this.isLoading = false;
             this.cache.history["this_year"] = data.history;
         })();
@@ -53,6 +55,20 @@ export default class BalanceController {
         this.cache.history[period] = data.history;
         this.isLoading = false;
     }
+
+    @action public changeChartPeriod = async (period: TransactionPeriod): Promise<void> => {
+        // Use cache if this value was already fetched
+        if (Object.keys(this.cache.history).includes(period)) {
+            this.chart = Selector.getDoctorChartData(this.cache.history[period], period);
+            return;
+        }
+
+        const data = await BalanceService.fetchBalanceData(period);
+        this.chart = Selector.getDoctorChartData(data.history, period);
+        this.cache.history[period] = data.history;
+
+        console.log(toJS(this.chart));
+    }
 }
 
 export type TableDataType = {
@@ -61,6 +77,14 @@ export type TableDataType = {
     credentials: string[];
     status: string[];
     amount: string[];
+}
+
+export type DoctorChartDataType = {
+    data: {
+        chartText: string;
+        moneyAmount: number;
+    }[];
+    maxAmount: number;
 }
 
 export type TransactionPeriod = "this_month" | "this_year" | "last_year" | "all_time";

@@ -1,4 +1,4 @@
-import { TableDataType } from "@/modules/balance/balance-controller";
+import { DoctorChartDataType, TableDataType, TransactionPeriod } from "@/modules/balance/balance-controller";
 import FormatServices from "@/services/format-services";
 
 export default class Selector {
@@ -45,6 +45,48 @@ export default class Selector {
             data.amount.push(`${transaction.amount.toLocaleString()}₽`);
         }
 
+        return data;
+    }
+
+    public static getDoctorChartData = (history: ITransaction[], period: TransactionPeriod): DoctorChartDataType => {
+        let data: DoctorChartDataType = {
+            data: [],
+            maxAmount: 0,
+        }
+
+        console.log(history);
+
+        const amount = period === "this_year" || period === "last_year"
+            ? 12
+            : new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
+        for (let i = 0; i < amount; i++) {
+            data.data.push({ chartText: (i + 1).toString(), moneyAmount: 0 });
+        }
+
+        for (let i = 0; i < history.length; i ++) {
+            const transaction = history[i];
+            transaction.date = new Date(transaction.date);
+
+            // full year chart
+            if (period === "this_year" || period === "last_year" || period === "all_time") {
+                if (transaction.date.getFullYear() !== new Date().getFullYear()) continue;
+                data.data[transaction.date.getMonth()].moneyAmount += transaction.amount;
+                data.data[transaction.date.getMonth()].chartText = (transaction.date.getMonth() + 1).toString();
+            }
+
+            // full month chart
+            if (period === "this_month") {
+                if (transaction.date.getMonth() !== new Date().getMonth()) continue;
+                data.data[transaction.date.getDate()].moneyAmount += transaction.amount;
+                data.data[transaction.date.getDate()].chartText = transaction.date.getDate().toString();
+            }
+        }
+
+        data.data.forEach(e => {
+            if (e.moneyAmount > data.maxAmount) data.maxAmount = e.moneyAmount;
+        });
+
+        console.log(data);
         return data;
     }
 

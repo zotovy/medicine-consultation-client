@@ -7,7 +7,7 @@ import Header from "@/modules/balance/components/header";
 import PrimaryButton from "@/modules/balance/components/primary-button";
 import { AddIcon, SendIcon } from "@/static/icons";
 import TableComponent from "@/modules/balance/components/table";
-import BalanceController, { TableDataType } from "@/modules/balance/balance-controller";
+import BalanceController, { DoctorChartDataType, TableDataType } from "@/modules/balance/balance-controller";
 import { observer } from "mobx-react";
 import DoctorStatisticComponent from "@/modules/balance/components/doctor-statistic";
 
@@ -57,7 +57,9 @@ const UserBalancePage: React.FC = () => {
             <PrimaryButton type="primary"> <SendIcon/> Вывести </PrimaryButton>
             <PrimaryButton type="secondary"> <AddIcon/> Пополнить </PrimaryButton>
         </div>
-        <DoctorStatisticComponent/>
+        <DoctorStatisticComponent
+            data={controller.chart as DoctorChartDataType}
+            onPeriodChanged={controller.changeChartPeriod} />
         <TableComponent
             data={controller.withdrawalsMoneyTable as TableDataType}
             onSelectPeriod={(period) => controller.changeTablePeriod(period, "withdrawals")}

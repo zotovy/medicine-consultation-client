@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import HeaderComponent from "@/modules/balance/components/header-component";
 import Domain from "@/modules/balance/domain";
+import { DoctorChartDataType, TransactionPeriod } from "@/modules/balance/balance-controller";
+import { toJS } from "mobx";
+import { observer } from "mobx-react";
 
 const Component = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
 `;
 
 const Container = styled.div`
-  min-width: 100%;
+  width: 100%;
   max-width: calc(1100px - 280px);
   height: 215px;
   display: flex;
@@ -17,6 +21,7 @@ const Container = styled.div`
   justify-content: space-between;
   overflow-x: auto;
   padding-bottom: 7px;
+  margin-top: 10px;
   
   &::-webkit-scrollbar {
     height: 5px;
@@ -111,30 +116,45 @@ const Chart = styled.div`
   }  
 `
 
-export type Props = {}
+export type Props = {
+    data: DoctorChartDataType,
+    onPeriodChanged: (period: TransactionPeriod) => any
+}
 
-const DoctorStatisticComponent: React.FC<Props> = ({}) => {
+const DoctorStatisticComponent: React.FC<Props> = (props) => {
     const [selectedPeriod, setSelectedPeriod] = useState("За год")
+
+    console.log(toJS(props.data));
 
     return <Component className="doctor-statistic__component">
         <HeaderComponent
-            availablePeriods={Domain.availablePeriods}
+            availablePeriods={Domain.availableChartPeriods}
             selectedPeriod={selectedPeriod}
             title="Статистика"
-            onSelectPeriod={setSelectedPeriod} />
+            onSelectPeriod={(v, i) => {
+                setSelectedPeriod(v);
+                // @ts-ignore
+                props.onPeriodChanged(Domain.chartPeriodKeys[i]);
+            }} />
         <Container>
             {
-                new Array(31).fill(1).map((_, i) => <Chart>
-                    <div className="column-container">
-                        <div className="column" style={{ height: `${i / 31 * 100}%` }}>
-                            <div className={`info ${i < 28 ? "right" : "left"} `}>100Р</div>
+                props.data.data.map((e, i) => {
+                    const height = e.moneyAmount / props.data.maxAmount * 100;
+                    return <Chart>
+                        <div className="column-container">
+                            <div className="column" style={{ height: `${height ? height : 0}%` }}>
+                                <div
+                                    className={`info ${i < props.data.data.length - 2 ? "right" : "left"} `}>
+                                    { e.moneyAmount.toLocaleString() }₽
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <span className="text">{ i + 1}</span>
-                </Chart>)
+                        <span className="text">{ e.chartText }</span>
+                    </Chart>
+                })
             }
         </Container>
     </Component>
 }
 
-export default DoctorStatisticComponent;
+export default observer(DoctorStatisticComponent);
