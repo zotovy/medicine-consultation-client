@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Domain from "../domain";
 import { ChevronRight } from "@/static/icons";
 import { TableDataType, TransactionPeriod } from "@/modules/balance/balance-controller";
+import HeaderComponent from "@/modules/balance/components/header-component";
 
 const Container = styled.div`
   width: 100%;
@@ -10,63 +11,6 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const Header = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-`;
-
-const PeriodSelector = styled.div`
-  cursor: pointer;
-  color: #565656;
-  font-size: 14px;
-  user-select: none;
-  
-  svg {
-    height: 9px;
-    margin-left: 10px;
-    transition: transform 300ms;
-    transform: rotate(90deg);
-  }
-  
-  &.active {
-    svg {
-      transform: rotate(-90deg);
-    }
-  }
-`;
-
-const PeriodSelectorModal = styled.div`
-  position: absolute;
-  top: 24px;
-  right: 0;
-  background: white;
-  border-radius: 5px;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.07);
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  text-align: end;
-  color: #282828;
-  font-size: 15px;
-  z-index: 12;
-  
-  &.disable {
-    display: none;
-  }
-  
-  span {
-    margin-bottom: 10px;
-    cursor: pointer;
-  }
-`;
-
-const Title = styled.h3`
-  font-size: 24px;
-  color: #282828;
-  font-weight: 500;
-`;
 
 const Table = styled.div`
   margin-top: 10px;
@@ -110,34 +54,18 @@ export type Props = {
 }
 
 const TableComponent: React.FC<Props> = (props) => {
-    const [isPeriodSelectorActive, setIsPeriodSelectorActive] = useState(false);
     const [selectedPeriod, setSelectedPeriod] = useState("За год")
 
     return <Container className="table__component">
-        <Header>
-            <Title>{props.title}</Title>
-
-            <PeriodSelector
-                onClick={() => setIsPeriodSelectorActive(!isPeriodSelectorActive)}
-                className={isPeriodSelectorActive ? "active" : "disable"}
-            >
-                { selectedPeriod }
-                <ChevronRight/>
-            </PeriodSelector>
-
-            <PeriodSelectorModal className={isPeriodSelectorActive ? "active" : "disable"}>
-                {
-                    Domain.availablePeriods.map((e, i) => <span
-                        onClick={() => {
-                            setSelectedPeriod(e);
-                            setIsPeriodSelectorActive(false);
-                            // @ts-ignore
-                            props.onSelectPeriod(Domain.periodKeys[i]);
-                        }}
-                    >{e}</span>)
-                }
-            </PeriodSelectorModal>
-        </Header>
+        <HeaderComponent
+            availablePeriods={Domain.availablePeriods}
+            selectedPeriod={selectedPeriod}
+            title={props.title}
+            onSelectPeriod={(v, i) => {
+                setSelectedPeriod(v);
+                // @ts-ignore
+                props.onSelectPeriod(Domain.periodKeys[i]);
+            }} />
 
         <Table>
             <MainRowBg/>

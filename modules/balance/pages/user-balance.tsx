@@ -9,6 +9,7 @@ import { AddIcon, SendIcon } from "@/static/icons";
 import TableComponent from "@/modules/balance/components/table";
 import BalanceController, { TableDataType } from "@/modules/balance/balance-controller";
 import { observer } from "mobx-react";
+import DoctorStatisticComponent from "@/modules/balance/components/doctor-statistic";
 
 /**
  * This page is injectable. Do not use it without any wrapper
@@ -31,6 +32,10 @@ const Page = styled.div`
   .table__component {
     margin-top: 30px;
   }
+  
+  .doctor-statistic__component {
+    margin-top: 20px;
+  }
 `;
 
 
@@ -52,6 +57,7 @@ const UserBalancePage: React.FC = () => {
             <PrimaryButton type="primary"> <SendIcon/> Вывести </PrimaryButton>
             <PrimaryButton type="secondary"> <AddIcon/> Пополнить </PrimaryButton>
         </div>
+        <DoctorStatisticComponent/>
         <TableComponent
             data={controller.withdrawalsMoneyTable as TableDataType}
             onSelectPeriod={(period) => controller.changeTablePeriod(period, "withdrawals")}
@@ -60,6 +66,7 @@ const UserBalancePage: React.FC = () => {
             data={controller.topUpMoneyTable as TableDataType}
             onSelectPeriod={(period) => controller.changeTablePeriod(period, "top_up")}
             title="Пополнение баланса"/>
+
     </Page>
 }
 
