@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
 import styled from "styled-components";
-import MediaQuery from 'react-responsive';
+// import MediaQuery from 'react-responsive';
 
 // Store
 import SignupUIStore from "../../stores/signupUI";
@@ -195,12 +195,12 @@ const DSPage2: React.FC = () => {
                 </FormColumn>
             </Form>
 
-            <MediaQuery minDeviceWidth="424px" >
-                <SizedBox height="20px" />
-            </MediaQuery>
-            <MediaQuery maxDeviceWidth="424px" >
-                <SizedBox height="10px" />
-            </MediaQuery>
+            {/*<MediaQuery minDeviceWidth="424px" >*/}
+            {/*    <SizedBox height="20px" />*/}
+            {/*</MediaQuery>*/}
+            {/*<MediaQuery maxDeviceWidth="424px" >*/}
+            {/*    <SizedBox height="10px" />*/}
+            {/*</MediaQuery>*/}
 
 
 

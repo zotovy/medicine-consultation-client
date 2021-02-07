@@ -1,7 +1,6 @@
 import React from "react";
 import { NextPage } from "next";
 import Linker from "next/link";
-import Image from "next/image";
 import styled from "styled-components";
 import { reaction } from "mobx";
 import { observer } from "mobx-react";
@@ -78,9 +77,7 @@ const ErrorMessage = styled.div`
 
 const Login: NextPage = observer(() => {
     let router = useRouter();
-
-    const loginUIStore = useInjection<LoginUIStore>(TYPES.signupUiStore);
-
+    const loginUIStore = useInjection<LoginUIStore>(TYPES.loginUIStore);
 
     // Navigate to home page after login
     reaction(() => loginUIStore.goToHomeTrigger, () => router.push("/"));

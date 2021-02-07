@@ -28,8 +28,8 @@ const Menu: React.FC = () => {
         </Link>
         <div className="tabs">
             <div className="links">
-                <Link href="/consultations" passHref>
-                    <div className={"tab " + (selected === "/consultation" ? "selected" : "")}>
+                <Link href="/hub" passHref>
+                    <div className={"tab " + (selected === "/hub" ? "selected" : "")}>
                         <span className="link">Консультации</span>
                         <div className="circle"/>
                     </div>

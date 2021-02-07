@@ -23,9 +23,6 @@ import Image from "../components/image";
 import Container from "../components/container";
 import SexCheckbox from "../../../components/sex-checkbox";
 import SignupLink from "../components/signup-link";
-import PasswordError from "../components/password-error";
-import ErrorBadge from "../../../components/error-badge";
-
 
 
 const Wrapper = styled.div`
@@ -110,4 +107,4 @@ const UserSignUp: NextPage = observer(() => {
 
 });
 
-export default withController(UserSignUp, "signupUiStore");
+export default UserSignUp;

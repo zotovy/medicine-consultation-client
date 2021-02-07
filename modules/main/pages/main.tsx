@@ -45,11 +45,11 @@ const MainPage: NextPage = () => {
                         <Link href="/find-doctors">
                             <div className="btn-link btn-link__appoint">Записаться</div>
                         </Link>
-                        <MediaQuery maxWidth={1240}>
-                            <a className="reg-link-s1">
-                                <Link href="/signup"><a>Зарегистрироваться</a></Link>
-                            </a>
-                        </MediaQuery>
+                        {/*<MediaQuery maxWidth={1240}>*/}
+                        {/*    <a className="reg-link-s1">*/}
+                        {/*        <Link href="/signup"><a>Зарегистрироваться</a></Link>*/}
+                        {/*    </a>*/}
+                        {/*</MediaQuery>*/}
                     </article>
                     <article className="pre-sect__right _anim-items _anim-not-hide">
                         <svg xmlns="http://www.w3.org/2000/svg" width="805.269" height="751.507"

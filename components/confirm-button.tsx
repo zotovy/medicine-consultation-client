@@ -54,20 +54,21 @@ const Text = styled.p`
 
 
 const ConfirmButton: React.FC<Props> = (props: Props) => {
-  return (
-    <Button
-      className={`confirm-button ${props.className}`}
-      data-test={props.dataTest}
-      {/*
-       // @ts-ignore */  ...{}}
-      style={{ ...props.styles?.button, borderRadius: `${props.borderRadius ?? "10px"}` }}
-      onClick={(e) => props.onConfirm()}
-    >
-      {/*
-       // @ts-ignore */}
-      <Text style={props.styles?.text}>{props.content}</Text>
-    </Button>
-  );
+
+  console.log(props);
+
+  return <Button
+    className={`confirm-button ${props.className}`}
+    data-test={props.dataTest}
+    {/*
+     // @ts-ignore */  ...{}}
+    style={{ ...props.styles?.button, borderRadius: `${props.borderRadius ?? "10px"}` }}
+    onClick={(e) => props.onConfirm()}
+  >
+    {/*
+     // @ts-ignore */}
+    <Text style={props.styles?.text}>{props.content}</Text>
+  </Button>;
 };
 
 export default ConfirmButton;
