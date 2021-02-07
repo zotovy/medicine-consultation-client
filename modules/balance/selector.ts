@@ -54,8 +54,6 @@ export default class Selector {
             maxAmount: 0,
         }
 
-        console.log(history);
-
         const amount = period === "this_year" || period === "last_year"
             ? 12
             : new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0).getDate();
@@ -78,7 +76,7 @@ export default class Selector {
             if (period === "this_month") {
                 if (transaction.date.getMonth() !== new Date().getMonth()) continue;
                 data.data[transaction.date.getDate()].moneyAmount += transaction.amount;
-                data.data[transaction.date.getDate()].chartText = transaction.date.getDate().toString();
+                data.data[transaction.date.getDay() - 1].chartText = transaction.date.getDay().toString();
             }
         }
 

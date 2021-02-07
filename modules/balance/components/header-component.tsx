@@ -6,6 +6,7 @@ const Header = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: relative;
 `;
 
@@ -14,6 +15,10 @@ const PeriodSelector = styled.div`
   color: #565656;
   font-size: 14px;
   user-select: none;
+  
+  @media screen and (max-width: 768px) {
+      font-size: 12px;
+  }
   
   svg {
     height: 9px;
@@ -58,6 +63,10 @@ const Title = styled.h3`
   font-size: 24px;
   color: #282828;
   font-weight: 500;
+  
+  @media screen and (max-width: 768px) {
+      font-size: 18px;
+  }
 `;
 
 

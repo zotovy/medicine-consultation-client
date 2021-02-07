@@ -24,6 +24,15 @@ const Page = styled.div`
     margin-top: 15px;
     display: flex;
     
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      
+      .primary-button__component {
+        width: 100%;
+        justify-content: center;
+      }
+    } 
+    
     .primary-button__component.primary { 
       margin-right: 10px;
     }

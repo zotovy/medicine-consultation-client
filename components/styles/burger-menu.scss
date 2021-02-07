@@ -263,7 +263,7 @@ menu {
     }
 
     @media screen and (max-width: 1024px) {
-        .profile.auth {
+        .profile, .auth {
             display: none;
         }
     }

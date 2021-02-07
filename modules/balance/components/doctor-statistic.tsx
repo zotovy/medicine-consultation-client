@@ -33,10 +33,6 @@ const Container = styled.div`
     &-thumb {
       border-radius: 3px;
       background: #F5F8F8;
-      
-      //&:hover {
-      //  back
-      //}
     }
   }
 `;
@@ -99,6 +95,13 @@ const Chart = styled.div`
     }
   }
   
+  @media screen and (max-width: 768px) {
+    .column {
+      width: 20px;
+      border-radius: 3px;
+    }
+  }
+  
   @keyframes animation {
       0% {
         height: 0;
@@ -113,6 +116,10 @@ const Chart = styled.div`
     padding-top: 5px;
     color: #CCCCCC;
     font-size: 14px;
+    
+    @media screen and (max-width: 768px) {
+        font-size: 12px;
+    }
   }  
 `
 
@@ -123,8 +130,6 @@ export type Props = {
 
 const DoctorStatisticComponent: React.FC<Props> = (props) => {
     const [selectedPeriod, setSelectedPeriod] = useState("За год")
-
-    console.log(toJS(props.data));
 
     return <Component className="doctor-statistic__component">
         <HeaderComponent

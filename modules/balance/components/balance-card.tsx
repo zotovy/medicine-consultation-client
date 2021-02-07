@@ -11,6 +11,10 @@ const Container = styled.div`
     flex: 0 0 auto;
     padding: 30px 125px 30px 30px;
     
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+    
     &:after {
         content: "";
         border: 5px rgba(255, 255, 255, 0.15) solid;

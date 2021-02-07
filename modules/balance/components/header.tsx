@@ -7,6 +7,10 @@ import TranslateServices from "@/services/translate_services";
 const Header = styled.header`
   display: flex;
   justify-content: start;
+  
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
    
   .balance-card__component {
      margin-right: 45px;
@@ -18,6 +22,9 @@ const DepositStatisticContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   
+  @media screen and (max-width: 768px) {
+      display: none;
+  }
   
   span.put-on-money_text {
     color: #282828;

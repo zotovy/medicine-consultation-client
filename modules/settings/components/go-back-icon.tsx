@@ -8,8 +8,8 @@ const GoBackIcon : React.FC = () => {
 
     if (width > 1024) return <React.Fragment/>;
     return <div className="back-icon">
-        <Link href="/settings">
-            <BackIcon/>
+        <Link href="/settings" passHref>
+            <a><BackIcon/></a>
         </Link>
     </div>;
 }
