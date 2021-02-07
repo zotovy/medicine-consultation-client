@@ -34,7 +34,7 @@ yarn-error.log*
 .vercel
 
 # security
-/security/
+/security
 
 # ideas
 /.idea/
@@ -42,3 +42,5 @@ yarn-error.log*
 
 .DS_Store
 .DS_Store
+
+
