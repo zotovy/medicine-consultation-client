@@ -232,8 +232,8 @@ const Calendar: React.FC<Props> = (props: Props) => {
         controller.setDate(date);
     };
     let highlightDates: Date[];
-    if(controller.arrDates !== undefined){
-        highlightDates = controller.arrDates.map((e: any) => {
+    if(controller.appointsDates !== undefined){
+        highlightDates = controller.appointsDates.map((e: any) => {
             return new Date(e)
         })
     }

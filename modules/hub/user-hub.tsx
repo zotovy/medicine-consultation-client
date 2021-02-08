@@ -21,7 +21,7 @@ const Hub: NextPage = () => {
         }, []);
     }
     let userArrAppointments = controller.userArrAppointments;
-    const { showLoader, userArrRequestAppointments, itemPosActive, showPopUp } = controller;
+    const { isLoading, userArrRequestAppointments, itemPosActive, showPopUp } = controller;
 
     // if (!showPopUp && typeof window !== "undefined") {
     //     window.onscroll = function () {
@@ -30,7 +30,7 @@ const Hub: NextPage = () => {
     // }
     return <React.Fragment>
         {
-            !showLoader
+            !isLoading
                 ? <React.Fragment>
                     <div
                         className={`hub-wrapper hub-wrapper--user ${showPopUp ? "hub-wrapper--user-remove-scroll" : ''}`}>

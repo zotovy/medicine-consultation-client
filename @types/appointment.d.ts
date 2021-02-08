@@ -1,0 +1,22 @@
+declare interface IAppointment {
+    _id: string;
+    from: Date;
+    to: Date;
+    consultation: IConsultation | string;
+    patientName: string;
+    phone: number;
+    birthday: Date;
+    sex: boolean;
+    chronicDiseases: string;
+    symptoms: string;
+    documents: ConsultationDocument[];
+    numericDate: string;
+}
+
+declare interface IAppointRequest extends Document{
+    _id: string;
+    patient: string | IUser;
+    doctor: string | IDoctor;
+    createdAt: Date;
+    appointment: string | IAppointment;
+}

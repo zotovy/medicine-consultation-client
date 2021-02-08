@@ -23,14 +23,14 @@ const Hub: NextPage = () => {
 
     useEffect(() => {
         if (typeof window !== "undefined" && localStorage.getItem("uid") !== null) {
-            controller.getAppoinsRequest(`${localStorage.getItem('uid')}`);
+            controller.getAppointsRequest(`${localStorage.getItem('uid')}`);
             controller.getAppoints(`${localStorage.getItem('uid')}`);
             controller.getAppointsDate(`${localStorage.getItem('uid')}`);
         }
     }, []);
 
     let arrApp = controller.arrAppointments;
-    const { showError, showLoader, consRequest, infoForCard, showCard, closeCard, itemPosActive, itemPosActive768, showPopUp, showRequestsPage } = controller;
+    const { showError, isLoading, consRequest, infoForCard, showCard, closeCard, itemPosActive, itemPosActive768, showPopUp, showRequestsPage } = controller;
     const width = 1920;
     // const width = useWindowWidth() ?? 1920;
 
@@ -88,7 +88,7 @@ const Hub: NextPage = () => {
                                                 <p className="list-section-title">Консультации</p>
                                                 <div className="consultation-list">
                                                     {
-                                                        !showLoader
+                                                        !isLoading
                                                             ? <>
                                                                 {arrApp.map((e: any, i: number) =>
                                                                     <ListItem key={e._id ?? ''}
@@ -159,7 +159,7 @@ const Hub: NextPage = () => {
                                                             <p className="list-section-title">Консультации</p>
                                                             <div className="consultation-list">
                                                                 {
-                                                                    !showLoader
+                                                                    !isLoading
                                                                         ? <>
                                                                             {arrApp.map((e: any, i: number) =>
                                                                                 <ListItem key={e._id ?? ''}
