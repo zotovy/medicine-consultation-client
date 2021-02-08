@@ -87,6 +87,15 @@ export default class FormatServices {
         return input;
     }
 
+    static formatTime = (time: Date): string => {
+        let hours = time.getHours().toString(),
+            minutes = time.getMinutes().toString();
+
+        if (hours.length === 1) hours = "0" + hours;
+        if (minutes.length === 1) minutes = "0" + minutes;
+        return `${hours}:${minutes}`
+    }
+
     static formatDate = (date: Date | undefined): string => {
         if (!date) return "";
         let day = date.getDay().toString(), month = (date.getMonth() + 1).toString();
@@ -109,19 +118,19 @@ export default class FormatServices {
         return input;
     };
 
-    static formatToUsualDate = (date: Date | undefined, needTime = false, useMonthName = false): string => {
+    static formatToUsualDate = (date: Date | undefined, needTime = false, useMonthName = false, wordAfterTime = "назад"): string => {
         if (!date) return "";
 
         if (needTime) {
             const dMinutes = FormatServices._deltaDateInMinutes(date, new Date());
-            if (dMinutes < 1) return "Меньше минуты назад";
-            if (dMinutes < 60) return `${dMinutes} ${FormatServices.getNumEnding(dMinutes, ["минуту", "минуты", "минут"])} назад`;
-            if (dMinutes < 1440) return `${Math.floor(dMinutes / 60)} ${FormatServices.getNumEnding(Math.floor(dMinutes / 60), ["час", "часа", "часов"])} назад`;
+            if (dMinutes < 1) return `меньше минуты ${wordAfterTime}`;
+            if (dMinutes < 60) return `${dMinutes} ${FormatServices.getNumEnding(dMinutes, ["минуту", "минуты", "минут"])} ${wordAfterTime}`;
+            if (dMinutes < 1440) return `${Math.floor(dMinutes / 60)} ${FormatServices.getNumEnding(Math.floor(dMinutes / 60), ["час", "часа", "часов"])} ${wordAfterTime}`;
         }
 
         const dDays = FormatServices._deltaDateInDay(date, new Date());
-        if (dDays < 1) return "меньше суток назад";
-        if (dDays < 1) return "день назад";
+        if (dDays < 1) return `меньше суток ${wordAfterTime}`;
+        if (dDays < 1) return `день ${wordAfterTime}`;
 
         let day = date.getDate().toString(), month = (date.getMonth() + 1).toString();
         if (day.length === 1) day = "0" + day;
