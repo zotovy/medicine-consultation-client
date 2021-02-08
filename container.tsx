@@ -24,7 +24,7 @@ import SymptomsSliderController from "@/modules/doctors/controllers/symptoms-sli
 import AppointmentController from "@/modules/consultations/controllers/appoint-controller";
 import ConsultationController from "@/modules/consultations/controllers/consultation-controller";
 import BalanceController from "@/modules/balance/balance-controller";
-import HubController from "@/modules/hub/controllers/hub-controller";
+import HubController from "@/modules/hub/hub-controller";
 
 enableStaticRendering(typeof window === "undefined");
 
