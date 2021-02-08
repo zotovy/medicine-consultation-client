@@ -17,6 +17,9 @@ const Page = styled.main`
     width: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    column-gap: 80px;
+    row-gap: 40px;
+    margin-top: 15px;
   }
   
   @media screen and (min-width: 1440px) {
@@ -39,6 +42,16 @@ const UserHub: NextPage = () => {
                     name={"Иван Иванов"}
                     onConnect={() => {}}
                     onReject={() => {}} />
+            </div>
+            <div className="space" style={{ marginTop: "40px" }} />
+
+            <HeaderComponent
+                title="Неподтвержденные консультации"
+                subtitle="Эти консультации еще не подтвердил доктор. Мы уведомим вас если доктор откажется от нее"/>
+            <div className="cards">
+                <UserCard
+                    date={{ to: new Date(), from: new Date() }}
+                    name={"Иван Иванов"} />
             </div>
         </Page>
     </React.Fragment>;

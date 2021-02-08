@@ -51,7 +51,11 @@ const HeaderComponent: React.FC<Props> = (props) => {
                     : <React.Fragment/>
             }
         </div>
-        <span className="subtitle">{ props.subtitle }</span>
+        {
+            props.subtitle
+                ? <span className="subtitle">{ props.subtitle }</span>
+                : <React.Fragment/>
+        }
     </Container>
 }
 
