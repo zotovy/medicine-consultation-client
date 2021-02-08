@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 
 import UserHub from "./pages/user-hub";
 import DoctorHub from "./pages/doctor-hub";
+import DoctorHubAppointRequestsPage from "./pages/doctor-hub-appoint-requests";
 
 /**
  * NO SSR CONTEXT
@@ -28,4 +29,5 @@ export default Hub;
 export {
     UserHub,
     DoctorHub,
+    DoctorHubAppointRequestsPage,
 }

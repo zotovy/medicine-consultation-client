@@ -98,6 +98,8 @@ export type Props = {
     name: string;
     onConnect?: () => any,
     onReject?: () => any,
+    connectButtonText?: string;
+    rejectButtonText?: string;
 }
 
 const UserCard: React.FC<Props> = (props) => {
@@ -129,8 +131,8 @@ const UserCard: React.FC<Props> = (props) => {
             !props.onConnect || !props.onReject
                 ? <React.Fragment/>
                 : <div className="buttons">
-                    <button className="connect">Подключиться</button>
-                    <button className="reject">Отказаться</button>
+                    <button className="connect">{ props.connectButtonText ?? "Подключиться" }</button>
+                    <button className="reject">{ props.rejectButtonText ?? "Отказаться" }</button>
                 </div>
         }
     </Card>
