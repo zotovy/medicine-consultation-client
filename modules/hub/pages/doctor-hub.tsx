@@ -4,7 +4,7 @@ import Head from "next/head";
 import styled from "styled-components";
 
 import Menu from "@/components/menu";
-import AppointInformation from "@/modules/hub/components/appoint-information";
+import AppointInformation from "@/modules/hub/containers/appoint-information";
 import { centerPageContent } from "@/static/mixins";
 
 const Layout = styled.main`
