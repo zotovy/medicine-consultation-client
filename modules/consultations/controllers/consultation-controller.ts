@@ -220,16 +220,16 @@ export default class ConsultationController implements IConsultationController {
                     })) ?? [];
 
                 const isUser = localStorage.getItem("isUser") === "true";
-                if (isUser && typeof cons?.doctorId !== "string") {
-                    this.partnerImagePath = cons.doctorId.photoUrl;
-                    this.partnerName = cons.doctorId.fullName;
+                if (isUser && typeof cons?.doctor !== "string") {
+                    this.partnerImagePath = cons.doctor.photoUrl;
+                    this.partnerName = cons.doctor.fullName;
                     this.partnerSpeciality =
-                        cons.doctorId.speciality.length >= 1
-                            ? cons.doctorId.speciality[0]
+                        cons.doctor.speciality.length >= 1
+                            ? cons.doctor.speciality[0]
                             : "";
-                } else if (typeof cons?.patientId !== "string") {
-                    this.partnerImagePath = cons.patientId.photoUrl;
-                    this.partnerName = cons.patientId.fullName;
+                } else if (typeof cons?.patient !== "string") {
+                    this.partnerImagePath = cons.patient.photoUrl;
+                    this.partnerName = cons.patient.fullName;
                 }
 
                 this._messages.push({

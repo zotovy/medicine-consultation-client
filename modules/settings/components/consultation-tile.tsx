@@ -11,8 +11,8 @@ type Props = {
 const ConsultationTile: React.FC<Props> = ({ onShowNode, consultation, key }) => {
 
     const profileStyles = {
-        backgroundImage: (consultation.doctorId as DoctorType).photoUrl
-            ? `url(${(consultation.doctorId as DoctorType).photoUrl})`
+        backgroundImage: (consultation.doctor as DoctorType).photoUrl
+            ? `url(${(consultation.doctor as DoctorType).photoUrl})`
             : `url("../../../static/images/user-placeholder.jpg")`
     };
 
@@ -20,9 +20,9 @@ const ConsultationTile: React.FC<Props> = ({ onShowNode, consultation, key }) =>
         <div className="header">
             <div className="profile-pic" style={profileStyles}/>
             <div className="info">
-                <span className="title">{(consultation.doctorId as DoctorType).fullName}</span>
+                <span className="title">{(consultation.doctor as DoctorType).fullName}</span>
                 <span className="subtitle">
-                    {(consultation.doctorId as DoctorType).speciality},&nbsp;
+                    {(consultation.doctor as DoctorType).speciality},&nbsp;
                     {FormatServices.formatToUsualDate(consultation.date)}</span>
             </div>
         </div>

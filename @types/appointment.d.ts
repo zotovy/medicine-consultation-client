@@ -13,7 +13,7 @@ declare interface IAppointment {
     numericDate: string;
 }
 
-declare interface IAppointRequest extends Document{
+declare interface IAppointRequest {
     _id: string;
     patient: string | IUser;
     doctor: string | IDoctor;
