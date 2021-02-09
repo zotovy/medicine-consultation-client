@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import Menu from "@/components/menu";
 import AppointInformation from "@/modules/hub/containers/appoint-information";
+import NavigationComponent from "@/modules/hub/containers/navigation";
 import { centerPageContent } from "@/static/mixins";
 
 const Layout = styled.main`
@@ -13,12 +14,6 @@ const Layout = styled.main`
   
   .appoint-information {
     width: 100%;
-    
-  }
-  
-  nav {
-    margin-left: 80px;
-    width: 390px;
   }
 `;
 
@@ -30,10 +25,8 @@ const DoctorHubPage: NextPage = () => {
         <Menu/>
 
         <Layout>
-            <AppointInformation/>
-            <nav>
-                123
-            </nav>
+            <AppointInformation />
+            <NavigationComponent />
         </Layout>
     </React.Fragment>;
 }

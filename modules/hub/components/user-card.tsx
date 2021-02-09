@@ -87,6 +87,10 @@ const Card = styled.div`
       }
     }
   }
+  
+  &.selected {
+    border: 1px solid #30b9d6;
+  }
 `;
 
 export type Props = {
@@ -100,6 +104,8 @@ export type Props = {
     onReject?: () => any,
     connectButtonText?: string;
     rejectButtonText?: string;
+    cursor?: "pointer" | "initial";
+    selected?: boolean;
 }
 
 const UserCard: React.FC<Props> = (props) => {
@@ -112,7 +118,11 @@ const UserCard: React.FC<Props> = (props) => {
     // Apply user profile image
     const profileImage = props.profileImage ?? "/images/user-placeholder.jpg";
 
-    return <Card>
+    const styles = {
+        cursor: props.cursor ?? "initial",
+    }
+
+    return <Card style={styles} className={`userCard ${props.selected ? "selected" : ""}`} >
         <span className="time">{ timeBefore }</span>
         <div className="main">
             <Image

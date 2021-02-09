@@ -31,7 +31,7 @@ const Container = styled.div`
 
 const AppointInformation: React.FC<Props> = (appointment) => {
     return <Container>
-        <MainInformation patientPhotoUrl={appointment.consultation.patient.photoUrl} />
+        <MainInformation patientPhotoUrl={appointment.consultation?.patient?.photoUrl} />
         <Information {...appointment} />
         <Documents {...appointment}/>
 

@@ -39,7 +39,7 @@ const Calendar: React.FC<Props> = (props: Props) => {
 
     const getDates = (year: number, month: number): Array<DateObj> => {
 
-        let dates: DateObj[] = [];
+        const dates: DateObj[] = [];
 
         const firstDay = new Date(year, month, 1);
 
@@ -128,7 +128,7 @@ const Calendar: React.FC<Props> = (props: Props) => {
         if (firstEnable?.date.getDay() !== 0) {
             newDates.shift();
         } else {
-            let beforeDates = [];
+            const beforeDates = [];
             const need = 6;
             const dayInLastMonth = new Date(year, month, 0).getDate();
             for (let i = dayInLastMonth - need + 1; i <= dayInLastMonth; i++) {
@@ -176,7 +176,7 @@ const Calendar: React.FC<Props> = (props: Props) => {
     const groupByWeek = (thisDates: Array<DateObj>): Array<Array<DateObj>> => {
         const countWeeks = Math.ceil(thisDates.length / 7);
 
-        let weeks = [];
+        const weeks = [];
 
         for (let i = 0; i < countWeeks; i++) {
             weeks.push(thisDates.slice(i * 7, (i + 1) * 7))
@@ -279,14 +279,15 @@ const Calendar: React.FC<Props> = (props: Props) => {
                 <div className="days">
                     {
                         weeks.map((week, i) => {
+                            console.log(week);
                             return <div className="week" key={i}>
                                 {
                                     week.map(day => {
                                         const classes = classnames(
                                             "day",
                                             day.disable ? "disable-day" : "",
-                                            compareDates(day.date, new Date()) ? "today" : '',
-                                            compareDates(day.date, selectedDate) ? "selected" : '',
+                                            compareDates(day.date, new Date()) ? "today" : "",
+                                            compareDates(day.date, selectedDate) ? "selected" : "",
                                         );
                                         return <span
                                             key={day.date.toString()}
