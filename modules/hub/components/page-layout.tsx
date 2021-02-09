@@ -12,6 +12,14 @@ const Page = styled.main`
     row-gap: 40px;
     margin-top: 15px;
   }
+  
+  .loading {
+    width: 100%;
+    height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items:center;
+  }
 `;
 
 export default Page;

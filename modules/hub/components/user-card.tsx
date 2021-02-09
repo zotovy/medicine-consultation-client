@@ -114,6 +114,7 @@ const UserCard: React.FC<Props> = (props) => {
     const date = `${FormatServices.formatDayAndMonth(props.date.from.getDate(), props.date.from.getMonth() + 1)}, ${FormatServices.formatTime(props.date.from)} - ${FormatServices.formatTime(props.date.to)}`;
     let timeBefore = `через ${FormatServices.formatToUsualDate(props.date.from, true, false, "")}`;
     if (timeBefore === "через меньше минуты ") timeBefore = "сейчас";
+    else if (timeBefore.includes(".")) timeBefore = timeBefore.split(" ")[1];
 
     // Apply user profile image
     const profileImage = props.profileImage ?? "/images/user-placeholder.jpg";
@@ -141,8 +142,12 @@ const UserCard: React.FC<Props> = (props) => {
             !props.onConnect || !props.onReject
                 ? <React.Fragment/>
                 : <div className="buttons">
-                    <button className="connect">{ props.connectButtonText ?? "Подключиться" }</button>
-                    <button className="reject">{ props.rejectButtonText ?? "Отказаться" }</button>
+                    <button className="connect" onClick={props.onConnect}>
+                        { props.connectButtonText ?? "Подключиться" }
+                    </button>
+                    <button className="reject" onClick={props.onReject}>
+                        { props.rejectButtonText ?? "Отказаться" }
+                    </button>
                 </div>
         }
     </Card>

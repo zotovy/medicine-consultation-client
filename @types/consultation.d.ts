@@ -1,5 +1,5 @@
 declare type Consultation = {
-    id: string;
+    _id: string;
     patient: string | UserType;
     doctor: string | DoctorType;
     date: Date;

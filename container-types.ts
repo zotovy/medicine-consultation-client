@@ -20,5 +20,5 @@ export default {
     appointController: Symbol("appointController"),
     consultationController: Symbol("consultationController"),
     balanceController: Symbol("balanceController"),
-    hubController: Symbol("hubController"),
+    userHubController: Symbol("userHubController"),
 }
