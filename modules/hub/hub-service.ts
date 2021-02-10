@@ -15,12 +15,12 @@ export default class HubService {
      * @param id
      * @param date
      */
-    public static fetchAppointmentsDate = async (id: string, date: Date): Promise<Date[]> => {
+    public static fetchAppointmentsDates = async (id: string, date: Date): Promise<Date[]> => {
 
         // Change Date obj --> "MM.YYYY" format
         let month = (date.getMonth() + 1).toString();
         const year = date.getFullYear();
-        if (month.length === 0) month = "0" + month;
+        if (month.length === 1) month = "0" + month;
         const stringDate = `${month}.${year}`;
 
         const response = await authFetch<GetAppointsDatesResponse>(() => axios.get(
@@ -43,7 +43,7 @@ export default class HubService {
      */
     public static fetchAppointments = async (id: string, isUser: boolean, date: Date = new Date()): Promise<IAppointment[]> => {
         // Change Date obj --> "DD.MM.YYYY" format
-        let day = date.getDay().toString(),
+        let day = date.getDate().toString(),
             month = (date.getMonth() + 1).toString();
         const year = date.getFullYear();
         if (day.length === 1) day = "0" + day;

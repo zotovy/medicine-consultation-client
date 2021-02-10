@@ -19,15 +19,24 @@ const Container = styled.nav`
 `;
 
 export type Props = {
-    // requests: IAppointRequest[],
-    // appoints: IAppointment,
+    requests: IAppointRequest[],
+    appoints: IAppointment[],
+    dates: Date[],
+    onSelectDate: (date: Date) => any,
+    selectedAppointId: string | null,
+    selectAppoint: (id: string | null) => any,
 };
 
 const NavigationComponent: React.FC<Props> = (props) => {
+    console.log(props.dates);
+
     return <Container>
-        <RequestComponent amount={5} />
-        <Calendar onSelect={(date) => console.log(date)} />
-        <Appoints appoints={[]} />
+        <RequestComponent amount={props.requests.length} />
+        <Calendar dates={props.dates} onSelect={props.onSelectDate} />
+        <Appoints
+                appoints={props.appoints}
+                selectedAppointId={props.selectedAppointId}
+                selectAppoint={props.selectAppoint}/>
     </Container>
 }
 

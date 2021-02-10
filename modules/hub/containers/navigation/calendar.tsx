@@ -83,11 +83,26 @@ const Container = styled.div`
     &.disabled {
       color: #ccc;
     }
+    
+    &.active:not(.disabled, .today, .selected, &:hover) {
+      position: relative;
+      
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: 1px;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background: #30b9d6;
+      }
+    }
   }
 `;
 
 type Props = {
     onSelect: (date: Date) => void,
+    dates: Date[],
 };
 
 type DateObj = {
@@ -97,8 +112,6 @@ type DateObj = {
 }
 
 const Calendar: React.FC<Props> = (props) => {
-
-
     // Props
     const weekdays = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
     const startedFromSun = false;
@@ -157,11 +170,9 @@ const Calendar: React.FC<Props> = (props) => {
     const compareDates = (date1: Date, date2: Date | null) => {
         if (!date2) return false;
 
-        if (date1.getFullYear() === date2.getFullYear() && date1.getMonth() === date2.getMonth() && date1.getDate() === date2.getDate()) {
-            return true
-        } else {
-            return false
-        }
+        return date1.getFullYear() === date2.getFullYear()
+                && date1.getMonth() === date2.getMonth()
+                && date1.getDate() === date2.getDate();
     }
 
     const getDatesFromMon = (year: number, month: number): Array<DateObj> => {
@@ -278,21 +289,22 @@ const Calendar: React.FC<Props> = (props) => {
                 weeks.map(week => {
                     return week.map(day => {
                         const classes = classnames(
-                            "day",
-                            day.disable ? "disabled" : "",
-                            compareDates(day.date, new Date()) ? "today" : "",
-                            compareDates(day.date, selectedDate) ? "selected" : "",
+                                "day",
+                                day.disable ? "disabled" : "",
+                                compareDates(day.date, new Date()) ? "today" : "",
+                                compareDates(day.date, selectedDate) ? "selected" : "",
+                                props.dates.findIndex(date => compareDates(date, day.date)) !== -1 ? "active" : ""
                         );
 
                         return <span
-                            key={day.date.toString()}
-                            onClick={() => {
-                                if (day.disable) return;
-                                setSelectedDate(day.date);
-                                props.onSelect(day.date);
-                            }}
-                            className={classes}
-                            id={day.date.getDate().toString()}>
+                                key={day.date.toString()}
+                                onClick={() => {
+                                    if (day.disable) return;
+                                    setSelectedDate(day.date);
+                                    props.onSelect(day.date);
+                                }}
+                                className={classes}
+                                id={day.date.getDate().toString()}>
                             {day.date.getDate()}
                         </span>
                     });

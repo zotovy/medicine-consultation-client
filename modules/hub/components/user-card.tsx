@@ -12,6 +12,7 @@ const Card = styled.div`
   padding: 15px;
   min-width: 350px;
   position: relative; 
+  border: 1px solid white;
   
   span.time {
     position: absolute;
@@ -106,6 +107,7 @@ export type Props = {
     rejectButtonText?: string;
     cursor?: "pointer" | "initial";
     selected?: boolean;
+    onClick?: () => any;
 }
 
 const UserCard: React.FC<Props> = (props) => {
@@ -123,7 +125,7 @@ const UserCard: React.FC<Props> = (props) => {
         cursor: props.cursor ?? "initial",
     }
 
-    return <Card style={styles} className={`userCard ${props.selected ? "selected" : ""}`} >
+    return <Card onClick={props.onClick} style={styles} className={`userCard ${props.selected ? "selected" : ""}`} >
         <span className="time">{ timeBefore }</span>
         <div className="main">
             <Image

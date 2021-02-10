@@ -16,16 +16,29 @@ const Container = styled.div`
 
 export type Props = {
     appoints: IAppointment[],
+    selectedAppointId: string | null,
+    selectAppoint: (id: string | null) => any,
 }
 
 const Appoints: React.FC<Props> = (props) => {
     return <Container className="appoints_component">
         <h3>Консультации</h3>
-        <UserCard
-            cursor="pointer"
-            selected={true}
-            date={{ from: new Date(), to: new Date() }}
-            name={"Иван Иванов"} />
+        {
+            props.appoints.map(appoint => {
+                return <UserCard
+                        onClick={() => {
+                            if (appoint._id !== props.selectedAppointId)
+                                props.selectAppoint(appoint._id);
+                            else props.selectAppoint(null);
+                        }}
+                        key={ appoint._id }
+                        cursor="pointer"
+                        selected={ appoint._id === props.selectedAppointId }
+                        date={{ from: appoint.from, to: appoint.to }}
+                        name={ appoint.patientName } />
+            })
+        }
+
     </Container>
 }
 
