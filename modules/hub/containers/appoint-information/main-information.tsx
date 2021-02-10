@@ -2,6 +2,8 @@ import styled from "styled-components";
 import React from "react";
 import Image from "next/image";
 import { CloseIcon } from "@/static/icons";
+import FormatServices from "@/services/format-services";
+import Selector from "@/modules/hub/selector";
 
 const MainInformationContainer = styled.div`
   display: flex;
@@ -67,10 +69,20 @@ const MainInformationContainer = styled.div`
 
 type Props = {
     patientPhotoUrl: string;
+    patientName: string;
+    date: {
+        from: Date,
+        to: Date,
+    };
+    onConnect: () => any,
+    onReject: () => any,
 }
 
 const MainInformation: React.FC<Props> = (props) => {
     const profileImage = props.patientPhotoUrl ?? "/images/user-placeholder.jpg";
+
+    // Convert date to correct format
+    const timeBefore = Selector.getAppointDate(props.date.from, props.date.to);
 
     return <MainInformationContainer className="main">
         <Image
@@ -80,12 +92,12 @@ const MainInformation: React.FC<Props> = (props) => {
             src={profileImage}/>
 
         <div className="information">
-            <h3>Иванов Иван Иванович</h3>
-            <span className="date">14 декабря, 10:00 – 11:00</span>
+            <h3>{ props.patientName }</h3>
+            <span className="date">{ timeBefore }</span>
         </div>
 
-        <button className="connect">Подключиться</button>
-        <button className="reject"><CloseIcon/></button>
+        <button className="connect" onClick={props.onConnect}>Подключиться</button>
+        <button className="reject" onClick={props.onReject}><CloseIcon/></button>
     </MainInformationContainer>
 }
 

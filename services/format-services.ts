@@ -87,14 +87,6 @@ export default class FormatServices {
         return input;
     }
 
-    static formatTime = (time: Date): string => {
-        let hours = time.getHours().toString(),
-            minutes = time.getMinutes().toString();
-
-        if (hours.length === 1) hours = "0" + hours;
-        if (minutes.length === 1) minutes = "0" + minutes;
-        return `${hours}:${minutes}`
-    }
 
     static formatDate = (date: Date | undefined): string => {
         if (!date) return "";
@@ -113,7 +105,7 @@ export default class FormatServices {
     };
 
     static formatCard = (input: string): string => {
-        let schema = "**** **** **** ****";
+        const schema = "**** **** **** ****";
         input = FormatServices.formatBySchema(schema, input);
         return input;
     };
@@ -247,5 +239,10 @@ export default class FormatServices {
         return `${h}:${m}`;
     }
 
+    static getAgeFromBirthday = (birthday: Date): string => {
+        const diff = Date.now() - birthday.getTime();
+        const year = Math.abs(new Date(diff).getUTCFullYear() - 1970);
+        return `${year} ${FormatServices.getNumEnding(year, ["год", "года", "лет"])}`;
+    }
 }
 

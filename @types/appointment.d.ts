@@ -7,9 +7,9 @@ declare interface IAppointment {
     phone: number;
     birthday: Date;
     sex: boolean;
-    chronicDiseases: string;
-    symptoms: string;
-    documents: ConsultationDocument[];
+    chronicDiseases?: string;
+    symptoms?: string;
+    documents?: ConsultationDocument[];
     numericDate: string;
 }
 

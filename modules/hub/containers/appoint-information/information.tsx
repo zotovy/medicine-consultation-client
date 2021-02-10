@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import React from "react";
+import FormatServices from "@/services/format-services";
 
 const InformationContainer = styled.div`
   h3.title {
@@ -49,11 +50,7 @@ const InformationContainer = styled.div`
   }
 `;
 
-type Props = {
-
-}
-
-const Information: React.FC<Props> = (props) => {
+const Information: React.FC<IAppointment> = (appointment) => {
     return <InformationContainer className="information_container">
         <h3 className="title">Информация</h3>
         <div className="two-column-section">
@@ -62,8 +59,8 @@ const Information: React.FC<Props> = (props) => {
                 <span className="key">Возраст:</span>
             </div>
             <div className="column">
-                <span className="value">Иванов Иван Иванович</span>
-                <span className="value">31 год</span>
+                <span className="value">{ appointment.patientName }</span>
+                <span className="value">{ FormatServices.getAgeFromBirthday(appointment.birthday) }</span>
             </div>
             <div className="space"/>
             <div className="column">
@@ -71,19 +68,19 @@ const Information: React.FC<Props> = (props) => {
                 <span className="key">Пол:</span>
             </div>
             <div className="column">
-                <span className="value">+7 (932) 33-27-350</span>
-                <span className="value">Мужской</span>
+                <span className="value">{ FormatServices.formatNumericPhone(appointment.phone) }</span>
+                <span className="value">{ appointment.sex ? "Мужской" : "Женский" }</span>
             </div>
         </div>
 
         <div className="one-column-section">
             <div className="column">
-                <span className="key">Хроническое заоблевания:</span>
+                <span className="key">Хронические заболевания:</span>
                 <span className="key">Симптомы:</span>
             </div>
             <div className="column">
-                <span className="value">Отсутствуют</span>
-                <span className="value">У меня короче вообще все болит вообще сильно. Ходить не могу, руки немеют, горло болит, в голове беда.</span>
+                <span className="value">{ appointment.chronicDiseases ?? "Отсутствуют" }</span>
+                <span className="value">{ appointment.symptoms ?? "Отсутствуют" }</span>
             </div>
         </div>
     </InformationContainer>

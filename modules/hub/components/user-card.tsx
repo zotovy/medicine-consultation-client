@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import FormatServices from "@/services/format-services";
+import Selector from "@/modules/hub/selector";
 
 const Card = styled.div`
   display: flex;
@@ -113,7 +114,7 @@ export type Props = {
 const UserCard: React.FC<Props> = (props) => {
 
     // Convert date to correct format
-    const date = `${FormatServices.formatDayAndMonth(props.date.from.getDate(), props.date.from.getMonth() + 1)}, ${FormatServices.formatTime(props.date.from)} - ${FormatServices.formatTime(props.date.to)}`;
+    const date = Selector.getAppointDate(props.date.from, props.date.to);
     let timeBefore = `через ${FormatServices.formatToUsualDate(props.date.from, true, false, "")}`;
     if (timeBefore === "через меньше минуты ") timeBefore = "сейчас";
     else if (timeBefore.includes(".")) timeBefore = timeBefore.split(" ")[1];

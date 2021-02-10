@@ -43,11 +43,15 @@ const Container = styled.div`
     }
 `;
 
-const DocumentComponent: React.FC<ConsultationDocument> = (props) => {
+type Props = ConsultationDocument & {
+    onClick?: () => any,
+}
+
+const DocumentComponent: React.FC<Props> = (props) => {
     const splitted = props.name.split(".");
     const type = splitted[splitted.length - 1].toUpperCase();
 
-    return <Container className="document">
+    return <Container className="document" onClick={props.onClick}>
         <Icon type={ props.type } />
         <div className="info">
             <span className="title">{ props.name.substring(0, 15) + (props.name.length > 15 ? "..." : "") }</span>

@@ -9,6 +9,7 @@ import { useInjection, TYPES } from "container";
 import Menu from "@/components/menu";
 import AppointInformation from "@/modules/hub/containers/appoint-information";
 import NavigationComponent from "@/modules/hub/containers/navigation";
+import NoDataAppointInformationComponent from "@/modules/hub/containers/appoint-information/no-data";
 import { centerPageContent } from "@/static/mixins";
 
 const Layout = styled.main`
@@ -17,6 +18,10 @@ const Layout = styled.main`
   
   .appoint-information {
     width: 100%;
+  }
+  
+  .documents {
+    margin-top: 10px;
   }
 `;
 
@@ -34,7 +39,12 @@ const DoctorHubPage: NextPage = () => {
         <Menu/>
 
         <Layout>
-            <AppointInformation />
+            {
+                controller.selectedAppoint !== null
+                    ? <AppointInformation {...controller.selectedAppoint} />
+                    : <NoDataAppointInformationComponent />
+            }
+
             <NavigationComponent
                     requests={controller.appointsRequests}
                     appoints={controller.appoints}

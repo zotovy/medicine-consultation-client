@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Documents from "./documents";
 import Information from "./information";
 import MainInformation from "./main-information";
+import { toJS } from "mobx";
 
 const Container = styled.div`
   width: 100%;
@@ -31,9 +32,14 @@ const Container = styled.div`
 
 const AppointInformation: React.FC<Props> = (appointment) => {
     return <Container>
-        <MainInformation patientPhotoUrl={appointment.consultation?.patient?.photoUrl} />
+        <MainInformation
+            patientPhotoUrl={appointment.consultation?.patient?.photoUrl}
+            date={{ from: appointment.from, to: appointment.to }}
+            onReject={() => {}}
+            onConnect={() => {}}
+            patientName={appointment.patientName} />
         <Information {...appointment} />
-        <Documents {...appointment}/>
+        <Documents documents={appointment.documents} />
 
         <span className="disclaimer">
             Консультация пройдет 10 декабря с 10:00 до 11:00. Вы можете <a className='reject'>отказаться</a> от этой
