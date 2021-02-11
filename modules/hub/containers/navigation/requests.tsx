@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Link from "next/link";
 
 const Container = styled.div`
   width: 100%;
@@ -49,10 +50,14 @@ export type Props = {
 const RequestComponent: React.FC<Props> = ({ amount }) => {
     if (amount === 0) return <React.Fragment/>;
 
-    return <Container className="requests_component">
-        <AmountText>{ amount }</AmountText>
-        <NewRequestText>Новая заявка</NewRequestText>
-    </Container>
+    return <Link href="/hub/doctor/requests">
+        <a>
+            <Container className="requests_component">
+                <AmountText>{ amount }</AmountText>
+                <NewRequestText>Новая заявка</NewRequestText>
+            </Container>
+        </a>
+    </Link>
 }
 
 export default RequestComponent;

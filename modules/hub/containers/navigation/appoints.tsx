@@ -12,6 +12,10 @@ const Container = styled.div`
     color: #282828;
     margin-bottom: 15px;
   }
+  
+  .userCard {
+    margin-bottom: 20px;
+  }
 `;
 
 export type Props = {
