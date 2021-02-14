@@ -25,7 +25,7 @@ export default class UserHubController {
     }
 
     reject = (id: string): void => {
-        HubService.rejectAppoint(id, true);
+        HubService.rejectAppoint(id);
         this.appoints = this.appoints.filter(e => e._id !== id);
     }
 
