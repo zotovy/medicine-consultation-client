@@ -13,6 +13,14 @@ const MainInformationContainer = styled.div`
     border-radius: 10px;
   }
   
+  .left-side {
+    display: flex;
+  }
+  
+  .profile-image {
+    flex: 0 0 100px;
+  }
+  
   .information {
     width: calc(100% - 355px);
     display: flex;
@@ -33,7 +41,10 @@ const MainInformationContainer = styled.div`
     }
   }
   
-  button {
+  .buttons {
+    display: flex;
+    
+    button {
     height: 40px;
     padding: 10px;
     border-radius: 7px;
@@ -65,6 +76,47 @@ const MainInformationContainer = styled.div`
       }
     }
   }
+  }
+
+  
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    //width: calc(100vw - 40px);
+    
+    .profile-image {
+      width: 75px;
+      height: 75px;
+    }
+    
+    .information {
+      width: 100%;
+      margin-left: 15px;
+      margin-right: 0;
+      
+      h3 {
+        font-size: 18px;
+      }
+      
+      span.date {
+        font-size: 14px; 
+      }
+    }
+    
+    .buttons {
+      margin-top: 10px;
+      width: 100%;
+      
+      button {
+          height: 35px;
+          font-size: 16px;
+          
+          &.connect {
+            width: 100%;
+          }
+      }
+    }
+  }
 `;
 
 type Props = {
@@ -85,19 +137,23 @@ const MainInformation: React.FC<Props> = (props) => {
     const timeBefore = Selector.getAppointDate(props.date.from, props.date.to);
 
     return <MainInformationContainer className="main">
-        <Image
-            className="profile-image"
-            width="100px"
-            height="100px"
-            src={profileImage}/>
+        <div className="left-side">
+            <Image
+                    className="profile-image"
+                    width="100px"
+                    height="100px"
+                    src={profileImage}/>
 
-        <div className="information">
-            <h3>{ props.patientName }</h3>
-            <span className="date">{ timeBefore }</span>
+            <div className="information">
+                <h3>{ props.patientName }</h3>
+                <span className="date">{ timeBefore }</span>
+            </div>
         </div>
 
-        <button className="connect" onClick={props.onConnect}>Подключиться</button>
-        <button className="reject" onClick={props.onReject}><CloseIcon/></button>
+        <div className="buttons">
+            <button className="connect" onClick={props.onConnect}>Подключиться</button>
+            <button className="reject" onClick={props.onReject}><CloseIcon/></button>
+        </div>
     </MainInformationContainer>
 }
 

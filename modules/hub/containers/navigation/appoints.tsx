@@ -16,6 +16,16 @@ const Container = styled.div`
   .userCard {
     margin-bottom: 20px;
   }
+  
+  @media screen and (max-width: 768px) {
+    h3 {
+      font-size: 18px;
+    }
+    
+    .userCard {
+      margin-bottom: 13px;
+    }
+  }
 `;
 
 export type Props = {

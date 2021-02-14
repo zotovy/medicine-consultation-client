@@ -2,6 +2,7 @@ import { authFetch } from "@/services/fetch_services";
 import axios from "axios";
 import TokenServices from "@/services/token-services";
 import {
+    GetAppointByIdResponse,
     GetAppointRequestsResponse,
     GetAppointsDatesResponse,
     GetAppointsResponse,
@@ -147,5 +148,27 @@ export default class HubService {
         if (!response.data.success) {
             throw response.data.error;
         }
+    }
+
+
+    public static fetchAppointById = async (id: string): Promise<IAppointment> => {
+        const response = await authFetch<GetAppointByIdResponse>(() => axios.get(
+            process.env.SERVER_URL + `/api/appoint/${id}`,
+            { headers: { auth: TokenServices.header } }
+        ));
+
+        // Error handling
+        if (!response.data.success) {
+            throw response.data.error;
+        }
+
+        // Change date string --> Date Obj
+        return {
+            ...response.data.appoint,
+            from: new Date(response.data.appoint.from),
+            to: new Date(response.data.appoint.to),
+            birthday: new Date(response.data.appoint.birthday),
+
+        };
     }
 }

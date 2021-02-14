@@ -8,10 +8,14 @@ const Container = styled.div`
   height: calc(100vh - 200px);
   display: flex;
   align-items: center;
+  
+  @media screen and (max-width: 768px) {
+      visibility: hidden;
+  }
 `;
 
 const NoDataAppointInformationComponent: React.FC = () => {
-    return <Container>
+    return <Container className="appoint-information_container">
         <NoData title={"Не выбрана ни одна консультация"}/>
     </Container>
 }

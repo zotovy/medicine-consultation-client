@@ -93,6 +93,26 @@ const Card = styled.div`
   &.selected {
     border: 1px solid #30b9d6;
   }
+  
+  @media screen and (max-width: 768px) {
+      padding: 10px;
+      min-width: initial;
+  
+      span.time {
+        font-size: 13px;
+      }
+      
+      .main {
+        .profile {
+          width: 45px;
+          height: 45px;
+        }
+        
+        .name span {
+          font-size: 16px;
+        }
+      }
+  }
 `;
 
 export type Props = {

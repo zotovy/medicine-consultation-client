@@ -42,3 +42,15 @@ export type PostRejectAppoint = {
     success: false,
     error: "invalid_id" | "not_authorize" | "invalid_token" | "no_user_found" | "invalid_error"
 }
+
+export type GetAppointByIdResponse = {
+    success: true,
+    appoint: IAppointment,
+} | {
+    success: false,
+    error: "not_authorize" | "invalid_token" | "not_found" | "invalid_error"
+}
+
+export type DoctorHubLoadProps = {
+    selected?: string;
+}

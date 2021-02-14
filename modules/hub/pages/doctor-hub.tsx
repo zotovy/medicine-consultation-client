@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { NextPage } from "next";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import DoctorHubController from "@/modules/hub/controllers/doctor-hub-controller";
@@ -13,6 +14,7 @@ import NoDataAppointInformationComponent from "@/modules/hub/containers/appoint-
 import { centerPageContent } from "@/static/mixins";
 
 const Layout = styled.main`
+  overflow-x: hidden;
   display: flex;
   ${centerPageContent}
   
@@ -23,13 +25,45 @@ const Layout = styled.main`
   .documents {
     margin-top: 10px;
   }
+  
+  @media screen and (max-width: 768px) {
+    justify-content: revert;
+      overflow-x: hidden;
+  
+    .appoint-information_container {
+      flex: 0 0 100vw;
+      position: absolute;
+      left: 100vw;  
+      transition: transform 300ms ease-in-out;
+    }
+  
+    .navigation_container {
+      width: calc(100% - 40px);
+      flex: 0 0 auto;
+      position: absolute;
+      left: 0;
+      transition: transform 300ms ease-in-out;
+      margin: 0 20px 20px;
+    }
+    
+    &.appoint-selected {
+      .appoint-information_container {
+        transform: translateX(-100vw);
+      }
+      
+      .navigation_container {
+        transform: translateX(-100vw);
+      }
+    }
+  }
 `;
 
 const DoctorHubPage: NextPage = () => {
     const controller = useInjection<DoctorHubController>(TYPES.doctorHubController);
+    const router = useRouter();
 
     useEffect(() => {
-        controller.load();
+        controller.load(router.query);
     }, []);
 
     return <React.Fragment>
@@ -38,12 +72,14 @@ const DoctorHubPage: NextPage = () => {
         </Head>
         <Menu/>
 
-        <Layout>
-            {
-                controller.selectedAppoint !== null
-                    ? <AppointInformation {...controller.selectedAppoint} />
-                    : <NoDataAppointInformationComponent />
-            }
+        <Layout className={`${controller.selectAnyAppoint ? "appoint-selected" : ""}`}>
+            <AppointInformation
+                    appointment={controller.selectedAppoint}
+                    switchToNavigation={() => {
+                        router.replace("/hub/doctor", undefined, { shallow: true });
+                        controller.selectAnyAppoint = false;
+                        setTimeout(() => controller.selectedAppoint = null, 300);
+                    }}/>
 
             <NavigationComponent
                     requests={controller.appointsRequests}
@@ -51,7 +87,7 @@ const DoctorHubPage: NextPage = () => {
                     dates={controller.appointsDates}
                     onSelectDate={controller.loadAppoints}
                     selectedAppointId={controller.selectedAppoint?._id ?? null}
-                    selectAppoint={controller.selectAppoint} />
+                    selectAppoint={controller.selectAppoint}/>
         </Layout>
     </React.Fragment>;
 }

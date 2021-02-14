@@ -16,6 +16,17 @@ const DocumentsContainer = styled.div`
     column-gap: 30px;
     row-gap: 10px;
   }
+  
+  @media screen and (max-width: 768px) {
+    h3.title {
+      font-size: 18px;
+    }
+    
+    .documents {
+       grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
+       column-gap: 24px;
+    }
+  }
 `;
 
 type Props = {

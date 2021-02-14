@@ -98,6 +98,19 @@ const Container = styled.div`
       }
     }
   }
+  
+    
+  @media screen and (max-width: 768px) {
+    span.weekday {
+      font-size: 15px; 
+    }
+  
+    span.day {
+      font-size: 14px; 
+      width: 25px;
+      height: 25px;
+    } 
+  }
 `;
 
 type Props = {
