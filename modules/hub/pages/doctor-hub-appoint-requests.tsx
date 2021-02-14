@@ -9,14 +9,24 @@ import Menu from "@/components/menu";
 import HeaderComponent from "@/modules/hub/components/header";
 import UserCard from "@/modules/hub/components/user-card";
 import DoctorRequestHubController from "@/modules/hub/controllers/doctor-request-hub-controller";
+import { useRouter } from "next/router";
 
 
 const DoctorHubAppointRequestsPage: NextPage = () => {
     const controller = useInjection<DoctorRequestHubController>(TYPES.doctorRequestsController);
+    const router = useRouter();
+    const isUser = localStorage.getItem("isUser") === "true";
 
     useEffect(() => {
+        // redirect to correct hub based on isUser
+        if (!localStorage.getItem("isUser")) router.push("/login");
+        if (isUser) router.push("/hub/user");
+
         controller.load();
     }, []);
+
+    // return empty page while redirecting to correct hub page
+    if (isUser) return <React.Fragment/>
 
     return <React.Fragment>
         <Head>

@@ -58,10 +58,18 @@ const Layout = styled.main`
 const DoctorHubPage: NextPage = () => {
     const controller = useInjection<DoctorHubController>(TYPES.doctorHubController);
     const router = useRouter();
+    const isUser = localStorage.getItem("isUser") === "true";
 
     useEffect(() => {
+        // redirect to correct hub based on isUser
+        if (!localStorage.getItem("isUser")) router.push("/login");
+        if (isUser) router.push("/hub/user");
+
         controller.load(router.query);
     }, []);
+
+    // return empty page while redirecting to correct hub page
+    if (isUser) return <React.Fragment/>
 
     return <React.Fragment>
         <Head>

@@ -17,10 +17,18 @@ import { LoadingIndicator } from "@/components/loading-indicator";
 const UserHub: NextPage = () => {
     const controller = useInjection<UserHubController>(TYPES.userHubController);
     const router = useRouter();
+    const isUser = localStorage.getItem("isUser") === "true";
 
     useEffect(() => {
+        // redirect to correct hub based on isUser
+        if (!localStorage.getItem("isUser")) router.push("/login");
+        if (!isUser) router.push("/hub/doctor");
+
         controller.load();
     }, []);
+
+    // return empty page while redirecting to correct hub page
+    if (!isUser) return <React.Fragment/>
 
     if (controller.isLoading) return <React.Fragment>
         <Head>
