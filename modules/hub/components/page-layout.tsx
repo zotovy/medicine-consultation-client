@@ -11,9 +11,16 @@ const Page = styled.main`
         row-gap: 40px;
         margin-top: 15px;
         
-        @media screen and (max-width: 1024px) {
-            padding: 0 20px;
+        @media screen and (max-width: 768px) {
             grid-template-columns: repeat(1, 1fr);
+        }
+        
+        @media screen and (min-width: 768px) and (max-width: 1024px) {
+            grid-template-columns: repeat(auto-fill, minmax(335px, 1fr));
+        }
+        
+        @media screen and (max-width: 1440px) {
+            padding: 0 20px;
         }
 
     }

@@ -37,7 +37,6 @@ const Container = styled.div`
     }
 
     @media screen and (max-width: 768px) {
-        padding: 0 20px;
 
         span.back {
             display: none;
@@ -71,6 +70,22 @@ const Container = styled.div`
             font-size: 15px;
             text-align: center;
         }
+    }
+    
+    @media screen and (min-width: 768px) and (max-width: 960px) {
+
+        h3 {
+            font-size: 20px;
+            text-align: center;
+        }
+
+        span.subtitle {
+            font-size: 15px;
+        }
+    }
+    
+    @media screen and (max-width: 1440px) {
+        padding: 0 20px;
     }
 `;
 
