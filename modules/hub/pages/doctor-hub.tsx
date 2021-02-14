@@ -10,7 +10,6 @@ import { useInjection, TYPES } from "container";
 import Menu from "@/components/menu";
 import AppointInformation from "@/modules/hub/containers/appoint-information";
 import NavigationComponent from "@/modules/hub/containers/navigation";
-import NoDataAppointInformationComponent from "@/modules/hub/containers/appoint-information/no-data";
 import { centerPageContent } from "@/static/mixins";
 
 const Layout = styled.main`
@@ -27,32 +26,30 @@ const Layout = styled.main`
   }
   
   @media screen and (max-width: 768px) {
-    justify-content: revert;
-      overflow-x: hidden;
+    width: 100vw;
+    flex-direction: row-reverse;  
   
     .appoint-information_container {
+      transform: translateX(100vw);
       flex: 0 0 100vw;
-      position: absolute;
-      left: 100vw;  
       transition: transform 300ms ease-in-out;
     }
   
     .navigation_container {
+      transform: translateX(100vw);
       width: calc(100% - 40px);
       flex: 0 0 auto;
-      position: absolute;
-      left: 0;
       transition: transform 300ms ease-in-out;
       margin: 0 20px 20px;
     }
     
     &.appoint-selected {
       .appoint-information_container {
-        transform: translateX(-100vw);
+        transform: translateX(0vw);
       }
       
       .navigation_container {
-        transform: translateX(-100vw);
+        transform: translateX(0vw);
       }
     }
   }
