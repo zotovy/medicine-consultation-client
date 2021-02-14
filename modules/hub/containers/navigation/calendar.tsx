@@ -5,112 +5,112 @@ import { ChevronRight } from "@/static/icons";
 import classnames from "classnames";
 
 const Container = styled.div`
-  width: 100%;
-  background: white;
-  border-radius: 10px;
-  padding: 15px;
-  box-shadow: 0 5px 20px 0 #0000000d;
-  
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 15px;
-    
-    .icon {
-      display: flex;
-      justify-content:center;
-      align-items:center;
-      cursor: pointer;
-      
-      svg {
-        width: 15px;
-        height: 15px;
-      }
-      
-      &.back {
-        transform: rotate(180deg);
-      } 
-    }
-    
-    span.month {
-      color: #282828;
-      font-size: 16px;
-    }
-  }
-  
-  .days {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    row-gap: 20px;
-  }
-  
-  span.weekday {
-    text-align: center;
-    color: #282828;
-    font-weight: 500;
-    font-size: 16px; 
-  }
-  
-  span.day {
-    color: #565656;
-    font-size: 16px; 
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content:center;
-    border-radius: 50%;
-    width: 35px;
-    height: 35px;
-    margin: 0 auto;
-    user-select: none;
-    
-    &:hover:not(.selected, .today, .disabled) {
-        border: 0.75px solid #dbdbdb;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 5px 20px 0 #0000000d;
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 15px;
+
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            svg {
+                width: 15px;
+                height: 15px;
+            }
+
+            &.back {
+                transform: rotate(180deg);
+            }
+        }
+
+        span.month {
+            color: #282828;
+            font-size: 16px;
+        }
     }
-    
-    &.today {
-      color: #30b9d6;
-      border: 0.75px solid #30b9d6;
+
+    .days {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        row-gap: 20px;
     }
-    
-    &.selected {
-      background: #30b9d6;
-      color: white;
-    }
-    
-    &.disabled {
-      color: #ccc;
-    }
-    
-    &.active:not(.disabled, .today, .selected, &:hover) {
-      position: relative;
-      
-      &::after {
-        content: "";
-        position: absolute;
-        bottom: 1px;
-        width: 3px;
-        height: 3px;
-        border-radius: 50%;
-        background: #30b9d6;
-      }
-    }
-  }
-  
-    
-  @media screen and (max-width: 768px) {
+
     span.weekday {
-      font-size: 15px; 
+        text-align: center;
+        color: #282828;
+        font-weight: 500;
+        font-size: 16px;
     }
-  
+
     span.day {
-      font-size: 14px; 
-      width: 25px;
-      height: 25px;
-    } 
-  }
+        color: #565656;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        width: 35px;
+        height: 35px;
+        margin: 0 auto;
+        user-select: none;
+
+        &:hover:not(.selected, .today, .disabled) {
+            border: 0.75px solid #dbdbdb;
+        }
+
+        &.today {
+            color: #30b9d6;
+            border: 0.75px solid #30b9d6;
+        }
+
+        &.selected {
+            background: #30b9d6;
+            color: white;
+        }
+
+        &.disabled {
+            color: #ccc;
+        }
+
+        &.active:not(.disabled, .today, .selected, &:hover) {
+            position: relative;
+
+            &::after {
+                content: "";
+                position: absolute;
+                bottom: 1px;
+                width: 3px;
+                height: 3px;
+                border-radius: 50%;
+                background: #30b9d6;
+            }
+        }
+    }
+
+
+    @media screen and (max-width: 1024px) {
+        span.weekday {
+            font-size: 15px;
+        }
+
+        span.day {
+            font-size: 14px;
+            width: 25px;
+            height: 25px;
+        }
+    }
 `;
 
 type Props = {

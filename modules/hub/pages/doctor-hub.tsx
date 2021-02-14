@@ -13,28 +13,28 @@ import NavigationComponent from "@/modules/hub/containers/navigation";
 import { centerPageContent } from "@/static/mixins";
 
 const Layout = styled.main`
-  overflow-x: hidden;
-  display: flex;
-  ${centerPageContent}
-  
-  .appoint-information {
+    display: flex;
+    ${centerPageContent}
+    
+    .appoint-information {
     width: 100%;
-  }
-  
-  .documents {
+    }
+    
+    .documents {
     margin-top: 10px;
-  }
-  
-  @media screen and (max-width: 768px) {
+    }
+    
+    @media screen and (max-width: 768px) {
     width: 100vw;
-    flex-direction: row-reverse;  
-  
+    flex-direction: row-reverse;
+    overflow-x: hidden;
+
     .appoint-information_container {
       transform: translateX(100vw);
       flex: 0 0 100vw;
       transition: transform 300ms ease-in-out;
     }
-  
+    
     .navigation_container {
       transform: translateX(100vw);
       width: calc(100% - 40px);
@@ -52,7 +52,7 @@ const Layout = styled.main`
         transform: translateX(0vw);
       }
     }
-  }
+    }
 `;
 
 const DoctorHubPage: NextPage = () => {
@@ -80,7 +80,7 @@ const DoctorHubPage: NextPage = () => {
 
             <NavigationComponent
                     requests={controller.appointsRequests}
-                    appoints={controller.appoints}
+                    appoints={controller.appoints }
                     dates={controller.appointsDates}
                     onSelectDate={controller.loadAppoints}
                     selectedAppointId={controller.selectedAppoint?._id ?? null}
