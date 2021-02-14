@@ -100,7 +100,7 @@ const Container = styled.div`
     }
 
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 960px) {
         span.weekday {
             font-size: 15px;
         }

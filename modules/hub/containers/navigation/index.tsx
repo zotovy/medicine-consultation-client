@@ -29,6 +29,11 @@ const Container = styled.nav`
         margin-right: 20px;
         margin-left: 55px;
     }
+
+    @media screen and (min-width: 1024px) and (max-width: 1300px) {
+        margin-right: 20px;
+        margin-left: 55px;
+    }
 `;
 
 export type Props = {

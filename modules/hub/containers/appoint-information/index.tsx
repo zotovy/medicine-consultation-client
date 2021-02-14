@@ -62,7 +62,11 @@ const Container = styled.div`
         }
     }
 
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
+    @media screen and (min-width: 768px) and (max-width: 1300px) {
+        span.disclaimer {
+            font-size: 16px;
+        }
+        
         padding-left: 20px;
     }
 `;

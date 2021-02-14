@@ -2,7 +2,6 @@ import styled from "styled-components";
 import React from "react";
 import Image from "next/image";
 import { CloseIcon } from "@/static/icons";
-import FormatServices from "@/services/format-services";
 import Selector from "@/modules/hub/selector";
 
 const MainInformationContainer = styled.div`
@@ -14,6 +13,7 @@ const MainInformationContainer = styled.div`
     }
 
     .left-side {
+        flex: 0 0 calc(100% - 225px);
         display: flex;
     }
 
@@ -79,7 +79,7 @@ const MainInformationContainer = styled.div`
     }
 
 
-    @media screen and (max-width: 1024px) {
+    @media screen and (max-width: 960px) {
         flex-direction: column;
         align-items: flex-start;
 
@@ -113,6 +113,40 @@ const MainInformationContainer = styled.div`
                 &.connect {
                     width: 100%;
                 }
+            }
+        }
+    }
+    
+    @media screen and (min-width: 960px) and (max-width: 1300px) {
+        flex-direction: column;
+        align-items: flex-start;
+
+        .profile-image {
+            width: 75px;
+            height: 75px;
+        }
+
+        .information {
+            width: 100%;
+            margin-left: 15px;
+            margin-right: 0;
+
+            h3 {
+                font-size: 20px;
+            }
+
+            span.date {
+                font-size: 15px;
+            }
+        }
+
+        .buttons {
+            margin-top: 10px;
+            width: 100%;
+            max-width: 335px;
+
+            button.connect {
+                width: 100%;
             }
         }
     }

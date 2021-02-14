@@ -13,7 +13,7 @@ const Container = styled.div`
     align-items: center;
     cursor: pointer;
     
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
+    @media screen and (min-width: 768px) and (max-width: 960px) {
         height: auto;
     }
 `;
@@ -33,7 +33,7 @@ const AmountText = styled.div`
     justify-content: center;
     align-items: center;
     
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
+    @media screen and (min-width: 768px) and (max-width: 960px) {
         width: 25px;
         height: 25px;
         font-size: 15px;
@@ -52,7 +52,7 @@ const NewRequestText = styled.span`
     text-align: left;
     color: #282828;
     
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
+    @media screen and (min-width: 768px) and (max-width: 960px) {
         font-size: 16px;
         line-height: 1.25;
     }

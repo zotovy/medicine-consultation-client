@@ -17,7 +17,7 @@ const DocumentsContainer = styled.div`
     row-gap: 10px;
   }
   
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 1024px) {
     h3.title {
       font-size: 18px;
     }

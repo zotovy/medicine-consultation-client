@@ -16,7 +16,7 @@ const Container = styled.div`
         margin-bottom: 20px;
     }
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 1024px) {
         h3 {
             font-size: 18px;
         }
@@ -25,13 +25,6 @@ const Container = styled.div`
             margin-bottom: 13px;
         }
     }
-    
-    @media screen and (min-width: 768px) and (max-width: 1024px) {
-        h3 {
-            font-size: 18px;
-        }      
-    }
-
 `;
 
 export type Props = {
