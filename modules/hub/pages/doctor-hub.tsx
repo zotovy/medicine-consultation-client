@@ -78,8 +78,7 @@ const DoctorHubPage: NextPage = () => {
                         setTimeout(() => controller.selectedAppoint = null, 300);
                     }}
                     connectToConsultation={() => router.push(`/consultation/${controller.selectedAppoint?._id}`)}
-                    rejectFromConsultation={() => {
-                    }}/>
+                    rejectFromConsultation={() => controller.rejectAppoint(controller.selectedAppoint?._id as string)}/>
 
             <NavigationComponent
                     requests={controller.appointsRequests}

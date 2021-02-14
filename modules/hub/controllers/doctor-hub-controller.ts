@@ -71,7 +71,6 @@ export default class DoctorHubController {
         this.selectedAppoint = this.appoints.find(e => e._id === id) ?? null;
         if (id) {
             const url = new URL(document.location.href);
-            console.log(url);
             url.searchParams.set("selected", id);
             window.history.pushState({ path: url.href }, "", url.href);
         }
@@ -83,8 +82,46 @@ export default class DoctorHubController {
         }
     }
 
+    @action rejectAppoint = (id: string): void => {
+        const appoint = this.appoints.find(e => e._id == id);
+        if (!appoint) return;
+
+        // remove appoint
+        this.appoints = this.appoints.filter(e => e._id !== id);
+
+        // if appoint was a single on date --> remove appointDate
+        if (this.appoints.findIndex(e => e.numericDate === appoint.numericDate) === -1) {
+            this.appointsDates = this.appointsDates.filter(e => this.numericMonthAndYear(e) !== appoint.numericDate);
+        }
+
+        // if appoint was selected -> unselect
+        if (this.selectedAppoint?._id === appoint._id) {
+            this.selectedAppoint = null;
+            this.selectAnyAppoint = false;
+
+            // remove from query in URL
+            const url = new URL(document.location.href);
+            url.searchParams.delete("selected");
+            window.history.pushState({ path: url.href }, "", url.href);
+        }
+
+        // update cache
+        this.cache.appoints[FormatServices.formatDate(appoint.from)] = this.appoints;
+
+        // send a request to remove this appoint on server
+        HubService.rejectAppoint(id);
+    }
+
     private get uid() {
         return localStorage.getItem("uid") as string;
+    }
+
+    private numericMonthAndYear = (date: Date) => {
+        let month = (date.getMonth() + 1).toString(),
+            day = date.getDate().toString();
+        if (month.length === 1) month = "0" + month;
+        if (day.length === 1) day = "0" + day;
+        return `${day}.${month}.${date.getFullYear()}`;
     }
 }
 

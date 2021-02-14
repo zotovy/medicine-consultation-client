@@ -6,7 +6,7 @@ import {
     GetAppointRequestsResponse,
     GetAppointsDatesResponse,
     GetAppointsResponse,
-    PostConfirmAppointRequest, PostRejectAppointRequest
+    PostConfirmAppointRequest, PostRejectAppoint, PostRejectAppointRequest
 } from "@/modules/hub/types";
 
 export default class HubService {
@@ -131,15 +131,13 @@ export default class HubService {
     }
 
     /**
-     * @throws PostRejectAppointRequest.error
+     * @throws PostRejectAppoint.error
      * @param id
-     * @param isUser
      */
-    public static rejectAppoint = async (id: string, isUser: boolean): Promise<void> => {
-        const uid = localStorage.getItem("uid");
+    public static rejectAppoint = async (id: string): Promise<void> => {
 
-        const response = await authFetch<PostRejectAppointRequest>(() => axios.post(
-            process.env.SERVER_URL + `/api/${isUser ? "user" : "doctor"}/${uid}/appoint/${id}/reject`,
+        const response = await authFetch<PostRejectAppoint>(() => axios.post(
+            process.env.SERVER_URL + `/api/appoint/${id}/reject`,
             {},
             { headers: { auth: TokenServices.header } }
         ));
