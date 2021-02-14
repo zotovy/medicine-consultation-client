@@ -87,10 +87,8 @@ const AppointInformation: React.FC<Props> = (props) => {
         <MainInformation
                 patientPhotoUrl={props.appointment.consultation?.patient?.photoUrl}
                 date={{ from: props.appointment.from, to: props.appointment.to }}
-                onReject={() => {
-                }}
-                onConnect={() => {
-                }}
+                onConnect={props.connectToConsultation}
+                onReject={props.rejectFromConsultation}
                 patientName={props.appointment.patientName}/>
         <Information {...props.appointment} />
         <Documents documents={props.appointment.documents}/>
@@ -105,6 +103,8 @@ const AppointInformation: React.FC<Props> = (props) => {
 type Props = {
     appointment: PropsAppointment | null,
     switchToNavigation: () => any,
+    connectToConsultation: () => any,
+    rejectFromConsultation: () => any,
 }
 
 interface PropsAppointment extends IAppointment {

@@ -9,12 +9,16 @@ const Container = styled.nav`
     flex: 0 0 375px;
     margin-left: 80px;
     
+    .requests_component {
+        margin-bottom: 20px;
+    }
+    
     .calendar_component {
-    margin-top: 20px;
+      margin-bottom: 20px;
     }
     
     .appoints_component {
-    margin-top: 30px;
+      margin-bottom: 30px;
     }
     
     @media screen and (max-width: 768px) {
@@ -47,8 +51,8 @@ export type Props = {
 
 const NavigationComponent: React.FC<Props> = (props) => {
     return <Container className="navigation_container">
-        {/*<RequestComponent amount={props.requests.length} />*/}
-        <RequestComponent amount={5} />
+        <RequestComponent amount={props.requests.length} />
+        {/*<RequestComponent amount={5} />*/}
         <Calendar dates={props.dates} onSelect={props.onSelectDate} />
         <Appoints
                 appoints={props.appoints}

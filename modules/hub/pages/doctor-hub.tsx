@@ -14,44 +14,44 @@ import { centerPageContent } from "@/static/mixins";
 
 const Layout = styled.main`
     display: flex;
-    ${centerPageContent}
-    
-    .appoint-information {
-    width: 100%;
-    }
-    
-    .documents {
-    margin-top: 10px;
-    }
-    
-    @media screen and (max-width: 768px) {
-    width: 100vw;
-    flex-direction: row-reverse;
-    overflow-x: hidden;
 
-    .appoint-information_container {
-      transform: translateX(100vw);
-      flex: 0 0 100vw;
-      transition: transform 300ms ease-in-out;
+    ${centerPageContent}
+    .appoint-information {
+        width: 100%;
     }
-    
-    .navigation_container {
-      transform: translateX(100vw);
-      width: calc(100% - 40px);
-      flex: 0 0 auto;
-      transition: transform 300ms ease-in-out;
-      margin: 0 20px 20px;
+
+    .documents {
+        margin-top: 10px;
     }
-    
-    &.appoint-selected {
-      .appoint-information_container {
-        transform: translateX(0vw);
-      }
-      
-      .navigation_container {
-        transform: translateX(0vw);
-      }
-    }
+
+    @media screen and (max-width: 768px) {
+        width: 100vw;
+        flex-direction: row-reverse;
+        overflow-x: hidden;
+
+        .appoint-information_container {
+            transform: translateX(100vw);
+            flex: 0 0 100vw;
+            transition: transform 300ms ease-in-out;
+        }
+
+        .navigation_container {
+            transform: translateX(100vw);
+            width: calc(100% - 40px);
+            flex: 0 0 auto;
+            transition: transform 300ms ease-in-out;
+            margin: 0 20px 20px;
+        }
+
+        &.appoint-selected {
+            .appoint-information_container {
+                transform: translateX(0vw);
+            }
+
+            .navigation_container {
+                transform: translateX(0vw);
+            }
+        }
     }
 `;
 
@@ -65,7 +65,7 @@ const DoctorHubPage: NextPage = () => {
 
     return <React.Fragment>
         <Head>
-            <title>Hub</title>
+            <title>Консультации</title>
         </Head>
         <Menu/>
 
@@ -76,11 +76,14 @@ const DoctorHubPage: NextPage = () => {
                         router.replace("/hub/doctor", undefined, { shallow: true });
                         controller.selectAnyAppoint = false;
                         setTimeout(() => controller.selectedAppoint = null, 300);
+                    }}
+                    connectToConsultation={() => router.push(`/consultation/${controller.selectedAppoint?._id}`)}
+                    rejectFromConsultation={() => {
                     }}/>
 
             <NavigationComponent
                     requests={controller.appointsRequests}
-                    appoints={controller.appoints }
+                    appoints={controller.appoints}
                     dates={controller.appointsDates}
                     onSelectDate={controller.loadAppoints}
                     selectedAppointId={controller.selectedAppoint?._id ?? null}

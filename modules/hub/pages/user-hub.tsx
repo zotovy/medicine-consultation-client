@@ -24,7 +24,7 @@ const UserHub: NextPage = () => {
 
     if (controller.isLoading) return <React.Fragment>
         <Head>
-            <title>Hub</title>
+            <title>Консультации</title>
         </Head>
         <Menu/>
         <Layout>

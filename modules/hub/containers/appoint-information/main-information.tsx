@@ -116,7 +116,7 @@ const MainInformationContainer = styled.div`
             }
         }
     }
-    
+
     @media screen and (min-width: 960px) and (max-width: 1300px) {
         flex-direction: column;
         align-items: flex-start;
@@ -172,10 +172,10 @@ const MainInformation: React.FC<Props> = (props) => {
     return <MainInformationContainer className="main">
         <div className="left-side">
             <Image
-                    className="profile-image"
-                    width="100px"
-                    height="100px"
-                    src={profileImage}/>
+                className="profile-image"
+                width="100px"
+                height="100px"
+                src={profileImage}/>
 
             <div className="information">
                 <h3>{props.patientName}</h3>
