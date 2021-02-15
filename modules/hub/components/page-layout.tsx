@@ -3,6 +3,7 @@ import { centerPageContent } from "@/static/mixins";
 
 const Page = styled.main`
     ${centerPageContent}
+    
     .cards {
         width: 100%;
         display: grid;

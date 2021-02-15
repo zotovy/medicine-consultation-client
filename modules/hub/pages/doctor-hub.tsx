@@ -10,6 +10,7 @@ import { useInjection, TYPES } from "container";
 import Menu from "@/components/menu";
 import AppointInformation from "@/modules/hub/containers/appoint-information";
 import NavigationComponent from "@/modules/hub/containers/navigation";
+import LoadingContainer from "@/modules/hub/containers/loading";
 import { centerPageContent } from "@/static/mixins";
 
 const Layout = styled.main`
@@ -70,6 +71,11 @@ const DoctorHubPage: NextPage = () => {
 
     // return empty page while redirecting to correct hub page
     if (isUser) return <React.Fragment/>
+
+    // show loading spinner if loading some data
+    if (controller.isLoading) {
+        return <LoadingContainer title="Консультации"/>
+    }
 
     return <React.Fragment>
         <Head>

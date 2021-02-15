@@ -12,6 +12,7 @@ import HeaderComponent from "@/modules/hub/components/header";
 import UserCard from "@/modules/hub/components/user-card";
 import NoData from "@/modules/hub/components/no-data";
 import { LoadingIndicator } from "@/components/loading-indicator";
+import LoadingContainer from "@/modules/hub/containers/loading";
 
 
 const UserHub: NextPage = () => {
@@ -29,6 +30,11 @@ const UserHub: NextPage = () => {
 
     // return empty page while redirecting to correct hub page
     if (!isUser) return <React.Fragment/>
+
+    // show spinner if loading some data
+    if (controller.isLoading) {
+        return <LoadingContainer title="Консультации" />
+    }
 
     if (controller.isLoading) return <React.Fragment>
         <Head>

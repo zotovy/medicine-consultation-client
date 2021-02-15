@@ -3,7 +3,6 @@ import { action, makeObservable, observable, toJS } from "mobx";
 import HubService from "@/modules/hub/hub-service";
 import FormatServices from "@/services/format-services";
 import { DoctorHubLoadProps } from "@/modules/hub/types";
-import * as Url from "url";
 
 @injectable()
 export default class DoctorHubController {
@@ -44,7 +43,6 @@ export default class DoctorHubController {
         // check query url and change selectedAppoint state if something selected
         if (query?.selected) {
             this.selectedAppoint = await HubService.fetchAppointById(query.selected).catch(() => null);
-            console.log(toJS(this.selectedAppoint));
             this.selectAnyAppoint = !!this.selectedAppoint;
         }
 
