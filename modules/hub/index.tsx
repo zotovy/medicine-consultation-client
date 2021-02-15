@@ -16,8 +16,7 @@ const Hub: NextPage = () => {
     const authorized = localStorage.getItem("uid");
     const isUser = localStorage.getItem("isUser") !== "false";
 
-
-    if (!authorized) router.push('/login');
+    if (!authorized) router.push("/login");
     else if (isUser) router.push("/hub/user");
     else router.push("/hub/doctor");
 
