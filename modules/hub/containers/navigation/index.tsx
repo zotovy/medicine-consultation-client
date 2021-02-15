@@ -14,7 +14,7 @@ const Container = styled.nav`
     }
     
     .calendar_component {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
     
     .appoints_component {
