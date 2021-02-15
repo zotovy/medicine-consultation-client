@@ -92,6 +92,7 @@ const Card = styled.div`
 
     &.selected {
         border: 1px solid #30b9d6;
+        box-shadow: none;
     }
 
     @media screen and (max-width: 1024px) {

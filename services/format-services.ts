@@ -82,7 +82,7 @@ export default class FormatServices {
     };
 
     static formatTimeInput = (input: string): string => {
-        let schema = "**:**"
+        const schema = "**:**"
         input = FormatServices.formatBySchema(schema, input);
         return input;
     }
@@ -90,7 +90,7 @@ export default class FormatServices {
 
     static formatDate = (date: Date | undefined): string => {
         if (!date) return "";
-        let day = date.getDay().toString(), month = (date.getMonth() + 1).toString();
+        let day = date.getDate().toString(), month = (date.getMonth() + 1).toString();
         if (day.length === 1) day = "0" + day;
         if (month.length === 1) month = "0" + month;
 
