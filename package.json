@@ -99,6 +99,7 @@
     "react-protected-route-component": "^0.1.1",
     "react-responsive": "^8.1.0",
     "react-responsive-carousel": "^3.2.11",
+    "react-spring": "^8.0.27",
     "reflect-metadata": "^0.1.13",
     "resolve": "1.15.0",
     "resolve-url-loader": "^3.1.2",

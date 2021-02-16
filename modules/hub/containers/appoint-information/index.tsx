@@ -66,7 +66,7 @@ const Container = styled.div`
         span.disclaimer {
             font-size: 16px;
         }
-        
+
         padding-left: 20px;
     }
 `;
@@ -74,6 +74,7 @@ const Container = styled.div`
 
 const AppointInformation: React.FC<Props> = (props) => {
     if (!props.appointment) return <NoDataAppointInformationComponent/>;
+    const appointment = props.appointment as PropsAppointment;
 
     return <Container className="appoint-information_container">
         <header>
@@ -85,13 +86,13 @@ const AppointInformation: React.FC<Props> = (props) => {
         </header>
 
         <MainInformation
-                patientPhotoUrl={props.appointment.consultation?.patient?.photoUrl}
-                date={{ from: props.appointment.from, to: props.appointment.to }}
-                onConnect={props.connectToConsultation}
-                onReject={props.rejectFromConsultation}
-                patientName={props.appointment.patientName}/>
-        <Information {...props.appointment} />
-        <Documents documents={props.appointment.documents}/>
+                patientPhotoUrl={ appointment.consultation?.patient?.photoUrl }
+                date={{ from: appointment.from, to: props.appointment.to }}
+                onConnect={ props.connectToConsultation }
+                onReject={ props.rejectFromConsultation }
+                patientName={ appointment.patientName }/>
+        <Information {...appointment} />
+        <Documents documents={ appointment.documents }/>
 
         <span className="disclaimer">
             Консультация пройдет 10 декабря с 10:00 до 11:00. Вы можете <a className='reject'>отказаться</a> от этой
@@ -101,7 +102,7 @@ const AppointInformation: React.FC<Props> = (props) => {
 }
 
 type Props = {
-    appointment: PropsAppointment | null,
+    appointment: IAppointment | null,
     switchToNavigation: () => any,
     connectToConsultation: () => any,
     rejectFromConsultation: () => any,

@@ -2,7 +2,7 @@ declare interface IAppointment {
     _id: string;
     from: Date;
     to: Date;
-    consultation: IConsultation | string;
+    consultation: Consultation | string;
     patientName: string;
     phone: number;
     birthday: Date;

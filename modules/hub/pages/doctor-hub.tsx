@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
@@ -12,6 +12,7 @@ import AppointInformation from "@/modules/hub/containers/appoint-information";
 import NavigationComponent from "@/modules/hub/containers/navigation";
 import LoadingContainer from "@/modules/hub/containers/loading";
 import { centerPageContent } from "@/static/mixins";
+import RejectConsultationModal from "@/modules/hub/containers/reject-consultation-modal";
 
 const Layout = styled.main`
     display: flex;
@@ -61,6 +62,8 @@ const DoctorHubPage: NextPage = () => {
     const router = useRouter();
     const isUser = localStorage.getItem("isUser") === "true";
 
+    const [isRejectModalWindowShows, setIsRejectModalWindowShows] = useState(false);
+
     useEffect(() => {
         // redirect to correct hub based on isUser
         if (!localStorage.getItem("isUser")) router.push("/login");
@@ -81,6 +84,20 @@ const DoctorHubPage: NextPage = () => {
         <Head>
             <title>Консультации</title>
         </Head>
+
+        {
+            controller.selectedAppoint !== null && typeof controller.selectedAppoint.consultation !== "string"
+                    ? <RejectConsultationModal
+                            canSee={isRejectModalWindowShows}
+                            onClose={() => setIsRejectModalWindowShows(false)}
+                            onReject={() => {
+                                controller.rejectAppoint(controller.selectedAppoint?._id as string);
+                                setIsRejectModalWindowShows(false);
+                            }}
+                            appoint={controller.selectedAppoint}/>
+                    : <React.Fragment/>
+        }
+
         <Menu/>
 
         <Layout className={`${controller.selectAnyAppoint ? "appoint-selected" : ""}`}>
@@ -92,7 +109,7 @@ const DoctorHubPage: NextPage = () => {
                         setTimeout(() => controller.selectedAppoint = null, 300);
                     }}
                     connectToConsultation={() => router.push(`/consultation/${controller.selectedAppoint?._id}`)}
-                    rejectFromConsultation={() => controller.rejectAppoint(controller.selectedAppoint?._id as string)}/>
+                    rejectFromConsultation={() => setIsRejectModalWindowShows(true)}/>
 
             <NavigationComponent
                     requests={controller.appointsRequests}
