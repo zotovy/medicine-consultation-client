@@ -40,7 +40,7 @@ const ConsultationsPage: NextPage = () => {
         </Head>
         <Menu/>
         <main className="consultations-page settings-page">
-            <NoteComponent />
+            <NoteComponent consultationController={controller} />
             <Navigation active="/consultations" />
             <GoBackIcon/>
             <section className="content consultations">
