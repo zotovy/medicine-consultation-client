@@ -8,7 +8,8 @@ import Link from "next/link";
 import MediaQuery from "react-responsive";
 import AnimController from "../controller";
 import Menu from "@/components/menu";
-import { useInjection, TYPES } from "../../../container";
+import { useInjection, TYPES } from "container";
+import Footer from "@/components/footer";
 
 
 
@@ -2203,7 +2204,7 @@ const MainPage: NextPage = () => {
                     </p>
                 </div>
             </section>
-            {/* <Footer/> */}
+             <Footer/>
         </React.Fragment>;
 }
 
