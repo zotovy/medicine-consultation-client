@@ -66,7 +66,7 @@ const Page = styled.main`
                 height: auto;
                 width: 42px;
                 padding-right: 10px;
-                
+
                 &.selected path {
                     fill: #30B9D6;
                 }
@@ -75,14 +75,33 @@ const Page = styled.main`
             &:hover svg path {
                 fill: #30B9D6;
             }
-            
+
             svg:hover ~ svg > path {
                 fill: #CCCCCC;
             }
         }
-        
+
         .confirm-button {
             width: 335px;
+        }
+        
+        @media screen and (max-width: 960px) {
+            width: 100%;
+            margin: 0 20px;
+            
+            h1 {
+                text-align: center;
+                font-size: 20px;
+            }
+
+            p.subtitle {
+                text-align: center;
+                font-size: 16px;
+            }
+            
+            .confirm-button {
+                width: 100%;
+            }
         }
     }
 `;
@@ -94,9 +113,9 @@ const WriteReviewPage: NextPage = () => {
     const [isContentEmpty, setIsContentEmpty] = useState(true);
 
     useEffect(() => {
-       if (typeof window !== "undefined") {
-           controller.load(router.query.id as string);
-       }
+        if (typeof window !== "undefined") {
+            controller.load(router.query.id as string);
+        }
     }, []);
 
     return <React.Fragment>
@@ -128,7 +147,7 @@ const WriteReviewPage: NextPage = () => {
                     {
                         [1, 2, 3, 4, 5].map(e => {
                             return <FullStar
-                                    className={ controller.point >= e ? "selected" : ""}
+                                    className={controller.point >= e ? "selected" : ""}
                                     id={`star-${e}`}
                                     key={`star-${e}`}
                                     onClick={() => controller.point = e}
