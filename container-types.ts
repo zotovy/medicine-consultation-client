@@ -22,5 +22,6 @@ export default {
     balanceController: Symbol("balanceController"),
     userHubController: Symbol("userHubController"),
     doctorHubController: Symbol("doctorHubController"),
-    doctorRequestsController: Symbol("doctorRequestsController")
+    doctorRequestsController: Symbol("doctorRequestsController"),
+    reviewController: Symbol("ReviewController"),
 }

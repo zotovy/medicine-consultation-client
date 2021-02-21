@@ -2,14 +2,15 @@ import React from "react";
 import styled from "styled-components";
 
 type Props = {
-  onConfirm: () => void;
-  content: string;
-  borderRadius?: string;
-  fullSize?: boolean;
-  size?: string;
-  styles?: object;
-  dataTest?: string;
-  className?: string;
+    onConfirm: () => void;
+    content: string;
+    borderRadius?: string;
+    fullSize?: boolean;
+    size?: string;
+    styles?: any;
+    dataTest?: string;
+    className?: string;
+    disabled?: boolean;
 };
 
 const Button = styled.div`
@@ -22,53 +23,44 @@ const Button = styled.div`
     display: flex;
     justify-content: center;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-
-    &:hover {
-      box-shadow: 0px 3px 5px rgba(48, 185, 215, 0.3);
-    }
-
-    &:active {
-      background: rgba(48, 185, 215, 0.8);
-    }
-  `;
-
-const Text = styled.p`
-  color: white;
-  user-select: none;
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -o-user-select: none;
-  
-  /* Phone */
-  @media screen and (max-width: 768px) {
-     
-  }  
+    color: white;
+    user-select: none;
     
-  /* Tablet */
-  @media screen and (max-width: 1024px) and (min-width: 768px) {
-      font-size: 18px;
-  }
-`;
+    &.disable {
+        background: #F2F2F2;
+        color: #949494;
+        cursor: not-allowed;
+    }
 
+    &:hover:not(.disable) {
+        box-shadow: 0px 3px 5px rgba(48, 185, 215, 0.3);
+    }
+
+    &:active:not(.disable) {
+        background: rgba(48, 185, 215, 0.8);
+    }
+
+    /* Tablet */
+    @media screen and (max-width: 1024px) and (min-width: 768px) {
+        font-size: 18px;
+    }
+`;
 
 
 const ConfirmButton: React.FC<Props> = (props: Props) => {
 
-  console.log(props);
-
-  return <Button
-    className={`confirm-button ${props.className}`}
-    data-test={props.dataTest}
-    {/*
+    return <Button
+            className={`confirm-button ${props.className} ${props.disabled ? "disable" : ""}`}
+            data-test={props.dataTest}
+            {/*
      // @ts-ignore */  ...{}}
-    style={{ ...props.styles?.button, borderRadius: `${props.borderRadius ?? "10px"}` }}
-    onClick={(e) => props.onConfirm()}
-  >
-    {/*
+            style={{ ...props.styles?.button, borderRadius: `${props.borderRadius ?? "10px"}` }}
+            onClick={(e) => props.onConfirm()}
+    >
+        {/*
      // @ts-ignore */}
-    <Text style={props.styles?.text}>{props.content}</Text>
-  </Button>;
+        { props.content }
+    </Button>;
 };
 
 export default ConfirmButton;
