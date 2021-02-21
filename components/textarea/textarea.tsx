@@ -4,7 +4,7 @@ import styles from "./textarea.module.scss";
 type Props = {
     field?: string
     id?: string;
-    onChange?: (v: string) => {};
+    onChange?: (v: string) => any;
     rows?: number;
     cols?: number;
     hint?: string;
@@ -31,7 +31,7 @@ const TextArea: React.FC<Props> = (props) => {
     return <div className={styles.textAreaContainer}>
         { props.field ? <div className={styles.field}>{ props.field }</div> : <React.Fragment/> }
         <textarea
-            className={`${styles.textarea} ${props.className}`}
+            className={`${styles.textarea} text-area ${props.className}`}
             id={props.id}
             onChange={(e) => props.onChange ? props.onChange(e.target.value) : null}
             rows={props.rows}
