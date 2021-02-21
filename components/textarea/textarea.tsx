@@ -16,6 +16,7 @@ type Props = {
     minWidth?: string;
     minHeight?: string;
     className?: string;
+    maxLength?: number;
 }
 
 const TextArea: React.FC<Props> = (props) => {
@@ -39,6 +40,7 @@ const TextArea: React.FC<Props> = (props) => {
             placeholder={props.hint}
             value={props.value}
             style={textareaStyles}
+            maxLength={props.maxLength}
         />
         <span className={styles.errorText}>{ props.error }</span>
     </div>

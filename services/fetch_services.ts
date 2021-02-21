@@ -12,6 +12,7 @@ const authFetch = async <T = any>(
 
             if (!uid)
                 return {
+                    code: data.status,
                     status: EAuthFetch.Unauthorized,
                     data: {} as T,
                 };
@@ -21,17 +22,20 @@ const authFetch = async <T = any>(
 
             if (data.status === 403 || data.status === 412)
                 return {
+                    code: data.status,
                     status: EAuthFetch.Unauthorized,
                     data: {} as T,
                 };
         }
 
         return {
+            code: data.status,
             status: EAuthFetch.Success,
             data: data.data as T,
         };
     } catch (e) {
         return {
+            code: 500,
             status: EAuthFetch.Error,
             data: {} as T,
         };
@@ -45,6 +49,7 @@ export enum EAuthFetch {
 }
 
 export type AFRes<T = any> = {
+    code: number,
     status: EAuthFetch;
     data: T;
 };

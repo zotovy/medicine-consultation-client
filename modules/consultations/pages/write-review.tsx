@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Head from "next/head";
+import { observer } from "mobx-react";
 import { NextPage } from "next";
 import styled from "styled-components";
+import { useRouter } from "next/router";
+import { TYPES, useInjection } from "container";
 
+import ReviewController from "@/modules/consultations/controllers/review-controller";
 import Menu from "@/components/menu";
 import TextArea from "@/components/textarea";
 import ConfirmButton from "@/components/confirm-button";
@@ -14,6 +18,14 @@ const Page = styled.main`
     align-items: center;
     min-width: 100vw;
     min-height: calc(100vh - 70px);
+
+    section.loading-section {
+        width: 100vw;
+        height: calc(100vh - 70px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
     section.container {
         width: 100%;
@@ -54,6 +66,10 @@ const Page = styled.main`
                 height: auto;
                 width: 42px;
                 padding-right: 10px;
+                
+                &.selected path {
+                    fill: #30B9D6;
+                }
             }
 
             &:hover svg path {
@@ -72,6 +88,17 @@ const Page = styled.main`
 `;
 
 const WriteReviewPage: NextPage = () => {
+    const controller = useInjection<ReviewController>(TYPES.reviewController);
+    const router = useRouter();
+
+    const [isContentEmpty, setIsContentEmpty] = useState(true);
+
+    useEffect(() => {
+       if (typeof window !== "undefined") {
+           controller.load(router.query.id as string);
+       }
+    }, []);
+
     return <React.Fragment>
         <Head>
             <title>Отзыв</title>
@@ -84,23 +111,38 @@ const WriteReviewPage: NextPage = () => {
                 <p className="subtitle">Сейчас вы можете оценить работу доктора</p>
 
                 <TextArea
+                        onChange={(v) => {
+                            if (v.length !== 0 && isContentEmpty) setIsContentEmpty(false);
+                            else if (v.length === 0) setIsContentEmpty(true);
+                            controller.content = v;
+                        }}
                         hint="Как прошла консультация?"
                         resize="vertical"
                         rows={15}
                         minHeight="150px"
-                        maxHeight="500px"/>
+                        maxHeight="500px"
+                        maxLength={1024}/>
 
                 <span className="field">Оценка</span>
                 <div className="stars">
-                    <FullStar id="star-1" fill="#ccc"/>
-                    <FullStar id="star-2" fill="#ccc"/>
-                    <FullStar id="star-3" fill="#ccc"/>
-                    <FullStar id="star-4" fill="#ccc"/>
-                    <FullStar id="star-5" fill="#ccc"/>
+                    {
+                        [1, 2, 3, 4, 5].map(e => {
+                            return <FullStar
+                                    className={ controller.point >= e ? "selected" : ""}
+                                    id={`star-${e}`}
+                                    key={`star-${e}`}
+                                    onClick={() => controller.point = e}
+                                    fill="#ccc"/>
+                        })
+                    }
                 </div>
 
                 <ConfirmButton
-                        onConfirm={() => {
+                        disabled={isContentEmpty}
+                        onConfirm={async () => {
+                            if (isContentEmpty) return;
+                            await controller.saveReview();
+                            await router.push("/");
                         }}
                         content="Оставить отзыв"/>
             </section>
@@ -108,4 +150,4 @@ const WriteReviewPage: NextPage = () => {
     </React.Fragment>;
 }
 
-export default WriteReviewPage;
+export default observer(WriteReviewPage);
