@@ -1,6 +1,6 @@
 declare interface UserType {
     id: string;
-    _id: string;
+    _id?: string;
     name: string;
     surname: string;
     fullName: string;

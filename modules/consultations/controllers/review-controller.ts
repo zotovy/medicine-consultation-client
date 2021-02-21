@@ -27,9 +27,9 @@ export default class ReviewController {
         await ConsultationManager.writeReview({
             consultationId: this.consultation._id,
             content: this.content,
-            doctorId: (this.consultation.doctor as DoctorType)._id,
+            doctorId: (this.consultation.doctor as DoctorType)._id as string,
             point: this.point,
-            userId: (this.consultation.patient as UserType)._id,
+            userId: (this.consultation.patient as UserType)._id as string,
         });
     }
 }
