@@ -75,10 +75,7 @@ const createController = (): Container => {
     container.bind<DoctorHubController>(TYPES.doctorHubController).to(DoctorHubController).inSingletonScope();
     container.bind<DoctorRequestHubController>(TYPES.doctorRequestsController).to(DoctorRequestHubController).inSingletonScope();
     container.bind<ReviewController>(TYPES.reviewController).to(ReviewController).inSingletonScope();
-
-    if (typeof window !== "undefined") {
-        container.bind<ConsultationController>(TYPES.consultationController).to(ConsultationController).inSingletonScope();
-    }
+    container.bind<ConsultationController>(TYPES.consultationController).to(ConsultationController);
 
     container.bind<IController>(TYPES.controller).to(AnimController).inSingletonScope()
     container.bind<IController>(TYPES.controller).to(SignupUIStore).inSingletonScope()

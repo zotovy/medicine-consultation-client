@@ -7,7 +7,7 @@ import validationServices from "@/services/validation-services";
 import { injectable } from "inversify";
 
 @injectable()
-export default class ConsultationController implements IConsultationController {
+export default class ConsultationController {
 
     constructor() {
         makeObservable(this);
@@ -26,7 +26,7 @@ export default class ConsultationController implements IConsultationController {
             onError: (data: string) => any;
         }
     ): Promise<string> => {
-        if (typeof window !== 'undefined') {
+        if (typeof window !== "undefined") {
             const Peer = await import("peerjs");
         } else return "";
 

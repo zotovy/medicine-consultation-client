@@ -40,7 +40,7 @@ const TextField = observer(() => {
     const [input, setInput] = useState("");
 
     const _handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if (e.key === 'Enter') {
+        if (e.key === "Enter") {
             setInput("");
             controller.addMessage();
         }

@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 const ConsultationPage: NextPage = () => {
     const controller = useInjection<ConsultationController>(TYPES.consultationController);
     const history = useRouter();
+
     useEffect(() => {
         if (typeof window === "undefined") return;
         let invalidTokenCounter = 0;
