@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { SendIcon } from "@/modules/consultations/icons";
 
-const TextField = () => {
+const TextField: React.FC<Props> = (props) => {
     const [input, setInput] = useState("");
 
     const _handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -23,11 +23,16 @@ const TextField = () => {
                 value={input}
         />
         <button id="send" onClick={() => {
+            if (input === "") return;
             setInput("");
+            props.sendMessage(input);
         }}>
             <SendIcon />
         </button>
     </div>
 }
 
+type Props = {
+    sendMessage: (v: string) => any;
+}
 export default TextField;

@@ -68,11 +68,11 @@ const Container = styled.div`
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
-    @include scroll();
+        @include scroll();
         flex-shrink: 0;
-
         width: 100%;
         height: calc(100% - 105px);
+        padding: 10px;
 
         .block {
             width: 100%;
@@ -204,7 +204,7 @@ const ChatContainer: React.FC<Props> = (props) => {
             </div>
         </header>
         <Messages partnerName={props.partnerName} blocks={props.messageBlocks}  />
-        <TextField  />
+        <TextField sendMessage={props.sendMessage} />
     </Container>
 }
 
@@ -215,5 +215,6 @@ export type Props = {
     partnerSpeciality: string;
     partnerName: string;
     messageBlocks: TMessageBlock[];
+    sendMessage: (v: string) => any,
 }
 export default ChatContainer;

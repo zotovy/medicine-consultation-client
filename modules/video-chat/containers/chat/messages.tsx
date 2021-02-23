@@ -27,7 +27,6 @@ const MessagesComponent: React.FC<Props> = (props) => {
 
     setTimeout(scrollToBottom, 0);
 
-
     return <div className="messages" >
         {
             blocks.map((e, i) => {
