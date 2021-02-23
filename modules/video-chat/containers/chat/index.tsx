@@ -18,7 +18,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     transition: transform 750ms;
-    
+
     &.off {
         transform: translateX(30vw);
     }
@@ -42,7 +42,7 @@ const Container = styled.div`
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background-color: rgba(0,0,0, 0.1);
+            background-color: rgba(0, 0, 0, 0.1);
             background-size: cover;
             margin-right: 10px;
         }
@@ -68,7 +68,7 @@ const Container = styled.div`
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
-        @include scroll();
+    @include scroll();
         flex-shrink: 0;
         width: 100%;
         height: calc(100% - 105px);
@@ -183,10 +183,14 @@ const Container = styled.div`
 const ChatContainer: React.FC<Props> = (props) => {
 
     const avatar = {
-        backgroundImage: `url("${props.partnerImagePath?.trim() == ""
-                ? "../../static/images/user-placeholder.jpg"
-                : props.partnerImagePath}")`,
+        backgroundImage: `url("${
+                !props.partnerImagePath || props.partnerImagePath?.trim() === ""
+                        ? "../../static/images/user-placeholder.jpg"
+                        : props.partnerImagePath
+        }")`,
     }
+
+    console.log(avatar);
 
     return <Container className={`chat ${props.isChatOn ? "" : "off"}`}>
         <header>
@@ -199,12 +203,12 @@ const ChatContainer: React.FC<Props> = (props) => {
                 {
                     props.partnerSpeciality !== ""
                             ? <span id="speciality">({props.partnerSpeciality})</span>
-                            : <React.Fragment />
+                            : <React.Fragment/>
                 }
             </div>
         </header>
-        <Messages partnerName={props.partnerName} blocks={props.messageBlocks}  />
-        <TextField sendMessage={props.sendMessage} />
+        <Messages partnerName={props.partnerName} blocks={props.messageBlocks}/>
+        <TextField sendMessage={props.sendMessage}/>
     </Container>
 }
 

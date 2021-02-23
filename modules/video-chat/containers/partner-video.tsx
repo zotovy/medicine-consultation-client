@@ -45,11 +45,13 @@ const Container = styled.div`
     }
 `;
 
-export type Props = {}
+export type Props = {
+    isMicroOn: boolean;
+}
 
-const PartnerVideoContainer: React.FC<Props> = ({}) => {
+const PartnerVideoContainer: React.FC<Props> = (props) => {
     return <Container>
-        <video id="partner-video" playsInline autoPlay muted>
+        <video id="partner-video" playsInline autoPlay muted={!props.isMicroOn}>
         </video>
     </Container>
 }

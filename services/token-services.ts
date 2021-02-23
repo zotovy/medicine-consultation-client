@@ -14,14 +14,14 @@ export default class tokenServices {
         return `Bearer ${tokenServices._getAccessToken()}`;
     }
 
-    static saveAccessToken(token: string) {
+    static saveAccessToken(token: string): void {
         if (typeof window !== "undefined") localStorage.setItem("accessToken", token);
 
         const now = moment();
         if (typeof window !== "undefined") localStorage.setItem("accessTokenSetDate", now.toISOString());
     }
 
-    static saveRefreshToken(token: string) {
+    static saveRefreshToken(token: string): void {
         if (typeof window !== "undefined") localStorage.setItem("refreshToken", token);
 
         const now = moment();

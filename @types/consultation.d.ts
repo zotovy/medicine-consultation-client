@@ -4,7 +4,7 @@ declare type Consultation = {
     doctor: string | DoctorType;
     date: Date;
     note: string;
-    messages?: any[];
+    messages: any[];
     connected?: any[];
 };
 

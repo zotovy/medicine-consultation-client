@@ -18,16 +18,20 @@ const MessagesComponent: React.FC<Props> = (props) => {
         }
     }
 
-    const def = "https://www.epos-ural.ru/wp-content/uploads/2019/03/user-placeholder.jpg";
+    const def = "../../../static/images/user-placeholder.jpg";
     const avatar = {
-        backgroundImage: `url("${props.partnerImagePath?.trim() == "" ? def : props.partnerImagePath}")`,
+        backgroundImage: `url("${
+                !props.partnerImagePath || props.partnerImagePath?.trim() == ""
+                        ? def
+                        : props.partnerImagePath
+        }")`,
     }
 
     const blocks: TMessageBlock[] = props.blocks;
 
     setTimeout(scrollToBottom, 0);
 
-    return <div className="messages" >
+    return <div className="messages">
         {
             blocks.map((e, i) => {
                 switch (e.type) {
@@ -63,10 +67,10 @@ const MessagesComponent: React.FC<Props> = (props) => {
                         }
 
                     case EMessageType.ConnectMessage:
-                        return <ConnectionMessage partnerName={props.partnerName} isUser={e.isUser} type={e.type} />;
+                        return <ConnectionMessage partnerName={props.partnerName} isUser={e.isUser} type={e.type}/>;
 
                     case EMessageType.DisconnectMessage:
-                        return <ConnectionMessage partnerName={props.partnerName} isUser={e.isUser} type={e.type} />;
+                        return <ConnectionMessage partnerName={props.partnerName} isUser={e.isUser} type={e.type}/>;
                 }
             })
         }
