@@ -51,8 +51,7 @@ export type Props = {
 
 const PartnerVideoContainer: React.FC<Props> = (props) => {
     return <Container>
-        <video id="partner-video" playsInline autoPlay muted={!props.isMicroOn}>
-        </video>
+        <video id="partner-video" autoPlay playsInline muted={!props.isMicroOn} />
     </Container>
 }
 

@@ -190,8 +190,6 @@ const ChatContainer: React.FC<Props> = (props) => {
         }")`,
     }
 
-    console.log(avatar);
-
     return <Container className={`chat ${props.isChatOn ? "" : "off"}`}>
         <header>
             <div className="back" onClick={props.toggleIsChatOn}>

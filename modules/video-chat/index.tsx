@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import styled from "styled-components";
 import io from "socket.io-client";
+import Peer from "peerjs";
 import Selector from "@/modules/video-chat/selector";
 import TokenServices from "@/services/token-services";
 
@@ -21,10 +22,22 @@ const Page = styled.main`
 
 let counterBadRequest = 0;
 
+const setPartnerVideo = (stream: MediaStream) => {
+    const video = document.querySelector<HTMLVideoElement>("video#partner-video") as HTMLVideoElement;
+    if (video?.src != null) {
+        if ("srcObject" in video) {
+            video.srcObject = stream;
+        } else {
+            (video as HTMLVideoElement).src = window.URL.createObjectURL(stream); // for older browsers
+        }
+    }
+}
+
 const VideoChatPage: NextPage = () => {
     const router = useRouter();
 
     const [socket, setSocket] = useState<SocketIOClient.Socket>();
+    const [peer, setPeer] = useState<Peer>();
 
     const [isCameraOn, setIsCameraOn] = useState(false);
     const [isMicroOn, setIsMicroOn] = useState(false);
@@ -33,6 +46,8 @@ const VideoChatPage: NextPage = () => {
     const [partnerSpeciality, setPartnerSpeciality] = useState("");
     const [partnerImagePath, setPartnerImagePath] = useState("");
     const [messages, setMessages] = useState<TMessage[]>([]);
+
+    const [isPartnerConnected, setIsPartnerConnected] = useState(false);
     const [isPartnerMicroOn, setIsPartnerMicroOn] = useState(true);
 
     useEffect(() => {
@@ -107,14 +122,57 @@ const VideoChatPage: NextPage = () => {
                 audio: true,
             });
 
-            const video = document.querySelector<HTMLVideoElement>("video#partner-video") as HTMLVideoElement;
-            if (video?.src != null) {
-                if ("srcObject" in video) {
-                    video.srcObject = stream;
-                } else {
-                    (video as HTMLVideoElement).src = window.URL.createObjectURL(stream); // for older browsers
-                }
-            }
+            const peer = new Peer({
+                host: process.env.PEER_SERVER_URL,
+                port,
+                path: "/mc",
+                secure: true,
+            });
+
+            peer.on("open", (id) => {
+                console.log("open");
+                socketIo.emit("user-connected", id);
+            });
+            setPeer(peer);
+
+            peer.on("call", (call) => {
+                setIsPartnerConnected(true);
+                call.answer(stream);
+
+                call.on("stream", (partnerStream) => setPartnerVideo(partnerStream));
+            });
+
+            socketIo.on("user-connected", (userId: string) => {
+                console.log("user-connected", userId);
+                setMessages([
+                    ...messages,
+                    {
+                        isUser: userId === localStorage.getItem("uid"),
+                        type: EMessageType.ConnectMessage,
+                        message: "",
+                    }
+                ]);
+
+                const call = peer.call(userId, stream);
+
+                call.on("stream", (partnerStream) => {
+                    setIsPartnerConnected(true);
+                    setPartnerVideo(partnerStream);
+
+                    socketIo.on("disconnected", () => {
+                        call.close();
+                        setIsPartnerConnected(false);
+                        setMessages([
+                            ...messages,
+                            {
+                                isUser: userId === localStorage.getItem("uid"),
+                                type: EMessageType.DisconnectMessage,
+                                message: "",
+                            }
+                        ]);
+                    });
+                });
+            });
         });
 
         socketIo.on("new_message", (message: string) => {
@@ -128,26 +186,35 @@ const VideoChatPage: NextPage = () => {
             ]);
         });
 
+        socketIo.on("mute", (status: boolean) => setIsPartnerMicroOn(status));
+
+        let port = 5001;
+        if (process.env.PEER_SERVER_PORT != "default") {
+            port = parseInt(process.env.PEER_SERVER_PORT ?? "");
+        }
+
         return () => {
             socketIo.disconnect();
         }
     }, []);
 
-    if (!socket) return <React.Fragment/>;
+    if (!socket || !peer) return <React.Fragment/>;
 
-    console.log(messages);
-
+    console.log(isMicroOn);
     return <Page>
         <Head>
             <title>Видео консультация</title>
         </Head>
-        <PartnerVideoContainer isMicroOn={isMicroOn}/>
+        <PartnerVideoContainer isMicroOn={isPartnerMicroOn}/>
         <NavigationComponent
                 isCameraOn={isCameraOn}
                 isMicroOn={isMicroOn}
                 isChatOn={isChatOn}
                 onTriggerCamera={() => setIsCameraOn(!isCameraOn)}
-                onTriggerMicro={() => setIsMicroOn(!isMicroOn)}
+                onTriggerMicro={() => {
+                    setIsMicroOn(!isMicroOn);
+                    socket.emit("mute", isMicroOn);
+                }}
                 onTriggerChat={() => setIsChatOn(!isChatOn)}/>
         <ChatContainer
                 sendMessage={(v) => {
