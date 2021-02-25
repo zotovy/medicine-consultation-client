@@ -23,6 +23,9 @@ export default class API {
         if (response.status === EAuthFetch.Error) throw "error";
         if (response.status === EAuthFetch.Unauthorized) throw "unauthorized";
 
+        // Convert string date --> Date obj
+        response.data.consultation.date = new Date(response.data.consultation.date);
+
         return response.data.consultation;
     }
 }

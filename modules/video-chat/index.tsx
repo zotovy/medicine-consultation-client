@@ -14,6 +14,8 @@ import ChatContainer from "@/modules/video-chat/containers/chat";
 import { TMessage } from "@/modules/video-chat/types";
 import { EMessageType } from "@/modules/consultations/controllers/consultation-controller";
 import API from "@/modules/video-chat/api";
+import PatientSideNotStartedConsultation from "@/modules/video-chat/containers/consultation-not-started/patient-side";
+import DoctorSideNotStartedConsultation from "@/modules/video-chat/containers/consultation-not-started/doctor-side";
 
 const Page = styled.main`
     width: 100vw;
@@ -38,6 +40,7 @@ const VideoChatPage: NextPage = () => {
 
     const [socket, setSocket] = useState<SocketIOClient.Socket>();
     const [peer, setPeer] = useState<Peer>();
+    const [consultation, setConsultation] = useState<Consultation>();
 
     const [isCameraOn, setIsCameraOn] = useState(false);
     const [isMicroOn, setIsMicroOn] = useState(false);
@@ -50,12 +53,16 @@ const VideoChatPage: NextPage = () => {
     const [isPartnerConnected, setIsPartnerConnected] = useState(false);
     const [isPartnerMicroOn, setIsPartnerMicroOn] = useState(true);
 
+    const isUser = localStorage.getItem("isUser") === "true";
+
     useEffect(() => {
         const uid = localStorage.getItem("uid");
 
         // fetching consultation
         API.fetchConsultation(router.query.id as string)
                 .then(consultation => {
+                    setConsultation(consultation);
+
                     const consultationMessages = consultation.messages.map(message => ({
                         type: EMessageType.Message,
                         message: message.message,
@@ -198,9 +205,13 @@ const VideoChatPage: NextPage = () => {
         }
     }, []);
 
-    if (!socket || !peer) return <React.Fragment/>;
+    if (!socket || !peer || !consultation) return <React.Fragment/>;
 
-    console.log(isMicroOn);
+    if (consultation.status === "not_started") {
+        if (isUser) return <PatientSideNotStartedConsultation startDate={consultation.date}/>
+        else return <DoctorSideNotStartedConsultation/>
+    }
+
     return <Page>
         <Head>
             <title>Видео консультация</title>
@@ -216,6 +227,7 @@ const VideoChatPage: NextPage = () => {
                     socket.emit("mute", isMicroOn);
                 }}
                 onTriggerChat={() => setIsChatOn(!isChatOn)}/>
+
         <ChatContainer
                 sendMessage={(v) => {
                     setMessages([
