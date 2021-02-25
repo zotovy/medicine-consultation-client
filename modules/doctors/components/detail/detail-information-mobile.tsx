@@ -15,6 +15,7 @@ const getClasses = (name: string, length: number | undefined) => {
 
 
 const DetailInformationMobile: React.FC = () => {
+    return <React.Fragment/> // todo: fix .toString() of undefined
     const controller = useInjection<DetailController>(TYPES.detailDoctorController);
     if (!controller.doctor) return <React.Fragment/>;
 
