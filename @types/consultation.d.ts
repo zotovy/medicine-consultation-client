@@ -6,6 +6,8 @@ declare type Consultation = {
     note: string;
     messages: any[];
     connected?: any[];
+    status: "not_started" | "waiting_for_doctor" | "started" | "finished",
+    wroteReview: boolean,
 };
 
 declare type ConsultationDocument = {
