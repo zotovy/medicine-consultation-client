@@ -19,14 +19,16 @@ export class DoctorDetailHelper {
     }
 
     public static getEducation = (education?: DoctorEducationType[]): YearsTitleComponentProps[] => {
-        if (!education || education.length === 0) return [];
-        return education.map(e => {
-            return {
-                years: e.year.toString(),
-                title: e.institute,
-                subtitle: DoctorDetailHelper.translateEducationType(e.education)
-            }
-        });
+        // todo: fix
+        return [];
+        // if (!education || education.length === 0) return [];
+        // return education.map(e => {
+        //     return {
+        //         years: e.year.toString(),
+        //         title: e.institute,
+        //         subtitle: DoctorDetailHelper.translateEducationType(e.education)
+        //     }
+        // });
     }
 
     public static translateEducationType = (e: DoctorEducation): string => {
