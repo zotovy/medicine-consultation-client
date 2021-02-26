@@ -11,6 +11,10 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     // overflow: hidden;
+    
+    &.hidden {
+        visibility: hidden;
+    }
 
     video {
         /* Make video to at least 100% wide and tall */
@@ -47,10 +51,11 @@ const Container = styled.div`
 
 export type Props = {
     isMicroOn: boolean;
+    hidden: boolean;
 }
 
 const PartnerVideoContainer: React.FC<Props> = (props) => {
-    return <Container>
+    return <Container className={`${props.hidden ? "hidden" : ""}`}>
         <video id="partner-video" autoPlay playsInline muted={!props.isMicroOn} />
     </Container>
 }

@@ -14,8 +14,9 @@ import ChatContainer from "@/modules/video-chat/containers/chat";
 import { TMessage } from "@/modules/video-chat/types";
 import { EMessageType } from "@/modules/consultations/controllers/consultation-controller";
 import API from "@/modules/video-chat/api";
-import PatientSideNotStartedConsultation from "@/modules/video-chat/containers/consultation-not-started/patient-side";
-import DoctorSideNotStartedConsultation from "@/modules/video-chat/containers/consultation-not-started/doctor-side";
+import PatientSideNotStartedConsultation from "@/modules/video-chat/containers/consultation-status/patient-side";
+import DoctorSideNotStartedConsultation from "@/modules/video-chat/containers/consultation-status/doctor-side";
+import ConsultationFinished from "@/modules/video-chat/containers/consultation-status/consultation-finished";
 
 const Page = styled.main`
     width: 100vw;
@@ -26,6 +27,7 @@ let counterBadRequest = 0;
 
 const setPartnerVideo = (stream: MediaStream) => {
     const video = document.querySelector<HTMLVideoElement>("video#partner-video") as HTMLVideoElement;
+    console.log(video);
     if (video?.src != null) {
         if ("srcObject" in video) {
             video.srcObject = stream;
@@ -52,6 +54,7 @@ const VideoChatPage: NextPage = () => {
 
     const [isPartnerConnected, setIsPartnerConnected] = useState(false);
     const [isPartnerMicroOn, setIsPartnerMicroOn] = useState(true);
+    const [partnerStream, setPartnerStream] = useState<MediaStream>();
 
     const isUser = localStorage.getItem("isUser") === "true";
 
@@ -60,7 +63,11 @@ const VideoChatPage: NextPage = () => {
 
         // fetching consultation
         API.fetchConsultation(router.query.id as string)
-                .then(consultation => {
+                .then(async consultation => {
+
+                    const timeDelta = consultation.date.getTime() - new Date().getTime();
+                    if (timeDelta > 10800000) consultation.status = "finished";
+
                     setConsultation(consultation);
 
                     const consultationMessages = consultation.messages.map(message => ({
@@ -91,7 +98,86 @@ const VideoChatPage: NextPage = () => {
                             message: "",
                             type: EMessageType.ConnectMessage,
                         }
-                    ])
+                    ]);
+
+                    socketIo.on("start-consultation", () => {
+                        if (!consultation) return;
+                        // const id = localStorage.getItem("uid");
+                        setConsultation({
+                            ...consultation,
+                            status: "started",
+                        });
+                        setIsPartnerConnected(true);
+                    });
+
+                    socketIo.on("finish-consultation", () => {
+                        if (!consultation) return;
+                        setConsultation({
+                            ...consultation,
+                            status: "finished",
+                        });
+                    });
+
+                    const stream = await navigator.mediaDevices.getUserMedia({
+                        video: true,
+                        audio: true,
+                    });
+
+                    const peer = new Peer({
+                        host: process.env.PEER_SERVER_URL,
+                        port,
+                        path: "/mc",
+                        secure: true,
+                    });
+
+                    peer.on("open", (id) => {
+                        console.log("open");
+                        socketIo.emit("user-connected", id);
+                    });
+                    setPeer(peer);
+
+                    peer.on("call", (call) => {
+                        setIsPartnerConnected(consultation?.status === "started");
+                        call.answer(stream);
+                        call.on("stream", (stream) => {
+                            setPartnerStream(stream);
+                            setPartnerVideo(stream);
+                        });
+                    });
+
+                    socketIo.on("user-connected", (userId: string) => {
+                        setMessages([
+                            ...messages,
+                            {
+                                isUser: userId === localStorage.getItem("uid"),
+                                type: EMessageType.ConnectMessage,
+                                message: "",
+                            }
+                        ]);
+                        setIsPartnerConnected(true);
+
+                        const call = peer.call(userId, stream);
+
+                        call.on("stream", (partnerStream) => {
+                            console.log("setIsPartnerConnected", consultation?.status === "started", consultation?.status);
+                            setIsPartnerConnected(consultation?.status === "started");
+                            setPartnerVideo(partnerStream);
+                            setPartnerStream(partnerStream);
+
+                            socketIo.on("disconnected", () => {
+                                call.close();
+                                setIsPartnerConnected(consultation?.status === "started");
+                                setMessages([
+                                    ...messages,
+                                    {
+                                        isUser: userId === localStorage.getItem("uid"),
+                                        type: EMessageType.DisconnectMessage,
+                                        message: "",
+                                    }
+                                ]);
+                            });
+                        });
+                    });
                 })
                 .catch(e => {
                     throw e;
@@ -124,62 +210,7 @@ const VideoChatPage: NextPage = () => {
         });
 
         socketIo.on("success", async () => {
-            const stream = await navigator.mediaDevices.getUserMedia({
-                video: true,
-                audio: true,
-            });
 
-            const peer = new Peer({
-                host: process.env.PEER_SERVER_URL,
-                port,
-                path: "/mc",
-                secure: true,
-            });
-
-            peer.on("open", (id) => {
-                console.log("open");
-                socketIo.emit("user-connected", id);
-            });
-            setPeer(peer);
-
-            peer.on("call", (call) => {
-                setIsPartnerConnected(true);
-                call.answer(stream);
-
-                call.on("stream", (partnerStream) => setPartnerVideo(partnerStream));
-            });
-
-            socketIo.on("user-connected", (userId: string) => {
-                console.log("user-connected", userId);
-                setMessages([
-                    ...messages,
-                    {
-                        isUser: userId === localStorage.getItem("uid"),
-                        type: EMessageType.ConnectMessage,
-                        message: "",
-                    }
-                ]);
-
-                const call = peer.call(userId, stream);
-
-                call.on("stream", (partnerStream) => {
-                    setIsPartnerConnected(true);
-                    setPartnerVideo(partnerStream);
-
-                    socketIo.on("disconnected", () => {
-                        call.close();
-                        setIsPartnerConnected(false);
-                        setMessages([
-                            ...messages,
-                            {
-                                isUser: userId === localStorage.getItem("uid"),
-                                type: EMessageType.DisconnectMessage,
-                                message: "",
-                            }
-                        ]);
-                    });
-                });
-            });
         });
 
         socketIo.on("new_message", (message: string) => {
@@ -205,18 +236,46 @@ const VideoChatPage: NextPage = () => {
         }
     }, []);
 
+    useEffect(() => {
+        if (consultation && consultation.status === "started" && partnerStream) {
+            setPartnerVideo(partnerStream);
+        }
+    }, [consultation]);
+
     if (!socket || !peer || !consultation) return <React.Fragment/>;
 
     if (consultation.status === "not_started") {
-        if (isUser) return <PatientSideNotStartedConsultation startDate={consultation.date}/>
-        else return <DoctorSideNotStartedConsultation/>
+        if (isUser) return <React.Fragment>
+            <PatientSideNotStartedConsultation startDate={consultation.date}/>
+            <PartnerVideoContainer isMicroOn={isPartnerMicroOn} hidden={!isPartnerConnected}/>
+        </React.Fragment>
+        else return <React.Fragment>
+            <DoctorSideNotStartedConsultation
+                    startDate={consultation.date}
+                    startConsultation={() => {
+                        const consultationId = router.query.id;
+                        const doctorId = localStorage.getItem("uid");
+                        if (localStorage.getItem("isUser") !== "false") return;
+                        socket.emit("start-consultation", consultationId, doctorId);
+                        setIsPartnerConnected(true);
+                        setConsultation({
+                            ...consultation,
+                            status: "started",
+                        });
+                    }}/>
+            <PartnerVideoContainer isMicroOn={isPartnerMicroOn} hidden={!isPartnerConnected}/>
+        </React.Fragment>
+    }
+
+    if (consultation.status === "finished") {
+        return <ConsultationFinished/>
     }
 
     return <Page>
         <Head>
             <title>Видео консультация</title>
         </Head>
-        <PartnerVideoContainer isMicroOn={isPartnerMicroOn}/>
+        <PartnerVideoContainer isMicroOn={isPartnerMicroOn} hidden={!isPartnerConnected}/>
         <NavigationComponent
                 isCameraOn={isCameraOn}
                 isMicroOn={isMicroOn}
