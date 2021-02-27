@@ -11,6 +11,7 @@ type Props = {
     dataTest?: string;
     className?: string;
     disabled?: boolean;
+    type?: "primary" | "secondary";
 };
 
 const Button = styled.div`
@@ -31,12 +32,17 @@ const Button = styled.div`
         color: #949494;
         cursor: not-allowed;
     }
+    
+    &.secondary:not(.disabled) {
+        background-color: #e9f7fa;
+        color: #30b9d6;
+    }
 
-    &:hover:not(.disable) {
+    &:hover:not(.disable, .secondary) {
         box-shadow: 0px 3px 5px rgba(48, 185, 215, 0.3);
     }
 
-    &:active:not(.disable) {
+    &:active:not(.disable, .secondary) {
         background: rgba(48, 185, 215, 0.8);
     }
 
@@ -49,8 +55,10 @@ const Button = styled.div`
 
 const ConfirmButton: React.FC<Props> = (props: Props) => {
 
+    const type = props.type ?? "primary";
+
     return <Button
-            className={`confirm-button ${props.className} ${props.disabled ? "disable" : ""}`}
+            className={`confirm-button ${props.className} ${props.disabled ? "disable" : ""} ${type}`}
             data-test={props.dataTest}
             {/*
      // @ts-ignore */  ...{}}

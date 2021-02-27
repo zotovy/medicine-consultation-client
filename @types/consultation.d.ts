@@ -4,8 +4,10 @@ declare type Consultation = {
     doctor: string | DoctorType;
     date: Date;
     note: string;
-    messages?: any[];
+    messages: any[];
     connected?: any[];
+    status: "not_started" | "waiting_for_doctor" | "started" | "finished",
+    wroteReview: boolean,
 };
 
 declare type ConsultationDocument = {

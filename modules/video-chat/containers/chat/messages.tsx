@@ -1,12 +1,16 @@
 import React, { useRef } from "react";
 import { observer } from "mobx-react";
-import ConsultationController , { EMessageType, TMessageBlock, TMessageContent } from "../../controllers/consultation-controller";
-import ConnectionMessage from "./connection";
-import { TYPES, useInjection } from "container";
+import ConnectionMessage from "./connection-message";
+import { EMessageType, TMessageBlock, TMessageContent } from "@/modules/video-chat/types";
 
-const MessagesComponent: React.FC = () => {
+type Props = {
+    partnerName: string;
+    partnerImagePath?: string;
+    blocks: TMessageBlock[];
+}
+
+const MessagesComponent: React.FC<Props> = (props) => {
     const messagesEndRef = useRef<HTMLDivElement>(null);
-    const controller = useInjection<ConsultationController>(TYPES.consultationController);
 
     const scrollToBottom = () => {
         if (messagesEndRef.current) {
@@ -14,17 +18,20 @@ const MessagesComponent: React.FC = () => {
         }
     }
 
-    const def = "https://www.epos-ural.ru/wp-content/uploads/2019/03/user-placeholder.jpg";
+    const def = "../../../static/images/user-placeholder.jpg";
     const avatar = {
-        backgroundImage: `url("${controller.partnerImagePath?.trim() == "" ? def : controller.partnerImagePath}")`,
+        backgroundImage: `url("${
+                !props.partnerImagePath || props.partnerImagePath?.trim() == ""
+                        ? def
+                        : props.partnerImagePath
+        }")`,
     }
 
-    const blocks: TMessageBlock[] = Array.from(controller.getBlocks());
+    const blocks: TMessageBlock[] = props.blocks;
 
     setTimeout(scrollToBottom, 0);
 
-
-    return <div className="messages" >
+    return <div className="messages">
         {
             blocks.map((e, i) => {
                 switch (e.type) {
@@ -60,10 +67,10 @@ const MessagesComponent: React.FC = () => {
                         }
 
                     case EMessageType.ConnectMessage:
-                        return <ConnectionMessage isUser={e.isUser} type={e.type} />;
+                        return <ConnectionMessage partnerName={props.partnerName} isUser={e.isUser} type={e.type}/>;
 
                     case EMessageType.DisconnectMessage:
-                        return <ConnectionMessage isUser={e.isUser} type={e.type} />;
+                        return <ConnectionMessage partnerName={props.partnerName} isUser={e.isUser} type={e.type}/>;
                 }
             })
         }
