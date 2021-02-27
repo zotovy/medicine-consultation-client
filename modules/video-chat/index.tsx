@@ -36,6 +36,8 @@ const setPartnerVideo = (stream: MediaStream) => {
     }
 }
 
+let stopBothVideoAndAudio = () => {};
+
 const VideoChatPage: NextPage = () => {
     const router = useRouter();
 
@@ -127,6 +129,14 @@ const VideoChatPage: NextPage = () => {
                         video: true,
                         audio: true,
                     });
+
+                    stopBothVideoAndAudio = () =>  {
+                        stream.getTracks().forEach((track) => {
+                            if (track.readyState === "live") {
+                                track.stop();
+                            }
+                        });
+                    }
 
                     const peer = new Peer({
                         host: process.env.PEER_SERVER_URL,
@@ -245,6 +255,7 @@ const VideoChatPage: NextPage = () => {
 
         return () => {
             socketIo.disconnect();
+            stopBothVideoAndAudio();
         }
     }, []);
 
