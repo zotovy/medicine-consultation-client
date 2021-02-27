@@ -45,7 +45,7 @@ const LayoutNotStartedConsultation: React.FC<Props> = (props) => {
         <h1>{ props.title }</h1>
         <p className="subtitle">{ props.subtitle }</p>
         <ConfirmButton
-                type={"secondary"}
+                type={props.button}
                 onConfirm={props.onClick}
                 content={props.buttonText}/>
     </Container>

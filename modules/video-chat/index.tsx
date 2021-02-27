@@ -300,7 +300,9 @@ const VideoChatPage: NextPage = () => {
     }
 
     if (consultation.status === "finished") {
-        return <ConsultationFinished/>
+        return <ConsultationFinished
+                consultationId={router.query.id as string}
+                isUser={localStorage.getItem("isUser") === "true"} />
     }
 
     return <Page>

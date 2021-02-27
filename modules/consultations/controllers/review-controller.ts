@@ -22,7 +22,6 @@ export default class ReviewController {
 
     @action async saveReview(): Promise<void> {
         if (!this.consultation) return;
-        console.log(this.consultation);
 
         await ConsultationManager.writeReview({
             consultationId: this.consultation._id,
