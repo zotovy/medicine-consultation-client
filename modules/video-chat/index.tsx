@@ -45,7 +45,7 @@ const VideoChatPage: NextPage = () => {
     const [consultation, setConsultation] = useState<Consultation>();
 
     const [isCameraOn, setIsCameraOn] = useState(false);
-    const [isMicroOn, setIsMicroOn] = useState(false);
+    const [isMicroOn, setIsMicroOn] = useState(true);
     const [isChatOn, setIsChatOn] = useState(false);
     const [partnerName, setPartnerName] = useState("Ярослав Зотов");
     const [partnerSpeciality, setPartnerSpeciality] = useState("");
@@ -209,10 +209,6 @@ const VideoChatPage: NextPage = () => {
             }
         });
 
-        socketIo.on("success", async () => {
-
-        });
-
         socketIo.on("new_message", (message: string) => {
             setMessages([
                 ...messages,
@@ -224,7 +220,9 @@ const VideoChatPage: NextPage = () => {
             ]);
         });
 
-        socketIo.on("mute", (status: boolean) => setIsPartnerMicroOn(status));
+        socketIo.on("mute", (status: boolean) => {
+            setIsPartnerMicroOn(status)
+        });
 
         let port = 5001;
         if (process.env.PEER_SERVER_PORT != "default") {
@@ -283,7 +281,7 @@ const VideoChatPage: NextPage = () => {
                 onTriggerCamera={() => setIsCameraOn(!isCameraOn)}
                 onTriggerMicro={() => {
                     setIsMicroOn(!isMicroOn);
-                    socket.emit("mute", isMicroOn);
+                    socket.emit("mute", !isMicroOn);
                 }}
                 onTriggerChat={() => setIsChatOn(!isChatOn)}/>
 
