@@ -36,6 +36,7 @@ const setPartnerVideo = (stream: MediaStream) => {
     }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 let stopBothVideoAndAudio = () => {};
 
 const VideoChatPage: NextPage = () => {
@@ -68,7 +69,7 @@ const VideoChatPage: NextPage = () => {
                 .then(async consultation => {
 
                     const timeDelta = consultation.date.getTime() - new Date().getTime();
-                    if (timeDelta > 10800000) consultation.status = "finished";
+                    if (timeDelta < -10800000) consultation.status = "finished";
 
                     setConsultation(consultation);
 
