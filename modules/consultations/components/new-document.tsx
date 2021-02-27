@@ -1,7 +1,7 @@
 import React from "react";
 import { observer } from "mobx-react";
-import { AddIcon } from "../../icons";
-import AppointmentController from "../../controllers/appoint-controller";
+import { AddIcon } from "../icons";
+import AppointmentController from "../controllers/appoint-controller";
 import { useInjection, TYPES } from "container";
 
 

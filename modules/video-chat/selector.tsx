@@ -1,5 +1,5 @@
 import { TMessage, TMessageBlock } from "@/modules/video-chat/types";
-import { EMessageType, TLink } from "@/modules/consultations/controllers/consultation-controller";
+import { EMessageType, TLink } from "@/modules/video-chat/types";
 import ValidationServices from "@/services/validation-services";
 
 export default class Selector {

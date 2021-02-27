@@ -12,7 +12,7 @@ import ConfirmButton from "@/components/confirm-button";
 import TextField from "@/components/text-field";
 import Divider from "@/modules/auth/components/divider";
 import Document from "@/components/document";
-import NewDocument from "../../components/appoint/new-document";
+import NewDocument from "../../components/new-document";
 import TextArea from "@/components/textarea";
 
 type Props = {

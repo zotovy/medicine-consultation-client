@@ -18,7 +18,6 @@ export default {
     symptomsController: Symbol("symptomsController"),
     symptomsSliderController: Symbol("symptomsSliderController"),
     appointController: Symbol("appointController"),
-    consultationController: Symbol("consultationController"),
     balanceController: Symbol("balanceController"),
     userHubController: Symbol("userHubController"),
     doctorHubController: Symbol("doctorHubController"),

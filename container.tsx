@@ -22,7 +22,6 @@ import FindDoctorController from "@/modules/doctors/controllers/find-doctor-cont
 import SymptomsController from "@/modules/doctors/controllers/symptoms-controller";
 import SymptomsSliderController from "@/modules/doctors/controllers/symptoms-slider-controller";
 import AppointmentController from "@/modules/consultations/controllers/appoint-controller";
-import ConsultationController from "@/modules/consultations/controllers/consultation-controller";
 import BalanceController from "@/modules/balance/balance-controller";
 import UserHubController from "@/modules/hub/controllers/user-hub-controller";
 import DoctorHubController from "@/modules/hub/controllers/doctor-hub-controller";
@@ -75,7 +74,6 @@ const createController = (): Container => {
     container.bind<DoctorHubController>(TYPES.doctorHubController).to(DoctorHubController).inSingletonScope();
     container.bind<DoctorRequestHubController>(TYPES.doctorRequestsController).to(DoctorRequestHubController).inSingletonScope();
     container.bind<ReviewController>(TYPES.reviewController).to(ReviewController).inSingletonScope();
-    container.bind<ConsultationController>(TYPES.consultationController).to(ConsultationController);
 
     container.bind<IController>(TYPES.controller).to(AnimController).inSingletonScope()
     container.bind<IController>(TYPES.controller).to(SignupUIStore).inSingletonScope()
@@ -97,10 +95,6 @@ const createController = (): Container => {
     container.bind<IController>(TYPES.controller).to(DoctorHubController).inSingletonScope()
     container.bind<IController>(TYPES.controller).to(DoctorRequestHubController).inSingletonScope()
     container.bind<IController>(TYPES.controller).to(ReviewController).inSingletonScope()
-
-    if (typeof window !== "undefined") {
-        container.bind<IController>(TYPES.consultationController).to(ConsultationController).inSingletonScope();
-    }
 
     return container;
     // return {

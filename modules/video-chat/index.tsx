@@ -12,7 +12,7 @@ import NavigationComponent from "@/modules/video-chat/containers/navigation";
 import PartnerVideoContainer from "@/modules/video-chat/containers/partner-video";
 import ChatContainer from "@/modules/video-chat/containers/chat";
 import { TMessage } from "@/modules/video-chat/types";
-import { EMessageType } from "@/modules/consultations/controllers/consultation-controller";
+import { EMessageType } from "@/modules/video-chat/types";
 import API from "@/modules/video-chat/api";
 import PatientSideNotStartedConsultation from "@/modules/video-chat/containers/consultation-status/patient-side";
 import DoctorSideNotStartedConsultation from "@/modules/video-chat/containers/consultation-status/doctor-side";
