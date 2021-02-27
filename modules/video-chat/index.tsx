@@ -27,7 +27,6 @@ let counterBadRequest = 0;
 
 const setPartnerVideo = (stream: MediaStream) => {
     const video = document.querySelector<HTMLVideoElement>("video#partner-video") as HTMLVideoElement;
-    console.log(video);
     if (video?.src != null) {
         if ("srcObject" in video) {
             video.srcObject = stream;
@@ -44,7 +43,7 @@ const VideoChatPage: NextPage = () => {
     const [peer, setPeer] = useState<Peer>();
     const [consultation, setConsultation] = useState<Consultation>();
 
-    const [isCameraOn, setIsCameraOn] = useState(false);
+    const [isCameraOn, setIsCameraOn] = useState(true);
     const [isMicroOn, setIsMicroOn] = useState(true);
     const [isChatOn, setIsChatOn] = useState(false);
     const [partnerName, setPartnerName] = useState("Ярослав Зотов");
@@ -54,6 +53,7 @@ const VideoChatPage: NextPage = () => {
 
     const [isPartnerConnected, setIsPartnerConnected] = useState(false);
     const [isPartnerMicroOn, setIsPartnerMicroOn] = useState(true);
+    const [isPartnerCameraOn, setIsPartnerCameraOn] = useState(true);
     const [partnerStream, setPartnerStream] = useState<MediaStream>();
 
     const isUser = localStorage.getItem("isUser") === "true";
@@ -107,7 +107,12 @@ const VideoChatPage: NextPage = () => {
                             ...consultation,
                             status: "started",
                         });
-                        setIsPartnerConnected(true);
+
+                        const partner = localStorage.getItem("isUser") === "true"
+                                ? consultation.doctor
+                                : consultation.patient
+
+                        setIsPartnerConnected(consultation.connected?.includes(partner) ?? false);
                     });
 
                     socketIo.on("finish-consultation", () => {
@@ -131,12 +136,13 @@ const VideoChatPage: NextPage = () => {
                     });
 
                     peer.on("open", (id) => {
-                        console.log("open");
                         socketIo.emit("user-connected", id);
                     });
                     setPeer(peer);
 
                     peer.on("call", (call) => {
+                        console.log("call");
+
                         setIsPartnerConnected(consultation?.status === "started");
                         call.answer(stream);
                         call.on("stream", (stream) => {
@@ -177,6 +183,10 @@ const VideoChatPage: NextPage = () => {
                                 ]);
                             });
                         });
+                    });
+
+                    socketIo.on("disconnected", () => {
+                       setIsPartnerConnected(false);
                     });
                 })
                 .catch(e => {
@@ -224,6 +234,10 @@ const VideoChatPage: NextPage = () => {
             setIsPartnerMicroOn(status)
         });
 
+        socketIo.on("change-camera-status", (status: boolean) => {
+            setIsPartnerCameraOn(status);
+        });
+
         let port = 5001;
         if (process.env.PEER_SERVER_PORT != "default") {
             port = parseInt(process.env.PEER_SERVER_PORT ?? "");
@@ -245,7 +259,11 @@ const VideoChatPage: NextPage = () => {
     if (consultation.status === "not_started") {
         if (isUser) return <React.Fragment>
             <PatientSideNotStartedConsultation startDate={consultation.date}/>
-            <PartnerVideoContainer isMicroOn={isPartnerMicroOn} hidden={!isPartnerConnected}/>
+            <PartnerVideoContainer
+                    isPartnerConnected={isPartnerConnected}
+                    isPartnerCameraOn={isPartnerCameraOn}
+                    isMicroOn={isPartnerMicroOn}
+                    hidden={!isPartnerConnected}/>
         </React.Fragment>
         else return <React.Fragment>
             <DoctorSideNotStartedConsultation
@@ -261,7 +279,11 @@ const VideoChatPage: NextPage = () => {
                             status: "started",
                         });
                     }}/>
-            <PartnerVideoContainer isMicroOn={isPartnerMicroOn} hidden={!isPartnerConnected}/>
+            <PartnerVideoContainer
+                    isPartnerConnected={false}
+                    isPartnerCameraOn={isPartnerCameraOn}
+                    isMicroOn={isPartnerMicroOn}
+                    hidden={!isPartnerConnected}/>
         </React.Fragment>
     }
 
@@ -273,12 +295,19 @@ const VideoChatPage: NextPage = () => {
         <Head>
             <title>Видео консультация</title>
         </Head>
-        <PartnerVideoContainer isMicroOn={isPartnerMicroOn} hidden={!isPartnerConnected}/>
+        <PartnerVideoContainer
+                isPartnerConnected={isPartnerConnected}
+                isPartnerCameraOn={isPartnerCameraOn}
+                isMicroOn={isPartnerMicroOn}
+                hidden={!isPartnerConnected} />
         <NavigationComponent
                 isCameraOn={isCameraOn}
                 isMicroOn={isMicroOn}
                 isChatOn={isChatOn}
-                onTriggerCamera={() => setIsCameraOn(!isCameraOn)}
+                onTriggerCamera={() => {
+                    setIsCameraOn(!isCameraOn);
+                    socket.emit("change-camera-status", !isCameraOn);
+                }}
                 onTriggerMicro={() => {
                     setIsMicroOn(!isMicroOn);
                     socket.emit("mute", !isMicroOn);

@@ -155,7 +155,7 @@ export default class ConsultationController {
         id: string,
         stream: MediaStream | MediaSource | Blob
     ) => {
-        var video = document.querySelector<HTMLVideoElement>(id);
+        let video = document.querySelector<HTMLVideoElement>(id);
         if (video?.src != null) {
             if ("srcObject" in video) {
                 video.srcObject = stream;
