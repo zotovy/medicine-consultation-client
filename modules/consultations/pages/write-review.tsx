@@ -80,7 +80,8 @@ const Page = styled.main`
                 fill: #CCCCCC;
             }
         }
-
+        
+        
         .confirm-button {
             width: 335px;
         }

@@ -1,6 +1,17 @@
 import React from "react";
 import { useRouter } from "next/router";
+import styled from "styled-components";
 import Layout from "./layout";
+
+const SomethingWrong = styled.a`
+    position: fixed;
+    bottom: 40px;
+    text-align: center;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    color: #30B9D6;
+`;
 
 export type Props = {
     consultationId: string;
@@ -21,12 +32,18 @@ const ConsultationFinished: React.FC<Props> = (props) => {
         onClick = () => router.push(`/consultation/${props.consultationId}/write-review`);
     }
 
-    return <Layout
-            title="Консультация завершена"
-            subtitle={subtitle}
-            button={buttonType}
-            buttonText={buttonText}
-            onClick={onClick} />
+    return <React.Fragment>
+        <Layout
+                title="Консультация завершена"
+                subtitle={subtitle}
+                button={buttonType}
+                buttonText={buttonText}
+                onClick={onClick} />
+
+        <SomethingWrong onClick={() => router.push("/settings/support/create")}>
+            Что-то пошло не так?
+        </SomethingWrong>
+    </React.Fragment>
 }
 
 export default ConsultationFinished;
