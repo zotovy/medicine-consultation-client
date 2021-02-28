@@ -140,6 +140,14 @@ const UserCard: React.FC<Props> = (props) => {
     if (timeBefore === "через меньше минуты ") timeBefore = "сейчас";
     else if (timeBefore.includes(".")) timeBefore = timeBefore.split(" ")[1];
 
+    // check is appoint date in the past or in the future
+    const now = new Date().getTime();
+    if (props.date.from.getTime() < now && props.date.to.getTime() > now) {
+        timeBefore = "Сейчас"
+    } else if (props.date.to.getTime() < now) {
+        timeBefore = timeBefore.split("через")[1] + " назад";
+    }
+
     // Apply user profile image
     const profileImage = props.profileImage ?? "/images/user-placeholder.jpg";
 
