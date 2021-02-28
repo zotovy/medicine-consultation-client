@@ -68,6 +68,38 @@ const Page = styled.main`
             margin-right: 30px;
         }
     }
+    
+    @media screen and (max-width: 1040px) {
+        width: calc(100vw - 40px);
+        margin: 34px 20px;
+        
+        h1 {
+            font-size: 36px;
+        }
+
+        .group {
+            grid-template-columns: repeat(1, 1fr); 
+        }
+    }
+    
+    @media screen and (max-width: 768px) {
+        .group .item {
+            span.field-name {
+                font-size: 16px;
+                line-height: 1.17;
+                text-align: left;
+                color: #a3a3a3;
+                padding-bottom: 3px;
+            }
+
+            span.value, a.value {
+                font-size: 18px;
+                line-height: 1.21;
+                text-align: left;
+                color: #282828;
+            }
+        }
+    }
 `;
 
 const ContactsPage: NextPage = () => {
