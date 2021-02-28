@@ -48,6 +48,25 @@ const Container = styled.footer`
             }
         }
     }
+    
+    @media screen and (max-width: 960px) {
+        
+        span {
+            white-space: nowrap;
+        }
+        
+        .column {
+            margin: 10px 30px;
+        }
+        
+        .content {
+            flex-wrap: wrap;
+        }
+        
+        .company {
+            display: none;
+        }
+    }
 `;
 
 const Footer: React.FC = () => {
@@ -73,8 +92,8 @@ const Footer: React.FC = () => {
             <div className="column">
                 <span className="key">Мы в сетях</span>
                 <div className="social-medias">
-                    <a href="https://vk.com/goryzdorovya" target="_blank"><VkIcon/></a>
-                    <a href="https://www.instagram.com/gory_zdorovya/" target="_blank"><InstagramIcon/></a>
+                    <a href="https://vk.com/goryzdorovya" rel="noreferrer" target="_blank"><VkIcon/></a>
+                    <a href="https://www.instagram.com/gory_zdorovya/" rel="noreferrer" target="_blank"><InstagramIcon/></a>
                 </div>
             </div>
         </div>
