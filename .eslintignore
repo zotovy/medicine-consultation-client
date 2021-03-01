@@ -5,3 +5,4 @@ node_modules
 /security
 out
 server.js
+cypress
