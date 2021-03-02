@@ -76,7 +76,7 @@ const ErrorMessage = styled.div`
 
 
 const Login: NextPage = observer(() => {
-    let router = useRouter();
+    const router = useRouter();
     const loginUIStore = useInjection<LoginUIStore>(TYPES.loginUIStore);
 
     // Navigate to home page after login
@@ -91,7 +91,7 @@ const Login: NextPage = observer(() => {
         <SizedBox height="10px"/>
         <Link>
             Нет аккаунта? &nbsp;
-            <Linker href={"/signup"}><span>Зарегистрироваться!</span></Linker>
+            <Linker href={"/signup"}><span className="signup-link">Зарегистрироваться!</span></Linker>
         </Link>
         <SizedBox height="10px"/>
         <TextField
@@ -123,14 +123,14 @@ const Login: NextPage = observer(() => {
             {
                 loginUIStore.error
                     ? <React.Fragment>
-                        <ErrorMessage>{loginUIStore.error}</ErrorMessage>
+                        <ErrorMessage className="error-message">{loginUIStore.error}</ErrorMessage>
                         <SizedBox height="5px"/>
                     </React.Fragment>
                     : null
             }
             <Link>
                 <Linker href="/reset-password-from-email">
-                    <span>Забыли пароль?</span>
+                    <span className="forgot-password-link">Забыли пароль?</span>
                 </Linker>
             </Link>
 

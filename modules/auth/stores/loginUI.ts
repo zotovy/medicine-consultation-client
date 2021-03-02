@@ -53,7 +53,7 @@ export default class LoginUIStore {
                     email,
                     password,
                 },
-            );
+            ).catch((e) => e.response);
 
             // if !success --> show error
             if (!response.data.success) {

@@ -1,5 +1,7 @@
 {
   "env": {
-    "url": "https://localhost:3000"
+    "url": "https://localhost:3000",
+    "server_url": "https://localhost:5000",
+    "uid": "123456789101"
   }
 }
