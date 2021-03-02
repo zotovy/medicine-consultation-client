@@ -11,6 +11,7 @@ import ResetPasswordFromEmailController from "../stores/reset-password";
 import Badge from "../../../components/badge";
 import withController from "../../../utils/inject";
 import { TYPES, useInjection } from "../../../container";
+import Head from "next/head";
 
 
 
@@ -30,6 +31,10 @@ const ResetPasswordPage: NextPage = () => {
 
 
     return <React.Fragment>
+        <Head>
+            <title>Востановление пароля</title>
+        </Head>
+
         <Badge icon={DoneIcon} title="Спасибо за регистрацию!" isOpen={controller.successOperation}>
             Ваши данные отправлены на проверку. Подробнее о том, как работает сервис вы можете почитать <a>здесь</a>.</Badge>
         <section className="reset-password-module">

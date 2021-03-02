@@ -23,6 +23,7 @@ import Image from "../components/image";
 import Container from "../components/container";
 import SexCheckbox from "../../../components/sex-checkbox";
 import SignupLink from "../components/signup-link";
+import Head from "next/head";
 
 
 const Wrapper = styled.div`
@@ -55,61 +56,67 @@ const UserSignUp: NextPage = observer(() => {
     // Navigate to home page after login
     reaction(() => signupUiStore.goToHomeTrigger, () => router.push("/"));
 
-    return <div className="signup-module">
-        <Wrapper>
+    return <React.Fragment>
+        <Head>
+            <title>Регистрация</title>
+        </Head>
 
-            {/*<ErrorBadge message={signupUiStore.errorMessage ?? ""} isOpen={signupUiStore.showErrorMessage} />*/}
-            {/*<MediaQuery minDeviceWidth="1025px"><Image image="../../../static/images/signup-bg.png" /></MediaQuery>*/}
-            <Image className="signup-image" image="../../../public/signup-bg.png"/>
+        <div className="signup-module">
+            <Wrapper>
 
-            <Container>
-                <Title text="Регистрация"/>
-                <SizedBox height="10px"/>
-                <SubTitle>Зарегистрируйтесь для получения качественных онлайн консультаций в видео, аудио и текстовом
-                    формате.</SubTitle>
-                <SizedBox height="10px"/>
-                <Link>Уже есть аккаунт? <Linker href="/login"><span className="link">Войти!</span></Linker></Link>
-                <SizedBox height="10px"/>
-                <SignUpForm/>
-                <SexCheckbox dataTest="male-checkbox" isMale={signupUiStore.isMale} onChange={signupUiStore.toggleIsMale}/>
-                <SizedBox height="15px"/>
-                <Checkbox styles={{ container: { alignItems: "start" } }}
-                          checked={signupUiStore.agreeWithTerms}
-                          label="Я согласен(-а) с&nbsp;"
-                          linkText="пользовательским соглашением"
-                          dataTest="agree-terms-checkbox"
-                          onChange={signupUiStore.toggleAgreeWT}/>
-                <SizedBox height="5px"/>
-                <Checkbox styles={{ container: { alignItems: "start" } }}
-                          checked={signupUiStore.needMailing}
-                          label="Я хочу получать уведомления на почту"
-                          dataTest="mailing-checkbox"
-                          onChange={signupUiStore.toggleNeedMailing}/>
-                <SizedBox height="15px"/>
-                <MediaQuery maxDeviceWidth="435px">
-                    <ConfirmButton content="Зарегистрироваться" onConfirm={signupUiStore.signup}/>
+                {/*<ErrorBadge message={signupUiStore.errorMessage ?? ""} isOpen={signupUiStore.showErrorMessage} />*/}
+                {/*<MediaQuery minDeviceWidth="1025px"><Image image="../../../static/images/signup-bg.png" /></MediaQuery>*/}
+                <Image className="signup-image" image="../../../public/signup-bg.png"/>
+
+                <Container>
+                    <Title text="Регистрация"/>
                     <SizedBox height="10px"/>
-                    <Linker href="/doctor-signup">
-                        <SignupLink><span>Регистрация для врачей</span></SignupLink>
-                    </Linker>
-                </MediaQuery>
-                <MediaQuery minDeviceWidth="436px">
-                    <Row>
-                        <HalfOfWidth>
-                            <ConfirmButton dataTest="confirm" content="Зарегистрироваться"
-                                           onConfirm={signupUiStore.signup}/>
-                        </HalfOfWidth>
+                    <SubTitle>Зарегистрируйтесь для получения качественных онлайн консультаций в видео, аудио и текстовом
+                        формате.</SubTitle>
+                    <SizedBox height="10px"/>
+                    <Link>Уже есть аккаунт? <Linker href="/login"><span className="link">Войти!</span></Linker></Link>
+                    <SizedBox height="10px"/>
+                    <SignUpForm/>
+                    <SexCheckbox dataTest="male-checkbox" isMale={signupUiStore.isMale} onChange={signupUiStore.toggleIsMale}/>
+                    <SizedBox height="15px"/>
+                    <Checkbox styles={{ container: { alignItems: "start" } }}
+                              checked={signupUiStore.agreeWithTerms}
+                              label="Я согласен(-а) с&nbsp;"
+                              linkText="пользовательским соглашением"
+                              dataTest="agree-terms-checkbox"
+                              onChange={signupUiStore.toggleAgreeWT}/>
+                    <SizedBox height="5px"/>
+                    <Checkbox styles={{ container: { alignItems: "start" } }}
+                              checked={signupUiStore.needMailing}
+                              label="Я хочу получать уведомления на почту"
+                              dataTest="mailing-checkbox"
+                              onChange={signupUiStore.toggleNeedMailing}/>
+                    <SizedBox height="15px"/>
+                    <MediaQuery maxDeviceWidth="435px">
+                        <ConfirmButton content="Зарегистрироваться" onConfirm={signupUiStore.signup}/>
+                        <SizedBox height="10px"/>
+                        <Linker href="/doctor-signup">
+                            <SignupLink><span>Регистрация для врачей</span></SignupLink>
+                        </Linker>
+                    </MediaQuery>
+                    <MediaQuery minDeviceWidth="436px">
+                        <Row>
+                            <HalfOfWidth>
+                                <ConfirmButton dataTest="confirm" content="Зарегистрироваться"
+                                               onConfirm={signupUiStore.signup}/>
+                            </HalfOfWidth>
 
-                        <SignupLink>
-                            <Linker href="/doctor-signup">
-                                <span>Регистрация для врачей</span>
-                            </Linker>
-                        </SignupLink>
-                    </Row>
-                </MediaQuery>
-            </Container>
-        </Wrapper>
-    </div>
+                            <SignupLink>
+                                <Linker href="/doctor-signup">
+                                    <span>Регистрация для врачей</span>
+                                </Linker>
+                            </SignupLink>
+                        </Row>
+                    </MediaQuery>
+                </Container>
+            </Wrapper>
+        </div>
+    </React.Fragment>
 
 });
 

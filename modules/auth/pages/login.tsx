@@ -19,6 +19,7 @@ import Link from "../components/link";
 import withController from "../../../utils/inject";
 import { TYPES, useInjection } from "../../../container";
 import SignupUIStore from "@/modules/auth/stores/signupUI";
+import Head from "next/head";
 
 // Assets
 // import bgImage from "../../../static/images/login-bg.png";
@@ -137,20 +138,19 @@ const Login: NextPage = observer(() => {
         </Row>
     </Container>
 
-    return <main className="login-module">
-        {/*<MediaQuery minWidth="768px">*/}
-        {/*<div className="login-bg">*/}
-        {/*    <Image src={"/images/login-bg.png"} width={"100%"} height={"100%"}/>*/}
-        {/*</div>*/}
+
+
+    return <React.Fragment>
+        <Head>
+            <title>Вход</title>
+        </Head>
+
+        <main className="login-module">
             <Bg className="login-bg">
                 {Content}
             </Bg>
-
-        {/*</MediaQuery>*/}
-        {/*<MediaQuery maxWidth="767px">*/}
-        {/*    {content}*/}
-        {/*</MediaQuery>*/}
-    </main>
+        </main>
+    </React.Fragment>
 
 });
 
