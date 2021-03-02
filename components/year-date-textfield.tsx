@@ -17,6 +17,7 @@ type Props = {
     field?: string;
     onFocus?: () => void;
     needErrorHandle?: boolean;
+    dataTest?: string;
 }
 
 const Column = styled.div`
@@ -45,18 +46,20 @@ const DateTextField: React.FC<Props> = (props: Props) => {
         <Field>{props.field}</Field>
         <Row>
             <Input
-                onFocus={props.onFocus}
-                {/* 
+                    data-test={props.dataTest}
+                    onFocus={props.onFocus}
+                    {/*
           // @ts-ignore */ ...{}}
-                style={styles}
-                placeholder={props.hint}
-                onChange={(e) => props.onChange(e.target.value)}
-                value={props.value}
+                    style={styles}
+                    placeholder={props.hint}
+                    onChange={(e) => props.onChange(e.target.value)}
+                    value={props.value}
             />
             <CalendarIcon><i className="fa fa-calendar-o"></i></CalendarIcon>
         </Row>
         {
-            !props.needErrorHandle ? props.error ? <ErrorText>{props.error}</ErrorText> : <p style={{ fontSize: "12px" }}>⠀</p> : ""
+            !props.needErrorHandle ? props.error ? <ErrorText>{props.error}</ErrorText> :
+                    <p style={{ fontSize: "12px" }}>⠀</p> : ""
         }
     </Column>
 }

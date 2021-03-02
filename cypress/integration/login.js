@@ -4,7 +4,6 @@ import {email, password} from "../fixtures/login";
 
 describe("Login page test", () => {
 
-
     before(() => {
         cy.clearLocalStorage();
     });

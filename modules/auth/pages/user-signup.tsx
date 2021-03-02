@@ -71,14 +71,20 @@ const UserSignUp: NextPage = observer(() => {
                 <Link>Уже есть аккаунт? <Linker href="/login"><span className="link">Войти!</span></Linker></Link>
                 <SizedBox height="10px"/>
                 <SignUpForm/>
-                <SexCheckbox isMale={signupUiStore.isMale} onChange={signupUiStore.toggleIsMale}/>
+                <SexCheckbox dataTest="male-checkbox" isMale={signupUiStore.isMale} onChange={signupUiStore.toggleIsMale}/>
                 <SizedBox height="15px"/>
-                <Checkbox styles={{ container: { alignItems: "start" } }} checked={signupUiStore.agreeWithTerms}
-                          label="Я согласен(-а) с&nbsp;" linkText="пользовательским соглашением"
+                <Checkbox styles={{ container: { alignItems: "start" } }}
+                          checked={signupUiStore.agreeWithTerms}
+                          label="Я согласен(-а) с&nbsp;"
+                          linkText="пользовательским соглашением"
+                          dataTest="agree-terms-checkbox"
                           onChange={signupUiStore.toggleAgreeWT}/>
                 <SizedBox height="5px"/>
-                <Checkbox styles={{ container: { alignItems: "start" } }} checked={signupUiStore.needMailing}
-                          label="Я хочу получать уведомления на почту" onChange={signupUiStore.toggleNeedMailing}/>
+                <Checkbox styles={{ container: { alignItems: "start" } }}
+                          checked={signupUiStore.needMailing}
+                          label="Я хочу получать уведомления на почту"
+                          dataTest="mailing-checkbox"
+                          onChange={signupUiStore.toggleNeedMailing}/>
                 <SizedBox height="15px"/>
                 <MediaQuery maxDeviceWidth="435px">
                     <ConfirmButton content="Зарегистрироваться" onConfirm={signupUiStore.signup}/>

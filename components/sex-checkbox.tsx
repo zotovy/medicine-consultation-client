@@ -8,6 +8,7 @@ import SizedBox from "./sized-box";
 type Props = {
     isMale: boolean;
     onChange: () => void;
+    dataTest?: string;
 }
 
 const Column = styled.div`

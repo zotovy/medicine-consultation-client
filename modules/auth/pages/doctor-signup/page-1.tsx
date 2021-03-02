@@ -46,7 +46,8 @@ const DSPage1: React.FC = () => {
     const signupUiStore = useInjection<SignupUIStore>(TYPES.signupUiStore);
 
     return <Page1
-        className={signupUiStore.pageIndex === 0 ? "" : signupUiStore.pageIndex === 1 ? "minus55" : "minus110"}>
+            data-test="page-1"
+            className={signupUiStore.pageIndex === 0 ? "" : signupUiStore.pageIndex === 1 ? "minus55" : "minus110"}>
         <Container>
             <Title text="Стать врачём"/>
             <SizedBox height="10px"/>
@@ -66,7 +67,7 @@ const DSPage1: React.FC = () => {
             <SizedBox height="15px"/>
 
             <Row>
-                <ConfirmButton content="Продолжить" onConfirm={signupUiStore.goNextPage}/>
+                <ConfirmButton dataTest="confirm" content="Продолжить" onConfirm={signupUiStore.goNextPage}/>
                 <MediaQuery maxDeviceWidth="435px"><SizedBox height="10px"/></MediaQuery>
                 <SignupLink>
                     <Linker href="/signup">

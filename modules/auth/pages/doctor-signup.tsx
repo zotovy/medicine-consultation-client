@@ -4,13 +4,13 @@ import { NextPage } from "next";
 import dynamic from "next/dynamic";
 import { reaction } from "mobx";
 import { observer } from "mobx-react";
-import styled from 'styled-components';
+import styled from "styled-components";
 import Badge from "../../../components/badge";
 import SignupUIStore from "../stores/signupUI";
 import ErrorBadge from "../../../components/error-badge";
 
 // Component
-import Image from '../components/image';
+import Image from "../components/image";
 
 // Pages
 import Page1 from "./doctor-signup/page-1";

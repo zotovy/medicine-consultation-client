@@ -31,7 +31,7 @@ const Row = styled.div`
 `
 
 const Page3 = styled.div`
-    position:absolute;
+    position: absolute;
     top: 0px;
     left: 155vw;
     transition: 1s;
@@ -50,7 +50,7 @@ const Form = styled.div`
 
     @media screen and (max-width: 424px) {
         flex-direction: column;
-    } 
+    }
 `;
 
 const FormColumn = styled.div`
@@ -73,7 +73,7 @@ const FormColumn = styled.div`
     /* Phone */
     @media screen and (max-width: 424px) {
         width: 100%;
-    } 
+    }
 
 
 `;
@@ -85,85 +85,97 @@ const HalfOfWidth = styled.div`
     @media screen and (max-width: 424px) {
         width: 100%;
         margin-bottom: 10px;
-    } 
+    }
 `;
 
 
 const DSPage3: React.FC = () => {
     const signupUiStore = useInjection<SignupUIStore>(TYPES.signupUiStore);
 
-    return <Page3 className={signupUiStore.pageIndex === 0 ? "" : signupUiStore.pageIndex === 1 ? "minus55" : "minus110"}>
+    return <Page3
+            data-test="page-3"
+            className={signupUiStore.pageIndex === 0 ? "" : signupUiStore.pageIndex === 1 ? "minus55" : "minus110"}>
         <Container>
-            <Title text="Стать врачём" />
-            <SizedBox height="10px" />
-            <SubTitle>Почти готово! Заполните Ваши паспортные данные<br />и стаж медицинской работы</SubTitle>
-            <SizedBox height="10px" />
-            <Divider text="Паспортные данные" />
-            <SizedBox height="5px" />
+            <Title text="Стать врачём"/>
+            <SizedBox height="10px"/>
+            <SubTitle>Почти готово! Заполните Ваши паспортные данные<br/>и стаж медицинской работы</SubTitle>
+            <SizedBox height="10px"/>
+            <Divider text="Паспортные данные"/>
+            <SizedBox height="5px"/>
             <TextField
-                error={signupUiStore.passportIssuedByWhomError}
-                onChange={(val: string) => signupUiStore.setPassportIssuedByWhom(val)}
-                value={signupUiStore.passportIssuedByWhom}
-                validator={() => { }}
-                field={"Кем выдан"}
-                hint={"Отделом Внутренних Дел г.Москвы  "}
-                type={"text"}
+                    inputDataTest="issuedByWhom"
+                    error={signupUiStore.passportIssuedByWhomError}
+                    onChange={(val: string) => signupUiStore.setPassportIssuedByWhom(val)}
+                    value={signupUiStore.passportIssuedByWhom}
+                    validator={() => {
+                    }}
+                    field={"Кем выдан"}
+                    hint={"Отделом Внутренних Дел г.Москвы  "}
+                    type={"text"}
             />
             <Form>
                 <FormColumn>
                     <TextField
-                        error={signupUiStore.passportSeriesError}
-                        onChange={(val: string) => signupUiStore.setPassportSeries(val)}
-                        value={signupUiStore.passportSeries}
-                        validator={() => { }}
-                        field={"Серия"}
-                        hint={"XX XX YYYYYY"}
-                        type={"text"}
+                            inputDataTest="series"
+                            error={signupUiStore.passportSeriesError}
+                            onChange={(val: string) => signupUiStore.setPassportSeries(val)}
+                            value={signupUiStore.passportSeries}
+                            validator={() => {
+                            }}
+                            field={"Серия"}
+                            hint={"XX XX YYYYYY"}
+                            type={"text"}
                     />
 
                 </FormColumn>
                 <FormColumn>
                     <TextField
-                        error={signupUiStore.passportIssueDateError}
-                        onChange={(val: string) => signupUiStore.setPassportIssueDate(val)}
-                        value={signupUiStore.passportIssueDate}
-                        validator={() => { }}
-                        field={"Дата выдачи"}
-                        hint={"21.11.2001"}
-                        type={"text"}
+                            inputDataTest="issueDate"
+                            error={signupUiStore.passportIssueDateError}
+                            onChange={(val: string) => signupUiStore.setPassportIssueDate(val)}
+                            value={signupUiStore.passportIssueDate}
+                            validator={() => {
+                            }}
+                            field={"Дата выдачи"}
+                            hint={"21.11.2001"}
+                            type={"text"}
                     />
                 </FormColumn>
             </Form>
-            <Divider text="Стаж работы" />
+            <Divider text="Стаж работы"/>
             <Form>
                 <FormColumn>
                     <TextField
-                        error={signupUiStore.workExperienceError}
-                        onChange={(val: string) => signupUiStore.setWorkExperience(val)}
-                        value={signupUiStore.workExperience}
-                        validator={() => { }}
-                        field={"Суммарный опыт работы"}
-                        hint={"1 год"}
-                        type={"text"}
+                            inputDataTest="experience"
+                            error={signupUiStore.workExperienceError}
+                            onChange={(val: string) => signupUiStore.setWorkExperience(val)}
+                            value={signupUiStore.workExperience}
+                            validator={() => {
+                            }}
+                            field={"Суммарный опыт работы"}
+                            hint={"1 год"}
+                            type={"text"}
                     />
 
                 </FormColumn>
                 <FormColumn>
                     <TextField
-                        error={signupUiStore.workPlacesError}
-                        onChange={(val: string) => signupUiStore.setWorkPlaces(val)}
-                        value={signupUiStore.workPlaces}
-                        validator={() => { }}
-                        field={"Места работы"}
-                        hint={'Клиника «Здоровье», Клиника «МедПлюс»'}
-                        type={"text"}
+                            inputDataTest="work-place"
+                            error={signupUiStore.workPlacesError}
+                            onChange={(val: string) => signupUiStore.setWorkPlaces(val)}
+                            value={signupUiStore.workPlaces}
+                            validator={() => {
+                            }}
+                            field={"Места работы"}
+                            hint={'Клиника «Здоровье», Клиника «МедПлюс»'}
+                            type={"text"}
                     />
                 </FormColumn>
             </Form>
 
             <Row>
                 <HalfOfWidth>
-                    <ConfirmButton content="Зарегистрироваться" onConfirm={signupUiStore.doctorSignup} />
+                    <ConfirmButton dataTest="confirm-3" content="Зарегистрироваться" onConfirm={signupUiStore.doctorSignup}/>
                 </HalfOfWidth>
                 <SignupLink>
                     <span onClick={signupUiStore.goBeforePage}>Вернуться назад</span>

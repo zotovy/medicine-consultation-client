@@ -21,9 +21,8 @@ import withController from "../../../../utils/inject";
 import { TYPES, useInjection } from "../../../../container";
 
 
-
 const Page2 = styled.div`
-    position:absolute;
+    position: absolute;
     top: 0px;
     left: 100vw;
     transition: 1s;
@@ -41,7 +40,7 @@ const Form = styled.div`
 
     @media screen and (max-width: 424px) {
         flex-direction: column;
-    } 
+    }
 `;
 
 const FormColumn = styled.div`
@@ -64,7 +63,7 @@ const FormColumn = styled.div`
     /* Phone */
     @media screen and (max-width: 424px) {
         width: 100%;
-    } 
+    }
 `;
 
 
@@ -88,7 +87,7 @@ const HalfOfWidth = styled.div`
     @media screen and (max-width: 424px) {
         width: 100%;
         margin-bottom: 10px;
-    } 
+    }
 `;
 
 const Row = styled.div`
@@ -108,89 +107,103 @@ const Row = styled.div`
 const DSPage2: React.FC = () => {
     const signupUiStore = useInjection<SignupUIStore>(TYPES.signupUiStore);
 
-    return <Page2 className={signupUiStore.pageIndex === 0 ? "" : signupUiStore.pageIndex === 1 ? "minus55" : "minus110"}>
-        <Container >
-            <Title text="Стать врачём" />
-            <SizedBox height="10px" />
+    return <Page2
+            data-test="page-2"
+            className={signupUiStore.pageIndex === 0 ? "" : signupUiStore.pageIndex === 1 ? "minus55" : "minus110"}>
+        <Container>
+            <Title text="Стать врачём"/>
+            <SizedBox height="10px"/>
             <SubTitle>Чтобы допустить вас на платформу нам необходимы данные о вашем медицинском образовании</SubTitle>
-            <SizedBox height="10px" />
+            <SizedBox height="10px"/>
             <TextField
-                error={signupUiStore.instituteError}
-                onChange={signupUiStore.setInstitute}
-                value={signupUiStore.institute}
-                validator={() => { }}
-                field={"Образование"}
-                hint={"Медицинский колледж №1 г. Москва"}
-                type={"text"}
+                    inputDataTest="education"
+                    error={signupUiStore.instituteError}
+                    onChange={signupUiStore.setInstitute}
+                    value={signupUiStore.institute}
+                    validator={() => {
+                    }}
+                    field={"Образование"}
+                    hint={"Медицинский колледж №1 г. Москва"}
+                    type={"text"}
             />
 
             <Form>
                 <FormColumn>
                     <TextField
-                        error={signupUiStore.specialityError}
-                        onChange={signupUiStore.setSpeciality}
-                        value={signupUiStore.speciality}
-                        validator={() => { }}
-                        field={"Специальность"}
-                        hint={"Терапевт"}
-                        type={"text"}
+                            inputDataTest="speciality"
+                            error={signupUiStore.specialityError}
+                            onChange={signupUiStore.setSpeciality}
+                            value={signupUiStore.speciality}
+                            validator={() => {
+                            }}
+                            field={"Специальность"}
+                            hint={"Терапевт"}
+                            type={"text"}
                     />
                 </FormColumn>
                 <FormColumn>
                     <TextField
-                        error={signupUiStore.studyYearsError}
-                        onChange={signupUiStore.setStudyYears}
-                        value={signupUiStore.studyYears}
-                        validator={() => { }}
-                        field={"Годы обучения"}
-                        hint="2015 - 2020"
-                        type={"text"}
+                            inputDataTest="education-years"
+                            error={signupUiStore.studyYearsError}
+                            onChange={signupUiStore.setStudyYears}
+                            value={signupUiStore.studyYears}
+                            validator={() => {
+                            }}
+                            field={"Годы обучения"}
+                            hint="2015 - 2020"
+                            type={"text"}
                     />
                 </FormColumn>
             </Form>
 
 
-            <Divider text="Диплом" />
+            <Divider text="Диплом"/>
 
             <Form>
                 <FormColumn>
                     <TextField
-                        error={signupUiStore.blankSeriesError}
-                        onChange={signupUiStore.setBlankSeries}
-                        value={signupUiStore.blankSeries}
-                        validator={() => { }}
-                        field={"Серия бланка"}
-                        hint={"107777"}
-                        type={"text"}
+                            inputDataTest="blank-series"
+                            error={signupUiStore.blankSeriesError}
+                            onChange={signupUiStore.setBlankSeries}
+                            value={signupUiStore.blankSeries}
+                            validator={() => {
+                            }}
+                            field={"Серия бланка"}
+                            hint={"107777"}
+                            type={"text"}
                     />
                     <CalendarWrapper style={{ zIndex: signupUiStore.isCalendarExist ? 1 : -100 }}>
                         <Calendar
-                            onSave={signupUiStore.onCalendarDateSelected}
-                            isOpen={signupUiStore.isCalendarOpen}
-                            onClose={signupUiStore.onCalendarClose}
+                                onSave={signupUiStore.onCalendarDateSelected}
+                                isOpen={signupUiStore.isCalendarOpen}
+                                onClose={signupUiStore.onCalendarClose}
                         />
                     </CalendarWrapper>
 
                     <DateTextField
-                        error={signupUiStore.issueDateError}
-                        onChange={() => { }}
-                        value={signupUiStore.issueDate}
-                        field={"Дата выдачи"}
-                        hint={"21 / 11 / 2019"}
-                        onFocus={signupUiStore.onCalendarOpen}
+                            dataTest="date-field"
+                            error={signupUiStore.issueDateError}
+                            onChange={() => {
+                            }}
+                            value={signupUiStore.issueDate}
+                            field={"Дата выдачи"}
+                            hint={"21 / 11 / 2019"}
+                            onFocus={signupUiStore.onCalendarOpen}
                     />
 
 
                 </FormColumn>
                 <FormColumn>
                     <TextField
-                        error={signupUiStore.blankNumberError}
-                        onChange={signupUiStore.setBlankNumber}
-                        value={signupUiStore.blankNumber}
-                        validator={() => { }}
-                        field={"Номер бланка"}
-                        hint={"0253595"}
-                        type={"text"}
+                            inputDataTest="blank-number"
+                            error={signupUiStore.blankNumberError}
+                            onChange={signupUiStore.setBlankNumber}
+                            value={signupUiStore.blankNumber}
+                            validator={() => {
+                            }}
+                            field={"Номер бланка"}
+                            hint={"0253595"}
+                            type={"text"}
                     />
                 </FormColumn>
             </Form>
@@ -203,10 +216,9 @@ const DSPage2: React.FC = () => {
             {/*</MediaQuery>*/}
 
 
-
             <Row>
                 <HalfOfWidth>
-                    <ConfirmButton content="Продолжить" onConfirm={signupUiStore.goNextPage} />
+                    <ConfirmButton dataTest="confirm-2" content="Продолжить" onConfirm={signupUiStore.goNextPage}/>
                 </HalfOfWidth>
                 <SignupLink>
                     <span onClick={signupUiStore.goBeforePage}>Вернуться назад</span>
