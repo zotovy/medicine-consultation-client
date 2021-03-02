@@ -128,6 +128,8 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-decorators": "^7.12.12",
+    "@bahmutov/add-typescript-to-cypress": "^2.1.2",
+    "@cypress/react": "^4.16.4",
     "@types/chai": "^4.2.11",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
@@ -146,6 +148,7 @@
     "babel-plugin-transform-typescript-metadata": "^0.3.1",
     "cypress": "^6.5.0",
     "cypress-localstorage-commands": "^1.4.1",
+    "mockttp": "^1.2.0",
     "start-server-and-test": "^1.12.0",
     "typescript": "4.0"
   },

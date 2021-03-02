@@ -29,8 +29,8 @@ const FindDoctor: NextPage<Props> = (props) => {
         if (controller.doctors.length === 0) controller.setDoctors(config, props.doctors);
         else controller.fetchDoctors(config);
 
-        document.getElementsByClassName("doctor-module")[0].addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        document.getElementsByClassName("doctor-module")[0].addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     function handleScroll() {

@@ -3,7 +3,7 @@ export default {
     name: "Иван",
     surname: "Иванов",
     patronymic: "Иванович",
-    photoUrl: "",
+    photoUrl: "https://miro.medium.com/max/1200/1*mk1-6aYaf_Bes1E3Imhc0A.jpeg",
     phone: 79028319028,
     email: "ivanov_ivan@mail.ru",
     password: "12345678",
