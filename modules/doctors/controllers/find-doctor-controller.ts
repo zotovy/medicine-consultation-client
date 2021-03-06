@@ -214,12 +214,15 @@ export default class FindDoctorController {
                 `/api/doctors?type=tile${filter}`
             )
             .then((data) => data.data)
-            .catch(() => {
+            .catch((e) => {
+                console.log(e);
                 return {
                     success: false,
                 };
             });
 
+
+        console.log(data);
 
         if (!data.success) {
             this.openBadge();

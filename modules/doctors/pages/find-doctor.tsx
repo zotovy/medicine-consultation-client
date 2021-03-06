@@ -65,9 +65,9 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     const container = getContainer();
     const controller = container.get<FindDoctorController>(TYPES.findDoctorController);
     const config = controller.getConfig(ctx.query);
-    console.log(config);
     controller.onComponentReady(config);
     const doctors = await controller._fetchDoctors();
+    console.log(doctors);
     return { props: { doctors } };
 }
 

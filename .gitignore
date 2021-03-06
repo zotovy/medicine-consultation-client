@@ -41,6 +41,6 @@ yarn-error.log*
 ./.DS_Store
 
 .DS_Store
-.DS_Store
+/.nyc_output/
 
 
