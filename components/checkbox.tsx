@@ -66,7 +66,7 @@ const Checkbox: React.FC<Props> = (props: Props) => {
        // @ts-ignore */}
         <Text style={props.styles?.text || {}}>
           {props.label}
-          <a href={props.href ?? "#"}>{props.linkText}</a>
+          <a target="_blank" href={props.href ?? "#"}>{props.linkText}</a>
         </Text>
       </Container >
     </div>

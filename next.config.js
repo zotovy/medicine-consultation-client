@@ -15,6 +15,7 @@ module.exports = (phase) => {
     return {
         env: {
             SERVER_URL: "https://localhost:5000",
+            // SERVER_URL: "https://mc-test.cf",
             PEER_SERVER_PORT: "5001",
             PEER_SERVER_URL: "localhost",
         }

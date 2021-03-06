@@ -79,7 +79,9 @@ const UserSignUp: NextPage = observer(() => {
                     <SignUpForm/>
                     <SexCheckbox dataTest="male-checkbox" isMale={signupUiStore.isMale} onChange={signupUiStore.toggleIsMale}/>
                     <SizedBox height="15px"/>
-                    <Checkbox styles={{ container: { alignItems: "start" } }}
+                    <Checkbox
+                              href={process.env.SERVER_URL + "/static/agreement.pdf"}
+                              styles={{ container: { alignItems: "start" } }}
                               checked={signupUiStore.agreeWithTerms}
                               label="Я согласен(-а) с&nbsp;"
                               linkText="пользовательским соглашением"
