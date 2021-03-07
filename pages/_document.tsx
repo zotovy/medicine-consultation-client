@@ -33,7 +33,6 @@ export default class MyDocument extends Document {
         return <Html lang="ru">
             <Head>
                 <link rel="shortcut icon" href="/static/logo.svg" />
-                <title>Горы Здоровья</title>
             </Head>
             <body>
                 <Main/>

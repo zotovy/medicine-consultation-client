@@ -22,9 +22,9 @@ class MyApp extends App {
         return <InversifyProvider container={getContainer()}>
             <Head>
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>Some title)</title>
+                <title>Горы Здоровья</title>
             </Head>
-                <Component {...pageProps} />
+            <Component {...pageProps} />
         </InversifyProvider>;
     }
 }
