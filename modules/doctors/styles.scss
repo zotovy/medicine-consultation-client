@@ -117,6 +117,12 @@ $disable: rgba($primary, $alpha: 0.15);
                 max-height: 100px;
                 // margin-bottom: 30px;
 
+                h3 {
+                    font-size: 24px;
+                    color: #282828;
+                    font-weight: 500;
+                }
+
                 .image {
                     border-radius: 20px;
                     width: 100px;
@@ -136,6 +142,7 @@ $disable: rgba($primary, $alpha: 0.15);
 
                 .speciality-and-age {
                     color: #565656;
+                    display: none;
                 }
             }
         }
