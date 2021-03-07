@@ -201,7 +201,10 @@ export default class SingupUIStore {
         const name = this.name;
         const surname = this.surname;
         const phone = parseInt(
-           FormatServices.formatPhone(this.phone)
+            this.phone
+                .replaceAll("+", "")
+                .replaceAll(" ", "")
+                .replaceAll("-", "")
         );
         const email = this.email;
         const password = this.password;

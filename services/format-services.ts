@@ -69,7 +69,7 @@ export default class FormatServices {
     };
 
     static formatPhone = (input: string): string => {
-        let schema = "*** ***-**-**";
+        const schema = "*** ***-**-**";
 
         // cut input country code
         // +7 932 332-73-50 --> 932 332-73-50
