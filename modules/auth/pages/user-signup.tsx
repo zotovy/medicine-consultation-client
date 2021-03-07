@@ -103,8 +103,11 @@ const UserSignUp: NextPage = observer(() => {
                     <MediaQuery minDeviceWidth="436px">
                         <Row>
                             <HalfOfWidth>
-                                <ConfirmButton dataTest="confirm" content="Зарегистрироваться"
-                                               onConfirm={signupUiStore.signup}/>
+                                <ConfirmButton
+                                        disabled={!signupUiStore.agreeWithTerms}
+                                        dataTest="confirm"
+                                        content="Зарегистрироваться"
+                                        onConfirm={() => signupUiStore.agreeWithTerms ? signupUiStore.signup() : null}/>
                             </HalfOfWidth>
 
                             <SignupLink>
