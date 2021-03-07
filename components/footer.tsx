@@ -76,8 +76,12 @@ const Footer: React.FC = () => {
             <div className="column">
                 <span className="key">Компания</span>
                 <Link href="/contacts"><a>Контакты</a></Link>
-                <span>Лицензионное соглашение</span>
-                <span>Политика конфиденциальности</span>
+                <a rel="noreferrer" href={process.env.SERVER_URL + "/static/agreement.pdf"} target="_blank">
+                    Лицензионное соглашение
+                </a>
+                <a rel="noreferrer" href={process.env.SERVER_URL + "/static/politics.pdf"} target="_blank">
+                    Политика конфиденциальности
+                </a>
             </div>
             <div className="column">
                 <span className="key">Докторам</span>
