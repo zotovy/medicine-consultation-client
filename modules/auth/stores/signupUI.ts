@@ -6,6 +6,7 @@ import tokenServices from "../../../services/token-services";
 import StorageServices from "../../../services/storage_services";
 import validationServices from "../../../services/validation-services";
 import { ServerErrorType } from "../@types/server-errors";
+import { toast } from "react-toastify";
 
 @injectable()
 export default class SingupUIStore {
@@ -248,13 +249,9 @@ export default class SingupUIStore {
                     response.data.errors
                 );
                 if (hasInvalidError) {
-                    this.setErrorMessage(
-                        "Произошла непредвиденная ошибка. Повторите попытку позже"
-                    );
-
-                    setTimeout(() => {
-                        this.setErrorMessage();
-                    }, 5000);
+                    toast.error("Произошла непредвиденная ошибка. Повторите попытку позже", {
+                        position: "bottom-right"
+                    })
                     return null;
                 }
 
@@ -286,11 +283,13 @@ export default class SingupUIStore {
             console.error(e);
 
             // show error and hide it after 5s
-            this.setShowError(true);
-            this.setErrorMessage(
-                "Произошла непредвиденная ошибка. Повторите попытку позже"
-            );
-
+            // this.setShowError(true);
+            // this.setErrorMessage(
+            //     "Произошла непредвиденная ошибка. Повторите попытку позже"
+            // );
+            toast.error("Произошла непредвиденная ошибка. Повторите попытку позже", {
+                position: "bottom-right"
+            });
             setTimeout(() => {
                 this.setShowError(false);
                 setTimeout(() => {

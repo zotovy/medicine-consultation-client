@@ -1,0 +1,16 @@
+/**
+    This is custom styles for react-tostify
+ */
+
+.Toastify__toast {
+    font-family: "Inter", sans-serif !important;
+    font-size: 16px !important;
+    border-radius: 10px !important;
+
+    &--error {
+        border: 1px solid indianred;
+        background: white !important;
+        color: indianred !important;
+        box-shadow: none !important;
+    }
+}

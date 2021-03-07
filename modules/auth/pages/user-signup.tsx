@@ -1,12 +1,15 @@
 import React from "react";
 import Linker from "next/link";
-import MediaQuery from 'react-responsive';
+import Head from "next/head";
+import MediaQuery from "react-responsive";
 import styled from "styled-components";
 import { reaction } from "mobx";
 import { observer } from "mobx-react";
 import { useRouter } from "next/router";
 import { NextPage } from "next";
-import { TYPES, useInjection } from "../../../container";
+import { TYPES, useInjection } from "container";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 // Stores
 import SignupUIStore from "../stores/signupUI";
@@ -23,7 +26,6 @@ import Image from "../components/image";
 import Container from "../components/container";
 import SexCheckbox from "../../../components/sex-checkbox";
 import SignupLink from "../components/signup-link";
-import Head from "next/head";
 
 
 const Wrapper = styled.div`
@@ -46,9 +48,6 @@ const HalfOfWidth = styled.div`
     width: 50%;
 `;
 
-
-
-
 const UserSignUp: NextPage = observer(() => {
     const router = useRouter();
     const signupUiStore = useInjection<SignupUIStore>(TYPES.signupUiStore);
@@ -62,12 +61,12 @@ const UserSignUp: NextPage = observer(() => {
         </Head>
 
         <div className="signup-module">
+            <ToastContainer />
             <Wrapper>
 
                 {/*<ErrorBadge message={signupUiStore.errorMessage ?? ""} isOpen={signupUiStore.showErrorMessage} />*/}
                 {/*<MediaQuery minDeviceWidth="1025px"><Image image="../../../static/images/signup-bg.png" /></MediaQuery>*/}
                 <Image className="signup-image" image="../../../public/signup-bg.png"/>
-
                 <Container>
                     <Title text="Регистрация"/>
                     <SizedBox height="10px"/>
@@ -119,7 +118,6 @@ const UserSignUp: NextPage = observer(() => {
             </Wrapper>
         </div>
     </React.Fragment>
-
 });
 
 export default UserSignUp;
