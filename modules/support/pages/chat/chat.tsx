@@ -7,7 +7,7 @@ import { AdminMessage, UserMessage } from "../../components/message/message";
 import FormatServices from "@/services/format-services";
 import { SendIcon } from "@/static/icons";
 import styles from "./chat.module.scss";
-import { TYPES, useInjection } from "../../../../container";
+import { TYPES, useInjection } from "container";
 
 /**
  * This page is injectable. Do not use it without any wrapper

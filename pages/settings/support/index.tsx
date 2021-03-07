@@ -1,8 +1,8 @@
-import { SupportSettingsPage } from "@/modules/settings";
-export default SupportSettingsPage;
+import dynamic from "next/dynamic";
 
-export async function getServerSideProps() {
-    return {
-        props: {}, // will be passed to the page component as props
-    }
-}
+const SupportSettingsPage = dynamic(
+        // @ts-ignore
+        () => import("@/modules/settings").then(module => module.SupportSettingsPage),
+        { ssr: false }
+);
+export default SupportSettingsPage;

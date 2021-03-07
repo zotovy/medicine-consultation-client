@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { useRouter } from "next/router";
-import { useWindowWidth } from "@react-hook/window-size";
+// import { useWindowWidth } from "@react-hook/window-size";
 import SupportController from "../../controllers/support-controller";
 import styles from "./create.module.scss";
 
@@ -21,7 +21,9 @@ import { TYPES, useInjection } from "../../../../container";
 const questionTypes = ["Техническая", "Проблема с доктором", "Другое"];
 
 const CreatePage: React.FC = () => {
-    const controller = useInjection<SupportController>(TYPES.supportController);    const windowWidth = useWindowWidth();
+    const controller = useInjection<SupportController>(TYPES.supportController);
+    // const windowWidth = useWindowWidth();
+    const windowWidth = 1920;
     const router = useRouter();
     useEffect(() => {
        controller.goBackCb = () => router.back();

@@ -9,8 +9,8 @@ const SupportSettingsPage: NextPage = () => {
     return <React.Fragment>
         <Menu/>
         <main className="support-page settings-page">
-            <Navigation active="/support" />
             <GoBackIcon/>
+            <Navigation active="/support" />
             <section className="content support">
                 <SupportPage/>
             </section>
@@ -22,8 +22,8 @@ const SupportSettingsCreatePage: NextPage = () => {
     return <React.Fragment>
         <Menu/>
         <main className="support-page settings-page">
-            <Navigation active="/support" />
             <GoBackIcon/>
+            <Navigation active="/support" />
             <section className="content support">
                 <CreatePage/>
             </section>
@@ -35,8 +35,8 @@ const SupportSettingsChatPage: NextPage = () => {
     return <React.Fragment>
         <Menu/>
         <main className="support-page settings-page">
-            <Navigation active="/support" />
             <GoBackIcon/>
+            <Navigation active="/support" />
             <section className="content support">
                 <ChatPage/>
             </section>

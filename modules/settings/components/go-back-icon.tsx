@@ -4,9 +4,9 @@ import { BackIcon } from "@/static/icons";
 import { useWindowWidth } from "@react-hook/window-size";
 
 const GoBackIcon : React.FC = () => {
-    const width = useWindowWidth() ?? 0;
+    const width = useWindowWidth() ?? 1920;
 
-    if (width > 1024) return <React.Fragment/>;
+    if (width > 1024) return <div/>;
     return <div className="back-icon">
         <Link href="/settings" passHref>
             <a><BackIcon/></a>

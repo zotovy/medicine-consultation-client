@@ -1,7 +1,7 @@
 import { action, makeObservable, observable } from "mobx";
 import { injectable } from "inversify";
 import axios from "axios";
-import tokenServices from "@/services/token-services";
+import TokenServices from "@/services/token-services";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
 
 @injectable()
@@ -16,15 +16,15 @@ export default class SupportController {
     fetchedChats = false;
 
     // Create state
-    createTitle: string = "";
-    createProblem: string = "";
-    createDescription: string = "";
+    createTitle = "";
+    createProblem = "";
+    createDescription = "";
     @observable createTitleError?: string;
     @observable createProblemError?: string;
     @observable createDescriptionError?: string;
 
     // Chat state
-    @observable chatMessage: string = "";
+    @observable chatMessage = "";
 
     goBackCb = () => {}
 
@@ -44,7 +44,7 @@ export default class SupportController {
         const res = await authFetch(() => axios.get(
             process.env.SERVER_URL + route,
             {
-                headers: { auth: tokenServices.header },
+                headers: { auth: TokenServices.header },
             }
         ));
 
@@ -72,7 +72,7 @@ export default class SupportController {
                 isUser,
             },
             {
-                headers: { auth: tokenServices.header },
+                headers: { auth: TokenServices.header },
             }
         ));
         if (res.status === EAuthFetch.Error) throw "error";
@@ -133,7 +133,7 @@ export default class SupportController {
             process.env.SERVER_URL + route,
             {},
             {
-                headers: { auth: tokenServices.header },
+                headers: { auth: TokenServices.header },
             }
         ));
         if (res.status === EAuthFetch.Error) throw "error";
@@ -162,7 +162,7 @@ export default class SupportController {
                 message: messageContent
             },
             {
-                headers: { auth: tokenServices.header },
+                headers: { auth: TokenServices.header },
             }
         ));
         if (res.status === EAuthFetch.Error) throw "error";

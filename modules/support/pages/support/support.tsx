@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { observer, Observer } from "mobx-react";
+import { observer } from "mobx-react";
 import SupportController from "../../controllers/support-controller";
 import SupportChatComponent from "../../components/support-chat";
 import SupportHeader from "../../components/header";
@@ -20,27 +20,22 @@ const SupportPage: React.FC = (props) => {
 
     return <div className={styles.supportPage}>
         <SupportHeader title="Центр поддержки" link="/settings/support/create"/>
-
-        <Observer>
+        <div className={styles.chatsList} key={"chat-list"}>
             {
-                () => <div className={styles.chatsList} key={"chat-list"}>
-                    {
-                        controller.chats.map(e => {
-                            return <React.Fragment>
-                                <Link passHref  href={{
-                                    pathname: `/settings/support/chat`,
-                                    query: { id: e.number }
-                                }}>
-                                    <a>
-                                        <SupportChatComponent key={e._id} {...e} />
-                                    </a>
-                                </Link>
-                            </React.Fragment>;
-                        })
-                    }
-                </div>
+                controller.chats.map(e => {
+                    return <React.Fragment key={e._id}>
+                        <Link passHref  href={{
+                            pathname: "/settings/support/chat",
+                            query: { id: e.number }
+                        }}>
+                            <a>
+                                <SupportChatComponent key={e._id} {...e} />
+                            </a>
+                        </Link>
+                    </React.Fragment>;
+                })
             }
-        </Observer>
+        </div>
     </div>
 }
 

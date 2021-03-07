@@ -1,0 +1,55 @@
+.navigation {
+    position: fixed;
+    left: 25px;
+    width: 190px;
+    display: flex;
+    flex-direction: column;
+    top: 130px;
+
+    @media screen and (min-width: 1100px) {
+        left: calc((100vw - 1100px) / 2)
+    }
+
+    // Phone
+    @media screen and (max-width: 425px) {
+        left: 16px;
+        top: 100px;
+        width: 100%;
+    }
+
+    .item {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+
+        .icon {
+            margin-right: 25px;
+            width: 27px;
+            height: 27px;
+            display: flex;
+            align-items: center;
+
+            svg {
+                width: 27px;
+                height: 27px;
+            }
+        }
+
+        span.tabName {
+            font-size: 18px;
+            color: rgba(#282828, 0.9);
+        }
+
+        &.active {
+            path {
+                fill: #30B9D6 !important;
+            }
+
+            span.tabName {
+                color: #282828;
+                font-weight: 500;
+            }
+        }
+    }
+}
