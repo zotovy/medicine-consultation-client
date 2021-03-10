@@ -5,7 +5,7 @@ type Props = {
     options: string[];
     values: string[];
     selected?: string;
-    onSelect?: (v: string) => {};
+    onSelect?: (v: string) => any;
     id?: string;
     hint?: string;
     value?: string;

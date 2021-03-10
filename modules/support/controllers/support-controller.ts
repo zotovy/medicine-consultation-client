@@ -3,6 +3,7 @@ import { injectable } from "inversify";
 import axios from "axios";
 import TokenServices from "@/services/token-services";
 import { authFetch, EAuthFetch } from "@/services/fetch_services";
+import SupportManager from "@/modules/support/manager";
 
 @injectable()
 export default class SupportController {
@@ -16,12 +17,19 @@ export default class SupportController {
     fetchedChats = false;
 
     // Create state
-    createTitle = "";
-    createProblem = "";
+    @observable createTitle = "";
+    @observable createProblem?: string;
     createDescription = "";
     @observable createTitleError?: string;
     @observable createProblemError?: string;
     @observable createDescriptionError?: string;
+    @observable isConsultationSelectorLoading = true;
+    consultationSelectorValue = "";
+    @observable consultationSelectorError?: string;
+    @observable availableConsultations: { values: string[], options: string[] } = {
+        values: [],
+        options: [],
+    };
 
     // Chat state
     @observable chatMessage = "";
@@ -59,9 +67,22 @@ export default class SupportController {
         }));
     }
 
+    @action fetchConsultation = async (): Promise<void> => {
+        if (!this.isConsultationSelectorLoading) return;
+
+        const consultations = await SupportManager.fetchConsultation(localStorage.getItem("uid") as string);
+        this.isConsultationSelectorLoading = false;
+        this.availableConsultations = {
+            options: consultations.map(e => `${(e.doctor as DoctorType).fullName} – ${e.date.toLocaleString()}`),
+            values: consultations.map(e => e._id),
+        }
+    }
+
     public createQuestion = async () => {
         this.loading = true;
         if (!this._validate()) return;
+
+
         const isUser = localStorage.getItem("isUser") === "true";
         const res = await authFetch(() => axios.post(
             process.env.SERVER_URL + "/api/support/create-chat",
@@ -70,6 +91,9 @@ export default class SupportController {
                 message: this.createDescription,
                 problem: this.createProblem,
                 isUser,
+                payload: {
+                    consultationId: this.consultationSelectorValue
+                }
             },
             {
                 headers: { auth: TokenServices.header },
@@ -104,6 +128,7 @@ export default class SupportController {
         this.createTitleError = undefined;
         this.createProblemError = undefined;
         this.createDescriptionError = undefined;
+        this.consultationSelectorError = undefined;
         let ok = true;
 
         if (!this.createTitle || this.createTitle.length < 8 || this.createTitle.length > 120) {
@@ -120,6 +145,12 @@ export default class SupportController {
             this.createDescriptionError = "Описание должно быть до 4086 символов в длину";
             ok = false
         }
+
+        if (this.createProblem === "Doctor" && this.consultationSelectorValue === "") {
+            this.consultationSelectorError = "Это поле обязательно";
+            ok = false;
+        }
+
         return ok;
     }
 

@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { observer } from "mobx-react";
 import { useRouter } from "next/router";
-// import { useWindowWidth } from "@react-hook/window-size";
 import SupportController from "../../controllers/support-controller";
 import styles from "./create.module.scss";
 
@@ -22,11 +21,10 @@ const questionTypes = ["Техническая", "Проблема с докто
 
 const CreatePage: React.FC = () => {
     const controller = useInjection<SupportController>(TYPES.supportController);
-    // const windowWidth = useWindowWidth();
-    const windowWidth = 1920;
     const router = useRouter();
+
     useEffect(() => {
-       controller.goBackCb = () => router.back();
+        controller.goBackCb = () => router.back();
     }, []);
 
     return <div className={styles.createSupportPage}>
@@ -35,36 +33,50 @@ const CreatePage: React.FC = () => {
         <form>
             <div className={styles.row}>
                 <TextField
-                    id="title"
-                    onChange={v => controller.createTitle = v}
-                    field="Проблема"
-                    hint="Название вашей проблемы"
-                    error={controller.createTitleError}
+                        id="title"
+                        onChange={v => controller.createTitle = v}
+                        field="Проблема"
+                        hint="Название вашей проблемы"
+                        error={controller.createTitleError}
                 />
                 <div className={styles.space}/>
                 <DropDown
-                    onSelect={v => controller.createProblem = v}
-                    options={questionTypes}
-                    values={["Tech", "Doctor", "Other"]}
-                    name="problem"
-                    styles={{ minWidth: "250px" }}
-                    placeholder="Выберите тип проблемы"
-                    error={controller.createProblemError}
+                        onSelect={v => {
+                            console.log(v);
+                            controller.createProblem = v;
+                            if (v === "Doctor") controller.fetchConsultation();
+                        }}
+                        options={questionTypes}
+                        values={["Tech", "Doctor", "Other"]}
+                        name="problem"
+                        styles={{ minWidth: "250px" }}
+                        placeholder="Выберите тип проблемы"
+                        error={controller.createProblemError}
                 />
             </div>
-            <TextArea
 
-                onChange={v => controller.createDescription = v}
-                field="Описание"
-                hint="Опишите Вашу проблему"
-                rows={15}
-                resize="vertical"
-                maxHeight="700px"
-                minHeight="150px"
-                error={controller.createDescriptionError}
+            <div className={
+                styles.consultationSelector + ` ${controller.createProblem === "Doctor" ? "" : styles.hidden}`}>
+                <DropDown
+                        error={controller.consultationSelectorError}
+                        placeholder="Выберите консультацию, с которой у Вас проблемы"
+                        onSelect={(v) => controller.consultationSelectorValue = v}
+                        options={controller.availableConsultations.options}
+                        values={controller.availableConsultations.values}/>
+            </div>
+
+            <TextArea
+                    onChange={v => controller.createDescription = v}
+                    field="Описание"
+                    hint="Опишите Вашу проблему"
+                    rows={15}
+                    resize="vertical"
+                    maxHeight="700px"
+                    minHeight="150px"
+                    error={controller.createDescriptionError}
             />
         </form>
-        <ConfirmButton className={styles.confirmButton} onConfirm={controller.createQuestion} content="Отправить" />
+        <ConfirmButton className={styles.confirmButton} onConfirm={controller.createQuestion} content="Отправить"/>
     </div>;
 }
 
