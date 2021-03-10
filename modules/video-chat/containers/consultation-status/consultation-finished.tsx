@@ -39,8 +39,7 @@ const ConsultationFinished: React.FC<Props> = (props) => {
                 button={buttonType}
                 buttonText={buttonText}
                 onClick={onClick} />
-
-        <SomethingWrong onClick={() => router.push("/settings/support/create")}>
+        <SomethingWrong onClick={() => router.push(`/settings/support/create?consultationId=${props.consultationId}`)}>
             Что-то пошло не так?
         </SomethingWrong>
     </React.Fragment>

@@ -24,6 +24,12 @@ const CreatePage: React.FC = () => {
     const router = useRouter();
 
     useEffect(() => {
+        if (router.query.consultationId) {
+            controller.fetchConsultation();
+            controller.consultationSelectorValue = router.query.consultationId as string;
+            controller.createProblem = "Doctor";
+        }
+
         controller.goBackCb = () => router.back();
     }, []);
 
@@ -41,6 +47,7 @@ const CreatePage: React.FC = () => {
                 />
                 <div className={styles.space}/>
                 <DropDown
+                        value={controller.createProblem}
                         onSelect={v => {
                             console.log(v);
                             controller.createProblem = v;
@@ -58,6 +65,7 @@ const CreatePage: React.FC = () => {
             <div className={
                 styles.consultationSelector + ` ${controller.createProblem === "Doctor" ? "" : styles.hidden}`}>
                 <DropDown
+                        value={controller.consultationSelectorValue}
                         error={controller.consultationSelectorError}
                         placeholder="Выберите консультацию, с которой у Вас проблемы"
                         onSelect={(v) => controller.consultationSelectorValue = v}
