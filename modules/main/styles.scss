@@ -856,7 +856,7 @@ a {
                     li {
                         display: flex;
                         align-items: center;
-                        margin-top: 15px;
+                        margin-top: 25px;
                         cursor: default;
 
                         span {
@@ -864,6 +864,10 @@ a {
                             margin-left: 20px;
                         }
 
+                    }
+
+                    svg {
+                        flex: 0 0 auto;
                     }
 
                     @media screen and (max-width: 1700px) {
