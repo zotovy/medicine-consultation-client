@@ -134,15 +134,15 @@ const ContactsPage: NextPage = () => {
             <div className="group" id="group-2">
                 <div className="item">
                     <span className="field-name">Юр. Лицо</span>
-                    <span className="value">Иван Иванов Иванович</span>
+                    <span className="value">ИП Горнов Алексей Владимирович</span>
                 </div>
                 <div className="item">
                     <span className="field-name">ИНН</span>
-                    <a className="value">1234567891011</a>
+                    <a className="value">591801177588</a>
                 </div>
                 <div className="item">
                     <span className="field-name">ОГРН</span>
-                    <span className="value">1234567890101</span>
+                    <span className="value">309591809200019</span>
                 </div>
             </div>
             
